@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1 class="name"><a href="/">{{ .Site.Title }}</a></h1>
+    <nav><a href="/">home</a> · <a href="/blog/">blog</a></nav>
+  </div>
+
+  <div class="section-label">{{ .Title }}</div>
+  <ul class="post-list">
+    {{ range .Pages }}
+    <li>
+      <a href="{{ .RelPermalink }}">
+        <div class="post-title">{{ .Title }}</div>
+        <div class="post-meta">{{ .Date.Format "2 Jan 2006" }}</div>
+        {{ with .Description }}<div class="post-summary">{{ . }}</div>{{ end }}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
