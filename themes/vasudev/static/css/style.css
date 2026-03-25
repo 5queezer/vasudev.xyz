@@ -1,0 +1,374 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0c0c0c;
+  --fg: #e0ddd5;
+  --dim: #706f6a;
+  --accent: #c4956a;
+  --accent2: #7a9e7e;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Source Serif 4', Georgia, serif;
+}
+
+html {
+  font-size: 17px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  padding: 2rem;
+}
+
+/* ── Home card ── */
+.home-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+}
+
+.card {
+  max-width: 540px;
+  width: 100%;
+  opacity: 0;
+  animation: arrive 0.6s ease-out 0.15s forwards;
+}
+
+@keyframes arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.name {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.name a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.tagline {
+  font-size: 0.82rem;
+  color: var(--dim);
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 2.5rem;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  margin-bottom: 0.6rem;
+}
+
+.projects {
+  margin-bottom: 2.2rem;
+}
+
+.project {
+  display: block;
+  padding: 0.7rem 0;
+  border-top: 1px solid #1e1e1e;
+  text-decoration: none;
+  color: var(--fg);
+  transition: color 0.2s;
+}
+
+.project:last-child {
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.project:hover {
+  color: var(--accent);
+}
+
+.project-name {
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+.project-desc {
+  font-size: 0.72rem;
+  color: var(--dim);
+  margin-top: 0.15rem;
+  transition: color 0.2s;
+}
+
+.project:hover .project-desc {
+  color: var(--accent);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 2.2rem;
+}
+
+.links a {
+  font-size: 0.78rem;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.links a:hover {
+  color: var(--accent2);
+}
+
+.links svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact {
+  font-size: 0.72rem;
+  color: var(--dim);
+}
+
+.contact a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid #2a2a2a;
+  transition: border-color 0.2s;
+}
+
+.contact a:hover {
+  border-color: var(--accent);
+}
+
+/* ── Blog list & post ── */
+.page-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.page-header .name {
+  margin-bottom: 0.5rem;
+}
+
+.page-header nav {
+  font-size: 0.78rem;
+  color: var(--dim);
+}
+
+.page-header nav a {
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.page-header nav a:hover {
+  color: var(--accent2);
+}
+
+.post-list {
+  list-style: none;
+}
+
+.post-list li {
+  border-top: 1px solid #1e1e1e;
+  padding: 0.9rem 0;
+}
+
+.post-list li:last-child {
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.post-list a {
+  text-decoration: none;
+  color: var(--fg);
+  transition: color 0.2s;
+}
+
+.post-list a:hover {
+  color: var(--accent);
+}
+
+.post-list .post-title {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.post-list .post-meta {
+  font-size: 0.7rem;
+  color: var(--dim);
+}
+
+.post-list .post-summary {
+  font-size: 0.75rem;
+  color: var(--dim);
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+
+/* ── Single post ── */
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-header h1 {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.post-header .post-meta {
+  font-size: 0.72rem;
+  color: var(--dim);
+}
+
+.post-content {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--fg);
+}
+
+.post-content h2 {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--accent);
+}
+
+.post-content h3 {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+.post-content p {
+  margin-bottom: 1.2rem;
+}
+
+.post-content a {
+  color: var(--accent2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--accent2);
+}
+
+.post-content code {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  background: #1a1a1a;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+.post-content pre {
+  background: #141414;
+  border: 1px solid #1e1e1e;
+  border-radius: 4px;
+  padding: 1.2rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1.2rem;
+  padding-left: 1.5rem;
+}
+
+.post-content li {
+  margin-bottom: 0.4rem;
+}
+
+.post-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  margin-bottom: 1.2rem;
+  color: var(--dim);
+  font-style: italic;
+}
+
+.post-content strong {
+  font-weight: 600;
+}
+
+.post-content em {
+  font-style: italic;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid #1e1e1e;
+  margin: 2rem 0;
+}
+
+.post-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #1e1e1e;
+  font-size: 0.75rem;
+  color: var(--dim);
+}
+
+.post-footer a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid #2a2a2a;
+  transition: border-color 0.2s;
+}
+
+.post-footer a:hover {
+  border-color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+  .name { font-size: 1.7rem; }
+  .post-header h1 { font-size: 1.5rem; }
+}

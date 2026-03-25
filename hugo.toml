@@ -1,0 +1,17 @@
+baseURL = "https://vasudev.xyz/"
+languageCode = "en-us"
+title = "Christian Pojoni"
+theme = "vasudev"
+
+[params]
+  description = "Systems engineer. Rust, Python, AI tooling, privacy-first architecture."
+  author = "Christian Pojoni"
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+    guessSyntax = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
