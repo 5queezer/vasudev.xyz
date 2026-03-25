@@ -8,7 +8,7 @@ tags: ["rust", "a2a", "security", "zeroclaw"]
 
 The [A2A (Agent-to-Agent) protocol](https://google.github.io/A2A/) is Google's open standard for agent interoperability -- discovery, task delegation, lifecycle management over HTTP/JSON-RPC. It sits next to MCP the way TCP sits next to USB: one connects agents to agents, the other connects agents to tools.
 
-I recently shipped [PR #4166](https://github.com/5queezer/zeroclaw/pull/4166) adding native A2A support to ZeroClaw -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
+I recently shipped [PR #4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166) adding native A2A support to ZeroClaw -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
 
 ## 1. Agent Cards are unauthenticated by design -- and that's fine
 
@@ -77,7 +77,7 @@ fn is_private_ip(ip: &IpAddr) -> bool {
 }
 ```
 
-Document the TOCTOU gap honestly. I left a comment in the code and a note in the PR: "DNS rebinding TOCTOU acknowledged; peer allowlist planned in [#4643](https://github.com/5queezer/zeroclaw/issues/4643)."
+Document the TOCTOU gap honestly. I left a comment in the code and a note in the PR: "DNS rebinding TOCTOU acknowledged; peer allowlist planned in [#4643](https://github.com/zeroclaw-labs/zeroclaw/issues/4643)."
 
 ## 4. Same-host A2A breaks your own SSRF protection
 
@@ -188,6 +188,6 @@ If it runs on a Pi Zero, it runs anywhere.
 
 ---
 
-The PR is [#4166](https://github.com/5queezer/zeroclaw/pull/4166). The follow-up for peer discovery and LAN mDNS is [#4643](https://github.com/5queezer/zeroclaw/issues/4643).
+The PR is [#4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166). The follow-up for peer discovery and LAN mDNS is [#4643](https://github.com/zeroclaw-labs/zeroclaw/issues/4643).
 
 *I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
