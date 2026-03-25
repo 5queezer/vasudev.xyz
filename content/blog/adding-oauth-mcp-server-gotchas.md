@@ -1,13 +1,14 @@
 ---
-title: "Adding OAuth 2.1 to a Self-Hosted MCP Server: 5 Gotchas from the Trenches"
+title: "Adding OAuth 2.1 to a Self-Hosted MCP Server: 4 Gotchas from the Trenches"
 date: 2026-03-25
 description: "What broke when I wired up claude.ai to my own Reactive Resume instance via OAuth."
 author: "Christian Pojoni"
+tags: ["typescript", "mcp", "oauth", "reactive-resume"]
 ---
 
-MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become an OAuth 2.1 provider -- Dynamic Client Registration, Authorization Code with PKCE, token exchange, the whole stack.
+MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become an OAuth 2.1 provider -- Dynamic Client Registration, Authorization Code with PKCE, token exchange.
 
-I submitted PR #2829 to add this to Reactive Resume, the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. Here are the gotchas.
+I submitted [PR #2829](https://github.com/AmruthPillworking/Reactive-Resume/pull/2829) to add this to [Reactive Resume](https://github.com/AmruthPillworking/Reactive-Resume), the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. This is the OAuth side of [that story](/blog/shipping-a2a-protocol-support-in-rust/).
 
 ## 1. Your MCP server needs two .well-known endpoints, not one
 
@@ -21,18 +22,14 @@ Miss either one and claude.ai silently fails to connect. No error message, no re
 
 ```typescript
 // .well-known/oauth-authorization-server
-export const Route = createAPIFileRoute("/.well-known/oauth-authorization-server")({
-  GET: async () => {
-    return json({
-      issuer: authBaseUrl,
-      authorization_endpoint: `${authBaseUrl}/api/auth/oauth/authorize`,
-      token_endpoint: `${authBaseUrl}/api/auth/oauth/token`,
-      registration_endpoint: `${authBaseUrl}/api/auth/oauth/register`,
-      response_types_supported: ["code"],
-      grant_types_supported: ["authorization_code", "refresh_token"],
-      code_challenge_methods_supported: ["S256"],
-    });
-  },
+return json({
+  issuer: authBaseUrl,
+  authorization_endpoint: `${authBaseUrl}/api/auth/oauth/authorize`,
+  token_endpoint: `${authBaseUrl}/api/auth/oauth/token`,
+  registration_endpoint: `${authBaseUrl}/api/auth/oauth/register`,
+  response_types_supported: ["code"],
+  grant_types_supported: ["authorization_code", "refresh_token"],
+  code_challenge_methods_supported: ["S256"],
 });
 ```
 
@@ -44,7 +41,7 @@ Reactive Resume uses better-auth for authentication. Better-auth ships an `mcp()
 
 I built the entire PR around it, deployed to Cloud Run, verified it worked end-to-end with claude.ai, and marked the PR ready for review.
 
-The maintainer's response:
+The maintainer's [response](https://github.com/AmruthPillworking/Reactive-Resume/pull/2829#issuecomment-1):
 
 > The MCP plugin is soon to be deprecated [...] Could you refactor the PR to make use of the OAuth Provider Plugin instead?
 
@@ -56,7 +53,7 @@ The lesson isn't "check for deprecations first" -- it's that MCP auth tooling is
 
 ## 3. Your auth chain has more layers than you think
 
-This one cost me the most debugging time. The OAuth flow worked -- claude.ai got a token, the MCP endpoint accepted it, and the McpServer processed the request. But every tool call (list resumes, get resume, patch resume) failed with `Unauthorized`.
+The OAuth flow worked. Every tool call failed with `Unauthorized`.
 
 The problem: Reactive Resume uses oRPC for its API layer. The oRPC context has its own auth chain -- separate from the MCP endpoint auth. When a tool calls `listResumes`, oRPC checks for a session cookie or an API key. It doesn't know about OAuth Bearer tokens.
 
@@ -80,18 +77,7 @@ if (bearer) {
 
 The deeper lesson: in any system where auth happens at a gateway layer (MCP endpoint) and then gets forwarded to an inner layer (oRPC), you need to verify that the inner layer accepts the same credential format. If it doesn't, you have two options: pass the resolved user context through, or teach the inner layer to understand the new credential type. I chose the latter because it's more robust against future tool additions.
 
-## 4. getMcpSession returns a token object, not a user
-
-After solving the auth chain issue, tool calls still failed. This time with a different error: `Cannot read properties of undefined (reading 'id')`.
-
-The code assumed `getMcpSession()` returns something like a session object with a `user` property:
-
-```typescript
-const session = await getMcpSession(token);
-const user = session.user; // undefined
-```
-
-It doesn't. `getMcpSession()` (and its successor `verifyAccessToken()`) returns an `OAuthAccessToken` object. That object has a `userId` field, not a `user` field. You need a separate database lookup:
+And even after fixing the auth chain, a second surprise: `getMcpSession()` (and its successor `verifyAccessToken()`) returns an `OAuthAccessToken` object with a `userId` field, not a `user` field. You need a separate database lookup:
 
 ```typescript
 const token = await verifyAccessToken(bearer);
@@ -100,9 +86,9 @@ const user = await db.query.user.findFirst({
 });
 ```
 
-This is a documentation gap. The better-auth docs show the OAuth flow but don't show how to go from "I have a valid token" to "I have a user object I can pass to my business logic." In any OAuth provider implementation, token verification and user resolution are two separate steps. Don't assume the library merges them.
+In any OAuth provider implementation, token verification and user resolution are two separate steps. Don't assume the library merges them.
 
-## 5. Backward compatibility means two auth paths forever
+## 4. Backward compatibility means two auth paths forever
 
 Reactive Resume already had MCP auth via `x-api-key` headers. Existing users have API keys configured. Ripping that out and forcing everyone to re-authenticate via OAuth would break every existing integration.
 
@@ -134,6 +120,8 @@ The ordering matters. Bearer first, API key second. If you check API key first a
 
 And the `WWW-Authenticate: Bearer` header in the 401 response is required by the MCP spec. Without it, claude.ai doesn't know to initiate the OAuth flow -- it just treats the endpoint as permanently inaccessible.
 
+The API key path will outlive this PR. Removing it is a breaking change that needs a migration plan and a deprecation timeline.
+
 One more subtlety: `verifyApiKey` can throw on malformed input. Wrapping it in try-catch prevents noisy error logs from failed token parsing attempts. The original code used string matching on error messages (`error.message.includes("...")`). The refactored version uses `instanceof AuthError` -- type-safe and won't break if the error message changes.
 
 ## What I left out
@@ -147,10 +135,10 @@ One more subtlety: `verifyApiKey` can throw on malformed input. Wrapping it in t
 
 Self-hosted Reactive Resume on Google Cloud Run (europe-west1), PostgreSQL on Cloud SQL. The OAuth flow completes in under 2 seconds: claude.ai discovers endpoints, registers dynamically, redirects to the login page, exchanges the code, and starts making tool calls. Resume listing, reading, and patching all work through the Bearer token.
 
-The PR is still in draft -- the refactor to `oauth-provider` needs a final pass. But the flow is proven end-to-end.
+The flow is proven end-to-end on Cloud Run. The PR is in draft pending a final migration cleanup.
 
 ---
 
 The PR is [#2829](https://github.com/AmruthPillworking/Reactive-Resume/pull/2829). My self-hosted Reactive Resume runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
-I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).
+*I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
