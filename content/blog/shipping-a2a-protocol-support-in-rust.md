@@ -3,13 +3,12 @@ title: "Shipping A2A Protocol Support in Rust: 7 Gotchas Nobody Warns You About"
 date: 2026-03-25
 description: "What I learned adding Agent-to-Agent protocol support to an open-source agent framework."
 author: "Christian Pojoni"
+tags: ["rust", "a2a", "security", "zeroclaw"]
 ---
 
-The A2A (Agent-to-Agent) protocol is Google's open standard for agent interoperability -- discovery, task delegation, lifecycle management over HTTP/JSON-RPC. It sits next to MCP the way TCP sits next to USB: one connects agents to agents, the other connects agents to tools.
+The [A2A (Agent-to-Agent) protocol](https://google.github.io/A2A/) is Google's open standard for agent interoperability -- discovery, task delegation, lifecycle management over HTTP/JSON-RPC. It sits next to MCP the way TCP sits next to USB: one connects agents to agents, the other connects agents to tools.
 
-I recently shipped PR #4166 adding native A2A support to ZeroClaw -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
-
-Here are the gotchas.
+I recently shipped [PR #4166](https://github.com/5queezer/zeroclaw/pull/4166) adding native A2A support to ZeroClaw -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
 
 ## 1. Agent Cards are unauthenticated by design -- and that's fine
 
@@ -78,7 +77,7 @@ fn is_private_ip(ip: &IpAddr) -> bool {
 }
 ```
 
-Document the TOCTOU gap honestly. I left a comment in the code and a note in the PR: "DNS rebinding TOCTOU acknowledged; peer allowlist planned in #4643."
+Document the TOCTOU gap honestly. I left a comment in the code and a note in the PR: "DNS rebinding TOCTOU acknowledged; peer allowlist planned in [#4643](https://github.com/5queezer/zeroclaw/issues/4643)."
 
 ## 4. Same-host A2A breaks your own SSRF protection
 
@@ -173,7 +172,7 @@ Lesson: test the full path. Unit tests proved the tool worked when called. Integ
 The PR explicitly does not include:
 
 * **SSE streaming** -- A2A supports it, but synchronous request/response covers 90% of use cases. Streaming is additive, not foundational.
-* **mTLS/OAuth** -- Bearer tokens are sufficient for the trust model (same host, known peers). Certificate-based auth is enterprise-grade complexity for a Pi deployment.
+* **mTLS/OAuth** -- Bearer tokens are sufficient for the trust model (same host, known peers). Certificate-based auth is enterprise-grade complexity for a Pi deployment. See also: [Adding OAuth 2.1 to a Self-Hosted MCP Server](/blog/adding-oauth-mcp-server-gotchas/).
 * **Agent registry** -- Discovery is manual (you configure the URL). Automatic registry/mDNS is planned in the follow-up issue.
 * **Task eviction** -- The 10K cap is a hard wall, not an LRU cache. Good enough for v1.
 
@@ -189,6 +188,6 @@ If it runs on a Pi Zero, it runs anywhere.
 
 ---
 
-The PR is #4166. The follow-up for peer discovery and LAN mDNS is #4643.
+The PR is [#4166](https://github.com/5queezer/zeroclaw/pull/4166). The follow-up for peer discovery and LAN mDNS is [#4643](https://github.com/5queezer/zeroclaw/issues/4643).
 
 *I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
