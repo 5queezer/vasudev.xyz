@@ -6,14 +6,36 @@
   box-sizing: border-box;
 }
 
+/* -- Dark theme (default) -- */
 :root {
   --bg: #0c0c0c;
   --fg: #e0ddd5;
   --dim: #706f6a;
   --accent: #c4956a;
   --accent2: #7a9e7e;
+  --border: #1e1e1e;
+  --border-light: #2a2a2a;
+  --code-bg: #1a1a1a;
+  --pre-bg: #141414;
   --mono: 'JetBrains Mono', monospace;
   --serif: 'Source Serif 4', Georgia, serif;
+  --toggle-hover-bg: #161b22;
+  --toggle-hover-border: #30363d;
+}
+
+/* -- Light theme -- */
+[data-theme="light"] {
+  --bg: #fafaf9;
+  --fg: #1c1c1a;
+  --dim: #57534e;
+  --accent: #a0714e;
+  --accent2: #4a7a4e;
+  --border: #d4d4d4;
+  --border-light: #c4c4c4;
+  --code-bg: #f0efeb;
+  --pre-bg: #f0efeb;
+  --toggle-hover-bg: #f0f0ee;
+  --toggle-hover-border: #d4d4d4;
 }
 
 html {
@@ -86,14 +108,14 @@ body {
 .project {
   display: block;
   padding: 0.7rem 0;
-  border-top: 1px solid #1e1e1e;
+  border-top: 1px solid var(--border);
   text-decoration: none;
   color: var(--fg);
   transition: color 0.2s;
 }
 
 .project:last-child {
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid var(--border);
 }
 
 .project:hover {
@@ -155,7 +177,7 @@ body {
 .contact a {
   color: var(--fg);
   text-decoration: none;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid var(--border-light);
   transition: border-color 0.2s;
 }
 
@@ -198,12 +220,12 @@ body {
 }
 
 .post-list li {
-  border-top: 1px solid #1e1e1e;
+  border-top: 1px solid var(--border);
   padding: 0.9rem 0;
 }
 
 .post-list li:last-child {
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid var(--border);
 }
 
 .post-list a {
@@ -295,14 +317,14 @@ body {
 .post-content code {
   font-family: var(--mono);
   font-size: 0.82rem;
-  background: #1a1a1a;
+  background: var(--code-bg);
   padding: 0.15em 0.4em;
   border-radius: 3px;
 }
 
 .post-content pre {
-  background: #141414;
-  border: 1px solid #1e1e1e;
+  background: var(--pre-bg);
+  border: 1px solid var(--border);
   border-radius: 4px;
   padding: 1.2rem;
   overflow-x: auto;
@@ -344,14 +366,14 @@ body {
 
 .post-content hr {
   border: none;
-  border-top: 1px solid #1e1e1e;
+  border-top: 1px solid var(--border);
   margin: 2rem 0;
 }
 
 .post-footer {
   margin-top: 3rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #1e1e1e;
+  border-top: 1px solid var(--border);
   font-size: 0.75rem;
   color: var(--dim);
 }
@@ -359,12 +381,49 @@ body {
 .post-footer a {
   color: var(--fg);
   text-decoration: none;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid var(--border-light);
   transition: border-color 0.2s;
 }
 
 .post-footer a:hover {
   border-color: var(--accent);
+}
+
+/* -- Theme toggle -- */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 0.5px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--dim);
+}
+
+.theme-toggle:hover {
+  background: var(--toggle-hover-bg);
+  border-color: var(--toggle-hover-border);
+}
+
+.icon-sun, .icon-moon {
+  position: absolute;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+:root .icon-sun           { opacity: 1; transform: rotate(0deg); }
+:root .icon-moon          { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+
+[data-theme="light"] .icon-sun  { opacity: 0; transform: rotate(90deg) scale(0.5); }
+[data-theme="light"] .icon-moon { opacity: 1; transform: rotate(0deg); }
+
+/* -- Theme transitions -- */
+body,
+body * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 @media (max-width: 480px) {
