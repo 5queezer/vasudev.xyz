@@ -1,7 +1,10 @@
 {{ define "main" }}
 <div class="home-wrapper">
   <div class="card">
-    <h1 class="name">{{ .Site.Title }}</h1>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <h1 class="name">{{ .Site.Title }}</h1>
+      {{ partial "theme-toggle.html" . }}
+    </div>
     <p class="tagline">{{ .Site.Params.description }}</p>
 
     <div class="projects">
