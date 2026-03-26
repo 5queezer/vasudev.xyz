@@ -133,7 +133,7 @@ One more subtlety: `verifyApiKey` can throw on malformed input. Wrapping it in t
 
 ## The setup that proved it works
 
-Self-hosted Reactive Resume on Google Cloud Run (europe-west1), PostgreSQL on Cloud SQL. The OAuth flow completes in under 2 seconds: claude.ai discovers endpoints, registers dynamically, redirects to the login page, exchanges the code, and starts making tool calls. Resume listing, reading, and patching all work through the Bearer token.
+Self-hosted Reactive Resume on Google Cloud Run (europe-west1), PostgreSQL on Neon.tech (free tier). The OAuth flow completes in under 2 seconds: claude.ai discovers endpoints, registers dynamically, redirects to the login page, exchanges the code, and starts making tool calls. Resume listing, reading, and patching all work through the Bearer token.
 
 The flow is proven end-to-end on Cloud Run. The PR has been merged and the feature ships with the next release.
 
