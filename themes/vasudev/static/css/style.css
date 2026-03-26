@@ -389,6 +389,11 @@ body {
   border-color: var(--accent);
 }
 
+/* -- Giscus comments -- */
+.giscus-comments {
+  margin-top: 2.5rem;
+}
+
 /* -- Theme toggle -- */
 .theme-toggle {
   width: 36px;
