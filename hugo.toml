@@ -15,3 +15,14 @@ theme = "vasudev"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[params.giscus]
+  repo = "5queezer/vasudev.xyz"
+  repoID = ""
+  category = "Announcements"
+  categoryID = ""
+  mapping = "pathname"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "top"
+  lang = "en"
