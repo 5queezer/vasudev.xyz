@@ -40,6 +40,7 @@
 
 html {
   font-size: 17px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
