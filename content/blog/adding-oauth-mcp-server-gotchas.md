@@ -8,7 +8,7 @@ tags: ["typescript", "mcp", "oauth", "reactive-resume"]
 
 MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become an OAuth 2.1 provider -- Dynamic Client Registration, Authorization Code with PKCE, token exchange.
 
-I submitted [PR #2829](https://github.com/AmruthPillworking/Reactive-Resume/pull/2829) to add this to [Reactive Resume](https://github.com/AmruthPillworking/Reactive-Resume), the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. This is the OAuth side of [that story](/blog/shipping-a2a-protocol-support-in-rust/).
+I submitted [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) to add this to [Reactive Resume](https://github.com/amruthpillai/reactive-resume), the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. This is the OAuth side of [that story](/blog/shipping-a2a-protocol-support-in-rust/).
 
 ## 1. Your MCP server needs two .well-known endpoints, not one
 
@@ -41,7 +41,7 @@ Reactive Resume uses better-auth for authentication. Better-auth ships an `mcp()
 
 I built the entire PR around it, deployed to Cloud Run, verified it worked end-to-end with claude.ai, and marked the PR ready for review.
 
-The maintainer's [response](https://github.com/AmruthPillworking/Reactive-Resume/pull/2829#issuecomment-1):
+The maintainer's [response](https://github.com/amruthpillai/reactive-resume/pull/2829#issuecomment-1):
 
 > The MCP plugin is soon to be deprecated [...] Could you refactor the PR to make use of the OAuth Provider Plugin instead?
 
@@ -135,10 +135,10 @@ One more subtlety: `verifyApiKey` can throw on malformed input. Wrapping it in t
 
 Self-hosted Reactive Resume on Google Cloud Run (europe-west1), PostgreSQL on Cloud SQL. The OAuth flow completes in under 2 seconds: claude.ai discovers endpoints, registers dynamically, redirects to the login page, exchanges the code, and starts making tool calls. Resume listing, reading, and patching all work through the Bearer token.
 
-The flow is proven end-to-end on Cloud Run. The PR is in draft pending a final migration cleanup.
+The flow is proven end-to-end on Cloud Run. The PR has been merged and the feature ships with the next release.
 
 ---
 
-The PR is [#2829](https://github.com/AmruthPillworking/Reactive-Resume/pull/2829). My self-hosted Reactive Resume runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
+The PR is [#2829](https://github.com/amruthpillai/reactive-resume/pull/2829). My self-hosted Reactive Resume runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
 *I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
