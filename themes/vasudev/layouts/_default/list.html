@@ -14,6 +14,7 @@
         <div class="post-meta">{{ .Date.Format "2 Jan 2006" }}</div>
         {{ with .Description }}<div class="post-summary">{{ . }}</div>{{ end }}
       </a>
+      {{ with .Params.tags }}<div class="post-tags">{{ range . }}<a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}</div>{{ end }}
     </li>
     {{ end }}
   </ul>

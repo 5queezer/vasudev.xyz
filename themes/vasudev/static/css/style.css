@@ -257,6 +257,35 @@ body {
   line-height: 1.5;
 }
 
+/* ── Tag badges ── */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.post-list .post-tags {
+  margin-top: 0.4rem;
+}
+
+.tag {
+  font-size: 0.62rem;
+  font-family: var(--mono);
+  color: var(--dim);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tag:hover {
+  color: var(--accent2);
+  border-color: var(--accent2);
+}
+
 /* ── Single post ── */
 .post-header {
   margin-bottom: 2rem;
