@@ -25,17 +25,17 @@
 
 /* -- Light theme -- */
 [data-theme="light"] {
-  --bg: #fafaf9;
-  --fg: #1c1c1a;
-  --dim: #57534e;
-  --accent: #a0714e;
-  --accent2: #4a7a4e;
-  --border: #d4d4d4;
-  --border-light: #c4c4c4;
-  --code-bg: #f0efeb;
-  --pre-bg: #f0efeb;
-  --toggle-hover-bg: #f0f0ee;
-  --toggle-hover-border: #d4d4d4;
+  --bg: #faf9f7;
+  --fg: #2c2825;
+  --dim: #78716c;
+  --accent: #9a5b30;
+  --accent2: #3d7244;
+  --border: #e5e2dd;
+  --border-light: #d6d3ce;
+  --code-bg: #f3f1ed;
+  --pre-bg: #f3f1ed;
+  --toggle-hover-bg: #edebe7;
+  --toggle-hover-border: #d6d3ce;
 }
 
 html {
@@ -257,12 +257,20 @@ body {
   line-height: 1.5;
 }
 
+/* ── Meta row (date + tags on same line) ── */
+.post-meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 /* ── Tag badges ── */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-top: 0.5rem;
 }
 
 .post-list .post-tags {
@@ -465,4 +473,8 @@ body * {
   html { font-size: 15px; }
   .name { font-size: 1.7rem; }
   .post-header h1 { font-size: 1.5rem; }
+  .post-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
