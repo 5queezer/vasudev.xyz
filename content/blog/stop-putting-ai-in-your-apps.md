@@ -44,9 +44,9 @@ The difference isn't cosmetic. It's architectural. With NocoDB + MCP, the AI lay
 
 ## What This Actually Looks Like
 
-I track my job applications in a NocoDB instance I call Nexus. Here's what a typical interaction looks like:
+I track my job applications in NocoDB. Here's what a typical interaction looks like:
 
-I tell Claude: "Check my inbox for new recruiter emails, evaluate the roles, and update Nexus."
+I tell Claude: "Check my inbox for new recruiter emails, evaluate the roles, and update NocoDB."
 
 Claude searches Gmail, reads the threads, evaluates each role against a custom psychological profile I built with it -- covering work style preferences, communication patterns, autonomy needs, and culture fit markers -- then creates or updates records in NocoDB with a match score and reasoning. Not keyword matching. Actual fit assessment for long-term satisfaction on both sides. One sentence from me, four tools coordinated, full context preserved.
 
