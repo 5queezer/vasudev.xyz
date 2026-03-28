@@ -4,6 +4,7 @@ date: 2026-03-27
 description: "Why AI features inside traditional apps are backwards, and how MCP flips the architecture."
 author: "Christian Pojoni"
 tags: ["mcp", "nocodb", "ai", "architecture"]
+images: ["/images/ai-architecture.png"]
 ---
 
 I tried Airtable recently. It has AI features now. A little text box inside the app where you can ask questions about your data. It felt wrong immediately, and it took me a few days to articulate why.
