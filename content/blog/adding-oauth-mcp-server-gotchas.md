@@ -10,6 +10,8 @@ MCP (Model Context Protocol) lets AI assistants call tools on remote servers. Bu
 
 I submitted [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) to add this to [Reactive Resume](https://github.com/amruthpillai/reactive-resume), the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. This is the OAuth side of [that story](/blog/shipping-a2a-protocol-support-in-rust/).
 
+**MCP OAuth works, but the spec leaves four traps that tutorials skip.**
+
 ## 1. Your MCP server needs two .well-known endpoints, not one
 
 When claude.ai connects to a custom MCP endpoint, it doesn't just POST to your URL. It first probes for OAuth metadata. The MCP auth spec requires two discovery endpoints:
@@ -137,8 +139,8 @@ Self-hosted Reactive Resume on Google Cloud Run (europe-west1), PostgreSQL on Ne
 
 The flow is proven end-to-end on Cloud Run. The PR has been merged and the feature ships with the next release.
 
----
+If you're adding OAuth to your own MCP server, read [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) for the full implementation -- every gotcha above maps to a specific commit. To try the result, point claude.ai at your own Reactive Resume instance and connect via OAuth. My setup runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
-The PR is [#2829](https://github.com/amruthpillai/reactive-resume/pull/2829). My self-hosted Reactive Resume runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
+---
 
 *I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
