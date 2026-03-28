@@ -8,7 +8,7 @@ tags: ["mcp", "nocodb", "ai", "architecture"]
 
 I tried Airtable recently. It has AI features now. A little text box inside the app where you can ask questions about your data. It felt wrong immediately, and it took me a few days to articulate why.
 
-The AI window inside Airtable doesn't know who I am. It doesn't know my job search history, my writing style, my preferences, my other tools. It's a stranger sitting inside someone else's house, asking me to explain everything from scratch. Every single time.
+The AI window inside Airtable doesn't know who I am. It's a stranger sitting inside someone else's house, asking me to explain everything from scratch.
 
 Meanwhile, my actual AI -- Claude -- knows all of that. It has my memories, my custom skills, my context across dozens of conversations. The only thing it was missing was access to my data in NocoDB.
 
@@ -34,14 +34,6 @@ In my setup, Claude is the command center. It has:
 
 When I say "update the status on my NocoDB application and draft a follow-up email," Claude does both. It knows which application I mean because we discussed it yesterday. It knows my email tone because it's written 50 drafts for me. No app-native AI window can do that.
 
-## Why NocoDB, Not Airtable
-
-Airtable's AI features are a walled garden. They work inside Airtable, with Airtable's model, on Airtable's terms. You can't swap the AI. You can't bring your own context. You can't extend it.
-
-NocoDB is open source, runs on Postgres, and -- as of my recent [OAuth 2.1 PR](https://github.com/nocodb/nocodb/issues/13363) -- supports standard MCP authentication. That means any MCP-compatible AI client can connect to it with proper OAuth flows, not API tokens copy-pasted from a settings page.
-
-The difference isn't cosmetic. It's architectural. With NocoDB + MCP, the AI layer is yours. You choose the model. You own the context. You decide what gets connected.
-
 ## What This Actually Looks Like
 
 I track my job applications in NocoDB. Here's what a typical interaction looks like:
@@ -52,11 +44,23 @@ Claude searches Gmail, reads the threads, evaluates each role against a custom p
 
 Try doing that with Airtable's AI chat box.
 
+## Why NocoDB, Not Airtable
+
+Airtable's AI features are a walled garden. They work inside Airtable, with Airtable's model, on Airtable's terms. You can't swap the AI. You can't bring your own context. You can't extend it.
+
+NocoDB is open source, runs on Postgres, and -- as of my recent [OAuth 2.1 PR](https://github.com/nocodb/nocodb/issues/13363) -- supports standard MCP authentication. That means any MCP-compatible AI client can connect to it with proper OAuth flows, not API tokens copy-pasted from a settings page.
+
+The difference isn't cosmetic. It's architectural. With NocoDB + MCP, the AI layer is yours. You choose the model. You own the context. You decide what gets connected.
+
 ## The Uncomfortable Implication
 
 If the AI orchestrates the tools instead of living inside them, then the tools themselves become commoditized. Your database, your email client, your project tracker -- they're all just data stores with APIs. The value shifts to the orchestration layer: the AI that knows you, remembers your context, and coordinates across everything.
 
-This is uncomfortable for SaaS companies that built moats around user lock-in. It's great for users who want their tools to work together instead of each pretending to be the center of the universe.
+This is uncomfortable for SaaS companies that built moats around user lock-in. When your AI can talk to any database through MCP, the specific project management tool you use matters about as much as which brand of USB cable you plug in.
+
+## Limitations
+
+This setup is not turnkey. It requires a power-user willingness to wire up MCP servers, manage OAuth flows, and debug tool integrations. It assumes you trust your AI client with cross-app access to your data, which is a real trust decision, not a checkbox. And it works for a single user with a single AI context. Team-scale orchestration, shared memory, access controls -- none of that exists yet.
 
 ## Build the Bridge, Not the Island
 
