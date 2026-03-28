@@ -10,6 +10,8 @@ The [A2A (Agent-to-Agent) protocol](https://google.github.io/A2A/) is Google's o
 
 I recently shipped [PR #4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166) adding native A2A support to ZeroClaw -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
 
+**The A2A spec is clean on paper; the security edges will cut you in production.**
+
 ## 1. Agent Cards are unauthenticated by design -- and that's fine
 
 The A2A spec says `GET /.well-known/agent-card.json` must be publicly accessible. No bearer token, no API key. First instinct: that's an information leak.
@@ -186,8 +188,8 @@ Instance A discovers Instance B's agent card, sends a task ("review this code fo
 
 If it runs on a Pi Zero, it runs anywhere.
 
----
+Read the full implementation in [PR #4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166) -- each gotcha above maps to a specific commit with tests. If you're building A2A into your own framework, start with the SSRF protection in `a2a_client.rs` and the TaskStore cap in `task_store.rs`. The follow-up for peer discovery and LAN mDNS is tracked in [#4643](https://github.com/zeroclaw-labs/zeroclaw/issues/4643).
 
-The PR is [#4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166). The follow-up for peer discovery and LAN mDNS is [#4643](https://github.com/zeroclaw-labs/zeroclaw/issues/4643).
+---
 
 *I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
