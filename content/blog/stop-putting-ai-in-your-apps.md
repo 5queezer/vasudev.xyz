@@ -15,6 +15,8 @@ Meanwhile, my actual AI -- Claude -- knows all of that. It has my memories, my c
 
 So I built that access. And the difference is night and day.
 
+**The AI should orchestrate your apps, not live inside them.**
+
 ## The Architecture is Backwards
 
 Every SaaS company right now is racing to add an AI chat window to their product. Notion has one. Airtable has one. Jira has one. They're all building the same thing: a stateless LLM endpoint with access to one app's data and zero context about the user.
@@ -67,10 +69,10 @@ This setup is not turnkey. It requires a power-user willingness to wire up MCP s
 
 If you're building a product today, don't bolt an AI chat window onto your app. Instead, make your app a great MCP server. Expose clean APIs, support standard auth (OAuth 2.1, not custom tokens), and let the user's AI talk to your data.
 
-The best tools in the MCP era won't be the ones with the fanciest built-in AI. They'll be the ones that integrate most cleanly with the AI the user already trusts.
+The best tools in the MCP era won't be the ones with the fanciest built-in AI. They'll be the ones that expose clean MCP endpoints and get out of the way -- like NocoDB does today, and like Notion and Airtable eventually will have to.
+
+Want to see what this looks like in practice? I added [OAuth 2.1 MCP support to NocoDB](https://github.com/nocodb/nocodb/issues/13363) -- RFC 8414 Discovery, RFC 7591 Dynamic Client Registration, RFC 9728 Protected Resource Metadata. Browse [the fork](https://github.com/5queezer/nocodb), try connecting Claude to your own NocoDB instance, and see how the architecture feels when the AI sits on top instead of inside.
 
 ---
-
-*I built [OAuth 2.1 MCP support for NocoDB](https://github.com/nocodb/nocodb/issues/13363) -- RFC 8414 Discovery, RFC 7591 Dynamic Client Registration, and RFC 9728 Protected Resource Metadata. Full CRUD verified end-to-end with Claude. The code is in [my fork](https://github.com/5queezer/nocodb).*
 
 *More at [vasudev.xyz](https://vasudev.xyz).*
