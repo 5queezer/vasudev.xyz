@@ -6,7 +6,7 @@ description: "AI agents capture memories but never consolidate them. Here's how 
 images: ["/images/dream-engine.png"]
 ---
 
-I run a local memory system for my AI agents called [MuninnDB](https://github.com/5queezer/muninndb). It stores everything: session notes, project context, work observations, legal documentation. After a few weeks of daily use, entries pile up. Finding things still works -- semantic search is good at retrieval. But the store itself was rotting. Near-duplicate entries from sessions that covered the same ground. Stale facts superseded by newer ones. No system for distinguishing "critical legal note" from "offhand remark about Docker networking."
+I contribute to a cognitive database for AI agents called [MuninnDB](https://github.com/scrypster/muninndb). It stores everything: session notes, project context, work observations, legal documentation. After a few weeks of daily use, entries pile up. Finding things still works -- semantic search is good at retrieval. But the store itself was rotting. Near-duplicate entries from sessions that covered the same ground. Stale facts superseded by newer ones. No system for distinguishing "critical legal note" from "offhand remark about Docker networking."
 
 The problem is not capture. Every memory system nails capture. The problem is what happens between sessions -- which is usually nothing.
 
@@ -46,7 +46,7 @@ Two conditions must both pass before a dream runs: at least 12 hours since the l
 
 ### The pipeline
 
-The Dream Engine reuses four existing consolidation phases, adds three new ones, and modifies one. Phase 0 and the configurable dedup threshold shipped in [PR #1](https://github.com/5queezer/muninndb/pull/1). The LLM phases (2b, 4, 6) are designed and specced for PR #2.
+The Dream Engine reuses four existing consolidation phases, adds three new ones, and modifies one. Phase 0 and the configurable dedup threshold shipped in [PR #306](https://github.com/scrypster/muninndb/pull/306). The LLM phases (2b, 4, 6) are designed and specced for a follow-up PR.
 
 **Phase 0 (new, shipped): Orient.** Read-only scan of each vault. Count entries, check embedding coverage, compute average relevance and stability scores, detect legal vaults. This builds the map before touching anything.
 
@@ -54,15 +54,15 @@ The Dream Engine reuses four existing consolidation phases, adds three new ones,
 
 **Phase 2 (existing, modified, shipped): Dedup.** The algorithmic dedup phase, but with a split threshold. In normal consolidation mode, entries with cosine similarity >= 0.95 are auto-merged as before. In dream mode, the threshold drops to 0.85. Entries in the 0.85-0.95 range are *not* auto-merged -- they are flagged as near-duplicate clusters and passed to the next phase for LLM review. This is the key architectural decision: let the algorithm handle the obvious cases, let the LLM handle the ambiguous ones.
 
-**Phase 2b (new, PR #2): LLM Consolidation.** The near-duplicate clusters and any detected contradictions get sent to a configured LLM. The LLM returns structured JSON: merge operations, contradiction resolutions, cross-vault connection suggestions, stability recommendations, and a narrative journal entry. The LLM does not auto-link anything across vaults -- it only suggests. A human reviews the suggestions in the dream journal.
+**Phase 2b (new, a follow-up PR): LLM Consolidation.** The near-duplicate clusters and any detected contradictions get sent to a configured LLM. The LLM returns structured JSON: merge operations, contradiction resolutions, cross-vault connection suggestions, stability recommendations, and a narrative journal entry. The LLM does not auto-link anything across vaults -- it only suggests. A human reviews the suggestions in the dream journal.
 
 **Phase 3 (existing): Schema Promotion.** Unchanged.
 
-**Phase 4 (new, PR #2): Bidirectional Stability.** This is where the forgetting happens. High-signal entries (accessed frequently, recently reinforced via Hebbian co-activation, or recommended by the LLM) get a stability boost of 1.2x. Low-signal entries (rarely accessed, old, low relevance, not promoted by the LLM) get weakened to 0.8x with a floor at 14 days -- they never drop below the default stability. LLM recommendations override the rules-based adjustments. This models the spacing effect: entries that get retrieved stay strong, entries that don't fade gradually.
+**Phase 4 (new, a follow-up PR): Bidirectional Stability.** This is where the forgetting happens. High-signal entries (accessed frequently, recently reinforced via Hebbian co-activation, or recommended by the LLM) get a stability boost of 1.2x. Low-signal entries (rarely accessed, old, low relevance, not promoted by the LLM) get weakened to 0.8x with a floor at 14 days -- they never drop below the default stability. LLM recommendations override the rules-based adjustments. This models the spacing effect: entries that get retrieved stay strong, entries that don't fade gradually.
 
 **Phase 5 (existing): Transitive Inference.** Unchanged.
 
-**Phase 6 (new, PR #2): Dream Journal.** The LLM narrative plus the consolidation report get formatted into a human-readable entry and appended to `~/.muninn/dream.journal.md`. This is the output you actually read. It tells you what connections were discovered, what was strengthened, what was cleaned up, and what was skipped.
+**Phase 6 (new, a follow-up PR): Dream Journal.** The LLM narrative plus the consolidation report get formatted into a human-readable entry and appended to `~/.muninn/dream.journal.md`. This is the output you actually read. It tells you what connections were discovered, what was strengthened, what was cleaned up, and what was skipped.
 
 ### Vault trust tiers
 
@@ -94,7 +94,7 @@ For manual use: `muninn dream --dry-run` shows what would happen without writing
 
 ## The dream journal
 
-Here is what a dream run will produce once the LLM phases ship in PR #2:
+Here is what a dream run will produce once the LLM phases ship in a follow-up PR:
 
 ```
 ---
@@ -114,18 +114,18 @@ Here is what a dream run will produce once the LLM phases ship in PR #2:
 *Scanned 47 entries across 3 vaults (legal: 8 skipped) in 4.2s*
 ```
 
-Every morning, you read what your memory system dreamed about. The connections it noticed. The noise it cleaned up. The contradictions it resolved. It is a changelog for your knowledge, written in prose.
+Every morning, you read what your memory system dreamed about. The connections it noticed. The noise it cleaned up. The contradictions it resolved. It is a changelog for your knowledge, written in prose. MuninnDB is the cognitive memory backend for [Hrafn](https://github.com/5queezer/hrafn), a lightweight, modular AI agent runtime.
 
 ## Try it
 
-The read-only foundation (Phase 0 + configurable dedup + dry-run CLI) is in [PR #1](https://github.com/5queezer/muninndb/pull/1). Write phases (bidirectional stability, LLM consolidation, journal) follow in PR #2. The full design spec lives in the repo at `docs/superpowers/specs/2026-03-28-dream-engine-design.md`.
+The read-only foundation (Phase 0 + configurable dedup + dry-run CLI) shipped in [PR #306](https://github.com/scrypster/muninndb/pull/306) and is merged. Write phases (bidirectional stability, LLM consolidation, journal) follow in a separate PR. The full design spec lives in the repo at `docs/superpowers/specs/2026-03-28-dream-engine-design.md`.
 
 ```bash
-git clone https://github.com/5queezer/muninndb
+git clone https://github.com/scrypster/muninndb
 cd muninndb && go build ./cmd/muninn/
 muninn dream --dry-run
 ```
 
 ---
 
-*Christian Pojoni builds AI agent infrastructure at [vasudev.xyz](https://vasudev.xyz). MuninnDB is open source at [github.com/5queezer/muninndb](https://github.com/5queezer/muninndb).*
+*Christian Pojoni builds AI agent infrastructure. Hrafn is at [github.com/5queezer/hrafn](https://github.com/5queezer/hrafn). MuninnDB is at [github.com/scrypster/muninndb](https://github.com/scrypster/muninndb).*
