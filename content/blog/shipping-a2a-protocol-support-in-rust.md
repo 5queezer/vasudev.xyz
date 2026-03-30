@@ -3,12 +3,12 @@ title: "Shipping A2A Protocol Support in Rust: 7 Gotchas Nobody Warns You About"
 date: 2026-03-25
 description: "What I learned adding Agent-to-Agent protocol support to an open-source agent framework."
 author: "Christian Pojoni"
-tags: ["rust", "a2a", "security", "zeroclaw"]
+tags: ["rust", "a2a", "security", "hrafn"]
 ---
 
 The [A2A (Agent-to-Agent) protocol](https://google.github.io/A2A/) is Google's open standard for agent interoperability -- discovery, task delegation, lifecycle management over HTTP/JSON-RPC. It sits next to MCP the way TCP sits next to USB: one connects agents to agents, the other connects agents to tools.
 
-I recently shipped [PR #4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166) adding native A2A support to ZeroClaw -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
+I recently shipped [PR #4166](https://github.com/hrafn-labs/hrafn/pull/4166) adding native A2A support to Hrafn -- both an inbound JSON-RPC 2.0 server and an outbound client tool, written in Rust. The PR passed 40 tests and ran E2E across five Raspberry Pi Zero 2 W instances. Along the way I hit every sharp edge the spec doesn't mention.
 
 **The A2A spec is clean on paper; the security edges will cut you in production.**
 
@@ -79,11 +79,11 @@ fn is_private_ip(ip: &IpAddr) -> bool {
 }
 ```
 
-Document the TOCTOU gap honestly. I left a comment in the code and a note in the PR: "DNS rebinding TOCTOU acknowledged; peer allowlist planned in [#4643](https://github.com/zeroclaw-labs/zeroclaw/issues/4643)."
+Document the TOCTOU gap honestly. I left a comment in the code and a note in the PR: "DNS rebinding TOCTOU acknowledged; peer allowlist planned in [#4643](https://github.com/hrafn-labs/hrafn/issues/4643)."
 
 ## 4. Same-host A2A breaks your own SSRF protection
 
-Here's the irony: I built SSRF protection that blocks localhost. Then I deployed five ZeroClaw instances on a single Raspberry Pi, and they couldn't talk to each other.
+Here's the irony: I built SSRF protection that blocks localhost. Then I deployed five Hrafn instances on a single Raspberry Pi, and they couldn't talk to each other.
 
 Same-host multi-instance A2A is a legitimate use case -- multiple specialized agents on one machine, communicating over `localhost:300X`. But your SSRF blocklist just blocked it.
 
@@ -151,9 +151,9 @@ Generic error to the caller. Specific error in your logs. Same principle as web 
 
 This one cost me an afternoon of debugging.
 
-The A2A tool was registered in ZeroClaw's tool registry. `cargo test` passed. The gateway served agent cards. But when I actually ran an instance and asked it to contact another agent, the model had no idea the tool existed.
+The A2A tool was registered in Hrafn's tool registry. `cargo test` passed. The gateway served agent cards. But when I actually ran an instance and asked it to contact another agent, the model had no idea the tool existed.
 
-The problem: ZeroClaw uses a text-based tool description list in its bootstrap system prompt for models that don't support native function calling (like some OpenAI Codex variants). The tool was in the registry but not in the `tool_descs` array that gets injected into the prompt.
+The problem: Hrafn uses a text-based tool description list in its bootstrap system prompt for models that don't support native function calling (like some OpenAI Codex variants). The tool was in the registry but not in the `tool_descs` array that gets injected into the prompt.
 
 ```rust
 if config.a2a.enabled {
@@ -182,13 +182,13 @@ Every "not included" is a scope decision, not a gap. The PR description lists ea
 
 ## The setup that proved it works
 
-Five ZeroClaw instances on a single Raspberry Pi Zero 2 W (quad-core ARM, 512 MB), each with a distinct persona (Kerf, Sentinel, Architect, Critic, Researcher), communicating via A2A on localhost ports 3001-3005. Backed by gpt-5.1-codex-mini.
+Five Hrafn instances on a single Raspberry Pi Zero 2 W (quad-core ARM, 512 MB), each with a distinct persona (Kerf, Sentinel, Architect, Critic, Researcher), communicating via A2A on localhost ports 3001-3005. Backed by gpt-5.1-codex-mini.
 
 Instance A discovers Instance B's agent card, sends a task ("review this code for security issues"), receives a response through the standard `process_message` pipeline. No custom orchestration. The A2A layer is just another input channel.
 
 If it runs on a Pi Zero, it runs anywhere.
 
-Read the full implementation in [PR #4166](https://github.com/zeroclaw-labs/zeroclaw/pull/4166) -- each gotcha above maps to a specific commit with tests. If you're building A2A into your own framework, start with the SSRF protection in `a2a_client.rs` and the TaskStore cap in `task_store.rs`. The follow-up for peer discovery and LAN mDNS is tracked in [#4643](https://github.com/zeroclaw-labs/zeroclaw/issues/4643).
+Read the full implementation in [PR #4166](https://github.com/hrafn-labs/hrafn/pull/4166) -- each gotcha above maps to a specific commit with tests. If you're building A2A into your own framework, start with the SSRF protection in `a2a_client.rs` and the TaskStore cap in `task_store.rs`. The follow-up for peer discovery and LAN mDNS is tracked in [#4643](https://github.com/hrafn-labs/hrafn/issues/4643).
 
 ---
 
