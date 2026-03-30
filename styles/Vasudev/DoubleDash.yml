@@ -1,0 +1,5 @@
+extends: existence
+message: "Do not use double dashes. Rephrase instead."
+level: error
+raw:
+  - '(?<!-)--(?!-)'

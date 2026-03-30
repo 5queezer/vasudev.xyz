@@ -13,7 +13,8 @@
 
 ## Writing rules
 
-- No em-dashes. Use -- or rephrase.
+- No em-dashes or double dashes. Rephrase instead.
+- No semicolons. Split into separate sentences or rephrase.
 - No bullet lists in post body. Prose only.
 - English default. German only if explicitly requested.
 - Front matter must include: title, date, tags, description
