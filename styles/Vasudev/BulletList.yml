@@ -1,0 +1,6 @@
+extends: existence
+message: "Avoid bullet lists in post body. Use prose instead."
+level: warning
+scope: raw
+raw:
+  - "^\\s*[-*+] \\S"
