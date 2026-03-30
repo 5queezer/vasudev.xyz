@@ -1,0 +1,44 @@
+name: Prose & Style Lint
+
+on:
+  pull_request:
+    paths:
+      - "content/blog/**"
+  push:
+    branches: ["master"]
+    paths:
+      - "content/blog/**"
+
+jobs:
+  vale:
+    name: Vale prose lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: errata-ai/vale-action@v2
+        with:
+          files: content/blog
+          vale_flags: "--glob=*.md"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  front-matter:
+    name: Front matter check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required front matter fields
+        run: |
+          status=0
+          for file in content/blog/*.md; do
+            [ "$(basename "$file")" = "_index.md" ] && continue
+            for field in title date tags description; do
+              if ! grep -q "^${field}:" "$file"; then
+                echo "::error file=${file}::Missing required front matter field: ${field}"
+                status=1
+              fi
+            done
+          done
+          exit $status
