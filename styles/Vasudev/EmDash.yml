@@ -3,6 +3,6 @@ message: "Do not use em-dashes. Use '--' or rephrase."
 level: error
 scope: raw
 raw:
-  - "—"
+  - '\x{2014}'
   - "&#8212;"
   - "&mdash;"
