@@ -1,6 +1,6 @@
 ---
 title: "Your Agent's Memory Metrics Are Lying to You. Here's How to Ground Them."
-date: 2026-04-03
+date: 2026-04-02
 tags: ["ai-agents", "memory", "benchmarks", "muninndb", "dream-engine"]
 description: "Memory consolidation looks great on dashboards. But if your metrics can improve without retrieval getting better, you're optimizing a detached proxy."
 ---
