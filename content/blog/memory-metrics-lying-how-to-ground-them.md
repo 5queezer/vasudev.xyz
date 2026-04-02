@@ -11,7 +11,7 @@ None of that tells you whether the agent remembers the right thing at the right 
 
 **If a metric can improve without retrieval quality also improving, that metric is a detached proxy. Stop optimizing it.**
 
-## The Problem Has a Name
+## The problem has a name
 
 I recently read an essay called "The Collapse of Proxy Integrity" by an independent researcher named Flyxion. The core argument: when a measurable signal gets decoupled from the process it's supposed to track, the signal becomes self-referential. You end up optimizing the map while the territory rots.
 
@@ -21,17 +21,17 @@ The operational criterion Flyxion proposes is simple and brutal: a proxy is grou
 
 Apply that to agent memory consolidation and the implications are immediate.
 
-## What Dream Engine Does (and What It Measures)
+## What Dream Engine does (and what it measures)
 
 [Dream Engine](https://github.com/scrypster/muninndb/pull/306) is a PR I contributed to MuninnDB, a cognitive database built by [scrypster](https://github.com/scrypster). It runs LLM-driven memory consolidation between agent sessions, modeled loosely after human sleep. The pipeline works in phases: vault scanning, Hebbian association replay, near-duplicate clustering, LLM-powered deduplication, bidirectional stability adjustments, transitive inference, and a human-readable dream journal.
 
 The natural metrics to track during consolidation are: how many duplicates were merged, how many associations were strengthened, how much the memory count dropped, how the confidence distribution shifted. These are easy to compute. They go into dashboards. They feel like progress.
 
-Here's the problem: every single one of those metrics can improve while retrieval quality degrades. Aggressive deduplication can merge memories that looked similar but carried distinct contextual signals. Strengthening the wrong associations can push the retrieval ranker toward frequently-accessed memories and away from the actually-relevant one. Reducing memory count can discard low-confidence entries that happen to be the only record of a rare but important fact.
+Here's the problem: every single one of those metrics can improve while retrieval quality degrades. Aggressive deduplication can merge memories that looked similar but carried distinct contextual signals. Strengthening the wrong associations can push the retrieval ranker toward frequently accessed memories and away from the actually relevant one. Reducing memory count can discard low-confidence entries that happen to be the only record of a rare but important fact.
 
 The consolidation dashboard says "great run." The agent forgets your name.
 
-## Goodhart's Law Is a Structural Attractor, Not a Warning
+## Goodhart's law is a structural attractor, not a warning
 
 Flyxion's sharpest insight is that Goodhart's law ("when a measure becomes a target, it ceases to be a good measure") isn't a warning about careless optimization. It's a description of an attractor state. Any system that applies sustained optimization pressure to a proxy will converge on proxy detachment, because manipulating the proxy is always cheaper than improving the underlying process.
 
@@ -39,7 +39,7 @@ In agent memory, this manifests as a specific failure mode. If you tune your con
 
 The research confirms this risk. LongMemEval (ICLR 2025) and MemoryBench both show that consolidation systems can degrade retrieval compared to naive RAG baselines. The consolidation "worked" in the sense that it merged, it decayed, it strengthened. But the agent got worse at answering questions. The proxy improved. The territory degraded. Textbook proxy detachment.
 
-## The Grounding Criterion for Memory Metrics
+## The grounding criterion for memory metrics
 
 The fix is architectural, not incremental. Before you ship any memory consolidation feature, define a retrieval benchmark that represents realistic agent query patterns. Then apply the grounding criterion: every metric you track must be one that cannot improve without retrieval accuracy also improving.
 
@@ -49,7 +49,7 @@ Run baseline retrieval on the unmodified vault. Enable consolidation phases. Re-
 
 This is bidirectional constraint. The consolidation metrics (dedup rate, association density) are only meaningful if they move in the same direction as retrieval quality. If they diverge, the consolidation metric is a detached proxy and you discard it from your decision-making, no matter how good the number looks.
 
-## Why This Matters Beyond Memory
+## Why this matters beyond memory
 
 The same pattern shows up everywhere in AI agent development.
 
@@ -59,7 +59,7 @@ Every one of these is a proxy that can be moved without moving the underlying pr
 
 The fix is the same in every case: define the ground truth you actually care about, measure it directly even if it's expensive, and treat all other metrics as diagnostic signals that must co-move with ground truth or be discarded.
 
-## What I Left Out
+## What I left out
 
 There are a few things this post doesn't cover that are worth mentioning.
 
@@ -67,9 +67,9 @@ The proxy integrity essay also analyzes "temporal compression," where the appear
 
 I haven't addressed the multi-agent case, where one agent's consolidated memory feeds into another agent's context. Proxy detachment in that setting could cascade: bad consolidation upstream produces bad retrieval downstream, but both agents' dashboards look fine. That's a problem for Hrafn's A2A protocol work, but it's future scope.
 
-The essay's analysis of platform incentives (advertising models are economically insulated from signal degradation) has an analog in open-source: star counts and download metrics are proxies for utility that can detach just as easily. But that's a different post.
+The essay's analysis of platform incentives (advertising models are economically insulated from signal degradation) has an analog in open source: star counts and download metrics are proxies for utility that can detach just as easily. But that's a different post.
 
-## The Principle
+## The principle
 
 Memory consolidation is not compression. It's curation. The difference is whether you're grounding your decisions in retrieval quality or in dashboard metrics that happen to be easy to compute.
 
