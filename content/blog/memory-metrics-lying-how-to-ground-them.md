@@ -13,7 +13,7 @@ None of that tells you whether the agent remembers the right thing at the right 
 
 ## The problem has a name
 
-I recently read an essay called "The Collapse of Proxy Integrity" by an independent researcher named Flyxion. The core argument: when a measurable signal gets decoupled from the process it's supposed to track, the signal becomes self-referential. You end up optimizing the map while the territory rots.
+I recently read an essay called ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) by an independent researcher named Flyxion. The core argument: when a measurable signal gets decoupled from the process it's supposed to track, the signal becomes self-referential. You end up optimizing the map while the territory rots.
 
 The essay was written about attention platforms (follower counts, engagement metrics, viral loops), but the mechanism it describes applies everywhere measurable signals are used to make decisions. Including AI agent memory.
 
@@ -47,7 +47,7 @@ For [MuninnDB issue #311](https://github.com/scrypster/muninndb/issues/311), the
 
 Run baseline retrieval on the unmodified vault. Enable consolidation phases. Re-run the same queries. If recall drops on any category, the phase doesn't ship. No amount of dashboard improvement overrides a retrieval regression.
 
-This is bidirectional constraint. The consolidation metrics (dedup rate, association density) are only meaningful if they move in the same direction as retrieval quality. If they diverge, the consolidation metric is a detached proxy and you discard it from your decision-making, no matter how good the number looks.
+This is a bidirectional constraint. The consolidation metrics (dedup rate, association density) are only meaningful if they move in the same direction as retrieval quality. If they diverge, the consolidation metric is a detached proxy and you discard it from your decision-making, no matter how good the number looks.
 
 ## Why this matters beyond memory
 
