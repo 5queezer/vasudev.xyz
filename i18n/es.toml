@@ -1,0 +1,17 @@
+[selectedWork]
+other = "Trabajos seleccionados"
+
+[latestWriting]
+other = "Publicaciones recientes"
+
+[elsewhere]
+other = "En otros sitios"
+
+[home]
+other = "inicio"
+
+[blog]
+other = "Blog"
+
+[backToAllPosts]
+other = "Volver a todas las publicaciones"

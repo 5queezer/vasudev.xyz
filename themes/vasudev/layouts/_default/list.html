@@ -2,7 +2,7 @@
 <div class="page-wrapper">
   <div class="page-header">
     <h1 class="name"><a href="/">{{ .Site.Title }}</a></h1>
-    <nav style="display:flex;align-items:center;gap:0.5rem"><a href="/">home</a> · <a href="/blog/">blog</a> {{ partial "theme-toggle.html" . }}</nav>
+    <nav style="display:flex;align-items:center;gap:0.5rem"><a href="{{ relLangURL "" }}">{{ i18n "home" }}</a> · <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a> {{ partial "lang-switcher.html" . }} {{ partial "theme-toggle.html" . }}</nav>
   </div>
 
   <div class="section-label">{{ .Title }}</div>

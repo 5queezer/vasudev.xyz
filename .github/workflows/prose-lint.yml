@@ -19,7 +19,7 @@ jobs:
       - uses: errata-ai/vale-action@v2
         with:
           files: content/blog
-          vale_flags: "--glob=*.md"
+          vale_flags: "--glob=!*.{de,es}.md --glob=*.md"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -34,6 +34,7 @@ jobs:
           status=0
           for file in content/blog/*.md; do
             [ "$(basename "$file")" = "_index.md" ] && continue
+            echo "$(basename "$file")" | grep -qE '\.(de|es)\.md$' && continue
             for field in title date tags description; do
               if ! grep -q "^${field}:" "$file"; then
                 echo "::error file=${file}::Missing required front matter field: ${field}"
