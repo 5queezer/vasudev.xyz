@@ -94,15 +94,21 @@ Second, yogic practice aims at liberation from the cycle of conditioned response
 
 This isn't "ancient wisdom validates my architecture." The causal arrow runs the other direction: the contemplative traditions developed sophisticated phenomenological models of attention, memory, and information filtering over millennia of systematic introspection. That some of those models predict results in agent memory research isn't mystical -- it's convergent engineering on the same problem: how does a bounded system manage unbounded information flow?
 
-Three candidates are on the table. Outcome-tagged decay (vrtti nirodha) requires [benchmark #311](https://github.com/scrypster/muninndb/issues/311) to show that uniform decay costs retrieval quality on entries with different outcome histories. Hebbian displacement (vairagya) requires the same benchmark to measure whether strengthened entries crowd out more relevant alternatives. Both reduce to one engineering task: **the trace schema must capture retrieval precision broken down by entry properties** -- Hebbian weight, access frequency, outcome history. If the data shows a problem, the fixes are straightforward. If it doesn't, we skip the complexity.
+This also isn't the first attempt at the intersection. Ghosh and Ghosh's [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820) and its successor Maṇḍūkya-APO map Vedantic states of consciousness -- the four states of the Māṇḍūkya Upaniṣad (waking, dreaming, deep sleep, transcendent) -- to a wake-sleep consolidation cycle for RL agents, formalized with category theory. The architectural intuition is sound and the mapping is serious. But both papers are explicitly conceptual frameworks without empirical validation. The benchmarks they propose (FurnitureBench, Atari-57, Intel Loihi) have not been run. The gap between "proposed framework" and "measured result" is where most cross-disciplinary work dies. The three hypotheses below are designed to not die there.
+
+The useful question isn't "is yoga relevant to AI?" but "which specific yogic discriminations produce testable hypotheses that current memory systems don't make?"
+
+Three candidates, all gated on the same prerequisite:
+
+Outcome-tagged decay (vrtti nirodha) requires [benchmark #311](https://github.com/scrypster/muninndb/issues/311) to show that uniform decay costs retrieval quality on entries with different outcome histories. Hebbian displacement (vairagya) requires the same benchmark to measure whether strengthened entries crowd out more relevant alternatives. Both reduce to one engineering task: **the trace schema must capture retrieval precision broken down by entry properties** -- Hebbian weight, access frequency, outcome history. If the data shows a problem, the fixes are straightforward. If it doesn't, we skip the complexity.
 
 Pratyahara is already implemented correctly: the Memory Trait returns top-k, period. The benchmark harness captures the full retrieval decision. The agent doesn't need to know what was excluded. The engineer does.
 
-None of these require believing in chakras. They require taking the discriminations seriously as engineering heuristics and measuring whether they improve agent recall on realistic workloads. The benchmark decides.
+None of these require believing in chakras. They require taking the discriminations seriously as engineering heuristics and measuring whether they improve agent recall on realistic workloads. Three candidates are on the table. The benchmark decides.
 
 ## Further reading
 
-[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html) -- the taxonomy (guides, sensors, computational, inferential). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052) -- empirical evidence that harness changes produce 6x performance gaps. Yoga Sutras 1.2-1.16 -- the attention management spec that predates all of it. [MuninnDB](https://github.com/scrypster/muninndb) -- where the hypotheses get tested. [Hrafn](https://github.com/5queezer/hrafn) -- the runtime that runs on a $10 Raspberry Pi.
+[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html) -- the taxonomy (guides, sensors, computational, inferential). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052) -- empirical evidence that harness changes produce 6x performance gaps. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820) -- the closest prior art mapping Vedanta to agent architecture (conceptual, no benchmarks yet). Yoga Sutras 1.2-1.16 -- the attention management spec that predates all of it. [MuninnDB](https://github.com/scrypster/muninndb) -- where the hypotheses get tested. [Hrafn](https://github.com/5queezer/hrafn) -- the runtime that runs on a $10 Raspberry Pi.
 
 ---
 
