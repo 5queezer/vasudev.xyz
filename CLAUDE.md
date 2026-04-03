@@ -24,8 +24,17 @@
 
 - Config: `.vale.ini` (Google style + custom Vasudev rules)
 - Word allowlist: `styles/config/vocabularies/Blog/accept.txt`
-- Add new proper nouns, Sanskrit terms, product names, and technical acronyms to accept.txt before committing a post -- Vale will fail CI otherwise
-- Commit vocab additions with prefix `chore:`
+- **After writing or editing a blog post, always run:**
+  ```
+  vale --glob='!*.{de,es}.md' content/blog/<post-file>.md
+  ```
+- If Vale reports `Vale.Spelling` errors for legitimate proper nouns, Sanskrit terms, product names, or technical acronyms:
+  1. Add each word to `styles/config/vocabularies/Blog/accept.txt` (one word per line, keep sorted alphabetically, case-sensitive)
+  2. Re-run Vale to confirm errors are resolved
+  3. Commit vocab additions separately with prefix `chore:`
+- Do not add common misspellings or informal words to accept.txt. Only add terms that are correctly spelled but unknown to Vale.
+- If Vale reports style errors (Vasudev.EmDash, Vasudev.Semicolon, etc.), fix the prose instead of suppressing the rule
+- Run `vale sync` first if styles/Google is missing
 
 ## Auto-translation
 

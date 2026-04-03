@@ -248,7 +248,17 @@ Suggested series structure:
 
 ## Output
 
-Deliver the post as a Markdown file at `/home/claude/blog-post.md`, then present via `present_files`. Christian will review, adjust, and commit to his Hugo repo.
+Deliver the post as a Markdown file in `content/blog/<slug>.md`.
+
+### Post-write: Vale lint
+
+After writing or editing the post, run Vale to catch style and spelling issues:
+
+1. Run `vale sync` if styles have not been synced yet.
+2. Run `vale --glob='!*.{de,es}.md' content/blog/<slug>.md`.
+3. Fix any style errors (EmDash, Semicolon, BulletList, DoubleDash) by rephrasing the prose.
+4. For `Vale.Spelling` errors on legitimate proper nouns, Sanskrit terms, product names, or technical acronyms, add them to `styles/config/vocabularies/Blog/accept.txt` (sorted alphabetically, case-sensitive, one per line). Then re-run Vale to confirm.
+5. Commit vocab additions separately with `chore:` prefix before or after the post commit.
 
 Hugo front matter template:
 
