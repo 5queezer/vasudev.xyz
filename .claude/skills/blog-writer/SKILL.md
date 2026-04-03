@@ -183,7 +183,7 @@ Only when they add information text can't convey (diagrams, architecture compari
 
 ## Formatting Rules
 
-- **No em dashes.** Use `--` or rephrase.
+- **No em dashes or double dashes.** Rephrase instead.
 - **No bullet-point lists in the post body.** Prose paragraphs. Lists only in the "What I Left Out" section and metadata tables.
 - **Horizontal rules** (`---`) between gotchas for scanability.
 - **Code blocks** with language annotation (```rust, ```toml, ```json).
