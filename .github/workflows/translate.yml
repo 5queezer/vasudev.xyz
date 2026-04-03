@@ -7,6 +7,7 @@ on:
       - "content/blog/*.md"
       - "!content/blog/*.de.md"
       - "!content/blog/*.es.md"
+      - "cmd/translate/**"
   workflow_dispatch:
 
 permissions:
