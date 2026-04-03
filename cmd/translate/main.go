@@ -59,6 +59,7 @@ func main() {
 		os.Exit(1)
 	}
 
+entries:
 	for _, entry := range entries {
 		name := entry.Name()
 		if !strings.HasSuffix(name, ".md") {
@@ -70,58 +71,55 @@ func main() {
 		// Skip translated files
 		for _, lang := range langs {
 			if strings.HasSuffix(name, "."+lang+".md") {
-				goto next
+				continue entries
 			}
 		}
 
-		{
-			srcPath := filepath.Join(*contentDir, name)
-			slug := strings.TrimSuffix(name, ".md")
+		srcPath := filepath.Join(*contentDir, name)
+		slug := strings.TrimSuffix(name, ".md")
 
-			srcData, err := os.ReadFile(srcPath)
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "failed to read %s: %v\n", srcPath, err)
+		srcData, err := os.ReadFile(srcPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "failed to read %s: %v\n", srcPath, err)
+			continue
+		}
+
+		hash := contentHash(srcData)
+
+		for _, lang := range langs {
+			targetName := slug + "." + lang + ".md"
+			targetPath := filepath.Join(*contentDir, targetName)
+
+			if existingData, err := os.ReadFile(targetPath); err == nil {
+				if extractFrontMatterField(existingData, "translationHash") == hash {
+					fmt.Printf("skip %s (up to date)\n", targetName)
+					continue
+				}
+			}
+
+			fmt.Printf("translating %s -> %s\n", name, targetName)
+
+			frontMatter, body := splitFrontMatterAndBody(srcData)
+			translatedTitle := translateText(apiKey, extractFrontMatterField(srcData, "title"), lang, true)
+			translatedDesc := translateText(apiKey, extractFrontMatterField(srcData, "description"), lang, true)
+			translatedBody := translateText(apiKey, body, lang, false)
+
+			if translatedTitle == "" || translatedDesc == "" {
+				fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
+				continue
+			}
+			if translatedBody == "" {
+				fmt.Fprintf(os.Stderr, "body translation failed for %s -> %s, skipping\n", name, lang)
 				continue
 			}
 
-			hash := contentHash(srcData)
-
-			for _, lang := range langs {
-				targetName := slug + "." + lang + ".md"
-				targetPath := filepath.Join(*contentDir, targetName)
-
-				if existingData, err := os.ReadFile(targetPath); err == nil {
-					if extractFrontMatterField(existingData, "translationHash") == hash {
-						fmt.Printf("skip %s (up to date)\n", targetName)
-						continue
-					}
-				}
-
-				fmt.Printf("translating %s -> %s\n", name, targetName)
-
-				frontMatter, body := splitFrontMatterAndBody(srcData)
-				translatedTitle := translateText(apiKey, extractFrontMatterField(srcData, "title"), lang, true)
-				translatedDesc := translateText(apiKey, extractFrontMatterField(srcData, "description"), lang, true)
-				translatedBody := translateText(apiKey, body, lang, false)
-
-				if translatedTitle == "" || translatedDesc == "" {
-					fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
-					continue
-				}
-				if translatedBody == "" {
-					fmt.Fprintf(os.Stderr, "body translation failed for %s -> %s, skipping\n", name, lang)
-					continue
-				}
-
-				output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, translatedBody)
-				if err := os.WriteFile(targetPath, []byte(output), 0644); err != nil {
-					fmt.Fprintf(os.Stderr, "failed to write %s: %v\n", targetPath, err)
-					continue
-				}
-				fmt.Printf("wrote %s\n", targetName)
+			output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, translatedBody)
+			if err := os.WriteFile(targetPath, []byte(output), 0644); err != nil {
+				fmt.Fprintf(os.Stderr, "failed to write %s: %v\n", targetPath, err)
+				continue
 			}
+			fmt.Printf("wrote %s\n", targetName)
 		}
-	next:
 	}
 }
 
