@@ -104,8 +104,12 @@ func main() {
 				translatedDesc := translateText(apiKey, extractFrontMatterField(srcData, "description"), lang, true)
 				translatedBody := translateText(apiKey, body, lang, false)
 
+				if translatedTitle == "" || translatedDesc == "" {
+					fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
+					continue
+				}
 				if translatedBody == "" {
-					fmt.Fprintf(os.Stderr, "translation failed for %s -> %s, skipping\n", name, lang)
+					fmt.Fprintf(os.Stderr, "body translation failed for %s -> %s, skipping\n", name, lang)
 					continue
 				}
 
@@ -224,6 +228,8 @@ Rules:
 		return ""
 	}
 
+	client := &http.Client{Timeout: 60 * time.Second}
+
 	// Retry with backoff
 	var result string
 	for attempt := 0; attempt < 4; attempt++ {
@@ -241,7 +247,7 @@ Rules:
 		httpReq.Header.Set("Content-Type", "application/json")
 		httpReq.Header.Set("Authorization", "Bearer "+apiKey)
 
-		resp, err := http.DefaultClient.Do(httpReq)
+		resp, err := client.Do(httpReq)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "request failed: %v\n", err)
 			continue
