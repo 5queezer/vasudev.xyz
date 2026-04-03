@@ -3,3 +3,5 @@ resources/_gen/
 .hugo_build.lock
 firebase-debug.log
 styles/Google/
+.codex
+.omx/
