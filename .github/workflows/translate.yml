@@ -30,7 +30,7 @@ jobs:
       - name: Translate posts
         env:
           LLM_API_URL: ${{ secrets.LLM_API_URL }}
-          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY || secrets.OPENROUTER_API_KEY }}
         run: |
           cd cmd/translate && go run main.go \
