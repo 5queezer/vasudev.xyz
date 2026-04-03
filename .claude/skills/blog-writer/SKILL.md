@@ -188,6 +188,7 @@ Only when they add information text can't convey (diagrams, architecture compari
 - **Horizontal rules** (`---`) between gotchas for scanability.
 - **Code blocks** with language annotation (```rust, ```toml, ```json).
 - **Links** inline, not reference-style. Reader should see where they're going.
+- **Wikipedia links** for Sanskrit, yogic, or philosophical terms on first mention. Use the English Wikipedia URL (e.g. `https://en.wikipedia.org/wiki/Pratyahara`). The translation pipeline will convert these to the target language automatically. Only link terms that have a dedicated Wikipedia article.
 - **Headers:** `#` for title, `##` for sections/gotchas, `###` sparingly within sections.
 
 ---
