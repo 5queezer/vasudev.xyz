@@ -29,7 +29,7 @@ The simpler path: **outcome-tagged writes**. When an agent retrieves an entry an
 
 ## 2. Samskara and Vairagya: Reinforcement needs a counterweight
 
-[Samskaras](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) are latent impressions that shape future perception. Every experience leaves a trace; repeated experiences deepen the groove. This is Hebbian learning -- "neurons that fire together wire together" -- and MuninnDB implements it directly: entries that co-activate strengthen their association weights.
+The yogic concept of [samskaras](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) describes latent impressions that shape future perception. Every experience leaves a trace, and repeated experiences deepen the groove. This is Hebbian learning -- "neurons that fire together wire together" -- and MuninnDB implements it directly: entries that co-activate strengthen their association weights.
 
 The Yoga Sutras warn that samskaras compound. Without the counterweight of [*vairagya*](https://en.wikipedia.org/wiki/Vairagya) (non-attachment, the capacity to release strong associations), they calcify into [*vasanas*](https://en.wikipedia.org/wiki/Vasana) -- automatic reaction patterns that bypass conscious evaluation. You stop seeing the situation and start running the script.
 
@@ -45,7 +45,7 @@ Testable hypothesis for [benchmark #311](https://github.com/scrypster/muninndb/i
 
 ## 3. Pratyahara: The power of deliberate exclusion
 
-[Pratyahara](https://en.wikipedia.org/wiki/Pratyahara) (Yoga Sutras 2.54) is often translated as "sense withdrawal," but that's misleading. It's not blindness -- it's *selective attention*. The senses still function; they just stop pulling the mind toward every stimulus. You decide what enters awareness instead of reacting to whatever arrives.
+The concept of [pratyahara](https://en.wikipedia.org/wiki/Pratyahara) (Yoga Sutras 2.54) is often translated as "sense withdrawal," but that's misleading. It's not blindness -- it's *selective attention*. The senses still function, but they stop pulling the mind toward every stimulus. You decide what enters awareness instead of reacting to whatever arrives.
 
 This is the central problem of context engineering, and Meta-Harness's most surprising result confirms it. The winning harnesses are not the ones that pack the context window with everything available. The text classification winner uses TF-IDF with contrastive pairs and label priming. The math retrieval winner is a four-route BM25 program with lexical predicates. Simple selection policies. No exotic architectures.
 
