@@ -8,9 +8,9 @@ Böckeler
 chakras
 chitta
 cron
-dedup
-deduplicates
-deduplication
+(?i)dedup
+(?i)deduplicates
+(?i)deduplication
 discriminations
 Dream Engine
 Ebbinghaus
@@ -28,6 +28,7 @@ Kosha
 Koshas
 Loihi
 LongMemEval
+lossy
 Maṇḍūkya
 Māṇḍūkya
 Mem0
