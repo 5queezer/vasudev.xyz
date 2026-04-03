@@ -1,11 +1,15 @@
 <header class="page-chrome">
   <a class="brand-mark" href="{{ relLangURL "" }}">{{ .Site.Title }}</a>
   <nav class="page-nav" aria-label="Primary">
-    {{ if not .IsHome }}
-    <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
-    {{ end }}
-    <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
-    {{ partial "lang-switcher.html" . }}
-    {{ partial "theme-toggle.html" . }}
+    <div class="page-nav-links">
+      {{ if not .IsHome }}
+      <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
+      {{ end }}
+      <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
+    </div>
+    <div class="page-nav-tools" aria-label="Language and theme controls">
+      {{ partial "lang-switcher.html" . }}
+      {{ partial "theme-toggle.html" . }}
+    </div>
   </nav>
 </header>

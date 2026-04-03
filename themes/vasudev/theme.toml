@@ -1,6 +1,6 @@
-[author]
-  name = "Christian Pojoni"
-
 name = "vasudev"
 description = "Minimal dark theme for vasudev.xyz"
 min_version = "0.112.0"
+
+[author]
+  name = "Christian Pojoni"
