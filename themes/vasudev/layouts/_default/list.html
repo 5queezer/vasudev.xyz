@@ -1,22 +1,22 @@
 {{ define "main" }}
-<div class="page-wrapper">
-  <div class="page-header">
+<main class="page-wrapper">
+  <header class="page-header">
     <h1 class="name"><a href="/">{{ .Site.Title }}</a></h1>
     <nav style="display:flex;align-items:center;gap:0.5rem"><a href="{{ relLangURL "" }}">{{ i18n "home" }}</a> · <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a> {{ partial "lang-switcher.html" . }} {{ partial "theme-toggle.html" . }}</nav>
-  </div>
+  </header>
 
-  <div class="section-label">{{ .Title }}</div>
+  <h2 class="section-label">{{ .Title }}</h2>
   <ul class="post-list">
     {{ range .Pages }}
     <li>
       <a href="{{ .RelPermalink }}">
-        <div class="post-title">{{ .Title }}</div>
-        <div class="post-meta">{{ .Date.Format "2 Jan 2006" }}</div>
-        {{ with .Description }}<div class="post-summary">{{ . }}</div>{{ end }}
+        <span class="post-title">{{ .Title }}</span>
+        <span class="post-meta">{{ .Date.Format "2 Jan 2006" }}</span>
+        {{ with .Description }}<span class="post-summary">{{ . }}</span>{{ end }}
       </a>
       {{ with .Params.tags }}<div class="post-tags">{{ range . }}<a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}</div>{{ end }}
     </li>
     {{ end }}
   </ul>
-</div>
+</main>
 {{ end }}

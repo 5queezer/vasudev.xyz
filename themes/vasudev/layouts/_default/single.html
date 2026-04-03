@@ -1,13 +1,13 @@
 {{ define "main" }}
-<div class="page-wrapper">
-  <div class="page-header">
+<main class="page-wrapper">
+  <header class="page-header">
     <h1 class="name"><a href="/">{{ .Site.Title }}</a></h1>
     <nav style="display:flex;align-items:center;gap:0.5rem"><a href="{{ relLangURL "" }}">{{ i18n "home" }}</a> · <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a> {{ partial "lang-switcher.html" . }} {{ partial "theme-toggle.html" . }}</nav>
-  </div>
+  </header>
 
   <article>
     <div class="post-header">
-      <h1>{{ .Title }}</h1>
+      <h2>{{ .Title }}</h2>
       <div class="post-meta-row">
         <div class="post-meta">{{ .Date.Format "2 Jan 2006" }}{{ with .Params.author }} · {{ . }}{{ end }}</div>
         {{ with .Params.tags }}<div class="post-tags">{{ range . }}<a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}</div>{{ end }}
@@ -18,11 +18,11 @@
       {{ .Content }}
     </div>
 
-    <div class="post-footer">
+    <footer class="post-footer">
       <a href="{{ relLangURL "blog/" }}">&larr; {{ i18n "backToAllPosts" }}</a>
-    </div>
+    </footer>
 
     {{ partial "giscus.html" . }}
   </article>
-</div>
+</main>
 {{ end }}
