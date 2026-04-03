@@ -5,7 +5,7 @@ tags: ["harness-engineering", "agent-architecture", "memory", "muninndb", "hrafn
 description: "Three yogic principles that generate testable hypotheses for agent harness design. Ancient attention models, modern benchmarks."
 ---
 
-I spent last week reading two papers and a [Fowler article](https://martinfowler.com/articles/harness-engineering.html) about harness engineering -- the code wrapping an LLM that determines what gets stored, retrieved, and presented to the model. Halfway through Birgitta Böckeler's taxonomy of guides and sensors, I realized I'd seen this architecture before. Not in a codebase. In the Yoga Sutras.
+I spent last week reading two papers and a [Fowler article](https://martinfowler.com/articles/harness-engineering.html) about harness engineering -- the code wrapping an LLM that determines what gets stored, retrieved, and presented to the model. Halfway through Birgitta Böckeler's taxonomy of guides and sensors, I realized I'd seen this architecture before. Not in a codebase. In the [Yoga Sutras](https://en.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali).
 
 **The contemplative traditions built sophisticated models of attention filtering. Some of those models generate testable hypotheses that the current agent memory literature doesn't make.**
 
@@ -13,7 +13,7 @@ That sounds like the kind of claim that gets you laughed off Hacker News. So let
 
 ## 1. Vrtti Nirodha: Not all noise is equal
 
-Yoga Sutras 1.2 defines yoga as *chitta vrtti nirodha* -- the cessation of fluctuations in the mind-field. Patanjali doesn't say "delete everything." He distinguishes *kleshas* (distortions: attachment, aversion, ego, ignorance, fear of death) from *pramanas* (valid cognition: direct perception, inference, testimony). The practice is surgical: reduce the distortions, preserve the signal.
+Yoga Sutras 1.2 defines yoga as *chitta vrtti nirodha* -- the cessation of fluctuations in the mind-field. Patanjali doesn't say "delete everything." He distinguishes [*kleshas*](https://en.wikipedia.org/wiki/Klesha_(Hinduism)) (distortions: attachment, aversion, ego, ignorance, fear of death) from [*pramanas*](https://en.wikipedia.org/wiki/Pramana) (valid cognition: direct perception, inference, testimony). The practice is surgical: reduce the distortions, preserve the signal.
 
 OpenAI's harness engineering post calls the same operation "Entropy Management" -- periodic cleanup agents that fight codebase decay. [Dream Engine](/blog/why-ai-agents-need-sleep/), MuninnDB's consolidation system, does it with split similarity thresholds: 0.95 for normal dedup, 0.85 during dream mode. But neither system asks *what kind* of redundancy it's removing.
 
@@ -29,9 +29,9 @@ The simpler path: **outcome-tagged writes**. When an agent retrieves an entry an
 
 ## 2. Samskara and Vairagya: Reinforcement needs a counterweight
 
-Samskaras are latent impressions that shape future perception. Every experience leaves a trace, and repeated experiences deepen the groove. This is Hebbian learning -- "neurons that fire together wire together" -- and MuninnDB implements it directly: entries that co-activate strengthen their association weights.
+[Samskaras](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) are latent impressions that shape future perception. Every experience leaves a trace, and repeated experiences deepen the groove. This is Hebbian learning -- "neurons that fire together wire together" -- and MuninnDB implements it directly: entries that co-activate strengthen their association weights.
 
-The Yoga Sutras warn that samskaras compound. Without the counterweight of *vairagya* (non-attachment, the capacity to release strong associations), they calcify into *vasanas* -- automatic reaction patterns that bypass conscious evaluation. You stop seeing the situation and start running the script.
+The Yoga Sutras warn that samskaras compound. Without the counterweight of [*vairagya*](https://en.wikipedia.org/wiki/Vairagya) (non-attachment, the capacity to release strong associations), they calcify into [*vasanas*](https://en.wikipedia.org/wiki/Vasana) -- automatic reaction patterns that bypass conscious evaluation. You stop seeing the situation and start running the script.
 
 [MemoryBench](https://arxiv.org/abs/2510.17281) provides indirect evidence. Its central finding: state-of-the-art memory systems (A-Mem, Mem0, MemoryOS) fail to consistently outperform naive RAG baselines that simply retrieve from raw context. The paper doesn't isolate Hebbian reinforcement as the cause, and the failure could stem from any part of the consolidation pipeline. One possible mechanism: reinforced associations crowd out less-activated but more relevant alternatives -- the vasana effect. But this is conjecture, not a demonstrated result. It needs direct measurement, which is why benchmark #311 exists.
 
@@ -45,7 +45,7 @@ Testable hypothesis for [benchmark #311](https://github.com/scrypster/muninndb/i
 
 ## 3. Pratyahara: The power of deliberate exclusion
 
-Pratyahara (Yoga Sutras 2.54) is often translated as "sense withdrawal," but that's misleading. It's not blindness -- it's *selective attention*. The senses still function. They just stop pulling the mind toward every stimulus. You decide what enters awareness instead of reacting to whatever arrives.
+[Pratyahara](https://en.wikipedia.org/wiki/Pratyahara) (Yoga Sutras 2.54) is often translated as "sense withdrawal," but that's misleading. It's not blindness -- it's *selective attention*. The senses still function. They just stop pulling the mind toward every stimulus. You decide what enters awareness instead of reacting to whatever arrives.
 
 This is the central problem of context engineering, and Meta-Harness's most surprising result confirms it. The winning harnesses are not the ones that pack the context window with everything available. The text classification winner uses TF-IDF with contrastive pairs and label priming. The math retrieval winner is a four-route BM25 program with lexical predicates. Simple selection policies. No exotic architectures.
 
@@ -84,7 +84,7 @@ In Böckeler's taxonomy: the Memory Trait is a computational guide (it determine
 
 Two places.
 
-First, the Koshas (Vedantic body layers -- physical, energetic, mental, discriminative, bliss) imply a hierarchy from gross to subtle, with the subtle being "higher." Harness engineering has no such value ordering. A deterministic linter is not "lower" than an LLM-as-judge. Böckeler explicitly notes that computational sensors are cheap enough to run on every change, while inferential controls are expensive and probabilistic. In practice, you want to *maximize* the "gross" layer, not transcend it. Importing the Kosha hierarchy into harness design would lead you to over-invest in inferential controls and under-invest in deterministic ones -- the opposite of what works.
+First, the [Koshas](https://en.wikipedia.org/wiki/Kosha) (Vedantic body layers -- physical, energetic, mental, discriminative, bliss) imply a hierarchy from gross to subtle, with the subtle being "higher." Harness engineering has no such value ordering. A deterministic linter is not "lower" than an LLM-as-judge. Böckeler explicitly notes that computational sensors are cheap enough to run on every change, while inferential controls are expensive and probabilistic. In practice, you want to *maximize* the "gross" layer, not transcend it. Importing the Kosha hierarchy into harness design would lead you to over-invest in inferential controls and under-invest in deterministic ones -- the opposite of what works.
 
 Second, yogic practice aims at liberation from the cycle of conditioned response. Agent architecture aims at *effective* conditioned response -- you want the agent to develop reliable patterns, not dissolve them. Vairagya in the yogic sense means letting go of *all* attachment. In harness engineering it means letting go of *incorrect* attachments. The goal is better conditioning, not no conditioning. Importing the full soteriological framework would lead to an agent that achieves enlightenment by refusing to retrieve anything at all. Unhelpful.
 
