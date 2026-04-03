@@ -15,8 +15,8 @@ import (
 )
 
 const (
-	openRouterURL = "https://openrouter.ai/api/v1/chat/completions"
-	model         = "openrouter/free"
+	defaultAPIURL = "https://openrouter.ai/api/v1/chat/completions"
+	defaultModel  = "openrouter/free"
 )
 
 type chatRequest struct {
@@ -45,9 +45,20 @@ func main() {
 	languages := flag.String("languages", "de,es", "comma-separated target languages")
 	flag.Parse()
 
-	apiKey := os.Getenv("OPENROUTER_API_KEY")
+	apiURL := os.Getenv("LLM_API_URL")
+	if apiURL == "" {
+		apiURL = defaultAPIURL
+	}
+	llmModel := os.Getenv("LLM_MODEL")
+	if llmModel == "" {
+		llmModel = defaultModel
+	}
+	apiKey := os.Getenv("LLM_API_KEY")
 	if apiKey == "" {
-		fmt.Fprintln(os.Stderr, "OPENROUTER_API_KEY environment variable is required")
+		apiKey = os.Getenv("OPENROUTER_API_KEY")
+	}
+	if apiKey == "" {
+		fmt.Fprintln(os.Stderr, "LLM_API_KEY (or OPENROUTER_API_KEY) environment variable is required")
 		os.Exit(1)
 	}
 
@@ -100,9 +111,9 @@ entries:
 			fmt.Printf("translating %s -> %s\n", name, targetName)
 
 			frontMatter, body := splitFrontMatterAndBody(srcData)
-			translatedTitle := translateText(apiKey, extractFrontMatterField(srcData, "title"), lang, true)
-			translatedDesc := translateText(apiKey, extractFrontMatterField(srcData, "description"), lang, true)
-			translatedBody := translateText(apiKey, body, lang, false)
+			translatedTitle := translateText(apiURL, llmModel, apiKey, extractFrontMatterField(srcData, "title"), lang, true)
+			translatedDesc := translateText(apiURL, llmModel, apiKey, extractFrontMatterField(srcData, "description"), lang, true)
+			translatedBody := translateText(apiURL, llmModel, apiKey, body, lang, false)
 
 			if translatedTitle == "" || translatedDesc == "" {
 				fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
@@ -187,7 +198,7 @@ func buildTranslatedFile(originalFM, title, description, hash, body string) stri
 	return b.String()
 }
 
-func translateText(apiKey, text, lang string, isShort bool) string {
+func translateText(apiURL, llmModel, apiKey, text, lang string, isShort bool) string {
 	if strings.TrimSpace(text) == "" {
 		return ""
 	}
@@ -213,7 +224,7 @@ Rules:
 	}
 
 	req := chatRequest{
-		Model: model,
+		Model: llmModel,
 		Messages: []chatMessage{
 			{Role: "system", Content: systemPrompt},
 			{Role: "user", Content: text},
@@ -237,7 +248,7 @@ Rules:
 			time.Sleep(wait)
 		}
 
-		httpReq, err := http.NewRequest("POST", openRouterURL, bytes.NewReader(body))
+		httpReq, err := http.NewRequest("POST", apiURL, bytes.NewReader(body))
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "failed to create request: %v\n", err)
 			continue
