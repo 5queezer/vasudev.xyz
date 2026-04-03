@@ -20,7 +20,6 @@
   </script>
 </head>
 <body>
-  {{ block "main" . }}{{ end }}
   <script>
     function toggleTheme() {
       var current = document.documentElement.getAttribute('data-theme');
@@ -33,5 +32,6 @@
       localStorage.setItem('theme', next);
     }
   </script>
+  {{ block "main" . }}{{ end }}
 </body>
 </html>
