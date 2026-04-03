@@ -226,7 +226,7 @@ Rules:
 		return ""
 	}
 
-	client := &http.Client{Timeout: 60 * time.Second}
+	client := &http.Client{Timeout: 5 * time.Minute}
 
 	// Retry with backoff
 	var result string
