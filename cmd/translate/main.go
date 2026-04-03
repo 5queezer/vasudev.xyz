@@ -223,7 +223,8 @@ Rules:
 - Do not translate proper nouns, project names, GitHub URLs, or code.
 - Do not translate text inside code blocks (backtick-fenced or indented).
 - Do not add any commentary or explanation. Output only the translated text.
-- Keep the same tone and style as the original.`, langName)
+- Keep the same tone and style as the original.
+- For Wikipedia links: replace "en.wikipedia.org" with the %s-language Wikipedia (e.g. "%s.wikipedia.org"). Verify the target article exists in that language. If no equivalent article exists, keep the English Wikipedia link unchanged.`, langName, lang, lang)
 
 	if isShort {
 		systemPrompt += "\n- This is a short text (title or description). Return only the translated string, no quotes."
