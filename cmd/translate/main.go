@@ -16,7 +16,7 @@ import (
 
 const (
 	openRouterURL = "https://openrouter.ai/api/v1/chat/completions"
-	model         = "meta-llama/llama-4-maverick:free"
+	model         = "openrouter/free"
 )
 
 type chatRequest struct {
