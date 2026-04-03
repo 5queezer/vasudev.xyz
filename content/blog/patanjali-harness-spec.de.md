@@ -11,7 +11,9 @@ Ich verbrachte letzte Woche damit, zwei Papers zu lesen und einen [Fowler-Artike
 
 Das klingt nach einer Aussage, die dich auf Hacker News zum Narren halten würde. Also lasse ich das mit drei konkreten Zuordnungen bekräftigen, bei denen yogische Prinzipien – nicht nur im Klang, sondern auch in empirischen Ergebnissen von [Meta‑Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [Harness‑Engineering‑Framework](https://martinfowler.com/articles/harness-engineering.html) – vorhersagen.
 
-## 1. Vrtti Nirodha: Nicht alles Noise ist gleichYoga Sutras 1.2 definiert Yoga als *chitta vrtti nirodha* – die Aufhebung von Schwankungen im Geistfeld. Patanjali sagt nicht „lösche alles“ aus. Er unterscheidet [*Kleshas*](https://de.wikipedia.org/wiki/Klesha_(Hinduism)) (Verzerrungen: Anhaftung, Abneigung, Ego, Todesfurcht) von [*Pramana*](https://de.wikipedia.org/wiki/Pramana) (gültige Erkenntnis: direkte Wahrnehmung, Schlussfolgerung, Zeugnis). Die Praxis ist chirurgisch: Verzerrungen reduzieren, Signal erhalten.
+## 1. Vrtti Nirodha: Nicht alles Noise ist gleich
+
+Yoga Sutras 1.2 definiert Yoga als *chitta vrtti nirodha* – die Aufhebung von Schwankungen im Geistfeld. Patanjali sagt nicht „lösche alles“ aus. Er unterscheidet [*Kleshas*](https://de.wikipedia.org/wiki/Klesha_(Hinduism)) (Verzerrungen: Anhaftung, Abneigung, Ego, Todesfurcht) von [*Pramana*](https://de.wikipedia.org/wiki/Pramana) (gültige Erkenntnis: direkte Wahrnehmung, Schlussfolgerung, Zeugnis). Die Praxis ist chirurgisch: Verzerrungen reduzieren, Signal erhalten.
 
 Der OpenAI‑Post über Harness‑Engineering nennt die gleiche Operation „Entropy Management“ – periodische Aufräum‑Agenten, die Codebase‑Verfall bekämpfen. [Dream Engine](/blog/why-ai-agents-need-sleep/), das Konsolidierungssystem von MuninnDB, verwendet gestaffelte Similarity‑Schwellen: 0.95 für normale Duplikation, 0.85 im Traum‑Modus. Doch kein System fragt *welche Art* von Redundanz es entfernt.
 
