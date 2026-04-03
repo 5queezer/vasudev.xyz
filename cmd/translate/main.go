@@ -17,7 +17,12 @@ import (
 const (
 	defaultAPIURL = "https://openrouter.ai/api/v1/chat/completions"
 	defaultModel  = "openrouter/free"
+	maxAttempts   = 4
 )
+
+var httpClientFactory = func() *http.Client {
+	return &http.Client{Timeout: 5 * time.Minute}
+}
 
 type chatRequest struct {
 	Model    string        `json:"model"`
@@ -49,10 +54,11 @@ func main() {
 	if apiURL == "" {
 		apiURL = defaultAPIURL
 	}
-	llmModel := os.Getenv("LLM_MODEL")
-	if llmModel == "" {
-		llmModel = defaultModel
-	}
+	llmModels := resolveModelCandidates(
+		os.Getenv("LLM_MODEL"),
+		os.Getenv("LLM_MODEL_FALLBACKS"),
+		os.Getenv("LLM_MODELS"),
+	)
 	apiKey := os.Getenv("LLM_API_KEY")
 	if apiKey == "" {
 		apiKey = os.Getenv("OPENROUTER_API_KEY")
@@ -111,9 +117,9 @@ entries:
 			fmt.Printf("translating %s -> %s\n", name, targetName)
 
 			frontMatter, body := splitFrontMatterAndBody(srcData)
-			translatedTitle := translateText(apiURL, llmModel, apiKey, extractFrontMatterField(srcData, "title"), lang, true)
-			translatedDesc := translateText(apiURL, llmModel, apiKey, extractFrontMatterField(srcData, "description"), lang, true)
-			translatedBody := translateText(apiURL, llmModel, apiKey, body, lang, false)
+			translatedTitle := translateText(apiURL, llmModels, apiKey, extractFrontMatterField(srcData, "title"), lang, true)
+			translatedDesc := translateText(apiURL, llmModels, apiKey, extractFrontMatterField(srcData, "description"), lang, true)
+			translatedBody := translateText(apiURL, llmModels, apiKey, body, lang, false)
 
 			if translatedTitle == "" || translatedDesc == "" {
 				fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
@@ -198,7 +204,7 @@ func buildTranslatedFile(originalFM, title, description, hash, body string) stri
 	return b.String()
 }
 
-func translateText(apiURL, llmModel, apiKey, text, lang string, isShort bool) string {
+func translateText(apiURL string, llmModels []string, apiKey, text, lang string, isShort bool) string {
 	if strings.TrimSpace(text) == "" {
 		return ""
 	}
@@ -223,73 +229,135 @@ Rules:
 		systemPrompt += "\n- This is a short text (title or description). Return only the translated string, no quotes."
 	}
 
-	req := chatRequest{
-		Model: llmModel,
-		Messages: []chatMessage{
-			{Role: "system", Content: systemPrompt},
-			{Role: "user", Content: text},
-		},
+	client := httpClientFactory()
+
+	for modelIndex, llmModel := range llmModels {
+		req := chatRequest{
+			Model: llmModel,
+			Messages: []chatMessage{
+				{Role: "system", Content: systemPrompt},
+				{Role: "user", Content: text},
+			},
+		}
+
+		body, err := json.Marshal(req)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "failed to marshal request for model %s: %v\n", llmModel, err)
+			continue
+		}
+
+		for attempt := 0; attempt < maxAttempts; attempt++ {
+			if attempt > 0 {
+				wait := time.Duration(1<<uint(attempt)) * time.Second
+				fmt.Fprintf(os.Stderr, "retrying model %s in %v...\n", llmModel, wait)
+				time.Sleep(wait)
+			}
+
+			httpReq, err := http.NewRequest("POST", apiURL, bytes.NewReader(body))
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to create request for model %s: %v\n", llmModel, err)
+				continue
+			}
+			httpReq.Header.Set("Content-Type", "application/json")
+			httpReq.Header.Set("Authorization", "Bearer "+apiKey)
+
+			resp, err := client.Do(httpReq)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "request failed for model %s: %v\n", llmModel, err)
+				continue
+			}
+
+			respBody, err := io.ReadAll(resp.Body)
+			resp.Body.Close()
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to read response for model %s: %v\n", llmModel, err)
+				continue
+			}
+
+			if resp.StatusCode != http.StatusOK {
+				fmt.Fprintf(os.Stderr, "model %s returned %d: %s\n", llmModel, resp.StatusCode, string(respBody))
+				if shouldFallbackModel(resp.StatusCode, respBody) && modelIndex < len(llmModels)-1 {
+					fmt.Fprintf(os.Stderr, "falling back from %s to %s\n", llmModel, llmModels[modelIndex+1])
+					break
+				}
+				continue
+			}
+
+			var chatResp chatResponse
+			if err := json.Unmarshal(respBody, &chatResp); err != nil {
+				fmt.Fprintf(os.Stderr, "failed to parse response for model %s: %v\n", llmModel, err)
+				continue
+			}
+
+			if chatResp.Error != nil {
+				fmt.Fprintf(os.Stderr, "API error for model %s: %s\n", llmModel, chatResp.Error.Message)
+				if shouldFallbackModel(resp.StatusCode, []byte(chatResp.Error.Message)) && modelIndex < len(llmModels)-1 {
+					fmt.Fprintf(os.Stderr, "falling back from %s to %s\n", llmModel, llmModels[modelIndex+1])
+					break
+				}
+				continue
+			}
+
+			if len(chatResp.Choices) > 0 {
+				return strings.TrimSpace(chatResp.Choices[0].Message.Content)
+			}
+		}
 	}
 
-	body, err := json.Marshal(req)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "failed to marshal request: %v\n", err)
-		return ""
+	return ""
+}
+
+func resolveModelCandidates(primary, fallbacks, models string) []string {
+	if ordered := uniqueModels(parseModelList(models)); len(ordered) > 0 {
+		return ordered
 	}
 
-	client := &http.Client{Timeout: 5 * time.Minute}
+	ordered := []string{strings.TrimSpace(primary)}
+	if ordered[0] == "" {
+		ordered[0] = defaultModel
+	}
+	ordered = append(ordered, parseModelList(fallbacks)...)
+	return uniqueModels(ordered)
+}
 
-	// Retry with backoff
-	var result string
-	for attempt := 0; attempt < 4; attempt++ {
-		if attempt > 0 {
-			wait := time.Duration(1<<uint(attempt)) * time.Second
-			fmt.Fprintf(os.Stderr, "retrying in %v...\n", wait)
-			time.Sleep(wait)
-		}
-
-		httpReq, err := http.NewRequest("POST", apiURL, bytes.NewReader(body))
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "failed to create request: %v\n", err)
-			continue
-		}
-		httpReq.Header.Set("Content-Type", "application/json")
-		httpReq.Header.Set("Authorization", "Bearer "+apiKey)
-
-		resp, err := client.Do(httpReq)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "request failed: %v\n", err)
-			continue
-		}
-
-		respBody, err := io.ReadAll(resp.Body)
-		resp.Body.Close()
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "failed to read response: %v\n", err)
-			continue
-		}
-
-		if resp.StatusCode != 200 {
-			fmt.Fprintf(os.Stderr, "API returned %d: %s\n", resp.StatusCode, string(respBody))
-			continue
-		}
-
-		var chatResp chatResponse
-		if err := json.Unmarshal(respBody, &chatResp); err != nil {
-			fmt.Fprintf(os.Stderr, "failed to parse response: %v\n", err)
-			continue
-		}
-
-		if chatResp.Error != nil {
-			fmt.Fprintf(os.Stderr, "API error: %s\n", chatResp.Error.Message)
-			continue
-		}
-
-		if len(chatResp.Choices) > 0 {
-			result = strings.TrimSpace(chatResp.Choices[0].Message.Content)
-			break
+func parseModelList(raw string) []string {
+	split := strings.FieldsFunc(raw, func(r rune) bool {
+		return r == ',' || r == '\n'
+	})
+	models := make([]string, 0, len(split))
+	for _, item := range split {
+		if trimmed := strings.TrimSpace(item); trimmed != "" {
+			models = append(models, trimmed)
 		}
 	}
+	return models
+}
 
-	return result
+func uniqueModels(models []string) []string {
+	seen := make(map[string]struct{}, len(models))
+	ordered := make([]string, 0, len(models))
+	for _, model := range models {
+		model = strings.TrimSpace(model)
+		if model == "" {
+			continue
+		}
+		if _, ok := seen[model]; ok {
+			continue
+		}
+		seen[model] = struct{}{}
+		ordered = append(ordered, model)
+	}
+	return ordered
+}
+
+func shouldFallbackModel(statusCode int, body []byte) bool {
+	if statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError {
+		return true
+	}
+
+	lower := strings.ToLower(string(body))
+	return strings.Contains(lower, "rate-limit") ||
+		strings.Contains(lower, "rate limited") ||
+		strings.Contains(lower, "temporarily rate-limited") ||
+		strings.Contains(lower, "provider returned error")
 }

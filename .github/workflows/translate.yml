@@ -33,6 +33,8 @@ jobs:
         env:
           LLM_API_URL: ${{ secrets.LLM_API_URL }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
+          LLM_MODEL_FALLBACKS: ${{ vars.LLM_MODEL_FALLBACKS }}
+          LLM_MODELS: ${{ vars.LLM_MODELS }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY || secrets.OPENROUTER_API_KEY }}
         run: |
           cd cmd/translate && go run main.go \
