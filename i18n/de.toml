@@ -1,0 +1,17 @@
+[selectedWork]
+other = "Ausgewählte Arbeiten"
+
+[latestWriting]
+other = "Neueste Beiträge"
+
+[elsewhere]
+other = "Anderswo"
+
+[home]
+other = "Start"
+
+[blog]
+other = "Blog"
+
+[backToAllPosts]
+other = "Zurück zu allen Beiträgen"

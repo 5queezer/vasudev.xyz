@@ -1,10 +1,30 @@
 baseURL = "https://vasudev.xyz/"
-languageCode = "en-us"
 title = "Christian Pojoni"
 theme = "vasudev"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-us"
+    weight = 1
+    [languages.en.params]
+      description = "Systems engineer. Rust, Python, AI tooling, privacy-first architecture."
+  [languages.de]
+    languageName = "Deutsch"
+    languageCode = "de"
+    weight = 2
+    [languages.de.params]
+      description = "Systemingenieur. Rust, Python, KI-Werkzeuge, datenschutzorientierte Architektur."
+  [languages.es]
+    languageName = "Español"
+    languageCode = "es"
+    weight = 3
+    [languages.es.params]
+      description = "Ingeniero de sistemas. Rust, Python, herramientas de IA, arquitectura centrada en la privacidad."
 
 [params]
-  description = "Systems engineer. Rust, Python, AI tooling, privacy-first architecture."
   author = "Christian Pojoni"
 
 [markup]

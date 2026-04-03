@@ -1,0 +1,43 @@
+name: Translate blog posts
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "content/blog/*.md"
+      - "!content/blog/*.de.md"
+      - "!content/blog/*.es.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: translate-posts
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Translate posts
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          cd cmd/translate && go run main.go \
+            --content-dir ../../content/blog \
+            --languages de,es
+
+      - name: Commit translations
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/blog/*.de.md content/blog/*.es.md
+          git diff --cached --quiet || git commit -m "i18n: auto-translate blog posts to de/es"
+          git push

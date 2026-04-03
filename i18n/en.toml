@@ -1,0 +1,17 @@
+[selectedWork]
+other = "Selected work"
+
+[latestWriting]
+other = "Latest writing"
+
+[elsewhere]
+other = "Elsewhere"
+
+[home]
+other = "home"
+
+[blog]
+other = "Blog"
+
+[backToAllPosts]
+other = "Back to all posts"
