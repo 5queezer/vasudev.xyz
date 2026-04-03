@@ -51,6 +51,7 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
           TZ: Europe/Vienna
+          HUGO_PARAMS_CFBEACONTOKEN: ${{ secrets.CF_BEACON_TOKEN }}
         run: |
           hugo \
             --gc \

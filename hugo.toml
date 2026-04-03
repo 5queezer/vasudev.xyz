@@ -26,6 +26,7 @@ defaultContentLanguageInSubdir = false
 
 [params]
   author = "Christian Pojoni"
+  cfBeaconToken = ""
 
 [markup]
   [markup.highlight]
