@@ -216,6 +216,17 @@ body {
   color: var(--accent2);
 }
 
+.lang-link {
+  font-size: 0.78rem;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lang-link:hover {
+  color: var(--accent2);
+}
+
 .post-list {
   list-style: none;
 }
