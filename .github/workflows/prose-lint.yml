@@ -4,10 +4,7 @@ on:
   pull_request:
     paths:
       - "content/blog/**"
-  push:
-    branches: ["master"]
-    paths:
-      - "content/blog/**"
+      - "styles/config/vocabularies/**"
 
 jobs:
   vale:
