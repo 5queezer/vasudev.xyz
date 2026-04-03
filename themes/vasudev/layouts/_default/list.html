@@ -1,22 +1,59 @@
 {{ define "main" }}
-<main class="page-wrapper">
-  <header class="page-header">
-    <h1 class="name"><a href="/">{{ .Site.Title }}</a></h1>
-    <nav style="display:flex;align-items:center;gap:0.5rem"><a href="{{ relLangURL "" }}">{{ i18n "home" }}</a> · <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a> {{ partial "lang-switcher.html" . }} {{ partial "theme-toggle.html" . }}</nav>
-  </header>
+<div class="site-shell site-shell-narrow">
+  {{ partial "site-header.html" . }}
 
-  <h2 class="section-label">{{ .Title }}</h2>
-  <ul class="post-list">
-    {{ range .Pages }}
-    <li>
-      <a href="{{ .RelPermalink }}">
-        <span class="post-title">{{ .Title }}</span>
-        <span class="post-meta">{{ .Date.Format "2 Jan 2006" }}</span>
-        {{ with .Description }}<span class="post-summary">{{ . }}</span>{{ end }}
+  <section class="surface intro-panel">
+    <div class="section-label">{{ i18n "blog" }}</div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-copy">{{ .Site.Params.description }}</p>
+  </section>
+
+  {{ $pages := .Pages.ByDate.Reverse }}
+  {{ with first 1 $pages }}
+  {{ range . }}
+  <section class="list-feature-shell">
+    <article class="surface list-card list-card-featured">
+      <a class="list-card-link" href="{{ .RelPermalink }}">
+        <div class="section-label">{{ i18n "featuredPost" }}</div>
+        <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
+        <h2 class="article-title">{{ .Title }}</h2>
+        {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
+        {{ with .Params.tags }}
+        <div class="tag-row">
+          {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+        <div class="article-cta">Open post <span aria-hidden="true">→</span></div>
       </a>
-      {{ with .Params.tags }}<div class="post-tags">{{ range . }}<a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}</div>{{ end }}
-    </li>
+    </article>
+  </section>
+  {{ end }}
+  {{ end }}
+
+  <section class="list-grid list-grid-secondary">
+    {{ range after 1 $pages }}
+    <article class="surface list-card">
+      <a class="list-card-link" href="{{ .RelPermalink }}">
+        <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
+        <h2 class="article-title">{{ .Title }}</h2>
+        {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
+        {{ with .Params.tags }}
+        <div class="tag-row">
+          {{ range first 4 . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+        <div class="article-cta">Open post <span aria-hidden="true">→</span></div>
+      </a>
+    </article>
     {{ end }}
-  </ul>
-</main>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer-copy">Long-form notes on systems, agent tooling, memory, and privacy-first architecture.</div>
+    <div class="site-footer-links">
+      <a href="mailto:christian.pojoni@gmail.com">{{ i18n "email" }}</a>
+      <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
+    </div>
+  </footer>
+</div>
 {{ end }}

@@ -4,6 +4,33 @@ other = "Selected work"
 [latestWriting]
 other = "Latest writing"
 
+[selectedWorkIntro]
+other = "Open-source systems, agent tooling, and product work."
+
+[latestWritingIntro]
+other = "Essays on agents, memory, systems, and architecture."
+
+[minutesShort]
+other = "min read"
+
+[featuredPost]
+other = "Featured post"
+
+[aboutAuthor]
+other = "About the author"
+
+[authorBio]
+other = "Christian Pojoni is a systems engineer writing about agent runtimes, retrieval quality, AI architecture, and privacy-first software."
+
+[email]
+other = "Email"
+
+[newerPost]
+other = "Newer post"
+
+[olderPost]
+other = "Older post"
+
 [elsewhere]
 other = "Elsewhere"
 

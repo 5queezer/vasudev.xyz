@@ -4,6 +4,33 @@ other = "Trabajos seleccionados"
 [latestWriting]
 other = "Publicaciones recientes"
 
+[selectedWorkIntro]
+other = "Sistemas open source, herramientas para agentes y trabajo de producto."
+
+[latestWritingIntro]
+other = "Ensayos sobre agentes, memoria, sistemas y arquitectura."
+
+[minutesShort]
+other = "min de lectura"
+
+[featuredPost]
+other = "Artículo destacado"
+
+[aboutAuthor]
+other = "Sobre el autor"
+
+[authorBio]
+other = "Christian Pojoni es ingeniero de sistemas y escribe sobre runtimes para agentes, calidad de recuperación, arquitectura de IA y software centrado en la privacidad."
+
+[email]
+other = "Correo"
+
+[newerPost]
+other = "Artículo más nuevo"
+
+[olderPost]
+other = "Artículo anterior"
+
 [elsewhere]
 other = "En otros sitios"
 

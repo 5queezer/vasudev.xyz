@@ -1,0 +1,11 @@
+<header class="page-chrome">
+  <a class="brand-mark" href="{{ relLangURL "" }}">{{ .Site.Title }}</a>
+  <nav class="page-nav" aria-label="Primary">
+    {{ if not .IsHome }}
+    <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
+    {{ end }}
+    <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
+    {{ partial "lang-switcher.html" . }}
+    {{ partial "theme-toggle.html" . }}
+  </nav>
+</header>
