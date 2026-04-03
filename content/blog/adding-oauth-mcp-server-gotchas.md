@@ -144,3 +144,4 @@ If you're adding OAuth to your own MCP server, read [PR #2829](https://github.co
 ---
 
 *I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
+

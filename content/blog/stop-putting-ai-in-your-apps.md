@@ -76,3 +76,4 @@ Want to see what this looks like in practice? I added [OAuth 2.1 MCP support to 
 ---
 
 *More at [vasudev.xyz](https://vasudev.xyz).*
+
