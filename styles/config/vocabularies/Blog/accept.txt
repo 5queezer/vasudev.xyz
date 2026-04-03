@@ -1,4 +1,6 @@
 A-Mem
+Advaitic
+APO
 arXiv
 Birgitta
 BM25
@@ -14,6 +16,8 @@ Dream Engine
 Ebbinghaus
 Flyxion
 Flyxion's
+FurnitureBench
+Ghosh
 Goodhart's
 Hebbian
 Hrafn
@@ -22,7 +26,10 @@ klesha
 kleshas
 Kosha
 Koshas
+Loihi
 LongMemEval
+Maṇḍūkya
+Māṇḍūkya
 Mem0
 MemoryBench
 MemoryOS
@@ -42,6 +49,7 @@ scrypster
 soteriological
 Sutras
 underperform
+Upaniṣad
 vairagya
 vasana
 vasanas
