@@ -19,7 +19,11 @@ OpenAI's harness engineering post calls the same operation "Entropy Management" 
 
 Meta-Harness proved this matters. Their critical ablation (Table 3) showed that LLM-generated summaries of execution traces performed *worse* than raw scores alone -- 38.7% vs 41.3%. Full raw traces got 56.7%. The summaries were vrtti nirodha gone wrong: they collapsed *pramana* (diagnostic signal) alongside *klesha* (noise), destroying the information the optimizer needed.
 
-The design implication for [MuninnDB](https://github.com/scrypster/muninndb): decay floors should be epistemically typed, not just frequency-gated. A verified fact (pramana) and a refuted hypothesis (klesha) might have identical access patterns but radically different retention value. The vault trust tiers already sort by content sensitivity (legal, work, personal). Adding an epistemic dimension -- verified vs. speculative vs. refuted -- would let Dream Engine consolidate with Patanjali's precision instead of treating all low-frequency entries as equally expendable.
+The design implication for [MuninnDB](https://github.com/scrypster/muninndb): decay floors should reflect outcome, not just access frequency. A verified API pattern and a failed curl attempt might have identical retrieval rates but radically different retention value. The vault trust tiers already sort by content sensitivity (legal, work, personal). But there's a trap in the obvious next step.
+
+You could try to classify entries upfront as pramana or klesha -- verified vs. distorted -- but that classification is itself the hard problem. For trivial cases (HTTP 200 vs. 401), it's mechanical. For most entries, it requires semantic judgment, which means an LLM in the decay path, which makes consolidation expensive and nondeterministic. Patanjali had a lifetime of practice to refine his discernment. Dream Engine runs on a cron trigger.
+
+The simpler path: **outcome-tagged writes**. When an agent retrieves an entry and the subsequent action succeeds, the entry gets an `outcome: success` signal. When the action fails, `outcome: failure`. The decay floor couples to the success rate, not to an epistemic category. No ontology needed. No LLM in the loop. In yogic terms: you don't need to classify the vrtti in advance -- you observe its effect and let that observation shape retention.
 
 ---
 
@@ -33,9 +37,9 @@ MemoryBench documents this exact failure mode in agent memory systems. Consolida
 
 Böckeler's taxonomy provides the structural insight. She distinguishes computational sensors (deterministic, cheap, run on every change) from inferential sensors (semantic, expensive, probabilistic). Hebbian reinforcement is a computational process -- it runs automatically on every co-activation. But vasana detection requires inferential judgment: "this association is strong, but is it *correct* for this query?" No frequency counter can answer that.
 
-The missing mechanism in MuninnDB is explicit Hebbian *weakening* -- not just passive decay, but active correction when a strongly associated entry produces a false positive retrieval. When an agent acts on a Hebbian-retrieved entry and the action fails, the association weight should decrease, not just wait for Ebbinghaus to erode it over time.
+The missing mechanism in MuninnDB is explicit Hebbian *weakening* -- not just passive decay, but active correction when a strongly associated entry produces a false positive retrieval. When an agent acts on a Hebbian-retrieved entry and the action fails, the association weight should decrease, not just wait for Ebbinghaus to erode it over time. But: this is a new write path in Dream Engine, and the benchmark-first principle holds. No feature ships without evidence that the current behavior causes harm.
 
-Testable hypothesis for [benchmark #311](https://github.com/scrypster/muninndb/issues/311): measure false positive retrieval rates for Hebbian-strengthened entries vs. non-strengthened entries. If strengthened entries produce more false positives per retrieval, vairagya as a design primitive is empirically justified.
+Testable hypothesis for [benchmark #311](https://github.com/scrypster/muninndb/issues/311): measure false positive retrieval rates for Hebbian-strengthened entries vs. non-strengthened entries. But don't stop at binary hit/miss. The sharper metric is *displacement rate* -- how often does a strongly associated but less relevant entry push a more relevant entry out of the top-k? That's the direct vasana measurement: not just "wrong thing retrieved" but "right thing crowded out by habitual retrieval." If strengthened entries produce measurable displacement, vairagya as a design primitive is empirically justified. If they don't, the current passive decay is sufficient and we skip the complexity.
 
 ---
 
@@ -45,11 +49,17 @@ Pratyahara (Yoga Sutras 2.54) is often translated as "sense withdrawal," but tha
 
 This is the central problem of context engineering, and Meta-Harness's most surprising result confirms it. The winning harnesses are not the ones that pack the context window with everything available. The text classification winner uses TF-IDF with contrastive pairs and label priming. The math retrieval winner is a four-route BM25 program with lexical predicates. Simple selection policies. No exotic architectures.
 
-Böckeler frames it as "keep quality left" -- the earlier you filter, the cheaper and more reliable the downstream result. Her computational guides (linters, schemas, CLAUDE.md rules) are pratyahara mechanisms: they prevent entire categories of information from reaching the model at all. But her framework doesn't include an explicit *rejection signal* -- the guides steer what goes in, but the model doesn't learn what was kept out or why.
+Böckeler frames it as "keep quality left" -- the earlier you filter, the cheaper and more reliable the downstream result. Her computational guides (linters, schemas, CLAUDE.md rules) are pratyahara mechanisms: they prevent entire categories of information from reaching the model at all.
 
-For [Hrafn](https://github.com/5queezer/hrafn), this suggests that the Memory Trait interface needs a `reject` alongside `retrieve`. When MuninnDB returns results, the response should include both "these 3 entries matched" and "these 5 entries were excluded because of X." The exclusion rationale is diagnostic signal -- it tells the LLM about the shape of the filter, not just the output.
+The first version of this post argued that the Memory Trait interface should return rejection metadata alongside results -- "these 3 entries matched, and these 5 were excluded because of X." More diagnostic signal for the LLM. Better informed decisions. Sounds reasonable.
 
-In Böckeler's taxonomy: the current Memory Trait is a computational guide (it determines what enters the context). Adding rejection reasoning makes it a *paired* guide-sensor -- the retrieval both feeds forward (entries) and feeds back (exclusion metadata) in the same call. Pratyahara isn't just filtering. It's *conscious* filtering, with the consciousness part being the awareness of what was filtered.
+It's wrong, and the Pratyahara principle itself explains why.
+
+Pratyahara means the senses *stop pulling the mind toward their objects*. If you tell the LLM "here are 5 things I'm deliberately withholding from you," you've shown it the objects and added a prohibition. That's not sense withdrawal -- that's sense stimulation with a warning label. Anyone who's meditated knows the result: "don't think about a white elephant" guarantees you'll think about the white elephant. Concretely: rejection explanations consume tokens (contradicting the Meta-Harness finding that simple harnesses win) and invite the model to second-guess the filter ("Why was X excluded? Maybe I need it after all"). RAG systems that include negative context empirically underperform those that simply deliver top-k.
+
+The right separation: **the agent sees only the top-k results. The benchmark harness sees everything.** The Memory Trait interface stays slim -- `retrieve → Vec<Entry>`. But the retrieval implementation logs the full decision internally: what was returned, what was excluded, why, and what the agent did next. The benchmark consumes the logs. The agent consumes the entries.
+
+In Böckeler's taxonomy: the Memory Trait is a computational guide (it determines what enters the context). The trace log is a computational sensor (it observes what happened). They don't merge. Pratyahara isn't conscious filtering in the sense of *the filtered system being aware of the exclusion*. It's conscious filtering in the sense of *the designer being aware*, through the trace logs, so the next iteration of the filter improves. The consciousness belongs to the harness engineer reading the traces, not to the agent executing the queries.
 
 ---
 
@@ -69,7 +79,11 @@ This isn't "ancient wisdom validates my architecture." The causal arrow runs the
 
 The useful question isn't "is yoga relevant to AI?" but "which specific yogic discriminations produce testable hypotheses that current memory systems don't make?"
 
-Three candidates stand out. Epistemic typing of decay (pramana vs. klesha) is testable today in MuninnDB's benchmark harness. Active Hebbian weakening (vairagya) is testable as soon as false positive rates are instrumented. Rejection-aware retrieval (pratyahara) is an interface change to the Memory Trait that can be prototyped in a single PR.
+Three candidates, all gated on the same prerequisite:
+
+Outcome-tagged decay (vrtti nirodha) requires [benchmark #311](https://github.com/scrypster/muninndb/issues/311) to show that uniform decay costs retrieval quality on entries with different outcome histories. Hebbian displacement (vairagya) requires the same benchmark to measure whether strengthened entries crowd out more relevant alternatives. Both reduce to one engineering task: **the trace schema must capture retrieval precision broken down by entry properties** -- Hebbian weight, access frequency, outcome history. If the data shows a problem, the fixes are straightforward. If it doesn't, we skip the complexity.
+
+Pratyahara is already implemented correctly: the Memory Trait returns top-k, period. The benchmark harness captures the full retrieval decision. The agent doesn't need to know what was excluded. The engineer does.
 
 None of these require believing in chakras. They require taking the discriminations seriously as engineering heuristics and measuring whether they improve agent recall on realistic workloads.
 
