@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-go@v5
         with:
@@ -42,5 +44,26 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add content/blog/*.de.md content/blog/*.es.md
-          git diff --cached --quiet || git commit -m "i18n: auto-translate blog posts to de/es"
-          git push
+          if git diff --cached --quiet; then
+            echo "No translation changes to commit"
+            exit 0
+          fi
+
+          git commit -m "i18n: auto-translate blog posts to de/es"
+
+          for attempt in 1 2 3; do
+            git fetch origin master
+            if git rebase origin/master && git push origin HEAD:master; then
+              exit 0
+            fi
+
+            git rebase --abort || true
+
+            if [ "$attempt" -lt 3 ]; then
+              echo "Push attempt $attempt failed; retrying on latest origin/master"
+              sleep 5
+            fi
+          done
+
+          echo "Failed to push translated posts after rebasing onto latest origin/master" >&2
+          exit 1
