@@ -3,6 +3,13 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["master"]
+    paths-ignore:
+      - "content/blog/*.md"
+      - "cmd/translate/**"
+  workflow_run:
+    workflows: ["Translate blog posts"]
+    types: [completed]
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +27,9 @@ defaults:
 
 jobs:
   build:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: "0.145.0"
