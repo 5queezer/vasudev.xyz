@@ -1,3 +1,45 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+
+knowledge_base:
+  web_search:
+    enabled: true
+
 reviews:
   auto_review:
     enabled: false
+  path_filters:
+    - "!content/blog/_index*.md"
+    - "!content/blog/*.de.md"
+    - "!content/blog/*.es.md"
+  path_instructions:
+    - path: "content/blog/*.md"
+      instructions: |
+        Treat changed English blog posts as editorial content that needs factual scrutiny, not just prose feedback.
+        Focus on material factual claims such as dates, numbers, product capabilities, API behavior, standards, legal or regulatory statements, named entities, and historical assertions.
+        Use authoritative public sources when possible, preferring official documentation, primary sources, standards bodies, and vendor websites over secondary summaries.
+        Flag claims that appear unsupported, outdated, internally inconsistent, or too strong for the available evidence.
+        Ask for inline citations or source links in the article when a non-obvious factual claim would otherwise be hard to verify.
+        Ignore generated translation files ending in .de.md or .es.md and blog index files. Those are out of scope for fact checking.
+  pre_merge_checks:
+    custom_checks:
+      - name: "Blog fact check"
+        mode: "error"
+        instructions: |
+          Evaluate only changed English source blog posts under content/blog/ that do not end in .de.md or .es.md and are not _index files.
+          If no such files changed, pass.
+
+          For each changed source post, verify material factual claims using authoritative public sources and the PR context.
+          Fail the check if any important claim appears unsupported, outdated, contradicted by stronger evidence, or missing necessary nuance.
+
+          Prioritize checking:
+          - dates, timelines, and historical claims
+          - statistics, rankings, and market-share statements
+          - product features, pricing, limits, and version-specific behavior
+          - standards, protocol, and security claims
+          - legal, compliance, or policy assertions
+          - names, titles, company or project ownership, and links
+
+          Prefer official docs, vendor sites, standards bodies, government sources, and primary publications.
+          Treat weak evidence or missing evidence as insufficient for a clean pass.
+          In the explanation, identify the suspect claim and explain what needs citation, softening, correction, or date scoping.

@@ -11,6 +11,12 @@
 - `hugo server -D` to preview with drafts
 - Posts go in content/blog/<slug>.md
 
+## Review automation
+
+- CodeRabbit fact-checks changed English source posts in `content/blog/*.md`
+- Generated translation files (`*.de.md`, `*.es.md`) and blog index files are excluded from CodeRabbit review
+- For factual claims, prefer inline citations or source links so the fact-check gate can verify dates, numbers, product behavior, standards, and similar assertions against authoritative public sources
+
 ## Writing rules
 
 - No em-dashes or double dashes. Rephrase instead.
