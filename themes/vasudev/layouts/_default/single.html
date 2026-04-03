@@ -2,74 +2,72 @@
 <div class="site-shell site-shell-narrow">
   {{ partial "site-header.html" . }}
 
-  <main class="page-main">
-    <article class="post-shell">
-      <header class="surface post-hero">
-        <div class="section-label">{{ i18n "blog" }}</div>
-        <div class="post-header">
-          <h1>{{ .Title }}</h1>
-          {{ with .Description }}<p class="page-copy">{{ . }}</p>{{ end }}
-          <div class="post-meta-row">
-            <div class="post-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}{{ with .Params.author }} · {{ . }}{{ end }}</div>
-            {{ with .Params.tags }}
-            <div class="post-tags">
-              {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
-            </div>
-            {{ end }}
+  <article class="post-shell">
+    <header class="surface post-hero">
+      <div class="section-label">{{ i18n "blog" }}</div>
+      <div class="post-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p class="page-copy">{{ . }}</p>{{ end }}
+        <div class="post-meta-row">
+          <div class="post-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}{{ with .Params.author }} · {{ . }}{{ end }}</div>
+          {{ with .Params.tags }}
+          <div class="post-tags">
+            {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
           </div>
-        </div>
-      </header>
-
-      <div class="surface post-surface">
-        <div class="post-content">
-          {{ .Content }}
-        </div>
-
-        <div class="post-footer">
-          <a href="{{ relLangURL "blog/" }}">&larr; {{ i18n "backToAllPosts" }}</a>
+          {{ end }}
         </div>
       </div>
+    </header>
 
-      <aside class="surface author-card">
-        <div class="author-card-avatar" aria-hidden="true">CP</div>
-        <div class="author-card-copy">
-          <div class="section-label">{{ i18n "aboutAuthor" }}</div>
-          <div class="author-card-title">{{ .Site.Params.author }}</div>
-          <p class="page-copy">{{ i18n "authorBio" }}</p>
-        </div>
-        <div class="author-card-actions">
-          <a class="button button-secondary" href="mailto:christian.pojoni@gmail.com">{{ i18n "email" }}</a>
-          <a class="button button-secondary" href="https://github.com/5queezer" target="_blank" rel="noopener">GitHub <span class="external-indicator" aria-hidden="true">↗</span><span class="sr-only">Opens in a new tab.</span></a>
-        </div>
-      </aside>
+    <div class="surface post-surface">
+      <div class="post-content">
+        {{ .Content }}
+      </div>
 
-      {{ $prev := .PrevInSection }}
-      {{ $next := .NextInSection }}
-      {{ if or $prev $next }}
-      <nav class="post-nav-grid" aria-label="Post navigation">
-        {{ if $next }}
-        <a class="surface post-nav-card" href="{{ $next.RelPermalink }}">
-          <div class="section-label">{{ i18n "newerPost" }}</div>
-          <div class="post-nav-title">{{ $next.Title }}</div>
-        </a>
-        {{ else }}
-        <div class="surface post-nav-card post-nav-card-empty" aria-hidden="true"></div>
-        {{ end }}
+      <div class="post-footer">
+        <a href="{{ relLangURL "blog/" }}">&larr; {{ i18n "backToAllPosts" }}</a>
+      </div>
+    </div>
 
-        {{ if $prev }}
-        <a class="surface post-nav-card" href="{{ $prev.RelPermalink }}">
-          <div class="section-label">{{ i18n "olderPost" }}</div>
-          <div class="post-nav-title">{{ $prev.Title }}</div>
-        </a>
-        {{ else }}
-        <div class="surface post-nav-card post-nav-card-empty" aria-hidden="true"></div>
-        {{ end }}
-      </nav>
+    <aside class="surface author-card">
+      <div class="author-card-avatar" aria-hidden="true">CP</div>
+      <div class="author-card-copy">
+        <div class="section-label">{{ i18n "aboutAuthor" }}</div>
+        <div class="author-card-title">{{ .Site.Params.author }}</div>
+        <p class="page-copy">{{ i18n "authorBio" }}</p>
+      </div>
+      <div class="author-card-actions">
+        <a class="button button-secondary" href="mailto:christian.pojoni@gmail.com">{{ i18n "email" }}</a>
+        <a class="button button-secondary" href="https://github.com/5queezer" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </aside>
+
+    {{ $prev := .PrevInSection }}
+    {{ $next := .NextInSection }}
+    {{ if or $prev $next }}
+    <nav class="post-nav-grid" aria-label="Post navigation">
+      {{ if $next }}
+      <a class="surface post-nav-card" href="{{ $next.RelPermalink }}">
+        <div class="section-label">{{ i18n "newerPost" }}</div>
+        <div class="post-nav-title">{{ $next.Title }}</div>
+      </a>
+      {{ else }}
+      <div class="surface post-nav-card post-nav-card-empty" aria-hidden="true"></div>
       {{ end }}
 
-      {{ partial "giscus.html" . }}
-    </article>
-  </main>
+      {{ if $prev }}
+      <a class="surface post-nav-card" href="{{ $prev.RelPermalink }}">
+        <div class="section-label">{{ i18n "olderPost" }}</div>
+        <div class="post-nav-title">{{ $prev.Title }}</div>
+      </a>
+      {{ else }}
+      <div class="surface post-nav-card post-nav-card-empty" aria-hidden="true"></div>
+      {{ end }}
+    </nav>
+    {{ end }}
+
+    {{ partial "giscus.html" . }}
+  </article>
 
   <footer class="site-footer">
     <div class="site-footer-copy">Notes on systems, agents, memory, and privacy-first software.</div>
