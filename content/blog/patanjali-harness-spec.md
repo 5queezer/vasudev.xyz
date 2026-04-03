@@ -2,7 +2,7 @@
 title: "Patanjali Had the Filtering Spec. We Just Wrote the Tests."
 date: 2026-04-03
 tags: ["harness-engineering", "agent-architecture", "memory", "muninndb", "hrafn"]
-description: "Three yogic principles that generate testable hypotheses for agent harness design. Ancient attention models, modern benchmarks."
+description: "Three yogic principles that generate testable hypotheses for agent harness design. Ancient attention filtering, modern benchmarks."
 ---
 
 I spent last week reading two papers and a [Fowler article](https://martinfowler.com/articles/harness-engineering.html) about harness engineering -- the code wrapping an LLM that determines what gets stored, retrieved, and presented to the model. Halfway through Birgitta Böckeler's taxonomy of guides and sensors, I realized I'd seen this architecture before. Not in a codebase. In the [Yoga Sutras](https://en.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali).
