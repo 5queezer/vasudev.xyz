@@ -3,6 +3,7 @@ Advaitic
 APO
 arXiv
 Birgitta
+autoencoders
 BM25
 Böckeler
 chakras
@@ -14,6 +15,7 @@ cron
 discriminations
 Dream Engine
 Ebbinghaus
+evolvability
 Flyxion
 Flyxion's
 FurnitureBench
@@ -26,6 +28,7 @@ klesha
 kleshas
 Kosha
 Koshas
+LLMs
 Loihi
 LongMemEval
 lossy
@@ -44,6 +47,7 @@ Pojoni
 pramana
 pramanas
 (?i)pratyahara
+sandboxed
 (?i)samskara
 (?i)samskaras
 scrypster

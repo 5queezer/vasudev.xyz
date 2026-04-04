@@ -1,8 +1,12 @@
 a2a
+agents
 ai
 architecture
 benchmarks
+hrafn
+llm
 mcp
+mechanistic-interpretability
 memory
 muninndb
 oauth
