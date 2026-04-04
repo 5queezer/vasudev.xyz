@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="site-shell site-shell-narrow">
+  {{ partial "site-header.html" . }}
+
+  <section class="surface intro-panel">
+    <div class="section-label">{{ i18n "postsTagged" }}</div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <p class="page-copy">{{ i18n "postsTaggedCount" (len .Pages) }}</p>
+  </section>
+
+  <section class="list-grid list-grid-secondary">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="surface list-card">
+      <div class="list-card-link">
+        <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
+        <h2 class="article-title">{{ .Title }}</h2>
+        {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
+        {{ with .Params.tags }}
+        <div class="tag-row">
+          {{ range first 4 . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+        <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    {{ end }}
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer-copy">{{ i18n "backToAllPosts" }}</div>
+    <div class="site-footer-links">
+      <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
+      <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
+    </div>
+  </footer>
+</div>
+{{ end }}

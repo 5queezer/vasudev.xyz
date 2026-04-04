@@ -42,3 +42,9 @@ other = "Blog"
 
 [backToAllPosts]
 other = "Back to all posts"
+
+[postsTagged]
+other = "Tagged"
+
+[postsTaggedCount]
+other = "{{ . }} posts"
