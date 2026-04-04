@@ -40,3 +40,20 @@ jobs:
             done
           done
           exit $status
+
+      - name: Validate tags against allowlist
+        run: |
+          status=0
+          allowed="data/allowed-tags.txt"
+          for file in content/blog/*.md; do
+            [ "$(basename "$file")" = "_index.md" ] && continue
+            echo "$(basename "$file")" | grep -qE '\.(de|es)\.md$' && continue
+            tags=$(grep '^tags:' "$file" | sed 's/tags:\s*\[//;s/\]//;s/"//g' | tr ',' '\n' | sed 's/^ *//;s/ *$//')
+            for tag in $tags; do
+              if ! grep -qx "$tag" "$allowed"; then
+                echo "::error file=${file}::Tag \"${tag}\" not in ${allowed}"
+                status=1
+              fi
+            done
+          done
+          exit $status
