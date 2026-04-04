@@ -1,7 +1,7 @@
 ---
 title: "Patanjali hatte die Filter-Spezifikation. Wir haben nur die Tests geschrieben."
 date: 2026-04-03
-tags: ["harness-engineering", "agent-architecture", "memory", "muninndb", "hrafn"]
+tags: ["architecture", "memory", "muninndb"]
 description: "Gedächtniskonsolidierung verschlechterte den Abruf. Drei Designprinzipien aus Agentengedächtnis-Benchmarks und ihre unerwarteten Parallelen in der yogischen Aufmerksamkeitstheorie."
 translationHash: "ef17fbb86df8d78f788847d28379d508"
 ---

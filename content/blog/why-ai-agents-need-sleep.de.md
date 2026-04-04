@@ -1,7 +1,7 @@
 ---
 title: "Warum KI-Agenten Schlaf brauchen"
 date: 2026-03-28
-tags: ["ai", "memory", "llm", "muninndb", "architecture"]
+tags: ["ai", "memory", "muninndb", "architecture"]
 description: "KI-Agenten speichern Erinnerungen, konsolidieren sie aber nie. So nutzt MuninnDB's Dream Engine Erkenntnisse aus der Neurowissenschaft, um das zu beheben."
 images: ["/images/dream-engine.png"]
 translationHash: "aff3bf970bc1e9e4c4fb6cd6ef0dd437"

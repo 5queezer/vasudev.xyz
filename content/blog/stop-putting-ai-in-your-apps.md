@@ -3,7 +3,7 @@ title: "Stop Putting AI in Your Apps. Put Your Apps in AI."
 date: 2026-03-27
 description: "Why AI features inside traditional apps are backwards, and how MCP flips the architecture."
 author: "Christian Pojoni"
-tags: ["mcp", "nocodb", "ai", "architecture"]
+tags: ["mcp", "ai", "architecture"]
 images: ["/images/ai-architecture.png"]
 ---
 

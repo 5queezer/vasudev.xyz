@@ -3,7 +3,7 @@ title: "Adding OAuth 2.1 to a Self-Hosted MCP Server: 4 Gotchas from the Trenche
 date: 2026-03-25
 description: "What broke when I wired up claude.ai to my own Reactive Resume instance via OAuth."
 author: "Christian Pojoni"
-tags: ["typescript", "mcp", "oauth", "reactive-resume"]
+tags: ["typescript", "mcp", "oauth"]
 ---
 
 MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become an OAuth 2.1 provider -- Dynamic Client Registration, Authorization Code with PKCE, token exchange.

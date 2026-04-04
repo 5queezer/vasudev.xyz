@@ -3,7 +3,7 @@ title: "Añadir OAuth 2.1 a un servidor MCP autoalojado: 4 problemas reales desd
 date: 2026-03-25
 description: "Qué falló cuando conecté claude.ai a mi propia instancia de Reactive Resume vía OAuth."
 author: "Christian Pojoni"
-tags: ["typescript", "mcp", "oauth", "reactive-resume"]
+tags: ["typescript", "mcp", "oauth"]
 translationHash: "db236276b0881a2df0e66e8452ffbcf2"
 ---
 El MCP (Model Context Protocol) permite a los asistentes de IA llamar a herramientas en servidores remotos. Pero si tu servidor MCP es autoalojado, claude.ai necesita autenticarse contra tus cuentas de usuario, no contra las de Anthropic. Eso significa que tu servidor debe convertirse en un proveedor de OAuth 2.1: registro dinámico de clientes, código de autorización con PKCE e intercambio de tokens.

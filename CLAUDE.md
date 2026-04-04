@@ -25,6 +25,7 @@
 - English default. German only if explicitly requested.
 - Front matter must include: title, date, tags, description
 - og:image format: 1200x630 PNG
+- Tags must come from `data/allowed-tags.txt` (one tag per line, sorted). To add a new tag, add it to the file first.
 
 ## Vale prose linter
 

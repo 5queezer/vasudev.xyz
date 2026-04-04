@@ -3,7 +3,7 @@ title: "Deja de poner IA en tus apps. Pon tus apps en la IA."
 date: 2026-03-27
 description: "Por qué las funciones de IA dentro de las aplicaciones tradicionales van al revés, y cómo MCP invierte la arquitectura."
 author: "Christian Pojoni"
-tags: ["mcp", "nocodb", "ai", "architecture"]
+tags: ["mcp", "ai", "architecture"]
 images: ["/images/ai-architecture.png"]
 translationHash: "0729e6058332da04c512c2cee20db737"
 ---

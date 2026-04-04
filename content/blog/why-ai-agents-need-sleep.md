@@ -1,7 +1,7 @@
 ---
 title: "Why AI Agents Need Sleep"
 date: 2026-03-28
-tags: ["ai", "memory", "llm", "muninndb", "architecture"]
+tags: ["ai", "memory", "muninndb", "architecture"]
 description: "AI agents capture memories but never consolidate them. Here's how MuninnDB's Dream Engine borrows from neuroscience to fix that."
 images: ["/images/dream-engine.png"]
 ---

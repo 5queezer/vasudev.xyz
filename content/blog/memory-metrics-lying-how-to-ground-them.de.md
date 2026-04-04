@@ -1,7 +1,7 @@
 ---
 title: "Die Memory-Metriken Ihres Agents täuschen Sie. So machen Sie sie verlässlich."
 date: 2026-04-02
-tags: ["ai-agents", "memory", "benchmarks", "muninndb", "dream-engine"]
+tags: ["ai", "memory", "benchmarks", "muninndb"]
 description: "Speicherkonsolidierung sieht auf Dashboards großartig aus. Doch wenn sich Ihre Metriken verbessern können, ohne dass sich das Retrieval verbessert, optimieren Sie einen entkoppelten Proxy."
 translationHash: "10fa589d9a985d33464d220a847cd25a"
 ---
