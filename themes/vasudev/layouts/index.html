@@ -6,11 +6,11 @@
   <section class="hero-grid">
     <div class="surface hero-panel">
       <div class="hero-chips">
-        <span class="eyebrow-chip">Rust</span>
-        <span class="eyebrow-chip">Python</span>
-        <span class="eyebrow-chip">MCP</span>
-        <span class="eyebrow-chip">A2A</span>
-        <span class="eyebrow-chip">privacy-first</span>
+        <span class="eyebrow-chip chip-rust">Rust</span>
+        <span class="eyebrow-chip chip-python">Python</span>
+        <span class="eyebrow-chip chip-protocol">MCP</span>
+        <span class="eyebrow-chip chip-protocol">A2A</span>
+        <span class="eyebrow-chip chip-security">privacy-first</span>
       </div>
       <h1 class="hero-title">{{ .Site.Title }}</h1>
       <p class="hero-copy">{{ .Site.Params.description }}</p>
@@ -40,7 +40,7 @@
         {{ with $featured.Description }}<p class="spotlight-copy">{{ . }}</p>{{ end }}
         {{ with $featured.Params.tags }}
         <div class="tag-row">
-          {{ range first 2 . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+          {{ range first 2 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
         </div>
         {{ end }}
         <a class="inline-link spotlight-stretched" href="{{ $featured.RelPermalink }}">{{ i18n "blog" }} <span aria-hidden="true">→</span></a>
@@ -50,25 +50,25 @@
       <div class="surface compact-card">
         <div class="section-label">{{ i18n "elsewhere" }}</div>
         <div class="quick-links">
-          <a href="https://github.com/5queezer" target="_blank" rel="noopener">
+          <a class="quick-link-github" href="https://github.com/5queezer" target="_blank" rel="noopener">
             <span class="quick-link-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             </span>
             GitHub
           </a>
-          <a href="https://linkedin.com/in/christian-pojoni" target="_blank" rel="noopener">
+          <a class="quick-link-linkedin" href="https://linkedin.com/in/christian-pojoni" target="_blank" rel="noopener">
             <span class="quick-link-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </span>
             LinkedIn
           </a>
-          <a href="https://nexus.vasudev.xyz" target="_blank" rel="noopener">
+          <a class="quick-link-nexus" href="https://nexus.vasudev.xyz" target="_blank" rel="noopener">
             <span class="quick-link-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
             </span>
             Nexus CRM
           </a>
-          <a href="mailto:christian.pojoni@gmail.com">
+          <a class="quick-link-email" href="mailto:christian.pojoni@gmail.com">
             <span class="quick-link-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
             </span>
@@ -106,9 +106,9 @@
         </div>
         <p class="project-desc">Lightweight, modular AI agent runtime in Rust with MCP plugins, MuninnDB memory, and A2A protocol support.</p>
         <div class="tag-row">
-          <span class="tag">Rust</span>
-          <span class="tag">MCP</span>
-          <span class="tag">A2A</span>
+          <span class="tag tag-rust">Rust</span>
+          <span class="tag tag-protocol">MCP</span>
+          <span class="tag tag-protocol">A2A</span>
         </div>
         <div class="feature-card-footer">Plugin-driven execution with protocol-aware messaging.</div>
       </a>
@@ -130,9 +130,9 @@
         </div>
         <p class="project-desc">Cross-platform encrypted vault in Rust with XChaCha20-Poly1305, FFI bindings, and CI/CD pipelines.</p>
         <div class="tag-row">
-          <span class="tag">Rust</span>
-          <span class="tag">FFI</span>
-          <span class="tag">Crypto</span>
+          <span class="tag tag-rust">Rust</span>
+          <span class="tag tag-security">FFI</span>
+          <span class="tag tag-security">Crypto</span>
         </div>
         <div class="feature-card-footer">Systems-level security primitives packaged for real apps.</div>
       </a>
@@ -156,9 +156,9 @@
         </div>
         <p class="project-desc">Privacy-first MCP server for team memory with FastMCP, SQLite FTS5, and local vector search.</p>
         <div class="tag-row">
-          <span class="tag">Python</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">Vectors</span>
+          <span class="tag tag-python">Python</span>
+          <span class="tag tag-data">SQLite</span>
+          <span class="tag tag-data">Vectors</span>
         </div>
         <div class="feature-card-footer">Retrieval-first memory infrastructure without cloud lock-in.</div>
       </a>
@@ -180,9 +180,9 @@
         </div>
         <p class="project-desc">Full-stack CRM with Kanban workflows built on Next.js, TanStack, Prisma, and Google OAuth.</p>
         <div class="tag-row">
-          <span class="tag">Next.js</span>
-          <span class="tag">Prisma</span>
-          <span class="tag">OAuth</span>
+          <span class="tag tag-web">Next.js</span>
+          <span class="tag tag-web">Prisma</span>
+          <span class="tag tag-web">OAuth</span>
         </div>
         <div class="feature-card-footer">Operational UX with workflow-heavy product surfaces.</div>
       </a>
@@ -206,7 +206,7 @@
         {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
         {{ with .Params.tags }}
         <div class="tag-row">
-          {{ range first 3 . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+          {{ range first 3 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
         </div>
         {{ end }}
         <a class="article-cta article-card-stretched" href="{{ .RelPermalink }}">Read essay <span aria-hidden="true">→</span></a>

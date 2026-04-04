@@ -21,6 +21,7 @@
   </script>
 </head>
 <body class='{{ if .IsHome }}is-home{{ else }}is-interior{{ end }}'>
+  <div class="noise-overlay" aria-hidden="true"></div>
   <script>
     function toggleTheme() {
       var current = document.documentElement.getAttribute('data-theme');
