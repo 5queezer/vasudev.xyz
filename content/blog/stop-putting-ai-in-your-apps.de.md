@@ -3,7 +3,7 @@ title: "Hör auf, KI in deine Apps zu integrieren. Integriere deine Apps in KI."
 date: 2026-03-27
 description: "Warum KI-Funktionen in traditionellen Apps verkehrt herum gedacht sind und wie MCP die Architektur auf den Kopf stellt."
 author: "Christian Pojoni"
-tags: ["mcp", "nocodb", "ai", "architecture"]
+tags: ["mcp", "ai", "architecture"]
 images: ["/images/ai-architecture.png"]
 translationHash: "0729e6058332da04c512c2cee20db737"
 ---

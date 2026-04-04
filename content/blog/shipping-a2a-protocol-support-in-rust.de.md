@@ -3,7 +3,7 @@ title: "A2A Protocol-Unterstützung in Rust veröffentlichen: 7 Fallstricke, vor
 date: 2026-03-25
 description: "Was ich gelernt habe, als ich Unterstützung für das Agent-to-Agent-Protokoll zu einem Open-Source-Agent-Framework hinzugefügt habe."
 author: "Christian Pojoni"
-tags: ["rust", "a2a", "security", "hrafn"]
+tags: ["rust", "a2a", "security"]
 translationHash: "dd52c5bc11589c42cbd1fbb029dd25ad"
 ---
 Das [A2A (Agent-to-Agent)-Protokoll](https://google.github.io/A2A/) ist Googles offener Standard für die Agenten-Interoperabilität -- Discovery, Task-Delegation und Lebenszyklus-Management über HTTP/JSON-RPC. Es steht neben MCP so, wie TCP neben USB steht: Das eine verbindet Agenten mit Agenten, das andere verbindet Agenten mit Tools.

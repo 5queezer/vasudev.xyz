@@ -1,7 +1,7 @@
 ---
 title: "Las métricas de memoria de tu agente te están mintiendo. Así es como puedes anclarlas en la realidad."
 date: 2026-04-02
-tags: ["ai-agents", "memory", "benchmarks", "muninndb", "dream-engine"]
+tags: ["ai", "memory", "benchmarks", "muninndb"]
 description: "La consolidación de memoria se ve muy bien en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."
 translationHash: "10fa589d9a985d33464d220a847cd25a"
 ---

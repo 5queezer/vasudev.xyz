@@ -1,7 +1,7 @@
 ---
 title: "Por qué los agentes de IA necesitan dormir"
 date: 2026-03-28
-tags: ["ai", "memory", "llm", "muninndb", "architecture"]
+tags: ["ai", "memory", "muninndb", "architecture"]
 description: "Los agentes de IA capturan memorias, pero nunca las consolidan. Así es como el Dream Engine de MuninnDB se inspira en la neurociencia para solucionarlo."
 images: ["/images/dream-engine.png"]
 translationHash: "aff3bf970bc1e9e4c4fb6cd6ef0dd437"

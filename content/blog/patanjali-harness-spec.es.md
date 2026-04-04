@@ -1,7 +1,7 @@
 ---
 title: "Patanjali tenía la especificación de filtrado. Solo escribimos las pruebas."
 date: 2026-04-03
-tags: ["harness-engineering", "agent-architecture", "memory", "muninndb", "hrafn"]
+tags: ["architecture", "memory", "muninndb"]
 description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus inesperados paralelismos en la teoría de la atención yóguica."
 translationHash: "ef17fbb86df8d78f788847d28379d508"
 ---
