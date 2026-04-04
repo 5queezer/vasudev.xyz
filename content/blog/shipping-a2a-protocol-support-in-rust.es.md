@@ -1,24 +1,24 @@
 ---
-title: "Lanzar soporte para el protocolo A2A en Rust: 7 trampas de las que nadie te advierte"
+title: "Implementar soporte para el protocolo A2A en Rust: 7 trampas de las que nadie te advierte"
 date: 2026-03-25
-description: "Lo que aprendí al agregar compatibilidad con el protocolo Agent-to-Agent a un framework de agentes de código abierto."
+description: "Lo que aprendí al añadir compatibilidad con el protocolo Agent-to-Agent a un framework de agentes de código abierto."
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
-translationHash: "dd52c5bc11589c42cbd1fbb029dd25ad"
+translationHash: "fcddc6cdba3e103637e70e5a22c07a08"
 ---
-El [protocolo A2A (Agent-to-Agent)](https://google.github.io/A2A/) es el estándar abierto de Google para la interoperabilidad de agentes: descubrimiento, delegación de tareas y gestión del ciclo de vida sobre HTTP/JSON-RPC. Se sitúa junto a MCP de la misma manera que TCP se sitúa junto a USB: uno conecta agentes con agentes, el otro conecta agentes con herramientas.
+El [protocolo A2A (Agent-to-Agent)](https://google.github.io/A2A/) es el estándar abierto de Google para la interoperabilidad de agentes: descubrimiento, delegación de tareas y gestión del ciclo de vida a través de HTTP/JSON-RPC. Se sitúa junto a MCP de la misma manera que TCP se sitúa junto a USB: uno conecta agentes con agentes, el otro conecta agentes con herramientas.
 
-Recientemente publiqué el [PR #4166](https://github.com/5queezer/hrafn/pull/4166), que añade soporte nativo de A2A a Hrafn: tanto un servidor JSON-RPC 2.0 entrante como una herramienta de cliente saliente, escritos en Rust. El PR superó 40 pruebas y se ejecutó en E2E a través de cinco instancias de Raspberry Pi Zero 2 W. En el camino, me topé con cada trampa que la especificación no menciona.
+Recientemente lancé [PR #4166](https://github.com/5queezer/hrafn/pull/4166), añadiendo soporte nativo de A2A a Hrafn: tanto un servidor JSON-RPC 2.0 entrante como una herramienta de cliente saliente, escrita en Rust. La PR superó 40 pruebas y se ejecutó de extremo a extremo (E2E) en cinco instancias de Raspberry Pi Zero 2 W. En el camino, me topé con todos los bordes afilados que la especificación no menciona.
 
-**La especificación A2A es limpia en el papel; los bordes de seguridad te cortarán en producción.**
+**La especificación A2A es limpia en el papel; los riesgos de seguridad te pasarán factura en producción.**
 
-## 1. Las Agent Cards no requieren autenticación por diseño -- y está bien así
+## 1. Las tarjetas de agente (Agent Cards) no requieren autenticación por diseño -- y eso está bien
 
-La especificación A2A dice que `GET /.well-known/agent-card.json` debe ser accesible públicamente. Sin bearer token, sin API key. El primer instinto: eso es una fuga de información.
+La especificación A2A indica que `GET /.well-known/agent-card.json` debe ser accesible públicamente. Sin token bearer, sin clave de API. Primer instinto: eso es una fuga de información.
 
-No lo es. La agent card son metadatos: nombre, descripción, capacidades, URL del endpoint. Piensa en ello como el DNS para agentes. No pondrías el DNS detrás de un sistema de autenticación.
+No lo es. La tarjeta de agente son metadatos: nombre, descripción, capacidades, URL del endpoint. Piénsalo como el DNS para agentes. No pondrías el DNS detrás de una autenticación.
 
-La verdadera trampa: si derivas `public_url` a partir de la dirección de bind de tu gateway, filtras la topología de tu red interna. `0.0.0.0:3000` en una agent card le dice a un atacante exactamente dónde sondear. Exige siempre una `public_url` explícita en la configuración y emite una advertencia al inicio si falta.
+La verdadera trampa: si derivas `public_url` a partir de la dirección de enlace de tu gateway, filtrarás la topología de tu red interna. `0.0.0.0:3000` en una tarjeta de agente le dice a un atacante exactamente dónde sondear. Exige siempre una `public_url` explícita en la configuración y emite una advertencia al inicio si falta.
 
 ```rust
 if a2a_config.public_url.is_none() {
@@ -29,11 +29,11 @@ if a2a_config.public_url.is_none() {
 }
 ```
 
-## 2. La comparación de bearer tokens debe ser de tiempo constante
+## 2. La comparación de tokens bearer debe ser de tiempo constante
 
-Si tu servidor A2A acepta bearer tokens, necesitas una comparación de tiempo constante. No porque tu modelo de amenazas incluya ataques de temporización patrocinados por estados-nación contra un framework de bots de Telegram, sino porque te cuesta exactamente dos líneas y elimina una clase completa de vulnerabilidades.
+Si tu servidor A2A acepta tokens bearer, necesitas una comparación de tiempo constante. No porque tu modelo de amenazas incluya ataques de temporización por parte de estados-nación contra un framework de bots de Telegram, sino porque te cuesta exactamente dos líneas y elimina toda una clase de vulnerabilidades.
 
-El `==` estándar en cadenas usa evaluación de cortocircuito y se detiene en el primer byte que no coincide. Un atacante que pueda medir los tiempos de respuesta con suficiente precisión puede forzar por fuerza bruta (brute-force) los tokens byte a byte. ¿Poco probable? Sí. ¿Prevenible? También sí.
+El operador `==` estándar en cadenas se evalúa en cortocircuito en el primer byte que no coincide. Un atacante que pueda medir los tiempos de respuesta con suficiente precisión puede forzar por fuerza bruta los tokens byte a byte. ¿Poco probable? Sí. ¿Prevenible? También sí.
 
 ```rust
 use subtle::ConstantTimeEq;
@@ -48,17 +48,17 @@ fn verify_token(provided: &str, expected: &str) -> bool {
 }
 ```
 
-El crate `subtle` te proporciona `ct_eq`. Úsalo. La verificación de longitud antes de la comparación es intencional: la longitud en sí no es un secreto (está en tu configuración) y evita asignar un buffer de tamaño fijo.
+El crate `subtle` te proporciona `ct_eq`. Úsalo. La verificación de longitud antes de la comparación es intencional: la longitud en sí no es un secreto (está en tu configuración) y evita asignar un búfer de tamaño fijo.
 
-## 3. La protección contra SSRF es más difícil de lo que piensas
+## 3. La protección contra SSRF es más difícil de lo que crees
 
-Tu herramienta de cliente A2A permite al agente llamar a URLs arbitrarias: `discover https://agent.example.com`. Eso está a solo una llamada HTTP de `discover http://169.254.169.254/latest/meta-data/` en cualquier instancia en la nube.
+Tu herramienta cliente A2A permite al agente llamar a URLs arbitrarias: `discover https://agent.example.com`. Eso está a una sola llamada HTTP de `discover http://169.254.169.254/latest/meta-data/` en cualquier instancia en la nube.
 
 Bloquear IPs privadas parece simple hasta que te das cuenta:
 
-**IPv4 mapeado en IPv6 evade las comprobaciones ingenuas.** `::ffff:127.0.0.1` es localhost. `::ffff:169.254.169.254` es el endpoint de metadatos de la nube. Tu lista de bloqueo necesita manejar ambas familias de direcciones.
+**Las direcciones IPv4 asignadas en IPv6 eluden las comprobaciones ingenuas.** `::ffff:127.0.0.1` es localhost. `::ffff:169.254.169.254` es el endpoint de metadatos de la nube. Tu lista de bloqueo necesita manejar ambas familias de direcciones.
 
-**La resolución DNS ocurre dos veces.** Validas el nombre de host, se resuelve a una IP pública. Tu cliente HTTP se conecta, pero el DNS ha cambiado (DNS rebinding). Ahora estás alcanzando una IP interna. Esto es una brecha TOCTOU (time-of-check, time-of-use). La única solución real es resolver el DNS tú mismo, validar la IP y luego conectarte directamente a esa IP.
+**La resolución DNS ocurre dos veces.** Validas el nombre de host, se resuelve a una IP pública. Tu cliente HTTP se conecta, pero el DNS ha cambiado (DNS rebinding). Ahora estás alcanzando una IP interna. Esta es una brecha TOCTOU (time-of-check, time-of-use). La única solución real es resolver el DNS tú mismo, validar la IP y luego conectarte a esa IP directamente.
 
 **Las redirecciones vuelven a abrir la puerta.** Validas la URL inicial, pero el servidor te redirige con un 302 a `http://localhost:8080/admin`. Tu política de redirección necesita revalidar cada salto.
 
@@ -79,15 +79,15 @@ fn is_private_ip(ip: &IpAddr) -> bool {
 }
 ```
 
-Documenta la brecha TOCTOU con honestidad. Dejé un comentario en el código y una nota en el PR: "Brecha TOCTOU por DNS rebinding reconocida; lista de permisos (allowlist) de pares planificada en [#4643](https://github.com/5queezer/hrafn/issues/4643)."
+Documenta la brecha TOCTOU de manera honesta. Dejé un comentario en el código y una nota en la PR: "Brecha TOCTOU por DNS rebinding reconocida; lista de permitidos de pares planificada en [#4643](https://github.com/5queezer/hrafn/issues/4643)."
 
-## 4. El A2A en el mismo host rompe tu propia protección SSRF
+## 4. A2A en el mismo host rompe tu propia protección contra SSRF
 
-Aquí está la ironía: construí una protección SSRF que bloquea localhost. Luego desplegué cinco instancias de Hrafn en una única Raspberry Pi y no podían comunicarse entre sí.
+Aquí está la ironía: construí una protección contra SSRF que bloquea localhost. Luego desplegué cinco instancias de Hrafn en una misma Raspberry Pi, y no podían comunicarse entre sí.
 
-El A2A multiinstancia en un mismo host es un caso de uso legítimo: múltiples agentes especializados en una misma máquina, comunicándose a través de `localhost:300X`. Pero tu lista de bloqueo SSRF lo acaba de bloquear.
+A2A multiinstancia en el mismo host es un caso de uso legítimo: múltiples agentes especializados en una sola máquina, comunicándose a través de `localhost:300X`. Pero tu lista de bloqueo SSRF acaba de impedirlo.
 
-La solución es un bypass condicional (`allow_local`), derivado de la configuración en lugar de la entrada del usuario:
+La solución es una omisión condicional (`allow_local`), derivada de la configuración en lugar de la entrada del usuario:
 
 ```rust
 let allow_local = a2a_config
@@ -97,15 +97,15 @@ let allow_local = a2a_config
     .unwrap_or(false);
 ```
 
-Si tu propia `public_url` apunta a localhost, claramente estás ejecutando de forma local, por lo que se esperan llamadas salientes a localhost. Si `public_url` es un dominio real, localhost permanece bloqueado.
+Si tu propia `public_url` apunta a localhost, claramente te estás ejecutando localmente, por lo que las llamadas salientes a localhost son esperadas. Si `public_url` es un dominio real, localhost permanece bloqueado.
 
-Riesgo residual conocido: `allow_local` es un bypass general. Una lista de permisos (allowlist) de pares (IPs/puertos específicos) es la solución correcta a largo plazo. Despliega el bypass, documenta el riesgo, crea la issue de seguimiento.
+Riesgo residual conocido: `allow_local` es una exención total. Una lista de permitidos de pares (IPs/puertos específicos) es la solución correcta a largo plazo. Entrega la exención, documenta el riesgo y reporta la incidencia de seguimiento.
 
-## 5. El TaskStore necesita un límite, o tendrás un DoS gratuito
+## 5. TaskStore necesita un límite, o obtienes un DoS gratuito
 
-Las tareas A2A mantienen estado. Cada `message/send` crea una entrada de tarea. Si almacenas las tareas en memoria (razonable para la v1), un atacante puede enviar 100 000 solicitudes y agotar tu heap.
+Las tareas A2A tienen estado. Cada `message/send` crea una entrada de tarea. Si almacenas las tareas en memoria (razonable para la v1), un atacante puede enviar 100.000 solicitudes y agotar tu heap (memoria dinámica).
 
-Ponle un límite. Usé 10 000 con una respuesta 503 cuando se llena:
+Ponle un límite. Usé 10.000 con una respuesta 503 cuando se llena:
 
 ```rust
 const MAX_TASKS: usize = 10_000;
@@ -121,19 +121,19 @@ async fn create_task(&self, task: Task) -> Result<(), A2aError> {
 }
 ```
 
-Una constante, una comprobación, una ruta de error. Sin política de expulsión en la v1: eso es complejidad para el seguimiento. Solo el límite evita el colapso.
+Una constante, una verificación, una ruta de error. Sin política de desalojo en la v1; eso es complejidad para el seguimiento. El límite por sí solo previene el bloqueo.
 
-¿Por qué 10 000? Estimación rápida: cada `Task` ocupa aproximadamente 2-4 KB serializado. 10K tareas = 20-40 MB. Aceptable en una Pi Zero 2 W con 512 MB de RAM. Ajusta según tu hardware objetivo.
+¿Por qué 10.000? Estimación rápida: cada `Task` tiene aproximadamente 2-4 KB serializada. 10K tareas = 20-40 MB. Aceptable en una Pi Zero 2 W con 512 MB de RAM. Ajústalo para tu hardware objetivo.
 
 ## 6. Los mensajes de error son un canal de información
 
-Cuando una solicitud A2A entrante falla, ¿qué devuelves?
+Cuando falla una solicitud A2A entrante, ¿qué devuelves?
 
 ```json
 {"error": {"code": -32600, "message": "Task abc-123 not found in store"}}
 ```
 
-Acabas de confirmar que `abc-123` es un formato válido de ID de tarea y que tu store está indexado por él. Un atacante puede enumerar los ID de las tareas.
+Acabas de confirmar que `abc-123` es un formato de ID de tarea válido y que tu almacén está indexado por él. Un atacante puede enumerar IDs de tareas.
 
 Redacta los errores salientes. Registra el detalle completo en el lado del servidor:
 
@@ -145,15 +145,15 @@ Err(json_rpc_error(-32600, "invalid request"))
 error!(task_id = %id, "task not found in store");
 ```
 
-Error genérico para el solicitante. Error específico en tus logs. Mismo principio que en las aplicaciones web, pero fácil de olvidar cuando estás construyendo un manejador de protocolos y piensas en términos de respuestas JSON-RPC útiles.
+Error genérico para el llamante. Error específico en tus logs. El mismo principio que para las aplicaciones web, pero fácil de olvidar cuando estás construyendo un manejador de protocolos y pensando en términos de respuestas JSON-RPC útiles.
 
 ## 7. La herramienta existe, pero el modelo no puede verla
 
 Esta me costó una tarde de depuración.
 
-La herramienta A2A estaba registrada en el registro de herramientas de Hrafn. `cargo test` pasó. El gateway servía agent cards. Pero cuando ejecuté realmente una instancia y le pedí que contactara a otro agente, el modelo no tenía ni idea de que la herramienta existía.
+La herramienta A2A estaba registrada en el registro de herramientas de Hrafn. `cargo test` pasó. El gateway entregaba tarjetas de agente. Pero cuando ejecuté realmente una instancia y le pedí que contactara a otro agente, el modelo no tenía idea de que la herramienta existía.
 
-El problema: Hrafn utiliza una lista de descripciones de herramientas basada en texto en su prompt de sistema de arranque para modelos que no admiten llamadas a funciones nativas (como algunas variantes de OpenAI Codex). La herramienta estaba en el registro, pero no en el array `tool_descs` que se inyecta en el prompt.
+El problema: Hrafn usa una lista de descripciones de herramientas basada en texto en su prompt del sistema de inicio para modelos que no admiten llamada de funciones nativa (como algunas variantes de OpenAI Codex). La herramienta estaba en el registro, pero no en el array `tool_descs` que se inyecta en el prompt.
 
 ```rust
 if config.a2a.enabled {
@@ -165,30 +165,30 @@ if config.a2a.enabled {
 }
 ```
 
-Lección: prueba la ruta completa. Las pruebas unitarias demostraron que la herramienta funcionaba al ser llamada. Las pruebas de integración demostraron que el gateway aceptaba las solicitudes. Pero el modelo nunca llamó a la herramienta porque no sabía que existía. Las pruebas E2E (inferencia real del modelo hablando con endpoints reales) detectaron lo que las pruebas unitarias no pudieron.
+Lección: prueba la ruta completa. Las pruebas unitarias demostraron que la herramienta funcionaba al ser llamada. Las pruebas de integración demostraron que el gateway aceptaba solicitudes. Pero el modelo nunca llamó a la herramienta porque no sabía que existía. Las pruebas E2E -- inferencia real del modelo hablando con endpoints reales -- detectaron lo que las pruebas unitarias no pudieron.
 
 ---
 
 ## Lo que dejé fuera (intencionadamente)
 
-El PR explícitamente no incluye:
+La PR explícitamente no incluye:
 
-* **SSE streaming** -- A2A lo admite, pero la solicitud/respuesta síncrona cubre el 90 % de los casos de uso. El streaming es aditivo, no fundamental.
-* **mTLS/OAuth** -- Los bearer tokens son suficientes para el modelo de confianza (mismo host, pares conocidos). La autenticación basada en certificados es complejidad de nivel empresarial para un despliegue en Pi. Véase también: [Adding OAuth 2.1 to a Self-Hosted MCP Server](/blog/adding-oauth-mcp-server-gotchas/).
-* **Agent registry** -- El descubrimiento es manual (configuras la URL). El registro automático/mDNS está planificado en la issue de seguimiento.
-* **Task eviction** -- El límite de 10K es un muro estricto, no una caché LRU. Suficiente para la v1.
+* **Transmisión SSE** -- A2A lo soporta, pero la solicitud/respuesta síncrona cubre el 90% de los casos de uso. La transmisión es un añadido, no una base.
+* **mTLS/OAuth** -- Los tokens bearer son suficientes para el modelo de confianza (mismo host, pares conocidos). La autenticación basada en certificados es una complejidad de nivel empresarial para un despliegue en una Pi. Consulta también: [Adding OAuth 2.1 to a Self-Hosted MCP Server](/blog/adding-oauth-mcp-server-gotchas/).
+* **Registro de agentes** -- El descubrimiento es manual (configuras la URL). El registro automático/mDNS está planeado en la incidencia de seguimiento.
+* **Desalojo de tareas** -- El límite de 10K es un muro estricto, no una caché LRU. Suficiente para la v1.
 
-Cada "no incluido" es una decisión de alcance, no un vacío. La descripción del PR enumera cada uno con un enlace a la issue de seguimiento. Los revisores pueden ver exactamente qué se consideró y se aplazó.
+Cada "no incluido" es una decisión de alcance, no una carencia. La descripción de la PR enumera cada uno con un enlace a la incidencia de seguimiento. Los revisores pueden ver exactamente qué se consideró y qué se pospuso.
 
 ## La configuración que demostró que funciona
 
-Cinco instancias de Hrafn en una única Raspberry Pi Zero 2 W (ARM de cuatro núcleos, 512 MB), cada una con una personalidad distinta (Kerf, Sentinel, Architect, Critic, Researcher), comunicándose vía A2A en los puertos localhost 3001-3005. Respaldadas por gpt-5.1-codex-mini.
+Cinco instancias de Hrafn en una única Raspberry Pi Zero 2 W (ARM de cuatro núcleos, 512 MB), cada una con una personalidad distinta (Kerf, Sentinel, Architect, Critic, Researcher), comunicándose vía A2A en los puertos localhost 3001-3005. Con gpt-5.1-codex-mini como respaldo.
 
-La instancia A descubre la agent card de la instancia B, envía una tarea ("revisa este código en busca de problemas de seguridad") y recibe una respuesta a través del pipeline estándar `process_message`. Sin orquestación personalizada. La capa A2A es solo otro canal de entrada.
+La instancia A descubre la tarjeta de agente de la instancia B, envía una tarea ("revisa este código en busca de problemas de seguridad"), recibe una respuesta a través del pipeline estándar `process_message`. Sin orquestación personalizada. La capa A2A es solo otro canal de entrada.
 
 Si funciona en una Pi Zero, funciona en cualquier lugar.
 
-Lee la implementación completa en [PR #4166](https://github.com/5queezer/hrafn/pull/4166): cada trampa mencionada anteriormente corresponde a un commit específico con pruebas. Si estás integrando A2A en tu propio framework, comienza con la protección SSRF en `a2a_client.rs` y el límite del TaskStore en `task_store.rs`. El seguimiento para el descubrimiento de pares y LAN mDNS está registrado en [#4643](https://github.com/5queezer/hrafn/issues/4643).
+Lee la implementación completa en [PR #4166](https://github.com/5queezer/hrafn/pull/4166) -- cada problema mencionado arriba se asigna a un commit específico con sus pruebas. Si estás construyendo A2A en tu propio framework, comienza con la protección contra SSRF en `a2a_client.rs` y el límite de TaskStore en `task_store.rs`. El seguimiento para el descubrimiento de pares y mDNS en LAN se rastrea en [#4643](https://github.com/5queezer/hrafn/issues/4643).
 
 ---
 

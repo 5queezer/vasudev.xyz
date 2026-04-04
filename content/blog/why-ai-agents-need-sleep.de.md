@@ -2,99 +2,99 @@
 title: "Warum KI-Agenten Schlaf brauchen"
 date: 2026-03-28
 tags: ["ai", "memory", "muninndb", "architecture"]
-description: "KI-Agenten speichern Erinnerungen, konsolidieren sie aber nie. So nutzt MuninnDB's Dream Engine Erkenntnisse aus der Neurowissenschaft, um das zu beheben."
+description: "KI‑Agentenerfassen Erinnerungen, aber sie konsolidieren sie nie. Hier ist, wie MuninnDB's Dream Engine Inspiration aus der Neurowissenschaft nutzt, um das zu beheben."
 images: ["/images/dream-engine.png"]
-translationHash: "aff3bf970bc1e9e4c4fb6cd6ef0dd437"
+translationHash: "f2542bbbb3a50216f597e1b14f4de464"
 ---
-Ich trage zu einer kognitiven Datenbank für KI-Agenten namens [MuninnDB](https://github.com/scrypster/muninndb) bei. Sie speichert alles: Sitzungsnotizen, Projektkontext, Arbeitsbeobachtungen, rechtliche Dokumentation. Nach ein paar Wochen täglicher Nutzung häufen sich die Einträge. Das Wiederfinden funktioniert noch -- semantische Suche ist stark beim Retrieval. Aber der Speicher selbst verfiel. Fast doppelte Einträge von Sitzungen, die denselben Inhalt behandelten. Veraltete Fakten, die von neueren abgelöst wurden. Kein System, um „kritische rechtliche Hinweise“ von „beiläufigen Bemerkungen über Docker-Netzwerke“ zu unterscheiden.
+Ich arbeite an einer kognitiven Datenbank für KI-Agenten namens [MuninnDB](https://github.com/scrypster/muninndb). Sie speichert alles: Sitzungsnotizen, Projektkontexte, Arbeitsbeobachtungen, rechtliche Dokumentation. Nach einigen Wochen täglicher Nutzung häufen sich die Einträge. Das Wiederfinden funktioniert noch – die semantische Suche ist beim Abruf zuverlässig. Aber der Speicher selbst verfiel. Nahezu duplizierte Einträge aus Sitzungen, die dieselben Themen abdeckten. Veraltete Fakten, die von neueren überholt wurden. Kein System, um „kritische rechtliche Hinweise“ von „beiläufigen Bemerkungen über Docker-Netzwerke“ zu unterscheiden.
 
-Das Problem ist nicht die Erfassung. Jedes Speichersystem beherrscht die Erfassung. Das Problem ist, was zwischen den Sitzungen passiert -- und das ist meistens nichts.
+Das Problem liegt nicht an der Erfassung. Jedes Speichersystem beherrscht die Erfassung. Das Problem ist das, was zwischen den Sitzungen passiert – und das ist in der Regel nichts.
 
-**KI-Agenten häufen Erinnerungen so an, wie Menschen mit Hoarding-Verhalten Zeitungen sammeln. Die Lösung ist nicht eine bessere Suche. Es ist Schlaf.**
+**KI-Agenten häufen Erinnerungen an, wie Hoarder Zeitungen horten. Die Lösung ist keine bessere Suche. Sie ist Schlaf.**
 
-## Was Schlaf tatsächlich bewirkt
+## Was Schlaf wirklich bewirkt
 
-Die Konsolidierung menschlicher Erinnerungen im Schlaf ist kein Backup. Es ist ein aktiver, destruktiver Prozess. Der Hippocampus spielt kürzliche Erfahrungen ab, der Neokortex integriert sie in bestehende Wissensstrukturen und das Gehirn schwächt aktiv Erinnerungen ab, die nicht verstärkt wurden. Man wacht mit weniger Erinnerungen auf, als man eingeschlafen ist, und genau das ist der Punkt.
+Die menschliche Gedächtniskonsolidierung während des Schlafs ist kein Backup. Es ist ein aktiver, destruktiver Prozess. Der Hippocampus spielt kürzliche Erfahrungen erneut ab, der Neokortex integriert sie in bestehende Wissensstrukturen, und das Gehirn schwächt aktiv Erinnerungen, die nicht verstärkt wurden. Man wacht mit weniger Erinnerungen auf, als man eingeschlafen ist, und genau das ist der Sinn dahinter.
 
-Drei Eigenschaften sind für das Design von KI-Systemen entscheidend. Erstens ist Konsolidierung selektiv -- wichtige Erinnerungen werden gestärkt, Rauschen geschwächt. Zweitens entdeckt sie Verbindungen -- das Gehirn verknüpft Konzepte über Domänen hinweg während des REM-Schlafs. Drittens löst sie Konflikte -- widersprüchliche Erinnerungen werden abgewogen, wobei neuere oder stärker verstärkte Versionen gewinnen.
+Drei Eigenschaften sind für das Design von KI-Systemen entscheidend. Erstens ist die Konsolidierung selektiv – wichtige Erinnerungen werden gestärkt, Rauschen wird abgeschwächt. Zweitens erkennt sie Zusammenhänge – das Gehirn verknüpft Konzepte domänenübergreifend während des REM-Schlafs. Drittens löst sie Konflikte – widersprüchliche Erinnerungen werden abgewogen, wobei neuere oder stärker verstärkte Versionen gewinnen.
 
-Kein gängiges KI-Speichersystem macht auch nur eines davon. Die meisten betreiben bestenfalls Deduplizierung.
+Kein gängiges KI-Speichersystem macht etwas davon. Die meisten führen bestenfalls eine Deduplizierung durch.
 
-## Bisherige Arbeiten
+## Bisherige Ansätze
 
 Die Idee ist nicht neu. Forscher nähern sich ihr bereits aus verschiedenen Richtungen.
 
-Zhong et al. stellten [MemoryBank](https://arxiv.org/abs/2305.10250) (2023) vor, ein LLM-Speichersystem mit Ebbinghaus-Vergessenskurven -- Erinnerungen verblassen mit der Zeit, es sei denn, sie werden verstärkt. Das bestehende ACT-R-Modell von MuninnDB baut auf diesem Fundament auf.
+Zhong et al. stellten [MemoryBank](https://arxiv.org/abs/2305.10250) (2023) vor, ein LLM-Speichersystem mit Ebbinghaus-Vergessenskurven – Erinnerungen verblassen im Laufe der Zeit, sofern sie nicht verstärkt werden. Das bestehende ACT-R-Modell von MuninnDB baut auf diesem Fundament auf.
 
-Das Paper „Language Models Need Sleep“ auf [OpenReview](https://openreview.net/forum?id=iiZy6xyVVE) (2025) schlug einen expliziten „Dreaming“-Prozess vor, um fragile Kurzzeitgedanken in stabiles Langzeitwissen zu überführen -- die theoretischste Annäherung an das, was wir bauen.
+Das Paper „Language Models Need Sleep“ auf [OpenReview](https://openreview.net/forum?id=iiZy6xyVVE) (2025) schlug einen expliziten „Dreaming“-Prozess vor, um fragile Kurzzeitgedächtnisse in stabiles Langzeitwissen zu überführen – die theoretische Ausarbeitung, die dem, was wir entwickeln, am nächsten kommt.
 
-Xies [SleepGate](https://arxiv.org/abs/2603.14517)-Framework (2026) fügte konfliktbewusstes zeitliches Tagging und ein Vergessens-Gate hinzu, wodurch proaktive Interferenzen von O(n) auf O(log n) reduziert werden. Die zentrale Erkenntnis: Man muss wissen, *wann* etwas gelernt wurde, um Widersprüche aufzulösen, nicht nur, *was* gelernt wurde.
+Xies [SleepGate](https://arxiv.org/abs/2603.14517)-Framework (2026) fügte konfliktbewusste zeitliche Tagging und ein Vergessens-Gate hinzu, wodurch die proaktive Interferenz von O(n) auf O(log n) reduziert wurde. Die entscheidende Erkenntnis: Man muss wissen, *wann* etwas gelernt wurde, um Widersprüche aufzulösen, nicht nur, *was* gelernt wurde.
 
-Und Anthropic testet [Auto Dream](https://dev.to/akari_iku/does-claude-code-need-sleep-inside-the-unreleased-auto-dream-feature-2n7m) für Claude Code -- einen Hintergrundprozess, der Speicherdateien zwischen Sitzungen konsolidiert. Es arbeitet auf reinen Textdateien. Angemessen für einen Programmierassistenten. Nicht ausreichend für eine kognitive Datenbank.
+Und Anthropic testet bereits [Auto Dream](https://dev.to/akari_iku/does-claude-code-need-sleep-inside-the-unreleased-auto-dream-feature-2n7m) für Claude Code – einen Hintergrundprozess, der Gedächtnisdateien zwischen den Sitzungen konsolidiert. Er funktioniert mit einfachen Textdateien. Für einen Coding-Assistenten vernünftig. Nicht ausreichend für eine kognitive Datenbank.
 
 ## Die Lücke
 
-Die Erfassungsseite hatte MuninnDB bereits abgedeckt: Vector-Embeddings, Ebbinghaus-Verfall, Hebbsches Assoziationslernen und ein Hintergrund-Worker für die Konsolidierung, der alle 6 Stunden algorithmische Deduplizierung durchführt. Was es nicht konnte: schlussfolgern, *warum* zwei Einträge ähnlich sind, Widersprüche auflösen oder domänenübergreifende Verbindungen entdecken. Es hatte ein Gedächtnis. Es hatte keinen Schlaf.
+MuninnDB hatte die Erfassungsseite bereits abgedeckt: Vektor-Embeddings, Ebbinghaus-Abbau, Hebb'sches Assoziationslernen und ein Hintergrund-Worker für die Konsolidierung, der alle 6 Stunden eine algorithmische Deduplizierung durchführt. Was es nicht konnte: begründen, *warum* zwei Einträge ähnlich sind, Widersprüche auflösen oder domänenübergreifende Verbindungen entdecken. Es hatte ein Gedächtnis. Es hatte keinen Schlaf.
 
 ## Die Dream Engine
 
-Die Dream Engine erweitert die bestehende Konsolidierungspipeline um LLM-Intelligenz. Sie läuft zwischen Sitzungen -- automatisch beim Serverstart ausgelöst (die Metapher des „Aufwachens“) oder manuell über die CLI.
+Die Dream Engine erweitert die bestehende Konsolidierungs-Pipeline um LLM-Intelligenz. Sie läuft zwischen den Sitzungen – automatisch beim Serverstart getriggert (die Metapher des „Aufwachens“) oder manuell über die CLI.
 
 ### Trigger-Gates
 
-Zwei Bedingungen müssen erfüllt sein, bevor ein Dream abläuft: mindestens 12 Stunden seit dem letzten Dream und mindestens 3 seitdem neu geschriebene Einträge. Dies verhindert unnötige Verarbeitungslasten bei einem inaktiven Speicher. Die Gates können mit `--force` für manuelle Ausführungen umgangen werden.
+Zwei Bedingungen müssen beide erfüllt sein, bevor ein Dream abläuft: seit dem letzten Dream müssen mindestens 12 Stunden vergangen sein, und es müssen mindestens 3 neue Einträge seit dem letzten Dream geschrieben worden sein. Dies verhindert unnötige Last bei inaktivem Speicher. Die Gates können mit `--force` für manuelle Durchläufe umgangen werden.
 
 ### Die Pipeline
 
-Die Dream Engine verwendet vier bestehende Konsolidierungsphasen wieder, fügt drei neue hinzu und modifiziert eine. Phase 0 und der konfigurierbare Dedup-Schwellenwert wurden in [PR #306](https://github.com/scrypster/muninndb/pull/306) ausgeliefert. Die LLM-Phasen (2b, 4, 6) sind entworfen und spezifiziert für einen nachfolgenden PR.
+Die Dream Engine nutzt vier bestehende Konsolidierungsphasen wieder, fügt drei neue hinzu und modifiziert eine. Phase 0 und der konfigurierbare Dedup-Schwellenwert wurden mit [PR #306](https://github.com/scrypster/muninndb/pull/306) ausgeliefert. Die LLM-Phasen (2b, 4, 6) sind designt und spezifiziert für einen nachfolgenden PR.
 
-**Phase 0 (neu, ausgeliefert): Orientierung.** Read-only-Scan jedes Vaults. Zählt Einträge, prüft Embedding-Abdeckung, berechnet durchschnittliche Relevanz- und Stabilitätswerte, erkennt rechtliche Vaults. Damit wird die Karte gebaut, bevor etwas angefasst wird.
+**Phase 0 (neu, ausgeliefert): Orientierung.** Nur-Lese-Scan jedes Vaults. Einträge zählen, Embedding-Abdeckung prüfen, durchschnittliche Relevanz- und Stabilitätswerte berechnen, rechtliche Vaults erkennen. Dies erstellt die Karte, bevor etwas angefasst wird.
 
-**Phase 1 (bestehend): Replay.** Aktivierungs-Replay für die Aktualisierung von Hebbschen Assoziationsgewichten. Unverändert.
+**Phase 1 (bestehend): Replay.** Aktivierungs-Replay für Hebb'sche Assoziations-Gewichtsaktualisierungen. Unverändert.
 
-**Phase 2 (bestehend, modifiziert, ausgeliefert): Deduplizierung.** Die algorithmische Dedup-Phase, jedoch mit einem geteilten Schwellenwert. Im normalen Konsolidierungsmodus werden Einträge mit einer Cosinus-Ähnlichkeit >= 0,95 wie bisher automatisch zusammengeführt. Im Dream-Modus sinkt der Schwellenwert auf 0,85. Einträge im Bereich 0,85–0,95 werden *nicht* automatisch zusammengeführt -- sie werden als Nahezu-Duplikat-Cluster markiert und zur Überprüfung durch das LLM an die nächste Phase weitergeleitet. Dies ist die zentrale Architekturentscheidung: Der Algorithmus kümmert sich um die offensichtlichen Fälle, das LLM um die mehrdeutigen.
+**Phase 2 (bestehend, modifiziert, ausgeliefert): Dedup.** Die algorithmische Dedup-Phase, aber mit einem aufgeteilten Schwellenwert. Im normalen Konsolidierungsmodus werden Einträge mit einer Kosinus-Ähnlichkeit >= 0.95 wie bisher automatisch zusammengeführt. Im Dream-Modus sinkt der Schwellenwert auf 0.85. Einträge im Bereich 0.85–0.95 werden *nicht* automatisch zusammengeführt – sie werden als Near-Duplicate-Cluster gekennzeichnet und für die LLM-Prüfung an die nächste Phase übergeben. Das ist die zentrale architektonische Entscheidung: Den Algorithmus die offensichtlichen Fälle erledigen lassen, das LLM die mehrdeutigen.
 
-**Phase 2b (neu, Folge-PR): LLM-Konsolidierung.** Die Nahezu-Duplikat-Cluster und etwaige erkannte Widersprüche werden an ein konfiguriertes LLM gesendet. Das LLM gibt strukturiertes JSON zurück: Zusammenführungsvorgänge, Widerspruchslösungen, Vorschläge für Cross-Vault-Verbindungen, Stabilitätsempfehlungen und einen narrativen Journal-Eintrag. Das LLM verknüpft nichts automatisch über Vaults hinweg -- es schlägt nur vor. Ein Mensch prüft die Vorschläge im Dream Journal.
+**Phase 2b (neu, folgender PR): LLM-Konsolidierung.** Die Near-Duplicate-Cluster und alle erkannten Widersprüche werden an ein konfiguriertes LLM gesendet. Das LLM gibt strukturiertes JSON zurück: Zusammenführungsoperationen, Widerspruchslösungen, Vorschläge für vaultübergreifende Verbindungen, Stabilitätsempfehlungen und einen narrativen Journal-Eintrag. Das LLM verknüpft nichts automatisch über Vaults hinweg – es schlägt nur vor. Eine Person prüft die Vorschläge im Dream-Journal.
 
-**Phase 3 (bestehend): Schema-Promotion.** Unverändert.
+**Phase 3 (bestehend): Schema Promotion.** Unverändert.
 
-**Phase 4 (neu, Folge-PR): Bidirektionale Stabilität.** Hier findet das Vergessen statt. Hochsignal-Einträge (häufig abgerufen, kürzlich durch hebbsche Koaktivierung verstärkt oder vom LLM empfohlen) erhalten einen Stabilitätsboost von 1,2x. Niedersignal-Einträge (selten abgerufen, alt, geringe Relevanz, nicht vom LLM befördert) werden auf 0,8x abgeschwächt, mit einer Untergrenze von 14 Tagen -- sie fallen nie unter die Standardstabilität. LLM-Empfehlungen setzen die regelbasierten Anpassungen außer Kraft. Dies modelliert den Spacing-Effekt: Einträge, die abgerufen werden, bleiben stark, andere verblassen allmählich.
+**Phase 4 (neu, folgender PR): Bidirektionale Stabilität.** Hier findet das Vergessen statt. High-Signal-Einträge (häufig abgerufen, kürzlich durch Hebb'sche Koaktivierung verstärkt oder vom LLM empfohlen) erhalten einen Stabilitätsbonus von 1.2x. Low-Signal-Einträge (selten abgerufen, alt, geringe Relevanz, nicht vom LLM hervorgehoben) werden auf das 0.8-fache geschwächt, mit einer Untergrenze von 14 Tagen – sie fallen nie unter die Standardstabilität. LLM-Empfehlungen überschreiben die regelbasierten Anpassungen. Dies modelliert den Spacing-Effekt: Einträge, die abgerufen werden, bleiben stark; Einträge, die es nicht werden, verblassen allmählich.
 
 **Phase 5 (bestehend): Transitive Inferenz.** Unverändert.
 
-**Phase 6 (neu, Folge-PR): Dream Journal.** Die LLM-Narration plus der Konsolidierungsbericht werden zu einem menschlich lesbaren Eintrag formatiert und an `~/.muninn/dream.journal.md` angehängt. Dies ist die Ausgabe, die Sie tatsächlich lesen. Sie zeigt, welche Verbindungen entdeckt wurden, was gestärkt, was aufgeräumt und was übersprungen wurde.
+**Phase 6 (neu, folgender PR): Dream Journal.** Die LLM-Narration plus der Konsolidierungsbericht werden in einen menschenlesbaren Eintrag formatiert und an `~/.muninn/dream.journal.md` angehängt. Das ist die Ausgabe, die Sie tatsächlich lesen. Sie verrät Ihnen, welche Verbindungen entdeckt wurden, was gestärkt, was aufgeräumt und was übersprungen wurde.
 
-### Vault-Vertrauensstufen
+### Vault-Vertrauensebenen
 
-Nicht alle Vaults sind gleich und nicht alle LLM-Anbieter sind gleich. MuninnDB erzwingt Vertrauensstufen pro Vault:
+Nicht alle Vaults sind gleich und nicht alle LLM-Anbieter sind gleich. MuninnDB erzwingt Vertrauensebenen pro Vault:
 
-Rechtliche Vaults überspringen Phase 2b vollständig -- sie werden niemals an ein LLM gesendet, nicht einmal an ein lokales. Rechtliche Einträge werden wortgetreu bewahrt und nie von der Konsolidierung angefasst.
+Rechtliche Vaults überspringen Phase 2b vollständig – sie werden niemals an ein LLM gesendet, nicht einmal an ein lokales. Rechtliche Einträge werden wortgetreu bewahrt und niemals von der Konsolidierung berührt.
 
-Work- und persönliche Vaults sind auf lokales Ollama oder die API von Anthropic beschränkt. Sie werden niemals an OpenAI oder andere Anbieter gesendet.
+Arbeits- und persönliche Vaults sind auf lokales Ollama oder die API von Anthropic beschränkt. Sie werden niemals an OpenAI oder andere Anbieter gesendet.
 
 Globale und Projekt-Vaults können jeden konfigurierten Anbieter nutzen.
 
-Dies ist konfigurierbar, nicht hardcodiert. Die Auflösungsreihenfolge prüft zuerst Ollama (lokal, keine Daten verlassen die Maschine), dann Anthropic, dann OpenAI, wo es die Vault-Richtlinie erlaubt.
+Dies ist konfigurierbar, nicht hardcoded. Die Auflösungsreihenfolge prüft zuerst Ollama (lokal, keine Daten verlassen die Maschine), dann Anthropic, dann OpenAI, sofern die Vault-Richtlinie dies erlaubt.
 
 ### Laufzeitmodell
 
-Die Schlaf-/Wach-Metaphorik bildet direkt den Server-Lebenszyklus ab. Wenn MuninnDB stoppt (`muninn stop`), schreibt es eine `dream.due`-Sidecar-Datei im Datenverzeichnis. Beim erneuten Start (`muninn start`) prüft es die Datei und die Trigger-Gates. Sind beide erfüllt, läuft ein Dream, bevor Ports geöffnet werden. Überschreitet der Dream ein konfigurierbares Timeout (Standard 60 Sekunden), bricht er ab und startet normal. Der Server blockiert nie unbegrenzt wegen eines Dreams.
+Die Schlaf-/Wach-Metapher bildet direkt den Server-Lebenszyklus ab. Wenn MuninnDB stoppt (`muninn stop`), schreibt es eine `dream.due`-Sidecar-Datei im Datenverzeichnis. Bei einem erneuten Start (`muninn start`) prüft es die Datei und die Trigger-Gates. Wenn beide durchlaufen, führt es einen Dream aus, bevor es Ports öffnet. Überschreitet der Dream ein konfigurierbares Timeout (Standard: 60 Sekunden), bricht es ab und startet normal. Der Server blockiert niemals unbegrenzt auf einen Dream.
 
-Für die manuelle Nutzung: `muninn dream --dry-run` zeigt, was passieren würde, ohne etwas zu schreiben. Der Dry-Run generiert trotzdem die vollständige Journal-Narration und gibt sie mit einem `[DRY RUN]`-Header auf stdout aus. Das ist entscheidend für Vertrauen -- man kann genau sehen, was die Engine tun würde, bevor man sie schreiben lässt.
+Für die manuelle Nutzung: `muninn dream --dry-run` zeigt an, was passieren würde, ohne etwas zu schreiben. Der Dry-Run generiert dennoch die vollständige Journal-Narration und gibt sie mit einem `[DRY RUN]`-Header auf stdout aus. Das ist entscheidend für das Vertrauen – Sie sehen exakt, was die Engine tun würde, bevor Sie sie schreiben lassen.
 
 ## Was ich ausgelassen habe
 
-**Automatisches Verknüpfen von Cross-Vault-Vorschlägen.** Die Dream Engine schlägt Verbindungen vor, erstellt sie aber nie automatisch. Ein Mensch liest das Journal und entscheidet. Vertrauen vor Automatisierung.
+**Automatisches Verknüpfen von vaultübergreifenden Vorschlägen.** Die Dream Engine schlägt Verbindungen vor, erstellt sie aber niemals automatisch. Eine Person liest das Journal und entscheidet. Vertrauen vor Automatisierung.
 
-**Speicherfreigabe für mehrere Agenten.** MuninnDB ist ein Benutzer, eine Instanz. Geteilter Speicher über Agenten hinweg ist ein völlig anderes Threat-Model.
+**Speicher-Sharing zwischen mehreren Agenten.** MuninnDB ist ein Benutzer, eine Instanz. Geteilter Speicher über Agenten hinweg ist ein völlig anderes Bedrohungsmodell.
 
-**Zeitliche Warnungen.** Das LLM könnte bemerken: „Dieser API-Schlüssel läuft in 4 Tagen ab“, aber das Verfolgen von Ablaufdaten ist ein Feature, keine Konsolidierung. Für v1 nicht vorgesehen.
+**Zeitliche Warnungen.** Das LLM könnte bemerken „dieser API-Schlüssel läuft in 4 Tagen ab“, aber das Verfolgen von Ablaufdaten ist ein Feature, keine Konsolidierung. Nicht im Umfang von v1.
 
-**Emotionsmodellierung.** Das Salience-Scoring ist nur ein Proxy. Echte emotionale Gewichtung braucht Signale, die ein textbasiertes System nicht hat. Zurückgestellt.
+**Emotionsmodellierung.** Salience-Scoring ist ein Proxy. Echte emotionale Gewichtung benötigt Signale, die ein textbasiertes System nicht besitzt. Zurückgestellt.
 
 ## Das Dream Journal
 
-Hier ist, was ein Dream-Run produzieren wird, sobald die LLM-Phasen in einem Folge-PR ausgeliefert werden:
+So wird ein Dream-Durchlauf aussehen, sobald die LLM-Phasen in einem folgenden PR ausgeliefert werden:
 
 ```
 ---
@@ -114,11 +114,11 @@ Hier ist, was ein Dream-Run produzieren wird, sobald die LLM-Phasen in einem Fol
 *Scanned 47 entries across 3 vaults (legal: 8 skipped) in 4.2s*
 ```
 
-Jeden Morgen lesen Sie, wovon Ihr Speichersystem geträumt hat. Welche Verbindungen es erkannt hat. Welches Rauschen es bereinigt hat. Welche Widersprüche es aufgelöst hat. Es ist ein Changelog für Ihr Wissen, in Prosa geschrieben. MuninnDB ist das kognitive Speicher-Backend für [Hrafn](https://github.com/5queezer/hrafn), eine leichte, modulare KI-Agenten-Laufzeitumgebung.
+Jeden Morgen lesen Sie, wovon Ihr Speichersystem geträumt hat. Die Verbindungen, die es bemerkt hat. Das Rauschen, das es aufgeräumt hat. Die Widersprüche, die es gelöst hat. Es ist ein Changelog für Ihr Wissen, geschrieben in Prosa. MuninnDB ist das kognitive Speicher-Backend für [Hrafn](https://github.com/5queezer/hrafn), eine leichte, modulare AI-Agenten-Runtime.
 
 ## Ausprobieren
 
-Das Read-only-Fundament (Phase 0 + konfigurierbare Dedup + Dry-Run-CLI) wurde in [PR #306](https://github.com/scrypster/muninndb/pull/306) ausgeliefert und ist gemerged. Schreibphasen (bidirektionale Stabilität, LLM-Konsolidierung, Journal) folgen in einem separaten PR. Die vollständige Design-Spezifikation liegt im Repo unter `docs/superpowers/specs/2026-03-28-dream-engine-design.md`.
+Das Nur-Lese-Fundament (Phase 0 + konfigurierbare Dedup + Dry-Run-CLI) wurde mit [PR #306](https://github.com/scrypster/muninndb/pull/306) ausgeliefert und ist gemergt. Die Schreibphasen (bidirektionale Stabilität, LLM-Konsolidierung, Journal) folgen in einem separaten PR. Die vollständige Design-Spezifikation befindet sich im Repository unter `docs/superpowers/specs/2026-03-28-dream-engine-design.md`.
 
 ```bash
 git clone https://github.com/scrypster/muninndb
