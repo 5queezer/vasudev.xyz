@@ -42,3 +42,9 @@ other = "Blog"
 
 [backToAllPosts]
 other = "Volver a todas las publicaciones"
+
+[postsTagged]
+other = "Etiquetado"
+
+[postsTaggedCount]
+other = "{{ . }} publicaciones"

@@ -13,18 +13,18 @@
   {{ range . }}
   <section class="list-feature-shell">
     <article class="surface list-card list-card-featured">
-      <a class="list-card-link" href="{{ .RelPermalink }}">
+      <div class="list-card-link">
         <div class="section-label">{{ i18n "featuredPost" }}</div>
         <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
         <h2 class="article-title">{{ .Title }}</h2>
         {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
         {{ with .Params.tags }}
         <div class="tag-row">
-          {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+          {{ range . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
         </div>
         {{ end }}
-        <div class="article-cta">Open post <span aria-hidden="true">→</span></div>
-      </a>
+        <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
+      </div>
     </article>
   </section>
   {{ end }}
@@ -33,17 +33,17 @@
   <section class="list-grid list-grid-secondary">
     {{ range after 1 $pages }}
     <article class="surface list-card">
-      <a class="list-card-link" href="{{ .RelPermalink }}">
+      <div class="list-card-link">
         <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
         <h2 class="article-title">{{ .Title }}</h2>
         {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
         {{ with .Params.tags }}
         <div class="tag-row">
-          {{ range first 4 . }}<span class="tag">{{ . }}</span>{{ end }}
+          {{ range first 4 . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
         </div>
         {{ end }}
-        <div class="article-cta">Open post <span aria-hidden="true">→</span></div>
-      </a>
+        <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
+      </div>
     </article>
     {{ end }}
   </section>

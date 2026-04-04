@@ -923,6 +923,41 @@ button:focus-visible {
   transform: rotate(0deg);
 }
 
+/* Tag links */
+a.tag {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a.tag:hover {
+  color: var(--accent-strong);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* Stretched link pattern for cards with clickable tags */
+.list-card-stretched,
+.spotlight-stretched,
+.article-card-stretched {
+  position: static;
+}
+
+.list-card-stretched::after,
+.spotlight-stretched::after,
+.article-card-stretched::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.list-card .tag,
+.spotlight-card .tag,
+.article-card .tag {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 980px) {
   .hero-grid,
   .feature-grid,
