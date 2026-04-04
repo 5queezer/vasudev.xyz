@@ -20,7 +20,7 @@
         {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
         {{ with .Params.tags }}
         <div class="tag-row">
-          {{ range . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+          {{ range . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
         </div>
         {{ end }}
         <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
@@ -39,7 +39,7 @@
         {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
         {{ with .Params.tags }}
         <div class="tag-row">
-          {{ range first 4 . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+          {{ range first 4 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
         </div>
         {{ end }}
         <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
