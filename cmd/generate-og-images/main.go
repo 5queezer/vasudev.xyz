@@ -1,0 +1,519 @@
+package main
+
+import (
+	"bytes"
+	"crypto/sha256"
+	"encoding/json"
+	"flag"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
+	"time"
+)
+
+const (
+	defaultLLMURL = "https://openrouter.ai/api/v1/chat/completions"
+	defaultModel  = "openrouter/free"
+	defaultFalURL = "https://fal.run/fal-ai/nano-banana-2"
+	maxAttempts   = 4
+	maxBodyChars  = 1500
+)
+
+var httpClientFactory = func() *http.Client {
+	return &http.Client{Timeout: 5 * time.Minute}
+}
+
+// LLM types (reused from translate pattern)
+type chatRequest struct {
+	Model    string        `json:"model"`
+	Messages []chatMessage `json:"messages"`
+}
+
+type chatMessage struct {
+	Role    string `json:"role"`
+	Content string `json:"content"`
+}
+
+type chatResponse struct {
+	Choices []struct {
+		Message struct {
+			Content string `json:"content"`
+		} `json:"message"`
+	} `json:"choices"`
+	Error *struct {
+		Message string `json:"message"`
+	} `json:"error"`
+}
+
+// fal.ai types
+type falRequest struct {
+	Prompt    string       `json:"prompt"`
+	ImageSize falImageSize `json:"image_size"`
+	NumImages int          `json:"num_images"`
+}
+
+type falImageSize struct {
+	Width  int `json:"width"`
+	Height int `json:"height"`
+}
+
+type falResponse struct {
+	Images []struct {
+		URL         string `json:"url"`
+		ContentType string `json:"content_type"`
+	} `json:"images"`
+	Detail string `json:"detail"`
+}
+
+const imagePromptSystem = `You generate concise image prompts for a technical blog's social preview images (og:image, 1200x630).
+
+Visual style:
+- Dark background (#0d1117 or #1a1a1a)
+- Minimal, clean, technical aesthetic
+- Abstract representations: architecture diagrams, network topologies, data flows, geometric patterns
+- Color palette: muted greens (#3fb950), blues (#58a6ff), purples (#a371f7) on dark
+- Flat/vector style. No photorealism, no text, no faces.
+
+Output exactly ONE prompt sentence, under 200 characters. Describe a visual scene, not an abstract idea.`
+
+func main() {
+	contentDir := flag.String("content-dir", "content/blog", "path to blog content directory")
+	imagesDir := flag.String("images-dir", "static/images", "path to images output directory")
+	force := flag.Bool("force", false, "regenerate images even if they already exist")
+	post := flag.String("post", "", "only process this specific post slug")
+	flag.Parse()
+
+	// LLM config (reuse from translate pipeline)
+	llmURL := os.Getenv("LLM_API_URL")
+	if llmURL == "" {
+		llmURL = defaultLLMURL
+	}
+	llmModels := resolveModelCandidates(
+		os.Getenv("LLM_MODEL"),
+		os.Getenv("LLM_MODEL_FALLBACKS"),
+		os.Getenv("LLM_MODELS"),
+	)
+	llmKey := os.Getenv("LLM_API_KEY")
+	if llmKey == "" {
+		llmKey = os.Getenv("OPENROUTER_API_KEY")
+	}
+	if llmKey == "" {
+		fmt.Fprintln(os.Stderr, "LLM_API_KEY (or OPENROUTER_API_KEY) environment variable is required")
+		os.Exit(1)
+	}
+
+	// fal.ai config
+	falKey := os.Getenv("FAL_API_KEY")
+	if falKey == "" {
+		fmt.Fprintln(os.Stderr, "FAL_API_KEY environment variable is required")
+		os.Exit(1)
+	}
+	falURL := os.Getenv("FAL_API_URL")
+	if falURL == "" {
+		falURL = defaultFalURL
+	}
+
+	hashDir := filepath.Join(*imagesDir, ".og-hashes")
+	if err := os.MkdirAll(hashDir, 0755); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to create hash dir: %v\n", err)
+		os.Exit(1)
+	}
+
+	entries, err := os.ReadDir(*contentDir)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "failed to read content dir: %v\n", err)
+		os.Exit(1)
+	}
+
+	skipLangs := []string{"de", "es"}
+
+entries:
+	for _, entry := range entries {
+		name := entry.Name()
+		if !strings.HasSuffix(name, ".md") {
+			continue
+		}
+		if name == "_index.md" || strings.HasPrefix(name, "_index.") {
+			continue
+		}
+		for _, lang := range skipLangs {
+			if strings.HasSuffix(name, "."+lang+".md") {
+				continue entries
+			}
+		}
+
+		slug := strings.TrimSuffix(name, ".md")
+
+		if *post != "" && slug != *post {
+			continue
+		}
+
+		srcPath := filepath.Join(*contentDir, name)
+		srcData, err := os.ReadFile(srcPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "failed to read %s: %v\n", srcPath, err)
+			continue
+		}
+
+		// Check if images field already exists (skip unless --force)
+		if !*force && extractFrontMatterField(srcData, "images") != "" {
+			fmt.Printf("skip %s (already has images field)\n", name)
+			continue
+		}
+
+		// Hash body only (not front matter) to avoid regeneration loops
+		_, body := splitFrontMatterAndBody(srcData)
+		hash := bodyHash(body)
+
+		hashFile := filepath.Join(hashDir, slug+".hash")
+		if !*force {
+			if existing, err := os.ReadFile(hashFile); err == nil {
+				if strings.TrimSpace(string(existing)) == hash {
+					fmt.Printf("skip %s (body unchanged)\n", name)
+					continue
+				}
+			}
+		}
+
+		title := extractFrontMatterField(srcData, "title")
+		description := extractFrontMatterField(srcData, "description")
+
+		fmt.Printf("generating og:image for %s\n", name)
+
+		// Phase 1: Generate image prompt via LLM
+		truncatedBody := body
+		if len(truncatedBody) > maxBodyChars {
+			truncatedBody = truncatedBody[:maxBodyChars]
+		}
+		userContent := fmt.Sprintf("Title: %s\nDescription: %s\n\n%s", title, description, truncatedBody)
+
+		imagePrompt := generatePrompt(llmURL, llmModels, llmKey, userContent)
+		if imagePrompt == "" {
+			fmt.Fprintf(os.Stderr, "failed to generate image prompt for %s, skipping\n", name)
+			continue
+		}
+		fmt.Printf("  prompt: %s\n", imagePrompt)
+
+		// Phase 2: Generate image via fal.ai
+		imagePath := filepath.Join(*imagesDir, slug+"-og.png")
+		if err := generateImage(falURL, falKey, imagePrompt, imagePath); err != nil {
+			fmt.Fprintf(os.Stderr, "failed to generate image for %s: %v\n", name, err)
+			continue
+		}
+		fmt.Printf("  saved: %s\n", imagePath)
+
+		// Phase 3: Update front matter with images field
+		imageRef := fmt.Sprintf("/images/%s-og.png", slug)
+		if err := insertImageField(srcPath, srcData, imageRef); err != nil {
+			fmt.Fprintf(os.Stderr, "failed to update front matter for %s: %v\n", name, err)
+			continue
+		}
+		fmt.Printf("  updated front matter: images: [\"%s\"]\n", imageRef)
+
+		// Phase 4: Write content hash
+		if err := os.WriteFile(hashFile, []byte(hash+"\n"), 0644); err != nil {
+			fmt.Fprintf(os.Stderr, "failed to write hash for %s: %v\n", name, err)
+		}
+	}
+}
+
+func bodyHash(body string) string {
+	h := sha256.Sum256([]byte(body))
+	return fmt.Sprintf("%x", h[:16])
+}
+
+func splitFrontMatterAndBody(data []byte) (frontMatter string, body string) {
+	content := string(data)
+	if !strings.HasPrefix(content, "---\n") {
+		return "", content
+	}
+	end := strings.Index(content[4:], "\n---\n")
+	if end == -1 {
+		return "", content
+	}
+	return content[:end+8], content[end+8:]
+}
+
+func extractFrontMatterField(data []byte, field string) string {
+	content := string(data)
+	if !strings.HasPrefix(content, "---\n") {
+		return ""
+	}
+	end := strings.Index(content[4:], "\n---\n")
+	if end == -1 {
+		return ""
+	}
+	fm := content[4 : 4+end]
+	for _, line := range strings.Split(fm, "\n") {
+		if strings.HasPrefix(line, field+":") {
+			val := strings.TrimPrefix(line, field+":")
+			val = strings.TrimSpace(val)
+			val = strings.Trim(val, "\"")
+			return val
+		}
+	}
+	return ""
+}
+
+func insertImageField(filePath string, data []byte, imageRef string) error {
+	fm, body := splitFrontMatterAndBody(data)
+	if fm == "" {
+		return fmt.Errorf("no front matter found")
+	}
+
+	var b strings.Builder
+	lines := strings.Split(fm, "\n")
+	inserted := false
+	for _, line := range lines {
+		if strings.HasPrefix(line, "images:") {
+			// Replace existing images field
+			b.WriteString(fmt.Sprintf("images: [\"%s\"]\n", imageRef))
+			inserted = true
+			continue
+		}
+		b.WriteString(line)
+		b.WriteString("\n")
+		// Insert after description line
+		if !inserted && strings.HasPrefix(line, "description:") {
+			b.WriteString(fmt.Sprintf("images: [\"%s\"]\n", imageRef))
+			inserted = true
+		}
+	}
+
+	// If no description field found, insert before closing ---
+	if !inserted {
+		result := b.String()
+		lastDash := strings.LastIndex(result, "\n---\n")
+		if lastDash != -1 {
+			result = result[:lastDash] + fmt.Sprintf("\nimages: [\"%s\"]\n---\n", imageRef)
+			return os.WriteFile(filePath, []byte(result+body), 0644)
+		}
+	}
+
+	return os.WriteFile(filePath, []byte(b.String()+body), 0644)
+}
+
+// generatePrompt calls the LLM to create an image generation prompt from blog content.
+func generatePrompt(apiURL string, llmModels []string, apiKey, content string) string {
+	client := httpClientFactory()
+
+	for modelIndex, llmModel := range llmModels {
+		req := chatRequest{
+			Model: llmModel,
+			Messages: []chatMessage{
+				{Role: "system", Content: imagePromptSystem},
+				{Role: "user", Content: content},
+			},
+		}
+
+		reqBody, err := json.Marshal(req)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "failed to marshal request for model %s: %v\n", llmModel, err)
+			continue
+		}
+
+		for attempt := 0; attempt < maxAttempts; attempt++ {
+			if attempt > 0 {
+				wait := time.Duration(1<<uint(attempt)) * time.Second
+				fmt.Fprintf(os.Stderr, "retrying model %s in %v...\n", llmModel, wait)
+				time.Sleep(wait)
+			}
+
+			httpReq, err := http.NewRequest("POST", apiURL, bytes.NewReader(reqBody))
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to create request for model %s: %v\n", llmModel, err)
+				continue
+			}
+			httpReq.Header.Set("Content-Type", "application/json")
+			httpReq.Header.Set("Authorization", "Bearer "+apiKey)
+
+			resp, err := client.Do(httpReq)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "request failed for model %s: %v\n", llmModel, err)
+				continue
+			}
+
+			respBody, err := io.ReadAll(resp.Body)
+			resp.Body.Close()
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "failed to read response for model %s: %v\n", llmModel, err)
+				continue
+			}
+
+			if resp.StatusCode != http.StatusOK {
+				fmt.Fprintf(os.Stderr, "model %s returned %d: %s\n", llmModel, resp.StatusCode, string(respBody))
+				if shouldFallbackModel(resp.StatusCode, respBody) && modelIndex < len(llmModels)-1 {
+					break
+				}
+				continue
+			}
+
+			var chatResp chatResponse
+			if err := json.Unmarshal(respBody, &chatResp); err != nil {
+				fmt.Fprintf(os.Stderr, "failed to parse response for model %s: %v\n", llmModel, err)
+				continue
+			}
+
+			if chatResp.Error != nil {
+				fmt.Fprintf(os.Stderr, "API error for model %s: %s\n", llmModel, chatResp.Error.Message)
+				if shouldFallbackModel(resp.StatusCode, []byte(chatResp.Error.Message)) && modelIndex < len(llmModels)-1 {
+					break
+				}
+				continue
+			}
+
+			if len(chatResp.Choices) > 0 {
+				return strings.TrimSpace(chatResp.Choices[0].Message.Content)
+			}
+		}
+	}
+
+	return ""
+}
+
+// generateImage calls the fal.ai API to generate an image and saves it to disk.
+func generateImage(falURL, falKey, prompt, outputPath string) error {
+	client := httpClientFactory()
+
+	req := falRequest{
+		Prompt:    prompt,
+		ImageSize: falImageSize{Width: 1200, Height: 630},
+		NumImages: 1,
+	}
+
+	reqBody, err := json.Marshal(req)
+	if err != nil {
+		return fmt.Errorf("marshal request: %w", err)
+	}
+
+	var falResp falResponse
+
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		if attempt > 0 {
+			wait := time.Duration(1<<uint(attempt)) * time.Second
+			fmt.Fprintf(os.Stderr, "retrying fal.ai in %v...\n", wait)
+			time.Sleep(wait)
+		}
+
+		httpReq, err := http.NewRequest("POST", falURL, bytes.NewReader(reqBody))
+		if err != nil {
+			return fmt.Errorf("create request: %w", err)
+		}
+		httpReq.Header.Set("Content-Type", "application/json")
+		httpReq.Header.Set("Authorization", "Key "+falKey)
+
+		resp, err := client.Do(httpReq)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "fal.ai request failed: %v\n", err)
+			continue
+		}
+
+		respBody, err := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "failed to read fal.ai response: %v\n", err)
+			continue
+		}
+
+		if resp.StatusCode != http.StatusOK {
+			fmt.Fprintf(os.Stderr, "fal.ai returned %d: %s\n", resp.StatusCode, string(respBody))
+			if resp.StatusCode >= 500 || resp.StatusCode == 429 {
+				continue
+			}
+			return fmt.Errorf("fal.ai error %d: %s", resp.StatusCode, string(respBody))
+		}
+
+		if err := json.Unmarshal(respBody, &falResp); err != nil {
+			fmt.Fprintf(os.Stderr, "failed to parse fal.ai response: %v\n", err)
+			continue
+		}
+		break
+	}
+
+	if len(falResp.Images) == 0 {
+		return fmt.Errorf("no images returned from fal.ai")
+	}
+
+	// Download the image from the URL
+	imageURL := falResp.Images[0].URL
+	if imageURL == "" {
+		return fmt.Errorf("empty image URL from fal.ai")
+	}
+
+	imgResp, err := client.Get(imageURL)
+	if err != nil {
+		return fmt.Errorf("download image: %w", err)
+	}
+	defer imgResp.Body.Close()
+
+	if imgResp.StatusCode != http.StatusOK {
+		return fmt.Errorf("image download returned %d", imgResp.StatusCode)
+	}
+
+	imgData, err := io.ReadAll(imgResp.Body)
+	if err != nil {
+		return fmt.Errorf("read image data: %w", err)
+	}
+
+	if len(imgData) == 0 {
+		return fmt.Errorf("empty image data")
+	}
+
+	return os.WriteFile(outputPath, imgData, 0644)
+}
+
+func resolveModelCandidates(primary, fallbacks, models string) []string {
+	if ordered := uniqueModels(parseModelList(models)); len(ordered) > 0 {
+		return ordered
+	}
+	ordered := []string{strings.TrimSpace(primary)}
+	if ordered[0] == "" {
+		ordered[0] = defaultModel
+	}
+	ordered = append(ordered, parseModelList(fallbacks)...)
+	return uniqueModels(ordered)
+}
+
+func parseModelList(raw string) []string {
+	split := strings.FieldsFunc(raw, func(r rune) bool {
+		return r == ',' || r == '\n'
+	})
+	models := make([]string, 0, len(split))
+	for _, item := range split {
+		if trimmed := strings.TrimSpace(item); trimmed != "" {
+			models = append(models, trimmed)
+		}
+	}
+	return models
+}
+
+func uniqueModels(models []string) []string {
+	seen := make(map[string]struct{}, len(models))
+	ordered := make([]string, 0, len(models))
+	for _, model := range models {
+		model = strings.TrimSpace(model)
+		if model == "" {
+			continue
+		}
+		if _, ok := seen[model]; ok {
+			continue
+		}
+		seen[model] = struct{}{}
+		ordered = append(ordered, model)
+	}
+	return ordered
+}
+
+func shouldFallbackModel(statusCode int, body []byte) bool {
+	if statusCode == http.StatusTooManyRequests || statusCode >= http.StatusInternalServerError {
+		return true
+	}
+	lower := strings.ToLower(string(body))
+	return strings.Contains(lower, "rate-limit") ||
+		strings.Contains(lower, "rate limited") ||
+		strings.Contains(lower, "temporarily rate-limited") ||
+		strings.Contains(lower, "provider returned error")
+}
