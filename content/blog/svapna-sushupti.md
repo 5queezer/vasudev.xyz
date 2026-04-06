@@ -4,7 +4,9 @@ date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 description: "Neuroscience, recent AI papers, and an ancient Sanskrit text converge on the same insight about offline consolidation, yet disagree on which phase of sleep matters most."
 images: ["/images/svapna-sushupti-og.png"]
+images: ["/images/svapna-sushupti-og.png"]
 ---
+
 
 
 [My last post](/blog/why-ai-agents-need-sleep/) argued that AI agents need sleep. Several people asked the obvious follow-up: what does that actually mean? Is "sleep" just a metaphor for running a cron job, or does the analogy go deeper?
