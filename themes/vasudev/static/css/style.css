@@ -1147,6 +1147,9 @@ a.tag:hover {
   .lang-link {
     font-size: 0.7rem;
     padding: 0.35rem 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .hero-panel,
