@@ -5,3 +5,5 @@ firebase-debug.log
 styles/Google/
 .codex
 .omx/
+cmd/generate-og-images/generate-og-images
+cmd/translate/translate

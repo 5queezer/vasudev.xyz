@@ -1,0 +1,72 @@
+name: Generate og:images for blog posts
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "content/blog/*.md"
+      - "!content/blog/*.de.md"
+      - "!content/blog/*.es.md"
+      - "cmd/generate-og-images/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-og-images
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Generate og:images
+        env:
+          LLM_API_URL: ${{ secrets.LLM_API_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          LLM_MODEL_FALLBACKS: ${{ vars.LLM_MODEL_FALLBACKS }}
+          LLM_MODELS: ${{ vars.LLM_MODELS }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY || secrets.OPENROUTER_API_KEY }}
+          FAL_API_KEY: ${{ secrets.FAL_API_KEY }}
+        run: |
+          cd cmd/generate-og-images && go run main.go \
+            --content-dir ../../content/blog \
+            --images-dir ../../static/images
+
+      - name: Commit generated images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/images/*-og.png static/images/.og-hashes/ content/blog/*.md
+          if git diff --cached --quiet; then
+            echo "No og:image changes to commit"
+            exit 0
+          fi
+
+          git commit -m "chore: auto-generate og:images for blog posts"
+
+          for attempt in 1 2 3; do
+            git fetch origin master
+            if git rebase origin/master && git push origin HEAD:master; then
+              exit 0
+            fi
+
+            git rebase --abort || true
+
+            if [ "$attempt" -lt 3 ]; then
+              echo "Push attempt $attempt failed; retrying on latest origin/master"
+              sleep 5
+            fi
+          done
+
+          echo "Failed to push generated images after rebasing onto latest origin/master" >&2
+          exit 1
