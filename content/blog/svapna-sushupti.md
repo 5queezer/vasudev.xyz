@@ -2,7 +2,7 @@
 title: "Svapna or Sushupti: What Three Traditions Say About Offline Memory Consolidation"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
-description: "Neuroscience, recent AI papers, and a 2700-year-old Sanskrit text converge on the same insight about offline consolidation, yet disagree on which phase of sleep matters most."
+description: "Neuroscience, recent AI papers, and an ancient Sanskrit text converge on the same insight about offline consolidation, yet disagree on which phase of sleep matters most."
 ---
 
 [My last post](/blog/why-ai-agents-need-sleep/) argued that AI agents need sleep. Several people asked the obvious follow-up: what does that actually mean? Is "sleep" just a metaphor for running a cron job, or does the analogy go deeper?
@@ -45,7 +45,7 @@ One empirical note: while sleep-based consolidation is firmly established, the r
 
 ---
 
-## Layer 3: The Mandukya Upanishad (~700 BCE)
+## Layer 3: The Mandukya Upanishad (c. 500 BCE to 200 CE)
 
 The Mandukya Upanishad is twelve verses long. It describes four states of consciousness mapped to the syllable [AUM](https://en.wikipedia.org/wiki/Om).
 
@@ -93,7 +93,7 @@ This is the hypothesis worth testing: **for agent memory, dissolution outperform
 
 ---
 
-The benchmark data to resolve svapna vs. sushupti for AI agent memory is in progress. When it exists, I will write the follow-up. For now: three traditions spanning 2700 years of independent development agree that offline processing is not optional. What they disagree on is instructive.
+The benchmark data to resolve svapna vs. sushupti for AI agent memory is in progress. When it exists, I will write the follow-up. For now: three traditions spanning millennia of independent development agree that offline processing is not optional. What they disagree on is instructive.
 
 Read the [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) for the current implementation. The GoodAI LTM benchmark adapter is at [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
 
