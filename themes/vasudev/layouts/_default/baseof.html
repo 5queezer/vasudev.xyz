@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href='{{ "css/style.css" | relURL }}'>
   {{ template "_internal/opengraph.html" . }}
-  {{- if .IsPage }}
-  <link rel="alternate" type="text/plain" href="{{ .Permalink }}index.txt" title="{{ .Title }} (plain text)">
+  {{- with .OutputFormats.Get "txtplain" }}
+  <link rel="alternate" type="{{ .MediaType }}" href="{{ .Permalink }}" title="{{ $.Title }} (plain text)">
   {{- end }}
   <script>
     (function() {

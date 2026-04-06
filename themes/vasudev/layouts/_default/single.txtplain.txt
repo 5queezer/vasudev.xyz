@@ -3,7 +3,7 @@
 > {{ .Description }}
 
 Date: {{ .Date.Format "2006-01-02" }}
-Author: {{ .Site.Params.author }}
+Author: {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
 Tags: {{ delimit .Params.tags ", " }}
 URL: {{ .Permalink }}
 
