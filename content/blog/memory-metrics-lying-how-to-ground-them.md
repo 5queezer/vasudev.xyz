@@ -4,7 +4,9 @@ date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 description: "Memory consolidation looks great on dashboards. But if your metrics can improve without retrieval getting better, you're optimizing a detached proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 ---
+
 
 
 I built a memory consolidation system for AI agents. It deduplicates memories, strengthens associations, decays stale entries, and produces a dream journal you can actually read. The dashboard looks fantastic: dedup rate up, memory count down, association density climbing.

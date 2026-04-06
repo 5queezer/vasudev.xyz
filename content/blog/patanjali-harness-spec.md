@@ -4,7 +4,9 @@ date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 description: "Memory consolidation made retrieval worse. Three design principles from agent memory benchmarks, and their unexpected parallels in yogic attention theory."
 images: ["/images/patanjali-harness-spec-og.png"]
+images: ["/images/patanjali-harness-spec-og.png"]
 ---
+
 
 
 [MuninnDB](https://github.com/scrypster/muninndb)'s consolidation system merged three color-variant duplicate engrams exactly as designed (cosine similarity >= 0.95). Retrieval got worse. In a 13-engram vault, removing duplicates shifted the normalization anchor, pushing relevant results down the ranking. The fix was a guard clause: `MinDedupVaultSize` (default 20), skipping Phase 2 dedup in small vaults. [PR #359](https://github.com/scrypster/muninndb/pull/359) closed the issue.
