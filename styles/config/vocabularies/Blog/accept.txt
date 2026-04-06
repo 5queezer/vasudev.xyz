@@ -1,9 +1,11 @@
 A-Mem
 Advaitic
+(?i)anandamaya
 APO
 arXiv
 Birgitta
 autoencoders
+Barbosa
 BM25
 Böckeler
 chakras
@@ -13,8 +15,10 @@ cron
 (?i)deduplicates
 (?i)deduplication
 discriminations
+(?i)downselection
 Dream Engine
 Ebbinghaus
+(?i)epiphenomenal
 evolvability
 Flyxion
 Flyxion's
@@ -22,8 +26,10 @@ FurnitureBench
 Ghosh
 Goodhart's
 Hebbian
+(?i)hippocampal
 Hrafn
 Hrafn's
+(?i)jagrat
 klesha
 kleshas
 Kosha
@@ -32,6 +38,7 @@ LLMs
 Loihi
 LongMemEval
 lossy
+(?i)mandukya
 Maṇḍūkya
 Māṇḍūkya
 Mem0
@@ -40,6 +47,7 @@ MemoryOS
 Meta-Harness
 MuninnDB
 Namespace
+(?i)neocortex
 (?i)nirodha
 nondeterministic
 Patanjali
@@ -52,7 +60,12 @@ sandboxed
 (?i)samskaras
 scrypster
 soteriological
+(?i)sushupti
 Sutras
+(?i)svapna
+(?i)taijasa
+(?i)thalamocortical
+(?i)turiya
 underperform
 Upaniṣad
 (?i)vairagya
@@ -60,4 +73,6 @@ vasana
 vasanas
 Vedantic
 Vec
+(?i)vritti
+(?i)vrittis
 (?i)vrtti
