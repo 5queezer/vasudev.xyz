@@ -1121,35 +1121,45 @@ a.tag:hover {
   }
 
   .page-chrome {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.75rem;
+    right: 0.75rem;
     border-radius: 999px;
     align-items: center;
     flex-direction: row;
-    padding: 0.35rem 0.75rem;
-    gap: 0.5rem;
-    transition: transform 0.3s ease;
+    flex-wrap: nowrap;
+    padding: 0.3rem 0.65rem;
+    gap: 0.4rem;
+    transition: top 0.3s ease;
   }
 
   .page-chrome.header-hidden {
-    transform: translateY(calc(-100% - 2rem));
+    top: calc(-100% - 2rem);
+  }
+
+  body {
+    padding-top: 4rem;
   }
 
   .brand-mark {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 
   .page-nav {
     width: auto;
     justify-content: flex-end;
-    gap: 0.2rem;
+    gap: 0.15rem;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .page-nav a,
   .lang-link {
     font-size: 0.7rem;
-    padding: 0.35rem 0.55rem;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
+    padding: 0.4rem 0.5rem;
+    white-space: nowrap;
   }
 
   .hero-panel,

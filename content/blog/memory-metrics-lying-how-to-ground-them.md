@@ -4,7 +4,6 @@ date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 description: "Memory consolidation looks great on dashboards. But if your metrics can improve without retrieval getting better, you're optimizing a detached proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 ---
 
 
