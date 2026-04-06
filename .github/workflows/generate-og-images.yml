@@ -63,12 +63,19 @@ jobs:
               # Resolve binary (og:image) conflicts by keeping our generated version
               conflicted=$(git diff --name-only --diff-filter=U || true)
               if [ -n "$conflicted" ]; then
-                echo "$conflicted" | while IFS= read -r f; do
-                  git checkout --theirs -- "$f"
-                  git add -- "$f"
-                done
-                GIT_EDITOR=true git rebase --continue && \
-                  git push origin HEAD:master && exit 0
+                resolved=true
+                while IFS= read -r f; do
+                  if ! git checkout --theirs -- "$f" || ! git add -- "$f"; then
+                    echo "Failed to resolve conflict in $f"
+                    resolved=false
+                    break
+                  fi
+                done <<< "$conflicted"
+
+                if $resolved; then
+                  GIT_EDITOR=true git rebase --continue && \
+                    git push origin HEAD:master && exit 0
+                fi
               fi
               git rebase --abort 2>/dev/null || true
             fi
