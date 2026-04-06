@@ -37,6 +37,33 @@ defaultContentLanguageInSubdir = false
     [markup.goldmark.renderer]
       unsafe = true
 
+[mediaTypes]
+  [mediaTypes."text/plain"]
+    suffixes = ["txt"]
+
+[outputFormats]
+  [outputFormats.llmstxt]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.llmstxtfull]
+    mediaType = "text/plain"
+    baseName = "llms-full"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.txtplain]
+    mediaType = "text/plain"
+    baseName = "index"
+    isPlainText = true
+    notAlternative = true
+    permalinkable = true
+
+[outputs]
+  home = ["html", "llmstxt", "llmstxtfull"]
+  section = ["html"]
+  page = ["html", "txtplain"]
+
 [params.giscus]
   repo = "5queezer/vasudev.xyz"
   repoID = ""

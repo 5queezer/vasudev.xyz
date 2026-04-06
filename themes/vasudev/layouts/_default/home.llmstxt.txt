@@ -1,0 +1,10 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+{{ .Site.BaseURL }}
+
+## Blog Posts
+
+{{ range where .Site.RegularPages "Section" "blog" }}{{ if eq .Language.Lang "en" }}{{ with .OutputFormats.Get "txtplain" }}- [{{ $.Title }}]({{ .Permalink }}): {{ $.Description }}
+{{ end }}{{ end }}{{ end }}

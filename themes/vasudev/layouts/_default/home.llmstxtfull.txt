@@ -1,0 +1,18 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.description }}
+
+{{ .Site.BaseURL }}
+
+{{ range where .Site.RegularPages "Section" "blog" }}{{ if eq .Language.Lang "en" }}---
+
+# {{ .Title }}
+
+> {{ .Description }}
+
+Date: {{ .Date.Format "2006-01-02" }}
+Tags: {{ delimit .Params.tags ", " }}
+URL: {{ .Permalink }}
+
+{{ .RawContent }}
+{{ end }}{{ end }}
