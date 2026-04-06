@@ -5,6 +5,7 @@ APO
 arXiv
 Birgitta
 autoencoders
+(?i)backpropagation
 Barbosa
 BM25
 Böckeler
@@ -15,6 +16,7 @@ cron
 (?i)deduplicates
 (?i)deduplication
 discriminations
+(?i)downscaling
 (?i)downselection
 Dream Engine
 Ebbinghaus
@@ -67,6 +69,7 @@ Sutras
 (?i)thalamocortical
 (?i)turiya
 underperform
+(?i)unvalidated
 Upaniṣad
 (?i)vairagya
 vasana

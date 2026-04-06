@@ -3,8 +3,11 @@ agents
 ai
 architecture
 benchmarks
+consolidation
+dream-engine
 hrafn
 llm
+llm-agents
 mcp
 mechanistic-interpretability
 memory
@@ -13,3 +16,4 @@ oauth
 rust
 security
 typescript
+vector-stores
