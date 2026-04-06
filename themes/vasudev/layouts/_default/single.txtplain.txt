@@ -1,0 +1,10 @@
+# {{ .Title }}
+
+> {{ .Description }}
+
+Date: {{ .Date.Format "2006-01-02" }}
+Author: {{ .Site.Params.author }}
+Tags: {{ delimit .Params.tags ", " }}
+URL: {{ .Permalink }}
+
+{{ .RawContent }}
