@@ -38,6 +38,23 @@
     }
   </script>
   {{ block "main" . }}{{ end }}
+  <script>
+    (function() {
+      var header = document.querySelector('.page-chrome');
+      if (!header) return;
+      var lastY = window.scrollY;
+      var threshold = 60;
+      window.addEventListener('scroll', function() {
+        var y = window.scrollY;
+        if (y > lastY && y > threshold) {
+          header.classList.add('header-hidden');
+        } else if (y < lastY) {
+          header.classList.remove('header-hidden');
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+  </script>
   {{ with .Site.Params.cfBeaconToken }}
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ . }}"}'></script>
   {{ end }}
