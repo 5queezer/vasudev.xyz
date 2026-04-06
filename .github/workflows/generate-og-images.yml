@@ -56,11 +56,29 @@ jobs:
 
           for attempt in 1 2 3; do
             git fetch origin master
-            if git rebase origin/master && git push origin HEAD:master; then
-              exit 0
-            fi
 
-            git rebase --abort || true
+            if git rebase origin/master; then
+              git push origin HEAD:master && exit 0
+            else
+              # Resolve binary (og:image) conflicts by keeping our generated version
+              conflicted=$(git diff --name-only --diff-filter=U || true)
+              if [ -n "$conflicted" ]; then
+                resolved=true
+                while IFS= read -r f; do
+                  if ! git checkout --theirs -- "$f" || ! git add -- "$f"; then
+                    echo "Failed to resolve conflict in $f"
+                    resolved=false
+                    break
+                  fi
+                done <<< "$conflicted"
+
+                if $resolved; then
+                  GIT_EDITOR=true git rebase --continue && \
+                    git push origin HEAD:master && exit 0
+                fi
+              fi
+              git rebase --abort 2>/dev/null || true
+            fi
 
             if [ "$attempt" -lt 3 ]; then
               echo "Push attempt $attempt failed; retrying on latest origin/master"
