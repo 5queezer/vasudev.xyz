@@ -66,9 +66,9 @@ defaultContentLanguageInSubdir = false
 
 [params.giscus]
   repo = "5queezer/vasudev.xyz"
-  repoID = ""
+  repoID = "R_kgDOLkjiMw"
   category = "Announcements"
-  categoryID = ""
+  categoryID = "DIC_kwDOLkjiM84C5UUx"
   mapping = "pathname"
   reactionsEnabled = "1"
   emitMetadata = "0"
