@@ -1,6 +1,6 @@
 ---
 name: blog-writer
-description: "Write technical blog posts for vasudev.xyz (Hugo, Markdown). Use this skill whenever Christian asks to write a blog post, article, write-up, or wants to document learnings from a PR, project, or technical decision. Also trigger when Christian says 'blog this', 'write this up', 'mach einen Post daraus', 'document this for the blog', or mentions publishing something on vasudev.xyz. Covers: extracting gotchas from PRs/code, opinion/architecture posts, structuring dual-audience posts (recruiters + dev community), SEO front matter, og:image, and concrete CTAs."
+description: "Write technical blog posts for vasudev.xyz (Hugo, Markdown). Use this skill whenever Christian asks to write a blog post, article, write-up, or wants to document learnings from a PR, project, or technical decision. Also trigger when Christian says 'blog this', 'write this up', 'write a hook post', 'LinkedIn post', 'promote this post', 'mach einen Post daraus', 'document this for the blog', or mentions publishing something on vasudev.xyz. Covers: extracting gotchas from PRs/code, opinion/architecture posts, LinkedIn hook posts for social discovery, structuring dual-audience posts (recruiters + dev community), SEO front matter, og:image, and concrete CTAs."
 ---
 
 # Blog Writer -- vasudev.xyz
@@ -43,7 +43,11 @@ Best for: documenting what broke, what was non-obvious, what tutorials skip.
 
 Best for: arguing a position, proposing an architectural shift, challenging conventional wisdom. The MCP post ("Stop Putting AI in Your Apps") is the reference example.
 
-Choose the type based on the source material. If Christian gives you a PR, default to Gotcha. If he gives you a thesis or a rant, default to Opinion.
+### Type 3: LinkedIn Hook Post
+
+Best for: driving social traffic to an existing deep post. Short (~300 words), opinion-forward, optimized for sharing and comments. Always links to the companion post. Can also stand alone as a hot take when no deep post exists yet.
+
+Choose the type based on the source material. If Christian gives you a PR, default to Gotcha. If he gives you a thesis or a rant, default to Opinion. If he says "write a hook post" or "LinkedIn post" or "promote this post," default to Hook. A Hook Post should usually be written after the deep post exists.
 
 ---
 
@@ -143,6 +147,59 @@ Same as Gotcha pattern: concrete, actionable, 1-2 sentences. Link to repo, PR, o
 
 ---
 
+## LinkedIn Hook Post Structure
+
+### 1. Title
+Format: `[Imperative verb] [thing]. [Consequence or inversion].`
+
+Examples:
+- "Stop Benchmarking Memory. Start Grounding It."
+- "Your Agent Framework Is a Liability. Here's the Exit."
+- "Delete Your AI Chat Window. Give the AI Your API Instead."
+
+Rules:
+- Under 60 characters (LinkedIn truncates aggressively on mobile).
+- "Stop X, Start Y" or "Your X is Y" patterns perform best.
+- Must take a position. Never a question, never a "how to."
+- The title alone should be shareable without the post body.
+
+### 2. Hook (2-3 sentences)
+Open with a concrete, personal, slightly confrontational observation. Not "I think X is bad" but "I built X. Then I measured it. The numbers said I was wrong."
+
+The hook must create tension the reader wants resolved.
+
+### 3. BLUF (Bold thesis, 1 line)
+Same pattern as Gotcha and Opinion posts. Under 20 words. This is the line people screenshot.
+
+### 4. Body (3-4 short paragraphs, ~200 words total)
+One argument. One example. One implication. No second argument. No nuance section. This is a spear, not a net.
+
+Key rules:
+- **One link to the deep post.** Place it where the reader wants proof. Anchor text should promise depth: "I wrote up the 7 gotchas" or "the full architecture is here."
+- **Name one specific product, tool, or RFC.** Vague hook posts die in the feed.
+- **No code snippets.** The deep post has the code. The hook post has the opinion.
+
+### 5. Comment Bait (closing question, 1-2 sentences)
+End with a direct question that invites disagreement or experience-sharing. Not "What do you think?" but a question with implied sides.
+
+Patterns that drive comments:
+- **Binary choice:** "Are you building AI into your app, or building your app into AI? Genuinely curious which side you're on."
+- **Experience request:** "What's the worst proxy metric you've seen a team optimize for months before someone measured the actual outcome?"
+- **Mild provocation:** "If your agent framework doesn't let you swap the LLM in one line, is it really a framework or just vendor lock-in with extra steps?"
+
+Rules:
+- Exactly one question. Two questions dilute engagement.
+- The question must be answerable from personal experience (not "is AI good?").
+- No "let me know in the comments." The question itself is the prompt.
+
+### 6. No CTA section
+Unlike Gotcha and Opinion posts, the Hook Post has no separate CTA. The in-body link to the deep post is the CTA. The comment-bait question is the engagement driver. Adding both would split attention.
+
+### 7. og:image
+Reuse the companion deep post's og:image (same `images` field). Do not create a separate image for the Hook Post.
+
+---
+
 ## SEO & Social Front Matter
 
 Every post must include these Hugo front matter fields:
@@ -233,6 +290,8 @@ Never say "this shows I can..." -- let the work speak. The structure itself is t
 - **No "stay tuned for part 2"** unless part 2 is already drafted.
 - **No stock photos or decorative AI images.** Diagrams or nothing.
 - **No passive footer links without CTA.** Tell the reader what to do, not just where to look.
+- **No Hook Posts longer than 400 words.** If you're adding nuance, you're writing an Opinion post. Restart.
+- **No Hook Posts without a link to a deep post** (unless Christian explicitly requests a standalone take).
 
 ---
 
@@ -244,6 +303,9 @@ Suggested series structure:
 1. **Gotchas post** (what broke, what you learned) -- highest engagement
 2. **Architecture/Opinion post** (why you designed it this way, or why the status quo is wrong) -- deepest signal
 3. **Vision post** (where this is going) -- broadest reach
+4. **LinkedIn Hook Post** (companion to any of the above) -- distribution layer, publish same day or within 48 hours of the deep post
+
+A Hook Post is not part of the intellectual series. It is the marketing for the series. Write one Hook Post per deep post. If a deep post gets no Hook Post, it relies entirely on organic search, which can take months.
 
 ---
 

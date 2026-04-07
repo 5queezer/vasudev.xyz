@@ -12,6 +12,7 @@ Barbosa
 Birgitta
 autoencoders
 (?i)backpropagation
+benchmarked
 BM25
 Böckeler
 chakras
