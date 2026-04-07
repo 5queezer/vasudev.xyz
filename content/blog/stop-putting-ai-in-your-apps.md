@@ -47,7 +47,7 @@ Try doing that with Airtable's AI chat box.
 
 Airtable's AI features are a walled garden. They work inside Airtable, with Airtable's model, on Airtable's terms. You can't swap the AI. You can't bring your own context. You can't extend it.
 
-NocoDB is open source, runs on Postgres, and now supports standard MCP authentication thanks to my recent [OAuth 2.1 PR](https://github.com/nocodb/nocodb/issues/13363). That means any MCP-compatible AI client can connect to it with proper OAuth flows, not API tokens copy-pasted from a settings page.
+NocoDB is open source, runs on Postgres, and now supports standard MCP authentication thanks to a recent OAuth 2.1 implementation. That means any MCP-compatible AI client can connect to it with proper OAuth flows, not API tokens copy-pasted from a settings page.
 
 The difference isn't cosmetic. It's architectural. With NocoDB + MCP, the AI layer is yours. You choose the model. You own the context. You decide what gets connected.
 
@@ -67,7 +67,7 @@ If you're building a product today, don't bolt an AI chat window onto your app. 
 
 The best tools in the MCP era won't be the ones with the fanciest built-in AI. They'll be the ones that expose clean MCP endpoints and get out of the way, like NocoDB does today and like Notion and Airtable eventually will have to.
 
-Want to see what this looks like in practice? I added [OAuth 2.1 MCP support to NocoDB](https://github.com/nocodb/nocodb/issues/13363), including RFC 8414 Discovery, RFC 7591 Dynamic Client Registration, and RFC 9728 Protected Resource Metadata. Browse [the fork](https://github.com/5queezer/nocodb), try connecting Claude to your own NocoDB instance, and see how the architecture feels when the AI sits on top instead of inside.
+Want to see what this looks like in practice? I added OAuth 2.1 MCP support to NocoDB, including RFC 8414 Discovery, RFC 7591 Dynamic Client Registration, and OAuth 2.0 Protected Resource Metadata. Browse [the fork](https://github.com/5queezer/nocodb), try connecting Claude to your own NocoDB instance, and see how the architecture feels when the AI sits on top instead of inside.
 
 ---
 

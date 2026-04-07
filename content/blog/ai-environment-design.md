@@ -73,7 +73,7 @@ Every retained mutation needs a rollback handle. Not as a safety feature. As a d
 
 ## What I Left Out
 
-**Self-modification of code.** Darwin-Gödel Machine-style self-editing works in sandboxed coding-agent settings with formal verifiers. For a general harness without those constraints, it is a Phase 4 concern, not because it is impossible, but because the prerequisite infrastructure (stable evaluator, rollback guarantees, narrow task scope) needs to be in place first.
+**Self-modification of code.** Self-editing works in sandboxed coding-agent settings with formal verifiers. For a general harness without those constraints, it is a Phase 4 concern, not because it is impossible, but because the prerequisite infrastructure (stable evaluator, rollback guarantees, narrow task scope) needs to be in place first.
 
 **Feature universality.** SAE features are model-specific and sometimes checkpoint-specific. Whether useful features transfer across model versions is an open research question. The harness should be designed to re-extract feature dictionaries on each base model update rather than assuming stability.
 

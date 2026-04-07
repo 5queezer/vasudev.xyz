@@ -25,7 +25,7 @@ When claude.ai connects to a custom MCP endpoint, it doesn't just POST to your U
 
 `GET /.well-known/oauth-authorization-server` returns the OAuth 2.0 Authorization Server Metadata (RFC 8414). It tells clients where to authorize, where to exchange tokens, and what grant types you support.
 
-`GET /.well-known/oauth-protected-resource` returns the Protected Resource Metadata (RFC 9728). It describes what resource this is, what scopes it needs, and where to find the authorization server.
+`GET /.well-known/oauth-protected-resource` returns the OAuth 2.0 Protected Resource Metadata. It describes what resource this is, what scopes it needs, and where to find the authorization server.
 
 Miss either one and claude.ai silently fails to connect. No error message, no retry. It just doesn't offer the "Connect" button. I lost an hour to this because the `oauth-protected-resource` endpoint wasn't in any tutorial I found. I only discovered it by reading the MCP auth spec directly.
 
