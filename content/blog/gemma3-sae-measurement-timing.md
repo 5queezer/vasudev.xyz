@@ -4,7 +4,9 @@ date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination detection fails. The answer: measurement timing must match behavior timing."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
 ---
+
 
 
 **Your measurement window determines what behaviors you can see. Sycophancy manifests during encoding. Hallucination manifests during generation. Use the wrong timing and your Cohen's d collapses.**
