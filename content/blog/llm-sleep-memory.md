@@ -4,7 +4,9 @@ date: 2026-04-06
 tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
 description: "I read 6 papers on biologically-inspired memory replay for LLM agents. Only 2 are worth your time if you're building, not publishing."
 images: ["/images/llm-sleep-memory-og.png"]
+images: ["/images/llm-sleep-memory-og.png"]
 ---
+
 
 
 Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
