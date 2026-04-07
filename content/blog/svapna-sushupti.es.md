@@ -1,106 +1,91 @@
 ---
-title: "Svapna o Sushupti: Lo Que Tres Tradiciones Dicen Sobre la Consolidación de la Memoria Offline"
+title: "Svapna o Sushupti: Lo que dicen tres tradiciones sobre la consolidación de la memoria offline"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
-description: "La neurociencia, los artículos recientes de IA y un antiguo texto en sánscrito convergen en la misma idea sobre la consolidación offline, pero discrepan en qué fase del sueño es la más importante."
+description: "La neurociencia,los artículos recientes de IA y un texto sánscrito antiguo convergen en la misma idea sobre la consolidación offline, pero discrepan sobre qué fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "4127f88d5158e952f1821fda17f80abe"
+images: ["/images/svapna-sushupti-og.png"]
+translationHash: "af34a37df1dbd297ce553b1591c10a31"
 ---
-[Mi última publicación](/blog/why-ai-agents-need-sleep/) sostenía que los agentes de IA necesitan dormir. Varias personas hicieron la pregunta obvia de seguimiento: ¿qué significa eso exactamente? ¿Es "dormir" solo una metáfora para ejecutar un cron job, o la analogía va más profundo?
+**Объединение сна ипамяти**
 
-Pasé una semana leyendo tres corpus de literatura que casi nunca se citan entre sí: artículos recientes sobre memoria en IA, neurociencia del sueño y el [Upanishad Mandukya](https://es.wikipedia.org/wiki/Upanishad_Mandukya). Convergen en la misma idea central sobre la consolidación offline. También ponen de manifiesto un desacuerdo que resulta ser la pregunta de diseño más importante en los sistemas de memoria de IA en este momento.
+[My last post](/blog/why-ai-agents-need-sleep/) утверждал, что ИИ‑агентам нужен сон. Нескольким людям задан следующий очевидный вопрос: что это значит на практике? Является ли «пробел» просто метафорой выполнения cron‑задачи, или аналогия глубже?
 
-**Las tres tradiciones coinciden en que el procesamiento offline es necesario. Ninguna de ellas se pone de acuerdo sobre si la recombinación o la disolución es la que hace el trabajo real.**
+Я провёл неделю, читая три почти не пересекающихся области литературы: недавние работы по памяти ИИ, нейробиологию сна и [Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad). Они сходятся на единой ключевой мысли о консолидации в офлайн‑режиме. Они также выявляют несоответствие, которое стало самым важным дизайн‑вопросом в системах памяти ИИ на данный момент.
 
----
+**Все три традиции согласны, что офлайн‑обработка необходима. Ни одна из них не соглашается, является ли реальной работой реконструкция или растворение.**
 
-## El panorama: tres tradiciones, un problema
+## Ландшафт: три традиции, одна проблема
 
-El problema que cada tradición intenta resolver es el mismo: ¿cómo hace un sistema que acumula experiencia durante la actividad de vigilia para retener lo que importa, descartar lo que no y seguir siendo funcional al día siguiente?
+Проблема, которую пытается решить каждая традиция, одинакова: как система, собирающая опыт в состоянии бодрствования, удерживает то, что важно, отбрасывает ненужное и остаётся функциональной завтра?
 
-La neurociencia lo denomina el problema de la consolidación. Los investigadores de IA lo plantean como olvido catastrófico o interferencia proactiva. El Upanishad Mandukya lo plantea como la relación entre [jagrat](https://es.wikipedia.org/wiki/Jagrat) (vigilia), [svapna](https://es.wikipedia.org/wiki/Svapna) (sueño onírico) y [sushupti](https://es.wikipedia.org/wiki/Sushupti) (sueño profundo). Diferentes vocabularios, un problema estructuralmente idéntico.
+Нейробиология называет это проблемой консолидации. У исследователей ИИ это формулируется как катастрофическое забывание или проактивное вмешательство. [Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad) описывает его как взаимосвязь между [jagrat](https://en.wikipedia.org/wiki/Jagrat) (пробуждение), [svapna](https://en.wikipedia.org/wiki/Svapna) (сновидение) и [sushupti](https://en.wikipedia.org/wiki/Sushupti) (глубокий сон). Разные термины, одинаковая по структуре проблема.
 
----
+## Слой 1: ИИ‑статьи
 
-## Capa 1: Los artículos de IA
+Несколько статей 2025 и 2026 годов делают аналогию сна явной, а не декоративной.
 
-Varios artículos de 2025 y 2026 hacen que la analogía del sueño sea explícita en lugar de decorativa.
+[SleepGate](https://arxiv.org/abs/2603.14517) (март 2026) вводит механизм пропускания (забывания) в KV‑кеш, разделяя фазу бодрствования и микро‑цикл сна. Основной вывод: ЛЛМ страдают от проактивного вмешательства, при котором более старый контекст активно ухудшает извлечение более нового информации, и никакое вмешательство, основанное на подсказке, этого не исправляет. В статье явно планируется обучение, похожее на сон, как следующий шаг, в котором модель генерирует собственный текст во время сна для отработки паттернов.
 
-[SleepGate](https://arxiv.org/abs/2603.14517) (marzo de 2026) introduce una compuerta de olvido en la caché KV que separa una fase de vigilia de un microciclo de sueño. El hallazgo principal: los LLM sufren de interferencia proactiva donde el contexto más antiguo degrada activamente la recuperación de información más nueva, y ninguna intervención basada en prompts soluciona esto. El artículo planea explícitamente un entrenamiento tipo sueño como siguiente paso, con el modelo generando su propio texto durante la fase de sueño para ensayar patrones.
+[LightMem](https://arxiv.org/abs/2510.18866) полностью отделяет консолидацию от вывода. Память обновляется в фоновой процедуре во время сна, которая выполняется между сеансами, достигая до 10,9 % прироста точности на [LongMemEval](https://arxiv.org/abs/2410.10813) при токен‑стоимости, в 117 раз меньшей, чем у онлайн‑консолидации. аргумент об эффективности сам по себе делает сильным аргумент в пользу паттерна с триггер‑шлюзом: консолидация в офлайн‑режиме, а не при каждом записи.
 
-[LightMem](https://arxiv.org/abs/2510.18866) desacopla por completo la consolidación de la inferencia. La memoria se actualiza en un paso en tiempo de sueño que se ejecuta entre sesiones, logrando hasta un 10,9 % de mejora en la precisión en [LongMemEval](https://arxiv.org/abs/2410.10813) con un costo de tokens 117 veces menor que la consolidación en línea. Solo el argumento de eficiencia justifica sólidamente el patrón de activación-compuerta: consolidar offline, no con cada escritura.
+Active Dreaming Memory (ADM) добавляет проверку контрфактности. Перед тем как закоммитить кандидатное правило в долгосрочную память, он моделирует правило на синтетических сценариях. Если проверка не проходит, правило не коммитится. ["Language Models Need Sleep"](https://openreview.net/forum?id=iiZy6xyVVE) делит задачу на консолидацию памяти (выделение короткосрочного в долгосрочное через RL) и «сновидение» (синтетический учебный курс, генерируемый RL). Обе статьи реализуют то, что по сути является генеративным воспроизведением в стиле REM.
 
-Active Dreaming Memory (ADM) agrega verificación contrafáctica. Antes de confirmar una regla candidata a la memoria a largo plazo, simula la regla frente a escenarios sintéticos. Si falla, no la confirma. ["Language Models Need Sleep"](https://openreview.net/forum?id=iiZy6xyVVE) divide el problema en Consolidación de Memoria (destilación de corto a largo plazo mediante RL) y Sueño Onírico (currículo sintético generado por RL). Ambos artículos implementan lo que equivale a un ensayo generativo al estilo [REM](https://es.wikipedia.org/wiki/Sueño_de_movimientos_oculares_rápidos).
+## Слой 2: НейробиологияВо время [NREM сна](https://en.wikipedia.org/wiki/Non-rapid_eye_movement_sleep) три колебания взаимодействуют в иерархическом порядке: медленные колебания в неокортексе, таламо‑корковые спиндлы и вихревые вспышки гиппокампа. Это тройное сопряжение приводит к воспроизведению памяти гиппокампа в неокортекс, постепенно перемещая воспоминания от быстрого обучения временного хранилища к медленно обучаемому постоянному хранилищу.
 
----
+REM‑сон делает что‑то своё. Последнее исследование ([Barbosa et al., 2025](https://doi.org/10.1016/j.isci.2025.113032)) показывает, что активность мозга во время REM несёт конкретную информацию о пред‑пробуждающих переживаниях. Однако глубинная causal связь тщательна: нейронное восстановление во время REM не коррелирует с сохранением памяти. Тем, что коррелирует, является глобальная мощность бета‑волн. REM может быть необходим для интеграции памяти, но не достаточен для её сохранения. Он пере‑организует, но NREM консолидирует.
 
-## Capa 2: La neurociencia
+Ни одна из них сама по себе достаточна. Двухфазная биологическая система не является лишней. Две фазы решают разные подпроблемы.
 
-Durante el [sueño NREM](https://es.wikipedia.org/wiki/Sueño_no_REM), tres oscilaciones interactúan en una jerarquía coordinada: oscilaciones lentas en la neocorteza, husos talamocorticales y ondas agudas-ripple del hipocampo. Este acoplamiento triple impulsa la reproducción de memorias del hipocampo hacia la neocorteza, trasladando gradualmente los recuerdos desde un almacenamiento temporal de aprendizaje rápido a un almacenamiento permanente de aprendizaje lento.
+Одно эмпирическое наблюдение: хотя консолидация на основе сна полностью подтверждена, роль сна как сознательного феномена (не как нейронный репликация) всё ещё оспаривается. Механизм — это репликация, а не нарратив.
 
-El sueño REM hace algo diferente. Trabajos recientes ([Barbosa et al., 2025](https://doi.org/10.1016/j.isci.2025.113032)) muestran que la actividad cerebral durante el REM transporta información específica sobre experiencias previas al sueño. Pero la narrativa causal es cautelosa: la reinstauración neuronal durante el REM no se correlaciona con la retención de la memoria. Lo que se correlaciona es la potencia beta global. El REM puede ser necesario para la integración de la memoria sin ser suficiente para la retención. Reorganiza, pero el NREM consolida.
+## Слой 3: [Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad) (ок. 500 г. до н.э. — 200 н.э.)
 
-Ninguno por sí solo es suficiente. El sistema biológico de dos fases no es redundante. Las dos fases resuelven subproblemas diferentes.
+[Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad) состоит из двенадцати стихов. Он описывает четыре состояния сознания, сопоставленных с слогом [AUM](https://en.wikipedia.org/wiki/Om).
 
-Una nota empírica: si bien la consolidación basada en el sueño está firmemente establecida, el papel del sueño onírico específicamente (como un estado fenomenológico consciente, no como replay neuronal) sigue siendo controvertido. El mecanismo es la reproducción, no la narrativa.
+**Jagrat** (пробуждение, A): сознание, направленное наружу через чувства. Это обычный вывод.
 
----
+**Svapna** (сновидение, U): сознание, направленное внутрь. В тексте это состояние называется [Taijasa](https://en.wikipedia.org/wiki/Taijasa) (светящееся), потому что осознание обрабатывает внутренние представления без внешнего ввода. Мозг в состоянии сна создаёт миры из [samskara](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) (воспоминаний), пере‑организует их без сенсорного опорения и выявляет паттерны, которые обычному восприятию ускользают. Это соответствует консолидации ЛЛМ: система изучает свои собственные содержимое памяти и синтезирует новые представления.
 
-## Capa 3: El Upanishad Mandukya (c. 500 a. C. a 200 d. C.)
+**Sushupti** (глубокий сон, M): полное погружение. Ни projections, ни модификаций. Все [samskaras](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) и [vasanas](https://en.wikipedia.org/wiki/Vasana) сходятся в один режим. Это не состояние непризнания как дефицита. Описывается как [anandamaya](https://en.wikipedia.org/wiki/Anandamaya_kosha) (составленное из счастья), потому что когнитивное устройство освободилось от всех активных построений. Вмешательство прекратилось. Система не обрабатывает. Она очищается.
 
-El Upanishad Mandukya consta de doce versos. Describe cuatro estados de conciencia mapeados a la sílaba [AUM](https://es.wikipedia.org/wiki/Om).
+## Открытый вопрос: Svapna или Sushupti?
 
-**Jagrat** (vigilia, A): conciencia dirigida hacia afuera a través de los sentidos. Esto es inferencia normal.
+Именно здесь все три традиции обнажают одну и ту же нерешённую напряжённость.
 
-**Svapna** (sueño, U): conciencia dirigida hacia adentro. El texto llama a este estado [Taijasa](https://es.wikipedia.org/wiki/Taijasa), el luminoso, porque la conciencia procesa representaciones internas sin entrada externa. La mente en estado de sueño crea mundos a partir de [samskara](https://es.wikipedia.org/wiki/Samskara_(Indian_philosophy)) (impresiones de memoria), los reorganiza sin anclaje sensorial y hace emerger patrones que la percepción de vigilia pasa por alto. Esto se mapea a la consolidación impulsada por LLM: el sistema examina sus propios contenidos de memoria y sintetiza nuevas representaciones.
+В нейробиологии: NREM медленный сон (близок к sushupti, глубокий, относительно безсновидный и доминируемый синаптической деселекцией) против REM (близок к svapna, активный и интегрирующий память). И гипотеза о домашстазе синапсов, и активная консолидация систем имеют эмпирическую поддержку.
 
-**Sushupti** (sueño profundo, M): absorción completa. Sin proyección, sin modificación. Todos los [samskaras](https://es.wikipedia.org/wiki/Samskara_(Indian_philosophy)) y [vasanas](https://es.wikipedia.org/wiki/Vasana) convergen en un solo modo. Esto no es inconsciencia como deficiencia. Se describe como [anandamaya](https://es.wikipedia.org/wiki/Anandamaya_kosha) (compuesto de dicha) porque el aparato cognitivo ha liberado toda construcción activa. La interferencia se ha detenido. El sistema no está procesando. Está limpiando.
+В ИИ‑статьях: LightMem и SleepGate сосредотачиваются на выборочном забывании и решении конфликтов, что соответствует операциям в стиле sushupti. ADM и «Language Models Need Sleep» фокусируются на генерирующей отладочной сессии и синтетическом учебном курсе, что соответствует операциям в стиле svapna. Ни одна из них напрямую не сравнивает их.
 
----
+В ведическом описании: sushupti описывается как более глубокое и ближе к первоначальному состоянию, чем svapna. Состояние сна более активно, но также дальше от основной реальности. Глубокий сон делает меньше, и именно поэтому восстанавливает больше.
 
-## La pregunta abierta: ¿Svapna o Sushupti?
+Одно эмпирическое наблюдение: хотя консолидация на основе сна полностью подтверждена, роль сна как сознательного феномена (не как нейронный репликация) всё ещё оспаривается. Механизм — это репликация, а не нарратив.
 
-Aquí es donde las tres tradiciones ponen de manifiesto la misma tensión no resuelta.
+Данные benchmark для разрешения svapna против sushupti в памяти ИИ‑агентов находятся в процессе. Когда они появятся, я напишу продолжение. Пока три традиции, простирающиеся на тысячелетия независимого развития, согласны, что офлайн‑обработка не опциональна. На их несоответствиях и идёт инструктаж.
 
-En neurociencia: el sueño de ondas lentas NREM (cercano a sushupti, profundo, relativamente sin sueños y dominado por el downselection sináptico) frente al REM (cercano a svapna, activo e integrador de memoria). Tanto la hipótesis de la homeostasis sináptica como la consolidación activa de sistemas cuentan con respaldo empírico.
+Прочитайте [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) для текущей реализации. Адаптер GoodAI LTM benchmark находится в [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter) на ветке feature/muninn-adapter.
 
-En los artículos de IA: LightMem y SleepGate se centran en el olvido selectivo y la resolución de interferencias, que son operaciones en modo sushupti. ADM y "Language Models Need Sleep" se centran en el ensayo generativo y el currículo sintético, que son operaciones en modo svapna. Ninguno compara directamente ambos enfoques.
+## Таблица синтеза
 
-En el marco védico: sushupti se describe como más profundo y más cercano al estado base que svapna. El estado de sueño es más activo, pero también está más alejado de la realidad subyacente. El sueño profundo hace menos, y esa puede ser precisamente la razón por la que restaura más.
-
-[MemoryBench](https://arxiv.org/abs/2510.17281) midió esto empíricamente en sistemas de memoria de IA y encontró que la recombinación de LLM en modo svapna puede degradar la precisión de recuperación en comparación con RAG ingenuo. Los sistemas que obtuvieron mejores resultados a menudo hacían algo más cercano a sushupti: decaimiento selectivo, poda de entradas de baja confianza, reducción de interferencias. No síntesis. Sustracción.
-
-Esta es la hipótesis que vale la pena probar: **para la memoria de agentes, la disolución supera a la recombinación.** El [Dream Engine](https://github.com/scrypster/muninndb/pull/367) que estoy construyendo implementa ambos (Fase 1: replay hebbiano, Fase 2b: consolidación LLM, Fase 4: estabilidad bidireccional), pero aún no existen los datos de benchmark para determinar qué fase contribuye más. Ese experimento se está ejecutando actualmente.
-
----
-
-## La tabla de síntesis
-
-| Capa | Jagrat (Vigilia) | Svapna (Sueño) | Sushupti (Sueño profundo) |
+| Слой | Jagrat (Waking) | Svapna (Dreaming) | Sushupti (Deep Sleep) |
 |---|---|---|---|
-| **Védica** | Percepción externa a través de los sentidos | Reorganización interna, procesamiento de samskaras | Absorción sin forma, todas las vrittis disueltas |
-| **Neurociencia** | Codificación (hipocampo, corteza sensorial) | Replay REM, integración, transformación | Onda lenta NREM, downselection sináptico, homeostasis |
-| **Sistemas de IA** | Inferencia normal, llamadas a herramientas, escrituras | Consolidación LLM, síntesis de clústeres, diario de sueños | Decaimiento, poda, exclusión de engramas archivados, resolución de interferencias |
+| **Ведическая** | Внешнее восприятие через органы | Внутренняя пере‑организация, обработка samskara | Полное погружение, все vrittis исчезают |
+| **Нейробиология** | Внешнее восприятие через органы | Внутренняя пере‑организация, обработка samskara | Полное погружение, все vrittis исчезают |
+| **ИИ‑системы** | Обычный вывод, вызовы инструмента, записи | Консолидация ЛЛМ, кластерная синтеза, журнал снов | Устаревание, удаление, исключение архивированных энгроу, разрешение конфликтов |
 
----
+## Что я исключил
 
-## Lo que dejé fuera
+**Turiya**. Четвёртое состояние в рамках [Mandukya Upanishad], чистое сознание, лежащее в основании остальных трёх, пока не имеет очевидного соответствия в ИИ. Наиболее близкое сопоставление — это сам набор benchmark: внешний наблюдатель, который измеряет производительность агента во всех трёх операционных состояниях, но не является частью ни одного из них.
 
-**[Turiya](https://es.wikipedia.org/wiki/Turiya).** El cuarto estado en el marco de Mandukya, la conciencia pura subyacente a los otros tres, aún no tiene un correlato obvio en IA. El mapeo más cercano es el propio harness de benchmark: algo externo que observa el rendimiento del agente en los tres estados operativos sin ser parte de ninguno de ellos.
+**Dreams as causally necessary vs. epiphenomenal**. Нейронный репликация во время сна — это механизм. Сновидение как субъективный опыт может или не может быть причинно связан с результатами консолидации. Аналогия в ИИ к «Dream Journal» (Фаза 6 в Dream Engine) — это человекочитаемый художественный артефакт консолидации, а не сам механизм.
 
-**Los sueños como causalmente necesarios vs. epifenomenales.** El replay neuronal durante el sueño es el mecanismo. El sueño onírico como experiencia subjetiva puede o no estar causalmente relacionado con los resultados de consolidación. La analogía en IA para el Diario de Sueños (Fase 6 en Dream Engine) es el artefacto narrativo legible por humanos de la consolidación, no el mecanismo en sí mismo.
+Cross‑agent sleep. Если несколько агентов используют общий backend памяти (MuninnDB multi‑tenant), как выглядит сон, когда агенты находятся в разных операционных фазах одновременно? Эта тема не рассматривается в любой из трёх традиций.
 
-**Sueño entre agentes.** Si múltiples agentes comparten un backend de memoria (MuninnDB multiinquilino), ¿cómo se ve el sueño cuando los agentes están en fases operativas diferentes simultáneamente? Ninguna de las tres tradiciones aborda esto.
+Данные benchmark для разрешения svapna против sushupti в памяти ИИ‑агентов находятся в процессе. Когда они появятся, я напишу продолжение. Пока три традиции, простирающиеся на тысячелетия независимого развития, согласны, что офлайн‑обработка не опциональна. На их несоответствиях и идёт инструктаж.
 
----
+Прочитайте [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) для текущей реализации. Адаптер GoodAI LTM benchmark находится в [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter) на ветке feature/muninn-adapter.
 
-Los datos de benchmark para resolver svapna vs. sushupti para la memoria de agentes de IA están en progreso. Cuando existan, escribiré la continuación. Por ahora: tres tradiciones que abarcan milenios de desarrollo independiente coinciden en que el procesamiento offline no es opcional. Sus desacuerdos son instructivos.
+**Обложка этой статьи была сгенерирована ИИ.**
 
-Consulta el [PR de Dream Engine](https://github.com/scrypster/muninndb/pull/367) para ver la implementación actual. El adaptador de benchmark GoodAI LTM se encuentra en [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
-
----
-
-*Christian Pojoni desarrolla [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes ligero en Rust, y contribuye a [MuninnDB](https://github.com/scrypster/muninndb). Más información en [vasudev.xyz](https://vasudev.xyz).*
-
-*La imagen de portada de esta publicación fue generada por IA.*
+*Christian Pojoni создаёт [Hrafn](https://github.com/5queezer/hrafn), лёгкий рантайм агента на Rust, и вносит вклад в [MuninnDB](https://github.com/scrypster/muninndb). Подробнее на [vasudev.xyz](https://vasudev.xyz).*

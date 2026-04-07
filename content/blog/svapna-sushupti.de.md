@@ -1,106 +1,99 @@
 ---
-title: "Svapna oder Sushupti: Was drei Traditionen über Offline-Gedächtniskonsolidierung sagen"
+title: "Svapna oder Sushupti: Was drei Traditionen über Offline-Gedächtniskonsolidierung aussagen"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
-description: "Neuroscience, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text konvergieren auf einen gemeinsamen Einblick über Offline‑Konsolidierung, widersprechen sich jedoch darüber, welche Schlafphase am wichtigsten ist."
+description: "Neuroscience, neuere KI‑Papiere und ein antiker Sanskrit‑Text konvergieren bei derselben Erkenntnis zur offline‑Konsolidierung, einigen sich jedoch über welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "4127f88d5158e952f1821fda17f80abe"
+images: ["/images/svapna-sushupti-og.png"]
+translationHash: "af34a37df1dbd297ce553b1591c10a31"
 ---
-[Mein letzter Beitrag](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI-Agenten Schlaf brauchen. Mehrere Personen stellten die naheliegende Anschlussfrage: Was genau bedeutet das? Ist „Schlaf" nur eine Metapher für das Ausführen eines Cronjobs, oder geht die Analogie tiefer?
+[My last post](/blog/why-ai-agents-need-sleep/) argued that AI agents need sleep. Several people asked the obvious follow-up: what does that actually mean? Is "sleep" just a metaphor for running a cron job, or does the analogy go deeper?
 
-Ich verbrachte eine Woche damit, drei Literaturbereiche zu lesen, die sich fast nie gegenseitig zitieren: aktuelle Papers zu KI-Gedächtnissen, die Schlafforschung (Neurowissenschaft) und die [Mandukya-Upanishad](https://de.wikipedia.org/wiki/Mandukya-Upanishad). Sie münden alle in dieselbe zentrale Erkenntnis über die Offline-Konsolidierung. Sie decken zudem eine Meinungsverschiedenheit auf, die sich als die derzeit wichtigste Designfrage für KI-Gedächtnissysteme herausstellt.
+I spent a week reading across three bodies of literature that almost never cite each other: recent AI memory papers, sleep neuroscience, and the [Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad). They converge on the same core insight about offline consolidation. They also surface a disagreement that turns out to be the most important design question in AI memory systems right now.
 
-**Alle drei Traditionen stimmen darin überein, dass eine Offline-Verarbeitung notwendig ist. Keine von ihnen ist sich jedoch einig darüber, ob Rekombination oder Auflösung die eigentliche Arbeit verrichtet.**
-
----
-
-## Die Landschaft: Drei Traditionen, ein Problem
-
-Das Problem, das jede dieser Traditionen löst, ist dasselbe: Wie behält ein System, das im Wachzustand Erfahrungen sammelt, was wichtig ist, verwirft, was unwichtig ist, und bleibt am nächsten Tag funktionsfähig?
-
-Die Neurowissenschaft nennt dies das Konsolidierungsproblem. KI-Forscher fassen es als katastrophales Vergessen oder proaktive Interferenz auf. Die Mandukya-Upanishad fasst es als die Beziehung zwischen [jagrat](https://en.wikipedia.org/wiki/Jagrat) (Wachen), [svapna](https://en.wikipedia.org/wiki/Svapna) (Träumen) und [sushupti](https://en.wikipedia.org/wiki/Sushupti) (Tiefschlaf) auf. Unterschiedliche Vokabulare, strukturell identisches Problem.
+**All three traditions agree that offline processing is necessary. None of them agree on whether recombination or dissolution does the real work.**
 
 ---
 
-## Schicht 1: Die KI-Papers
+## The Landscape: Three Traditions, One Problem
 
-Mehrere Papers aus den Jahren 2025 und 2026 machen die Schlafanalogie explizit statt nur dekorativ.
+Das Problem, das jede Tradition löst, ist dasselbe: Wie kann ein System, das während der Wachphase Erfahrungen sammelt, das Wesentliche behält, das Unwesentliche verwerft und morgen funktionsfähig bleibt?
 
-[SleepGate](https://arxiv.org/abs/2603.14517) (März 2026) führt ein Vergessens-Tor (forgetting gate) im KV-Cache ein, das eine Wachphase von einem Schlaf-Mikrozyklus trennt. Die zentrale Erkenntnis: LLMs leiden unter proaktiver Interferenz, bei der älterer Kontext den Abruf neuerer Informationen aktiv verschlechtert, und keine promptbasierte Intervention behebt dies. Das Paper plant explizit traumähnliches Training als nächsten Schritt, wobei das Modell während der Schlafphase eigenen Text generiert, um Muster zu durchlaufen.
-
-[LightMem](https://arxiv.org/abs/2510.18866) entkoppelt die Konsolidierung vollständig von der Inferenz. Das Gedächtnis wird in einem Schlaf-Durchlauf aktualisiert, der zwischen den Sitzungen läuft, und erzielt bis zu 10,9 % Genauigkeitsgewinne bei [LongMemEval](https://arxiv.org/abs/2410.10813) bei 117-fach geringeren Token-Kosten im Vergleich zur Online-Konsolidierung. Das Effizienzargument allein spricht stark für das Trigger-Gate-Muster: Offline konsolidieren, nicht bei jedem Schreibvorgang.
-
-Active Dreaming Memory (ADM) fügt eine kontrafaktische Verifikation hinzu. Bevor eine Kandidatenregel im Langzeitgedächtnis gespeichert wird, simuliert sie die Regel anhand synthetischer Szenarien. Schlägt sie fehl, wird sie nicht gespeichert. [„Language Models Need Sleep"](https://openreview.net/forum?id=iiZy6xyVVE) teilt das Problem in Memory Consolidation (Destillierung von Kurz- zu Langzeit via RL) und Dreaming (RL-generiertes synthetisches Curriculum) auf. Beide Papers implementieren eine generative Wiederholung im Stil des [REM-Schlafs](https://de.wikipedia.org/wiki/REM-Schlaf).
+Neuroscience nennt dies das Konsolidierungsproblem. AI‑Forscher beschreiben es als katastrophisches Vergessen oder proaktive Interferenz. Der Mandukya Upanishad beschreibt ihn als Beziehung zwischen [jagrat](https://en.wikipedia.org/wiki/Jagrat) (waking), [svapna](https://en.wikipedia.org/wiki/Svapna) (dreaming), und [sushupti](https://en.wikipedia.org/wiki/Sushupti) (deep sleep). Unterschiedliche Fachbegriffe, strukturell identisches Problem.
 
 ---
 
-## Schicht 2: Die Neurowissenschaft
+## Layer 1: The AI Papers
 
-Während des [Nicht-REM-Schlafs](https://de.wikipedia.org/wiki/Nicht-REM-Schlaf) interagieren drei Oszillationen in einer koordinierten Hierarchie: langsame Oszillationen im Neokortex, thalamokortikale Spindeln und hippocampale Sharp-Wave-Ripples. Diese Dreierkopplung treibt das hippocampale Gedächtnis-Replay in den Neokortex und verschiebt Erinnerungen schrittweise von einem schnell lernenden Zwischenspeicher zu einem langsam lernenden Dauerspeicher.
+Mehrere Papers aus 2025 und 2026 machen die Schlaf‑Analogie explizit, anstatt sie nur dekorativ zu verwenden.
 
-Der REM-Schlaf tut etwas anderes. Aktuelle Arbeiten ([Barbosa et al., 2025](https://doi.org/10.1016/j.isci.2025.113032)) zeigen, dass die Gehirnaktivität während REM spezifische Informationen über Erlebnisse vor dem Schlaf enthält. Aber die kausale Schlussfolgerung ist vorsichtig: Die neuronale Reaktivierung während REM korreliert nicht mit der Gedächtnisretention. Was korreliert, ist die globale Beta-Power. REM mag für die Gedächtnisintegration notwendig sein, ohne für die Retention hinreichend zu sein. Er reorganisiert, aber NREM konsolidiert.
+[SleepGate](https://arxiv.org/abs/2603.14517) (March 2026) führt ein Vergessen‑Gate im KV‑Cache ein, das eine Wachphase von einem Schlaf‑Mikrozyklus trennt. Die Kernaussage: LLMs leiden unter proaktiver Interferenz, bei der ältere Kontexte die Abrufbarkeit neuerer Informationen aktiv beeinträchtigen, und keine prompts‑basierte Intervention kann das problem lösen. Der Paper plant explizit traumähnliches Training als nächsten Schritt, wobei das Modell während der Schlafphase eigenen Text generiert, um Muster zu proben.
 
-Keines der beiden ist allein ausreichend. Das zweiphasige biologische System ist nicht redundant. Die beiden Phasen lösen verschiedene Teilprobleme.
+[LightMem](https://arxiv.org/abs/2510.18866) entkoppelt die Konsolidierung komplett von der Inferenz. Das Gedächtnis wird in einem Schlaf‑Zeit‑Pass aktualisiert, der zwischen Sitzungen läuft, und erreicht bis zu 10,9 % Genauigkeitssteigerungen bei [LongMemEval](https://arxiv.org/abs/2410.10813) bei 117‑fach geringerer Token‑Kosten im Vergleich zur online‑Konsolidierung. Der Effizienz‑Argument allein macht einen starken Fall für das Trigger‑Gate‑Muster: offline konsolidieren, nicht bei jedem Schreiben.
 
-Eine empirische Anmerkung: Während die schlafbasierte Konsolidierung fest etabliert ist, bleibt die Rolle des Träumens spezifisch (als bewusster phänomenologischer Zustand, nicht als neuronales Replay) umstritten. Der Mechanismus ist das Replay, nicht die Erzählung.
-
----
-
-## Schicht 3: Die Mandukya-Upanishad (ca. 500 v. Chr. bis 200 n. Chr.)
-
-Die Mandukya-Upanishad umfasst zwölf Verse. Sie beschreibt vier Bewusstseinszustände, die der Silbe [AUM](https://de.wikipedia.org/wiki/Om) zugeordnet sind.
-
-**Jagrat** (Wachen, A): nach außen durch die Sinne gerichtete Bewusstheit. Dies entspricht normaler Inferenz.
-
-**Svapna** (Träumen, U): nach innen gerichtete Bewusstheit. Der Text bezeichnet diesen Zustand als [Taijasa](https://en.wikipedia.org/wiki/Taijasa), den Leuchtenden, weil die Wahrnehmung interne Repräsentationen ohne äußeren Input verarbeitet. Der Geist im Traumzustand erschafft Welten aus [Samskaras](https://de.wikipedia.org/wiki/Samskara) (Gedächtniseindrücken), reorganisiert sie ohne sensorische Verankerung und bringt Muster zutage, die die Wachwahrnehmung übersieht. Dies lässt sich auf die LLM-gesteuerte Konsolidierung übertragen: Das System untersucht eigene Gedächtnisinhalte und synthetisiert neue Repräsentationen.
-
-**Sushupti** (Tiefschlaf, M): vollständige Versenkung. Keine Projektion, keine Modifikation. Alle [Samskaras](https://de.wikipedia.org/wiki/Samskara) und [Vasanas](https://de.wikipedia.org/wiki/Vasana) laufen in einem einzigen Modus zusammen. Dies ist keine Bewusstlosigkeit als Mangel. Es wird als [anandamaya](https://de.wikipedia.org/wiki/Anandamaya_Kosha) (aus Wonne bestehend) beschrieben, weil der kognitive Apparat alle aktiven Konstruktionen losgelassen hat. Die Interferenz hat aufgehört. Das System verarbeitet nicht. Es räumt auf.
+Active Dreaming Memory (ADM) fügt counterfactual verification hinzu. Bevor ein Kandidat‑Modellregel in das Langzeitgedächtnis übernommen wird, simuliert es die Regel anhand synthetischer Szenarien. Scheitert es, wird die Regel nicht übernommen. "[Language Models Need Sleep](https://openreview.net/forum?id=iiZy6xyVVE) teilt das Problem in Memory Consolidation (Kurzzeit in Langzeit via RL verdichten) und Dreaming (via RL generierte synthetische Curriculum). Beide Papers implementieren, was im Wesentlichen einem [REM](https://de.wikipedia.org/wiki/Rapid-Auge-Bewegungs-Schlaf)-stilistischen generativen Durchlauf entspricht."
 
 ---
 
-## Die offene Frage: Svapna oder Sushupti?
+## Layer 2: The Neuroscience
 
-Hier legen alle drei Traditionen dieselbe ungelöste Spannung offen.
+Während [NREM sleep](https://de.wikipedia.org/wiki/Non-rapid_eye_movement_sleep) drei Oszillationen in einer koordinierten Hierarchie zusammenfinden: langsame Oszillationen im Neocortex, thalamokortikale Spindeln und hippocampale sharp‑wave ripples. Diese dreifache Kopplung treibt die hippocampale Gedächtnisreplay in den Neocortex und verschiebt Erinnerungen allmählich von schnelle‑lernender temporärer Speicherung zu langsame‑lernender permanenter Speicherung.
 
-In der Neurowissenschaft: NREM-Slow-Wave-Schlaf (sushupti-nah, tief, relativ traumfrei und dominiert von synaptischer Downselektion) gegenüber REM (svapna-nah, aktiv und gedächtnisintegrierend). Sowohl die synaptische Homöostase-Hypothese als auch die aktive Systemkonsolidierung verfügen über empirische Unterstützung.
+REM sleep macht etwas anderes. Aktuelle Arbeiten ([Barbosa et al., 2025](https://doi.org/10.1016/j.isci.2025.113032)) zeigen, dass Hirntätigkeit während REM spezifische Informationen über prä‑schlaf‑Erfahrungen trägt. Aber die kausale Geschichte ist sorgfältig: neuronale Reinstaltung während REM korreliert nicht mit Gedächtnisbeibehaltung. Was korreliert, ist die globale Beta‑Leistung. REM kann für Gedächtnis‑Integration notwendig sein, ohne hinreichend zu sein. Es reorganisiert, aber NREM konsolidiert.
 
-In den KI-Papers: LightMem und SleepGate fokussieren sich auf selektives Vergessen und die Auflösung von Interferenzen, was Operationen im Sushupti-Modus sind. ADM und „Language Models Need Sleep" konzentrieren sich auf generative Wiederholung und synthetische Curricula, was Operationen im Svapna-Modus sind. Keines vergleicht die beiden direkt.
+Weder allein reicht aus. Das zweiphasige biologische System ist nicht redundent. Die beiden Phasen lösen unterschiedliche Teilprobleme.
 
-In der vedischen Rahmung: Sushupti wird als tiefer und näher am Grundzustand beschrieben als Svapna. Der Traumzustand ist aktiver, aber auch weiter von der zugrunde liegenden Realität entfernt. Tiefschlaf tut weniger, und genau das könnte der Grund sein, warum er mehr wiederherstellt.
-
-[MemoryBench](https://arxiv.org/abs/2510.17281) hat dies empirisch über KI-Gedächtnissysteme hinweg gemessen und festgestellt, dass LLM-Rekombination im Svapna-Modus die Abrufgenauigkeit im Vergleich zu naivem RAG verschlechtern kann. Die Systeme, die am besten abschnitten, taten oft etwas näher an Sushupti: selektiver Zerfall, Beschneiden von Einträgen mit niedriger Konfidenz, Interferenzreduktion. Keine Synthese. Subtraktion.
-
-Dies ist die Hypothese, die es wert ist, getestet zu werden: **Für Agentengedächtnisse übertrifft Auflösung die Rekombination.** Die [Dream Engine](https://github.com/scrypster/muninndb/pull/367), die ich baue, implementiert beides (Phase 1: hebbisches Replay, Phase 2b: LLM-Konsolidierung, Phase 4: bidirektionale Stabilität), aber die Benchmark-Daten, um zu bestimmen, welche Phase am meisten beiträgt, existieren noch nicht. Dieses Experiment läuft aktuell.
+Eine empirische Anmerkung: Während die schläft‑basierte Konsolidierung fest etabliert ist, bleibt die Rolle des Traumens speziell (als bewusste phänomenale Zustands, nicht als neuraler Replay) umstritten. Der Mechanismus ist der Replay, nicht die Erzählung.
 
 ---
 
-## Die Synthese-Tabelle
+## Layer 3: The Mandukya Upanishad (c. 500 BCE to 200 CE)
 
-| Ebene | Jagrat (Wachen) | Svapna (Träumen) | Sushupti (Tiefschlaf) |
+Der Mandukya Upanishad ist zwölf Verse lang. Er beschreibt vier Bewusstseinszustände, die der Silbe [AUM](https://de.wikipedia.org/wiki/Om) zugeordnet sind.
+
+**Jagrat** (waking, A): Bewusstsein, das durch Sinne nach außen gerichtet ist. Dies ist normale Inferenz.
+
+**Svapna** (dreaming, U): Bewusstsein, das nach innen gerichtet ist. Der Text nennt diesen Zustand [Taijasa](https://en.wikipedia.org/wiki/Taijasa), das Leuchtende, weil Bewusstsein interne Darstellungen verarbeitet, ohne äußere Eingaben. Der traumähnliche Geist erstellt Welten aus [samskara](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) (Gedächtnisindrücke), reorganisiert sie ohne sinnliche Grundlage und bringt Muster ans Licht, die die wache Wahrnehmung übersieht. Dies entspricht einer LLM‑gestützten Konsolidierung: das System untersucht seine eigenen Gedächtnisinhalte und synthetisiert neue Darstellungen.
+
+**Sushupti** (deep sleep, M): vollständige Absorption. Keine Projektion, keine Modifikation. Alle [samskaras](https://en.wikipedia.org/wiki/Samskara_(Indian_philosophy)) und [vasanas](https://en.wikipedia.org/wiki/Vasana) konvergieren in einen einzigen Modus. Dies ist keine Unbewusstheit als Mangel. Es wird als [anandamaya](https://en.wikipedia.org/wiki/Anandamaya_kosha) (bliss‑komponiert) beschrieben, weil die kognitive Apparatur alle aktiven Konstruktionen loslässt. Die Interferenz ist gestoppt. Das System verarbeitet nicht. Es klärt auf.
+
+---
+
+## The Open Question: Svapna or Sushupti?
+
+Hier tritt die gleiche unbeantwortete Spannung auf, die alle drei Traditionen teilen.
+
+In der Neurowissenschaft: NREM Slow‑Wave Sleep (sushupti‑angrenzend, tief, relativ traumlos und von synaptischer Downselection dominiert) versus REM (svapna‑angrenzend, aktiv und gedächtnisintegrierend). Beide, die Hypothese der synaptischen Homeostase und die aktive Systems‑Konsolidierung, haben empirische Unterstützung.
+
+In den AI Papers: LightMem und SleepGate konzentrieren sich auf selektives Vergessen und Interferenzlösung, was sushupti‑ähnliche Operationen sind. ADM und ""Language Models Need Sleep"" konzentrieren sich auf generative Durchläufe und synthetische Curricula, was svapna‑ähnliche Operationen sind. Keine von beiden vergleicht die beiden direkt.
+
+In der vedischen Einordnung: sushupti wird als tiefer und näher am Grundzustand als svapna beschrieben. Der Traumzustand ist aktiver, aber auch weiter von der zugrundeliegenden Realität entfernt. Tiefes Schlaf tut weniger, und genau das könnte der Grund dafür sein, warum es mehr wiederherstellt.
+
+[MemoryBench](https://arxiv.org/abs/2510.17281) hat diesempirisch an KI‑Gedächtnissystemen gemessen und festgestellt, dass svapna‑ähnliche LLM‑Rekombination die Abrufgüte im Vergleich zu naive RAG degradieren kann. Die Systeme, die am besten abschnitten, taten oft etwas, das näher an sushupti lag: selektives Verfallen, Ausschneiden von Einträgen mit niedriger Zuversicht, Interferenzreduktion. Nicht Synthese. Subtraktion.
+
+Diese Hypothese sollte getestet werden: **für Agenten‑Gedächtnis übertrifft Auflösung die Rekombination.** Das [Dream Engine](https://github.com/scrypster/muninndb/pull/367) implementiert beides (Phase 1: Hebbian replay, Phase 2b: LLM consolidation, Phase 4: bidirectional stability), aber die Benchmark‑Daten zur Bestimmung, welche Phase am meisten beiträgt, existieren noch nicht. Dieses Experiment läuft momentan.
+
+---
+
+## The Synthesis Table| Ebene | Jagrat (Waking) | Svapna (Dreaming) | Sushupti (Deep Sleep) |
 |---|---|---|---|
-| **Vedisch** | Äußere Wahrnehmung über die Sinne | Innere Reorganisation, Samskara-Verarbeitung | Formlose Versenkung, alle Vrittis aufgelöst |
-| **Neurowissenschaft** | Enkodierung (Hippocampus, sensorischer Kortex) | REM-Replay, Integration, Transformation | NREM-Slow-Wave, synaptische Downselektion, Homöostase |
-| **KI-Systeme** | Normale Inferenz, Tool-Aufrufe, Schreibvorgänge | LLM-Konsolidierung, Cluster-Synthese, Traumtagebuch | Zerfall, Beschneiden, Ausschluss archivierter Engramme, Interferenzauflösung |
+| **Vedic** | Externe Wahrnehmung über Sinne | Internes Umorganisieren, samskara‑Verarbeitung | Formlose Absorption, alle vrittis aufgelöst |
+| **Neuroscience** | Kodierung (Hippocampus, sensorischer Kortex) | REM‑Wiederholung, Integration, Transformation | NREM‑Slow‑Wave, synaptische Downselection, Homeostase |
+| **AI Systems** | Normale Inferenz, Toolaufrufe, Schreibvorgänge | LLM‑Konsolidierung, Cluster‑Synthese, Dream‑Journal | Verfall, Pruning, archivierte engram‑Ausschluss, Interferenzlösung |
 
 ---
 
-## Was ich ausgelassen habe
+## What I Left Out
 
-**[Turiya](https://de.wikipedia.org/wiki/Turiya).** Der vierte Zustand im Mandukya-Rahmen, reine Bewusstheit, die den anderen drei zugrunde liegt, hat bisher kein offensichtliches KI-Pendant. Die nächstliegende Entsprechung ist der Benchmark-Harness selbst: etwas Externes, das die Agentenleistung über alle drei Betriebszustände hinweg beobachtet, ohne Teil von einem von ihnen zu sein.
+**[Turiya](https://en.wikipedia.org/wiki/Turiya).** Der vierte Zustand im Mandukya‑Rahmen, reines Bewusstsein, das den anderen drei zugrunde liegt, hat bisher keinen offsichtlichen AI‑Korrelat. Die nächstliegende Abbildung ist der Benchmark‑Harness selbst: etwas Äußeres, das die Leistung von Agenten über alle drei operativen Zustände beobachtet, ohne Teil dessen zu sein.
 
-**Träume als kausal notwendig vs. epiphänomenal.** Neuronales Replay während des Schlafs ist der Mechanismus. Ob das Träumen als subjektive Erfahrung kausal mit den Konsolidierungsergebnissen zusammenhängt, steht noch dahin. Die KI-Analogie zum Traumtagebuch (Phase 6 in Dream Engine) ist das menschlich lesbare narrative Artefakt der Konsolidierung, nicht der Mechanismus selbst.
+**Träume als kausal notwendig vs. epiphenomenal.** Neural replay während des Schlafs ist der Mechanismus. Traumerei als subjektive Erfahrung kann mit oder ohne kausale Beziehung zu Konsolidierungsergebnissen stehen. Die KI‑Analogie zum Dream Journal (Phase 6 im Dream Engine) ist das lesbare narrative Artefakt der Konsolidierung, nicht der Mechanismus selbst.
 
-**Schlaf über Agenten hinweg.** Wenn mehrere Agenten ein gemeinsames Gedächtnis-Backend teilen (MuninnDB Multi-Tenant), wie sieht Schlaf dann aus, wenn sich Agenten gleichzeitig in verschiedenen Betriebsphasen befinden? Wird in keiner der drei Traditionen behandelt.
+**Cross‑agent Schlaf.** Wenn mehrere Agenten einen gemeinsamen Speicherbackend (MuninnDB multi‑tenant) teilen, wie sieht der Schlaf aus, wenn Agenten gleichzeitig in unterschiedlichen operativen Phasen sind? Nicht adressiert in einer der drei Traditionen.
 
----
+Die Benchmark‑Daten zur Lösung von svapna vs. sushupti für das KI‑Agenten‑Gedächtnis befinden sich in Arbeit. Wenn sie existieren, schreibe ich eine Fortsetzung. Für jetzt: drei Traditionen, die über Jahrtausende unabhängig voneinander entwickelt wurden, sind sich einig, dass Offline‑Verarbeitung nicht optional ist. Was sie voneinander unterscheidet, ist aufschlussreich.
 
-Die Benchmark-Daten zur Klärung von Svapna vs. Sushupti für KI-Agentengedächtnisse sind in Arbeit. Sobald sie vorliegen, werde ich den Folgebeitrag verfassen. Für den Moment: Drei Traditionen, die Jahrtausende unabhängiger Entwicklung umspannen, sind sich einig, dass Offline-Verarbeitung nicht optional ist. Worüber sie nicht einig sind, ist lehrreich.
+Lesen Sie das [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) für die aktuelle Implementierung. Der GoodAI LTM Benchmark‑Adapter befindet sich bei [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
 
-Lesen Sie den [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) für die aktuelle Implementierung. Der GoodAI-LTM-Benchmark-Adapter befindet sich unter [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
-
----
-
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), eine leichtgewichtige Rust-Agentenlaufzeit, und trägt zu [MuninnDB](https://github.com/scrypster/muninndb) bei. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
-
-*Das Titelbild für diesen Beitrag wurde von einer KI generiert.*
+*Das Deckblattbild für diesen Beitrag wurde von KI generiert.*

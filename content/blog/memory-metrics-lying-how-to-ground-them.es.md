@@ -1,88 +1,89 @@
 ---
-title: "Las métricas de memoria detu agente te están engañando. Así puedes fundamentarlas."
+title: "LosMétricas de Memoria de tu Agente Están Engañándote. Así puedes Anclarlos."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
-description: "La consolidación de la memoria se ve muy bien en los dashboards. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desconectado."
+description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desvinculado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "bad51cfa325972268fa69ca514ac9a43"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "6b2899095baf6fa7436e3ee2da8470a7"
 ---
-I built a memoryconsolidation system for AI agents. It deduplicates memories, strengthens associations, decays stale entries, and produces a dream journal you can actually read. The dashboard looks fantastic: dedup rate up, memory count down, association density climbing.
+# Si estás optimizando métricas proxy, probablemente estés optimizando lo incorrecto
 
-None of that tells you whether the agent remembers the right thing at the right time.
+[Dream Engine](https://github.com/scrypster/muninndb/pull/306) es una PR a la que contribuí en [MuninnDB](https://github.com/scrypster/muninndb), una base de datos cognitiva creada por [scrypster](https://github.com/scrypster). Ejecuta consolidación de memoria impulsada por LLM entre sesiones de agente, modelada de forma suelta al sueño humano. El pipeline funciona en fases: escaneo de vault, replay de asociación hebbiana, agrupamiento de near-duplicates, deduplicación impulsada por LLM, ajustes de estabilidad bidireccionales, inferencia transitiva y un diario de sueños legible por humanos. Las métricas naturales para rastrear durante la consolidación son: cuántos duplicados se fusionaron, cuántas asociaciones se fortalecieron, cuánto descendió el conteo de memoria, cómo se desplazó la distribución de confianza. Son fáciles de calcular. Se introducen en paneles de control. Dan la sensación de progreso.
 
-**If a metric can improve without retrieval quality also improving, that metric is a detached proxy. Stop optimizing it.**
+Ninguna de eso te dice si el agente recuerda lo correcto en el momento adecuado.
 
-## The Problem Has a Name
+**Si una métrica puede mejorar sin que la calidad de recuperación también mejore, esa métrica es un proxy desconectado. Deja de optimizarla.**
 
-I recently read an essay called ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) by an independent researcher named Flyxion. The core argument: when a measurable signal gets decoupled from the process it's supposed to track, the signal becomes self-referential. You end up optimizing the map while the territory rots.
+## El Problema Tiene un Nombre
 
-The essay was written about attention platforms -- follower counts, engagement metrics, viral loops -- but the mechanism it describes applies everywhere measurable signals are used to make decisions. Including AI agent memory.
+Recientemente leí un ensayo titulado ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) escrito por un investigador independiente llamado Flyxion. El argumento central: cuando una señal medible se desacopla del proceso que se supone debe rastrear, la señal se vuelve autoconsistente. Terminamos optimizando el mapa mientras la realidad podrida.
 
-The operational criterion Flyxion proposes is simple and brutal: a proxy is grounded when it cannot be moved at scale without commensurate movement in the underlying process. If you can inflate the metric while the thing-the-metric-is-supposed-to-measure stays flat, the metric is broken. Not noisy. Not imperfect. Structurally broken.
+El ensayo se escribió sobre plataformas de atención — cuentas de seguidores, métricas de engagement, loops virales — pero el mecanismo que describe se aplica en todas partes donde se usan señales medibles para tomar decisiones. Incluido el recuerdo de agentes de IA.
 
-Apply that to agent memory consolidation and the implications are immediate.
+El criterio operativo que propone Flyxion es simple y brutal: un proxy está anclado cuando no se puede mover a gran escala sin un movimiento correspondiente en el proceso subyacente. Si puedes inflar la métrica mientras lo que la métrica debería medir se mantiene plano, la métrica está rota. No ruidosa. No imperfecta. Estrructuralmente rota.
 
-## What Dream Engine Does (and What It Measures)
+Aplica eso a la consolidación de memoria de agentes y las implicaciones son inmediatas.
 
-[Dream Engine](https://github.com/scrypster/muninndb/pull/306) is a PR I contributed to MuninnDB, a cognitive database built by [scrypster](https://github.com/scrypster). It runs LLM-driven memory consolidation between agent sessions, modeled loosely after human sleep. The pipeline works in phases: vault scanning, Hebbian association replay, near-duplicate clustering, LLM-powered deduplication, bidirectional stability adjustments, transitive inference, and a human-readable dream journal.
+## Qué Hace Dream Engine (y Qué Mide)
 
-The natural metrics to track during consolidation are: how many duplicates were merged, how many associations were strengthened, how much the memory count dropped, how the confidence distribution shifted. These are easy to compute. They go into dashboards. They feel like progress.
+[Dream Engine](https://github.com/scrypster/muninndb/pull/306) es una PR que contribuí a [MuninnDB](https://github.com/scrypster/muninndb), una base de datos cognitiva creada por [scrypster]. Ejecuta consolidación de memoria impulsada por LLM entre sesiones de agente, modelada de forma suelta al sueño humano. El pipeline funciona en fases: escaneo de vault, replay de asociación hebbiana, agrupamiento de near-duplicates, deduplicación impulsada por LLM, ajustes de estabilidad bidireccionales, inferencia transitiva y un diario de sueños legible por humanos.
 
-Here's the problem: every single one of those metrics can improve while retrieval quality degrades. Aggressive deduplication can merge memories that looked similar but carried distinct contextual signals. Strengthening the wrong associations can push the retrieval ranker toward frequently-accessed memories and away from the actually-relevant one. Reducing memory count can discard low-confidence entries that happen to be the only record of a rare but important fact.
+Las métricas naturales para rastrear durante la consolidación son: cuántos duplicados se fusionaron, cuántas asociaciones se fortalecieron, cuánto descendió el conteo de memoria, cómo se desplazó la distribución de confianza. Son fáciles de calcular. Se introducen en paneles de control. Dan la sensación de progreso.
 
-The consolidation dashboard says "great run." The agent forgets your name.
+Aquí está el problema: cada una de esas métricas puede mejorar mientras la calidad de recuperación se degrada. Una deduplicación agresiva puede fusionar memorias que parecían similares pero llevaban señales contextuales distintas. Fortalecer las asociaciones equivocadas puede empujar al ranker de recuperación hacia memorias frecuentemente accedidas y alejarlas de la realmente relevante. Reducir el conteo de memoria puede descartar entradas de baja confianza que suceden a ser la única grabación de un hecho raro pero importante.
 
-## Goodhart's Law Is a Structural Attractor, Not a Warning
+El panel de control de consolidación dice “gran ejecución”. El agente olvida tu nombre.
 
-Flyxion's sharpest insight is that Goodhart's law ("when a measure becomes a target, it ceases to be a good measure") isn't a warning about careless optimization. It's a description of an attractor state. Any system that applies sustained optimization pressure to a proxy will converge on proxy detachment, because manipulating the proxy is always cheaper than improving the underlying process.
+## La Ley de Goodhart Es un Atractor Estructural, No una Advertencia
 
-In agent memory, this manifests as a specific failure mode. If you tune your consolidation thresholds to maximize dedup rate on your test vault, you will find thresholds that merge aggressively. The dedup metric looks great. But you've just trained your system to optimize for a signal that's cheaper to move than the thing you actually care about: does the agent retrieve the correct memory when it matters?
+La insight más aguda de Flyxion es que la ley de Goodhart (“cuando una medida se vuelve un objetivo, deja de ser una buena medida”) no es una advertencia acerca de una optimización descuidada. Es una descripción de un estado atractor. Cualquier sistema que aplique presión de optimización sostenida a un proxy convergerá hacia la desconexión del proxy, porque manipular el proxy siempre es más barato que mejorar el proceso subyacente.
 
-The research confirms this risk. LongMemEval (ICLR 2025) and MemoryBench both show that consolidation systems can degrade retrieval compared to naive RAG baselines. The consolidation "worked" -- it merged, it decayed, it strengthened -- but the agent got worse at answering questions. The proxy improved. The territory degraded. Textbook proxy detachment.
+En memoria de agentes, esto se manifiesta como un modo de falla específico. Si ajustas tus umbrales de consolidación para maximizar la tasa de deduplicación en tu vault de pruebas, encontrarás umbrales que fusionan agresivamente. La métrica de deduplicación se ve genial. Pero acabas de entrenar tu sistema para optimizar una señal que es más barata de mover que lo que realmente te importa: ¿el agente recupera la memoria correcta cuando importa?
 
-## The Grounding Criterion for Memory Metrics
+La investigación confirma este riesgo. LongMemEval (ICLR 2025) y MemoryBench ambos muestran que los sistemas de consolidación pueden degradar la recuperación respecto a baselines naïve de RAG. La consolidación “funcionó” — fusionó, decayó, fortaleció — pero el agente empeoró en responder preguntas. El proxy mejoró. La realidad se degradó. Desconexión de proxy clásica.
 
-The fix is architectural, not incremental. Before you ship any memory consolidation feature, define a retrieval benchmark that represents realistic agent query patterns. Then apply the grounding criterion: every metric you track must be one that cannot improve without retrieval accuracy also improving.
+## El Criterio de Anclaje para Métricas de MemoriaLa solución es arquitectónica, no incremental. Antes de lanzar cualquier característica de consolidación de memoria, define un benchmark de recuperación que represente patrones de consulta realistas de agentes. Luego aplica el criterio de anclaje: cada métrica que rastreas debe ser una que no pueda mejorar sin que la precisión de recuperación también lo haga.
 
-For [MuninnDB issue #311](https://github.com/scrypster/muninndb/issues/311) -- the benchmark harness blocking Dream Engine's write paths -- we're using this approach. The benchmark set is [LongMemEval](https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned): 500 curated questions covering information extraction, multi-session reasoning, temporal reasoning, knowledge updates, and abstention. The procedure:
+Para el [issue #311 de MuninnDB](https://github.com/scrypster/muninndb/issues/311) — el harness de benchmark que bloquea las vías de escritura de Dream Engine — estamos usando este enfoque. El conjunto de benchmark es [LongMemEval](https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned): 500 preguntas curadas que cubren extracción de información, razonamiento multi‑sesión, razonamiento temporal, actualizaciones de conocimiento y abstención. El procedimiento:
 
-Run baseline retrieval on the unmodified vault. Enable consolidation phases. Re-run the same queries. If recall drops on any category, the phase doesn't ship. No amount of dashboard improvement overrides a retrieval regression.
+Ejecuta recuperación en baseline sobre el vault sin modificar. Habilita las fases de consolidación. Vuelve a ejecutar las mismas consultas. Si el recall baja en alguna categoría, la fase no se incorpora. Ningún número de mejoras en el panel de control supera a una regresión de recuperación.
 
-This is bidirectional constraint. The consolidation metrics (dedup rate, association density) are only meaningful if they move in the same direction as retrieval quality. If they diverge, the consolidation metric is a detached proxy and you discard it from your decision-making, no matter how good the number looks.
+Esta es una restricción bidireccional. Las métricas de consolidación (tasa de deduplicación, densidad de asociación) solo son significativas si se mueven en la misma dirección que la calidad de recuperación. Si divergen, la métrica de consolidación es un proxy desconectado y la descartas de tu proceso de decisión, sin importar cuán buena sea la cifra.
 
-## Why This Matters Beyond Memory
+## Por Qué Esto Importa Más Allá de la Memoria
 
-The same pattern shows up everywhere in AI agent development.
+El mismo patrón aparece en todas partes del desarrollo de agentes de IA.
 
-Tool call success rate can go up while task completion quality goes down -- the agent learns to call easy tools more often. Latency can drop while accuracy drops -- the agent learns to skip expensive reasoning steps. Token efficiency can improve while helpfulness degrades -- the agent learns to be terse rather than thorough.
+La tasa de éxito en llamadas a herramientas puede subir mientras la calidad de la finalización de la tarea baja — el agente aprende a llamar a herramientas fáciles más a menudo. La latencia puede bajar mientras la precisión baja — el agente aprende a saltar pasos de razonamiento costosos. La eficiencia de tokens puede mejorar mientras la utilidad disminuye — el agente aprende a ser breve en lugar de exhaustivo.
 
-Every one of these is a proxy that can be moved without moving the underlying process. Every one will be optimized toward detachment if you treat the metric as a target rather than a diagnostic.
+Cada una de estas es una proxy que puede ser movida sin mover el proceso subyacente. Cada אחת será optimizada hacia la desconexión si tratas la métrica como un objetivo en lugar de una señal diagnóstica.
 
-The fix is the same in every case: define the ground truth you actually care about, measure it directly even if it's expensive, and treat all other metrics as diagnostic signals that must co-move with ground truth or be discarded.
+La solución es la misma en todos los casos: define la verdad del ground truth que realmente te importa, mídela directamente aunque sea costosa, y trata todas las demás métricas como señales diagnósticas que deben moverse en conjunto con la verdad o ser descartadas.
 
-## What I Left Out
+## Lo Que Dejé Afuera
 
-There are a few things this post doesn't cover that are worth mentioning.
+Hay algunas cosas que este post no cubre y que valen la pena mencionar.
 
-The proxy integrity essay also analyzes "temporal compression" -- where the appearance of skill is manufactured without the underlying process. That maps to synthetic benchmarks where you generate test data that looks realistic but doesn't carry the statistical properties of real agent interactions. I'm using LLM-generated synthetic vault entries for controlled ground-truth scenarios, but they're supplements to LongMemEval, not replacements.
+El ensayo de integridad de proxy también analiza la "compresión temporal" — donde la apariencia de habilidad se fabrica sin el proceso subyacente. Eso se relaciona con benchmarks sintéticos donde generas datos de prueba que parecen realistas pero no poseen las propiedades estadísticas de interacciones reales de agentes. Estoy usando entradas de vault sintéticas generadas por LLM para escenarios de ground‑truth controlados, pero son complementos a LongMemEval, no sustitutos.
 
-I haven't addressed the multi-agent case, where one agent's consolidated memory feeds into another agent's context. Proxy detachment in that setting could cascade -- bad consolidation upstream produces bad retrieval downstream, but both agents' dashboards look fine. That's a problem for Hrafn's A2A protocol work, but it's future scope. A related issue: Agent Cards in A2A carry an `agent_id` but nothing binds that ID to interaction history. A malicious agent can regenerate its card and start with fresh reputation. Flyxion's ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formalizes exactly this failure mode. That's a separate post.
+No he abordado el caso multi‑agente, donde la memoria consolidada de un agente alimenta el contexto de otro agente. La desconexión de proxy en ese escenario podría cascada — mala consolidación upstream produce mala recuperación downstream, pero los paneles de ambos agentes se veían bien. Eso es un problema para el trabajo de protocolo A2A de Hrafn. Es tema futuro. Un problema relacionado: las Agent Cards en A2A llevan un `agent_id` pero nada une ese ID con el historial de interacciones. Un agente malicioso puede regenerar su tarjeta y empezar con reputación fresca. El ensayo de Flyxion ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formaliza exactamente este modo de falla. Es una publicación aparte.
 
-The essay's analysis of platform incentives (advertising models are economically insulated from signal degradation) has an analog in open-source: star counts and download metrics are proxies for utility that can detach just as easily. But that's a different post.
+El análisis del ensayo sobre incentivos de plataformas (los modelos publicitarios están económicamente aislados de la degradación de la señal) tiene un analógico en código abierto: los conteos de estrellas y métricas de descarga son proxies de utilidad que pueden desconectarse igual fácilmente. Pero eso es otro post.
 
-## The Principle
+## El Principio
 
-Memory consolidation is not compression. It's curation. The difference is whether you're grounding your decisions in retrieval quality or in dashboard metrics that happen to be easy to compute.
+La consolidación de memoria no es compresión. Es curación. La diferencia está en si estás anclando tus decisiones en la calidad de recuperación o en métricas de panel que simplemente son fáciles de calcular.
 
-If your consolidation metrics can go up while your agent's ability to answer real questions goes down, you're building a system that optimizes for its own internal signals. The map becomes self-referential. The territory disappears.
+Si tus métricas de consolidación pueden subir mientras la capacidad de tu agente para responder preguntas reales baja, estás construyendo un sistema que optimiza por sus propias señales internas. El mapa se vuelve autorreferencial. La realidad desaparece.
 
-Ground your metrics. Benchmark before you ship. Discard any signal that can be moved independently of what you actually care about.
+Ancla tus métricas. Benchmark antes de lanzar. Descarta cualquier señal que pueda moverse independientemente de lo que realmente te importa.
 
-The full Dream Engine implementation is in [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). The benchmark harness blocking the write paths is [issue #311](https://github.com/scrypster/muninndb/issues/311). If you're building agent memory systems and want to compare notes on grounding retrieval metrics, open an issue on [Hrafn](https://github.com/5queezer/hrafn).
+La implementación completa de Dream Engine está en [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). El harness de benchmark que bloquea las vías de escritura está en [issue #311](https://github.com/scrypster/muninndb/issues/311). Si estás construyendo sistemas de memoria de agentes y quieres comparar notas sobre la anclaje de métricas de recuperación, abre un issue en [Hrafn](https://github.com/5queezer/hrafn).
 
 ---
 
-*Christian Pojoni builds [Hrafn](https://github.com/5queezer/hrafn), a lightweight AI agent runtime for edge hardware. More at [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime ligero de agentes de IA para hardware de edge. Más información en [vasudev.xyz](https://vasudev.xyz).*
 
-*The cover image for this post was generated by AI.*
+*La imagen de portada de esta publicación fue generada por IA.*

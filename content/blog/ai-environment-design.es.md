@@ -1,90 +1,101 @@
 ---
-title: "Deja dediseñar tu sistema de IA. Diseña su entorno."
+title: "Deja de diseñar tu sistema de IA. Diseña su entorno."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
-description: "Los engendros de IA autoevolutiva fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
+description: "Los contenedores de IA autodirigida fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que debe evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "c4e9049fe9e4f0511a204b8b2b5ac52f"
+images: ["/images/ai-environment-design-og.png"]
+translationHash: "5a4c8d555f193cfadfe26c378357502f"
 ---
-Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLM". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin prompts, solo vectores de intervención. Fue intelectualmente satisfactorio, pero prácticamente erróneo. Lo que realmente quería no era un lenguaje. Era un organismo.
-
-**La unidad de evolución no es la característica. Es el ciclo mutación/selección.**
-
-Esa distinción lo cambia todo sobre cómo se construye un entorno de IA autoevolutivo. La mayoría de los sistemas que se autodenominan "automejorables" están haciendo AutoML. Optimizan sobre un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero está más cerca del AutoML que de la evolución de final abierto. Resulta que la diferencia es arquitectónicamente decisiva en dos aspectos.
+Reglas:
+- Preserva todoel formato Markdown, bloques de código, enlaces y etiquetas HTML exactamente como están.
+- No traduzcas nombres propios, nombres de proyecto, URLs de GitHub ni código.
+- No traduzcas el texto dentro de bloques de código (enmarcado con comillas invertidas o sangrado).
+- No añadas comentarios o explicaciones. Solo genera el texto traducido.
+- Mantén el mismo tono y estilo que el original.
+- Para los enlaces de Wikipedia: reemplaza "en.wikipedia.org" con la Wikipedia de idioma es (p. ej. "es.wikipedia.org"). Verifica que el artículo objetivo exista en ese idioma. Si no existe un artículo equivalente, mantén el enlace de Wikipedia en inglés sin cambios.
 
 ---
 
-## El genotipo y el fenotipo no están en la misma capa
+I spent a week trying to design a "vector-native programming language for LLMs." The idea was to program model behavior directly at the activation level, no prompts, just intervention vectors. It was intellectually satisfying and practically wrong. What I actually wanted was not a language. It was an organism.
 
-Los sistemas biológicos separan lo que persiste de lo que es seleccionado. El genoma no se prueba directamente. El fenotipo, sí. Las mutaciones ocurren en el genoma. La selección ocurre sobre el fenotipo. El genoma sobrevive produciendo fenotipos que sobreviven. Esta asimetría es la fuente misma de la evolucionabilidad.
+**The unit of evolution is not the feature. It is the mutation/selection cycle.**
 
-Un entorno de IA tiene una estructura análoga si se construye correctamente, no como una equivalencia biológica literal, sino como un mapeo arquitectónico útil. El genoma es tu estado persistente: pesos de adaptadores, políticas de recuperación, configuraciones de herramientas, reglas de direccionamiento de activaciones, parches en la base de código. El fenotipo es el comportamiento observable en las tareas. El evaluador ve el comportamiento, no los componentes internos. Las mutaciones apuntan al genoma. La selección apunta al fenotipo.
+That distinction changes everything about how you build a self-evolving AI harness. Most systems that call themselves "self-improving" are doing AutoML. They optimize over a fixed search space toward a fixed objective. That can produce adaptation, but it is closer to AutoML than to open-ended evolution. The difference turns out to be architecturally decisive in two ways.
 
-Muchos diseños de agentes automejorables colapsan esta distinción, al menos implícitamente. Miden el comportamiento y luego editan directamente lo que midieron. Eso es como hacer evolucionar organismos editando sus fenotipos. No generaliza porque estás parcheando el síntoma, no la causa.
+---
+
+## Genotipo y Fenotipo No Son la Misma Capa
+
+Los sistemas biológicos separan lo que persiste de lo que se selecciona. El genoma no se prueba directamente. El fenotipo sí. Las mutaciones ocurren en el genoma. La selección actúa sobre el fenotipo. El genoma sobrevive produciendo fenotipos que sobreviven. Esta asimetría es la fuente de la evolucionabilidad misma.
+
+Una infraestructura de IA tiene una estructura análoga si la construyes correctamente, no como equivalencia biológica literal, sino como un mapeo arquitectónico útil. El genoma es tu estado persistente: pesos de adaptadores, políticas de recuperación, configuraciones de herramientas, reglas de dirección de activación, parches del código base. El fenotipo es el comportamiento observable en tareas. El evaluador ve solo el comportamiento, no los internos. Las mutaciones apuntan al genoma. La selección apunta al fenotipo.
+
+Muchos diseños de agentes auto mejorantes colapsan esta distinción, al menos implícitamente. Miden el comportamiento y luego editan directamente la cosa que midieron. Eso es como evolucionar organismos editando sus fenotipos. No se generaliza porque estás parcheando el síntoma, no la causa.
 
 La arquitectura correcta separa estas capas explícitamente:
 
-El **nivel de persistencia** almacena lo que sobrevive: adaptadores (largo plazo), políticas de recuperación y de herramientas (medio plazo), reglas de direccionamiento de activaciones (efímeras). Los **generadores de mutaciones** proponen cambios al nivel de persistencia, no al comportamiento directamente. El **evaluador** observa únicamente el comportamiento y decide qué mutaciones sobreviven. Nada en el nivel de persistencia se actualiza excepto a través de esta compuerta.
+The **capa de persistencia** stores what survives: adapters (long-term), retrieval and tool policies (medium-term), activation steering rules (ephemeral). The **generadores de mutaciones** propose changes to the **capa de persistencia**, not to behavior directly. The **evaluador** observes behavior only, and gates which mutations survive. Nothing in the **capa de persistencia** gets updated except through this gate.
 
 ---
 
-## El evaluador no es una función de pérdida
+## El Evaluador No Es una Función de Pérdida
 
-Aquí es donde el pensamiento biológico se separa del pensamiento de ML de una manera que importa para la arquitectura.
+Aquí es donde el pensamiento biológico se distancia del pensamiento de ML de una manera que importa para la arquitectura.
 
-Una función de pérdida es un objetivo suave, diferenciable y definido localmente. Lo minimizas. Asume que la respuesta correcta es conocida y fija. Una presión de selección no es ninguna de estas cosas. Es el entorno, y el entorno no está diseñado por ti. Es aquello que elimina lo que no puede manejarlo.
+Una función de pérdida es un objetivo suave, diferenciable y definido localmente. Lo minimizas. Asume que la respuesta correcta es conocida y fija. Una presión de selección no es ninguna de estas cosas. Es el entorno, y el entorno no lo diseñas. Es lo que mata a las cosas que no pueden manejarlo.
 
-Cuando diseñas manualmente una batería de tareas para tu entorno autoevolutivo y nunca la cambias, no has construido un entorno. Has construido una función de pérdida con pasos adicionales. El sistema optimizará para esa batería y se detendrá. Encontrará atajos que la batería no detecta. Esta es la Ley de Goodhart a nivel arquitectónico: una vez que una medida se convierte en objetivo, deja de ser una buena medida.
+Cuando diseñes a mano una batería de tareas para tu engaranaje autoreplicante y nunca la cambies, no has construido un entorno. Has construido una función de pérdida con pasos extra. El sistema optimizará para esa batería y se detendrá. Encontrará atajos que la batería no detecta. Esto es la Ley de Goodhart a nivel arquitectónico: una vez que una medida se convierte en objetivo, deja de ser una buena medida.
 
-Un evaluador fijo eventualmente se convierte en un techo. Para sostener una mejora robusta, el entorno de evaluación necesita expandirse, diversificarse o adaptarse adversarialmente. Esto significa que la batería de tareas necesita tareas adversariales diseñadas específicamente para capturar el juego a nivel superficial. Necesita tareas de capacidad (¿puede hacer la cosa?), tareas de calibración (¿sabe cuándo no puede?) y tareas de regresión (¿rompió lo que ya sabía?). Y necesita al menos una ruta de evaluación con humano en el bucle que el sistema no pueda predecir, porque los evaluadores predecibles se manipulan.
+Un evaluador fijo eventualmente se vuelve un techo. Para sostener una mejora robusta, el entorno de evaluación necesita expandirse, diversificarse o adaptarse adversarialmente. Esto significa que la batería de tareas necesita tareas adversarias diseñadas específicamente para atrapar engaños a nivel superficial. Necesita tareas de capacidad (¿puede hacerlo?), tareas de calibración (¿sabe cuándo no puede?), y tareas de regresión (¿rompió lo que ya sabía?). Y necesita al menos un camino de evaluación con humana en el bucle que el sistema no pueda predecir, porque los evaluadores predecibles son engañados.
 
-Prácticamente, esto significa: empieza con una batería pequeña y fija, pero construye la infraestructura para extenderla desde el principio. Cada mutación que el sistema retenga debería generar un caso de prueba que habría detectado un fallo de esa mutación. Con el tiempo, la batería crece con el sistema. Eso es coevolución en su forma mínima viable.
-
----
-
-## El direccionamiento con SAE es un operador, no la base
-
-Los autocodificadores dispersos (SAE) pueden revelar características latentes dispersas, muchas de las cuales son lo suficientemente interpretables como para direccionar el comportamiento localmente, aunque la calidad de las características y la especificidad causal siguen siendo preguntas de investigación activas. Puedes direccionar un modelo hacia o lejos de un concepto sumando o suprimiendo un vector de características en una capa específica durante la propagación hacia adelante. Esto es rápido, reversible y no requiere reentrenamiento.
-
-Pero es una clase de operador en un espacio de acción mixto. Los generadores de mutaciones en un entorno serio deberían producir propuestas en al menos cuatro sustratos. El primer sustrato son las transformaciones de prompts y recuperación: económicas, reversibles, siempre el punto de partida. El segundo son las reglas de direccionamiento de activaciones: rápidas, locales, compromiso de nivel medio. El tercero son las actualizaciones de adaptadores y LoRA: más pesadas, requieren entrenamiento, persistencia a mediano plazo. El cuarto son las ediciones de código y políticas: mayor compromiso, más difíciles de revertir.
-
-Empezar solo con direccionamiento SAE es como construir un sistema evolutivo que solo puede mutar un gen. Obtienes una adaptación local rápida y un comportamiento global frágil. El sistema necesita poder modificar cómo recupera el contexto, cómo enruta las herramientas y, eventualmente, cómo procesa información a nivel de pesos, no porque sean operadores más potentes, sino porque diferentes problemas residen en diferentes sustratos.
-
-La disciplina correcta es: una intervención exitosa de bajo coste debería reexpresarse en un sustrato más barato o más estable siempre que sea posible, como una transformación de prompt, una regla de recuperación o una actualización de adaptador, siempre que el efecto causal sobreviva a la traducción. Esto no es una regla solo para seguridad. Es una regla para la evolucionabilidad: el sistema debe resistir mutaciones costosas hasta que las económicas encuentren la vecindad correcta.
+Prácticamente, esto significa: comienza con una batería pequeña y fija, pero construye la infraestructura para ampliarla desde el principio. Cada mutación que el sistema retenga debe generar un caso de prueba que habría detectado el fallo de esa mutación. Con el tiempo, la batería crece con el sistema. Eso es co-evolución en su forma mínima viable.
 
 ---
 
-## Cómo se ve realmente un ciclo mínimo viable
+## La Dirección SAE Es Un Operador, No la Base
 
-El ciclo tiene seis etapas. Observar. Proponer. Aislar (Sandbox). Evaluar. Retener al ganador (o rechazar todos los candidatos). Actualizar la previa de búsqueda.
+Los autoencoders dispersos pueden exponer características latentes dispersas, muchas de las cuales son lo suficientemente interpretables como para dirigir el comportamiento localmente, aunque la calidad de las características y la especificidad causal siguen siendo preguntas de investigación activas. Puedes dirigir un modelo hacia o alejándolo de un concepto agregando o suprimiendo un vector de característica en una capa específica durante el paso hacia adelante. Esto es rápido, reversible y no requiere reentrenamiento.
 
-Observar significa ejecutar el genoma actual contra la batería de tareas y registrar métricas de comportamiento. Proponer significa que la política de búsqueda genera mutaciones candidatas, una por clase de operador, en paralelo. Aislar (Sandbox) significa que cada candidato se ejecuta de forma aislada: sin estado compartido, límites estrictos de recursos, reversión garantizada. Evaluar significa puntuar el delta de comportamiento respecto a la línea base actual. Retener significa escribir al ganador en el nivel de persistencia con procedencia completa: métricas antes/después, qué prompts afectó, qué clase de operador usó, y la política de caducidad y revalidación. Actualizar la previa de búsqueda significa que la política de bandidos o evolutiva aprende qué clases de operador y qué regiones del espacio de búsqueda están produciendo supervivientes.
+Pero es solo una clase de operador en un espacio de acción mixto. Los generadores de mutaciones en un engaranaje serio deberían producir propuestas en al menos cuatro sustratos. El primer sustrato son transformaciones de prompt y recuperación: baratas, reversibles, siempre punto de partida. El segundo son reglas de dirección de activación: rápidas, locales, compromiso de nivel medio. El tercero son actualizaciones de adaptadores y LoRA: más pesadas, requieren entrenamiento, persistencia a medio plazo. El cuarto son ediciones de código y políticas: mayor compromiso, más difíciles de revertir.
 
-Cada mutación retenida necesita un mecanismo de reversión. No como una característica de seguridad. Como un requisito de diseño. Si no puedes revertir una mutación, no puedes medir su contribución marginal. Si no puedes medir su contribución marginal, no estás evolucionando. Estás acumulando.
+Comenzar con solo la dirección SAE es como construir un sistema evolutivo que solo puede mutar un gen. Obtienes adaptación local rápida y comportamiento global frágil. El sistema necesita poder modificar cómo recupera contexto, cómo enruta herramientas, y eventualmente cómo procesa información a nivel de pesos, no porque esas sean operadores más poderosos, sino porque diferentes problemas viven en diferentes sustratos.
 
----
-
-## Lo que dejé fuera
-
-**Automodificación de código.** La autoedición estilo Máquina Darwin-Gödel funciona en entornos de agentes de programación aislados con verificadores formales. Para un entorno general sin esas restricciones, es un problema para la Fase 4, no porque sea imposible, sino porque la infraestructura necesaria (evaluador estable, garantías de reversión, alcance acotado de tareas) debe estar implementada primero.
-
-**Universalidad de características.** Las características SAE son específicas del modelo y, a veces, específicas del checkpoint. Si las características útiles se transfieren entre versiones del modelo es una pregunta de investigación abierta. El entorno debe diseñarse para reextraer diccionarios de características en cada actualización del modelo base en lugar de asumir estabilidad.
-
-**Evaluadores multiagente.** Usar un modelo juez como parte del ciclo de evaluación añade robustez pero también crea una superficie adversarial. El sistema puede aprender a satisfacer al juez en lugar de la tarea subyacente. Esto necesita contramedidas explícitas que aún no he diseñado.
-
-**Presupuesto de cómputo.** Una mutación que mejora la capacidad en un 2% pero duplica la latencia no es una victoria. La latencia y el coste deben ser restricciones de primera clase en el evaluador, no ideas de último momento.
+La disciplina adecuada es: una intervención de bajo costo exitosa debería reexpresarse en un sustrato más barato o más estable cuando sea posible, como una transformación de prompt, regla de recuperación o actualización de adaptador, siempre y cuando el efecto causal sobreviva a la traducción. Esto no es solo una regla de seguridad. Es una regla de evolucionabilidad: el sistema debe resistir mutaciones costosas hasta que las baratas hayan encontrado el vecindario adecuado.
 
 ---
 
-La conexión con [Hrafn](https://github.com/5queezer/hrafn) es directa. MuninnDB es el nivel de persistencia. El Dream Engine, modelado en la consolidación de memoria durante la fase de sueño, es el mecanismo que promueve observaciones efímeras a políticas de medio plazo. Las piezas que faltan son la política de búsqueda y el evaluador coevolutivo. Eso es lo que se construirá a continuación.
+## Cómo Se Ve Realmente un Bucle Mínimo Viable
 
-Si estás construyendo en este espacio, la previa más valiosa para tomar prestado no proviene del ML. Proviene de la biología evolutiva: el entorno hace la selección. Tu trabajo es construir el entorno, no el organismo.
+El bucle tiene seis etapas. Observar. Proponer. Caja de arena. Evaluar. Retener al ganador (o rechazar a todos los candidatos). Actualizar la prioridad de búsqueda.
 
-Comienza con [Hrafn](https://github.com/5queezer/hrafn) y la [capa de persistencia MuninnDB](https://github.com/5queezer/hrafn). La separación genotipo/fenotipo ya está integrada. Lo que necesita construirse es el evaluador que coevoluciona con el sistema que mide.
+Observar significa ejecutar el genoma actual contra la batería de tareas y registrar métricas de comportamiento. Proponer significa que la política de búsqueda genere_mutaciones candidatas, una por clase de operador, en paralelo. Caja de arena significa que cada candidato se ejecuta en aislamiento: sin estado compartido, límites de recursos estrictos, reversión garantizada. Evaluar significa puntuar la variación de comportamiento respecto a la línea base actual. Retener significa escribir al ganador en la capa de persistencia con plena trazabilidad: métricas antes y después, qué prompts affectó, qué clase de operador usó, y políticas de expiración y revalidación. Actualizar la prioridad de búsqueda significa que la política de banda o evolutiva aprenda qué clases de operador y qué regiones del espacio de búsqueda están produciendo sobrevivientes.
+
+Every retained mutation needs a rollback handle. Not as a safety feature. As a design requirement. If you cannot roll back a mutation, you cannot measure its marginal contribution. If you cannot measure its marginal contribution, you are not evolving. You are accumulating.
 
 ---
 
-*Christian Pojoni construye infraestructura para agentes de IA y escribe sobre ello en [vasudev.xyz](https://vasudev.xyz). Trabajo actual: [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes basado en Rust.*
+## Lo Que Dejé Afuera
 
-*La imagen de portada de esta publicación fue generada por IA.*
+**Modificación autónoma del código.** La autoedición estilo Darwin-Gödel Machine funciona en entornos de agentes codificadores aislados con verificadores formales. Para un engaranaje general sin esas restricciones, es una preocupación de la Fase 4, no porque sea imposible, sino porque la infraestructura previa (evaluador estable, garantías de reversión, alcance de tarea estrecho) necesita estar en su lugar primero.
+
+**Universalidad de características.** Las características de SAE son específicas del modelo y a veces específicas del checkpoint. ¿Si las características útiles se transfieren entre versiones de modelo es una pregunta de investigación abierta. El engaranaje debería diseñarse para volver a extraer diccionarios de características en cada actualización del modelo base en lugar de asumir estabilidad.
+
+**Evaluadores multiagente.** Usar un modelo juez como parte del bucle de evaluación añade robustez pero también crea una superficie adversarial. El sistema puede aprender a satisfacer al juez en lugar de la tarea subyacente. Esto requiere contramedidas explícitas que aún no he diseñado.
+
+**Presupuesto de computación.** Una mutación que mejora la capacidad en un 2% pero duplica la latencia no es una victoria. La latencia y el costo deben ser restricciones de primera clase en el evaluador, no después de pensado.
+
+---
+
+The connection to [Hrafn](https://github.com/5queezer/hrafn) is direct. MuninnDB is the persistence tier. The Dream Engine, modeled on sleep-phase memory consolidation, is the mechanism that promotes ephemeral observations into medium-term policy. The missing pieces are the search policy and the co-evolving evaluator. That is what gets built next.
+
+If you are building in this space, the prior that is most worth borrowing is not from ML. It is from evolutionary biology: el entorno does the selection. Your job is to build the environment, not the organism.
+
+Start with [Hrafn](https://github.com/5queezer/hrafn) and the [MuninnDB persistence layer](https://github.com/5queezer/hrafn). The genome/phenotype separation is already wired. What needs building is the evaluator that coevolves with the system it measures.
+
+---
+
+*Christian Pojoni builds AI agent infrastructure and writes about it at [vasudev.xyz](https://vasudev.xyz). Current work: [Hrafn](https://github.com/5queezer/hrafn), a Rust-based agent runtime.*
+
+*The cover image for this post was generated by AI.*
