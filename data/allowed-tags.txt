@@ -6,6 +6,7 @@ benchmarks
 consolidation
 dream-engine
 hrafn
+interpretability
 llm
 llm-agents
 mcp
@@ -15,5 +16,6 @@ muninndb
 oauth
 rust
 security
+sparse-autoencoders
 typescript
 vector-stores
