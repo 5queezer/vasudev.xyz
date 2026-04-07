@@ -3,8 +3,6 @@ title: "Adding OAuth 2.1 to a Self-Hosted MCP Server: 4 Gotchas from the Trenche
 date: 2026-03-25
 description: "What broke when I wired up claude.ai to my own Reactive Resume instance via OAuth."
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 ---
@@ -13,7 +11,7 @@ tags: ["typescript", "mcp", "oauth"]
 
 
 
-MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become an OAuth 2.1 provider -- Dynamic Client Registration, Authorization Code with PKCE, token exchange.
+MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become a full OAuth 2.1 provider: Dynamic Client Registration, Authorization Code with PKCE, token exchange.
 
 I submitted [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) to add this to [Reactive Resume](https://github.com/amruthpillai/reactive-resume), the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. This is the OAuth side of [that story](/blog/shipping-a2a-protocol-support-in-rust/).
 
@@ -23,9 +21,9 @@ I submitted [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829
 
 When claude.ai connects to a custom MCP endpoint, it doesn't just POST to your URL. It first probes for OAuth metadata. The MCP auth spec requires two discovery endpoints:
 
-`GET /.well-known/oauth-authorization-server` returns the OAuth 2.0 Authorization Server Metadata (RFC 8414) -- where to authorize, where to exchange tokens, what grant types you support.
+`GET /.well-known/oauth-authorization-server` returns the OAuth 2.0 Authorization Server Metadata (RFC 8414). It tells clients where to authorize, where to exchange tokens, and what grant types you support.
 
-`GET /.well-known/oauth-protected-resource` returns the Protected Resource Metadata (RFC 9728) -- what resource this is, what scopes it needs, and where to find the authorization server.
+`GET /.well-known/oauth-protected-resource` returns the Protected Resource Metadata (RFC 9728). It describes what resource this is, what scopes it needs, and where to find the authorization server.
 
 Miss either one and claude.ai silently fails to connect. No error message, no retry. It just doesn't offer the "Connect" button. I lost an hour to this because the `oauth-protected-resource` endpoint wasn't in any tutorial I found. I only discovered it by reading the MCP auth spec directly.
 
@@ -46,7 +44,7 @@ Both endpoints must return JSON, both must be at the exact paths specified, and 
 
 ## 2. The auth library you picked might get deprecated mid-PR
 
-Reactive Resume uses better-auth for authentication. Better-auth ships an `mcp()` plugin that handles Dynamic Client Registration and token management. Perfect -- three lines of config and you have OAuth for MCP.
+Reactive Resume uses better-auth for authentication. Better-auth ships an `mcp()` plugin that handles Dynamic Client Registration and token management. Perfect. Three lines of config and you have OAuth for MCP.
 
 I built the entire PR around it, deployed to Cloud Run, verified it worked end-to-end with claude.ai, and marked the PR ready for review.
 
@@ -56,15 +54,15 @@ The maintainer's [response](https://github.com/amruthpillai/reactive-resume/pull
 
 He was right. The better-auth docs already had a deprecation notice pointing to `@better-auth/oauth-provider`. The new plugin is more general (not MCP-specific), uses JWT tokens instead of opaque tokens, and requires JWKS key management.
 
-The refactor touched every auth-related file. Opaque token lookup via `getMcpSession()` became JWT verification via `verifyAccessToken()`. The database schema changed -- `oauthApplication` became `oauthClient` (RFC 7591 compliant), and new tables for `oauthRefreshToken` and `jwks` appeared.
+The refactor touched every auth-related file. Opaque token lookup via `getMcpSession()` became JWT verification via `verifyAccessToken()`. The database schema changed too. `oauthApplication` became `oauthClient` (RFC 7591 compliant), and new tables for `oauthRefreshToken` and `jwks` appeared.
 
-The lesson isn't "check for deprecations first" -- it's that MCP auth tooling is moving fast right now. Whatever you pick today might be superseded next month. Keep your OAuth logic behind a thin adapter so the refactor is mechanical, not architectural.
+The lesson is not "check for deprecations first." It's that MCP auth tooling is moving fast right now. Whatever you pick today might be superseded next month. Keep your OAuth logic behind a thin adapter so the refactor is mechanical, not architectural.
 
 ## 3. Your auth chain has more layers than you think
 
 The OAuth flow worked. Every tool call failed with `Unauthorized`.
 
-The problem: Reactive Resume uses oRPC for its API layer. The oRPC context has its own auth chain -- separate from the MCP endpoint auth. When a tool calls `listResumes`, oRPC checks for a session cookie or an API key. It doesn't know about OAuth Bearer tokens.
+The problem: Reactive Resume uses oRPC for its API layer. The oRPC context has its own auth chain, separate from the MCP endpoint auth. When a tool calls `listResumes`, oRPC checks for a session cookie or an API key. It doesn't know about OAuth Bearer tokens.
 
 The MCP endpoint authenticated the user. Then it called an oRPC procedure. oRPC saw no cookie and no API key. `Unauthorized`.
 
@@ -127,18 +125,18 @@ return new Response("Unauthorized", {
 
 The ordering matters. Bearer first, API key second. If you check API key first and the user sends a malformed API key alongside a valid Bearer token, the API key check might throw before the Bearer path runs.
 
-And the `WWW-Authenticate: Bearer` header in the 401 response is required by the MCP spec. Without it, claude.ai doesn't know to initiate the OAuth flow -- it just treats the endpoint as permanently inaccessible.
+And the `WWW-Authenticate: Bearer` header in the 401 response is required by the MCP spec. Without it, claude.ai doesn't know to initiate the OAuth flow. It just treats the endpoint as permanently inaccessible.
 
 The API key path will outlive this PR. Removing it is a breaking change that needs a migration plan and a deprecation timeline.
 
-One more subtlety: `verifyApiKey` can throw on malformed input. Wrapping it in try-catch prevents noisy error logs from failed token parsing attempts. The original code used string matching on error messages (`error.message.includes("...")`). The refactored version uses `instanceof AuthError` -- type-safe and won't break if the error message changes.
+One more subtlety: `verifyApiKey` can throw on malformed input. Wrapping it in try-catch prevents noisy error logs from failed token parsing attempts. The original code used string matching on error messages (`error.message.includes("...")`). The refactored version uses `instanceof AuthError`, which is type-safe and won't break if the error message changes.
 
 ## What I left out
 
-- **Token refresh** -- the OAuth Provider plugin handles refresh tokens automatically. I didn't need custom logic.
-- **Scope enforcement** -- all MCP tools get full user access. Fine for a personal resume builder, not fine for a multi-tenant SaaS.
-- **Rate limiting on the OAuth endpoints** -- Dynamic Client Registration is open by design (RFC 7591). Anyone can register. Rate limiting is on the maintainer's TODO.
-- **Consent screen** -- better-auth's OAuth Provider skips the consent screen for first-party apps. If Reactive Resume ever becomes an OAuth provider for third-party apps, a consent UI is needed.
+- **Token refresh.** The OAuth Provider plugin handles refresh tokens automatically. I didn't need custom logic.
+- **Scope enforcement.** All MCP tools get full user access. Fine for a personal resume builder, not fine for a multi-tenant SaaS.
+- **Rate limiting on the OAuth endpoints.** Dynamic Client Registration is open by design (RFC 7591). Anyone can register. Rate limiting is on the maintainer's TODO.
+- **Consent screen.** better-auth's OAuth Provider skips the consent screen for first-party apps. If Reactive Resume ever becomes an OAuth provider for third-party apps, a consent UI is needed.
 
 ## The setup that proved it works
 
@@ -146,10 +144,10 @@ Self-hosted Reactive Resume on Google Cloud Run (europe-west1), PostgreSQL on Ne
 
 The flow is proven end-to-end on Cloud Run. The PR has been merged and the feature ships with the next release.
 
-If you're adding OAuth to your own MCP server, read [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) for the full implementation -- every gotcha above maps to a specific commit. To try the result, point claude.ai at your own Reactive Resume instance and connect via OAuth. My setup runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
+If you're adding OAuth to your own MCP server, read [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) for the full implementation. Every gotcha above maps to a specific commit. To try the result, point claude.ai at your own Reactive Resume instance and connect via OAuth. My setup runs at [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
 ---
 
-*I write about systems, security, and the intersection of AI agents with real infrastructure at [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni builds MCP integrations for open-source tools. More at [vasudev.xyz](https://vasudev.xyz).*
 
 *The cover image for this post was generated by AI.*

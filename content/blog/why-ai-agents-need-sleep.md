@@ -6,9 +6,9 @@ description: "AI agents capture memories but never consolidate them. Here's how 
 images: ["/images/dream-engine.png"]
 ---
 
-I contribute to a cognitive database for AI agents called [MuninnDB](https://github.com/scrypster/muninndb). It stores everything: session notes, project context, work observations, legal documentation. After a few weeks of daily use, entries pile up. Finding things still works -- semantic search is good at retrieval. But the store itself was rotting. Near-duplicate entries from sessions that covered the same ground. Stale facts superseded by newer ones. No system for distinguishing "critical legal note" from "offhand remark about Docker networking."
+I contribute to a cognitive database for AI agents called [MuninnDB](https://github.com/scrypster/muninndb). It stores everything: session notes, project context, work observations, legal documentation. After a few weeks of daily use, entries pile up. Finding things still works. Semantic search is good at retrieval. But the store itself was rotting. Near-duplicate entries from sessions that covered the same ground. Stale facts superseded by newer ones. No system for distinguishing "critical legal note" from "offhand remark about Docker networking."
 
-The problem is not capture. Every memory system nails capture. The problem is what happens between sessions -- which is usually nothing.
+The problem is not capture. Every memory system nails capture. The problem is what happens between sessions, which is usually nothing.
 
 **AI agents accumulate memories the way hoarders accumulate newspapers. The fix is not better search. It is sleep.**
 
@@ -16,7 +16,7 @@ The problem is not capture. Every memory system nails capture. The problem is wh
 
 Human memory consolidation during sleep is not backup. It is an active, destructive process. The hippocampus replays recent experiences, the neocortex integrates them into existing knowledge structures, and the brain actively weakens memories that did not get reinforced. You wake up with fewer memories than you went to sleep with, and that is the point.
 
-Three properties matter for AI system design. First, consolidation is selective -- important memories get strengthened, noise gets weakened. Second, it discovers connections -- the brain links concepts across domains during REM sleep. Third, it resolves conflicts -- contradictory memories get adjudicated, with more recent or more reinforced versions winning.
+Three properties matter for AI system design. First, consolidation is selective. Important memories get strengthened, noise gets weakened. Second, it discovers connections. The brain links concepts across domains during REM sleep. Third, it resolves conflicts. Contradictory memories get adjudicated, with more recent or more reinforced versions winning.
 
 No mainstream AI memory system does any of this. Most do deduplication at best.
 
@@ -24,13 +24,13 @@ No mainstream AI memory system does any of this. Most do deduplication at best.
 
 The idea is not new. Researchers have been circling it from multiple directions.
 
-Zhong et al. introduced [MemoryBank](https://arxiv.org/abs/2305.10250) (2023), an LLM memory system with Ebbinghaus forgetting curves -- memories decay over time unless reinforced. MuninnDB's existing ACT-R model builds on this foundation.
+Zhong et al. introduced [MemoryBank](https://arxiv.org/abs/2305.10250) (2023), an LLM memory system with Ebbinghaus forgetting curves that decay memories over time unless reinforced. MuninnDB's existing ACT-R model builds on this foundation.
 
-The "Language Models Need Sleep" paper on [OpenReview](https://openreview.net/forum?id=iiZy6xyVVE) (2025) proposed an explicit "Dreaming" process to transfer fragile short-term memories into stable long-term knowledge -- the closest theoretical framing to what we are building.
+The "Language Models Need Sleep" paper on [OpenReview](https://openreview.net/forum?id=iiZy6xyVVE) (2025) proposed an explicit "Dreaming" process to transfer fragile short-term memories into stable long-term knowledge. This is the closest theoretical framing to what we are building.
 
 Xie's [SleepGate](https://arxiv.org/abs/2603.14517) framework (2026) added conflict-aware temporal tagging and a forgetting gate, reducing proactive interference from O(n) to O(log n). The key insight: you need to know *when* something was learned to resolve contradictions, not just *what* was learned.
 
-And Anthropic has been testing [Auto Dream](https://dev.to/akari_iku/does-claude-code-need-sleep-inside-the-unreleased-auto-dream-feature-2n7m) for Claude Code -- a background process that consolidates memory files between sessions. It works on flat text files. Reasonable for a coding assistant. Not sufficient for a cognitive database.
+And Anthropic has been testing [Auto Dream](https://dev.to/akari_iku/does-claude-code-need-sleep-inside-the-unreleased-auto-dream-feature-2n7m) for Claude Code, a background process that consolidates memory files between sessions. It works on flat text files. Reasonable for a coding assistant. Not sufficient for a cognitive database.
 
 ## The gap
 
@@ -38,7 +38,7 @@ MuninnDB already had the capture side covered: vector embeddings, Ebbinghaus dec
 
 ## The Dream Engine
 
-The Dream Engine extends the existing consolidation pipeline with LLM intelligence. It runs between sessions -- triggered automatically on server start (the "waking up" metaphor) or manually via CLI.
+The Dream Engine extends the existing consolidation pipeline with LLM intelligence. It runs between sessions, triggered automatically on server start (the "waking up" metaphor) or manually via CLI.
 
 ### Trigger gates
 
@@ -52,13 +52,13 @@ The Dream Engine reuses four existing consolidation phases, adds three new ones,
 
 **Phase 1 (existing): Replay.** Activation replay for Hebbian association weight updates. Unchanged.
 
-**Phase 2 (existing, modified, shipped): Dedup.** The algorithmic dedup phase, but with a split threshold. In normal consolidation mode, entries with cosine similarity >= 0.95 are auto-merged as before. In dream mode, the threshold drops to 0.85. Entries in the 0.85-0.95 range are *not* auto-merged -- they are flagged as near-duplicate clusters and passed to the next phase for LLM review. This is the key architectural decision: let the algorithm handle the obvious cases, let the LLM handle the ambiguous ones.
+**Phase 2 (existing, modified, shipped): Dedup.** The algorithmic dedup phase, but with a split threshold. In normal consolidation mode, entries with cosine similarity >= 0.95 are auto-merged as before. In dream mode, the threshold drops to 0.85. Entries in the 0.85-0.95 range are *not* auto-merged. Instead, they are flagged as near-duplicate clusters and passed to the next phase for LLM review. This is the key architectural decision: let the algorithm handle the obvious cases, let the LLM handle the ambiguous ones.
 
-**Phase 2b (new, a follow-up PR): LLM Consolidation.** The near-duplicate clusters and any detected contradictions get sent to a configured LLM. The LLM returns structured JSON: merge operations, contradiction resolutions, cross-vault connection suggestions, stability recommendations, and a narrative journal entry. The LLM does not auto-link anything across vaults -- it only suggests. A human reviews the suggestions in the dream journal.
+**Phase 2b (new, a follow-up PR): LLM Consolidation.** The near-duplicate clusters and any detected contradictions get sent to a configured LLM. The LLM returns structured JSON: merge operations, contradiction resolutions, cross-vault connection suggestions, stability recommendations, and a narrative journal entry. The LLM does not auto-link anything across vaults. It only suggests. A human reviews the suggestions in the dream journal.
 
 **Phase 3 (existing): Schema Promotion.** Unchanged.
 
-**Phase 4 (new, a follow-up PR): Bidirectional Stability.** This is where the forgetting happens. High-signal entries (accessed frequently, recently reinforced via Hebbian co-activation, or recommended by the LLM) get a stability boost of 1.2x. Low-signal entries (rarely accessed, old, low relevance, not promoted by the LLM) get weakened to 0.8x with a floor at 14 days -- they never drop below the default stability. LLM recommendations override the rules-based adjustments. This models the spacing effect: entries that get retrieved stay strong, entries that don't fade gradually.
+**Phase 4 (new, a follow-up PR): Bidirectional Stability.** This is where the forgetting happens. High-signal entries (accessed frequently, recently reinforced via Hebbian co-activation, or recommended by the LLM) get a stability boost of 1.2x. Low-signal entries (rarely accessed, old, low relevance, not promoted by the LLM) get weakened to 0.8x with a floor at 14 days, meaning they never drop below the default stability. LLM recommendations override the rules-based adjustments. This models the spacing effect: entries that get retrieved stay strong, entries that don't fade gradually.
 
 **Phase 5 (existing): Transitive Inference.** Unchanged.
 
@@ -68,7 +68,7 @@ The Dream Engine reuses four existing consolidation phases, adds three new ones,
 
 Not all vaults are equal and not all LLM providers are equal. MuninnDB enforces trust tiers per vault:
 
-Legal vaults skip Phase 2b entirely -- they are never sent to any LLM, not even a local one. Legal entries are preserved verbatim and are never touched by consolidation.
+Legal vaults skip Phase 2b entirely. They are never sent to any LLM, not even a local one. Legal entries are preserved verbatim and are never touched by consolidation.
 
 Work and personal vaults are restricted to local Ollama or Anthropic's API. They are never sent to OpenAI or other providers.
 
@@ -80,7 +80,7 @@ This is configured, not hardcoded. The resolution order checks for Ollama first 
 
 The sleep/wake metaphor maps directly to the server lifecycle. When MuninnDB stops (`muninn stop`), it writes a `dream.due` sidecar file in the data directory. When it starts again (`muninn start`), it checks the file and the trigger gates. If both pass, it runs a dream before opening ports. If the dream exceeds a configurable timeout (default 60 seconds), it aborts and starts normally. The server never blocks on a dream indefinitely.
 
-For manual use: `muninn dream --dry-run` shows what would happen without writing anything. The dry-run still generates the full journal narrative and prints it to stdout with a `[DRY RUN]` header. This is essential for trust -- you can see exactly what the engine would do before letting it write.
+For manual use: `muninn dream --dry-run` shows what would happen without writing anything. The dry-run still generates the full journal narrative and prints it to stdout with a `[DRY RUN]` header. This is essential for trust. You can see exactly what the engine would do before letting it write.
 
 ## What I left out
 
@@ -128,5 +128,7 @@ muninn dream --dry-run
 
 ---
 
-*Christian Pojoni builds AI agent infrastructure. Hrafn is at [github.com/5queezer/hrafn](https://github.com/5queezer/hrafn). MuninnDB is at [github.com/scrypster/muninndb](https://github.com/scrypster/muninndb).*
+*Christian Pojoni builds AI agent infrastructure. [Hrafn](https://github.com/5queezer/hrafn) is the runtime. [MuninnDB](https://github.com/scrypster/muninndb) is the memory.*
+
+*The cover image for this post was generated by AI.*
 
