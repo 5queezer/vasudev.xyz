@@ -66,7 +66,7 @@ The missing mechanism is explicit Hebbian *weakening*: not just passive decay, b
 | 2b LLM Adjudication | -0.011 | Detrimental |
 | 1 Relevance Decay | -0.011 | Detrimental |
 
-Phase 4 (stability adjustments -- the samskara strengthening mechanism) is the most destructive phase. The empirical case for vairagya as a design primitive is confirmed: unchecked reinforcement damages retrieval. But the data also suggests that the simpler fix is to not reinforce at all, rather than to build a sophisticated weakening counterweight. Scrypster's [review](https://github.com/scrypster/muninndb/pull/367#issuecomment) reached the same conclusion: ship only the positive-delta phases (0, 2, 5), hold the write paths until LocOMo and LongMemEval validation is complete.
+Phase 4 (stability adjustments, the samskara strengthening mechanism) is the most destructive phase. The empirical case for vairagya as a design primitive is confirmed: unchecked reinforcement damages retrieval. But the data also suggests that the simpler fix is to not reinforce at all, rather than to build a sophisticated weakening counterweight. scrypster's [review](https://github.com/scrypster/muninndb/pull/367#issuecomment) reached the same conclusion: ship only the positive-delta phases (0, 2, 5), hold the write paths until LocOMo and LongMemEval validation is complete.
 
 ---
 

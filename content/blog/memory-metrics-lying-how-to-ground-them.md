@@ -55,7 +55,7 @@ Since publishing this post, two data points have reinforced the proxy detachment
 
 My own ablation data tells the same story. Running the [GoodAI LTM benchmark](https://github.com/5queezer/goodai-ltm-benchmark/pull/16) against MuninnDB ([PR #367](https://github.com/scrypster/muninndb/pull/367)), baseline (no dream consolidation) scored 0.489 composite. Full dream phases scored 0.374. The Optuna-best phase subset scored 0.322. Every consolidation variant underperformed doing nothing. The dashboard metrics (dedup rate, association density) improved with each variant. Retrieval quality went the other direction.
 
-This is proxy detachment measured in the wild, not theorized. The consolidation system optimizes its own internal signals while the territory -- actual retrieval quality -- degrades.
+This is proxy detachment measured in the wild, not theorized. The consolidation system optimizes its own internal signals while the territory (actual retrieval quality) degrades.
 
 ## The Grounding Criterion for Memory Metrics
 

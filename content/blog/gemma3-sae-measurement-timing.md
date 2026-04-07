@@ -76,9 +76,9 @@ The high Cohen's d with low LOO accuracy (66%) points to dimensional overfitting
 
 **The deeper finding:** The problem isn't measurement timing. It's that hallucination isn't a monolithic feature. Sycophancy has one direction in activation space ("agree with user"). Hallucination is at least three different mechanisms:
 
-1. **Misconception** ("watermelon seeds are poisonous") -- the model has learned a false fact
-2. **Stale knowledge** ("the current president is X") -- the model's training data is outdated
-3. **Grounding failure** -- the model generates a plausible continuation that happens to be wrong
+1. **Misconception** ("watermelon seeds are poisonous"): the model has learned a false fact
+2. **Stale knowledge** ("the current president is X"): the model's training data is outdated
+3. **Grounding failure**: the model generates a plausible continuation that happens to be wrong
 
 A single linear probe can't separate what isn't a single signal. This shifts the research question from "wrong timing" to "wrong abstraction level." Per-error-type probes on curated subsets (misconception-only, grounding-failure-only) are the next step. That's a different experiment.
 
