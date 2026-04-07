@@ -1,0 +1,172 @@
+name: Check blog post links
+
+on:
+  pull_request:
+    paths:
+      - "content/blog/*.md"
+  schedule:
+    # Every Monday at 09:00 UTC
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  # ── PR trigger: check only changed English blog files ──────────────
+  pr-check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Detect changed English blog files
+        id: changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          files=$(gh pr diff "${{ github.event.pull_request.number }}" --name-only \
+            | grep '^content/blog/.*\.md$' \
+            | grep -v '\.\(de\|es\)\.md$' \
+            || true)
+
+          if [ -z "$files" ]; then
+            echo "No English blog files changed"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            csv=$(echo "$files" | paste -sd ',' -)
+            echo "files=$csv" >> "$GITHUB_OUTPUT"
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "Checking: $csv"
+          fi
+
+      - name: Run link checker
+        if: steps.changed.outputs.skip != 'true'
+        id: check
+        continue-on-error: true
+        run: |
+          go run ./cmd/check-links/main.go \
+            -files "${{ steps.changed.outputs.files }}" \
+            -output results.json
+
+      - name: Build PR comment
+        if: steps.changed.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          marker="<!-- check-links-report -->"
+
+          # Determine whether we need to post anything
+          has_problems=false
+          if [ "${{ steps.check.outcome }}" = "failure" ]; then
+            has_problems=true
+          elif [ -f results.json ] && jq -e '.[] | select(.status == "WARN")' results.json > /dev/null 2>&1; then
+            has_problems=true
+          fi
+
+          if [ "$has_problems" = "false" ]; then
+            echo "All links OK — nothing to report."
+            # Remove stale comment if one exists
+            comment_id=$(gh api "repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" \
+              --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -1 || true)
+            if [ -n "$comment_id" ]; then
+              gh api -X DELETE "repos/${{ github.repository }}/issues/comments/$comment_id"
+            fi
+            exit 0
+          fi
+
+          # Build the markdown table from results.json
+          {
+            echo "$marker"
+            echo "### Link check results"
+            echo ""
+            echo "| Status | File | URL | Message |"
+            echo "|--------|------|-----|---------|"
+            jq -r '.[] | select(.status == "FAIL" or .status == "WARN") | "| \(.status) | \(.file) | \(.url) | \(.message) |"' results.json
+          } > comment_body.md
+
+          # Find existing comment with the marker
+          comment_id=$(gh api "repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" \
+            --jq ".[] | select(.body | startswith(\"$marker\")) | .id" | head -1 || true)
+
+          if [ -n "$comment_id" ]; then
+            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$comment_id" \
+              -f body="$(cat comment_body.md)"
+          else
+            gh pr comment "${{ github.event.pull_request.number }}" --body-file comment_body.md
+          fi
+
+      - name: Fail if broken links found
+        if: steps.changed.outputs.skip != 'true' && steps.check.outcome == 'failure'
+        run: |
+          echo "::error::Broken links detected — see PR comment for details"
+          exit 1
+
+  # ── Scheduled trigger: full scan of all English blog posts ─────────
+  full-scan:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Run full link check
+        id: check
+        continue-on-error: true
+        run: |
+          go run ./cmd/check-links/main.go -output results.json
+
+      - name: Create or update issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          title="Link check: broken or mismatched links found"
+          date=$(date -u +"%Y-%m-%d")
+
+          # Ensure the maintenance label exists
+          gh label create maintenance --description "Automated maintenance tasks" --color "0E8A16" 2>/dev/null || true
+
+          # Find existing open issue with that title
+          issue_number=$(gh issue list --state open --search "in:title $title" --json number,title \
+            --jq ".[] | select(.title == \"$title\") | .number" | head -1 || true)
+
+          has_problems=false
+          if [ "${{ steps.check.outcome }}" = "failure" ]; then
+            has_problems=true
+          elif [ -f results.json ] && jq -e '.[] | select(.status == "WARN" or .status == "FAIL")' results.json > /dev/null 2>&1; then
+            has_problems=true
+          fi
+
+          if [ "$has_problems" = "true" ]; then
+            # Build issue body
+            {
+              echo "## Link check — $date"
+              echo ""
+              echo "| Status | File | URL | Message |"
+              echo "|--------|------|-----|---------|"
+              jq -r '.[] | select(.status == "FAIL" or .status == "WARN") | "| \(.status) | \(.file) | \(.url) | \(.message) |"' results.json
+            } > issue_body.md
+
+            if [ -n "$issue_number" ]; then
+              gh issue edit "$issue_number" --body-file issue_body.md
+            else
+              gh issue create --title "$title" --body-file issue_body.md --label maintenance
+            fi
+          else
+            # All clear — close existing issue if one is open
+            if [ -n "$issue_number" ]; then
+              gh issue close "$issue_number" --comment "All links OK as of $date"
+            fi
+          fi
