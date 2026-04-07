@@ -37,7 +37,7 @@ This explains the three-tier result from the Gemma3 research:
 
 **Some behaviors crystallize as the model reads the prompt. Others crystallize as the model writes the response.** Measurement method must match behavior substrate. This isn't a failure of SAEs. It's a failure of the research question when posed to the wrong layer of the system.
 
-The interpretability field has latched onto one measurement window—encoding-time contrastive activation—and built a whole intuition that this is "where model behavior lives." It isn't. Behavior lives everywhere. Measurement determines which behaviors are visible.
+The interpretability field has latched onto one measurement window (encoding-time contrastive activation) and built a whole intuition that this is "where model behavior lives." It isn't. Behavior lives everywhere. Measurement determines which behaviors are visible.
 
 ---
 
