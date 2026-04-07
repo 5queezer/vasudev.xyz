@@ -2,22 +2,22 @@
 title: "Sparse Autoencoders Can't Measure Generation-Time Behavior. That's Not a Bug."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
-description: "Why sycophancy SAE features show strong signals but hallucination detection fails. The answer: measurement timing must match behavior timing."
+description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination detection fails. The answer: measurement timing must match behavior timing."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 ---
 
 
 
-**Your measurement window determines what behaviors you can see. Sycophancy manifests during encoding. Hallucination manifests during generation. Use the wrong timing and the signal collapses.**
+**Your measurement window determines what behaviors you can see. Sycophancy manifests during encoding. Hallucination manifests during generation. Use the wrong timing and your Cohen's d collapses.**
 
-I spent two hours last week staring at a sparse autoencoder (SAE) feature chart wondering why sycophancy detection showed a strong signal while hallucination detection flatlined. Same model. Same SAE. Same methodology. The error bars didn't overlap. This shouldn't be possible if SAEs are actually finding "behavioral features" the way the interpretability community claims.
+I spent two hours last week staring at a Gemma3 sparse autoencoder (SAE) feature chart wondering why sycophancy detection worked perfectly (Cohen's d around 9.9) while hallucination detection flatlined (d < 1.0). Same model. Same SAE. Same methodology. The error bars didn't overlap. This shouldn't be possible if SAEs are actually finding "behavioral features" the way the interpretability community claims.
 
 Then it clicked: the timing was wrong.
 
 ## When Sycophancy Shows Up
 
-Sycophancy is a bias in *how the model encodes the input*. The model sees a prompt, reads the human preferences in it, and that preference biases the activation patterns in the encoder layers before a single token gets generated. You can measure this bias at encoding time, specifically at the final input token position, before the model generates. That's clean signal. That feature flips on reliably when the model encodes sycophantic intent, regardless of topic variation.
+Sycophancy is a bias in *how the model encodes the input*. The model sees a prompt, reads the human preferences in it, and that preference biases the activation patterns in the encoder layers before a single token gets generated. You can measure this bias at encoding time, specifically at the final input token position, before the model generates. Layer 29, feature 2123 shows 617.6 differential activation with only 71.1 flip variance. That's clean signal. That feature flips on reliably when the model encodes sycophantic intent, regardless of topic variation.
 
 You can zero that feature out. The model agrees that "2+2=5" because you've surgically removed the bias that would have rejected a flatly false premise. The ablation proves causal involvement, not mere correlation.
 
@@ -27,13 +27,13 @@ Hallucination doesn't manifest during encoding. It manifests during token genera
 
 Using encoding-time contrastive analysis to catch generation-time behavior is like measuring water molecules in a beaker to predict whether rain will fall tomorrow. You're measuring the right substrate at the wrong time.
 
-This explains the generalized tier result:
+This explains the three-tier result from the Gemma3 research:
 
-**Tier 1 (Sycophancy):** Encoding-time phenomenon. Strong signal.
+**Tier 1 (Sycophancy):** Encoding-time phenomenon. Perfect signal. Cohen's d = 9.9.
 
 **Tier 2 (Over-refusal, Overconfidence):** Partially encoding-time. Mixed signal. Over-refusal shows promise. Overconfidence drowns in high flip variance because the behavior is entangled with topic representation.
 
-**Tier 3 (Hallucination, Toxicity, Deception):** Generation-time phenomena. Weak or no signal.
+**Tier 3 (Hallucination, Toxicity, Deception):** Generation-time phenomena. No signal. Cohen's d < 1.0.
 
 ---
 

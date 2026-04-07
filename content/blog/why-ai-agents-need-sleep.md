@@ -28,6 +28,8 @@ Zhong et al. introduced [MemoryBank](https://arxiv.org/abs/2305.10250) (2023), a
 
 The "Language Models Need Sleep" paper on [OpenReview](https://openreview.net/forum?id=iiZy6xyVVE) (2025) proposed an explicit "Dreaming" process to transfer fragile short-term memories into stable long-term knowledge. This is the closest theoretical framing to what we are building.
 
+Xie's [SleepGate](https://arxiv.org/abs/2603.14517) framework (2026) added conflict-aware temporal tagging and a forgetting gate, reducing proactive interference from O(n) to O(log n). The key insight: you need to know *when* something was learned to resolve contradictions, not just *what* was learned.
+
 And Anthropic has been testing [Auto Dream](https://dev.to/akari_iku/does-claude-code-need-sleep-inside-the-unreleased-auto-dream-feature-2n7m) for Claude Code, a background process that consolidates memory files between sessions. It works on flat text files. Reasonable for a coding assistant. Not sufficient for a cognitive database.
 
 ## The gap

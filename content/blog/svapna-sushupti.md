@@ -32,7 +32,11 @@ Neuroscience calls this the consolidation problem. AI researchers frame it as ca
 
 Several papers from 2025 and 2026 make the sleep analogy explicit rather than decorative.
 
-Active Dreaming Memory (ADM) adds counterfactual verification. Before committing a candidate rule to long-term memory, it simulates the rule against synthetic scenarios. If it fails, it does not commit. ["Language Models Need Sleep"](https://openreview.net/forum?id=iiZy6xyVVE) splits the problem into Memory Consolidation (distilling short-term into long-term via RL) and Dreaming (RL-generated synthetic curriculum). Both implement what amounts to [REM](https://en.wikipedia.org/wiki/Rapid_eye_movement_sleep)-style generative rehearsal.
+[SleepGate](https://arxiv.org/abs/2603.14517) (March 2026) introduces a forgetting gate in the KV cache that separates a wake phase from a sleep micro-cycle. The core finding: LLMs suffer from proactive interference where older context actively degrades retrieval of newer information, and no prompt-based intervention fixes this. The paper explicitly plans dream-like training as a next step, with the model generating its own text during the sleep phase to rehearse patterns.
+
+[LightMem](https://arxiv.org/abs/2510.18866) decouples consolidation from inference entirely. Memory is updated in a sleep-time pass that runs between sessions, achieving up to 10.9% accuracy gains on [LongMemEval](https://arxiv.org/abs/2410.10813) at 117x lower token cost than online consolidation. The efficiency argument alone makes a strong case for the trigger-gate pattern: consolidate offline, not on every write.
+
+Active Dreaming Memory (ADM) adds counterfactual verification. Before committing a candidate rule to long-term memory, it simulates the rule against synthetic scenarios. If it fails, it does not commit. ["Language Models Need Sleep"](https://openreview.net/forum?id=iiZy6xyVVE) splits the problem into Memory Consolidation (distilling short-term into long-term via RL) and Dreaming (RL-generated synthetic curriculum). Both papers implement what amounts to [REM](https://en.wikipedia.org/wiki/Rapid_eye_movement_sleep)-style generative rehearsal.
 
 ---
 
@@ -40,7 +44,7 @@ Active Dreaming Memory (ADM) adds counterfactual verification. Before committing
 
 During [NREM sleep](https://en.wikipedia.org/wiki/Non-rapid_eye_movement_sleep), three oscillations interact in a coordinated hierarchy: slow oscillations in the neocortex, thalamocortical spindles, and hippocampal sharp-wave ripples. This triple coupling drives hippocampal memory replay into the neocortex, gradually shifting memories from fast-learning temporary storage to slow-learning permanent storage.
 
-REM sleep does something different. Recent work shows that brain activity during REM carries specific information about pre-sleep experiences. But the causal story is careful: neural reinstatement during REM does not correlate with memory retention. What correlates is global beta power. REM may be necessary for memory integration without being sufficient for retention. It reorganizes, but NREM consolidates.
+REM sleep does something different. Recent work ([Barbosa et al., 2025](https://doi.org/10.1016/j.isci.2025.113032)) shows that brain activity during REM carries specific information about pre-sleep experiences. But the causal story is careful: neural reinstatement during REM does not correlate with memory retention. What correlates is global beta power. REM may be necessary for memory integration without being sufficient for retention. It reorganizes, but NREM consolidates.
 
 Neither alone is sufficient. The two-phase biological system is not redundant. The two phases solve different sub-problems.
 
@@ -66,7 +70,7 @@ Here is where all three traditions surface the same unresolved tension.
 
 In neuroscience: NREM slow-wave sleep (sushupti-adjacent, deep, relatively dreamless, and dominated by synaptic downselection) versus REM (svapna-adjacent, active, and memory-integrating). Both the synaptic homeostasis hypothesis and active systems consolidation have empirical support.
 
-In the AI papers: the focus on selective forgetting and interference resolution align with sushupti-mode operations. ADM and "Language Models Need Sleep" focus on generative rehearsal and synthetic curriculum, which are svapna-mode operations.
+In the AI papers: LightMem and SleepGate focus on selective forgetting and interference resolution, which are sushupti-mode operations. ADM and "Language Models Need Sleep" focus on generative rehearsal and synthetic curriculum, which are svapna-mode operations. Neither directly compares the two.
 
 In the Vedic framing: sushupti is described as deeper and closer to the ground state than svapna. The dream-state is more active but also further from the underlying reality. Deep sleep does less, and that may be precisely why it restores more.
 

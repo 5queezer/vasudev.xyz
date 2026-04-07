@@ -21,11 +21,11 @@ None of that tells you whether the agent remembers the right thing at the right 
 
 ## The Problem Has a Name
 
-When a measurable signal gets decoupled from the process it's supposed to track, the signal becomes self-referential. You end up optimizing the map while the territory rots.
+I recently read an essay called ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) by an independent researcher named Flyxion. The core argument: when a measurable signal gets decoupled from the process it's supposed to track, the signal becomes self-referential. You end up optimizing the map while the territory rots.
 
-This mechanism applies everywhere measurable signals are used to make decisions. Including AI agent memory.
+The essay was written about attention platforms (follower counts, engagement metrics, viral loops) but the mechanism it describes applies everywhere measurable signals are used to make decisions. Including AI agent memory.
 
-The operational criterion is simple and brutal: a proxy is grounded when it cannot be moved at scale without commensurate movement in the underlying process. If you can inflate the metric while the thing-the-metric-is-supposed-to-measure stays flat, the metric is broken. Not noisy. Not imperfect. Structurally broken.
+The operational criterion Flyxion proposes is simple and brutal: a proxy is grounded when it cannot be moved at scale without commensurate movement in the underlying process. If you can inflate the metric while the thing-the-metric-is-supposed-to-measure stays flat, the metric is broken. Not noisy. Not imperfect. Structurally broken.
 
 Apply that to agent memory consolidation and the implications are immediate.
 
@@ -41,17 +41,17 @@ The consolidation dashboard says "great run." The agent forgets your name.
 
 ## Goodhart's Law Is a Structural Attractor, Not a Warning
 
-Goodhart's law ("when a measure becomes a target, it ceases to be a good measure") isn't a warning about careless optimization. It's a description of an attractor state. Any system that applies sustained optimization pressure to a proxy will converge on proxy detachment, because manipulating the proxy is always cheaper than improving the underlying process.
+Flyxion's sharpest insight is that Goodhart's law ("when a measure becomes a target, it ceases to be a good measure") isn't a warning about careless optimization. It's a description of an attractor state. Any system that applies sustained optimization pressure to a proxy will converge on proxy detachment, because manipulating the proxy is always cheaper than improving the underlying process.
 
 In agent memory, this manifests as a specific failure mode. If you tune your consolidation thresholds to maximize dedup rate on your test vault, you will find thresholds that merge aggressively. The dedup metric looks great. But you've just trained your system to optimize for a signal that's cheaper to move than the thing you actually care about: does the agent retrieve the correct memory when it matters?
 
-Consolidation systems can degrade retrieval compared to naive RAG baselines. The consolidation "worked" (it merged, it decayed, it strengthened) but the agent got worse at answering questions. The proxy improved. The territory degraded. Textbook proxy detachment.
+The research confirms this risk. LongMemEval (ICLR 2025) and MemoryBench both show that consolidation systems can degrade retrieval compared to naive RAG baselines. The consolidation "worked" (it merged, it decayed, it strengthened) but the agent got worse at answering questions. The proxy improved. The territory degraded. Textbook proxy detachment.
 
 ## The Grounding Criterion for Memory Metrics
 
 The fix is architectural, not incremental. Before you ship any memory consolidation feature, define a retrieval benchmark that represents realistic agent query patterns. Then apply the grounding criterion: every metric you track must be one that cannot improve without retrieval accuracy also improving.
 
-For [MuninnDB issue #311](https://github.com/scrypster/muninndb/issues/311), the benchmark harness blocking Dream Engine's write paths, we're using this approach. The benchmark set is curated questions covering information extraction, multi-session reasoning, temporal reasoning, knowledge updates, and abstention. The procedure:
+For [MuninnDB issue #311](https://github.com/scrypster/muninndb/issues/311), the benchmark harness blocking Dream Engine's write paths, we're using this approach. The benchmark set is [LongMemEval](https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned): 500 curated questions covering information extraction, multi-session reasoning, temporal reasoning, knowledge updates, and abstention. The procedure:
 
 Run baseline retrieval on the unmodified vault. Enable consolidation phases. Re-run the same queries. If recall drops on any category, the phase doesn't ship. No amount of dashboard improvement overrides a retrieval regression.
 
@@ -69,9 +69,11 @@ The fix is the same in every case: define the ground truth you actually care abo
 
 ## What I Left Out
 
-I'm using LLM-generated synthetic vault entries for controlled ground-truth scenarios, but they're supplements to curated evaluations, not replacements.
+The proxy integrity essay also analyzes "temporal compression" where the appearance of skill is manufactured without the underlying process. That maps to synthetic benchmarks where you generate test data that looks realistic but doesn't carry the statistical properties of real agent interactions. I'm using LLM-generated synthetic vault entries for controlled ground-truth scenarios, but they're supplements to LongMemEval, not replacements.
 
-I haven't addressed the multi-agent case, where one agent's consolidated memory feeds into another agent's context. Proxy detachment in that setting could cascade: bad consolidation upstream produces bad retrieval downstream, but both agents' dashboards look fine. That's a problem for Hrafn's A2A protocol work, but it's future scope. A related issue: Agent Cards in A2A carry an `agent_id` but nothing binds that ID to interaction history. A malicious agent can regenerate its card and start with fresh reputation. That's a separate post.
+I haven't addressed the multi-agent case, where one agent's consolidated memory feeds into another agent's context. Proxy detachment in that setting could cascade: bad consolidation upstream produces bad retrieval downstream, but both agents' dashboards look fine. That's a problem for Hrafn's A2A protocol work, but it's future scope. A related issue: Agent Cards in A2A carry an `agent_id` but nothing binds that ID to interaction history. A malicious agent can regenerate its card and start with fresh reputation. Flyxion's ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formalizes exactly this failure mode. That's a separate post.
+
+The essay's analysis of platform incentives (advertising models are economically insulated from signal degradation) has an analog in open-source: star counts and download metrics are proxies for utility that can detach just as easily. But that's a different post.
 
 ## The Principle
 
