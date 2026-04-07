@@ -48,3 +48,12 @@ other = "Tagged"
 
 [postsTaggedCount]
 other = "{{ . }} posts"
+
+[sharePost]
+other = "Share"
+
+[copyLink]
+other = "Copy link"
+
+[copied]
+other = "Copied!"
