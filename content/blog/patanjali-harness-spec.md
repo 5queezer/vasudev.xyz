@@ -10,6 +10,7 @@ images: ["/images/patanjali-harness-spec-og.png"]
 
 
 
+
 [MuninnDB](https://github.com/scrypster/muninndb)'s consolidation system merged three color-variant duplicate engrams exactly as designed (cosine similarity >= 0.95). Retrieval got worse. In a 13-engram vault, removing duplicates shifted the normalization anchor, pushing relevant results down the ranking. The fix was a guard clause: `MinDedupVaultSize` (default 20), skipping Phase 2 dedup in small vaults. [PR #359](https://github.com/scrypster/muninndb/pull/359) closed the issue.
 
 The failure wasn't a bug in the dedup algorithm. It was a failure of *discernment*: a valid consolidation operation applied in a context where it caused harm. When to consolidate, when to leave alone, what counts as noise vs. signal. That problem has a long history outside computer science. I found three specific design principles in the [Yoga Sutras](https://en.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali) that map to empirical results from [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, March 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), and Böckeler's [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html).

@@ -9,6 +9,7 @@ images: ["/images/svapna-sushupti-og.png"]
 
 
 
+
 [My last post](/blog/why-ai-agents-need-sleep/) argued that AI agents need sleep. Several people asked the obvious follow-up: what does that actually mean? Is "sleep" just a metaphor for running a cron job, or does the analogy go deeper?
 
 I spent a week reading across three bodies of literature that almost never cite each other: recent AI memory papers, sleep neuroscience, and the [Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad). They converge on the same core insight about offline consolidation. They also surface a disagreement that turns out to be the most important design question in AI memory systems right now.

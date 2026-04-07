@@ -10,6 +10,7 @@ images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 
 
 
+
 I built a memory consolidation system for AI agents. It deduplicates memories, strengthens associations, decays stale entries, and produces a dream journal you can actually read. The dashboard looks fantastic: dedup rate up, memory count down, association density climbing.
 
 None of that tells you whether the agent remembers the right thing at the right time.
