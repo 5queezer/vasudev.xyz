@@ -48,3 +48,12 @@ other = "Etiquetado"
 
 [postsTaggedCount]
 other = "{{ . }} publicaciones"
+
+[sharePost]
+other = "Compartir"
+
+[copyLink]
+other = "Copiar enlace"
+
+[copied]
+other = "Copiado!"
