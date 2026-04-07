@@ -336,3 +336,212 @@ func TestShouldFallbackModel(t *testing.T) {
 		t.Fatal("expected 500 to trigger fallback")
 	}
 }
+
+// projectRoot returns the repository root by stepping up from the test package directory.
+func projectRoot() string {
+	// Tests run with cwd = the package directory (cmd/generate-og-images),
+	// so two levels up is the repository root.
+	return filepath.Join("..", "..")
+}
+
+// readAllowedTags parses data/allowed-tags.txt into a slice, skipping blank lines.
+func readAllowedTags(t *testing.T) []string {
+	t.Helper()
+	path := filepath.Join(projectRoot(), "data", "allowed-tags.txt")
+	raw, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read allowed-tags.txt: %v", err)
+	}
+	var tags []string
+	for _, line := range strings.Split(string(raw), "\n") {
+		if line = strings.TrimSpace(line); line != "" {
+			tags = append(tags, line)
+		}
+	}
+	return tags
+}
+
+// TestAllowedTagsContainsNewTags verifies the two tags introduced by this PR are present.
+func TestAllowedTagsContainsNewTags(t *testing.T) {
+	tags := readAllowedTags(t)
+	want := []string{"interpretability", "sparse-autoencoders"}
+	tagSet := make(map[string]bool, len(tags))
+	for _, tag := range tags {
+		tagSet[tag] = true
+	}
+	for _, w := range want {
+		if !tagSet[w] {
+			t.Errorf("allowed-tags.txt missing expected tag %q", w)
+		}
+	}
+}
+
+// TestAllowedTagsIsSorted verifies every tag in the file is in ascending alphabetical order.
+func TestAllowedTagsIsSorted(t *testing.T) {
+	tags := readAllowedTags(t)
+	for i := 1; i < len(tags); i++ {
+		if tags[i] < tags[i-1] {
+			t.Errorf("allowed-tags.txt is not sorted: %q appears after %q", tags[i], tags[i-1])
+		}
+	}
+}
+
+// TestAllowedTagsNoDuplicates verifies no tag appears more than once.
+func TestAllowedTagsNoDuplicates(t *testing.T) {
+	tags := readAllowedTags(t)
+	seen := make(map[string]int)
+	for _, tag := range tags {
+		seen[tag]++
+	}
+	for tag, count := range seen {
+		if count > 1 {
+			t.Errorf("tag %q appears %d times in allowed-tags.txt", tag, count)
+		}
+	}
+}
+
+// TestAllowedTagsFormat verifies each tag is lowercase, non-empty, and contains only valid characters.
+func TestAllowedTagsFormat(t *testing.T) {
+	tags := readAllowedTags(t)
+	for _, tag := range tags {
+		if tag != strings.ToLower(tag) {
+			t.Errorf("tag %q contains uppercase characters", tag)
+		}
+		for _, ch := range tag {
+			if !((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') || ch == '-') {
+				t.Errorf("tag %q contains invalid character %q", tag, ch)
+			}
+		}
+	}
+}
+
+// parseTagList extracts tags from a front-matter tags field value like ["ai", "foo", "bar"].
+func parseTagList(raw string) []string {
+	raw = strings.TrimSpace(raw)
+	raw = strings.TrimPrefix(raw, "[")
+	raw = strings.TrimSuffix(raw, "]")
+	var tags []string
+	for _, part := range strings.Split(raw, ",") {
+		tag := strings.TrimSpace(part)
+		tag = strings.Trim(tag, `"`)
+		tag = strings.TrimSpace(tag)
+		if tag != "" {
+			tags = append(tags, tag)
+		}
+	}
+	return tags
+}
+
+func TestParseTagList(t *testing.T) {
+	tests := []struct {
+		input string
+		want  []string
+	}{
+		{`["ai", "interpretability", "sparse-autoencoders"]`, []string{"ai", "interpretability", "sparse-autoencoders"}},
+		{`["ai"]`, []string{"ai"}},
+		{`[]`, nil},
+		{``, nil},
+	}
+	for _, tt := range tests {
+		got := parseTagList(tt.input)
+		if len(got) != len(tt.want) {
+			t.Errorf("parseTagList(%q) = %v, want %v", tt.input, got, tt.want)
+			continue
+		}
+		for i := range got {
+			if got[i] != tt.want[i] {
+				t.Errorf("parseTagList(%q)[%d] = %q, want %q", tt.input, i, got[i], tt.want[i])
+			}
+		}
+	}
+}
+
+// TestNewBlogPostHasRequiredFields verifies the new post has all required front matter fields.
+func TestNewBlogPostHasRequiredFields(t *testing.T) {
+	path := filepath.Join(projectRoot(), "content", "blog", "gemma3-sae-measurement-timing.md")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read blog post: %v", err)
+	}
+	required := []string{"title", "date", "description", "tags"}
+	for _, field := range required {
+		val := extractFrontMatterField(data, field)
+		if val == "" {
+			t.Errorf("front matter field %q is missing or empty", field)
+		}
+	}
+}
+
+// TestNewBlogPostTagsAreAllowed verifies every tag used in the new post exists in allowed-tags.txt.
+func TestNewBlogPostTagsAreAllowed(t *testing.T) {
+	path := filepath.Join(projectRoot(), "content", "blog", "gemma3-sae-measurement-timing.md")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read blog post: %v", err)
+	}
+	rawTags := extractFrontMatterField(data, "tags")
+	postTags := parseTagList(rawTags)
+
+	allowed := readAllowedTags(t)
+	allowedSet := make(map[string]bool, len(allowed))
+	for _, tag := range allowed {
+		allowedSet[tag] = true
+	}
+	for _, tag := range postTags {
+		if !allowedSet[tag] {
+			t.Errorf("post uses tag %q which is not in allowed-tags.txt", tag)
+		}
+	}
+}
+
+// TestNewBlogPostUsesNewTags verifies the post specifically uses the two tags added in this PR.
+func TestNewBlogPostUsesNewTags(t *testing.T) {
+	path := filepath.Join(projectRoot(), "content", "blog", "gemma3-sae-measurement-timing.md")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read blog post: %v", err)
+	}
+	rawTags := extractFrontMatterField(data, "tags")
+	postTags := parseTagList(rawTags)
+
+	tagSet := make(map[string]bool, len(postTags))
+	for _, tag := range postTags {
+		tagSet[tag] = true
+	}
+	for _, want := range []string{"interpretability", "sparse-autoencoders"} {
+		if !tagSet[want] {
+			t.Errorf("expected new blog post to use tag %q, but it does not", want)
+		}
+	}
+}
+
+// TestNewBlogPostDateFormat verifies the date field follows YYYY-MM-DD format.
+func TestNewBlogPostDateFormat(t *testing.T) {
+	path := filepath.Join(projectRoot(), "content", "blog", "gemma3-sae-measurement-timing.md")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read blog post: %v", err)
+	}
+	date := extractFrontMatterField(data, "date")
+	if date == "" {
+		t.Fatal("date field is missing")
+	}
+	// Must be parseable as a date
+	parts := strings.Split(date, "-")
+	if len(parts) != 3 || len(parts[0]) != 4 || len(parts[1]) != 2 || len(parts[2]) != 2 {
+		t.Errorf("date %q does not match YYYY-MM-DD format", date)
+	}
+}
+
+// TestNewBlogPostBodyIsNonEmpty verifies the post body has actual content beyond the front matter.
+func TestNewBlogPostBodyIsNonEmpty(t *testing.T) {
+	path := filepath.Join(projectRoot(), "content", "blog", "gemma3-sae-measurement-timing.md")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read blog post: %v", err)
+	}
+	_, body := splitFrontMatterAndBody(data)
+	if len(strings.TrimSpace(body)) == 0 {
+		t.Fatal("blog post body is empty")
+	}
+}
