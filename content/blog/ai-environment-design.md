@@ -5,7 +5,9 @@ tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "h
 description: "Self-evolving AI harnesses fail when they optimize a fixed evaluator. The biological model is right: what needs to evolve is the selection pressure, not just the genome."
 images: ["/images/ai-environment-design-og.png"]
 images: ["/images/ai-environment-design-og.png"]
+images: ["/images/ai-environment-design-og.png"]
 ---
+
 
 
 
