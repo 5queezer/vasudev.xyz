@@ -23,7 +23,7 @@ I maintain the [Dream Engine](https://github.com/scrypster/muninndb), a sleep-in
 
 "Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" does exactly what the title says. It applies a learned sleep cycle, synaptic downscaling and active forgetting, over the KV-cache to reduce proactive interference.
 
-This is the closest thing in the literature to what Dream Engine does at the database level. The key move is treating forgetting as a first-class operation, not a failure mode. SleepGate learns *which* cached representations to weaken, not just which to strengthen. In Dream Engine terms, this is the [sushupti](https://en.wikipedia.org/wiki/Sushupti) (deep sleep) side of consolidation: dissolution outperforming recombination.
+This is the closest thing in the literature to what Dream Engine does at the database level. The key move is treating forgetting as a first-class operation, not a failure mode. SleepGate learns *which* cached representations to weaken, not just which to strengthen. In Dream Engine terms, this is the [sushupti](https://en.wikipedia.org/wiki/Turiya) (deep sleep) side of consolidation: dissolution outperforming recombination.
 
 The practical takeaway: if your agent accumulates context across sessions and older memories interfere with newer ones, you need active pruning, not just retrieval ranking. SleepGate provides the mathematical framework. Dream Engine provides the database-level implementation.
 
