@@ -256,6 +256,10 @@ func buildTranslatedFile(originalFM, title, description, hash string, chunkHashe
 }
 
 func translateText(apiURL string, llmModels []string, apiKey, text, lang string, isShort bool) string {
+	return translateTextWithContext(apiURL, llmModels, apiKey, text, lang, isShort, "")
+}
+
+func translateTextWithContext(apiURL string, llmModels []string, apiKey, text, lang string, isShort bool, contextHint string) string {
 	if strings.TrimSpace(text) == "" {
 		return ""
 	}
@@ -279,6 +283,10 @@ Rules:
 
 	if isShort {
 		systemPrompt += "\n- This is a short text (title or description). Return only the translated string, no quotes."
+	}
+
+	if contextHint != "" {
+		systemPrompt += "\n\nContext for this section (do NOT translate this context, use it only for reference):\n" + contextHint
 	}
 
 	client := httpClientFactory()
@@ -420,11 +428,6 @@ func splitBodyIntoChunks(body string) []string {
 	if len(current) > 0 {
 		chunks = append(chunks, strings.Join(current, "\n"))
 	}
-
-	// If the body has no ## headings, return it as a single chunk
-	if len(chunks) == 0 {
-		return []string{body}
-	}
 	return chunks
 }
 
@@ -433,22 +436,24 @@ func chunkHash(text string) string {
 	return fmt.Sprintf("%x", h[:8]) // 16 hex chars per chunk
 }
 
-// headSnippet returns up to maxLen characters from the start of text.
+// headSnippet returns up to maxLen runes from the start of text.
 func headSnippet(text string, maxLen int) string {
 	text = strings.TrimSpace(text)
-	if len(text) <= maxLen {
+	runes := []rune(text)
+	if len(runes) <= maxLen {
 		return text
 	}
-	return text[:maxLen]
+	return string(runes[:maxLen])
 }
 
-// tailSnippet returns up to maxLen characters from the end of text.
+// tailSnippet returns up to maxLen runes from the end of text.
 func tailSnippet(text string, maxLen int) string {
 	text = strings.TrimSpace(text)
-	if len(text) <= maxLen {
+	runes := []rune(text)
+	if len(runes) <= maxLen {
 		return text
 	}
-	return text[len(text)-maxLen:]
+	return string(runes[len(runes)-maxLen:])
 }
 
 // extractChunkHashes parses the chunkHashes field from front matter.
@@ -469,19 +474,18 @@ func extractChunkHashes(data []byte) []string {
 }
 
 // translateChunk translates a single chunk with context from neighbors.
+// Context is passed via the system prompt so the model does not translate it.
 func translateChunk(apiURL string, llmModels []string, apiKey string, title string, prevChunk, chunk, nextChunk string, lang string) string {
-	var contextPreamble strings.Builder
-	contextPreamble.WriteString(fmt.Sprintf("This is a section from a blog post titled \"%s\".\n", title))
+	var ctx strings.Builder
+	ctx.WriteString(fmt.Sprintf("This is a section from a blog post titled \"%s\".", title))
 	if prevChunk != "" {
-		contextPreamble.WriteString(fmt.Sprintf("The preceding section ends with: ...%s\n", tailSnippet(prevChunk, 100)))
+		ctx.WriteString(fmt.Sprintf("\nThe preceding section ends with: ...%s", tailSnippet(prevChunk, 100)))
 	}
 	if nextChunk != "" {
-		contextPreamble.WriteString(fmt.Sprintf("The following section starts with: %s...\n", headSnippet(nextChunk, 100)))
+		ctx.WriteString(fmt.Sprintf("\nThe following section starts with: %s...", headSnippet(nextChunk, 100)))
 	}
-	contextPreamble.WriteString("\nTranslate only the section below:\n\n")
 
-	textWithContext := contextPreamble.String() + chunk
-	return translateText(apiURL, llmModels, apiKey, textWithContext, lang, false)
+	return translateTextWithContext(apiURL, llmModels, apiKey, chunk, lang, false, ctx.String())
 }
 
 func shouldFallbackModel(statusCode int, body []byte) bool {

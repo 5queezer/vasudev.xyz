@@ -184,11 +184,11 @@ func TestHeadAndTailSnippet(t *testing.T) {
 		t.Errorf("headSnippet(10) = %q, want %q", head, "Hello, thi")
 	}
 	tail := tailSnippet(text, 10)
-	if tail != "snippets." {
-		// tailSnippet of 10 chars from end
-		want := text[len(text)-10:]
-		if tail != want {
-			t.Errorf("tailSnippet(10) = %q, want %q", tail, want)
+	want := "snippets."
+	if tail != want {
+		wantAlt := text[len(text)-10:]
+		if tail != wantAlt {
+			t.Errorf("tailSnippet(10) = %q, want %q", tail, wantAlt)
 		}
 	}
 
@@ -200,10 +200,22 @@ func TestHeadAndTailSnippet(t *testing.T) {
 	if tailSnippet(short, 10) != "Hi" {
 		t.Errorf("tailSnippet should return full short text")
 	}
+
+	// Multi-byte characters: rune-based slicing must not split UTF-8
+	multibyte := "Über pratyāhāra und dhyāna"
+	h := headSnippet(multibyte, 4)
+	if h != "Über" {
+		t.Errorf("headSnippet multibyte = %q, want %q", h, "Über")
+	}
+	tl := tailSnippet(multibyte, 6)
+	if tl != "dhyāna" {
+		t.Errorf("tailSnippet multibyte = %q, want %q", tl, "dhyāna")
+	}
 }
 
-func TestIncrementalTranslationSkipsUnchangedChunks(t *testing.T) {
+func TestTranslateChunkContextInSystemPrompt(t *testing.T) {
 	apiCalls := 0
+	var capturedSystem, capturedUser string
 
 	originalFactory := httpClientFactory
 	defer func() { httpClientFactory = originalFactory }()
@@ -219,22 +231,22 @@ func TestIncrementalTranslationSkipsUnchangedChunks(t *testing.T) {
 					t.Fatalf("decode request: %v", err)
 				}
 
-				// Return the user content prefixed with [DE] to simulate translation
-				userContent := req.Messages[len(req.Messages)-1].Content
-				translated := "[DE] " + userContent
-				return jsonResponse(http.StatusOK, `{"choices":[{"message":{"content":"`+escaped(translated)+`"}}]}`), nil
+				capturedSystem = req.Messages[0].Content
+				capturedUser = req.Messages[len(req.Messages)-1].Content
+
+				return jsonResponse(http.StatusOK, `{"choices":[{"message":{"content":"Translated chunk"}}]}`), nil
 			}),
 		}
 	}
 
-	// translateChunk makes 1 API call per invocation
+	chunk := "## Changed Section\n\nNew content here."
 	result := translateChunk(
 		"https://example.invalid/v1/chat/completions",
 		[]string{"test-model"},
 		"test-key",
 		"Test Post",
 		"previous chunk",
-		"## Changed Section\n\nNew content here.",
+		chunk,
 		"next chunk",
 		"de",
 	)
@@ -244,6 +256,22 @@ func TestIncrementalTranslationSkipsUnchangedChunks(t *testing.T) {
 	}
 	if apiCalls != 1 {
 		t.Fatalf("expected 1 API call, got %d", apiCalls)
+	}
+
+	// Context must be in the system prompt, not in the user message
+	if !strings.Contains(capturedSystem, "Test Post") {
+		t.Error("system prompt should contain the post title as context")
+	}
+	if !strings.Contains(capturedSystem, "previous chunk") {
+		t.Error("system prompt should contain preceding section snippet")
+	}
+	if !strings.Contains(capturedSystem, "next chunk") {
+		t.Error("system prompt should contain following section snippet")
+	}
+
+	// User message should be only the chunk, no preamble
+	if capturedUser != chunk {
+		t.Errorf("user message should be the chunk only, got %q", capturedUser)
 	}
 }
 
