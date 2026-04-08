@@ -118,6 +118,33 @@ func TestSplitBodyIntoChunks(t *testing.T) {
 	}
 }
 
+func TestSplitBodyIntoChunksIgnoresHeadingsInCodeBlocks(t *testing.T) {
+	body := "Intro.\n\n## Real Section\n\nSome text.\n\n```bash\n## This is a comment, not a heading\necho hello\n```\n\n## Another Section\n\nMore text.\n"
+	chunks := splitBodyIntoChunks(body)
+
+	if len(chunks) != 3 {
+		t.Fatalf("expected 3 chunks, got %d: %v", len(chunks), chunks)
+	}
+	if !strings.Contains(chunks[1], "## This is a comment") {
+		t.Error("fenced code block heading should stay in the same chunk as ## Real Section")
+	}
+	if !strings.HasPrefix(chunks[2], "## Another Section") {
+		t.Errorf("chunk 2 should start with ## Another Section, got %q", chunks[2][:30])
+	}
+}
+
+func TestSplitBodyIntoChunksTildeFence(t *testing.T) {
+	body := "Intro.\n\n~~~\n## not a heading\n~~~\n\n## Real\n\nText.\n"
+	chunks := splitBodyIntoChunks(body)
+
+	if len(chunks) != 2 {
+		t.Fatalf("expected 2 chunks, got %d: %v", len(chunks), chunks)
+	}
+	if !strings.Contains(chunks[0], "## not a heading") {
+		t.Error("tilde-fenced heading should stay in the intro chunk")
+	}
+}
+
 func TestSplitBodyIntoChunksNoHeadings(t *testing.T) {
 	body := "Just a simple post with no headings.\n\nAnother paragraph.\n"
 	chunks := splitBodyIntoChunks(body)

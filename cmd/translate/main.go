@@ -130,7 +130,15 @@ entries:
 			srcChunks := splitBodyIntoChunks(body)
 			newHashes := make([]string, len(srcChunks))
 			for i, c := range srcChunks {
-				newHashes[i] = chunkHash(c)
+				prevSnippet := ""
+				if i > 0 {
+					prevSnippet = tailSnippet(srcChunks[i-1], 100)
+				}
+				nextSnippet := ""
+				if i < len(srcChunks)-1 {
+					nextSnippet = headSnippet(srcChunks[i+1], 100)
+				}
+				newHashes[i] = chunkHash(strings.Join([]string{title, prevSnippet, c, nextSnippet}, "\x00"))
 			}
 
 			// Load existing translated chunks if target file exists
@@ -417,9 +425,22 @@ func splitBodyIntoChunks(body string) []string {
 	lines := strings.Split(body, "\n")
 	var chunks []string
 	var current []string
+	inFence := false
+	fenceMarker := ""
 
 	for _, line := range lines {
-		if strings.HasPrefix(line, "## ") && len(current) > 0 {
+		trimmed := strings.TrimSpace(line)
+		if strings.HasPrefix(trimmed, "```") || strings.HasPrefix(trimmed, "~~~") {
+			marker := trimmed[:3]
+			if !inFence {
+				inFence = true
+				fenceMarker = marker
+			} else if marker == fenceMarker {
+				inFence = false
+				fenceMarker = ""
+			}
+		}
+		if !inFence && strings.HasPrefix(line, "## ") && len(current) > 0 {
 			chunks = append(chunks, strings.Join(current, "\n"))
 			current = nil
 		}
