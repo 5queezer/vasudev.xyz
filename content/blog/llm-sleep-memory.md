@@ -15,7 +15,7 @@ images: ["/images/llm-sleep-memory-og.png"]
 
 Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
 
-I maintain the [Dream Engine](https://github.com/scrypter/muninndb), a sleep-inspired consolidation pipeline for [MuninnDB](https://muninndb.com). It runs Ebbinghaus decay, Hebbian association, near-duplicate merging, and transitive inference on agent memory between sessions. My ablation study showed that **running all consolidation phases simultaneously is net-negative**, much like the daDREAM mutant protein that enhances long-term potentiation but impairs actual learning. Phase selectivity matters more than phase count.
+I maintain the [Dream Engine](https://github.com/scrypster/muninndb), a sleep-inspired consolidation pipeline for [MuninnDB](https://muninndb.com). It runs Ebbinghaus decay, Hebbian association, near-duplicate merging, and transitive inference on agent memory between sessions. My ablation study showed that **running all consolidation phases simultaneously is net-negative**, much like the daDREAM mutant protein that enhances long-term potentiation but impairs actual learning. Phase selectivity matters more than phase count.
 
 **If you're building agent memory, read SleepGate and MemoryBench. Skip the rest.**
 
@@ -23,7 +23,7 @@ I maintain the [Dream Engine](https://github.com/scrypter/muninndb), a sleep-ins
 
 "Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" does exactly what the title says. It applies a learned sleep cycle, synaptic downscaling and active forgetting, over the KV-cache to reduce proactive interference.
 
-This is the closest thing in the literature to what Dream Engine does at the database level. The key move is treating forgetting as a first-class operation, not a failure mode. SleepGate learns *which* cached representations to weaken, not just which to strengthen. In Dream Engine terms, this is the [sushupti](https://en.wikipedia.org/wiki/Susupti) (deep sleep) side of consolidation: dissolution outperforming recombination.
+This is the closest thing in the literature to what Dream Engine does at the database level. The key move is treating forgetting as a first-class operation, not a failure mode. SleepGate learns *which* cached representations to weaken, not just which to strengthen. In Dream Engine terms, this is the [sushupti](https://en.wikipedia.org/wiki/Turiya) (deep sleep) side of consolidation: dissolution outperforming recombination.
 
 The practical takeaway: if your agent accumulates context across sessions and older memories interfere with newer ones, you need active pruning, not just retrieval ranking. SleepGate provides the mathematical framework. Dream Engine provides the database-level implementation.
 

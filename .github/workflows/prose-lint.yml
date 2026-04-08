@@ -16,7 +16,7 @@ jobs:
       - uses: errata-ai/vale-action@v2
         with:
           files: content/blog
-          vale_flags: "--glob=!*.{de,es}.md --glob=*.md"
+          vale_flags: "--glob=!*.{de,es}.md"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
