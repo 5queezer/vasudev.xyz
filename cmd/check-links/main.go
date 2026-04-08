@@ -242,22 +242,54 @@ func shouldSkipURL(url string) bool {
 	if !strings.HasPrefix(url, "http://") && !strings.HasPrefix(url, "https://") {
 		return true
 	}
+	// Non-routable or example hosts that will never resolve in CI
+	lower := strings.ToLower(url)
+	for _, pattern := range []string{
+		"://localhost",
+		"://127.0.0.1",
+		"://[::1]",
+		"://169.254.",      // link-local (AWS metadata endpoint examples)
+		"://example.com",
+		"://example.org",
+		"://example.net",
+		".example.com",
+	} {
+		if strings.Contains(lower, pattern) {
+			return true
+		}
+	}
+	// Private repositories that are correct but not publicly accessible
+	for _, prefix := range []string{
+		"https://github.com/5queezer/hrafn/",
+		"https://github.com/5queezer/gemma-sae/",
+	} {
+		if strings.HasPrefix(url, prefix) {
+			return true
+		}
+	}
 	return false
 }
 
 // checkURL performs HTTP and metadata checks for a URL, returning results for each location.
 func checkURL(client *http.Client, url string, locs []linkLocation) []checkResult {
-	// HTTP check
-	resp, err := client.Get(url)
+	// HTTP check with a real User-Agent (Wikipedia and others block bare Go clients)
+	req, reqErr := http.NewRequest("GET", url, nil)
 	var statusCode int
 	var statusText string
-	if err != nil {
+	if reqErr != nil {
 		statusCode = 0
-		statusText = err.Error()
+		statusText = reqErr.Error()
 	} else {
-		statusCode = resp.StatusCode
-		statusText = resp.Status
-		resp.Body.Close()
+		req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; vasudev-link-checker/1.0; +https://vasudev.xyz)")
+		resp, err := client.Do(req)
+		if err != nil {
+			statusCode = 0
+			statusText = err.Error()
+		} else {
+			statusCode = resp.StatusCode
+			statusText = resp.Status
+			resp.Body.Close()
+		}
 	}
 
 	httpOK := statusCode >= 200 && statusCode < 300
@@ -269,6 +301,14 @@ func checkURL(client *http.Client, url string, locs []linkLocation) []checkResul
 			File: loc.File,
 			Line: loc.Line,
 			URL:  url,
+		}
+
+		// 403 means the URL exists but the server blocks automated checks
+		if statusCode == 403 {
+			r.Status = "WARN"
+			r.Message = "403 Forbidden (site blocks automated checks)"
+			results = append(results, r)
+			continue
 		}
 
 		if !httpOK {

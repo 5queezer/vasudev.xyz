@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -19,6 +20,7 @@ Fragment only: [section](#overview)
 Relative link: [about](about.md)
 An arXiv paper: [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
 A DOI link: [Some Paper](https://doi.org/10.1000/xyz123)
+A real link: [Vasudev](https://vasudev.xyz/blog/)
 `
 	dir := t.TempDir()
 	f := filepath.Join(dir, "test.md")
@@ -31,13 +33,12 @@ A DOI link: [Some Paper](https://doi.org/10.1000/xyz123)
 		t.Fatal(err)
 	}
 
-	// Should have these URLs
+	// Should have these URLs (real, checkable ones)
 	expected := map[string]bool{
-		"https://example.com":                              true,
-		"https://bare.example.com/page":                    true,
-		"https://en.wikipedia.org/wiki/Foo_(bar)":          true,
-		"https://arxiv.org/abs/1706.03762":                 true,
-		"https://doi.org/10.1000/xyz123":                   true,
+		"https://en.wikipedia.org/wiki/Foo_(bar)": true,
+		"https://arxiv.org/abs/1706.03762":        true,
+		"https://doi.org/10.1000/xyz123":          true,
+		"https://vasudev.xyz/blog/":               true,
 	}
 
 	for url := range expected {
@@ -46,24 +47,20 @@ A DOI link: [Some Paper](https://doi.org/10.1000/xyz123)
 		}
 	}
 
-	// Should NOT have fragment-only or relative links
+	// Should NOT have fragment-only, relative, or example.com links
 	for url := range urls {
 		if url == "#overview" || url == "about.md" {
 			t.Errorf("unexpected URL %q should have been skipped", url)
 		}
-	}
-
-	// Verify link text is captured for markdown links
-	if locs, ok := urls["https://example.com"]; ok {
-		if len(locs) == 0 || locs[0].LinkText != "Example" {
-			t.Errorf("expected link text 'Example', got %q", locs[0].LinkText)
+		if strings.Contains(url, "example.com") {
+			t.Errorf("example.com URL %q should have been skipped", url)
 		}
 	}
 
-	// Bare URL should have empty link text
-	if locs, ok := urls["https://bare.example.com/page"]; ok {
-		if len(locs) == 0 || locs[0].LinkText != "" {
-			t.Errorf("expected empty link text for bare URL, got %q", locs[0].LinkText)
+	// Verify link text is captured for markdown links
+	if locs, ok := urls["https://vasudev.xyz/blog/"]; ok {
+		if len(locs) == 0 || locs[0].LinkText != "Vasudev" {
+			t.Errorf("expected link text 'Vasudev', got %q", locs[0].LinkText)
 		}
 	}
 
@@ -75,9 +72,9 @@ A DOI link: [Some Paper](https://doi.org/10.1000/xyz123)
 
 func TestExtractURLsLineNumbers(t *testing.T) {
 	content := `line one
-line two https://example.com/line2
+line two https://vasudev.xyz/line2
 line three
-[link](https://example.com/line4)
+[link](https://vasudev.xyz/line4)
 `
 	dir := t.TempDir()
 	f := filepath.Join(dir, "lines.md")
@@ -90,7 +87,7 @@ line three
 		t.Fatal(err)
 	}
 
-	if locs, ok := urls["https://example.com/line2"]; ok {
+	if locs, ok := urls["https://vasudev.xyz/line2"]; ok {
 		if locs[0].Line != 2 {
 			t.Errorf("expected line 2, got %d", locs[0].Line)
 		}
@@ -98,7 +95,7 @@ line three
 		t.Error("URL from line 2 not found")
 	}
 
-	if locs, ok := urls["https://example.com/line4"]; ok {
+	if locs, ok := urls["https://vasudev.xyz/line4"]; ok {
 		if locs[0].Line != 4 {
 			t.Errorf("expected line 4, got %d", locs[0].Line)
 		}
@@ -203,8 +200,15 @@ func TestShouldSkipURL(t *testing.T) {
 		{"about.md", true},
 		{"/relative/path", true},
 		{"", true},
-		{"https://example.com", false},
-		{"http://example.com", false},
+		{"https://example.com", true},
+		{"http://example.com", true},
+		{"https://agent.example.com/api", true},
+		{"http://localhost:8080/admin", true},
+		{"http://169.254.169.254/latest/meta-data/", true},
+		{"https://github.com/5queezer/hrafn/pull/4166", true},
+		{"https://github.com/5queezer/gemma-sae/blob/master/gentime.py", true},
+		{"https://github.com/real/repo", false},
+		{"https://vasudev.xyz/blog/", false},
 	}
 
 	for _, tt := range tests {

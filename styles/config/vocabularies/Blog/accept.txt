@@ -1,6 +1,10 @@
 (?i)allowlist
 (?i)anandamaya
+(?i)autoencoder
+(?i)autoencoders
+(?i)autoregressively
 (?i)backpropagation
+(?i)cingulate
 (?i)commoditized
 (?i)config
 (?i)dedup
@@ -9,9 +13,11 @@
 (?i)downscaling
 (?i)downselection
 (?i)epiphenomenal
+(?i)flatlined
 (?i)hardcoded
 (?i)hippocampal
 (?i)hostname
+(?i)interpretability
 (?i)jagrat
 (?i)mandukya
 (?i)neocortex
@@ -54,7 +60,7 @@ FurnitureBench
 Gemini
 Gemma
 Ghosh
-GoodAI
+(?i)GoodAI
 Goodhart's
 Hebbian
 Hrafn
@@ -84,6 +90,7 @@ Optuna
 Patanjali
 Pojoni
 Postgres
+SAEs
 Sigman
 Sutras
 TruthfulQA
@@ -93,7 +100,6 @@ Vedantic
 Xie's
 Zhong
 arXiv
-autoencoders
 benchmarked
 chakras
 chitta
