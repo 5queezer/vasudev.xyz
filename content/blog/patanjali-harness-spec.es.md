@@ -4,8 +4,6 @@ date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus inesperados paralelos en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
 translationHash: "065cf684afb116027a894361e33aa742"
 chunkHashes: "534d87a2c02441ac,d54445670f0f3cb3,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---

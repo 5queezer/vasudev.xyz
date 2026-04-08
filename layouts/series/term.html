@@ -1,0 +1,45 @@
+{{ define "main" }}
+<div class="site-shell site-shell-narrow">
+  {{ partial "site-header.html" . }}
+
+  <section class="surface intro-panel">
+    <div class="section-label">Series</div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="page-copy">{{ . }}</div>{{ end }}
+    <p class="page-copy">{{ len .Pages }} posts</p>
+  </section>
+
+  {{/* Sort by series_weight if present, fall back to date desc */}}
+  {{ $pages := sort .Pages ".Params.series_weight" "asc" }}
+
+  <section class="list-grid list-grid-secondary">
+    {{ range $i, $p := $pages }}
+    <article class="surface list-card">
+      <div class="list-card-link">
+        {{ if $p.Params.series_weight }}
+        <div class="article-meta">Part {{ $p.Params.series_weight }} · {{ $p.Date.Format "2 Jan 2006" }} · {{ $p.ReadingTime }} {{ i18n "minutesShort" }}</div>
+        {{ else }}
+        <div class="article-meta">{{ $p.Date.Format "2 Jan 2006" }} · {{ $p.ReadingTime }} {{ i18n "minutesShort" }}</div>
+        {{ end }}
+        <h2 class="article-title">{{ $p.Title }}</h2>
+        {{ with $p.Description }}<p class="article-copy">{{ . }}</p>{{ end }}
+        {{ with $p.Params.tags }}
+        <div class="tag-row">
+          {{ range first 4 . }}<a class="tag" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+        <a class="article-cta list-card-stretched" href="{{ $p.RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+    {{ end }}
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer-copy">{{ i18n "backToAllPosts" }}</div>
+    <div class="site-footer-links">
+      <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
+      <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
+    </div>
+  </footer>
+</div>
+{{ end }}

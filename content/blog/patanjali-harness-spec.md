@@ -2,10 +2,9 @@
 title: "Patanjali Had the Filtering Spec. We Just Wrote the Tests."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
+series: ["Building Agents That Sleep"]
+series_weight: 4
 description: "Memory consolidation made retrieval worse. Three design principles from agent memory benchmarks, and their unexpected parallels in yogic attention theory."
-images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
 images: ["/images/patanjali-harness-spec-og.png"]
 ---
 
@@ -39,7 +38,7 @@ LLM-generated summaries performed *worse* than raw scores alone (best accuracy 3
 
 The design principle: indiscriminate treatment of entries destroys retrieval quality, whether that treatment is uniform scoring, lossy summarization, or undifferentiated dedup.
 
-Yoga Sutras 1.2 defines yoga as *chitta vrtti nirodha*, the cessation of fluctuations in the mind-field. Patanjali doesn't say "delete everything." He distinguishes [*kleshas*](https://en.wikipedia.org/wiki/Klesha_(Hinduism)) (distortions: attachment, aversion, ego, ignorance, fear of death) from [*pramanas*](https://en.wikipedia.org/wiki/Pramana) (valid cognition: direct perception, inference, testimony). The practice is surgical: reduce the distortions, preserve the signal. The score saturation bug was the system failing to make that distinction. Every vrtti looked the same.
+Yoga Sutras 1.2 defines yoga as *chitta vrtti nirodha*, the cessation of fluctuations in the mind-field. Patanjali doesn't say "delete everything." He distinguishes [*kleshas*](https://en.wikipedia.org/wiki/Kleshas_(Hinduism)) (distortions: attachment, aversion, ego, ignorance, fear of death) from [*pramanas*](https://en.wikipedia.org/wiki/Pramana) (valid cognition: direct perception, inference, testimony). The practice is surgical: reduce the distortions, preserve the signal. The score saturation bug was the system failing to make that distinction. Every vrtti looked the same.
 
 The design implication for MuninnDB: decay floors should reflect outcome, not just access frequency. A verified API pattern and a failed curl attempt might have identical retrieval rates but radically different retention value. You could try to classify entries upfront as pramana or klesha (verified vs. distorted), but that classification is itself the hard problem. For most entries, it requires semantic judgment, which means an LLM in the decay path, which makes consolidation expensive and nondeterministic.
 

@@ -4,8 +4,6 @@ date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
 description: "Los motores deIA autoevolutiva fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
 translationHash: "0a5d4cb365b446ec4be98d599e8c4750"
 chunkHashes: "d0f83485ba784f57,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---

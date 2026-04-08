@@ -24,6 +24,10 @@ defaultContentLanguageInSubdir = false
     [languages.es.params]
       description = "Ingeniero de sistemas. Rust, Python, herramientas de IA, arquitectura centrada en la privacidad."
 
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
 [params]
   author = "Christian Pojoni"
   cfBeaconToken = ""
