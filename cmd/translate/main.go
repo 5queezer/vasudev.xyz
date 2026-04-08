@@ -117,20 +117,66 @@ entries:
 			fmt.Printf("translating %s -> %s\n", name, targetName)
 
 			frontMatter, body := splitFrontMatterAndBody(srcData)
-			translatedTitle := translateText(apiURL, llmModels, apiKey, extractFrontMatterField(srcData, "title"), lang, true)
+			title := extractFrontMatterField(srcData, "title")
+			translatedTitle := translateText(apiURL, llmModels, apiKey, title, lang, true)
 			translatedDesc := translateText(apiURL, llmModels, apiKey, extractFrontMatterField(srcData, "description"), lang, true)
-			translatedBody := translateText(apiURL, llmModels, apiKey, body, lang, false)
 
 			if translatedTitle == "" || translatedDesc == "" {
 				fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
 				continue
 			}
-			if translatedBody == "" {
-				fmt.Fprintf(os.Stderr, "body translation failed for %s -> %s, skipping\n", name, lang)
+
+			// Chunk the body and translate incrementally
+			srcChunks := splitBodyIntoChunks(body)
+			newHashes := make([]string, len(srcChunks))
+			for i, c := range srcChunks {
+				newHashes[i] = chunkHash(c)
+			}
+
+			// Load existing translated chunks if target file exists
+			var oldHashes []string
+			var oldChunks []string
+			if existingData, err := os.ReadFile(targetPath); err == nil {
+				oldHashes = extractChunkHashes(existingData)
+				_, existingBody := splitFrontMatterAndBody(existingData)
+				oldChunks = splitBodyIntoChunks(existingBody)
+			}
+
+			translatedChunks := make([]string, len(srcChunks))
+			failed := false
+			for i, srcChunk := range srcChunks {
+				// Reuse existing translation if chunk hash matches
+				if i < len(oldHashes) && i < len(oldChunks) && oldHashes[i] == newHashes[i] {
+					translatedChunks[i] = oldChunks[i]
+					fmt.Printf("  chunk %d/%d: reused (unchanged)\n", i+1, len(srcChunks))
+					continue
+				}
+
+				prev := ""
+				if i > 0 {
+					prev = srcChunks[i-1]
+				}
+				next := ""
+				if i < len(srcChunks)-1 {
+					next = srcChunks[i+1]
+				}
+
+				translated := translateChunk(apiURL, llmModels, apiKey, title, prev, srcChunk, next, lang)
+				if translated == "" {
+					fmt.Fprintf(os.Stderr, "chunk %d/%d translation failed for %s -> %s, skipping file\n", i+1, len(srcChunks), name, lang)
+					failed = true
+					break
+				}
+				translatedChunks[i] = translated
+				fmt.Printf("  chunk %d/%d: translated\n", i+1, len(srcChunks))
+			}
+			if failed {
 				continue
 			}
 
-			output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, translatedBody)
+			translatedBody := strings.Join(translatedChunks, "\n")
+
+			output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, newHashes, translatedBody)
 			if err := os.WriteFile(targetPath, []byte(output), 0644); err != nil {
 				fmt.Fprintf(os.Stderr, "failed to write %s: %v\n", targetPath, err)
 				continue
@@ -178,10 +224,10 @@ func extractFrontMatterField(data []byte, field string) string {
 	return ""
 }
 
-func buildTranslatedFile(originalFM, title, description, hash, body string) string {
+func buildTranslatedFile(originalFM, title, description, hash string, chunkHashes []string, body string) string {
 	var b strings.Builder
 
-	// Rewrite front matter with translated title/description and hash
+	// Rewrite front matter with translated title/description, hash, and chunk hashes
 	lines := strings.Split(originalFM, "\n")
 	for _, line := range lines {
 		switch {
@@ -191,8 +237,13 @@ func buildTranslatedFile(originalFM, title, description, hash, body string) stri
 			b.WriteString(fmt.Sprintf("description: \"%s\"\n", strings.ReplaceAll(description, "\"", "\\\"")))
 		case strings.HasPrefix(line, "translationHash:"):
 			// Skip old hash, we add a new one below
+		case strings.HasPrefix(line, "chunkHashes:"):
+			// Skip old chunk hashes, we add new ones below
 		case line == "---" && b.Len() > 0:
 			b.WriteString(fmt.Sprintf("translationHash: \"%s\"\n", hash))
+			if len(chunkHashes) > 0 {
+				b.WriteString(fmt.Sprintf("chunkHashes: \"%s\"\n", strings.Join(chunkHashes, ",")))
+			}
 			b.WriteString("---\n")
 		default:
 			b.WriteString(line)
@@ -349,6 +400,88 @@ func uniqueModels(models []string) []string {
 		ordered = append(ordered, model)
 	}
 	return ordered
+}
+
+// splitBodyIntoChunks splits a markdown body into chunks at ## headings.
+// The first chunk is everything before the first ## heading (intro).
+// Each subsequent chunk starts with a ## heading line.
+func splitBodyIntoChunks(body string) []string {
+	lines := strings.Split(body, "\n")
+	var chunks []string
+	var current []string
+
+	for _, line := range lines {
+		if strings.HasPrefix(line, "## ") && len(current) > 0 {
+			chunks = append(chunks, strings.Join(current, "\n"))
+			current = nil
+		}
+		current = append(current, line)
+	}
+	if len(current) > 0 {
+		chunks = append(chunks, strings.Join(current, "\n"))
+	}
+
+	// If the body has no ## headings, return it as a single chunk
+	if len(chunks) == 0 {
+		return []string{body}
+	}
+	return chunks
+}
+
+func chunkHash(text string) string {
+	h := sha256.Sum256([]byte(text))
+	return fmt.Sprintf("%x", h[:8]) // 16 hex chars per chunk
+}
+
+// headSnippet returns up to maxLen characters from the start of text.
+func headSnippet(text string, maxLen int) string {
+	text = strings.TrimSpace(text)
+	if len(text) <= maxLen {
+		return text
+	}
+	return text[:maxLen]
+}
+
+// tailSnippet returns up to maxLen characters from the end of text.
+func tailSnippet(text string, maxLen int) string {
+	text = strings.TrimSpace(text)
+	if len(text) <= maxLen {
+		return text
+	}
+	return text[len(text)-maxLen:]
+}
+
+// extractChunkHashes parses the chunkHashes field from front matter.
+// The field is stored as a comma-separated list of hex strings.
+func extractChunkHashes(data []byte) []string {
+	val := extractFrontMatterField(data, "chunkHashes")
+	if val == "" {
+		return nil
+	}
+	parts := strings.Split(val, ",")
+	hashes := make([]string, 0, len(parts))
+	for _, p := range parts {
+		if trimmed := strings.TrimSpace(p); trimmed != "" {
+			hashes = append(hashes, trimmed)
+		}
+	}
+	return hashes
+}
+
+// translateChunk translates a single chunk with context from neighbors.
+func translateChunk(apiURL string, llmModels []string, apiKey string, title string, prevChunk, chunk, nextChunk string, lang string) string {
+	var contextPreamble strings.Builder
+	contextPreamble.WriteString(fmt.Sprintf("This is a section from a blog post titled \"%s\".\n", title))
+	if prevChunk != "" {
+		contextPreamble.WriteString(fmt.Sprintf("The preceding section ends with: ...%s\n", tailSnippet(prevChunk, 100)))
+	}
+	if nextChunk != "" {
+		contextPreamble.WriteString(fmt.Sprintf("The following section starts with: %s...\n", headSnippet(nextChunk, 100)))
+	}
+	contextPreamble.WriteString("\nTranslate only the section below:\n\n")
+
+	textWithContext := contextPreamble.String() + chunk
+	return translateText(apiURL, llmModels, apiKey, textWithContext, lang, false)
 }
 
 func shouldFallbackModel(statusCode int, body []byte) bool {
