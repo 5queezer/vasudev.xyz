@@ -47,6 +47,16 @@ In agent memory, this manifests as a specific failure mode. If you tune your con
 
 The research confirms this risk. LongMemEval (ICLR 2025) and MemoryBench both show that consolidation systems can degrade retrieval compared to naive RAG baselines. The consolidation "worked" (it merged, it decayed, it strengthened) but the agent got worse at answering questions. The proxy improved. The territory degraded. Textbook proxy detachment.
 
+## External Validation: Raw Storage Wins
+
+Since publishing this post, two data points have reinforced the proxy detachment thesis.
+
+[MemPalace](https://github.com/milla-jovovich/mempalace) (Jovovich/Sigman, April 2026) stores every conversation verbatim and retrieves with ChromaDB embeddings. Zero consolidation, zero extraction, zero summarization. It scores 96.6% R@5 on LongMemEval with no API calls, and 92.9% on ConvoMem. Mem0, which uses LLM-powered fact extraction, scores 30-45% on the same ConvoMem benchmark. The system that does nothing to its memories outperforms the system that actively curates them by more than 2x.
+
+My own ablation data tells the same story. Running the [GoodAI LTM benchmark](https://github.com/5queezer/goodai-ltm-benchmark/pull/16) against MuninnDB ([PR #367](https://github.com/scrypster/muninndb/pull/367)), baseline (no dream consolidation) scored 0.489 composite. Full dream phases scored 0.374. The Optuna-best phase subset scored 0.322. Every consolidation variant underperformed doing nothing. The dashboard metrics (dedup rate, association density) improved with each variant. Retrieval quality went the other direction.
+
+This is proxy detachment measured in the wild, not theorized. The consolidation system optimizes its own internal signals while the territory (actual retrieval quality) degrades.
+
 ## The Grounding Criterion for Memory Metrics
 
 The fix is architectural, not incremental. Before you ship any memory consolidation feature, define a retrieval benchmark that represents realistic agent query patterns. Then apply the grounding criterion: every metric you track must be one that cannot improve without retrieval accuracy also improving.

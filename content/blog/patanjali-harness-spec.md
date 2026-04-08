@@ -55,6 +55,19 @@ The [Yoga Sutras](https://en.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali) name t
 
 The missing mechanism is explicit Hebbian *weakening*: not just passive decay, but active correction when a strongly associated entry produces a false positive retrieval. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311) is now completed ([PR #359](https://github.com/scrypster/muninndb/pull/359)), and the initial results already forced one correction (the `MinDedupVaultSize` guard). The next measurement requires the synthetic vault generator with labeled engram classes: Duplicate, Near-duplicate, Temporal update, Unique fact, Low-access unique, Legal-scoped, and Legal-adjacent. The sharper metric is *displacement rate*: how often does a strongly associated but less relevant entry push a more relevant entry out of the top-k? That's the direct vasana measurement: not just "wrong thing retrieved" but "right thing crowded out by habitual retrieval." If strengthened entries produce measurable displacement, vairagya as a design primitive is empirically justified. If they don't, the current passive decay is sufficient and we skip the complexity.
 
+**Update (2026-04-08):** The Dream Engine Phase 2 ablation study ([PR #367](https://github.com/scrypster/muninndb/pull/367)) now provides concrete numbers. 50 Optuna trials across 255 phase combinations, validated on 6 GoodAI LTM datasets with Gemini 3.1 Flash Lite:
+
+| Phase | Avg Delta | Verdict |
+|---|---|---|
+| 5 Transitive Inference | +0.022 | Helpful |
+| 0 Orient | +0.007 | Helpful |
+| 2 Semantic Dedup | +0.006 | Helpful |
+| 4 Bidirectional Stability | -0.014 | Detrimental |
+| 2b LLM Adjudication | -0.011 | Detrimental |
+| 1 Relevance Decay | -0.011 | Detrimental |
+
+Phase 4 (stability adjustments, the samskara strengthening mechanism) is the most destructive phase. The empirical case for vairagya as a design primitive is confirmed: unchecked reinforcement damages retrieval. But the data also suggests that the simpler fix is to not reinforce at all, rather than to build a sophisticated weakening counterweight. scrypster's [review](https://github.com/scrypster/muninndb/pull/367#issuecomment) reached the same conclusion: ship only the positive-delta phases (0, 2, 5), hold the write paths until LocOMo and LongMemEval validation is complete.
+
 ---
 
 ## 3. The power of deliberate exclusion (Pratyahara)

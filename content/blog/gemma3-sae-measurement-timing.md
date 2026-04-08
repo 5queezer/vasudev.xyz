@@ -2,7 +2,7 @@
 title: "Sparse Autoencoders Can't Measure Generation-Time Behavior. That's Not a Bug."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
-description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination detection fails. The answer: measurement timing must match behavior timing."
+description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination detection fails. The answer turned out to be deeper than measurement timing."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 ---
@@ -58,6 +58,31 @@ But here's where the metaphor collapses: unlike biological systems where multipl
 If behaviors manifest at generation time, then contrastive feature discovery should work during the forward pass, not at the encoder input. Specifically: capture activations at each layer during token generation, not just at the input. Compare activation patterns when the model hallucinates versus when it grounds itself. The flip variance should drop. Signal should emerge.
 
 This shifts the methodology from "encoding-time contrastive" to "generation-time contrastive." Different measurement window. Different features. Potentially different utility.
+
+## Update: I Ran the Experiment. The Hypothesis Failed.
+
+*Added 2026-04-08.*
+
+After publishing this post, I implemented the generation-time contrastive analysis on Gemma-2-2B using TruthfulQA. The setup: 50 correct and 50 hallucinated responses screened against ground truth, residual stream activations captured at Layer 20, logistic regression probe with leave-one-out cross-validation. Two measurement windows compared head-to-head: encoding-time (last prompt token) vs. generation-time (first generated token).
+
+| Metric | Encoding-time | Generation-time | Delta |
+|---|---|---|---|
+| LOO accuracy | 0.660 | 0.610 | -0.050 |
+| Cohen's d | 12.71 | 12.27 | -0.44 |
+
+Generation-time is weaker, not stronger. The hypothesis is falsified for this setup.
+
+The high Cohen's d with low LOO accuracy (66%) points to dimensional overfitting: in 2304 dimensions, the probe always finds a separating hyperplane, but it doesn't generalize. Compare this to sycophancy, where the probe generalizes cleanly at 95%+ accuracy. The signal structure is fundamentally different.
+
+**The deeper finding:** The problem isn't measurement timing. It's that hallucination isn't a monolithic feature. Sycophancy has one direction in activation space ("agree with user"). Hallucination is at least three different mechanisms:
+
+1. **Misconception** ("watermelon seeds are poisonous"): the model has learned a false fact
+2. **Stale knowledge** ("the current president is X"): the model's training data is outdated
+3. **Grounding failure**: the model generates a plausible continuation that happens to be wrong
+
+A single linear probe can't separate what isn't a single signal. This shifts the research question from "wrong timing" to "wrong abstraction level." Per-error-type probes on curated subsets (misconception-only, grounding-failure-only) are the next step. That's a different experiment.
+
+Code: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
 
 ---
 
