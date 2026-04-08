@@ -1,13 +1,19 @@
 ---
-title: "Agregando Soporte del Protocolo A2A en Rust: 7 Trampas Que Nadie Te Advierte"
+title: "Implementación del Soporte del Protocolo A2A en Rust: 7 Trampas Que Nadie Te Advierte"
 date: 2026-03-25
-description: "Lo que aprendí al añadir soporte de protocolo agente-agente a un marco agente de código abierto."
+description: "Lo que aprendí al agregarsoporte de protocolo agente‑agente a un marco de agentes de código abierto."
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
-translationHash: "e81a78a4108bb3831b6dc0c9d086567b"
-chunkHashes: "9706dd90b463f06c,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
+series: ["Field Notes"]
+translationHash: "ed82c4673262fb5c2653c23883f0e121"
+chunkHashes: "0141b16a8eeb4dd2,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
 ---
+El [protocolo A2A (Agent-to-Agent)](https://github.com/google/A2A) es el estándar abierto de Google para la interoperabilidad de agentes: descubrimiento, delegación de tareas, gestión del ciclo de vida mediante HTTP/JSON-RPC. Se sitúa al lado de MCP como TCP se sitúa al lado de USB: una conecta agentes entre sí, la otra conecta agentes con herramientas.
+
+Recientemente envié [PR #4166](https://github.com/5queezer/hrafn/pull/4166) añadiendo soporte nativo de A2A a Hrafn. Eso significa tanto un servidor JSON-RPC 2.0 entrante como una herramienta cliente saliente, escrita en Rust. El PR pasó 40 pruebas y ejecutó E2E en cinco instancias de Raspberry Pi Zero 2 W. En el camino golpeé cada borde afilado que la especificación no menciona.
+
+**La especificación A2A es limpia en papel. Los bordes de seguridad te cortarán en producción.**
 ## 1. Lastarjetas de agente son una opción no autenticada por diseño, y está bien
 
 **La especificación A2A es limpia en papel. Los bordes de seguridad te van a cortar en producción.** The A2A spec says `GET /.well-know...` The [A2A (Agent-to-Agent) protocol](https://google.github.io/A2A/) is Google's open standard for agent interoperability: discovery, task delegation, lifecycle management over HTTP/JSON-RPC. It sits next to MCP the way TCP sits next to USB: one connects agents to agents, the other connects agents to tools.
@@ -179,3 +185,19 @@ Lee la implementación completa en [PR #4166](https://github.com/5queezer/hrafn/
 *Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes en Rust para hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
 
 *La imagen de portada de esta publicación fue generada por IA.*
+
+## The setup thatproved it works
+
+Cinco instancias de Hrafn en una sola Raspberry Pi Zero 2 W (cuádruple núcleo ARM, 512 MB), cada una con una personalidad distinta (Kerf, Sentinel, Architect, Critic, Researcher), comunicándose vía A2A en puertos locales 3001-3005. Soportado por gpt-5.1-codex-mini.
+
+La instancia A descubre la tarjeta de agente de la instancia B, envía una tarea ("revisar este código en busca de problemas de seguridad"), recibe una respuesta a través del canal estándar `process_message`. No hay orquestación personalizada. La capa A2A es solo otro canal de entrada.
+
+Si funciona en un Pi Zero, funciona en cualquier lugar.
+
+Lee la implementación completa en [PR #4166](https://github.com/5queezer/hrafn/pull/4166). Cada gotcha anterior se mapea a un commit específico con pruebas. Si estás construyendo A2A en tu propio framework, comienza con la protección SSRF en `a2a_client.rs` y el límite de TaskStore en `task_store.rs`. El seguimiento para descubrimiento de pares y mDNS en LAN se registra en [#4643](https://github.com/5queezer/hrafn/issues/4643).
+
+---
+
+*Christian Pojoni crea [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes en Rust para hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de esta entrada fue generada por IA.*

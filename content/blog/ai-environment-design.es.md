@@ -1,19 +1,21 @@
 ---
-title: "Deja de diseñartu sistema de IA. Diseña su entorno."
+title: "Deja de diseñar tu sistemade IA. Diseña su entorno."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
-description: "Los motores deIA autoevolutiva fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
+series: ["Building Agents That Sleep"]
+series_weight: 6
+description: "Mecanismos de autoevolución de IA fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "0a5d4cb365b446ec4be98d599e8c4750"
-chunkHashes: "d0f83485ba784f57,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
+translationHash: "530d973eec7cbbc49d59e1eb561242da"
+chunkHashes: "0154b9d775190ffe,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---
-Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLMs." La idea era programar el comportamiento del modelo directamente en el nivel de activación, sin prompts, solo vectores de intervención. Fue intelectualmente satisfactorio y prácticamente incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
+## Genotipo y Fenotipo No Son la Misma Capa
+
+Los sistemas biológicos separan lo que persiste de lo que...
 
 **La unidad de evolución no es la característica. Es el ciclo de mutación/selección.**
 
-Esa distinción cambia todo sobre cómo construyes un marco de IA autoevolutiva. La mayoría de los sistemas que se llaman a sí mismos "auto‑mejorantes" están haciendo AutoML. Optimizan sobre un espacio de búsqueda fijo hacia un objetivo fijo. Esto puede producir adaptación, pero está más cerca de AutoML que de la evolución de tipo abierto. La diferencia resulta ser arquitectónicamente decisiva en dos sentidos.
-
----
+La mayoría de los sistemas que se llaman "auto‑mejoramiento" están haciendo AutoML. Ellos optimizan sobre un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero está más cerca de AutoML que de la evolución sin límites. La diferencia resulta ser decisiva arquitectónicamente en dos aspectos.
 ## Genotipo y Fenotipo No Son la Misma Capa
 
 Los sistemas biológicos separan lo que persiste de lo que se selecciona. El genotipo no se prueba directamente. El fenotipo sí. Las mutaciones ocurren en el genotipo. La selección actúa sobre el fenotipo. El genotipo sobrevive produciendo fenotipos que sobreviven. Esta asimetría es la fuente de la evolvabilidad misma.
@@ -73,5 +75,29 @@ Comienza con [Hrafn](https://github.com/5queezer/hrafn) y con la [capa de persis
 ---
 
 *Christian Pojoni construye infraestructura de agentes de IA y escribe sobre ello en [vasudev.xyz](https://vasudev.xyz). Trabajo actual: [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes basado en Rust.*
+
+*La imagen de portada de esta publicación fue generada por IA.*
+
+## Qué Dejé Afuera
+
+**Automodificación del código.** La autoedición estilo Darwin-Gödel funciona en entornos de agentes codificadores en caja con verificadores formales. Para un marco general sin esas restricciones, es una preocupación de la Fase 4, no porque sea imposible, sino porque la infraestructura previa (evaluador estable, garantías de reversion, alcance de tarea estrecho) necesita estar en su lugar primero.
+
+**Universalidad de características.** Las características SAE son específicas del modelo y a veces específicas del checkpoint. Si las características útiles se trasladan a través de versiones del modelo es una pregunta de investigación abierta. El marco debe diseñarse para volver a extraer diccionarios de características en cada actualización del modelo base en lugar de asumir estabilidad.
+
+**Evaluadores multi‑agente.** Usar un modelo juez como parte del bucle de evaluación añade robustez pero también crea una superficie adversarial. El sistema puede aprender a satisfacer al juez en lugar de la tarea subyacente. Esto necesita contra‑medidas explícitas que aún no he diseñado.
+
+**Presupuesto de cómputo.** Una mutación que mejora la capacidad en un 2 % pero duplica la latencia no es una ganancia. La latencia y el costo deben ser restricciones de primera clase en el evaluador, no afterthoughts.
+
+---
+
+La conexión a [Hrafn](https://github.com/5queezer/hrafn) es directa. MuninnDB es la capa de persistencia. El Dream Engine, modelado en la consolidación de memoria de fase de sueño, es el mecanismo que promueve observaciones efímeras a políticas de medio término. Las piezas que faltan son la política de búsqueda y el evaluador que co‑evoluciona. Eso es lo que se construye a continuación.
+
+Si estás construyendo en este espacio, la prioridad más valiosa para tomar prestada no proviene del ML. Proviene de la biología evolutiva: el entorno hace la selección. Tu trabajo es construir el entorno, no el organismo.
+
+Empieza con [Hrafn](https://github.com/5queezer/hrafn) y la [capa de persistencia de MuninnDB](https://github.com/5queezer/hrafn). La separación genoma/fenotipo ya está cableada. Lo que necesita construirse es el evaluador que co‑evoluciona con el sistema que mide.
+
+---
+
+*Christian Pojoni construye infraestructura de agentes de IA y escribe sobre ello en [vasudev.xyz](https://vasudev.xyz). Trabajo actual: [Hrafn](https://github.com/5queezer/hrafn), un runtime de agente basado en Rust.*
 
 *La imagen de portada de esta publicación fue generada por IA.*

@@ -1,19 +1,16 @@
 ---
-title: "Hör auf, deinKI-System zu entwerfen. Entwirf stattdessen seine Umgebung."
+title: "Hör auf, deinAI-System zu entwerfen. Entwirf stattdessen seine Umgebung."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
-description: "Selbstentwickelnde KI-Harnesses scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell hat recht: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
+series: ["Building Agents That Sleep"]
+series_weight: 6
+description: "Selbstentwickelnde KI-Harnesses scheitern, wenn sie einen festen Bewertungsmaßstab optimieren. Das biologische Modell ist richtig: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "0a5d4cb365b446ec4be98d599e8c4750"
-chunkHashes: "d0f83485ba784f57,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
+translationHash: "530d973eec7cbbc49d59e1eb561242da"
+chunkHashes: "0154b9d775190ffe,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---
-Ich habe eine Woche damit verbracht, eine „vektorbasierte Programmiersprache für LLMs“ zu entwerfen. Die Idee war, das Verhalten von Modellen direkt auf Aktivierungsebene zu programmieren, ohne Prompts, nur Intervention‑Vektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich eigentlich wollte, war keine Sprache. Es war ein Organismus.
-
-**Die Einheit der Evolution ist nicht das Feature. Es ist der Mutations/Selektionszyklus.**
-
-Diese Unterscheidung ändert alles daran, wie du ein selbstentwickelndes KI‑Träger‑System aufbaust. Die meisten Systeme, die sich selbst als „selbstverbessernd“ bezeichnen, betreiben AutoML. Sie optimieren über einen festen Suchraum hin zu einem festen Ziel. Das kann Anpassung erzeugen, aber es ist näher an AutoML als an offener Evolution. Der Unterschied stellt sich architektonisch entscheidend in zwei Hinsichten heraus.
-
----
+**Die Einheit der Evolutionist nicht das Feature. Es ist der Mutations/Selektionszyklus.**  
+Diese Unterscheidung ändert alles, wie du einen selbst‑entwickelnden KI‑Harness aufbaust. Die meisten Systeme, die sich selbst als „selbstverbessernd“ bezeichnen, führen AutoML durch. Sie optimieren über einen festen Suchraum hin zu einem festen Ziel. Das kann Anpassung hervorbringen, aber es ist dem AutoML näher als der offenen Evolution. Der Unterschied erweist sich architektonisch entscheidend in zwei Hinsichten.
 ## Genotyp und Phänotyp Sind Nicht dieselbe Schicht
 
 Biologische Systeme trennen, was besteht, von dem, was ausgewählt wird. Das Genom wird nicht direkt getestet. Das Phänotyp ist es. Mutationen geschehen am Genom. Die Selektion geschieht am Phänotyp. Das Genom überlebt, indem es Phänotypen hervorbringt, die überleben. Diese Asymmetrie ist die Quelle der Evolvierbarkeit selbst.
@@ -80,3 +77,283 @@ Wenn du in diesem Bereich arbeitest, ist das Prioritätspapier, das sich am meis
 *Christian Pojoni baut KI‑Agenten‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelles Projekt: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agenten‑Runtime.*  
 
 *Das Titelbild dieses Posts wurde von KI generiert.*
+
+##SAE Steering Ist kein Operator, sondern die Grundlage
+
+Sparse Autoencoders können sparse latente Merkmale freilegen, von denen viele genug interpretierbar sind, um das Verhalten lokal zu steuern, obwohl Merkmalsqualität und kausale Spezifität weiterhin aktive Forschungsfragen bleiben. Man kann ein Modell einem Konzept zu oder davon weg steuern, indem man einen Feature-Vektor in einer bestimmten Schicht während des Vorwärtspasses hinzufügt oder unterdrückt. Das ist schnell, reversibel und erfordert kein Neutraining.
+
+Aber es ist nur eine Operatorklasse in einem gemischten Aktionsraum. Die Mutationsgeneratoren in einem ernsthaften Harness sollten Vorschläge über mindestens vier Substrate erzeugen. Das erste Substrat sind prompt- und retrieval-Transforms: günstig, reversibel, immer der Ausgangspunkt. Das zweite sind activation steering rules: schnell, lokal, mittelfristige Verpflichtung. Das dritte sind adapter und LoRA updates: schwerer, erfordert Training, mittelfristige Beständigkeit. Das vierte ist code und policy edits: höchste Verpflichtung, schwerste Rücknahme.
+
+Mit nur SAE Steering zu beginnen, ist wie ein evolutionsfähiges System zu bauen, das nur ein Gen mutieren kann. Man erhält schnelle lokale Anpassung und brüchiges globales Verhalten. Das System muss in der Lage sein, zu modifizieren, wie es Kontext abruft, wie es Tools routing und wie es Informationen auf Gewichts‑Ebene verarbeitet, nicht weil diese Operatoren mächtiger sind, sondern weil unterschiedliche Probleme in unterschiedlichen Substraten liegen.
+
+Die richtige Disziplin ist: Eine erfolgreiche kostengünstige Intervention sollte, soweit möglich, in einem billigeren oder stabileren Substrat neu ausgedrückt werden, sei es als prompt Transform, retrieval rule oder adapter update, vorausgesetzt, die kausale Wirkung übersteht die Übersetzung. Das ist keine Regel allein für Sicherheit. Es ist eine Regel für Evolvierbarkeit: Das System sollte teure Mutationen widerstehen, bis günstige gefunden haben die richtige Nachbarschaft.
+##Was ein minimal funktionsfähiger Loop eigentlich aussieht
+
+Der Loop hat sechs Stufen. Beobachten. Vorschlagen. Sandbox. Bewerten. Den Gewinner behalten (oder alle Kandidaten ablehnen). Suchvordergrund aktualisieren.
+
+Beobachten bedeutet, das aktuelle Genom gegen das Aufgaben-Set auszuführen und verhaltensbezogene Metriken aufzuzeichnen. Vorschlagen bedeutet, dass die Such-Politik Kandidatenmutationen, je einen pro Operatorklasse, parallel generiert. Sandbox bedeutet, dass jeder Kandidat isoliert läuft: keine geteilte Zustandsfähigkeit, strenge Ressourcenbegrenzungen, und ein garantierter Rollback. Bewerten bedeutet, den verhaltensbezogenen Delta-Wert gegenüber der aktuellen Basislinie zu bewerten. Den Gewinner behalten bedeutet, den Gewinner in die Persistenzschicht mit voller Provenienz zu schreiben: vor/nach Metriken, welche Prompts es beeinflusste, welche Operatorklasse er verwendet hat, sowie Ablauf- und Revalidierungsrichtlinien. Update search prior bedeutet, dass die Banditen- oder Evolutionspolitik lernt, welche Operatorklassen und welche Regionen des Suchraums Survivors produzieren.
+
+Jede behaltene Mutation benötigt einen Rollback-Handhalter. Nicht aus Sicherheitsgründen. Als Design-Anforderung.
+
+Wenn Sie eine Mutation nicht zurückrollen können, können Sie ihren marginalen Beitrag nicht messen. Wenn Sie seinen marginalen Beitrag nicht messen können, evolvieren Sie nicht. Sie haufen sich lediglich an.
+
+---
+We needto translate headings and bold etc.
+
+We keep "## What I Left Out" unchanged? The heading marker "##" is markdown heading. Should we translate the text after ##? The heading text is "What I Left Out". That's not a proper noun; it's a title. Should we translate it? The instruction says "Do not translate proper nouns, project names, GitHub URLs, or code." "What I Left Out" is not a proper noun; it's a phrase. Should we translate it? The tone: keep same tone and style. Probably translate the heading as well, but maybe keep as is? The instruction says "Do not translate proper nouns, project names, GitHub URLs, or code." It doesn't forbid translating other text. So we can translate heading text. So "## What I Left Out" -> "## Was ich weggelassen habe" maybe. But need to preserve markdown heading syntax. So we replace the text after ## with German translation, keeping ##. So "## Was ich weggelassen habe". Keep bold? There's no bold there.
+
+Then we have "**Self-modification of code.**" That's bold markdown. The text inside bold should be translated? The instruction: "Do not translate proper nouns, project names, GitHub URLs, or code." This is not a proper noun; it's a phrase. So we can translate it. But we must preserve the bold markdown syntax: **...**. So we translate the content inside bold to German, but keep the asterisks. So "**Selbstmodifikation des Codes.**"
+
+Then the sentence: "Darwin-Gödel Machine-style self-editing works in sandboxed coding-agent settings with formal verifiers." Translate to German, preserving code references? "Darwin-Gödel Machine-style" includes "Machine" which is part of name; maybe keep as is? It's not a proper noun? It's a style name; maybe keep as is. But we can translate "self-editing works in sandboxed coding-agent settings with formal verifiers." So German: "Darwin-Gödel Machine‑stilisierte Selbstbearbeitung funktioniert in abgesicherten Codier-Agenten-Umgebungen mit formalen Verifizierern." Might be okay.
+
+But we must preserve any code blocks? There's none.
+
+Proceed.
+
+Next paragraph:
+
+**Feature universality.** SAE features are model-specific and sometimes checkpoint-specific. Whether useful features transfer across model versions is an open research question. The harness should be designed to re-extract feature dictionaries on each base model update rather than assuming stability.
+
+Translate heading "**Feature universality.**" -> "**Feature-Universalität.**" maybe. Keep bold.
+
+Sentence: "SAE features are model-specific and sometimes checkpoint-specific." -> "SAE-Features sind modell-spezifisch und manchmal checkpoint-spezifisch." Keep SAE as is (not translation). "checkpoint" maybe keep as is.
+
+"Whether useful features transfer across model versions is an open research question." -> "Ob nützliche Features über Modell-Versionen hinwegübertragbar sind, ist eine offene Forschungsfrage."
+
+"The harness should be designed to re-extract feature dictionaries on each base model update rather than assuming stability." -> "Der Harness sollte so gestaltet sein, dass bei jedem Basis-Modell-Update feature-Dictionaries erneut extrahiert werden, anstatt stabile Annahmen zu treffen."
+
+Next paragraph:
+
+**Multi-agent evaluators.** Using a judge model as part of the evaluation loop adds robustness but also creates an adversarial surface. The system can learn to satisfy the judge rather than the underlying task. This needs explicit counter‑measures that I have not designed yet.
+
+Translate heading "**Multi-agent evaluators.**" -> "**Multi-Agent-Evaluatoren.**"
+
+Sentence: "Using a judge model as part of the evaluation loop adds robustness but also creates an adversarial surface." -> "Die Verwendung eines Bewertungsmodells im Evaluationsschleifen-Mechanismus erhöht Robustheit, birgt aber zugleich eine angreifbare Angriffsfläche."
+
+"The system can learn to satisfy the judge rather than the underlying task." -> "Das System kann lernen, den Bewerter zu befriedigen, statt die zugrundeliegende Aufgaben zu lösen."
+
+"This needs explicit counter‑measures that I have not designed yet." -> "Dies erfordert explizite Gegenmaßnahmen, die ich noch nicht gestaltet habe."
+
+Next paragraph:
+
+**Compute budgeting.** A mutation that improves capability by 2% but doubles latency is not a win. Latency and cost need to be first‑class constraints in the evaluator, not afterthoughts.
+
+Heading: "**Compute budgeting.**" -> "**Rechenbudgetierung.**"
+
+Sentence: "A mutation that improves capability by 2% but doubles latency is not a win." -> "Eine Mutation, die die Leistungsfähigkeit um 2 % verbessert, aber die Latenz verdoppelt, ist kein Gewinn."
+
+"Latency and cost need to be first‑class constraints in the evaluator, not afterthoughts." -> "Latenz und Kosten müssen als erstklassige Constraints im Evaluator berücksichtigt werden, nicht als nachträgliche Gedanken."
+
+Next paragraph:
+
+---
+
+The connection to [Hrafn](https://github.com/5queezer/hrafn) is direct. MuninnDB is the persistence tier. The Dream Engine, modeled on sleep-phase memory consolidation, is the mechanism that promotes ephemeral observations into medium-term policy. The missing pieces are the search policy and the co‑evolving evaluator. That is what gets built next.
+
+Translate: "The connection to [Hrafn](https://github.com/5queezer/hrafn) is direct." -> "Der Zusammenhang zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt."
+
+"MuninnDB is the persistence tier." -> "MuninnDB ist die Persistenz-Ebene."
+
+"The Dream Engine, modeled on sleep-phase memory consolidation, is the mechanism that promotes ephemeral observations into medium-term policy." -> "Der Dream Engine, modelliert auf Schlafphasen‑Gedächtniskonsolidierung, ist das Mechanismus, das flüchtige Beobachtungen in mittel‑fristige Strategien überführt."
+
+"The missing pieces are the search policy and the co‑evolving evaluator." -> "Die fehlenden Teile sind die Suchstrategie und der ko‑evolvierende Evaluator."
+
+"That is what gets built next." -> "Das wird als Nächstes gebaut."
+
+Next paragraph:
+
+If you are building in this space, the prior that is most worth borrowing is not from ML. It is from evolutionary biology: the environment does the selection. Your job is to build the environment, not the organism.
+
+Translate: "If you are building in this space, the prior that is most worth borrowing is not from ML." -> "Wenn du in diesem Bereich arbeitest, ist die Priorität, die es sich am meisten lohnt zu übernehmen, nicht aus dem ML‑Bereich."
+
+"It is from evolutionary biology: the environment does the selection." -> "Sie stammt aus der evolutionsbiologie: die Umgebung führt die Selektion durch."
+
+"Your job is to build the environment, not the organism." -> "Deine Aufgabe ist es, die Umgebung zu bauen, nicht das Organismus."
+
+Next paragraph:
+
+Start with [Hrafn](https://github.com/5queezer/hrafn) and the [MuninnDB persistence layer](https://github.com/5queezer/hrafn). The genome/phenotype separation is already wired. What needs building is the evaluator that co‑evolves with the system it measures.
+
+Translate: "Start with [Hrafn](https://github.com/5queezer/hrafn) and the [MuninnDB persistence layer](https://github.com/5queezer/hrafn)." -> "Starte mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB Persistence-Schicht](https://github.com/5queezer/hrafn)." But "persistence layer" is not a proper name; it's a descriptive phrase. Should we translate? The instruction says preserve links exactly; the anchor text "[MuninnDB persistence layer]" includes "persistence layer" which is not a proper noun. We can translate that anchor text? The rule: "Do not translate proper nouns, project names, GitHub URLs, or code." "persistence layer" is not a proper noun; it's a phrase. So we can translate it. But we must preserve the markdown link syntax. So we can change the anchor text to German translation, but keep the link unchanged. So "[MuninnDB Persistence-Schicht]" maybe. But the original anchor text is "MuninnDB persistence layer". We can translate to "MuninnDB Persistence-Schicht". That seems okay.
+
+"The genome/phenotype separation is already wired." -> "Die Genom/Phänotyp-Trennung ist bereits verkabelt." Might keep "genome/phenotype" as is? It's a phrase; we can translate to "Genom/Phänotyp-Trennung". Keep slash.
+
+"What needs building is the evaluator that co‑evolves with the system it measures." -> "Was gebaut werden muss, ist der Evaluator, der mit dem System, das er misst, ko‑evolviert."
+
+Next paragraph:
+
+---
+
+*Christian Pojoni builds AI agent infrastructure and writes about it at [vasudev.xyz](https://vasudev.xyz). Current work: [Hrafn](https://github.com/5queezer/hrafn), a Rust-based agent runtime.*
+
+"The cover image for this post was generated by AI."
+
+We need to translate these lines, preserving markdown formatting (italics with asterisks). The asterisks indicate italics. So we keep them.
+
+First italic line: "*Christian Pojoni builds AI agent infrastructure and writes about it at [vasudev.xyz](https://vasudev.xyz). Current work: [Hrafn](https://github.com/5queezer/hrafn), a Rust-based agent runtime.*"
+
+We translate the English text outside the links, but keep the links unchanged. So we translate "Christian Pojoni builds AI agent infrastructure and writes about it at" -> "Christian Pojoni baut KI‑Agenten-Infrastruktur und schreibt darüber auf". Then "Current work:" -> "Aktuelle Arbeit:" then the link to Hrafn remains same anchor text "Hrafn". Then ", a Rust-based agent runtime." -> ", ein Rust-basiertes Agenten‑Runtime." But "agent runtime" maybe keep as is? It's not a proper noun. Could translate to "Agenten‑Runtime". We'll translate.
+
+But we must preserve the markdown italics: start with * and end with *. So we translate everything inside the asterisks, but keep the links unchanged.
+
+Second italic line: "*The cover image for this post was generated by AI.*" Translate to German: "*Das Cover‑Bild für diesen Beitrag wurde von KI erzeugt.*"
+
+We must preserve asterisks.
+
+Now ensure no extra commentary.
+
+Let's assemble the translated markdown.
+
+We must keep blank lines as in original? Probably maintain same spacing.
+
+Original structure:
+
+## What I Left Out
+
+**Self-modification of code.** ...
+
+**Feature universality.** ...
+
+**Multi-agent evaluators.** ...
+
+**Compute budgeting.** ...
+
+---
+
+The connection to [Hrafn](https://github.com/5queezer/hrafn) is direct. ...
+
+If you are building in this space, ...
+
+Start with [Hrafn](https://github.com/5queezer/hrafn) and the [MuninnDB persistence layer](https://github.com/5queezer/hrafn). ...
+
+---
+
+*Christian Pojoni builds AI agent infrastructure and writes about it at [vasudev.xyz](https://vasudev.xyz). Current work: [Hrafn](https://github.com/5queezer/hrafn), a Rust-based agent runtime.*
+
+*The cover image for this post was generated by AI.*
+
+We need to translate each paragraph.
+
+Let's write final output:
+
+## Was ich weggelassen habe
+
+**Selbstmodifikation des Codes.** Darwin‑Gödel‑Machine‑stilisierte Selbstbearbeitung funktioniert in abgesicherten Codier‑Agenten‑Umgebungen mit formalen Verifizierern. Für einen allgemeinen Rahmen ohne diese Einschränkungen ist es ein Phase‑4‑Problem, nicht weil es unmöglich wäre, sondern weil die erforderliche Infrastruktur (stabile Evaluierer, Rücksetzmöglichkeiten, begrenzter Aufgabenbereich) zuerst geschaffen werden muss.
+
+**Feature‑Universalität.** SAE‑Features sind modell‑spezifisch und manchmal checkpoint‑spezifisch. Ob nützliche Features über Modell‑Versionen hinweg übertragbar sind, ist eine offene Forschungsfrage. Der Harness sollte so gestaltet sein, dass bei jedem Basis‑Modell‑Update feature‑Dictionary‑Einträge erneut extrahiert werden, anstatt stabile Annahmen zu treffen.
+
+**Multi‑Agent‑Evaluatoren.** Die Verwendung eines Bewertungsmodells im Evaluationsschleifen‑Mechanismus erhöht Robustheit, birgt aber zugleich eine angreifbare Angriffsfläche. Das System kann lernen, den Bewerter zu befriedigen, statt die zugrundeliegende Aufgabe zu lösen. Dies erfordert explizite Gegenmaßnahmen, die ich noch nicht gestaltet habe.
+
+**Rechenbudgetierung.** Eine Mutation, die die Leistungsfähigkeit um 2 % verbessert, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen als erstklassige Constraints im Evaluator berücksichtigt werden, nicht als nachträgliche Gedanken.
+
+---
+
+Der Zusammenhang zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenz‑Ebene. Der Dream Engine, modelliert auf Schlafphasen‑Gedächtniskonsolidierung, ist das Mechanismus, das flüchtige Beobachtungen in mittel‑fristige Strategien überführt. Die fehlenden Teile sind die Suchstrategie und der ko‑evolvierende Evaluator. Das wird als Nächstes gebaut.
+
+Wenn du in diesem Bereich arbeitest, ist die Priorität, die man am meisten übernehmen sollte, nicht aus dem ML‑Bereich. Sie stammt aus der Evolutionsbiologie: die Umgebung führt die Selektion durch. Deine Aufgabe ist es, die Umgebung zu bauen, nicht das Organismus.
+
+Starte mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB Persistence‑Schicht](https://github.com/5queezer/hrafn). Die Genom/Phänotyp‑Trennung ist bereits verkabelt. Was gebaut werden muss, ist der Evaluator, der mit dem System, das er misst, ko‑evolviert.
+
+---
+
+*Christian Pojoni baut KI‑Agenten‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agenten‑Runtime.*
+
+*Das Cover‑Bild für diesen Beitrag wurde von KI erzeugt.*
+
+Check for any missing formatting: There is a line with "---" originally after the first section? Actually original had "---" after the first paragraph? Let's re-check original:
+
+The provided text:
+
+## What I Left Out
+
+**Self-modification of code.** Darwin-Gödel Machine-style self-editing works in sandboxed coding-agent settings with formal verifiers. For a general harness without those constraints, it is a Phase 4 concern, not because it is impossible, but because the prerequisite infrastructure (stable evaluator, rollback guarantees, narrow task scope) needs to be in place first.
+
+**Feature universality.** SAE features are model-specific and sometimes checkpoint-specific. Whether useful features transfer across model versions is an open research question. The harness should be designed to re-extract feature dictionaries on each base model update rather than assuming stability.
+
+**Multi-agent evaluators.** Using a judge model as part of the evaluation loop adds robustness but also creates an adversarial surface. The system can learn to satisfy the judge rather than the underlying task. This needs explicit counter‑measures that I have not designed yet.
+
+**Compute budgeting.** A mutation that improves capability by 2% but doubles latency is not a win. Latency and cost need to be first‑class constraints in the evaluator, not afterthoughts.
+
+---
+
+The connection to [Hrafn](https://github.com/5queezer/hrafn) is direct. MuninnDB is the persistence tier. The Dream Engine, modeled on sleep-phase memory consolidation, is the mechanism that promotes ephemeral observations into medium-term policy. The missing pieces are the search policy and the co‑evolving evaluator. That is what gets built next.
+
+If you are building in this space, the prior that is most worth borrowing is not from ML. It is from evolutionary biology: the environment does the selection. Your job is to build the environment, not the organism.
+
+Start with [Hrafn](https://github.com/5queezer/hrafn) and the [MuninnDB persistence layer](https://github.com/5queezer/hrafn). The genome/phenotype separation is already wired. What needs building is the evaluator that co‑evolves with the system it measures.
+
+---
+
+*Christian Pojoni builds AI agent infrastructure and writes about it at [vasudev.xyz](https://vasudev.xyz). Current work: [Hrafn](https://github.com/5queezer/hrafn), a Rust-based agent runtime.*
+
+*The cover image for this post was generated by AI.*
+
+We need to preserve the "---" lines. In markdown, "---" is a horizontal rule. We should keep them as "---". So we need to include them exactly as they appear, but maybe we need to translate nothing around them. So we keep "---" lines unchanged.
+
+Thus we need to insert "---" after the first set of bullet points? Actually there is a "---" after the fourth bullet (Compute budgeting). So we should keep that line as "---". Then continue with "The connection to..." etc.
+
+Thus we need to keep "---" lines exactly as "---". So we will have:
+
+## Was ich weggelassen habe
+
+**Selbstmodifikation des Codes.** ... (first paragraph)
+
+**Feature-Universalität.** ... (second paragraph)
+
+**Multi-Agent-Evaluatoren.** ... (third paragraph)
+
+**Rechenbudgetierung.** ... (fourth paragraph)
+
+--- (horizontal rule)
+
+The connection to ... (next paragraph)
+
+If you are building ... (next paragraph)
+
+Start with ... (next paragraph)
+
+--- (another horizontal rule)
+
+*Christian Pojoni...* (italic)
+
+*The cover image...* (italic)
+
+Thus we need to include two "---" lines.
+
+Now check translation of headings: "Feature universality." heading was "**Feature universality.**". We translated to "**Feature‑Universalität.**". That's fine.
+
+"Multi-agent evaluators." -> "**Multi-Agent-Evaluatoren.**"
+
+"Compute budgeting." -> "**Rechenbudgetierung.**"
+
+Now ensure we didn't translate any proper nouns or URLs. We kept URLs unchanged. Anchor texts like "Hrafn" remain unchanged. "MuninnDB persistence layer" we translated to "MuninnDB Persistence‑Schicht". That's okay because it's not a proper noun; it's a phrase.
+
+Now check any code blocks? None.
+
+Now check any HTML tags? None.
+
+Now ensure we didn't add any extra commentary.
+
+Now produce final answer exactly as translation with markdown## Was ich weggelassenhabe
+
+**Selbstmodifikation des Codes.** Darwin‑Gödel‑Machine‑stilisierte Selbstbearbeitung funktioniert in abgesicherten Codier‑Agenten‑Umgebungen mit formalen Verifizierern. Für einen allgemeinen Rahmen ohne diese Einschränkungen ist es ein Phase‑4‑Problem, nicht weil es unmöglich wäre, sondern weil die erforderliche Infrastruktur (stabile Evaluierer, Rücksetzmöglichkeiten, begrenzter Aufgabenbereich) zuerst geschaffen werden muss.
+
+**Feature‑Universalität.** SAE‑Features sind modell‑spezifisch und manchmal checkpoint‑spezifisch. Ob nützliche Features über Modell‑Versionen hinweg übertragbar sind, ist eine offene Forschungsfrage. Der Harness sollte so gestaltet sein, dass bei jedem Basis‑Modell‑Update feature‑Dictionary‑Einträge erneut extrahiert werden, anstatt stabile Annahmen zu treffen.
+
+**Multi‑Agent‑Evaluatoren.** Die Verwendung eines Bewertungsmodells im Evaluationsschleifen‑Mechanismus erhöht Robustheit, birgt aber zugleich eine angreifbare Angriffsfläche. Das System kann lernen, den Bewerter zu befriedigen, statt die zugrundeliegende Aufgabe zu lösen. Dies erfordert explizite Gegenmaßnahmen, die ich noch nicht gestaltet habe.
+
+**Rechenbudgetierung.** Eine Mutation, die die Leistungsfähigkeit um 2 % verbessert, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen als erstklassige Constraints im Evaluator berücksichtigt werden, nicht als nachträgliche Gedanken.
+
+---
+
+Der Zusammenhang zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenz‑Ebene. Der Dream Engine, modelliert auf Schlafphasen‑Gedächtniskonsolidierung, ist das Mechanismus, das flüchtige Beobachtungen in mittel‑fristige Strategien überführt. Die fehlenden Teile sind die Suchstrategie und der ko‑evolvierende Evaluator. Das wird als Nächstes gebaut.
+
+Wenn du in diesem Bereich arbeitest, ist die Priorität, die man am meisten übernehmen sollte, nicht aus dem ML‑Bereich. Sie stammt aus der Evolutionsbiologie: die Umgebung führt die Selektion durch. Deine Aufgabe ist es, die Umgebung zu bauen, nicht das Organismus.
+
+Starte mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB Persistence‑Schicht](https://github.com/5queezer/hrafn). Die Genom/Phänotyp‑Trennung ist bereits verkabelt. Was gebaut werden muss, ist der Evaluator, der mit dem System, das er misst, ko‑evolviert.
+
+---
+
+*Christian Pojoni baut KI‑Agenten‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agenten‑Runtime.*
+
+*Das Cover‑Bild für diesen Beitrag wurde von KI erzeugt.*

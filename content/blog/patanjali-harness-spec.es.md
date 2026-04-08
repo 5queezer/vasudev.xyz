@@ -1,18 +1,42 @@
 ---
-title: "Patanjali teníala Filtering Spec. Acabamos de escribir las pruebas."
+title: "Patanjali tenía la especificación de filtrado. Solo escribimos las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
-description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus inesperados paralelos en la teoría de la atención yóguica."
+series: ["Building Agents That Sleep"]
+series_weight: 4
+description: "La consolidación de lamemoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus inesperados paralelismos en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "065cf684afb116027a894361e33aa742"
-chunkHashes: "534d87a2c02441ac,d54445670f0f3cb3,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+translationHash: "543adcf5b9b4086b32735b32db22c42b"
+chunkHashes: "8d6c41e62980fd8f,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-## 1. No todo el ruido es igual (Vrtti Nirodha)
+## 1. Not all noise is equal (Vrtti Nirodha)
 
-Antes del fallo de dedup, [benchmark #311](https://git... 
-El fallo no fue un error en el algoritmo de dedup. Fue un fallo de *discernment*: una operación de consolidación válida aplicada en un contexto donde causó daño. Cuándo consolidar, cuándo dejarlo como está, qué cuenta como ruido vs. señal. Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en el [Yoga Sutras](https://es.wikipedia.org/wiki/Yoga Sutras_of_Patanjali) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052), [MemoryBench](https://arxiv.org/abs/2510.17281), y Böckeler's [harness engineering framework](https://martinfowler.com/articles/harness_engineering.html).  
+El sistema de consolidación de [MuninnDB](https://github.com/scrypster/muninndb) fusionó exactamente tres engramas duplicados de variante de color, tal como estaba diseñado (similitud coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, al eliminar los duplicados se desplazó el ancla de normalización, empujando los resultados relevantes hacia abajo del ranking. La solución fue una cláusula de guardia: `MinDedupVaultSize` (default 20), skipping Phase 2 dedup in small vaults. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
 
-**Las tradiciones contemplativas construyeron modelos sofisticados de filtrado de atención. Algunas de esas modelos generan hipótesis comprobables que la literatura actual de memoria de agentes no hace.**
+The failure wasn't a bug in the dedup algorithm. It was a failure of *discernimiento*: a valid consolidation operation applied in a context where it caused harm. When to consolidate, when to leave alone, what counts as noise vs. signal. That problem has a long history outside computer science. I found three specific design principles in the [Yoga Sutras](https://es.wikipedia.org/wiki/Yoga_sutras_de_Patanjali) that map to empirical results from [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, March 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), and Böckeler's [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html).
+
+**Las tradiciones contemplativas construyeron modelos sofisticados de filtrado de atención. Algunos de esos modelos generan hipótesis comprobables que la literatura actual de memoria de agentes no hace.**
+## 1. No todo el ruidoes igual (Vrtti Nirodha)
+
+Antes del fallo de dedup, [benchmark #311](https://github.com/scrypster/muninndb/issues/311) enfrentó un problema más básico. MuninnDB's ACT-R scoring ([issue #331](https://github.com/scrypster/muninndb/issues/331)) clamped fresh engrams to raw=1.0, making all retrieval scores identical at 0.9000. The system could not distinguish signal from noise. Every entry looked equally relevant. After the fix ([PR #337](https://github.com/scrypster/muninndb/pull/337)), score range improved to 0.18-0.90 and correct top-1 retrieval went to 5/5 queries. Uniform treatment of entries had been destroying retrieval quality.
+
+Meta-Harness confirmó el mismo patrón a una escala diferente. Su [ablación crÍtica (Table 3)](https://arxiv.org/abs/2603.28052) comparó tres niveles de acceso a la informaciÃ³n para el optimizador del harness:
+
+| CondiciÃ³n | PrecisiÃ³n media | Mejor precisiÃ³n |
+|---|---|---|
+| Scores only | 34.6% | 41.3% |
+| Scores + LLM summary | 34.9% | 38.7% |
+| Full raw traces | 50.0% | 56.7% |
+
+LLM-generated summaries performed *worse* than raw scores alone (best accuracy 38.7% vs 41.3%). Full raw traces got 56.7%. The summaries collapsed diagnostic signal alongside noise, destroying the information the optimizer needed. On text classification, Meta-Harness achieved 48.6% vs ACE's 40.9% while using 4x fewer context tokens. The winning move was not more information. It was better *selection* of information.
+
+The design principle: indiscriminate treatment of entries destroys retrieval quality, whether that treatment is uniform scoring, lossy summarization, or undifferentiated dedup.
+
+Yoga Sutras 1.2 defines yoga as *chitta vrtti nirodha*, the cessation of fluctuations in the mind-field. Patanjali doesn't say "delete everything." He distinguishes [*kleshas*](https://en.wikipedia.org/wiki/Kleshas_(Hinduism)) (distortions: attachment, aversion, ego, ignorance, fear of death) from [*pramanas*](https://en.wikipedia.org/wiki/Pramana) (valid cognition: direct perception, inference, testimony). The practice is surgical: reduce the distortions, preserve the signal. The score saturation bug was the system failing to make that distinction. Every vrtti looked the same.
+
+The design implication for MuninnDB: decay floors should reflect outcome, not just access frequency. A verified API pattern and a failed curl attempt might have identical retrieval rates but radically different retention value. You could try to classify entries upfront as pramana or klesha (verified vs. distorted), but that classification is itself the hard problem. For most entries, it requires semantic judgment, which means an LLM in the decay path, which makes consolidation expensive and nondeterministic.
+
+The simpler path: **outcome-tagged writes**. When an agent retrieves an entry and the subsequent action succeeds, the entry gets an `outcome: success` signal. When the action fails, `outcome: failure`. The decay floor couples to the success rate, not to an epistemic category. This is essentially bandit feedback on retrieval, an idea well-established in information retrieval, applied here to persistent agent memory. No ontology needed. No LLM in the loop. You don't need to classify the vrtti in advance. You observe its effect and let that observation shape retention.
 ## 1. No todo el ruido es igual (Vrtti Nirodha)
 
 Before the dedup failure, [benchmark #311](https://github.com/scrypster/muninndb/issues/311) hit a more basic problem. MuninnDB's ACT-R scoring ([issue #331](https://github.com/scrypster/muninndb/issues/331)) clamped fresh engrams to raw=1.0, making all retrieval scores identical at 0.9000. The system could not distinguish signal from noise. Every entry looked equally relevant. After the fix ([PR #337](https://github.com/scrypster/muninndb/pull/337)), score range improved to 0.18-0.90 and correct top-1 retrieval went to 5/5 queries. Uniform treatment of entries had been destroying retrieval quality.
@@ -114,10 +138,3 @@ El benchmark inicial ha respondido una pregunta. La desduplicación uniforme en 
 Pratyahara ya está implementado correctamente: la Trait de Memoria devuelve top-k, punto. El armazón de pruebas captura la decisión completa de recuperación. El agente no necesita saber qué se excluyó. El ingeniero sí.
 
 Ninguno de esto requiere creer en chakras. Se requiere tomar las discriminaciones seriamente como heurísticas de ingeniería y medir si mejoran el recuerdo de agentes en cargas de trabajo realistas. El benchmark inicial obligó un cambio de diseño. El generador sintético de cubículos decide el resto.
-## Furtherreading
-
-[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html), la taxonomía (guías, sensores, computacionales, inferenciales). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), evidencia empírica de que los cambios de harness producen brechas de rendimiento de 6x. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820), el arte previo más cercano que mapea Vedanta a la arquitectura de agentes (conceptual, sin benchmarks aún). Yoga Sutras 1.2-1.16, el modelo de filtrado de atención que precede a todo ello. [MuninnDB](https://github.com/scrypster/muninndb), donde se ponen a prueba las hipótesis. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), los resultados iniciales. [PR #337](https://github.com/scrypster/muninndb/pull/337), la solución de saturación de puntuación. [PR #359](https://github.com/scrypster/muninndb/pull/359), la guardia de deduplicación. [Hrafn](https://github.com/5queezer/hrafn), el runtime que se ejecuta en una Raspberry Pi de $10.
-
-*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime ligero para agentes en Rust. Post anterior: [Why AI Agents Need Sleep](/blog/why-ai-agents-need-sleep/).*
-
-*La imagen de portada de esta publicación fue generada por IA.*

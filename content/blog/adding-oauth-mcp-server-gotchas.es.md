@@ -1,19 +1,20 @@
 ---
-title: "Agregando OAuth2.1 a un Servidor MCP Autohospedado: 4 trampas de la trinchera"
+title: "Añadiendo OAuth 2.1 a un Servidor MCP Autohospedado: 4 trampas de la trinchera"
 date: 2026-03-25
-description: "Qué se rompió cuando conecté claude.ai a mi propia instancia Reactive Resume a través de OAuth"
+description: "¿Qué se rompió cuando conectéclaude.ai a mi propia instancia de Reactive Resume mediante OAuth?"
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
-translationHash: "a04f5fc9f5f89296acfb31022606aba2"
-chunkHashes: "0f66a908dfad7bf0,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
+series: ["Field Notes"]
+translationHash: "bd114518f187f28ca585d6705de68751"
+chunkHashes: "a5a819c5e64b8e57,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
 ```
-MCP es **Autenticación y Autorización para Aplicaciones Conectadas**,  
-Es un protocolo abierto que permite 'acceso seguro de terceros a cuentas de usuario' a través  
-*servidores de autorización* (p. ej. Google, GitHub) y *aplicaciones conectadas* (p. ej. VS Code, Obsidian).  
+MCP (Model Context Protocol) permite a los asistentes de IA llamar a herramientas en servidores remotos. Pero si tu servidor MCP es autoalojado, claude.ai necesita autenticarse contra las cuentas de tus usuarios, no contra la de Anthropic. Eso significa que tu servidor necesita convertirse en un proveedor completo de OAuth 2.1: Registro dinámico de clientes, Código de autorización con PKCE, intercambio de tokens.
 
-Desglosemos su definición pieza a pieza.  
+Presenté [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para agregar esto a [Reactive Resume](https://github.com/amruthpillai/reactive-resume), el creador de currículums de código abierto. Seis commits, una refactorización intermedia del PR después de que el mantenedor señaló una depreciación, y varias horas de depuración de cadenas de autenticación. Esto es la parte OAuth de [esa historia](/blog/shipping-a2a-protocol-support-in-rust/).
+
+**MCP OAuth funciona, pero la especificación deja cuatro trampas que los tutoriales pasan por alto.**
 ```
 ## 1. Tuservidor MCP necesita dos endpoints .well-known, no uno
 
@@ -131,6 +132,18 @@ Un detalle más: `verifyApiKey` puede lanzar una excepción con entradas malform
 El flujo se ha demostrado completo en Cloud Run. La PR se ha fusionado y la funcionalidad se lanzará en la próxima versión.
 
 Si estás añadiendo OAuth a tu propio servidor MCP, lee [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para la implementación completa. Cada inconveniente mencionado se corresponde con un commit específico. Para probar el resultado, apunta claude.ai a tu propia instancia de Reactive Resume y conéctala vía OAuth. Mi configuración se ejecuta en [resume.vasudev.xyz](https://resume.vasudev.xyz).
+
+---
+
+*Christian Pojoni construye integraciones MCP para herramientas de código abierto. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de esta publicación fue generada por IA.*
+
+## The setup that proved it worksReactive Resume autoalojado en Google Cloud Run (europe-west1), PostgreSQL en Neon.tech (plan gratuito). El flujo de OAuth se completa en menos de 2 segundos: claude.ai descubre los extremos, se registra dinámicamente, redirige a la página de inicio de sesión, intercambia el código y empieza a hacer llamadas a herramientas. La listado de currículums, la lectura y la parcheo funcionan todos a través de Bearer token.
+
+El flujo se ha demostrado de extremo a extremo en Cloud Run. La PR ha sido fusionada y la función se incluirá en la próxima versión.
+
+Si estás añadiendo OAuth a tu propio servidor MCP, lee [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para la implementación completa. Cada problema anterior se corresponde con un commit específico. Para probar el resultado, apunta claude.ai a tu propia instancia de Reactive Resume y conéctala mediante OAuth. Mi configuración se ejecuta en [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
 ---
 

@@ -1,12 +1,19 @@
 ---
-title: "Die Speichermetriken deines Agents lügen dir. So verankerst du sie."
+title: "Die Speichermetrikendeines Agents lügen dir. So verankerst du sie."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
-description: "Speicherkonsolidierung wirkt großartig auf Dashboards. Aber wenn deine Metriken ohne Verbesserung des Abrufs verbessert werden können, optimierst du einen losgelösten Proxy."
+series: ["Building Agents That Sleep"]
+series_weight: 3
+description: "Die Gedächtniskonsolidierung sieht auf Dashboards großartig aus. Aber wenn Sie Metriken verbessern können, ohne dass die Abruffähigkeit besser wird, optimieren Sie einen abgetrennten Proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "f154150746aaffbbc7f8b524659f2420"
-chunkHashes: "83225e2cb91e9bdb,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+translationHash: "ecd8e08eb1dafc19414f532db2e6d771"
+chunkHashes: "1cbab5c975e16ef1,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
+Ich habe ein Speicherkonsolidierungssystem für KI‑Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, lässt veraltete Einträge verwelken, und erzeugt ein Traumtagebuch, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: dedup‑Rate steigt, Speichermenge sinkt, Assoziationsdichte steigt.
+
+Keine davon sagt dir, ob der Agent zur richtigen Zeit das Richtige erinnert.
+
+**Wenn eine Metrik sich verbessern kann, ohne dass die Abrufqualität ebenfalls steigt, ist diese Metrik ein entkoppelter Proxy. Optimier sie nicht.**
 ## TheProblem Has a Name
 
 I recently read an essay called ["The Collapse of Proxy Integrity"](https...
@@ -71,18 +78,3 @@ Der Proxy-Integritäts‑Essay analysiert außerdem „temporale Kompression“,
 Ich habe den Mehr‑Agenten‑Fall nicht behandelt, bei dem das konsolidierte Gedächtnis eines Agents in den Kontext eines anderen Agents fließt. Proxy‑Abkoppelung kann in diesem Setting kaskadieren: Schlechte Konsolidierung oben führt zu schlechter Retrieval‑Qualität unten, aber beide Agenten‑Dashboards sehen gut aus. Das ist ein Problem für Hrafn's A2A‑Protokoll‑Arbeit, aber das ist zukünftiger Umfang. Ein verwandtes Thema: Agent Cards in A2A tragen ein `agent_id`, aber es wird nichts diese ID mit der Interaktionsgeschichte verbinden. Ein böswilliger Agent kann seine Card neu generieren und mit frischer Reputation beginnen. Flyxion's ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formalisiert genau dieses Fehler‑Muster. Das ist ein separater Beitrag.
 
 Der Essay‑Analyse der Plattform‑Anreize (Werbe‑Modelle sind wirtschaftlich gegen Signalverschlechterung isoliert) hat in Open‑Source ein Analogon: Star‑Zähler und Download‑Metriken sind Proxy‑Maßstäbe für Nutzen, die ebenso leicht abkoppeln können. Aber das ist ein anderer Beitrag.
-## The Principle
-
-Gedächtniskonsolidierung ist keine Kompression. Es ist Kuration. Der Unterschied ist, ob du deine Entscheidungen auf Retrieval‑Qualität oder auf Dashboard‑Metriken gründest, die zufällig einfach zu berechnen sind.
-
-Wenn deine Konsolidierungs‑Metriken steigen können, während die Fähigkeit deines Agents, echte Fragen zu beantworten, sinkt, baust du ein System, das sich selbst optimiert. Die Karte wird selbstreferenziell. Das Territorium verschwindet.
-
-Grund deine Metriken. Benchmark, bevor du startest. Verwerfe jegliche Signale, die unabhängig von dem, worauf du wirklich abzielst, verschoben werden können.
-
-Die vollständige Dream Engine-Implementierung befindet sich in [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). Der Benchmark-Harness, der die Schreibpfade blockiert, ist in [issue #311](https://github.com/scrypster/muninndb/issues/311). Wenn du Agenten‑Gedächtnissysteme baust und Notizen zum Grounding von Retrieval‑Metriken austauschen möchtest, öffne ein Issue bei [Hrafn](https://github.com/5queezer/hrafn).
-
----
-
-*Christian Pojoni baut [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges KI‑Agenten‑Runtime‑System für Edge‑Hardware. Mehr auf [vasudev.xyz](https://vasudev.xyz).*
-
-*Das Coverbild für diesen Beitrag wurde von KI generiert.*

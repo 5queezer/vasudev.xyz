@@ -1,13 +1,19 @@
 ---
-title: "Hinzufügen von OAuth 2.1 zu einem Self-Hosted MCP Server: 4 Fallstricke aus den Schützengräben"
+title: "Hinzufügen von OAuth 2.1 zu einem Self-Hosted MCP Server: 4 Fallen aus den Schützengräben"
 date: 2026-03-25
-description: "Was ist kaputt, wenn ich claude.ai an meine eigene Reactive Resume‑Instanz über OAuth angeschlossen habe?"
+description: "Was ist kaputt, als ich claude.ai an meine eigene Reactive Resume-Instanz über OAuth verkabelt habe?"
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
-translationHash: "a04f5fc9f5f89296acfb31022606aba2"
-chunkHashes: "0f66a908dfad7bf0,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
+series: ["Field Notes"]
+translationHash: "bd114518f187f28ca585d6705de68751"
+chunkHashes: "a5a819c5e64b8e57,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
+MCP (Model Context Protocol) ermöglicht es KI‑Assistenten, Tools auf entfernten Servern aufzurufen. Wenn dein MCP‑Server jedoch self‑hosted ist, muss claude.ai sich bei deinen Benutzer‑Konten authentifizieren, nicht bei Anthropic. Das bedeutet, dein Server muss einen vollständigen OAuth 2.1‑Provider werden: Dynamic Client Registrierung, Authorization Code mit PKCE, Token‑Austausch.
+
+Ich habe [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um das zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume), dem Open‑Source‑Lebenslauf‑Builder, hinzuzufügen. Sechs Commits, eine mid‑PR‑Refactor nach dem Hinweis des Maintainers über eine Deprecation, und mehrere Stunden Debugging von Auth‑Chains. Das ist die OAuth‑Seite von [that story](/blog/shipping-a2a-protocol-support-in-rust/).
+
+**MCP OAuth funktioniert, aber die Spezifikation lässt vier Fallstricke außer Acht, die Tutorials überspringen.**
 ## 1. Dein MCP-Server benötigt zwei `.well-known`-Endpunkte, nicht einenMCP (Model Context Protocol) lässt KI-Assistenten Tools auf Remote-Servern aufrufen. Wenn jedoch dein MCP-Server selbst gehostet ist, benötigt claude.ai eine Authentifizierung gegen deine Benutzerkonten, nicht gegen die von Anthropic. Das bedeutet, dein Server muss einen vollständigen OAuth 2.1-Provider werden: Dynamic Client Registration, Authorization Code mit PKCE, Token Exchange.
 
 Ich habe [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um das zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume), dem Open-Source-Lebenslauf-Builder, hinzuzufügen. Sechs Commits, ein mid-PR-Refactor nach dem Maintainer eine Deprecation markiert hatte, und mehrere Stunden Debugging von Auth-Chains. Das ist die OAuth-Seite von [that story](/blog/shipping-a2a-protocol-support-in-rust/).
@@ -139,3 +145,17 @@ Wenn du OAuth zu deinem eigenen MCP‑Server hinzufügst, lies [PR #2829](https:
 *Christian Pojoni baut MCP‑Integrationen für Open‑Source‑Tools. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
 
 *Das Cover‑Bild für diesen Beitrag wurde von KI erzeugt.*
+
+## Die Einrichtung,die funktioniert
+
+Selbstgehostetes Reactive Resume auf Google Cloud Run (europe-west1), PostgreSQL auf Neon.tech (Free-Tarif). Der OAuth-Flow beendet in weniger als 2 Sekunden: claude.ai entdeckt Endpunkte, registriert sie dynamisch, leitet zur Anmeldeseite um, tauscht den Code aus und startet Toolaufrufe. Auf Planung, Lesen und Patchen des Lebenslaufs erfolgt alles über den Bearer token.
+
+Der Flow ist end-to-end auf Cloud Run nachgewiesen. Der PR wurde merged und das Feature wird in der nächsten Release bereitgestellt.
+
+Wenn Sie OAuth zu Ihrem eigenen MCP server hinzufügen, lesen Sie [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) für die vollständige Implementierung. Jede Gotcha oben entspricht einem bestimmten commit. Um das Ergebnis auszuprobieren, zeigen Sie claude.ai auf Ihre eigene Reactive Resume Instanz und verbinden Sie sich via OAuth. Mein Setup läuft bei [resume.vasudev.xyz](https://resume.vasudev.xyz).
+
+---
+
+*Christian Pojoni baut MCP-Integrationen für Open-Source-Tools. Weitere Informationen bei [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Cover-Image für diesen Beitrag wurde von KI generiert.*

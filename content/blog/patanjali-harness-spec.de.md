@@ -1,21 +1,42 @@
 ---
-title: "Patanjalihatte die Filtering‑Spezifikation. Wir haben gerade die Tests geschrieben."
+title: "Patanjali Hatte die Filter-Spezifikation. Wir haben gerade die Tests geschrieben."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
-description: "Speicherkonsolidierung verschlechterte den Abruf. Drei Gestaltungsprinzipien aus Agenten‑Gedächtnis‑Benchmarks und ihre überraschenden Parallelen in der Theorie der yogischen Aufmerksamkeit."
+series: ["Building Agents That Sleep"]
+series_weight: 4
+description: "Speicherkonsolidierung erschwerte den Abruf. Drei Gestaltungsprinzipien aus Agenten‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen in der yogischen Aufmerksamkeitslehre."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "065cf684afb116027a894361e33aa742"
-chunkHashes: "534d87a2c02441ac,d54445670f0f3cb3,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+translationHash: "543adcf5b9b4086b32735b32db22c42b"
+chunkHashes: "8d6c41e62980fd8f,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-## 1. Notall noise is equal (Vrtti Nirodha)
+##1. Nicht alle Geräusche sind gleich (Vrtti Nirodha)
 
-Before the dedup failure, [benchmark #311](https://git...benchmark #311) showed a 12% drop in recall after duplicate removal. The issue appeared only when vault size exceeded 50,000 engrams. The fix was to cap dedup to Phase 2 only for vaults larger than 100k.
+Before the dedup failure, [benchmark #311](https://git... ) zeigte, dass der Dedup-Algorithmus selbst solide war. Das Problem lag in der umgebenden Logik.
 
-Retrieval got worse. In a 13-engram vault, removing duplicates shifted the normalization anchor, pushing relevant results down the ranking. The fix was a guard clause: `MinDedupVaultSize` (default 20), skipping Phase 2 dedup in small vaults. PR #359 (https://github.com/scrypster/muninndb/pull/359) closed the issue.
+Der Fehler war kein Fehler im Dedup-Algorithmus. Es war ein Fehler der *Unterscheidung*: eine gültige Konsolidierung wurde in einem Kontext angewendet, wo sie Schaden verursachte. Wann konsolidieren, wann nicht, was zählt als Geräusch versus Signal. Dieses Problem hat eine lange Geschichte außerhalb der Informatik. Ich fand drei spezifische Designprinzipien in den [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali), die empirische Ergebnisse aus [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html) abbilden.
 
-The failure wasn't a bug in the dedup algorithm. It was a failure of *discernment*: a valid consolidation operation applied in a context where it caused harm. When to consolidate, when to leave alone, what counts as noise vs. signal. That problem has a long history outside computer science. I found three specific design principles in the [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga-Sutras) that map to empirical results from [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, March 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), and Böckeler's [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html).
+**Die kontemplativen Traditionen entwickelten raffinierte Modelle der Aufmerksamkeitsfilterung. Einige dieser Modelle generieren testbare Hypothesen, die die aktuelle Literatur zum Agenten‑Gedächtnis nicht formuliert.**
+## 1. Nicht alles Rauschen ist gleich (Vrtti Nirodha)
 
-The contemplative traditions built sophisticated models of attention filtering. Some of those models generate testable hypotheses that the current agent memory literature doesn't make.
+Bevor der Dedup‑Fehler auftrat, traf **benchmark #311** ([https://github.com/scrypster/muninndb/issues/311](https://github.com/scrypster/muninndb/issues/311)) ein grundlegenderes Problem. Die ACT‑R‑Bewertung von MuninnDB ([issue #331](https://github.com/scrypster/muninndb/issues/331)) klammerte frische Engramme auf `raw=1.0`, sodass alle Abruf‑Scores identisch bei 0.9000 wurden. Das System konnte Signale von Rauschen nicht mehr unterscheiden. Jeder Eintrag erschien gleich relevant. Nach der Behebung ([PR #337](https://github.com/scrypster/muninndb/pull/337)) verbesserte sich der Score‑Bereich auf 0.18‑0.90 und die korrekte Top‑1‑Abrufung erreichte 5/5 Abfragen. Die einheitliche Behandlung von Einträgen zerstörte die Abruf‑Qualität.
+
+Meta‑Harness bestätigte das gleiche Muster in anderer Größe. Ihre [kritische Abtastung (Table 3)](https://arxiv.org/abs/2603.28052) verglich drei Levels des Information‑Zugriffs für den Optimierer des Harness‑Optimizers:
+
+| Condition | Median Accuracy | Best Accuracy |
+|---|---|---|
+| Scores only | 34.6% | 41.3% |
+| Scores + LLM summary | 34.9% | 38.7% |
+| Full raw traces | 50.0% | 56.7% |
+
+LLM‑generierte Zusammenfassungen performten *schlechter* als reine Scores alleine (beste Accuracy 38.7% vs. 41.3%). Vollständige Roh‑Traces brachten 56.7%. Die Zusammenfassungen kollabierten diagnostisches Signal zusammen mit Rauschen und zerstörten damit die Information, die der Optimierer benötigte. Bei Textklassifikation erreichte Meta‑Harness 48.6 % gegenüber 40.9 % von ACE, wobei lediglich 4‑fache weniger Kontext‑Tokens verwendet wurden. Der entscheidende Schritt war nicht mehr Information, sondern eine bessere *Auswahl* von Information.
+
+Der Gestaltungshinweis: ununterscheidbare Behandlung von Einträgen zerstört die Abruf‑Qualität, sei es durch einheitliche Bewertung, verlustbehaftete Zusammenfassung oder unvoreingenommene Dedup.
+
+Das Yoga‑Sutra 1.2 definiert Yoga als *chitta vrtti nirodha*, die Aufhebung der Schwankungen im Geistfeld. Patanjali sagt nicht „lösche alles“. Er unterscheidet [*kleshas*](https://en.wikipedia.org/wiki/Kleshas_(Hinduism)) (Verzerrungen: Anhaftung, Abneigung, Ego, Unwissen, Todesangst) von [*pramanas*](https://en.wikipedia.org/wiki/Pramana) (gültige Erkenntnis: direkte Wahrnehmung, Schlussfolgerung, Zeugnis). Die Praxis ist chirurgisch: Verzerrungen reduzieren, Signal erhalten. Der Score‑Sättigungs‑Bug war ein Versagen des Systems, diese Unterscheidung zu treffen. Jede vrtti sah gleich aus.
+
+Die Design‑Implikation für MuninnDB: Abfall‑Böden sollten das Ergebnis, nicht nur die Zugriffsfrequenz, widerspiegeln. Ein verifiziertes API‑Muster und ein gescheiterter `curl`‑Aufruf können identische Abrufraten, aber radikal unterschiedliche Verwertungs­werte haben. Man könnte versuchen, Einträge von vornherein als pramana oder klesha (verifiziert vs. verzerrt) zu klassifizieren, doch genau das ist das schwierige Problem. Für die meisten Einträge bedarf es einer semantischen Bewertung, also eines LLM im Abfallpfad, was Konsolidierung teuer und nondeterministisch macht.
+
+Der einfachere Weg: **outcome‑tagged writes**. Wenn ein Agent einen Eintrag abruft und die darauffolgende Aktion erfolgreich ist, erhält der Eintrag ein `outcome: success`‑Signal. Scheitert die Aktion, wird `outcome: failure` gesetzt. Der Abfall‑Boden koppelt sich an die Erfolgsrate, nicht an eine epistemische Kategorie. Das ist im Prinzip Bandit‑Feedback beim Abruf, ein Konzept, das bereits in der Informationsrückgewinnung etabliert ist, und wird hier auf dauerhafte Agent‑Memory angewendet. Keine Ontologie nötig. Kein LLM im Loop. Man muss die vrtti nicht zuvor klassifizieren. Man beobachtet deren Wirkung und lässt diese Beobachtung die Retention bestimmen.
 ## 1.Nicht alles Rauschen ist gleich (Vrtti Nirodha)
 
 Bevor der Dedup‑Fehler auftrat, stieß [Benchmark #311](https://github.com/scrypster/muninndb/issues/311) auf ein grundlegenderes Problem. Die ACT‑R‑Bewertung von MuninnDB ([Issue #331](https://github.com/scrypster/muninndb/issues/331)) clampfte frische Engramme auf `raw=1.0`, sodass alle Abrufscores identisch bei 0,9000 wurden. Das System konnte Signal und Rauschen nicht unterscheiden. Jeder Eintrag erschien gleich relevant. Nach der Behebung ([PR #337](https://github.com/scrypster/muninndb/pull/337)) verbesserte sich der Score‑Bereich auf 0,18‑0,90 und die korrekte Top‑1‑Abruf‑Rate erreichte 5 von 5 Abfragen. Die einheitliche Behandlung von Einträgen zerstörte die Abrufqualität.
@@ -111,10 +132,3 @@ Der ursprüngliche Benchmark hat eine Frage beantwortet. Uniformes Dedup in klei
 Pratyahara ist bereits korrekt implementiert: die Memory Trait gibt top‑k zurück, Punkt. Der benchmark harness erfasst die komplette Abruffrageentscheidung. Der Agent muss nicht wissen, was ausgeschlossen wurde. Der Ingenieur tut es.
 
 Keines davon erfordert den Glauben an Chakras. Es erfordert, die Diskriminierungen ernst als engineering heuristics zu nehmen und zu messen, ob sie die Agenten‑Rückrufqualität bei realistic workloads verbessern. Der ursprüngliche Benchmark hat eine design‑Änderung erzwungen. Der synthetic vault generator entscheidet über den Rest.
-## Weiterführende Lektüre
-
-[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html), die Taxonomie (Leitlinien, Sensoren, rechnergestützten, inferenziellen). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), empirische Evidenz, dass Harness-Änderungen zu 6-fachen Leistungsunterschieden führen. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820), die nächstgelegene Vorarbeit, die Vedanta auf die Agentenarchitektur abbildet (konzeptionell, noch keine Benchmarks). Yoga Sutras 1.2-1.16, das Aufmerksamkeitsfiltermodell, das allem vorauseilt. [MuninnDB](https://github.com/scrypster/muninndb), wo die Hypothesen getestet werden. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), die ursprünglichen Ergebnisse. [PR #337](https://github.com/scrypster/muninndb/pull/337), die Score-Sättigungsbehebung. [PR #359](https://github.com/scrypster/muninndb/pull/359), die Duplikatsschutz. [Hrafn](https://github.com/5queezer/hrafn), die Runtime, die auf einem $10 Raspberry Pi läuft.
-
-*Christian Pojoni baut [Hrafn](https://github.com/5queezer/hrafn), einen leichten Agenten-Runtime in Rust. Vorheriger Beitrag: [Why AI Agents Need Sleep](/blog/why-ai-agents-need-sleep/).*
-
-*Das Coverbild für diesen Beitrag wurde von KI generiert.*

@@ -1,22 +1,32 @@
 ---
-title: "Schlaf-geprägteErinnerung für LLM-Agenten: 6 Papers, gerankt nach dem, was Sie diese Woche liefern können"
+title: "Schlaf‑inspiriertes Gedächtnis für LLM‑Agenten: 6 Papers rangiert nach dem, was Sie diese Woche liefern können"
 date: 2026-04-06
 tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
-description: "Ich habe 6Papers zu biologisch inspiriertem Memory Replay für LLM-Agenten gelesen. Nur 2 sind es wert, wenn du baust, nicht veröffentlichst."
+series: ["Building Agents That Sleep"]
+series_weight: 2
+description: "Ich habe 6 Papers zubiologisch inspiriertem Memory‑Replay für LLM‑Agenten gelesen. Nur 2 davon lohnen Ihre Zeit, wenn du baust, nicht publizierst."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "26398675ef65426caa10eb67fa7d56b8"
-chunkHashes: "fc847c550e9411cb,2269a1362d0b2b72,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
+translationHash: "91a71eee2a4a4eeeec19b1b379a6fa11"
+chunkHashes: "bc9167c2a566275f,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---
-Die meisten LLM‑Gedächtnisforschungen laufen in einer komfortablen Schleife: Architektur vorschlagen, auf individuellen Benchmarks testen, Verbesserungen beanspruchen und weiterziehen. Wenn du jedoch tatsächlich Agentengedächtnis baust, entscheidest du dich dafür, was du speicherst, was du vergisst und wann du konsolidierst, ist das Signal‑Rausch‑Verhältnis in der Literatur brutal.
+## SleepGate: The Paper That Maps Directly to Offline Consolidation
 
-Ich betreibe das [Dream Engine](https://github.com/scrypter/muninndb), ein schlfsinspiriertes Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus decay, Hebbian Assoziation, Nahezu‑Duplikat‑Zusammenführung und transitive Inferenz auf Agentengedächtnis zwischen Sitzungen aus. Meine Abbau‑Studie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierungsphasen net‑negativ ist**, ähnlich wie das daDREAM Mutant Protein, das Langzeitpotenzierung stärkt, aber tatsächliches Lernen beeinträchtigt. Phasenauswahl ist wichtiger als Phasenzahl.
+"Vergessen lernen: Schlafinspiriertes Gedächtnis für LLM-Agenten..."
 
-**Wenn du Agentengedächtnis baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
----  
-## SleepGate: Das Papier, das direkt zur Offline-Konsolidierung zugeordnet wird  
-"Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" macht genau das, was der Titel besagt. Sie wendet einen gelernten Schlafzyklus, synaptische Downscaling und aktives Forgetting über den KV-Cache an, um proaktive Interferenz zu reduzieren.  
-Das ist das Nächste in der Literatur, das dem entspricht, was Dream Engine auf Datenbankebene leistet. Der Schlüsselschritt ist, das Vergessen als erstklassige Operation zu behandeln, nicht als Fehlermodus. SleepGate lernt *welche* cached-Repräsentationen zu schwächen, nicht nur welche zu stärken. In Dream Engine-Begriffen ist das die [sushupti](https://en.wikipedia.org/wiki/Susupti) (tiefer Schlaf)-Seite der Konsolidierung: Auflösung schlägt Rekombination.  
-Der praktische Takeaway: Wenn dein Agent Kontext über Sitzungen akkumuliert und ältere Erinnerungen mit neueren interferieren, brauchst du aktives Abschneiden, nicht nur Retrieval-Ranking. SleepGate liefert den mathematischen Rahmen. Dream Engine liefert die datenbankeinsatzbereite Implementierung.
+Die meisten LLM-Gedächtnisforschungen betrieben in einer komfortablen Schleife: Architektur vorschlagen, auf individuell erstellten Benchmarks testen, Verbesserungen behaupten und weiterziehen. Wenn du tatsächlich Agenten‑Gedächtnis bauen willst, entscheidest du, was du speicherst, was du vergisst und wann du konsolidierst – das Signal‑zu‑Rausch‑Verhältnis in der Literatur ist brutal.
+
+Ich pflege den [Dream Engine](https://github.com/scrypster/muninndb), einen schläfzuinspirierten Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Er führt Ebbinghaus‑Vergessen, Hebb’sche Assoziation, Verschmelzen von Nahe‑Duplikaten und transitiven Schlussfolgerungen auf das Agenten‑Gedächtnis zwischen Sessions aus. Meine Abbau‑Studie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierung‑Phasen negativ netto ist**, ähnlich wie das daDREAM‑Mutanten‑protein, das die langfristige Potenzierung verstärkt, aber das eigentliche Lernen beeinträchtigt. Die Selektivität von Phasen ist wichtiger als die Anzahl der Phasen.
+
+**Wenn du Agenten‑Gedächtnis baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
+## SleepGate: The Paper That Maps Directly to Offline Consolidation
+
+"Learning to Forget: Sleep‑Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" tut genau das, was der Titel besagt. Es wendet einen gelernten Schlafzyklus, synaptische Downscaling und aktives Vergessen über den KV‑cache an, um proaktive Interference zu reduzieren.
+
+Dies ist das Nächste in der Literatur, was Dream Engine auf Datenbank‑Ebene leistet. Der zentrale Schritt ist, das Vergessen als erstklassige Operation zu behandeln, nicht als Fehlermodus. SleepGate lernt *welche* gecachten Repräsentationen geschwächt werden sollen, nicht nur welche gestärkt werden sollen. In Dream Engine‑Begriffen ist dies die [sushupti](https://de.wikipedia.org/wiki/Turiya) (deep sleep) Seite der Consolidierung: Auflösung übertrifft Rekombination.
+
+Der praktische Nutzen: Wenn dein Agent Kontext über Sitzungen akkumuliert und ältere Erinnerungen mit neueren interferieren, brauchst du aktives Pruning, nicht nur Retrieval‑Ranking. SleepGate liefert das mathematische Gerüst. Dream Engine liefert die Implementation auf Datenbank‑Ebene.
+
+---
 ## MemoryBench: Der Benchmark,den du wirklich brauchst
 
 "MemoryBench: A Benchmark for Memory and Continual Learning in LLM Systems" fillt eine Lücke, die die meisten Gedächtnisforschungen blockiert. Ohne einen standardisierten Benchmark definiert jedes Papier seine eigene Auswertung, und verständlicherweise gewinnt jedes Papier nur in seinen eigenen Begriffen.
