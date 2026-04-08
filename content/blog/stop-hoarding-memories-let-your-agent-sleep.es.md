@@ -1,23 +1,24 @@
 ---
-title: "Dejen de acapararlos recuerdos del agente. Déjenlos dormir."
+title: "Deténel acaparamiento de las memorias del agente. Déjalas dormir."
 date: 2026-04-07
 tags: ["ai", "memory", "dream-engine", "consolidation"]
-description: "Tu agente de IA recuerdatodo y no aprende nada. La consolidación estilo sueño es la arquitectura que falta."
+description: "Tu agente de IA recuerda todo y no aprende nada. La consolidación estilo sueño es la arquitectura que falta."
 images: ["/images/dream-engine.png"]
-translationHash: "eb828f7bd6356ffe47174696d1aa8516"
+translationHash: "d5a7ab7406be3836400c752b52070251"
+chunkHashes: "6e595da33e676f68"
 ---
-Construí una capa de memoriapara agentes de IA. Después de tres semanas de uso diario, el almacén tenía 2,000 entradas. La búsqueda semántica seguía funcionando. La calidad de recuperación estaba disminuyendo. La base de datos recordaba todo y no entendía nada.
+I built a memoria capa para agentes deIA. Tras tres semanas de uso diario, la tienda tenía 2 000 entradas. La búsqueda semántica todavía funcionaba. La calidad de recuperación estaba en declive. La base de datos recordaba todo y no entendía nada.
 
-**El problema no es captura. Cada sistema de memoria atrapa. El problema es lo que ocurre entre sesiones.**
+**El problema no es la captura. Cada sistema de memoria la logra. El problema es lo que ocurre entre sesiones.**
 
-La mayoría de los frameworks de agentes tratan la memoria como solo-append. Los nuevos hechos entran, nada sale, nada se reconcilia. Eso no es memoria. Eso es registro. La neurociencia resolvió este problema hace mucho tiempo: la consolidación ocurre durante el sueño. El replay selectivo refuerza conexiones importantes. La interferencia se poda. Los duplicados cercanos se fusionan. El resultado es un almacén más pequeño, más denso, más recuperable.
+La mayoría de los frameworks de agentes tratan la memoria como append-only. New facts go in, nothing comes out, nothing gets reconciled. That is not memory. That is logging. Neuroscience solved this problem a long time ago: consolidation happens during sleep. Selective replay strengthens important connections. Interference gets pruned. Near-duplicates merge. The result is a smaller, denser, more retrievable store.
 
-Eso es exactamente lo que [MuninnDB's Dream Engine](https://vasudev.xyz/blog/why-ai-agents-need-sleep/) hace. Ejecuta una pipeline offline de seis fases tomada de la neurociencia del sueño: replay hebbiano, deduplicación, consolidación impulsada por LLM, verificaciones de estabilidad bidireccional, inferencia transitiva y un diario de sueños que registra cada mutación. El agente se despierta con menos memorias y mejor recuerdo. Escribí el [arquitectura completa, los resultados de la ablación y lo que tres tradiciones independientes dicen sobre por qué funciona](https://vasudev.xyz/blog/svapna-sushupti/).
+Eso es exactamente lo que [MuninnDB's Dream Engine](https://vasudev.xyz/blog/why-ai-agents-need-sleep/) does. It runs a six-phase offline pipeline borrowed from sleep neuroscience: Hebbian replay, deduplication, LLM-driven consolidation, bidirectional stability checks, transitive inference, and a dream journal that logs every mutation. The agent wakes up with fewer memories and better recall. I wrote up the [full architecture, the ablation results, and what three independent traditions say about why this works](https://vasudev.xyz/blog/svapna-sushupti/).
 
-La parte incómoda: cuando probé cada fase en aislamiento, solo una fue netamente positiva. El resto se veía genial en los tableros mientras [la precisión de recuperación se mantuvo plana o cayó](https://vasudev.xyz/blog/memory-metrics-lying-how-to-ground-them/). Las métricas de consolidación pueden mejorar sin que la recuperación mejore. Si no anclas tus métricas de memoria a benchmarks de recuperación, estás optimizando un número que no significa nada.
+La part uncomfortable part: cuando benchmarkeé cada phase en aislamiento, only one was net-positive. The rest looked great on dashboards while [retrieval accuracy stayed flat or dropped](https://vasudev.xyz/blog/memory-metrics-lying-how-to-ground-them/). Consolidation metrics can improve without retrieval getting better. If you are not grounding your memory metrics to retrieval benchmarks, you are optimizing a number that means nothing.
 
-Si la tienda de memoria de tu agente es mayor hoy que el mes pasado, ¿es una característica o un modo de falla?
+If your agent's memory store is bigger today than it was last month, is that a feature or a failure mode?
 
 ---
 
-**Christian Bauer construye infraestructura cognitiva en [vasudev.xyz]**
+Christian Pojoni builds cognitive infrastructure at [vasudev.xyz].
