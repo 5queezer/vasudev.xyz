@@ -2,10 +2,9 @@
 title: "Svapna or Sushupti: What Three Traditions Say About Offline Memory Consolidation"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
+series: ["Building Agents That Sleep"]
+series_weight: 5
 description: "Neuroscience, recent AI papers, and an ancient Sanskrit text converge on the same insight about offline consolidation, yet disagree on which phase of sleep matters most."
-images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
 images: ["/images/svapna-sushupti-og.png"]
 ---
 
@@ -28,7 +27,7 @@ I spent a week reading across three bodies of literature that almost never cite 
 
 The problem each tradition is solving is the same: how does a system that accumulates experience during waking activity retain what matters, discard what does not, and remain functional tomorrow?
 
-Neuroscience calls this the consolidation problem. AI researchers frame it as catastrophic forgetting or proactive interference. The Mandukya Upanishad frames it as the relationship between [jagrat](https://en.wikipedia.org/wiki/Jagrat) (waking), [svapna](https://en.wikipedia.org/wiki/Svapna) (dreaming), and [sushupti](https://en.wikipedia.org/wiki/Sushupti) (deep sleep). Different vocabularies, structurally identical problem.
+Neuroscience calls this the consolidation problem. AI researchers frame it as catastrophic forgetting or proactive interference. The Mandukya Upanishad frames it as the relationship between [jagrat](https://en.wikipedia.org/wiki/Jagrat) (waking), [svapna](https://en.wikipedia.org/wiki/Svapna) (dreaming), and [sushupti](https://en.wikipedia.org/wiki/Turiya) (deep sleep). Different vocabularies, structurally identical problem.
 
 ---
 

@@ -4,8 +4,6 @@ date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 description: "Speicherkonsolidierung wirkt großartig auf Dashboards. Aber wenn deine Metriken ohne Verbesserung des Abrufs verbessert werden können, optimierst du einen losgelösten Proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 translationHash: "f154150746aaffbbc7f8b524659f2420"
 chunkHashes: "83225e2cb91e9bdb,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---

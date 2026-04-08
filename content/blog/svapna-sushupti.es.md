@@ -4,8 +4,6 @@ date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 description: "Neurociencia, artículos recientes de IA y un texto sánscrito antiguo convergen en la misma idea sobre la consolidación offline, pero discrepan sobre qué fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
 translationHash: "bf879921baa519b3827fa33333f377a9"
 chunkHashes: "2e45b7ff7ce3264a,5faf6851fbec8307,b683ee22d15cefb5,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
