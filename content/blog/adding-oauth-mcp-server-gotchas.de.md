@@ -1,30 +1,27 @@
 ---
-title: "Hinzufügen von OAuth 2.1 zu einem Self‑Hosted MCP Server: 4 Fallstricke aus der Praxis"
+title: "Hinzufügen von OAuth 2.1 zu einem Self-Hosted MCP Server: 4 Fallstricke aus den Schützengräben"
 date: 2026-03-25
-description: "Was ist kaputt,als ich claude.ai zu meiner eigenen Reactive Resume-Instanz über OAuth angeschlossen habe?"
+description: "Was ist kaputt, wenn ich claude.ai an meine eigene Reactive Resume‑Instanz über OAuth angeschlossen habe?"
+images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
-translationHash: "5d543c955badade7d5a27c1c01c3d9d1"
+translationHash: "a04f5fc9f5f89296acfb31022606aba2"
+chunkHashes: "0f66a908dfad7bf0,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
-**MCP OAuth funktioniert, aberdie Spec lässt vier Fallen offen, die Tutorials überspringen.**  
+## 1. Dein MCP-Server benötigt zwei `.well-known`-Endpunkte, nicht einenMCP (Model Context Protocol) lässt KI-Assistenten Tools auf Remote-Servern aufrufen. Wenn jedoch dein MCP-Server selbst gehostet ist, benötigt claude.ai eine Authentifizierung gegen deine Benutzerkonten, nicht gegen die von Anthropic. Das bedeutet, dein Server muss einen vollständigen OAuth 2.1-Provider werden: Dynamic Client Registration, Authorization Code mit PKCE, Token Exchange.
 
-MCP (Model Context Protocol) lässt KI‑Assistenten Tools auf entfernten Servern aufrufen. Wenn dein MCP‑Server jedoch selbst gehostet ist, muss sich claude.ai gegen deine Benutzerkonten authentifizieren – nicht gegen die von Anthropic. Das bedeutet, dein Server muss ein vollständiger OAuth‑2.1‑Anbieter werden: Dynamic Client Registration, Authorization Code mit PKCE, Token‑Austausch.
+Ich habe [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um das zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume), dem Open-Source-Lebenslauf-Builder, hinzuzufügen. Sechs Commits, ein mid-PR-Refactor nach dem Maintainer eine Deprecation markiert hatte, und mehrere Stunden Debugging von Auth-Chains. Das ist die OAuth-Seite von [that story](/blog/shipping-a2a-protocol-support-in-rust/).
 
-Ich habe [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um das in [Reactive Resume](https://github.com/amruthpillai/reactive-resume), dem Open‑Source‑Lebenslauf‑Builder, hinzuzufügen. Sechs Commits, ein mittlerer Refactor im PR, nachdem der Maintainer eine Deprecation flaggte, und mehrere Stunden Debugging der Auth‑Ketten. Das ist die OAuth‑Seite [dieser Geschichte](/blog/shipping-a2a-protocol-support-in-rust/).
+**MCP OAuth funktioniert, aber die Spezifikation lässt vier Fallen zurück, die Tutorials überspringen.**
+##1. Dein MCP-Server benötigt zwei .well-known-Endpunkte, nicht nur einenWenn claude.ai sich mit einem benutzerdefinierten MCP-Endpunkt verbindet, POSTet es nicht einfach an deine URL. Zuerst wird nach OAuth-Metadaten gefragt. Die MCP-Auth-Spezifikation erfordert zwei Entdeckungsendpunkte:
 
-**MCP OAuth funktioniert, aber die Spec lässt vier Fallen offen, die Tutorials überspringen.**
+`GET /.well-known/oauth-authorization-server` gibt die OAuth 2.0 Authorization Server Metadata (RFC 8414) zurück. Sie zeigt Clients, wo sie autorisieren, wo sie Tokens austauschen können und welche Grant‑Types unterstützt werden.
 
-## 1. Dein MCP‑Server benötigt zwei `.well-known`‑Endpoints, nicht einen
+`GET /.well-known/oauth-protected-resource` gibt die Protected Resource Metadata (RFC 9728) zurück. Sie beschreibt, um welchen Ressourcen‑Typ es sich handelt, welche Scopes benötigt werden und wo der Authorization‑Server zu finden ist.
 
-Wenn sich claude.ai mit einem benutzerdefinierten MCP‑Endpoint verbindet, führt sie keinen direkten POST an deine URL aus. Zuerst erkundigt sie sich nach den OAuth‑Metadaten. Die MCP‑Auth‑Spec verlangt zwei Entdeckung‑Endpoints:
-
-`GET /.well-known/oauth-authorization-server` gibt die OAuth 2.0 Authorization Server Metadata (RFC 8414) zurück. Sie informiert Clients, wo sie autorisieren dürfen, wo Token ausgetauscht werden können und welche Grant‑Types unterstützt werden.
-
-`GET /.well-known/oauth-protected-resource` gibt die Protected Resource Metadata (RFC 9728) zurück. Sie beschreibt, um welches Resource es sich handelt, welche Scopes benötigt werden und wo der Authorization Server zu finden ist.
-
-Fehlt einer der beiden Endpoints, schlägt die Verbindung von claude.ai stumm fehl. Keine Fehlermeldung, keinRetry. Der „Connect“-Button erscheint einfach nicht. Ich habe dafür eine Stunde gebraucht, weil das `oauth-protected-resource`‑Endpoint in keinem Tutorial vorkam. Ich entdeckte es erst, indem ich die MCP‑Auth‑Spec selbst las.
+Fehlt einer der beiden Endpunkte, verbindet sich claude.ai stillschweigend und kann nicht verbunden werden. Es gibt keine Fehlermeldung, keinenRetry. Es bietet einfach keine „Connect“-Schaltfläche. Ich habe dafür eine Stunde gebraucht, weil der `oauth-protected-resource`-Endpunkt in keinem Tutorial erwähnt wurde, das ich gefunden habe. Ich habe ihn nur entdeckt, indem ich die MCP‑Auth‑Spezifikation direkt gelesen habe.
 
 ```typescript
 // .well-known/oauth-authorization-server
@@ -39,35 +36,34 @@ return json({
 });
 ```
 
-Beide Endpoints müssen JSON zurückliefern, beide müssen exakt die genannten Pfade verwenden, und beide müssen sich über die Authorization‑Server‑URL einig sein. Wenn `issuer` in einem nicht mit `authorization_server` in dem anderen übereinstimmt, weist der Client die Konfiguration zurück.
+Beide Endpunkte müssen JSON zurückgeben, beide müssen exakt die angegebenen Pfade haben, und beide müssen sich auf die gleiche Authorization‑Server‑URL einigen. Wenn `issuer` in einem nicht mit `authorization_server` im anderen übereinstimmt, wird die Konfiguration vom Client abgelehnt.
+## 2. Die von dir gewählte Auth-Bibliothek könnte während des PRs veraltet werden
 
-## 2. Die Auth‑Bibliothek, die du gewählt hast, kann mittendurch PR veraltet werden
+Reactive Resume verwendet better-auth für die Authentifizierung. Better-auth stellt ein `mcp()`‑Plugin bereit, das Dynamic Client Registration und Token‑Management abwickelt. Perfekt. Mit nur drei Konfigurationszeilen erhältst du OAuth für MCP.
 
-Reactive Resume nutzt `better-auth` für die Authentifizierung. `better-auth` liefert ein `mcp()`‑Plugin, das Dynamic Client Registration und Token‑Management übernimmt. Perfekt – drei Konfigurationszeilen und du hast OAuth für MCP.
+Ich habe die gesamte PR darauf basieren lassen, auf Cloud Run bereitgestellt und end‑zu‑end mit claude.ai getestet – die PR wurde als bereit für Review markiert.
 
-Ich baute den gesamten PR darum herum, deployte auf Cloud Run, verifizierte die End‑zu‑End‑Verbindung mit claude.ai und markierte den PR als bereit für Review.
+Die Antwort des Maintainers [antwortet](https://github.com/amruthpillai/reactive-resume/pull/2829#issuecomment-1):
 
-Die Reaktion des Maintainers war:
+> Das MCP‑plugin wird bald veraltet sein [...] Könntest du die PR umstrukturieren, um das OAuth Provider Plugin zu verwenden?
 
-> The MCP plugin is soon to be deprecated [...] Could you refactor the PR to make use of the OAuth Provider Plugin instead?
+Er hatte recht. Die Dokumentation von better-auth enthielt bereits eine Deprecation‑Notice, die auf `@better-auth/oauth-provider` verweist. Das neue Plugin ist allgemeiner (nicht MCP‑spezifisch), verwendet JWT‑Tokens statt Opaque‑Tokens und erfordert JWKS‑Schlüssel‑Management.
 
-Er hatte recht. Die `better-auth`‑Docs zeigten bereits eine Deprecation‑Hinweis, die zu `@better-auth/oauth-provider` führt. Das neue Plugin ist allgemeiner (nicht MCP‑spezifisch), verwendet JWT‑Tokens statt Opaque‑Tokens und erfordert JWKS‑Key‑Management.
+Der Refactor hat jede auth‑bezogene Datei berührt. Opaque‑Token‑Lookup über ``getMcpSession()`` wurde durch JWT‑Verifizierung über ``verifyAccessToken()`` ersetzt. Das Datenbankschema wurde ebenfalls geändert. ``oauthApplication`` wurde zu ``oauthClient`` (RFC 7591 konform), und neue Tabellen für ``oauthRefreshToken`` und ``jwks`` wurden hinzugefügt.
 
-Der Refactor berührte jede Auth‑Datei. Der Lookup von Opaque‑Tokens via `getMcpSession()` wurde zu JWT‑Verifizierung via `verifyAccessToken()`. Die Datenbankschema‑Änderungen umfassten: `oauthApplication` wurde zu `oauthClient` (RFC 7591‑konform), und neue Tabellen für `oauthRefreshToken` und `jwks` kamen hinzu.
+Die Lehre ist nicht „ zuerst nach Deprecations suchen.“ Es ist, dass die MCP‑Auth‑Toolchain gerade schnell voranschreitet. Was du heute wählst, könnte nächsten Monat überholt sein. Halte deine OAuth‑Logik hinter einem dünnen Adapter bereit, damit der Refactor mechanisch und nicht architektonisch ist.
+## 3. DeineAuth-Kette hat mehr Ebenen, als du denkst
 
-Die Lektion ist nicht „erst nach Deprecations suchen“, sondern dass MCP‑Auth‑Werkzeuge gerade stark im Wandel sind. Was du heute wählst, könnte nächsten Monat überholt sein. Halte deine OAuth‑Logik hinter einem dünnen Adapter, damit ein Refactor mechanisch, nicht architektonisch, ist.
+Der OAuth‑Flow funktionierte. Jeder Tool‑Aufruf schlug mit `Unauthorized` fehl.
 
-## 3. Deine Auth‑Kette hat mehr Ebenen, als du denkst
+Das Problem: Reactive Resume verwendet oRPC für seine API‑Schicht. Der oRPC‑Kontext hat seine eigene Auth‑Kette, getrennt von der MCP‑Endpoint‑Authentifizierung. Wenn ein Tool `listResumes` aufruft, prüft oRPC nach einem Sitzungs‑Cookie oder einem API‑Schlüssel. Es kennt keine OAuth Bearer tokens.
 
-Der OAuth‑Flow funktionierte. Jeder Tool‑Aufruf fehlte jedoch mit `Unauthorized`.
+Der MCP‑Endpoint hat den Benutzer authentifiziert. Dann rief er ein oRPC‑Verfahren auf. oRPC bemerkte kein Cookie und keinen API‑Schlüssel. `Unauthorized`.
 
-Das Problem: Reactive Resume nutzt oRPC für seine API‑Ebene. Der oRPC‑Context hat seine eigene Auth‑Kette, getrennt von der MCP‑Endpoint‑Auth. Wenn ein Tool `listResumes` aufruft, prüft oRPC auf ein Session‑Cookie oder eine API‑Key. Es kennt keine OAuth‑Bearer‑Tokens.
+Die Lösung: den Bearer‑token durch die oRPC‑Auth‑Kette weiterleiten.
 
-Der MCP‑Endpoint authentifizierte den Nutzer. Dann rief er ein oRPC‑Verfahren auf. oRPC sah kein Cookie und keine API‑Key. `Unauthorized`.
-
-Die Lösung: den Bearer‑Token durch die oRPC‑Auth‑Kette weiterzuleiten.
-
-```typescript// In the oRPC context builder
+```typescript
+// Im oRPC‑Kontext‑Builder
 const bearer = headers.get("authorization")?.replace("Bearer ", "");
 if (bearer) {
   const token = await verifyOAuthToken(bearer);
@@ -80,9 +76,9 @@ if (bearer) {
 }
 ```
 
-Die tiefere Lektion: In jedem System, wo Auth auf einer Gateway‑Ebene (MCP‑Endpoint) stattfindet und dann an eine innere Ebene (oRPC) weitergeleitet wird, musst du sicherstellen, dass die innere Ebene denselben Credential‑Typ akzeptiert. Wenn nicht, hast du zwei Optionen: den gelösten Nutzer‑Kontext weiterreichen oder der inneren Ebene beibringen, den neuen Credential‑Typ zu verstehen. Ich wählte Letzteres, weil es robuster ist.
+Die tiefere Lehre: In jedem System, in dem die Authentifizierung auf einer Gateways‑Ebene (MCP‑Endpoint) erfolgt und anschließend an eine innere Ebene (oRPC) weitergereicht wird, muss geprüft werden, dass die innere Ebene das gleiche Credential‑Format akzeptiert. Wenn nicht, gibt es zwei Optionen: den gelösten Benutzer‑Kontext weiterreichen oder der inneren Ebene das neue Credential‑Format beibringen. Ich wählte letztere, weil es robuster gegenüber zukünftigen Tool‑Hinzufügungen ist.
 
-Und selbst nach dem Fix der Auth‑Kette kam eine zweite Überraschung: `getMcpSession()` (und sein Nachfolger `verifyAccessToken()`) liefert ein `OAuthAccessToken`‑Objekt mit einem `userId`‑Feld, nicht mit einem `user`‑Feld. Du brauchst einen separaten Datenbank‑Lookup:
+Und selbst nach dem Fix der Auth‑Kette kam ein zweiter Schock: `getMcpSession()` (und seine Nachfolgerin `verifyAccessToken()`) gibt ein `OAuthAccessToken`‑Objekt mit einem `userId`‑Feld, nicht ein `user`‑Feld zurück. Man benötigt einen separaten Datenbank‑Lookup:
 
 ```typescript
 const token = await verifyAccessToken(bearer);
@@ -91,17 +87,15 @@ const user = await db.query.user.findFirst({
 });
 ```
 
-Bei jedem OAuth‑Anbieter sind Token‑Verifizierung und Nutzer‑Auflösung zwei separate Schritte. Geh nicht davon aus, dass die Bibliothek das für dich erledigt.
+In jeder OAuth‑Provider‑Implementierung sind Token‑Verifizierung und Benutzerauflösung zwei separate Schritte. Gehe nicht davon aus, dass die Bibliothek beides zusammenführt.
+##4. Rückwärtskompatibilität bedeutet zwei Auth‑Pfad für immer
 
-## 4. Rückwärtskompatibilität bedeutet zwei Auth‑Pfade für immer
+Reactive Resume hatte bereits MCP‑Auth über `x-api-key`‑Header. Bestehende Nutzer haben API‑Schlüssel konfiguriert. Das Entfernen und das Erzwingen einer Neuanmeldung per OAuth für alle würde jede bestehende Integration zerstören.
 
-Reactive Resume hatte bereits MCP‑Auth über `x-api-key`‑Header. Bestehende Nutzer haben API‑Keys konfiguriert. Ein komplettes Abschalten und erzwingen von OAuth‑Authentifizierung würde alle bestehenden Integrationen brechen.
-
-Deshalb hat der MCP‑Endpoint jetzt einen dualen Auth‑Pfad:
+Der MCP‑Endpoint hat jetzt einen dualen Auth‑Pfad:
 
 ```typescript
-// Try OAuth Bearer first
-const bearer = headers.get("authorization")?.replace("Bearer ", "");
+// Try OAuth Bearer firstconst bearer = headers.get("authorization")?.replace("Bearer ", "");
 if (bearer) {
   const session = await verifyOAuthToken(bearer);
   if (session?.userId) { /* authenticated */ }
@@ -114,37 +108,36 @@ if (apiKey) {
   if (user) { /* authenticated */ }
 }
 
-// Neither workedreturn new Response("Unauthorized", {
+// Neither worked
+return new Response("Unauthorized", {
   status: 401,
   headers: { "WWW-Authenticate": "Bearer" },
 });
 ```
 
-Die Reihenfolge ist wichtig. Zuerst Bearer, dann API‑Key. Wenn du zuerst die API‑Key‑Prüfung machst und der Nutzer ein malformed API‑Key zusammen mit einem gültigen Bearer‑Token sendet, könnte die API‑Key‑Prüfung bereits einen Fehler werfen, bevor der Bearer‑Pfad ausgeführt wird.
+Die Reihenfolge ist wichtig. Zuerst Bearer, dann API‑Schlüssel. Wenn Sie zuerst den API‑Schlüssel prüfen und der Benutzer gleichzeitig einen fehlerhaften API‑Schlüssel sowie ein gültiges Bearer‑Token sendet, könnte die API‑Schlüssel‑Überprüfung einen Fehler auslösen, bevor der Bearer‑Pfad ausgeführt wird.
 
-Und der `WWW-Authenticate: Bearer`‑Header in der 401‑Antwort ist von der MCP‑Spec verpflichtend. Ohne ihn weiß claude.ai nicht, dass es einen OAuth‑Flow starten soll. Es behandelt den Endpoint einfach als dauerhaft nicht erreichbar.
+Und der `WWW-Authenticate: Bearer`‑Header in der 401‑Antwort ist gemäß der MCP‑Spezifikation erforderlich. Ohne ihn weiß claude.ai nicht, dass ein OAuth‑Flow gestartet werden soll. Sie behandelt den Endpoint einfach als dauerhaft nicht erreichbar.
 
-Der API‑Key‑Pfad wird noch lange bestehen bleiben. Sein Entfernen wäre eine breaking change, die einen Migrationsplan und einen Deprecation‑Zeitplan erfordert.
+Der API‑Schlüssel‑Pfad wird über diese PR hinaus bestehen. Seine Entfernung ist eine breaking change, die einen Migrationsplan und einen Deprecation‑Zeitplan erfordert.
 
-Ein weiteres subtiles Detail: `verifyApiKey` kann bei fehlerhaftem Input einen Ausnahme‑Wert werfen. Das Einhüllen in try‑catch verhindert lautes Logging bei fehlgeschlagenen Token‑Parsing‑Versuchen. Der ursprüngliche Code nutzte String‑Matching auf `error.message.includes(...)`. Die refaktorierte Version nutzt `instanceof AuthError`, was typsicher ist und nicht bricht, wenn sich die Fehlermeldung ändert.
-
+Eine weitere Feinheit: `verifyApiKey` kann bei fehlerhaften Eingaben einen Fehler werfen. Ein Einbetten in try‑catch verhindert lautes Logging bei fehlgeschlagenen Token‑Parsing‑Versuchen. Die refaktorierte Version verwendet `instanceof AuthError`, was typsicher ist und nicht bricht, wenn sich die Fehlermeldung ändert.
 ## Was ich weggelassen habe
 
-- **Token‑Refresh.** Das OAuth‑Provider‑Plugin kümmert sich automatisch um Refresh‑Tokens. Ich brauchte keine eigene Logik.
-- **Scope‑Enforcement.** Alle MCP‑Tools erhalten vollen Nutzungszugriff. Das ist für einen persönlichen Lebenslauf‑Builder in Ordnung, für ein Multi‑Tenant‑SaaS jedoch nicht angemessen.
-- **Rate‑Limiting der OAuth‑Endpoints.** Die Dynamic Client Registration ist per Definition offen (RFC 7591). Rate‑Limiting steht auf der TODO‑Liste des Maintainers.
-- **Consent‑Screen.** Das OAuth‑Provider‑Plugin von better‑auth überspringt die Consent‑Screen für First‑Party‑Apps. Sollte Reactive Resume jemals ein OAuth‑Provider für Dritt‑Party‑Apps werden, wäre eine Consent‑UI nötig.
+- **Token refresh.** Der OAuth Provider‑Plugin behandelt Refresh‑Tokens automatisch. Ich brauchte keine benutzerdefinierte Logik.
+- **Scope enforcement.** Alle MCP‑Tools erhalten vollen Benutzerzugriff. Das ist okay für einen persönlichen Lebenslauf‑Builder, nicht okay für eine Multi‑Tenant‑SaaS.
+- **Rate limiting on the OAuth endpoints.** Dynamic Client Registration ist nach Design offen (RFC 7591). Jeder kann sich registrieren. Das Rate Limiting steht auf der TODO des Maintainers.
+- **Consent screen.** better-auths OAuth Provider überspringt das Consent‑Screen für First‑Party‑Apps. Wenn Reactive Resume jemals ein OAuth Provider für third‑Party‑Apps wird, wird eine Consent‑UI benötigt.
+## Die Einrichtung, die esfunktioniert
 
-## Die Einrichtung, die bewies, dass es funktioniert
+Selbstgehostetes Reactive Resume auf Google Cloud Run (europe-west1), PostgreSQL auf Neon.tech (Free‑Tarif). Der OAuth‑Flow beendet sich in unter 2 Sekunden: claude.ai entdeckt Endpunkte, registriert sie dynamisch, leitet zum Anmelde‑Page weiter, tauscht den Code aus und beginnt mit Tool‑Aufrufen. Auflisten, Lesen und Patchen von Lebensläufen funktionieren alles über das Bearer‑Token.
 
-Selbstgehostetes Reactive Resume auf Google Cloud Run (europe‑west1), PostgreSQL bei Neon.tech (Free‑Tier). Der OAuth‑Flow completes in unter 2 Sekunden: claude.ai entdeckt die Endpoints, registriert sich dynamisch, leitet zum Login‑Page weiter, tauscht den Code ein und beginnt mit Tool‑Aufrufen. Auflisten, Lesen und Patchen von Lebensläufen funktionieren über das Bearer‑Token.
+Der Flow ist end‑to‑end auf Cloud Run nachgewiesen. Der Pull Request wurde gemerged und das Feature kommt in der nächsten Version.
 
-Der Flow ist end‑zu‑End auf Cloud Run getestet. Der PR wurde merged und das Feature erscheint in der nächsten Version.
-
-Wenn du OAuth zu deinem eigenen MCP‑Server hinzufügen willst, schau dir [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) für die komplette Implementierung an. Jede oben beschriebene Fallfalle entspricht einem konkreten Commit. Um das Ergebnis auszuprobieren, leite claude.ai auf deine eigene Reactive‑Resume‑Instanz und verbinde dich per OAuth. Meine Einrichtung läuft unter [resume.vasudev.xyz](https://resume.vasudev.xyz).
+Wenn du OAuth zu deinem eigenen MCP‑Server hinzufügst, lies [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) für die vollständige Implementierung. Jeder Gotcha above mappt zu einem bestimmten Commit. Um das Ergebnis auszuprobieren, zeige claude.ai auf deine eigene Reactive Resume‑Instanz und verbinde dich per OAuth. Mein Setup läuft unter [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
 ---
 
-*Christian Pojoni baut MCP‑Integrationen für Open‑Source‑Tools. Mehr bei [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni baut MCP‑Integrationen für Open‑Source‑Tools. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
 
-*Das Cover‑Bild für diesen Beitrag wurde von KI generiert.*
+*Das Cover‑Bild für diesen Beitrag wurde von KI erzeugt.*
