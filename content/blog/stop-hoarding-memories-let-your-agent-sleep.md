@@ -20,4 +20,4 @@ If your agent's memory store is bigger today than it was last month, is that a f
 
 ---
 
-Christian Bauer builds cognitive infrastructure at [vasudev.xyz](https://vasudev.xyz).
+Christian Pojoni builds cognitive infrastructure at [vasudev.xyz](https://vasudev.xyz).
