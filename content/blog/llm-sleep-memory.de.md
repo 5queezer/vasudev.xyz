@@ -1,25 +1,29 @@
 ---
-title: "Schlaf-geprägteErinnerung für LLM-Agenten: 6 Papers, gerankt nach dem, was Sie diese Woche liefern können"
+title: "Schlaf-inspirierter Speicher für LLM-Agenten: 6 Paper, gerankt nach dem, was Sie diese Woche liefern können"
 date: 2026-04-06
 tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
-description: "Ich habe 6Papers zu biologisch inspiriertem Memory Replay für LLM-Agenten gelesen. Nur 2 sind es wert, wenn du baust, nicht veröffentlichst."
+description: "Ich habe 6 Papers zu biologischinspiriertem Memory Replay für LLM‑Agenten gelesen. Nur 2 lohnen deine Zeit, wenn du baust, nicht veröffentlichst."
 images: ["/images/llm-sleep-memory-og.png"]
 images: ["/images/llm-sleep-memory-og.png"]
 images: ["/images/llm-sleep-memory-og.png"]
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "26398675ef65426caa10eb67fa7d56b8"
-chunkHashes: "fc847c550e9411cb,2269a1362d0b2b72,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
+translationHash: "23ecefa9237c25f4246d29c31797b796"
+chunkHashes: "96d678e079650c6c,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---
-Die meisten LLM‑Gedächtnisforschungen laufen in einer komfortablen Schleife: Architektur vorschlagen, auf individuellen Benchmarks testen, Verbesserungen beanspruchen und weiterziehen. Wenn du jedoch tatsächlich Agentengedächtnis baust, entscheidest du dich dafür, was du speicherst, was du vergisst und wann du konsolidierst, ist das Signal‑Rausch‑Verhältnis in der Literatur brutal.
+Die meistenLLM‑Gedächtnis‑Forschungen befinden sich in einer komfortablen Schleife: Architektur vorschlagen, auf benutzerdefinierten Benchmarks testen, Verbesserungen behaupten und weiterziehen. Wenn du allerdings tatsächlich Agenten‑Gedächtnis baust, musst du entscheiden, was du speicherst, was du vergisst und wann du konsolidierst, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur extrem brutal.
 
-Ich betreibe das [Dream Engine](https://github.com/scrypter/muninndb), ein schlfsinspiriertes Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus decay, Hebbian Assoziation, Nahezu‑Duplikat‑Zusammenführung und transitive Inferenz auf Agentengedächtnis zwischen Sitzungen aus. Meine Abbau‑Studie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierungsphasen net‑negativ ist**, ähnlich wie das daDREAM Mutant Protein, das Langzeitpotenzierung stärkt, aber tatsächliches Lernen beeinträchtigt. Phasenauswahl ist wichtiger als Phasenzahl.
+Ich pflege den [Dream Engine](https://github.com/scrypster/muninndb), eine schlfszyklus‑ inspirierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus decay, Hebbian association, Near‑Duplikat‑Merging und transitive Inferenz auf das Agenten‑Gedächtnis zwischen Sitzungen aus. Meine Ablationsstudie zeigte, dass **das gleichzeitige Ausführen aller KonsolidierungPhasen ist negativ**, ähnlich wie das daDREAM Mutantenprotein, das Langzeitpotenzierung stärkt, aber das tatsächliche Lernen beeinträchtigt. Die Phasenselektivität ist wichtiger als die Phasenzahl.
 
-**Wenn du Agentengedächtnis baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
----  
-## SleepGate: Das Papier, das direkt zur Offline-Konsolidierung zugeordnet wird  
-"Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" macht genau das, was der Titel besagt. Sie wendet einen gelernten Schlafzyklus, synaptische Downscaling und aktives Forgetting über den KV-Cache an, um proaktive Interferenz zu reduzieren.  
-Das ist das Nächste in der Literatur, das dem entspricht, was Dream Engine auf Datenbankebene leistet. Der Schlüsselschritt ist, das Vergessen als erstklassige Operation zu behandeln, nicht als Fehlermodus. SleepGate lernt *welche* cached-Repräsentationen zu schwächen, nicht nur welche zu stärken. In Dream Engine-Begriffen ist das die [sushupti](https://en.wikipedia.org/wiki/Susupti) (tiefer Schlaf)-Seite der Konsolidierung: Auflösung schlägt Rekombination.  
-Der praktische Takeaway: Wenn dein Agent Kontext über Sitzungen akkumuliert und ältere Erinnerungen mit neueren interferieren, brauchst du aktives Abschneiden, nicht nur Retrieval-Ranking. SleepGate liefert den mathematischen Rahmen. Dream Engine liefert die datenbankeinsatzbereite Implementierung.
+**Wenn du Agenten‑Gedächtnis baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
+## SleepGate: The Paper ThatMaps Directly to Offline Consolidation
+
+"Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" does exactly what the title says. It applies a learned sleep cycle, synaptic downscaling and active forgetting, over the KV-cache to reduce proactive interference.
+
+This is the closest thing in the literature to what Dream Engine does at the database level. The key move is treating forgetting as a first‑class operation, not a failure mode. SleepGate learns *which* cached representations to weaken, not just which to strengthen. In Dream Engine terms, this is the [sushupti](https://de.wikipedia.org/wiki/Turiya) (deep sleep) side of consolidation: dissolution outperforming recombination.
+
+The practical takeaway: if your agent accumulates context across sessions and older memories interfere with newer ones, you need active pruning, not just retrieval ranking. SleepGate provides the mathematical framework. Dream Engine provides the database‑level implementation.
+
+---
 ## MemoryBench: Der Benchmark,den du wirklich brauchst
 
 "MemoryBench: A Benchmark for Memory and Continual Learning in LLM Systems" fillt eine Lücke, die die meisten Gedächtnisforschungen blockiert. Ohne einen standardisierten Benchmark definiert jedes Papier seine eigene Auswertung, und verständlicherweise gewinnt jedes Papier nur in seinen eigenen Begriffen.
