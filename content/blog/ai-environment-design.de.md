@@ -1,91 +1,92 @@
 ---
-title: "Hör mit dem Entwerfen deines KI-Systems auf. Entwirf stattdessen seine Umgebung."
+title: "Hören Sie auf, Ihr KI-System zu entwerfen. Entwerfen Sie seine Umgebung."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
-description: "SelbstentwickelndeKI-Harnischungen scheitern, wenn sie einen festen Bewertungsalgorithmus optimieren. Das biologische Modell hat recht: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
+description: "Selbstevolvierende KI-Harnesses scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell hat recht: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
 images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
-translationHash: "5a4c8d555f193cfadfe26c378357502f"
+translationHash: "e45b4bb7f7b3749e81508794e5006ac3"
 ---
-Ich habe eine Woche damit verbracht, eine „vektorenative Programmiersprache für LLMs“ zu entwerfen. Die Idee war, das Modellverhalten direkt auf Aktivierungsebene zu programmieren, ohne Prompts, nur mit Interventionsvektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich eigentlich wollte, war keine Sprache. Es war ein Organismus.
+Ichhabe eine Woche damit verbracht, einen "vektor-nativen Programmiersprache für LLMs" zu entwerfen. Die Idee war, das Modellverhalten direkt auf Aktivierungsebene zu programmieren, ohne Prompts, nur mit Interventionvektoren. Das war intellektuell befriedigend und praktisch falsch. Was ich damals eigentlich wollte war nicht eine Sprache. Es war ein Organismus.
 
-**Die Einheit der Evolution ist nicht das Feature. Es ist der Mutations-/Selektionszyklus.**
+**Die Einheit der Evolution ist nicht das Feature. Es ist der Mutations/Selektion-Zyklus.**
 
-Diese Unterscheidung verändert alles daran, wie man ein sich selbst weiterentwickelndes KI-Harness aufbaut. Die meisten Systeme, die sich selbst als „selbstverbessernd“ bezeichnen, betreiben im Grunde AutoML. Sie optimieren über einen festen Suchraum hinweg auf ein festes Ziel. Das kann Adaption hervorbringen, steht aber AutoML näher als einer offenen Evolution. Dieser Unterschied erweist sich auf zwei Arten als architektonisch entscheidend.
-
----
-
-## Genotyp und Phänotyp sind nicht dieselbe Ebene
-
-Biologische Systeme trennen das, was bestehen bleibt, von dem, was selektiert wird. Das Genom wird nicht direkt getestet. Der Phänotyp ist es. Mutationen geschehen im Genom. Selektion geschieht am Phänotyp. Das Genom überlebt, indem es überlebensfähige Phänotypen erzeugt. Diese Asymmetrie ist die Quelle der Evolvierbarkeit selbst.
-
-Ein KI-Harness besitzt eine analoge Struktur, wenn man ihn richtig aufbaut – nicht als wörtliche biologische Entsprechung, sondern als nützliche architektonische Abbildung. Das Genom ist euer persistenter Zustand: Adapter-Gewichte, Abrufrichtlinien, Tool-Konfigurationen, Aktivierungssteuerungsregeln, Codebasis-Patches. Der Phänotyp ist das beobachtbare Verhalten bei Aufgaben. Der Evaluator sieht Verhalten, nicht Interna. Mutationen zielen auf das Genom. Selektion zielt auf den Phänotyp.
-
-Viele selbstverbessernde Agentendesigns lassen diese Unterscheidung zusammenfallen, zumindest implizit. Sie messen Verhalten und editieren dann direkt das, was sie gemessen haben. Das ist, als würde man Organismen evolvieren lassen, indem man ihre Phänotypen editiert. Es verallgemeinert nicht, weil man das Symptom patcht, nicht die Ursache.
-
-Die korrekte Architektur trennt diese Ebenen explizit:
-
-Die **Persistenzschicht** speichert das, was überlebt: Adapter (langfristig), Abruf- und Tool-Richtlinien (mittelfristig), Aktivierungssteuerungsregeln (vergänglich). Die **Mutationsgeneratoren** schlagen Änderungen für die Persistenzschicht vor, nicht direkt für das Verhalten. Der **Evaluator** beobachtet nur das Verhalten und entscheidet, welche Mutationen überleben. Nichts in der Persistenzschicht wird aktualisiert, außer durch diese Filterinstanz.
+Diese Unterscheidung ändert alles, wie du einen selbsterweiternden KI-Harness baust. Die meisten Systeme, die sich als "selbstverbessernd" bezeichnen, betreiben AutoML. Sie optimieren über einen festen Suchraum zu einem festen Ziel. Das kann Adaptation erzeugen, ist aber näher an AutoML als an offener Evolution. Der Unterschied erweist sich als architektonisch entscheidend auf zwei Arten.
 
 ---
 
-## Der Evaluator ist keine Loss-Funktion
+## Genotyp und Phänotyp Sind nicht die gleiche Ebene
 
-Hier weicht das biologische Denken vom ML-Denken auf eine Weise ab, die für die Architektur relevant ist.
+**Biologische Systeme trennen, was bleibt, von dem, was ausgewählt wird.** Das Genom wird nicht direkt getestet. Der Phänotyp wird getestet. Mutationen geschehen am Genom. Selektion geschieht am Phänotyp. Das Genom überlebt, indem es Phänotypen produziert, die überleben. Diese Asymmetrie ist die Quelle der Evolutionsfähigkeit selbst.
 
-Eine Loss-Funktion ist ein glattes, differenzierbares, lokal definiertes Ziel. Man minimiert sie. Sie geht davon aus, dass die korrekte Antwort bekannt und feststehend ist. Ein Selektionsdruck ist nichts davon. Es ist die Umgebung, und die Umgebung wird nicht von dir entworfen. Es ist alles, was Dinge eliminiert, die nicht damit umgehen können.
+Ein KI-Harness hat eine analoge Struktur, wenn du sie korrekt baust, nicht als exakte biologische Entsprechung, sondern als nützliches architektonisches Mapping. Das Genom ist dein persistenter Zustand: Adaptergewichte, Abruf‑Policies, Tool‑Konfigurationen, Aktivierungs‑Steuerungsregeln, Code‑Basis‑Patches. Der Phänotyp ist beobachtbares Verhalten bei Aufgaben. Der Evaluator sieht nur das Verhalten, nicht die internen Zustände. Mutations zielen auf das Genom. Selektion zielt auf den Phänotyp.
 
-Wenn du manuell eine Aufgabenbatterie für dein selbstentwickelndes Harness entwirfst und sie nie änderst, hast du keine Umgebung gebaut. Du hast eine Loss-Funktion mit zusätzlichen Schritten gebaut. Das System wird für diese Batterie optimieren und dann stoppen. Es wird Abkürzungen (Shortcuts) finden, die die Batterie nicht erkennt. Das ist Goodharts Gesetz auf architektonischer Ebene: Sobald eine Metrik zum Ziel wird, hört sie auf, eine gute Metrik zu sein.
+Viele Designs für selbstverbessernde Agenten lassen diese Unterscheidung implizit zusammenbrechen. Sie messen Verhalten und bearbeiten dann direkt das, was sie gemessen haben. Das ist wie die Evolution von Organismen, indem man ihre Phänotypen editiert. Es generalisiert nicht, weil du das Symptom patchst, nicht die Ursache.
 
-Ein statischer Evaluator wird letztlich zu einer Obergrenze. Um robuste Verbesserungen aufrechtzuerhalten, muss sich die Evaluationsumgebung erweitern, diversifizieren oder sich adversariell anpassen. Das bedeutet, dass die Aufgabenbatterie adversarielle Aufgaben benötigt, die speziell darauf ausgelegt sind, oberflächliches Gaming zu erkennen. Sie benötigt Fähigkeitsaufgaben (Kann es die Sache?), Kalibrierungsaufgaben (Weiß es, wann es sie nicht kann?) und Regressionsaufgaben (Hat es das zerstört, was es bereits wusste?). Und sie benötigt mindestens einen Human-in-the-Loop-Evaluationspfad, den das System nicht vorhersagen kann, denn vorhersagbare Evaluatoren werden ausgespielt.
+Die correct architecture separates these layers explicitly:
 
-Praktisch heißt das: Beginne mit einer kleinen, festen Batterie, baue aber die Infrastruktur zu ihrer Erweiterung von Anfang an mit. Jede Mutation, die das System beibehält, sollte einen Testfall generieren, der einen Fehler dieser Mutation erkannt hätte. Mit der Zeit wächst die Batterie mit dem System. Das ist Ko-Evolution in ihrer minimal funktionsfähigen Form.
-
----
-
-## SAE-Steering ist ein Operator, nicht die Grundlage
-
-Sparse Autoencoder können spärliche latente Merkmale offenlegen, von denen viele interpretierbar genug sind, um Verhalten lokal zu steuern, wobei die Merkmalqualität und kausale Spezifität weiterhin aktive Forschungsfragen bleiben. Man kann ein Modell auf ein Konzept zu oder davon weg steuern, indem man während des Forward-Passes einen Merkmalsvektor auf einer bestimmten Schicht addiert oder unterdrückt. Das ist schnell, reversibel und erfordert kein Retraining.
-
-Aber es ist nur eine Operator-Klasse in einem gemischten Aktionsraum. Die Mutationsgeneratoren in einem ernsthaften Harness sollten Vorschläge über mindestens vier Substrate hinweg erstellen. Das erste Substrat sind Prompt- und Abruf-Transformationen: günstig, reversibel, immer der Ausgangspunkt. Das zweite sind Aktivierungssteuerungsregeln: schnell, lokal, mittlere Verbindlichkeit. Das dritte sind Adapter- und LoRA-Updates: aufwändiger, erfordert Training, mittelfristige Persistenz. Das vierte sind Code- und Richtlinien-Edits: höchste Verbindlichkeit, am schwersten rückgängig zu machen.
-
-Nur mit SAE-Steering zu beginnen, ist wie der Bau eines evolutionären Systems, das nur ein Gen mutieren kann. Man erhält schnelle lokale Anpassung und sprödes globales Verhalten. Das System muss in der Lage sein, zu ändern, wie es Kontext abruft, wie es Tools routet und schließlich, wie es Informationen auf Gewicht-Ebene verarbeitet – nicht weil das leistungsstärkere Operatoren sind, sondern weil verschiedene Probleme in verschiedenen Substraten leben.
-
-Die richtige Disziplin lautet: Eine erfolgreiche kostengünstige Intervention sollte nach Möglichkeit in ein günstigeres oder stabileres Substrat übersetzt werden, als Prompt-Transformation, Abrufregel oder Adapter-Update, vorausgesetzt der kausale Effekt übersteht die Übersetzung. Das ist keine Regel nur für die Sicherheit. Es ist eine Regel für Evolvierbarkeit: Das System sollte teuren Mutationen widerstehen, bis günstige die richtige Nachbarschaft gefunden haben.
+The **persistence tier** speichert, was überlebt: Adapter (langfristig), Abruf‑ und Tool‑Policies (mittel‑fristig), Aktivierungs‑Steuerungsregeln (flüchtig). The **mutation generators** schlagen Änderungen am **persistence tier** vor, nicht direkt an Verhalten. The **evaluator** beobachtet nur Verhalten und schaltet welche Mutationen überleben. Nichts im **persistence tier** wird aktualisiert, außer über dieses Gate.
 
 ---
 
-## Wie eine minimal funktionsfähige Loop tatsächlich aussieht
+## Der Evaluator Ist Keine Verlustfunktion
 
-Die Loop besteht aus sechs Phasen. Beobachten. Vorschlagen. Sandboxing. Evaluieren. Gewinner übernehmen (oder alle Kandidaten verwerfen). Such-Prior aktualisieren.
+Hier bricht das biologische Denken mit dem ML‑Denken in einer Weise, die für die Architektur entscheidend ist.
 
-Beobachten bedeutet, das aktuelle Genom gegen die Aufgabenbatterie laufen zu lassen und Verhaltensmetriken aufzuzeichnen. Vorschlagen bedeutet, dass die Suchrichtlinie parallel Kandidatenmutationen generiert, jeweils eine pro Operator-Klasse. Sandboxing bedeutet, dass jeder Kandidat isoliert läuft: kein gemeinsamer Zustand, harte Ressourcenlimits, garantiertes Rollback. Evaluieren bedeutet, das Verhaltensdelta gegenüber der aktuellen Baseline zu bewerten. Übernehmen bedeutet, den Gewinner in die Persistenzschicht zu schreiben, mit vollständiger Provenienz: Vorher/Nachher-Metriken, welche Prompts betroffen waren, welche Operator-Klasse verwendet wurde, sowie Ablauf- und Revalidierungsrichtlinie. Den Such-Prior aktualisieren bedeutet, dass die Bandit- oder evolutionäre Policy lernt, welche Operator-Klassen und welche Regionen des Suchraums Überlebende hervorbringen.
+Eine Verlustfunktion ist ein glatter, differenzierbarer, lokal definierter Zielwert. Man minimiert ihn. Er setzt voraus, dass die richtige Antwort bekannt und fest ist. Eine Selektionsdruck ist nichts davon. Er ist die Umgebung, und die Umgebung wird nicht von dir entworfen. Er ist alles, was Dinge tötet, die sie nicht bewältigen können.
 
-Jede übernommene Mutation benötigt ein Rollback-Handle. Nicht als Sicherheitsfeature. Als Designanforderung. Wenn du eine Mutation nicht rückgängig machen kannst, kannst du ihren marginalen Beitrag nicht messen. Wenn du ihren marginalen Beitrag nicht messen kannst, evolvierst du nicht. Du akkumulierst nur.
+When you hand-design a task battery for your self-evolving harness and never change it, you have not built an environment. You have built a loss function with extra steps. The system will optimize for that battery and stop. It will find shortcuts the battery does not catch. This is Goodhart's Law at the architectural level: once a measure becomes a target, it ceases to be a good measure.
 
----
+A fixed evaluator wird letztlich zu einer Decke. Um robuste Verbesserung aufrechtzuerhalten, muss die Evaluierungsumgebung expandieren, diversifizieren oder sich adversarisch anpassen. Das bedeutet, die Task‑Batterie benötigt adversarische Aufgaben, die speziell dazu designed sind, oberflächliche Spielereien zu erwischen. Sie braucht Fähigkeits‑Aufgaben (kann es das tun?), Kalibrierungs‑Aufgaben (weiß es, wenn es nicht kann?), und Regression‑Aufgaben (hat es das, was es bereits wusste, gebrochen?). Und sie braucht mindestens einen Pfad zur menschlichen Bewertung, den das System nicht vorhersagen kann, weil vorhersagbare Evaluatoren ausgespielt werden.
 
-## Was ich ausgelassen habe
-
-**Selbstmodifikation von Code.** Selbstediting nach dem Muster der Darwin-Gödel-Maschine funktioniert in sandboxierten Coding-Agent-Umgebungen mit formalen Verifizierern. Für ein allgemeines Harness ohne diese Einschränkungen ist es ein Thema für Phase 4, nicht weil es unmöglich ist, sondern weil die notwendige Infrastruktur (stabiler Evaluator, Rollback-Garantien, enger Aufgabenfokus) erst vorhanden sein muss.
-
-**Feature-Universalität.** SAE-Features sind modellspezifisch und manchmal checkpoint-spezifisch. Ob nützliche Features über Modellversionen hinweg transferieren, ist eine offene Forschungsfrage. Das Harness sollte so entworfen sein, dass Feature-Verzeichnisse bei jedem Update des Basismodells neu extrahiert werden, anstatt Stabilität vorauszusetzen.
-
-**Multi-Agent-Evaluatoren.** Die Verwendung eines Judge-Modells als Teil des Evaluationsloops erhöht die Robustheit, schafft aber auch eine adversarielle Angriffsfläche. Das System kann lernen, den Judge zu befriedigen, anstatt die zugrundeliegende Aufgabe zu lösen. Das erfordert explizite Gegenmaßnahmen, die ich noch nicht entworfen habe.
-
-**Compute-Budgetierung.** Eine Mutation, die die Fähigkeit um 2 % verbessert, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen erstklassige Constraints im Evaluator sein, keine nachträglichen Überlegungen.
+Practically, this means: start with a small fixed battery, but build the infrastructure to extend it from the beginning. Every mutation the system retains should generate a test case that would have caught a failure of that mutation. Over time, the battery grows with the system. That is ko‑evolution in minimaler Form.
 
 ---
 
-Die Verbindung zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenzschicht. Die Dream Engine, modelliert nach der Gedächtniskonsolidierung in Schlafphasen, ist der Mechanismus, der vergängliche Beobachtungen in mittelfristige Richtlinien überführt. Die fehlenden Teile sind die Suchrichtlinie und der ko-evolvierende Evaluator. Das ist es, was als Nächstes gebaut wird.
+## SAE-Steuerung Ist Ein Operator, Nicht die Grundlage
 
-Wenn du in diesem Bereich baust, ist das Prior-Wissen, das sich am meisten zu leihen lohnt, nicht aus dem ML. Es stammt aus der Evolutionsbiologie: Die Umgebung übernimmt die Selektion. Deine Aufgabe ist es, die Umgebung zu bauen, nicht den Organismus.
+Sparse Autoencoders können sparse latente Features aufzeigen, von denen viele genug interpretierbar sind, um Verhalten lokal zu steuern, obwohl Qualität und kausale Spezifität weiterhin Forschungsfragen bleiben. Man kann ein Modell in Richtung oder weg von einem Konzept steuern, indem man einen Feature‑Vector an einer bestimmten Schicht während des Forward‑Passes hinzufügt oder unterdrückt. Das ist schnell, reversibel und erfordert kein erneutes Training.
 
-Beginne mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB-Persistenzschicht](https://github.com/5queezer/hrafn). Die Genotyp/Phänotyp-Trennung ist bereits verdrahtet. Was gebaut werden muss, ist der Evaluator, der mit dem System ko-evolviert, das er misst.
+Aber es ist nur eine Operatorklasse in einem gemischten Aktionsraum. Die Mutationsgeneratoren in einem ernsthaften Harness sollten in mindestens vier Substraten Vorschläge erzeugen. Das erste Substrat sind Prompt‑ und Abruf‑Transformierungen: günstig, reversibel, immer der Anfangspunkt. Das zweite ist Aktivierungs‑Steuerungsregeln: schnell, lokal, mittelfristige Verpflichtung. Das dritte sind Adapter‑ und LoRA‑Updates: schwerer, erfordern Training, mittelfristige Persistenz. Das vierte ist Code‑ und Policy‑Änderungen: höchste Verpflichtung, schwer rückgängig zu machen.
+
+Wenn man nur SAE‑Steuerung beginnt, ist das wie ein evolutionäres System, das nur ein Gen mutieren kann. Man bekommt schnelle lokale Anpassung und brüchiges globales Verhalten. Das System muss in der Lage sein, como es Kontext abzurufen, wie es Tools weiterleitet und letztlich wie es Informationen auf Gewichtsebene verarbeitet, nicht weil diese Operatoren mächtiger sind, sondern weil unterschiedliche Probleme in unterschiedlichen Substraten liegen.
+
+Die richtige Disziplin ist: Eine erfolgreiche low‑cost‑Intervention sollte, sofern möglich, in einem günstigeren oder stabileren Substrat neu ausgedrückt werden, wie eine Prompt‑Transformation, Abruf‑Regel oder Adapter‑Update, vorausgesetzt, der kausale Effekt überlebt die Übersetzung. Das ist keine Regel allein für Sicherheit. Es ist eine Regel für Evolvierbarkeit: Das System sollte teure Mutationen ablehnen, bis günstige gefunden haben, die die richtige Nachbarschaft entdeckt haben.
 
 ---
 
-*Christian Pojoni baut AI-Agent-Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelles Projekt: [Hrafn](https://github.com/5queezer/hrafn), eine auf Rust basierende Agent-Runtime.*
+## Was ein Minimal Viable Loop Echt aussieht
 
-*Das Titelbild für diesen Beitrag wurde von einer KI generiert.*
+Die Schleife hat sechs Phasen.
+Beobachten.
+Vorschlagen.
+Sandbox.
+Bewerten.
+Behalte den Gewinner bei (oder lehne alle Kandidaten ab).
+Prior aktualisieren.
+
+Jede behaltene Mutation benötigt einen Rollback‑Handle. Nicht als Sicherheitsmerkmal. Als Design‑Anforderung. Wenn du eine Mutation nicht zurücknehmen kannst, kannst du ihren marginalen Beitrag nicht messen. Wenn du ihren marginalen Beitrag nicht messen kannst, evolvierst du nicht. Du akkumulierst.
+
+---
+
+## Was Ich Weggelassen Habe
+
+**Selbstmodifikation von Code.** Darwin‑Gödel‑Machine‑Stil‑Selbstediting funktioniert in sandboxed coding‑agent settings with formal verifiers. Für einen allgemeinen harness ohne diese Einschränkungen ist es ein Phase‑4‑Problem, nicht weil es unmöglich ist, sondern weil die erforderliche Infrastruktur (stabiler Evaluator, Rollback‑Garantien, enger Aufgabebereich) zuerst eingerichtet werden muss.
+
+**Feature-Universalität.** Sparse Autoencoder‑Features sind modell‑spezifisch und manchmal checkpoint‑spezifisch. Ob nützliche Features über Model‑Versionen hinweg übertragen werden können, ist eine offene Forschungsfrage. Der Harness sollte so gestaltet sein, dass Feature‑Wörterbücher bei jedem Base‑Model‑Update neu extrahiert werden, anstatt stabile Annahmen zu treffen.
+
+**Multi‑Agent‑Evaluatoren.** Die Verwendung eines Judge‑Models als Teil der Evaluierungsschleife erhöht Robustheit, schafft aber auch eine adversariale Angriffsfläche. Das System kann lernen, den Judge zu befriedigen, statt die zugrundeliegende Aufgabe. Dafür werden explizite Gegenmaßnahmen benötigt, die ich noch nicht entworfen habe.
+
+**Compute‑Budgeting.** Eine Mutation, die die Fähigkeit um 2 % erhöht, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen als erstklassige Einschränkungen im Evaluator behandelt werden, nicht als Nachgedanken.
+
+The connection to [Hrafn](https://github.com/5queezer/hrafn) is direct. MuninnDB ist die Persistenz‑Ebene. The Dream Engine, modeled on sleep-phase memory consolidation, ist der Mechanismus, der flüchtige Beobachtungen in mittelfristige Policy umwandelt. Die fehlenden Teile sind die Search‑Policy und der co‑evolvierende Evaluator. Das ist das, was als Nächstes gebaut wird.
+
+If you are building in this space, the prior that is most worth borrowing is not from ML. It is from evolutionary biology: the environment does the selection. Your job is to build the environment, not the organism.
+
+Start with [Hrafn](https://github.com/5queezer/hrafn) and the [MuninnDB persistence layer](https://github.com/5queezer/hrafn). Die Genotyp-/Phänotyp-Trennung ist bereits verkabelt. Was gebaut werden muss, ist der Evaluator, der mit dem System co‑evolviert, das er misst.
+
+---
+
+*Christian Pojoni baut KI‑Agenten‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agenten‑Runtime.*
+
+*Das Coverbild für diesen Beitrag wurde von KI generiert.*
