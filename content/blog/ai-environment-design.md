@@ -6,7 +6,9 @@ description: "Self-evolving AI harnesses fail when they optimize a fixed evaluat
 images: ["/images/ai-environment-design-og.png"]
 images: ["/images/ai-environment-design-og.png"]
 images: ["/images/ai-environment-design-og.png"]
+images: ["/images/ai-environment-design-og.png"]
 ---
+
 
 
 
