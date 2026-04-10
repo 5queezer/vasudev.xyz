@@ -103,6 +103,18 @@ The implication: write your tool descriptions as if BM25 has to find them withou
 
 Tool Search does not work with tool use examples (few-shot prompting for tool calls). If you rely on examples for accuracy, you need a workaround.
 
+## Why This Matters More Than the Skills Debate
+
+David Mohl recently argued that [MCP remains architecturally superior to Skills](https://david.coffee/i-still-prefer-mcp-over-skills/) for LLM tool integration. His case covers remote servers, OAuth, and cross-device portability. But the strongest argument for MCP isn't any of those. It's context efficiency.
+
+Skills load entire knowledge documents into the context window. A `SKILL.md` file teaching Claude your deployment workflow might run 3,000 to 5,000 tokens of prose, injected in full every time the skill activates. You can't defer half a knowledge document. You can't search within it. It's all-or-nothing.
+
+MCP tools are structured schemas. Each tool is an independent unit with a name, description, and parameter definition. That structure is what makes `defer_loading` possible. You can defer 90 tools and load 3 on demand because each tool is a discrete object the API can inject or withhold individually.
+
+The difference compounds. Five MCP servers with 140 deferred tools cost ~8.7K tokens per request. A single `SKILL.md` can hit 4,000+ tokens. Load three or four Skills and you've matched the deferred MCP budget, with none of that payload deferrable. There's no `tool_search` equivalent for Skills because there's nothing to search. The "tool" is a block of prose, not a callable interface with a schema.
+
+Skills aren't useless. They're the right choice for pure knowledge transfer: teaching Claude your naming conventions, your deployment checklist, your commit style. Mohl calls this "a knowledge layer on top of a connector layer." Skills document. MCP servers act. The problem starts when people reach for Skills where MCP tools belong, because they can't or don't want to run a server. That trades deferred loading, schema-based search, and per-tool granularity for deployment simplicity. Sometimes that trade is worth it. For anything touching external services, it usually isn't.
+
 ## What I Left Out
 
 **Prompt caching + deferred tools.** Anthropic's docs mention combining defer_loading with cached tool definitions. I haven't benchmarked this yet. The interaction between cache invalidation and just-in-time schema injection isn't obvious. [Relevant docs here.](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
@@ -112,6 +124,8 @@ Tool Search does not work with tool use examples (few-shot prompting for tool ca
 **Agent SDK support.** As of early 2026, the Python Agent SDK doesn't expose `defer_loading` as a parameter. You have to drop to the raw API. [This GitHub issue](https://github.com/anthropics/claude-agent-sdk-python/issues/525) is tracking it.
 
 **Other model providers.** `defer_loading` is a Claude API feature, not an MCP protocol feature. OpenAI, Gemini, and others don't have an equivalent yet. If you're building provider-agnostic agents, you need a client-side routing layer instead.
+
+**The hybrid pattern in practice.** If MCP handles connectors and Skills handle knowledge, the optimal setup runs both: MCP servers with deferred loading for external integrations, Skills for workflow documentation that rarely changes. I haven't benchmarked the combined context cost yet. The architecture suggests they should complement rather than compete, but the boundary between "knowledge" and "action" blurs fast when a Skill starts shelling out to CLIs. [Mohl's post](https://david.coffee/i-still-prefer-mcp-over-skills/) lays out the design pattern.
 
 ---
 
