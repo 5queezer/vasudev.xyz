@@ -1,19 +1,21 @@
 ---
-title: "### Las métricas de memoriade tu agente están mintiendo. Aquí tienes cómo anclarlas."
+title: "Las métricas dememoria de tu agente te están mintiendo. Así puedes anclarlas."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "La consolidación de lamemoria se ve genial en los tableros. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando una proxy desvinculada."
+description: "La consolidación de la memoria se ve genial en los tableros. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desconectado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "ecd8e08eb1dafc19414f532db2e6d771"
-chunkHashes: "1cbab5c975e16ef1,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "9f0bdda020b191c4a5667a153cee772f"
+chunkHashes: "b019afcdeb312967,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Construíun sistema de consolidación de memoria para agentes de IA. Duplica memoria, fortalece asociaciones, decae entradas obsoletas y produce un diario de sueños que realmente se puede leer. El panel de control se ve fantástico: **tasa de deduplicación en aumento, recuento de memoria en disminución, densidad de asociación en ascenso**.
+Hace poco leí un ensayollamado ["The Collapse of Proxy Integrity"](https...$$
+Construí un sistema de consolidación de memoria para agentes de IA. Duplica recuerdos, refuerza asociaciones, decaya entradas obsoletas y produce un diario de sueños que realmente puedes leer. El panel de control se ve fantástico: tasa de deduplicación en aumento, recuento de memoria en disminución, densidad de asociación en ascenso.
 
-Ninguno de eso te indica si el agente recuerda lo correcto en el momento adecuado.
+Ninguno de eso te dice si el agente recuerda la cosa correcta en el momento adecuado.
 
-**Si una métrica puede mejorar sin que la calidad de recuperación también mejore, esa métrica es un proxy desacoplado. ¡Dejen de optimizarla!**
+**Si una métrica puede mejorar sin que también mejore la calidad de recuperación, esa métrica es un proxy desvinculado. Deja de optimizarla.**
 ## El Problema Tiene un Nombre
 
 Recientemente leí un ensayo titulado ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) escrito por un investigador independiente llamado Flyxion. El argumento central es: cuando una señal medible se desacopla del proceso que debería rastrear, la señal se vuelve autorreferencial. Terminás optimizando el mapa mientras el territorio se pudre.

@@ -1,21 +1,20 @@
 ---
-title: "Patanjali Hatte die Filter-Spezifikation. Wir haben gerade die Tests geschrieben."
+title: "Patanjali hatte die Filter-Spezifikation. Wir haben nur die Tests geschrieben."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "Speicherkonsolidierung erschwerte den Abruf. Drei Gestaltungsprinzipien aus Agenten‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen in der yogischen Aufmerksamkeitslehre."
+description: "Speicherkonsolidierung verschlechterte die Abrufbarkeit. Drei Gestaltungskriterien aus Agenten‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur Aufmerksamkeitstheorie des Yogas."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "543adcf5b9b4086b32735b32db22c42b"
-chunkHashes: "8d6c41e62980fd8f,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "4267ebbf3816e448aba743898377aee0"
+chunkHashes: "71f5185efef748fa,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-##1. Nicht alle Geräusche sind gleich (Vrtti Nirodha)
+[MuninnDB](https://github.com/scrypster/muninndb)'s Konsolidierungssystem führte drei farbvarianten Duplicate Engrams exakt wie geplant (Kosinusähnlichkeit >= 0.95) zusammen. Der Abruf wurde schlechter. In einem 13-Engram-Vault führte das Entfernen von Duplikaten dazu, dass der Normalisierungspunkt verschoben wurde und relevante Ergebnisse in der Rangliste nach unten gedrängt wurden. Die Lösung war ein Guard Clause: `MinDedupVaultSize` (default 20), das Phase 2 dedup in kleinen Vaults überspringt. [PR #359](https://github.com/scrypster/muninndb/pull/359) schloss das Problem.
 
-Before the dedup failure, [benchmark #311](https://git... ) zeigte, dass der Dedup-Algorithmus selbst solide war. Das Problem lag in der umgebenden Logik.
+Der Fehler war kein Bug im dedup-Algorithmus. Es war ein Versagen des *discernment*: eine gültige Konsolidierungsoperation, die in einem Kontext angewendet wurde, wo sie Schaden verursachte. Wann konsolidiert man, wann lässt man es bleiben, was zählt als Rauschen vs. Signal. Das Problem hat eine lange Geschichte außerhalb der Informatik. Ich habe drei spezifische Gestaltungsideen in den [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali) gefunden, die empirische Ergebnisse von [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [harness engineering framework](https://martinfowler.com/articles/harness_engineering.html) abbilden.
 
-Der Fehler war kein Fehler im Dedup-Algorithmus. Es war ein Fehler der *Unterscheidung*: eine gültige Konsolidierung wurde in einem Kontext angewendet, wo sie Schaden verursachte. Wann konsolidieren, wann nicht, was zählt als Geräusch versus Signal. Dieses Problem hat eine lange Geschichte außerhalb der Informatik. Ich fand drei spezifische Designprinzipien in den [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali), die empirische Ergebnisse aus [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html) abbilden.
-
-**Die kontemplativen Traditionen entwickelten raffinierte Modelle der Aufmerksamkeitsfilterung. Einige dieser Modelle generieren testbare Hypothesen, die die aktuelle Literatur zum Agenten‑Gedächtnis nicht formuliert.**
+**Die kontemplativen Traditionen entwickelten raffinierte Modelle der Aufmerksamkeitsfilterung. Einige dieser Modelle generieren testbare Hypothesen, die die aktuelle Agenten‑Gedächtnis‑Literatur nicht zulässt.**
 ## 1. Nicht alles Rauschen ist gleich (Vrtti Nirodha)
 
 Bevor der Dedup‑Fehler auftrat, traf **benchmark #311** ([https://github.com/scrypster/muninndb/issues/311](https://github.com/scrypster/muninndb/issues/311)) ein grundlegenderes Problem. Die ACT‑R‑Bewertung von MuninnDB ([issue #331](https://github.com/scrypster/muninndb/issues/331)) klammerte frische Engramme auf `raw=1.0`, sodass alle Abruf‑Scores identisch bei 0.9000 wurden. Das System konnte Signale von Rauschen nicht mehr unterscheiden. Jeder Eintrag erschien gleich relevant. Nach der Behebung ([PR #337](https://github.com/scrypster/muninndb/pull/337)) verbesserte sich der Score‑Bereich auf 0.18‑0.90 und die korrekte Top‑1‑Abrufung erreichte 5/5 Abfragen. Die einheitliche Behandlung von Einträgen zerstörte die Abruf‑Qualität.

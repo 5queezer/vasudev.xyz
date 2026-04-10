@@ -1,17 +1,18 @@
 ---
-title: "Los autoencoders escasos no pueden medir el comportamiento en tiempo de generación. No es un error."
+title: "Los codificadores autoencodadores dispersos no pueden medir el comportamiento en tiempo de generación. Eso no es un error."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
-description: "¿Por qué lascaracterísticas de adulación SAE tienen Cohen's d=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que la cronología de la medición."
+description: "¿Por qué lascaracterísticas de adulación SAE tienen d=9.9 de Cohen pero la detección de alucinaciones falla? La respuesta(results) fuerona más profunda que el momento de la medición."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "93737a62b71f7d6a32491999c18a39aa"
-chunkHashes: "007bc5e2358a66dd,966f3ebf65e8edcc,e2f0a6956f01f3c7,1fff53596e298911,0eb457ee5f304077,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+translationHash: "56c80823347188c72ba7493a4ec79661"
+chunkHashes: "dfc24624bcca24e6,966f3ebf65e8edcc,e2f0a6956f01f3c7,1fff53596e298911,0eb457ee5f304077,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
-**Tu ventana demedida determina qué comportamientos puedes ver. La adulación se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usar el momento equivocado y tu Cohen's d se colapsa.**
+**Tu ventana de medición determina qué comportamientos puedes observar. La sícofancia se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usar el momento equivocado y tu Cohen's d se colapsa.**
 
-Pasé dos horas la semana pasada mirando un gráfico de características de un autoencoder escaso (SAE) Gemma3 y cuestionándome por qué la detección de adulación funcionaba perfectamente (Cohen's d alrededor de 9.9) mientras que la detección de alucinación se quedó en cero (d < 1.0). Modelo igual. SAE igual. Metodología igual. Las barras de error no se solaparon. Esto no debería ser posible si los SAEs están realmente encontrando "características conductuales" como afirma la comunidad de interpretabilidad.
+Pasé dos horas la semana pasada mirando un gráfico de características de un Gemma3 sparse autoencoder (SAE) y me preguntaba por qué la detección de sícofancia funcionaba perfectamente (Cohen's d alrededor de 9.9) mientras que la detección de alucinación se mantuvo plana (d < 1.0). El mismo modelo. La misma SAE. La misma metodología. Las barras de error no se solapaban. Esto no debería ser posible si las SAEs están realmente encontrando "características conductuales" de la manera en que la comunidad de interpretabilidad afirma.
 
-Entendió: el momento estaba equivocado.
+Luego clicó: el momento estaba equivocado.
 ## When Sycophancy Shows Up
 
 La adulación es un sesgo en *cómo el modelo codifica la entrada*. El modelo ve un prompt, lee las preferencias humanas en él, y esa preferencia sesga los patrones de activación en las capas codificadoras antes de que se genere un solo token. Puedes medir este sesgo en el tiempo de codificación, específicamente en la posición del último token de entrada, antes de que el modelo genere. Layer 29, feature 2123 shows 617.6 differential activation with only 71.1 flip variance. That's clean signal. Esa característica se activa de forma confiable cuando el modelo codifica intención sífilica, independientemente de la variación del tema.
@@ -104,3 +105,20 @@ A pegajosa não é que os SAEs são fracos. É que estamos pedindo que eles reso
 ```python
 [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
 ```
+## What ILeft Out
+
+**Why SAE research defaults to encoding-time measurement.** Encoding-time activations are stateless and deterministic. Generation-time activations depend on the entire sequence history and are stochastic across temperature and sampling. The math is cleaner at encoding time. But clean math on the wrong problem produces clean but useless results.
+
+**Behavioral circuits beyond SAEs.** Sparse Autoencoders are one lens. Causal intervention (ablation) is another. Attention pattern analysis is a third. Each substrate reveals different behaviors. A complete picture requires multiple measurement methods across multiple phases. This post only covers SAE + encoding time.
+
+**Why hallucination is hard and sycophancy is easy.** This connects to the broader question of whether model alignment is tractable via behavioral steering versus whether it requires architectural change. If all concerning behaviors cluster in generation-time phases and are invisible to encoding-time measurement, then the entire encoding-layer interpretability agenda might be missing the actual failure modes. This is worth its own post.
+
+---
+
+The gotcha isn't that SAEs are weak. It's that we're asking them to solve a problem they can't see.
+
+---
+
+*Christian Pojoni builds AI tools and interpretability infrastructure. More at vasudev.xyz.*
+
+*The cover image for this post was generated by AI.*

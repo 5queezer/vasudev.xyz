@@ -1,14 +1,23 @@
 ---
-title: "Patanjali tenía la especificación de filtrado. Solo escribimos las pruebas."
+title: "Patanjali tenía la especificación defiltrado. Acabamos de escribir las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "La consolidación de lamemoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus inesperados paralelismos en la teoría de la atención yóguica."
+description: "La consolidación dela memoria empeoró la recuperación. Tres principios de diseño de la memoria de agentes, y sus inesperados paralelos en la teoría de la atención yogui."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "543adcf5b9b4086b32735b32db22c42b"
-chunkHashes: "8d6c41e62980fd8f,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "4267ebbf3816e448aba743898377aee0"
+chunkHashes: "71f5185efef748fa,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
+## 1. No todo el ruido es igual (Vrtti Nirodha)
+
+Antes del fallo de dedup, [benchmark #311](https://git...  
+La recuperación empeoró. En un vault de 13 engramas, al eliminar duplicados se desplazó el ancla de normalización, empujando los resultados relevantes hacia abajo en el ranking. La solución fue una cláusula de protección: `MinDedupVaultSize` (predeterminado 20), omitiendo la fase 2 de dedup en vaults pequeños. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.  
+
+El fallo no fue un error en el algoritmo de dedup. Fue una falla de *discernment*: una operación de consolidación válida aplicada en un contexto donde causó daño. ¿Cuándo consolidar, cuándo dejaralone, qué cuenta como ruido vs. señal? Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en los [Yoga Sutras](https://es.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, marzo de 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), y Böckeler's [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html).  
+
+**Las tradiciones contemplativas construyeron modelos sofisticados de filtrado de atención. Algunas de esas modelaciones generan hipótesis verificables que la literatura actual de memoria agente no hace.**
 ## 1. Not all noise is equal (Vrtti Nirodha)
 
 El sistema de consolidación de [MuninnDB](https://github.com/scrypster/muninndb) fusionó exactamente tres engramas duplicados de variante de color, tal como estaba diseñado (similitud coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, al eliminar los duplicados se desplazó el ancla de normalización, empujando los resultados relevantes hacia abajo del ranking. La solución fue una cláusula de guardia: `MinDedupVaultSize` (default 20), skipping Phase 2 dedup in small vaults. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
@@ -125,16 +134,3 @@ Dos lugares.
 First, the [Koshas](https://es.wikipedia.org/wiki/Kosha) (Vedantic body layers: físico, energético, mental, discriminativo, de dicha) imply a hierarchy from gross to subtle, with the subtle being "higher." Harness engineering has no such value ordering. A deterministic linter is not "menor" than an LLM-as-judge. Böckeler explicitly notes that computational sensors are cheap enough to run on every change, while inferential controls are expensive and probabilistic. In practice, you want to *maximize* the "gross" layer, not transcend it. Importar la jerarquía Kosha al harness engineering te llevaría a sobreinvertir en controles inferenciales y subinvertir en los deterministas. The opposite of what works.
 
 Second, yogic practice aims at liberation from the cycle of conditioned response. Agent architecture aims at *effective* conditioned response. You want the agent to develop reliable patterns, not dissolve them. Vairagya in the yogic sense means letting go of *todo* apego. In harness engineering it means letting go of *incorrectos* attachments. The goal is better conditioning, not no conditioning. Importar el marco soteriológico completo llevaría a un agente que alcanza la iluminación al negarse a recuperar algo en absoluto. Inútil.
-## Quéesto no es
-
-Esto no es “sabiduría antigua que valida mi arquitectura.” La flecha causal corre en sentido opuesto: las tradiciones contemplativas desarrollaron modelos fenomenológicos sofisticados de atención, memoria y filtrado de información a lo largo de milenios de introspección sistemática. Que algunos de esos modelos predigan resultados en investigación de memoria de agentes no es místico. Es ingeniería convergente sobre el mismo problema: ¿cómo gestiona un sistema limitado un flujo de información ilimitado?
-
-Esto tampoco es el primer intento en la intersección. Ghosh y Ghosh's [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820) y su sucesor Maṇḍūkya-APO mapean estados de conciencia vedanta (los cuatro estados del Māṇḍūkya Upaniṣad: vigilia, sueño, sueño profundo, trascedente) a un ciclo de consolidación vigilia-sueño para agentes de RL, formalizado con teoría de categorías. La intuición arquitectónica es sólida y el mapeo es serio. Pero ambos papers son explícitamente marcos conceptuales sin validación empírica. Los benchmarks que proponen (FurnitureBench, Atari-57, Intel Loihi) no se han ejecutado. La brecha entre “marco propuesto” y “resultado medido” es donde muere la mayoría del trabajo interdisciplinario. Las tres hipótesis siguientes están diseñadas para no morir allí.
-
-La pregunta útil no es “¿es el yoga relevante para la IA?” sino “¿qué discriminaciones yogicas específicas producen hipótesis testables que los sistemas de memoria actuales no hacen?”
-
-El benchmark inicial ha respondido una pregunta. La desduplicación uniforme en cubículos pequeños es perjudicial, y la guardia `MinDedupVaultSize` ([PR #359](https://github.com/scrypster/muninndb/pull/359)) lo corrigió. Quedan abiertas dos hipótesis. El decaimiento etiquetado por resultados (vrtti nirodha) requiere que el generador sintético de cubículos demuestre que el decaimiento uniforme reduce la calidad de recuperación en entradas con diferentes historias de resultados. El desplazamiento hebbiano (vairagya) requiere que el mismo generador mida si las entradas reforzadas desplazan más alternativas relevantes. Ambas se reducen a una tarea de ingeniería: **the trace schema must capture retrieval precision broken down by entry properties**: Hebbian weight, access frequency, outcome history. Si los datos muestran un problema, las correcciones son sencillas. Si no, se omite la complejidad.
-
-Pratyahara ya está implementado correctamente: la Trait de Memoria devuelve top-k, punto. El armazón de pruebas captura la decisión completa de recuperación. El agente no necesita saber qué se excluyó. El ingeniero sí.
-
-Ninguno de esto requiere creer en chakras. Se requiere tomar las discriminaciones seriamente como heurísticas de ingeniería y medir si mejoran el recuerdo de agentes en cargas de trabajo realistas. El benchmark inicial obligó un cambio de diseño. El generador sintético de cubículos decide el resto.

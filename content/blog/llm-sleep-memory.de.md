@@ -1,14 +1,20 @@
 ---
-title: "Schlaf‑inspiriertes Gedächtnis für LLM‑Agenten: 6 Papers rangiert nach dem, was Sie diese Woche liefern können"
+title: "Schlafinspirierte Erinnerung für LLM Agents: 6 Paper rangiert nach dem, was Sie diese Woche versenden können"
 date: 2026-04-06
 tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Ich habe 6 Papers zubiologisch inspiriertem Memory‑Replay für LLM‑Agenten gelesen. Nur 2 davon lohnen Ihre Zeit, wenn du baust, nicht publizierst."
+description: "Ich habe 6 Papers über biologisch inspirierten memory replay für LLM-Agenten gelesen. Nur 2 sind es wert, wenn du baust, nicht publizierst."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "91a71eee2a4a4eeeec19b1b379a6fa11"
-chunkHashes: "bc9167c2a566275f,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "7d7143fa276305df6b558fbea6803a71"
+chunkHashes: "8a57d7471e3db5a8,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---
+Die meisten LLM‑Gedächtnisforschungen befinden sich in einer bequemen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung beanspruchen, dann weitermachen. Wenn du allerdings tatsächlich Agenten‑Gedächtnis baust, entscheidest, was du speicherst, was du vergisst und wann du konsolidierst, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
+
+Ich pflege das [Dream Engine](https://github.com/scrypster/muninndb), eine schlafinduzierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie läuft Ebbinghaus‑Vergessen, Hebb‑Assoziation, Near‑Duplicate‑Merging und transitive Inferenz auf das Agenten‑Gedächtnis zwischen Sitzungen. Meine Abbau‑Studie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierungsphasen netto‑negativ ist**, ähnlich wie das daDREAM mutant protein, das die langfristige Potenzierung steigert, aber das eigentliche Lernen beeinträchtigt. Phasenselektivität ist wichtiger als die Phasenzahl.
+
+**Wenn du Agenten‑Gedächtnis baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
 ## SleepGate: The Paper That Maps Directly to Offline Consolidation
 
 "Vergessen lernen: Schlafinspiriertes Gedächtnis für LLM-Agenten..."
@@ -56,21 +62,3 @@ Both surveys share the same failure mode: they describe the design space without
 Das Paper, das ich mir wünsche, gibt es nicht: ein direkter Vergleich von consolidation-on gegenüber consolidation-off an standardisierten Benchmarks mit kontrollierter LLM-Varianz (Temperatur auf 0 festgelegt oder N≥5 Durchläufe mit Mitteln und Standardabweichungen). Meine eigene Ablation zeigte Phase 5 (transitive inference) als die einzige net-positive Phase (+0.022 composite delta), aber die Varianz bei LLM‑Evaluierungen ist hoch genug, dass dies mehr Durchläufe erfordert, um definitiv zu sein.
 
 The Dream Engine's core novel contribution, Phase 2b (LLM adjudication of near-duplicate clusters), remains unvalidated because no LLM provider was configured on the benchmark server. That's the next thing to ship, not the next paper to read.
-## Das unbequeme Muster
-
-- **Kognitiver Rechner**
-- **Weltmodell‑Agent**
-- **Informationssuchender Agent**
-- **Rollenspiel‑Agent**
-- **Teilungskanal**
-- **Steuerungskanal**
-
-Jedes Übersichtspapier in diesem Umfeld nennt biologische Inspiration. Ebbinghaus, Hebb'sche Lernregel, synaptische Konsolidierung, Schlafspindeln: das Vokabular ist überall. Die empirische Validierung ist fast nicht vorhanden. SleepGate und MemoryBench sind Ausnahmen, weil sie sich zu testbaren Ansprüchen bekennen. Die Übersichtspapiere verpflichten sich zu Taxonomien.
-
-Wenn du Agenten‑Gedächtnis baust: zuerst benchmarken, dann konsolidieren, dann veröffentlichen. Wenn deine Konsolidierungs‑Funktion einen Proxy‑Metrik‑Score verbessert, ohne die Abruf‑Genauigkeit zu erhöhen, hast du einen abgetrennten Proxy gebaut, keine Funktion.
-
-Starte mit [MemoryBench](https://arxiv.org/abs/2510.17281). Lies [SleepGate](https://arxiv.org/abs/2603.14517) für das Vergessungsmodell. Bau deine Pipeline. Messt dann, ob es tatsächlich hilft.
-
-*Christian Pojoni baut edge‑first KI‑Agent‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist das Runtime. [MuninnDB](https://muninndb.com) ist der Speicher. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
-
-*Das Cover‑Bild für diesen Beitrag wurde von KI generiert.*

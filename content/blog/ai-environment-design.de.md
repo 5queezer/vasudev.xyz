@@ -1,16 +1,20 @@
 ---
-title: "Hör auf, deinAI-System zu entwerfen. Entwirf stattdessen seine Umgebung."
+title: "Hör auf, dein KI-System zu entwerfen. Gestalte seine Umgebung."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "Selbstentwickelnde KI-Harnesses scheitern, wenn sie einen festen Bewertungsmaßstab optimieren. Das biologische Modell ist richtig: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
+description: "Selbstentwickelnde KI‑Harnesses scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell hat recht: Was sich entwickeln muss, ist der Auswahldruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "530d973eec7cbbc49d59e1eb561242da"
-chunkHashes: "0154b9d775190ffe,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
+images: ["/images/ai-environment-design-og.png"]
+translationHash: "3400f4c32720f651e354d54b64fc3e82"
+chunkHashes: "5f162ec2b9eb32bc,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---
-**Die Einheit der Evolutionist nicht das Feature. Es ist der Mutations/Selektionszyklus.**  
-Diese Unterscheidung ändert alles, wie du einen selbst‑entwickelnden KI‑Harness aufbaust. Die meisten Systeme, die sich selbst als „selbstverbessernd“ bezeichnen, führen AutoML durch. Sie optimieren über einen festen Suchraum hin zu einem festen Ziel. Das kann Anpassung hervorbringen, aber es ist dem AutoML näher als der offenen Evolution. Der Unterschied erweist sich architektonisch entscheidend in zwei Hinsichten.
+Ich verbrachte eine Woche damit, eine "vector-native Programmiersprache für LLMs" zu entwerfen. Die Idee war, das Modellverhalten direkt auf Aktivierungsebene zu programmieren, ohne Prompts, nur mit Intervention-Vektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich eigentlich wollte, war keine Sprache. Es war ein Organismus.
+
+**Die Einheit der Evolution ist nicht das Feature. Es ist der Mutations/Selektionszyklus.**
+
+Diese Unterscheidung ändert alles, wie du ein selbstentwickelndes KI-Gehäuse baut. Die meisten Systeme, die sich "selbstverbessernd" nennen, betreiben AutoML. Sie optimieren über einen festen Suchraum hin zu einem festen Ziel. Das kann Adaptation erzeugen, ist aber näher an AutoML als an offener Evolution. Der Unterschied stellt sich als architektonisch entscheidend in zwei Hinsichten heraus.
 ## Genotyp und Phänotyp Sind Nicht dieselbe Schicht
 
 Biologische Systeme trennen, was besteht, von dem, was ausgewählt wird. Das Genom wird nicht direkt getestet. Das Phänotyp ist es. Mutationen geschehen am Genom. Die Selektion geschieht am Phänotyp. Das Genom überlebt, indem es Phänotypen hervorbringt, die überleben. Diese Asymmetrie ist die Quelle der Evolvierbarkeit selbst.
@@ -293,67 +297,3 @@ We need to preserve the "---" lines. In markdown, "---" is a horizontal rule. We
 Thus we need to insert "---" after the first set of bullet points? Actually there is a "---" after the fourth bullet (Compute budgeting). So we should keep that line as "---". Then continue with "The connection to..." etc.
 
 Thus we need to keep "---" lines exactly as "---". So we will have:
-
-## Was ich weggelassen habe
-
-**Selbstmodifikation des Codes.** ... (first paragraph)
-
-**Feature-Universalität.** ... (second paragraph)
-
-**Multi-Agent-Evaluatoren.** ... (third paragraph)
-
-**Rechenbudgetierung.** ... (fourth paragraph)
-
---- (horizontal rule)
-
-The connection to ... (next paragraph)
-
-If you are building ... (next paragraph)
-
-Start with ... (next paragraph)
-
---- (another horizontal rule)
-
-*Christian Pojoni...* (italic)
-
-*The cover image...* (italic)
-
-Thus we need to include two "---" lines.
-
-Now check translation of headings: "Feature universality." heading was "**Feature universality.**". We translated to "**Feature‑Universalität.**". That's fine.
-
-"Multi-agent evaluators." -> "**Multi-Agent-Evaluatoren.**"
-
-"Compute budgeting." -> "**Rechenbudgetierung.**"
-
-Now ensure we didn't translate any proper nouns or URLs. We kept URLs unchanged. Anchor texts like "Hrafn" remain unchanged. "MuninnDB persistence layer" we translated to "MuninnDB Persistence‑Schicht". That's okay because it's not a proper noun; it's a phrase.
-
-Now check any code blocks? None.
-
-Now check any HTML tags? None.
-
-Now ensure we didn't add any extra commentary.
-
-Now produce final answer exactly as translation with markdown## Was ich weggelassenhabe
-
-**Selbstmodifikation des Codes.** Darwin‑Gödel‑Machine‑stilisierte Selbstbearbeitung funktioniert in abgesicherten Codier‑Agenten‑Umgebungen mit formalen Verifizierern. Für einen allgemeinen Rahmen ohne diese Einschränkungen ist es ein Phase‑4‑Problem, nicht weil es unmöglich wäre, sondern weil die erforderliche Infrastruktur (stabile Evaluierer, Rücksetzmöglichkeiten, begrenzter Aufgabenbereich) zuerst geschaffen werden muss.
-
-**Feature‑Universalität.** SAE‑Features sind modell‑spezifisch und manchmal checkpoint‑spezifisch. Ob nützliche Features über Modell‑Versionen hinweg übertragbar sind, ist eine offene Forschungsfrage. Der Harness sollte so gestaltet sein, dass bei jedem Basis‑Modell‑Update feature‑Dictionary‑Einträge erneut extrahiert werden, anstatt stabile Annahmen zu treffen.
-
-**Multi‑Agent‑Evaluatoren.** Die Verwendung eines Bewertungsmodells im Evaluationsschleifen‑Mechanismus erhöht Robustheit, birgt aber zugleich eine angreifbare Angriffsfläche. Das System kann lernen, den Bewerter zu befriedigen, statt die zugrundeliegende Aufgabe zu lösen. Dies erfordert explizite Gegenmaßnahmen, die ich noch nicht gestaltet habe.
-
-**Rechenbudgetierung.** Eine Mutation, die die Leistungsfähigkeit um 2 % verbessert, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen als erstklassige Constraints im Evaluator berücksichtigt werden, nicht als nachträgliche Gedanken.
-
----
-
-Der Zusammenhang zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenz‑Ebene. Der Dream Engine, modelliert auf Schlafphasen‑Gedächtniskonsolidierung, ist das Mechanismus, das flüchtige Beobachtungen in mittel‑fristige Strategien überführt. Die fehlenden Teile sind die Suchstrategie und der ko‑evolvierende Evaluator. Das wird als Nächstes gebaut.
-
-Wenn du in diesem Bereich arbeitest, ist die Priorität, die man am meisten übernehmen sollte, nicht aus dem ML‑Bereich. Sie stammt aus der Evolutionsbiologie: die Umgebung führt die Selektion durch. Deine Aufgabe ist es, die Umgebung zu bauen, nicht das Organismus.
-
-Starte mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB Persistence‑Schicht](https://github.com/5queezer/hrafn). Die Genom/Phänotyp‑Trennung ist bereits verkabelt. Was gebaut werden muss, ist der Evaluator, der mit dem System, das er misst, ko‑evolviert.
-
----
-
-*Christian Pojoni baut KI‑Agenten‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agenten‑Runtime.*
-
-*Das Cover‑Bild für diesen Beitrag wurde von KI erzeugt.*
