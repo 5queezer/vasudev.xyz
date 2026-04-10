@@ -3,6 +3,7 @@ agents
 ai
 architecture
 benchmarks
+claude
 consolidation
 dream-engine
 hrafn
@@ -17,5 +18,6 @@ oauth
 rust
 security
 sparse-autoencoders
+tool-use
 typescript
 vector-stores

@@ -10,6 +10,7 @@
 (?i)dedup
 (?i)deduplicates
 (?i)deduplication
+defer_loading
 (?i)downscaling
 (?i)downselection
 (?i)epiphenomenal
