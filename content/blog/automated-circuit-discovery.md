@@ -29,6 +29,8 @@ The architecture is minimal. An LLM proposes a new relation: a label, eight posi
 
 The mutation operator receives a structured summary of everything tested so far: which relations were selective (with scores), which were not (with diagnostic reasons), and which were margin-gated before probing. This is the selection pressure. The LLM explores freely, constrained only by what the pipeline can evaluate.
 
+![Flow diagram: LLM Proposer to Prompt Set to Tokenizer Gate to Probe Pipeline to Archive, with correction and feedback loops](/images/mutation-loop-inline.svg)
+
 This is open-ended evolutionary search. The genome is the prompt set. The phenotype is the probe result. The evaluator is differential ablation. The archive is the population's memory. There is no fixed objective and no gradient.
 
 ## Where It Broke: Zero Out of Fifteen

@@ -34,6 +34,8 @@ Hallucination doesn't manifest during encoding. It manifests during token genera
 
 Using encoding-time contrastive analysis to catch generation-time behavior is like measuring water molecules in a beaker to predict whether rain will fall tomorrow. You're measuring the right substrate at the wrong time.
 
+![Timeline showing encoding phase where sycophancy is measurable versus generation phase where hallucination occurs](/images/measurement-timing-inline.svg)
+
 This explains the three-tier result from the Gemma3 research:
 
 **Tier 1 (Sycophancy):** Encoding-time phenomenon. Perfect signal. Cohen's d = 9.9.
