@@ -6,7 +6,9 @@ description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination d
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
 ---
+
 
 
 

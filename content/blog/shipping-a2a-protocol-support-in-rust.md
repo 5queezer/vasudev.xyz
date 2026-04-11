@@ -5,10 +5,12 @@ description: "What I learned adding Agent-to-Agent protocol support to an open-s
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
+images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]
 ---
+
 
 
 
