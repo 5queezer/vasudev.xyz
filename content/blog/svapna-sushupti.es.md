@@ -6,7 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 5
 description: "Neurociencia, artículos recientes de IA y un texto sánscrito antiguo convergen en la misma idea sobre la consolidación offline, pero discrepan sobre cuál fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
 translationHash: "cd45eaa090e12d01df6f08c279243242"
 chunkHashes: "b4a06039cc574fc6,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---

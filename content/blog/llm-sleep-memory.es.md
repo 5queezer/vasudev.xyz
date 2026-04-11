@@ -6,7 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Leí 6 artículos sobrereplay de memoria inspirado en biología para agentes de LLM. Solo 2 valen la pena si estás construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
-images: ["/images/llm-sleep-memory-og.png"]
 translationHash: "7d7143fa276305df6b558fbea6803a71"
 chunkHashes: "8a57d7471e3db5a8,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---

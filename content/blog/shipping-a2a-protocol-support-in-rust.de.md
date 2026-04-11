@@ -3,7 +3,6 @@ title: "Versand von A2A Protocol Support in Rust: 7 Fallstricke, die niemand dir
 date: 2026-03-25
 description: "Was ich beim Hinzufügen vonAgent‑zu‑Agent‑Protokollunterstützung zu einem Open‑Source‑Agenten‑Framework gelernt habe"
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
-images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]

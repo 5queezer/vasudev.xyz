@@ -6,7 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "Speicherkonsolidierung verschlechterte die Abrufbarkeit. Drei Gestaltungskriterien aus Agenten‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur Aufmerksamkeitstheorie des Yogas."
 images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
 translationHash: "4267ebbf3816e448aba743898377aee0"
 chunkHashes: "71f5185efef748fa,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---

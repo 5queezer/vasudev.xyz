@@ -6,7 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "Speicher‑Konsolidierung wirkt auf Dashboards fantastisch. Wenn deine Metriken aber ohne verbesserte Abrufbarkeit besser werden, optimierst du einen abgetrennten Proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 translationHash: "9f0bdda020b191c4a5667a153cee772f"
 chunkHashes: "b019afcdeb312967,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---

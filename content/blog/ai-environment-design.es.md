@@ -6,7 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Los sistemas de autoevolución de IA fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que debe evolucionar es la presión selectiva, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
 translationHash: "3400f4c32720f651e354d54b64fc3e82"
 chunkHashes: "5f162ec2b9eb32bc,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---
