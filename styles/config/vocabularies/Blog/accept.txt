@@ -15,6 +15,7 @@ defer_loading
 (?i)downselection
 (?i)entos
 (?i)epiphenomenal
+(?i)evaluator's
 (?i)flatlined
 (?i)hardcoded
 (?i)hippocampal
