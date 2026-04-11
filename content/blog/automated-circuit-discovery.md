@@ -98,7 +98,7 @@ Steering does not work for relational probe directions. Every direction in the a
 
 The Gemma 4 migration is blocked on GemmaScope SAE availability. The 30-degree distribution finding may or may not replicate in larger models with wider residual streams. That experiment is waiting on tooling.
 
-Start with [`discover.py`](https://github.com/5queezer/vasudev-core/blob/master/discover.py) for the probe loop and [`mutate.py`](https://github.com/5queezer/vasudev-core/blob/master/mutate.py) for the mutation operator.
+The code is in `discover.py` (probe loop) and `mutate.py` (mutation operator). Reach out if you want access to the repo.
 
 ---
 
