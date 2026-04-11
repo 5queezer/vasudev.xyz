@@ -4,8 +4,6 @@ date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 description: "Warum sycophancy SAE features haben Cohen's d=9.9, aber Halluzinationserkennung fehlschlägt. Die Antwort stellte sich als tiefer heraus als die Messzeit."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
 translationHash: "acfb29d754ce51da1c143e9e05100a1a"
 chunkHashes: "e90c2a16b28de3f5,966f3ebf65e8edcc,e2f0a6956f01f3c7,1fff53596e298911,0eb457ee5f304077,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---

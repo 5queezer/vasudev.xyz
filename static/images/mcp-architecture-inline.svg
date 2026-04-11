@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400">
+
+  <!-- Background -->
+  <rect width="900" height="400" fill="#0d1117"/>
+
+  <!-- Defs: arrow marker -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- VS divider -->
+  <line x1="450" y1="60" x2="450" y2="340" stroke="#30363d" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="430" y="180" width="40" height="24" rx="4" fill="#0d1117"/>
+  <text x="450" y="197" text-anchor="middle" fill="#484f58" font-family="'SF Mono', Menlo, Consolas, monospace" font-weight="600" font-size="13">vs</text>
+
+  <!-- LEFT SIDE: AI inside Apps -->
+  <text x="225" y="42" text-anchor="middle" fill="#f85149" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="0.5">AI INSIDE APPS</text>
+
+  <!-- Notion -->
+  <rect x="40" y="70" width="160" height="90" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="120" y="96" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13">Notion</text>
+  <rect x="72" y="108" width="96" height="36" rx="4" fill="#1c1228" stroke="#6e40c9" stroke-width="1" opacity="0.8"/>
+  <text x="120" y="131" text-anchor="middle" fill="#a371f7" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11">AI</text>
+
+  <!-- Airtable -->
+  <rect x="250" y="70" width="160" height="90" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="330" y="96" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13">Airtable</text>
+  <rect x="282" y="108" width="96" height="36" rx="4" fill="#1c1228" stroke="#6e40c9" stroke-width="1" opacity="0.8"/>
+  <text x="330" y="131" text-anchor="middle" fill="#a371f7" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11">AI</text>
+
+  <!-- Jira -->
+  <rect x="145" y="190" width="160" height="90" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="225" y="216" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="13">Jira</text>
+  <rect x="177" y="228" width="96" height="36" rx="4" fill="#1c1228" stroke="#6e40c9" stroke-width="1" opacity="0.8"/>
+  <text x="225" y="251" text-anchor="middle" fill="#a371f7" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11">AI</text>
+
+  <!-- Red X marks -->
+  <text x="225" y="130" text-anchor="middle" fill="#f85149" opacity="0.7" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="22">&#x2715;</text>
+  <text x="120" y="206" text-anchor="middle" fill="#f85149" opacity="0.7" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="22">&#x2715;</text>
+  <text x="330" y="206" text-anchor="middle" fill="#f85149" opacity="0.7" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="22">&#x2715;</text>
+
+  <!-- Left caption -->
+  <text x="225" y="320" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="12">4 isolated AIs, 0 shared context</text>
+
+  <!-- RIGHT SIDE: AI orchestrating apps -->
+  <text x="675" y="42" text-anchor="middle" fill="#3fb950" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="0.5">AI ORCHESTRATING APPS</text>
+
+  <!-- Central AI hub -->
+  <rect x="610" y="140" width="130" height="110" rx="8" fill="#0d2818" stroke="#3fb950" stroke-width="2"/>
+  <text x="675" y="180" text-anchor="middle" fill="#3fb950" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="16">Your AI</text>
+  <text x="675" y="200" text-anchor="middle" fill="#7ee787" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">full context</text>
+  <text x="675" y="216" text-anchor="middle" fill="#7ee787" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">+ memories</text>
+
+  <!-- App nodes -->
+  <rect x="500" y="70" width="90" height="40" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="545" y="95" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="12">NocoDB</text>
+
+  <rect x="760" y="70" width="90" height="40" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="805" y="95" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="12">Gmail</text>
+
+  <rect x="500" y="280" width="90" height="40" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="545" y="305" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="12">Calendar</text>
+
+  <rect x="760" y="280" width="90" height="40" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="805" y="305" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="12">Drive</text>
+
+  <!-- MCP lines -->
+  <line x1="615" y1="155" x2="575" y2="110" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
+  <line x1="735" y1="155" x2="775" y2="110" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
+  <line x1="615" y1="240" x2="575" y2="280" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
+  <line x1="735" y1="240" x2="775" y2="280" stroke="#3fb950" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- MCP labels -->
+  <text x="582" y="130" text-anchor="middle" fill="#3fb950" opacity="0.6" font-family="'SF Mono', Menlo, Consolas, monospace" font-weight="600" font-size="10">MCP</text>
+  <text x="768" y="130" text-anchor="middle" fill="#3fb950" opacity="0.6" font-family="'SF Mono', Menlo, Consolas, monospace" font-weight="600" font-size="10">MCP</text>
+  <text x="582" y="266" text-anchor="middle" fill="#3fb950" opacity="0.6" font-family="'SF Mono', Menlo, Consolas, monospace" font-weight="600" font-size="10">MCP</text>
+  <text x="768" y="266" text-anchor="middle" fill="#3fb950" opacity="0.6" font-family="'SF Mono', Menlo, Consolas, monospace" font-weight="600" font-size="10">MCP</text>
+
+  <!-- Right caption -->
+  <text x="675" y="355" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="12">1 AI, full context everywhere</text>
+
+  <!-- Attribution -->
+  <text x="870" y="390" text-anchor="end" fill="#484f58" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">vasudev.xyz</text>
+</svg>

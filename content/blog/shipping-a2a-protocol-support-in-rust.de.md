@@ -3,8 +3,6 @@ title: "Einführung der A2A-Protokoll-Unterstützung in Rust: 7 Gotchas, vor den
 date: 2026-03-25
 description: "Was ich beim Hinzufügen von Agent‑zu‑Agent‑Protokoll‑Unterstützung zu einem Open‑Source‑Agenten‑Framework gelernt habe"
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
-images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
-images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]
