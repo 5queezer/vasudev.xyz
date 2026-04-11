@@ -6,9 +6,9 @@ description: "Sufism, Gnosticism, early mysticism. They all show the same thing:
 images: ["/blog/direct-divine-access/og-image.png"]
 ---
 
-I was an altar boy. Every Sunday, white vestments, incense, the exact distance between chalice and paten, everything correct, everything by the book. And still: no contact. Not even silence. Just procedure.
+I seldom went to church. Not out of rebellion. Spiritual questions always pulled me, but the organized answer never did. What drew me were the buildings themselves. I would go alone, sit in empty naves, and feel something the services never delivered. Those medieval architects chose their sites with precision. I believe they built on acupuncture points of the earth's magnetic field, and the stone geometry amplifies whatever is there. I respected the builders. I had no use for the institution that moved in afterward.
 
-Years later, reading the Islamic mystics, a line widely attributed to Rumi stopped me cold: *"I sought God in every temple of this world. I found him in my own heart."* No institution. No intermediary. No admission fee.
+Reading the Islamic mystics confirmed the instinct. A line widely attributed to Rumi stopped me cold: *"I sought God in every temple of this world. I found him in my own heart."* No institution. No intermediary. No admission fee.
 
 **Direct connection to the divine was never gone. It was just deliberately hidden.**
 
