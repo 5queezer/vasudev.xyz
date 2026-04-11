@@ -1,20 +1,25 @@
 ---
-title: "Schlafinspirierte Erinnerung für LLM Agents: 6 Paper rangiert nach dem, was Sie diese Woche versenden können"
+title: "Schlafinduzierte Erinnerung für LLM Agents: 6 Papers nach dem, was Sie diese Woche veröffentlichen können"
 date: 2026-04-06
 tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Ich habe 6 Papers über biologisch inspirierten memory replay für LLM-Agenten gelesen. Nur 2 sind es wert, wenn du baust, nicht publizierst."
+description: "Ichhabe 6 Paper über biologisch inspiriertes Gedächtnis-Replay für LLM-Agenten gelesen. Nur 2 davon sind deine Zeit wert, wenn du baust statt zu veröffentlichen."
 images: ["/images/llm-sleep-memory-og.png"]
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "7d7143fa276305df6b558fbea6803a71"
-chunkHashes: "8a57d7471e3db5a8,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "5188e28ac222b01343c39b22ad9f3c50"
+chunkHashes: "8298230a4d61f2f6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---
-Die meisten LLM‑Gedächtnisforschungen befinden sich in einer bequemen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung beanspruchen, dann weitermachen. Wenn du allerdings tatsächlich Agenten‑Gedächtnis baust, entscheidest, was du speicherst, was du vergisst und wann du konsolidierst, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
+**### Schlafbezogene Gedächtniskonsolidierung**
 
-Ich pflege das [Dream Engine](https://github.com/scrypster/muninndb), eine schlafinduzierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie läuft Ebbinghaus‑Vergessen, Hebb‑Assoziation, Near‑Duplicate‑Merging und transitive Inferenz auf das Agenten‑Gedächtnis zwischen Sitzungen. Meine Abbau‑Studie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierungsphasen netto‑negativ ist**, ähnlich wie das daDREAM mutant protein, das die langfristige Potenzierung steigert, aber das eigentliche Lernen beeinträchtigt. Phasenselektivität ist wichtiger als die Phasenzahl.
+**Lernen zu vergessen: Schlaforientierte Verbesserungen für das Agenten‑Gedächtnis**
 
-**Wenn du Agenten‑Gedächtnis baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
+Die meisten LLM‑Gedächtnisforschungen laufen in einer bequemen Schleife: Architektur vorschlagen, auf einem benutzerdefinierten Benchmark testen, Verbesserungen beanspruchen und weiterziehen. Wenn du jedoch tatsächlich ein Agenten‑Gedächtnis bauen willst, überlegst, was du speicherst, was du vergisst und wann du konsolidierst, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur extrem schlecht.
+
+Ich pflege das [Dream Engine](https://github.com/scrypster/muninndb) – ein schlforbezogener Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Es führt Ebbinghaus‑Verfall, Hebb’sche Assoziation, Near‑Duplicate‑Merging und transitive Inferenz auf dem Agenten‑Gedächtnis zwischen Sitzungen aus. Meine Ablation-Studie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierungsphasen ist net-negative**, ähnlich wie das daDREAM Mutanten‑protein, das die langzeitige Potenzierung stärkt, aber das tatsächliche Lernen beeinträchtigt. Die Selektivität von Phasen ist wichtiger als die Anzahl der Phasen.
+
+**Wenn du Agenten‑Gedächtnis bauen willst, lies SleepGate und MemoryBench. Überspringe den Rest.**
 ## SleepGate: The Paper That Maps Directly to Offline Consolidation
 
 "Vergessen lernen: Schlafinspiriertes Gedächtnis für LLM-Agenten..."

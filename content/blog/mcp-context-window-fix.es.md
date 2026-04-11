@@ -1,14 +1,20 @@
 ---
-title: "Tu configuración MCP está quemando el 90 % de su ventana de contexto. Aquí tienes la solución"
+title: "Tu configuración de MCP está quemando el 90 % de su ventana de contexto. Aquí tienes la solución."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents", "tool-use"]
-description: "Cada herramienta MCP que conectas carga su esquema completo de antemano, antes de escribir una palabra. La carga diferida de Anthropic soluciona este problema."
-translationHash: "93efa8743ff6f126e8232ddc9c3c19ea"
-chunkHashes: "5f27ce3c9231cff8,3bcfebdbd143c944,8280812d5580fe0e,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,6fade40f4a9cbd4d"
+description: "Cada herramienta MCP que conectes carga su esquema completo de antemano, antes de que escribas una palabra. La carga diferida de Anthropic soluciona esto."
+images: ["/images/mcp-context-window-fix-og.png"]
+translationHash: "d1937a23222815138e9d6b6dbe57620f"
+chunkHashes: "e44a8422d15abf5a,3bcfebdbd143c944,8280812d5580fe0e,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---
-Conecta el servidor MCPde GitHub a Claude. Ahora verifica el contador de tokens antes de enviar un solo mensaje. [46,000 tokens, 22 % del contexto de Claude Opus](https://www.candede.com/articles/claude-tool-search), consumidos por las definiciones de herramientas que aún no has usado. Añade Jira (otro ~17 K), un servidor de Slack, Google Drive y estarás empujando más de 100 K de tokens de sobrecarga antes de cualquier trabajo real. [Anthropic midió instalaciones internas que alcanzan 134 K de tokens](https://www.anthropic.com/engineering/advanced-tool-use) solo en definiciones de herramientas.  
+## Por qué ocurre esto
 
-**Cada herramienta MCP que conectes es un impuesto pagado por adelantado, independientemente de que la herramienta se use o no.**  
+MCP servers publicitan sus herramientas como objetos de esquema JSON: names, descriptions, ...
+
+**Cada herramienta MCP que conectas implica un costo pagado por adelantado, ya sea que la herramienta se use o no.**
+
+Este es el comportamiento predeterminado de los clientes MCP hoy en día: cargar todas las definiciones de herramientas en el contexto al inicio de cada solicitud. La especificación no lo requiere. Es simplemente el camino de menor resistencia, y se escala mal.
+**Cada herramienta MCP que conectas implica un costo pagado por adelantado, ya sea que la herramienta se use o no.**
 
 Este es el comportamiento predeterminado de los clientes MCP hoy en día: cargar todas las definiciones de herramientas en el contexto al inicio de cada solicitud. La especificación no lo requiere. Es simplemente el camino de menor resistencia, y se escala mal.
 ## Why This Happens
@@ -109,3 +115,39 @@ Enable `defer_loading` on anything you don't use in every session. That's probab
 ---
 
 *Christian Pojoni builds context-efficient agents. More at [vasudev.xyz](https://vasudev.xyz).*
+##Diseñando servidores personalizados MCP para Tool Search
+
+Si controlas el servidor, las decisiones de diseño que tomas desde el principio determinan cuán bien Tool Search recupera tus herramientas después. Tres cosas importan.
+
+**Nombrar es la interfaz de regex.** Si planeas usar la variante regex, establece una convención de prefijo estricta desde el primer día: `github__create_pr`, `github__list_issues`, `jira__create_issue`. El separador de doble guion bajo hace que `github__.*` sea inequívoco. Mezclar convenciones dentro de un solo servidor (por ejemplo, `createPR` junto a `list_issues`) rompe la recuperación con regex por completo. Te verás obligado a usar BM25 para un catálogo que debería ser regex-friendly.
+
+**Descripciones son la interfaz de BM25.** Escribe cada descripción de herramienta como si fuera un fragmento de motor de búsqueda, porque lo es. Empieza con el verbo y el objeto: "Create a pull request in a GitHub repository" supera a "PR creation utility." Incluye sinónimos de la acción cuando son comunes: "Send an email (compose, deliver message) to one or more recipients via Gmail." El modelo de recuperación coincide con el texto completo de la descripción, por lo que la densidad de palabras clave importa más que la elegancia.
+
+**Decide con anticipación qué herramientas siempre se cargan.** Cada servidor tiene 2-3 herramientas que se llaman en casi cada sesión: una `read_file`, una `list_resources`, una `get_current_user`. Marca esas con `defer_loading: false` y diseña el resto considerando que estarán frías. El objetivo es que las herramientas frías sean lo suficientemente autónomas como para que Claude pueda llamarlas correctamente solo a partir de su descripción, sin haberlas visto antes en la sesión.
+
+Una decisión estructural valiosa desde el inicio: un servidor con muchas herramientas versus varios servidores centrados. Tool Search maneja ambas opciones, pero los servidores centrados te brindan un Namespace natural para patrones regex y hacen que `default_config: {defer_loading: true}` por servidor sea más granular. Un servidor `github` y un servidor `jira` que puedes diferir de forma independiente es más limpio que un servidor `project-management` con 80 herramientas mezcladas.
+
+---
+
+Tool Search está en fase de prueba pública y la precisión de recuperación aún no está lista para producción en todos los cargas de trabajo. Una [prueba externa de Arcade.dev cargando 4,027 herramientas](https://growthmethod.com/anthropic-tool-search/) en 25 flujos de trabajo comunes alcanzó una precisión de recuperación del 56-60% en la variante regex. Los propios números de Anthropic son mejores. [Opus 4.5 salta del 79.5% al 88.1%](https://medium.com/@DebaA/anthropic-just-shipped-the-fix-for-tool-definition-bloat-77464c8dbec9). Pero esos son rankings, no flujos de trabajo de producción.
+
+La implicación: escribe tus descripciones de herramientas como si BM25 tuviera que encontrarlas sin conocer el nombre de la herramienta. Omite jerga técnica en las descripciones. "Enviar correo transaccional vía SMTP" es más difícil de encontrar que "Enviar un correo a un usuario." La recuperación coincide con las descripciones, por lo que la descripción es la interfaz.
+
+Tool Search no funciona con ejemplos de uso de herramientas (few-shot prompting for tool calls). Si dependes de ejemplos para precisión, necesitas una solución alternativa.
+## Lo Que Dejé Afuera**Almacenamiento en caché de prompts + herramientas diferidas.** La documentación de Anthropic menciona combinar `defer_loading` con definiciones de herramientas en caché. Aún no he realizado pruebas con esto. La interacción entre la invalidación de caché y la inyección de esquemas a petición de uso no es evidente. [Documentación relevante aquí.](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
+
+**Implementaciones de búsqueda personalizadas.** Puedes implementar tu propia herramienta de búsqueda usando embeddings o búsqueda semántica, devolviendo bloques `tool_reference`. Esa es la vía adecuada para catálogos grandes (1,000+ herramientas) cuando la precisión de recuperación con BM25 no basta. El [post de Anthropic sobre ejecución de código con MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) abarca el patrón más amplio de presentar servidores MCP como APIs de código en lugar de llamadas directas a herramientas. Vale la pena leerlo como complemento.
+
+**Soporte de SDK de agentes.** A partir de principios de 2026, el Python Agent SDK no expone `defer_loading` como parámetro. Tienes que bajar al API crudo. [Esta incidencia de GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues/525) está en seguimiento.
+
+**Otros proveedores de modelos.** `defer_loading` es una característica de la API de Claude, no una característica del protocolo MCP. OpenAI, Gemini y otros no la tienen aún. Si estás construyendo agentes agnósticos de proveedor, necesitas una capa de enrutamiento del lado del cliente en su lugar.
+
+---
+
+Activa `defer_loading` en todo lo que no uses en cada sesión. Probablemente eso sea el 80 % de tus herramientas. Empieza con la [documentación oficial](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) y la [publicación de ingeniería de Anthropic](https://www.anthropic.com/engineering/advanced-tool-use) para la referencia completa de la API.
+
+---
+
+*Christian Pojoni construye agentes eficaces en contexto. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de esta entrada fue generada por IA.*

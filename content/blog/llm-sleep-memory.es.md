@@ -1,18 +1,19 @@
 ---
-title: "**Memoria inspirada en el sueño para agentes LLM: 6 artículos clasificados por lo que puedes lanzar esta semana**"
+title: "Memoria Inspirada en el Sueño para Agentes de LLM: 6 Papers Clasificados según Lo Que Puedes Enviar Esta Semana"
 date: 2026-04-06
 tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Leí 6 artículos sobrereplay de memoria inspirado en biología para agentes de LLM. Solo 2 valen la pena si estás construyendo, no publicando."
+description: "Leí 6 artículos sobre lamemoria inspirada biológicamente en agentes de LLM. Solo 2 valen la pena si estás construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "7d7143fa276305df6b558fbea6803a71"
-chunkHashes: "8a57d7471e3db5a8,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "5188e28ac222b01343c39b22ad9f3c50"
+chunkHashes: "8298230a4d61f2f6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---
-La mayoría de la investigaciónde memoria de LLM vive en un bucle cómodo: proponer arquitectura, probar en benchmark propio, afirmar mejora, y seguir adelante. Si realmente estás construyendo memoria de agentes, decide qué almacenar, qué olvidar y cuándo consolidar, la relación señal‑ruido en la literatura es brutal.
+La mayoría de las investigaciones de memoria de LLM se mantienen en un cómodo bucle: proponer arquitectura, probar en benchmark personalizado, afirmar mejora, pasar al siguiente. Si estás construyendo memoria de agentes, decidir qué almacenar, qué olvidar y cuándo consolidar, la relación señal‑ruido en la literatura es brutal.
 
-Mantengo el [Dream Engine](https://github.com/scrypster/muninndb), un pipeline de consolidación inspirado en el sueño para [MuninnDB](https://muninndb.com). Ejecuta decaimiento de Ebbinghaus, asociación Hebbiana, unión de duplicados cercanos y inferencia transitiva en la memoria de agentes entre sesiones. Mi estudio de ablación mostró que **ejecutar todas las fases de consolidación simultáneamente es neto‑negativo**, al igual que la proteína mutante daDREAM que potencia la potenciación a largo plazo pero dificulta el aprendizaje real. La selectividad de fase importa más que la cantidad de fases.
+Mantengo el [Dream Engine](https://github.com/scrypster/muninndb), un pipeline de consolidación inspirado en el sueño para [MuninnDB](https://muninndb.com). Ejecuta decaimiento de Ebbinghaus, asociación hebbiana, fusión de near‑duplicate y inferencia transitive sobre la memoria del agente entre sesiones. Mi estudio de ablación mostró que **ejecutar todas las fases de consolidación simultáneamente es net‑negative**, al igual que la proteína mutante daDREAM que potencia la potencia a largo plazo pero dificulta el aprendizaje real. La selectividad de fase importa más que el número de fases.
 
 **Si estás construyendo memoria de agentes, lee SleepGate y MemoryBench. Omite el resto.**
 ## SleepGate: El Papel Que Se Mapea Directamente a la Consolidación Offline

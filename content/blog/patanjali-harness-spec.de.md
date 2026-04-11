@@ -1,20 +1,23 @@
 ---
-title: "Patanjali hatte die Filter-Spezifikation. Wir haben nur die Tests geschrieben."
+title: "Patanjali hatte die Filter-Spezifikation. Wir haben gerade die Tests geschrieben."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "Speicherkonsolidierung verschlechterte die Abrufbarkeit. Drei Gestaltungskriterien aus Agenten‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur Aufmerksamkeitstheorie des Yogas."
+description: "Speicherkonsolidierung verschlechterte das Abrufen. Drei Gestaltungsprädizienten aus Agenten‑Gedächtnis‑Benchmarks und ihre überraschenden Parallelen zur yogischen Aufmerksamkeitslehre."
 images: ["/images/patanjali-harness-spec-og.png"]
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "4267ebbf3816e448aba743898377aee0"
-chunkHashes: "71f5185efef748fa,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "b68857d2e17efedb057d0b4955665417"
+chunkHashes: "d4cbf2e12a61dfdf,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-[MuninnDB](https://github.com/scrypster/muninndb)'s Konsolidierungssystem führte drei farbvarianten Duplicate Engrams exakt wie geplant (Kosinusähnlichkeit >= 0.95) zusammen. Der Abruf wurde schlechter. In einem 13-Engram-Vault führte das Entfernen von Duplikaten dazu, dass der Normalisierungspunkt verschoben wurde und relevante Ergebnisse in der Rangliste nach unten gedrängt wurden. Die Lösung war ein Guard Clause: `MinDedupVaultSize` (default 20), das Phase 2 dedup in kleinen Vaults überspringt. [PR #359](https://github.com/scrypster/muninndb/pull/359) schloss das Problem.
+## 1. Nichtalles Rauschen ist gleich (Vrtti Nirodha)
 
-Der Fehler war kein Bug im dedup-Algorithmus. Es war ein Versagen des *discernment*: eine gültige Konsolidierungsoperation, die in einem Kontext angewendet wurde, wo sie Schaden verursachte. Wann konsolidiert man, wann lässt man es bleiben, was zählt als Rauschen vs. Signal. Das Problem hat eine lange Geschichte außerhalb der Informatik. Ich habe drei spezifische Gestaltungsideen in den [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali) gefunden, die empirische Ergebnisse von [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [harness engineering framework](https://martinfowler.com/articles/harness_engineering.html) abbilden.
+[MuninnDB](https://github.com/scrypster/muninndb)'s Konsolidierungssystem verschmolz genau wie vorgesehen drei farbvarianten‑Duplikat‑Engramme (Kosinussimilarität >= 0.95). Der Abruf verschlechterte sich. In einem V autonom von 13 Engrammen führte das Entfernen von Duplikaten dazu, dass die Normalisierungsschwelle verschoben wurde und relevante Ergebnisse weiter unten im Ranking landeten. Die Lösung war ein Guard Clause: `MinDedupVaultSize` (default 20), überspringt Phase 2 Dedup in kleinen Vaults. [PR #359](https://github.com/scrypster/muninndb/pull/359) löste das Problem.
 
-**Die kontemplativen Traditionen entwickelten raffinierte Modelle der Aufmerksamkeitsfilterung. Einige dieser Modelle generieren testbare Hypothesen, die die aktuelle Agenten‑Gedächtnis‑Literatur nicht zulässt.**
+Der Fehler war kein Bug im Dedup‑Algorithmus. Es war ein Versagen der *Unterscheidung*: Eine gültige Konsolidierungsoperation wurde in einem Kontext angelsagt, in dem sie Schaden verursachte. Wann konsolidiert man, wann lässt man etwas stehen, was zählt als Rauschen und was als Signal? Dieses Problem hat eine lange Geschichte außerhalb der Informatik. Ich fand drei spezifische Entwurfs‑Prinzipien im [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali), die empirische Ergebnisse aus [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html) abbilden.
+
+**Die kontemplativen Traditionen entwickelten ausgeklügelte Modelle der Aufmerksamkeitsfilterung. Einige dieser Modelle generieren testbare Hypothesen, die die aktuelle Agenten‑Gedächtnis‑Literatur nicht erzeugt.**
 ## 1. Nicht alles Rauschen ist gleich (Vrtti Nirodha)
 
 Bevor der Dedup‑Fehler auftrat, traf **benchmark #311** ([https://github.com/scrypster/muninndb/issues/311](https://github.com/scrypster/muninndb/issues/311)) ein grundlegenderes Problem. Die ACT‑R‑Bewertung von MuninnDB ([issue #331](https://github.com/scrypster/muninndb/issues/331)) klammerte frische Engramme auf `raw=1.0`, sodass alle Abruf‑Scores identisch bei 0.9000 wurden. Das System konnte Signale von Rauschen nicht mehr unterscheiden. Jeder Eintrag erschien gleich relevant. Nach der Behebung ([PR #337](https://github.com/scrypster/muninndb/pull/337)) verbesserte sich der Score‑Bereich auf 0.18‑0.90 und die korrekte Top‑1‑Abrufung erreichte 5/5 Abfragen. Die einheitliche Behandlung von Einträgen zerstörte die Abruf‑Qualität.

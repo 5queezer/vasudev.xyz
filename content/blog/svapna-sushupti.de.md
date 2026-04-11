@@ -1,20 +1,17 @@
 ---
-title: "Svapna oderSushupti: Was Drei Traditionen Über Offline‑Gedächtniskonsolidierung Sagen"
+title: "Svapna orSushupti: Was drei Traditionen über die Offline-Speicherkonsolidierung sagen"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurowissenschaft, neuere KI-Papiere und ein antiker Sanskrit-Text konvergieren auf denselben Einblick zur offline‑Konsolidierung, einigen sich jedoch nicht darüber, welche Schlafphase am wichtigsten ist."
+description: "Neuroscience, neue KI-Papiere und ein antiker Sanskrit-Text konvergieren auf denselben Einblick über offline-Konsolidierung, doch unterscheiden sich darin, welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "cd45eaa090e12d01df6f08c279243242"
-chunkHashes: "b4a06039cc574fc6,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
+images: ["/images/svapna-sushupti-og.png"]
+translationHash: "508567e8bc4e603586cd03ba9c67cec7"
+chunkHashes: "fafa74eb8553b569,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
-[Mein letzter Beitrag](/blog/why-ai-agents-need-sleep/) zeigte, dass KI-Agenten Schlaf benötigen. Mehrere Menschen stellten die offensichtliche Nachfrage: Was bedeutet das eigentlich? Ist „sleep“ nur ein Metapher für das Ausführen eines Cron-Jobs, oder geht die Analogie tiefer?
-
-Ich habe eine Woche damit verbracht, über drei Literaturbereiche zu lesen, die fast nie zitieren: aktuelle AI Memory-Papiere, Schlafneuroscience und das [Mandukya Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie konvergieren auf denselben Kerninsight zur offline-Konsolidierung. Sie bringen zudem einen Widerspruch ans Licht, der sich als die wichtigste Designfrage in KI-Gedächtnissystemen herausstellt.
-
-**Alle drei Traditionen sind sich einig, dass offline-Verarbeitung notwendig ist. Keine von ihnen ist sich einig, ob Rekombination oder Auflösung die eigentliche Arbeit leistet.**
+**Alle drei Traditionensind sich einig, dass Offline-Verarbeitung notwendig ist. Keine von ihnen stimmt darüber überein, ob Rekombination oder Auflösung die eigentliche Arbeit leisten.**
 ## Die Landschaft: Drei Traditionen,ein Problem
 
 Das Problem, das jede Tradition löst, ist dasselbe: ...

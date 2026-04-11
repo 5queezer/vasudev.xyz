@@ -1,20 +1,25 @@
 ---
-title: "Deine Agenten-Speichermetriken lügen dir. Hier ist, wie du sie verankern kannst."
+title: "Deine Speichermetriken deines Agents lügen dir. So verankerst du sie."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "Speicher‑Konsolidierung wirkt auf Dashboards fantastisch. Wenn deine Metriken aber ohne verbesserte Abrufbarkeit besser werden, optimierst du einen abgetrennten Proxy."
+description: "Speicherkonsolidierungsieht auf Dashboards fantastisch aus. Aber wenn deine Metriken sich verbessern können, ohne dass Abrufe besser werden, optimierst du einen entkoppelten Proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "9f0bdda020b191c4a5667a153cee772f"
-chunkHashes: "b019afcdeb312967,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "71f9d659b7e8df2b2a54848debbdf15a"
+chunkHashes: "7364a82cb3eebe67,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Ich habe ein Speicherkonsolidierungssystem für KI-Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, verwirft veraltete Einträge und erzeugt ein Traumtagebuch, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: dedup-Rate steigt, Speicheranzahl sinkt, Assoziationsdichte steigt.
+##The Problem Has a Name
 
-Keines davon sagt dir, ob der Agent zur richtigen Zeit das Richtige erinnert.
+Ich habe kürzlich einen Aufsatz namens ["The Collapse of Proxy Integrity"](https...) gelesen.
 
-**Wenn eine Metrik verbessert werden kann, ohne dass sich die Abruffreigabequalität ebenfalls verbessert, ist diese Metrik ein abgehängter Proxy. Optimier sie nicht.**
+Ich habe ein Speicherkonsolidierungssystem für KI‑Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, zerfällt veraltete Einträge und erzeugt ein Traumtagebuch, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: dedup‑Rate steigt, Speichermenge nimmt ab, Associationsdichte steigt.
+
+Keine davon sagt dir, ob der Agent zur richtigen Zeit das Richtige erinnert.
+
+**Wenn eine Metrik sich verbessern kann, ohne dass sich auch die Abrufqualität ebenfalls verbessert, ist das ein losgelöster Proxy. Optimieren Sie ihn nicht weiter.**
 ## TheProblem Has a Name
 
 I recently read an essay called ["The Collapse of Proxy Integrity"](https...

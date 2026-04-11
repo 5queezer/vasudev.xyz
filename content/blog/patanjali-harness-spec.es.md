@@ -1,15 +1,21 @@
 ---
-title: "Patanjali tenía la especificación defiltrado. Acabamos de escribir las pruebas."
+title: "Patanjali tenía la especificación de filtrado. Solo escribimos las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "La consolidación dela memoria empeoró la recuperación. Tres principios de diseño de la memoria de agentes, y sus inesperados paralelos en la teoría de la atención yogui."
+description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de la memoria del agente y sus inesperados paralelos en la teoría de la atención yogui."
 images: ["/images/patanjali-harness-spec-og.png"]
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "4267ebbf3816e448aba743898377aee0"
-chunkHashes: "71f5185efef748fa,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "b68857d2e17efedb057d0b4955665417"
+chunkHashes: "d4cbf2e12a61dfdf,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
+La falla no fue un error en el algoritmo dedup. Fue un fracaso de *discernimiento*: una operación de consolidación válida aplicada en un contexto donde causó daño. Cuándo consolidar, cuándo dejarlo como está, qué cuenta como ruido versus señal. Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en los [Yoga Sutras of Patanjali](https://es.wikipedia.org/wiki/Yoga_sutras_de_Patanjali) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, marzo de 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) y el [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html) de Böckeler.
+
+**Las tradiciones contemplativas construyeron modelos sofisticados de filtrado de atención. Algunos de esos modelos generan hipótesis comprobables que la literatura actual de memoria agente no hace.**
+
+La solución fue una cláusula guard: `MinDedupVaultSize` (default 20), omitiendo la Phase 2 dedup en vaults pequeños.
 ## 1. No todo el ruido es igual (Vrtti Nirodha)
 
 Antes del fallo de dedup, [benchmark #311](https://git...  
@@ -127,10 +133,3 @@ Una entrada de trazado se ve así:
 El agente nunca ve `excluded`. El motor de benchmark ve todo eso. Si `entry_089` era la respuesta correcta y se filtró porque su peso Hebbian era bajo, eso aparece en la trazada, y la siguiente iteración de la política de recuperación puede ajustarse.
 
 En la taxonomía de Böckeler: la Memory Trait es una guía computacional (determina qué entra en el contexto). El registro de trazado es un sensor computacional (observa lo ocurrido). No se fusionan. La pratyahara no es filtrado consciente en el sentido de *el sistema filtrado ser consciente de la exclusión*. Es filtrado consciente en el sentido de *el diseñador ser consciente*, mediante los registros de trazado, para que la siguiente iteración del filtro mejore. La conciencia corresponde al ingeniero del anclaje que lee las trazadas, no al agente que ejecuta las consultas.
-## Where the metaphor breaks
-
-Dos lugares.
-
-First, the [Koshas](https://es.wikipedia.org/wiki/Kosha) (Vedantic body layers: físico, energético, mental, discriminativo, de dicha) imply a hierarchy from gross to subtle, with the subtle being "higher." Harness engineering has no such value ordering. A deterministic linter is not "menor" than an LLM-as-judge. Böckeler explicitly notes that computational sensors are cheap enough to run on every change, while inferential controls are expensive and probabilistic. In practice, you want to *maximize* the "gross" layer, not transcend it. Importar la jerarquía Kosha al harness engineering te llevaría a sobreinvertir en controles inferenciales y subinvertir en los deterministas. The opposite of what works.
-
-Second, yogic practice aims at liberation from the cycle of conditioned response. Agent architecture aims at *effective* conditioned response. You want the agent to develop reliable patterns, not dissolve them. Vairagya in the yogic sense means letting go of *todo* apego. In harness engineering it means letting go of *incorrectos* attachments. The goal is better conditioning, not no conditioning. Importar el marco soteriológico completo llevaría a un agente que alcanza la iluminación al negarse a recuperar algo en absoluto. Inútil.

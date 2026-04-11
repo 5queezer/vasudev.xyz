@@ -1,18 +1,19 @@
 ---
-title: "Añadiendo OAuth 2.1 a un Servidor MCP Self-Hosted: 4 Trucos de la Trinchera"
+title: "Agregando OAuth 2.1 a un Servidor MCP Autohospedado: 4 Trucos de la Trinchera"
 date: 2026-03-25
 description: "¿Qué se rompió cuando conecté claude.ai a mi propia instancia de Reactive Resume mediante OAuth?"
+images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 series: ["Field Notes"]
-translationHash: "afc9f66fc5259621feb4327254e2ba23"
-chunkHashes: "4e531ee75752b1c8,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
+translationHash: "003881ab36c1783cc6380677c2c25be7"
+chunkHashes: "e943155a08ad80a1,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
-# Añadiendo OAuth 2.1 a un Servidor MCP Autohospedado: 4 Trampas del Trench
+MCP (ModelContext Protocol) permite que asistentes de IA llamen a herramientas en servidores remotos. Pero si tu servidor MCP es autoalojado, claude.ai necesita autenticarse contra tus cuentas de usuario, no de Anthropic. Eso significa que tu servidor debe convertirse en un proveedor completo de OAuth 2.1: Registro dinámico de clientes, Código de autorización con PKCE, intercambio de tokens.
 
-Presenté una [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para añadir esto a [Reactive Resume](https://github.com/amruthpillai/reactive-resume), el creador de currículums de código abierto. Seis commits, una refactorización a mitad de PR después de que el mantenedor señaló una deprecación, y varias horas de depuración de cadenas de autorización. Esto es la parte OAuth de [esa historia](/blog/shipping-a2a-protocol-support-in-rust/).
+Presenté [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para agregar esto a [Reactive Resume](https://github.com/amruthpillai/reactive-resume), el creador de currículums de código abierto. Seis commits, una refactorización a mitad de PR después de que el mantenedor señaló una depreciación, y varias horas de depuración de cadenas de autenticación. Esto es la parte de OAuth de [esa historia](/blog/shipping-a2a-protocol-support-in-rust/).
 
 **MCP OAuth funciona, pero la especificación deja cuatro trampas que los tutoriales omiten.**
 ## 1. Tuservidor MCP necesita dos endpoints .well-known, no uno

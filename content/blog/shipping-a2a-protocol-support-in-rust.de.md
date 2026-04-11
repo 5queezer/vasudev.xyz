@@ -1,15 +1,23 @@
 ---
-title: "Versand von A2A Protocol Support in Rust: 7 Fallstricke, die niemand dir warnt"
+title: "Einführung der A2A-Protokoll-Unterstützung in Rust: 7 Gotchas, vor denen dich niemand warnt"
 date: 2026-03-25
-description: "Was ich beim Hinzufügen vonAgent‑zu‑Agent‑Protokollunterstützung zu einem Open‑Source‑Agenten‑Framework gelernt habe"
+description: "Was ich beim Hinzufügen von Agent‑zu‑Agent‑Protokoll‑Unterstützung zu einem Open‑Source‑Agenten‑Framework gelernt habe"
+images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]
-translationHash: "32064f3ab571a7025e0136cd3638842f"
-chunkHashes: "cc200149cfac5d60,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
+translationHash: "e49e1a8762cabb38544bf8328b98c93d"
+chunkHashes: "464e3e41b8d8b968,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
 ---
+## 1. Agent Cards sind per Definition unauthentifiziert, und das ist in Ordnung
+
+The [A2A (Agent-to-Agent) protocol](https://github.com/google/A2A) ist Google's offenes Standardverfahren für die Interoperabilität von Agenten: Entdeckung, Auftragsdelegierung, Lifecycle‑Management über HTTP/JSON‑RPC. Sie liegt neben MCP, genau wie TCP neben USB liegt: einer verbindet Agenten mit Agenten, der andere verbindet Agenten mit Werkzeugen.
+
+Ich habe vor kurzem [PR #4166](https://github.com/5queezer/hrafn/pull/4166) mit nativem A2A‑Support zu Hrafn hinzugefügt. Das bedeutet sowohl einen eingehenden JSON‑RPC 2.0‑Server als auch ein ausgehenden Client‑Tool, geschrieben in Rust. Die PR bestand 40 Tests und lief E2E über fünf Raspberry Pi Zero 2 W‑Instanzen. Auf dem Weg bin ich über jede scharfe Kante gestolpert, die die Spezifikation nicht erwähnt.
+
+**Die A2A‑Spezifikation ist auf dem Papier sauber. Die Sicherheits‑Kanten werden dich in der Produktion schneiden.**
 ## 1. Agent Cards are unauthenticated by design, and that's fine
 
 Das [A2A (Agent-to-Agent)-Protokoll](https://github.com/google/A2A) ist Googles offenes Standardverfahren für die Interoperabilität von Agenten: Discovery, task delegation, lifecycle management über HTTP/JSON-RPC. Es steht neben MCP, ähnlich wie TCP neben USB liegt: Eines verbindet Agenten miteinander, das andere verbindet Agenten mit Werkzeugen.
@@ -456,3 +464,109 @@ Lesen Sie die vollständige Implementierung in [PR #4166](https://github.com/5qu
 *Christian Pojoni baut [Hrafn](https://github.com/5queezer/hrafn), ein Rust-Agenten-Runtime für Edge-Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
 
 *Das Cover-Bild für diesen Beitrag wurde von KI generiert.*
+## 4. Same-Host A2A bricht eigenen SSRF-Schutz
+
+Hier ist die Ironie: Ich habe SSRF-Schutz gebaut, der localhost sperrt. Dann habe ich fünf Hrafn‑Instanzen auf einem einzigen Raspberry Pi bereitgestellt, und sie konnten nicht miteinander kommunizieren.
+
+Multi‑Instanz‑A2A auf einer einzelnen Maschine ist ein legitimer Anwendungsfall. Mehrere spezialisierte Agenten auf einer Maschine kommunizieren über `localhost:300X`. Aber deine SSRF‑Sperrliste blockierte das.
+
+Die Lösung ist ein bedingter Bypass (`allow_local`), der aus der Konfiguration und nicht aus der Benutzereingabe stammt:
+
+```rustlet allow_local = a2a_config
+    .public_url
+    .as_ref()
+    .map(|u| is_local_url(u))
+    .unwrap_or(false);
+```
+
+Wenn deine eigene `public_url` auf localhost zeigt, befindest du dich eindeutig im lokalen Betrieb, sodass ausgehenden Aufrufen zu localhost erwartet werden. Ist `public_url` jedoch eine echte Domain, bleibt localhost gesperrt.
+
+Bekannter Residuum‑Risiko: `allow_local` ist ein generischer Bypass. Eine Peer‑Allowlist (spezifische IPs/Ports) ist die richtige langfristige Lösung. Implementiere den Bypass, dokumentiere das Risiko und erstelle das Folgemanagement‑Issue.
+## 5. TaskStore braucht ein Limit, oder du bekommst kostenlosen DoS
+
+A2A‑Aufgaben sind zustandsbehaftet. Jede `message/send`‑Anforderung erstellt einen Aufgaben‑Eintrag. Wenn du Aufgaben im Speicher speicherst (angemessen für v1), kann ein Angreifer 100.000 Anfragen senden und deinen Heap erschöpfen.
+
+Begrenze es. Ich habe 10.000 verwendet mit einer 503‑Antwort, wenn das Limit erreicht ist:
+
+```rustconst MAX_TASKS: usize = 10_000;
+
+async fn create_task(&self, task: Task) -> Result<(), A2aError> {
+    let store = self.tasks.read().await;
+    if store.len() >= MAX_TASKS {
+        return Err(A2aError::ServiceUnavailable);
+    }
+    drop(store);
+    self.tasks.write().await.insert(task.id.clone(), task);
+    Ok(())
+}
+```
+
+Eine Konstante, eine Prüfung, ein Fehlerpfad. In v1 gibt es keine Aufräumungs‑Policy. Das ist Komplexität für die Nachverfolgung. Der Limit allein verhindert den Absturz.
+
+Warum 10.000? Back-of-envelope: jedes `Task` ist ungefähr 2‑4 KB groß, wenn es serialisiert wird. 10 000 Aufgaben = 20‑40 MB. Akzeptabel auf einem Pi Zero 2 W mit 512 MB RAM. Passe es für deine Zielhardware an.
+## 6.Fehlermeldungen sind ein Informationskanal
+
+Wenn eine eingehende A2A‑Anforderung fehlschlägt, was gibst du zurück?
+
+```json
+{"error": {"code": -32600, "message": "Task abc-123 not found in store"}}
+```
+
+Du hast bestätigt, dass `abc-123` ein gültiges Task‑ID‑Format ist und dass dein Store nach ihr indiziert wird. Ein Angreifer kann Task‑IDs aufzählen.
+
+Verstecke ausgehende Fehler. Protokolliere die vollständigen Details serverseitig:
+
+```rust
+// To the caller:
+Err(json_rpc_error(-32600, "invalid request"))
+
+// In deinen Logs:
+error!(task_id = %id, "task not found in store");
+```
+
+Allgemeine Fehler an den Aufrufer. Konkrete Fehler in deinen Logs. Das gleiche Prinzip wie bei Web‑Anwendungen, aber leicht zu vergessen, wenn du einen Protocol‑Handler baust und in hilfreichen JSON‑RPC‑Antworten denkst.
+## 7. Das Werkzeug existiert, aber das Modell kann es nicht sehen
+
+Dieses kostete mich einen Nachmittag debugging.
+
+Das A2A‑Tool war im Tool‑Register von Hrafn registriert. `cargo test` erfolgreich. Die Gateway‑Instanz servierte Agentenkarten. Aber als ich tatsächlich eine Instanz startete und sie aufforderte, mit einem anderen Agenten zu kommunizieren, hatte das Modell keine Ahnung, dass das Tool existierte.
+
+Das Problem: Hrafn verwendet in seinem Bootstrapsystem‑Prompt für Modelle, die native Funktionsaufrufe nicht unterstützen (wie einige OpenAI Codex‑Varianten), eine textbasierte Tool‑Beschreibungsliste. Das Tool war zwar im Register, aber nicht im `tool_descs`‑Array, das in den Prompt injiziert wird.
+
+```rust
+if config.a2a.enabled {
+    tool_descs.push((
+        "a2a",
+        "Communicate with remote A2A-compatible agents. Actions: \
+         'discover', 'send', 'status', 'result'.",
+    ));
+}
+```
+
+Lektion: Teste den gesamten Pfad. Unit‑Tests zeigten, dass das Tool beim Aufrufen funktionierte. Integration‑Tests zeigten, dass das Gateway Anfragen akzeptierte. Doch das Modell rief das Tool nie auf, weil es nicht wusste, dass es existierte. E2E‑Tests (tatsächliche Modell‑Inference, die zu echten Endpunkten spricht) erwischten, was Unit‑Tests nicht konnten.
+---
+## Was ich bewusstweggelassen habe (absichtlich)
+
+Die PR enthält ausdrücklich **keine**:
+
+* **SSE streaming.** A2A unterstützt es, aber synchroner Anfrage/Antwort‑Call deckt 90 % der Anwendungsfälle ab. Streaming ist ergänzend, nicht grundlegend.
+* **mTLS/OAuth.** Bärentreiber‑Token reichen für das Vertrauensmodell (gleicher Host, bekannte Peers). Zertifikatsbasierte Auth ist Enterprise‑Grade‑Komplexität für ein Pi‑Deployment. Siehe auch: [Adding OAuth 2.1 to a Self-Hosted MCP Server](/blog/adding-oauth-mcp-server-gotchas/).
+* **Agent registry.** Entdeckung ist manuell (du konfigurierst die URL). Automatisches Registry/mDNS ist für das Folgemaß issue geplant.
+* **Task eviction.** Die 10K‑Grenze ist eine feste Mauer, kein LRU‑Cache. Für v1 ausreichend.
+
+Jede „nicht enthalten“-Angabe ist eine bewusste Scope‑Entscheidung, kein Mangel. Der PR‑Beschreibung listet jede mit einem Link zum Folgemaß issue auf. Reviewer können genau sehen, was in Erwägung gezogen und vertagt wurde.
+## Die Einrichtung, diees funktionieren lässt
+
+Fünf Hrafn‑Instanzen auf einem einzigen Raspberry Pi Zero 2 W (quad‑core ARM, 512 MB), jede mit einer unterschiedlichen Persönlichkeit (Kerf, Sentinel, Architect, Critic, Researcher), kommunizieren via A2A über localhost‑Ports 3001‑3005. Gestützt von gpt-5.1-codex-mini.
+
+Instanz A entdeckt die Agentenkarte von Instanz B, sendet eine Aufgabe ("code für Sicherheitsprobleme überprüfen"), erhält eine Antwort über die standardmäßige `process_message`‑Pipeline. Keine benutzerdefinierte Orchestrierung. Die A2A‑Schicht ist nur ein weiterer Eingabe‑Channel.
+
+Läuft es auf einem Pi Zero, läuft es überall.
+
+Lies die vollständige Implementierung in [PR #4166](https://github.com/5queezer/hrafn/pull/4166). Jede der genannten Gotchas entspricht einem bestimmten Commit mit Tests. Wenn du A2A in dein eigenes Framework integrierst, beginne mit dem SSRF‑Schutz in `a2a_client.rs` und der TaskStore‑Grenze in `task_store.rs`. Die Weiterverfolgung für Peer‑Entdeckung und LAN mDNS ist in [#4643](https://github.com/5queezer/hrafn/issues/4643) verfolgt.
+
+---
+
+*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑Agenten‑Runtime für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Cover‑Bild für diesen Beitrag wurde von KI generiert.*

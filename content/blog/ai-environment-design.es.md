@@ -1,16 +1,23 @@
 ---
-title: "Deja de diseñar tu sistema de IA. Diseña su entorno."
+title: "Deja de diseñar tu sistema de IA. Diseña su entorno"
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "Los sistemas de autoevolución de IA fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que debe evolucionar es la presión selectiva, no solo el genoma."
+description: "Los sistemas autoregenerados de IA fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "3400f4c32720f651e354d54b64fc3e82"
-chunkHashes: "5f162ec2b9eb32bc,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
+images: ["/images/ai-environment-design-og.png"]
+translationHash: "ab8226124574242386745f7c5e6873af"
+chunkHashes: "df9a169530aeaf1d,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---
-**La unidad deevolución no es la característica. Es el ciclo de mutación/selección.** Esa distinción cambia todo acerca de cómo construyes un marco de IA auto‑evolutivo. La mayoría de los sistemas que se autodenominan "auto‑mejorantes" están haciendo AutoML. Optimizan sobre un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero está más cerca de AutoML que de la evolución de enfoque abierto. La diferencia resulta ser decisiva arquitectónicamente en dos sentidos.  ---
+Pasé una semana intentando diseñar un"vector-native programming language for LLMs". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin prompts, solo vectores de intervención. Era intelectualmente satisfactorio y, en la práctica, incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
+
+**La unidad de evolución no es la característica. Es el ciclo de mutación/selección.**
+
+Esa distinción cambia todo sobre cómo construyes un harness de IA autoevolutivo. La mayoría de los sistemas que se denominan "self-improving" están haciendo AutoML. Optimizan sobre un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero se acerca más a AutoML que a evolución abierta. La diferencia resulta ser decisiva arquitectónicamente en dos sentidos.
+
+---
 ## Genotipo y Fenotipo No Son la Misma Capa
 
 Los sistemas biológicos separan lo que persiste de lo que...

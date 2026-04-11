@@ -1,21 +1,21 @@
 ---
-title: "Las métricas dememoria de tu agente te están mintiendo. Así puedes anclarlas."
+title: "Las Métricas de Memoria de tu Agente Te Están Engañando. Aquí tienes cómo fundamentarlas."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "La consolidación de la memoria se ve genial en los tableros. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desconectado."
+description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desconectado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "9f0bdda020b191c4a5667a153cee772f"
-chunkHashes: "b019afcdeb312967,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "71f9d659b7e8df2b2a54848debbdf15a"
+chunkHashes: "7364a82cb3eebe67,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Hace poco leí un ensayollamado ["The Collapse of Proxy Integrity"](https...$$
-Construí un sistema de consolidación de memoria para agentes de IA. Duplica recuerdos, refuerza asociaciones, decaya entradas obsoletas y produce un diario de sueños que realmente puedes leer. El panel de control se ve fantástico: tasa de deduplicación en aumento, recuento de memoria en disminución, densidad de asociación en ascenso.
+I built a memory consolidation system for AIagents. It deduplicates memories, strengthens associations, decays stale entries, and produces a dream journal you can actually read. The dashboard looks fantastic: dedup rate up, memory count down, association density climbing.
 
-Ninguno de eso te dice si el agente recuerda la cosa correcta en el momento adecuado.
+None of that tells you whether the agent remembers the right thing at the right time.
 
-**Si una métrica puede mejorar sin que también mejore la calidad de recuperación, esa métrica es un proxy desvinculado. Deja de optimizarla.**
+**If a metric can improve without retrieval quality also improving, that metric is a detached proxy. Stop optimizing it.**
 ## El Problema Tiene un Nombre
 
 Recientemente leí un ensayo titulado ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) escrito por un investigador independiente llamado Flyxion. El argumento central es: cuando una señal medible se desacopla del proceso que debería rastrear, la señal se vuelve autorreferencial. Terminás optimizando el mapa mientras el territorio se pudre.
