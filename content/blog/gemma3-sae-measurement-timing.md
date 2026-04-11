@@ -54,7 +54,7 @@ The interpretability field has latched onto one measurement window (encoding-tim
 
 ## Where the Bridge Breaks
 
-This principle maps loosely onto an idea from neuroscience about observation and substrate dependency: the same behavior (say, risk-avoidance) can manifest in different neural substrates (amygdala during threat detection, anterior cingulate during conflict resolution). Measure only the amygdala and you see half the phenomenon. The Vedic concept of *pratyahara* (sense withdrawal) has a similar structure: truth perceived through one sense is incomplete when another sense is absent.
+This principle maps loosely onto an idea from neuroscience about observation and substrate dependency: the same behavior (say, risk-avoidance) can manifest in different neural substrates (amygdala during threat detection, anterior cingulate during conflict resolution). Measure only the amygdala and you see half the phenomenon. The Vedic concept of [*pratyahara*](/blog/patanjali-harness-spec/) (sense withdrawal) has a similar structure: truth perceived through one sense is incomplete when another sense is absent.
 
 But here's where the metaphor collapses: unlike biological systems where multiple substrates interact simultaneously, a transformer generates sequentially. Encoding happens, then generation happens. The substrates are temporally ordered. You can't simultaneously measure both and average them. You must choose which phase to interrogate. And most behaviors of practical concern (hallucination, deception, refusal edge cases) happen in the phase you're not measuring.
 
