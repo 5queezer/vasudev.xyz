@@ -28,8 +28,10 @@ defer_loading
 (?i)repo
 (?i)samskara
 (?i)samskaras
+(?i)sanghas
 (?i)specced
 (?i)stdout
+(?i)supercompensation
 (?i)sushupti
 (?i)svapna
 (?i)taijasa
@@ -49,18 +51,23 @@ Airtable's
 Anthropic's
 BM25
 Barbosa
+Barks
 Birgitta
 Böckeler
 ChromaDB
 ConvoMem
 Dream Engine
 Ebbinghaus
+Examen
+Fana
 Flyxion
 Flyxion's
 FurnitureBench
 Gemini
 Gemma
 Ghosh
+Gnosis
+Ignatian
 (?i)GoodAI
 Goodhart's
 Hebbian
@@ -69,6 +76,7 @@ Hrafn's
 IPs
 Jira
 Jovovich
+Kensho
 Kosha
 Koshas
 LLMs
@@ -83,6 +91,7 @@ MemoryBench
 MemoryOS
 Meta-Harness
 MuninnDB
+Meister
 Māṇḍūkya
 Namespace
 OAuth
@@ -91,6 +100,7 @@ Optuna
 Patanjali
 Pojoni
 Postgres
+Rumi
 SAEs
 Sigman
 Sutras
@@ -98,6 +108,7 @@ TruthfulQA
 Upaniṣad
 Vec
 Vedantic
+Vipassana
 Xie's
 Zhong
 arXiv
