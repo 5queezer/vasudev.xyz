@@ -21,8 +21,11 @@ defer_loading
 (?i)hostname
 (?i)hymon
 (?i)interpretability
+(?i)logit
+(?i)logits
 (?i)jagrat
 (?i)mandukya
+(?i)mutator
 (?i)neocortex
 (?i)nirodha
 (?i)overfitting
@@ -35,6 +38,8 @@ defer_loading
 (?i)specced
 (?i)stdout
 (?i)supercompensation
+(?i)tokenization
+(?i)tokenizer
 (?i)sushupti
 (?i)svapna
 (?i)taijasa
@@ -74,6 +79,7 @@ Ignatian
 (?i)GoodAI
 Goodhart's
 Hebbian
+Haruki
 Hrafn
 Hrafn's
 IPs
@@ -82,6 +88,7 @@ Jovovich
 Kensho
 Kosha
 Koshas
+LLM's
 LLMs
 LOO
 LocOMo
@@ -89,6 +96,7 @@ Loihi
 LongMemEval
 Maṇḍūkya
 Mem0
+Murakami
 MemPalace
 MemoryBench
 MemoryOS
@@ -106,6 +114,7 @@ Postgres
 SAEs
 Sigman
 Sutras
+Transposases
 TruthfulQA
 Upaniṣad
 Vec
