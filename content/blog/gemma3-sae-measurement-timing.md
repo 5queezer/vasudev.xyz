@@ -2,6 +2,8 @@
 title: "Sparse Autoencoders Can't Measure Generation-Time Behavior. That's Not a Bug."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
+series: ["Reading the Residual Stream"]
+series_weight: 1
 description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination detection fails. The answer turned out to be deeper than measurement timing."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
