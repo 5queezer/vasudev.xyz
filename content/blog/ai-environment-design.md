@@ -1,7 +1,7 @@
 ---
 title: "Stop Designing Your AI System. Design Its Environment."
 date: 2026-04-04
-tags: ["ai", "agents", "architecture", "mechanistic-interpretability", "llm", "hrafn"]
+tags: ["ai", "agents", "architecture", "interpretability", "llm"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Self-evolving AI harnesses fail when they optimize a fixed evaluator. The biological model is right: what needs to evolve is the selection pressure, not just the genome."

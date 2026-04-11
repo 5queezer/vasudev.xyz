@@ -1,7 +1,7 @@
 ---
 title: "Sleep-Inspired Memory for LLM Agents: 6 Papers Ranked by What You Can Ship This Week"
 date: 2026-04-06
-tags: ["memory", "llm-agents", "vector-stores", "muninndb", "dream-engine", "consolidation"]
+tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "I read 6 papers on biologically-inspired memory replay for LLM agents. Only 2 are worth your time if you're building, not publishing."
