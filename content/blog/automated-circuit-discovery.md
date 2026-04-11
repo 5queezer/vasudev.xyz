@@ -2,6 +2,8 @@
 title: "Capital-of Is Not a Single SAE Feature. So I Built a Mutation Loop to Find What Is."
 date: 2026-04-11
 tags: ["ai", "mechanistic-interpretability", "interpretability", "llm", "sparse-autoencoders"]
+series: ["Reading the Residual Stream"]
+series_weight: 2
 description: "SAE features can't isolate relations in Gemma-2-2B. I built a mutation-selection loop that can. The bottleneck was tokenization."
 ---
 

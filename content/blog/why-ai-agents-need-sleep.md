@@ -6,6 +6,7 @@ series: ["Building Agents That Sleep"]
 series_weight: 1
 description: "AI agents capture memories but never consolidate them. Here's how MuninnDB's Dream Engine borrows from neuroscience to fix that."
 images: ["/images/dream-engine.png"]
+aliases: ["/blog/stop-hoarding-memories-let-your-agent-sleep/"]
 ---
 
 I contribute to a cognitive database for AI agents called [MuninnDB](https://github.com/scrypster/muninndb). It stores everything: session notes, project context, work observations, legal documentation. After a few weeks of daily use, entries pile up. Finding things still works. Semantic search is good at retrieval. But the store itself was rotting. Near-duplicate entries from sessions that covered the same ground. Stale facts superseded by newer ones. No system for distinguishing "critical legal note" from "offhand remark about Docker networking."
