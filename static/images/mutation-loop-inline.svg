@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400">
+
+  <!-- Background -->
+  <rect width="900" height="400" fill="#0d1117"/>
+
+  <!-- Defs -->
+  <defs>
+    <marker id="mut-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#8b949e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="mut-arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="mut-arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="mut-arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#7F77DD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Main flow: left to right -->
+
+  <!-- LLM Proposer -->
+  <rect x="40" y="130" width="130" height="70" rx="8" fill="#161b22" stroke="#7F77DD" stroke-width="1.5"/>
+  <text x="105" y="158" text-anchor="middle" fill="#7F77DD" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="13">LLM Proposer</text>
+  <text x="105" y="178" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">generate relation</text>
+
+  <!-- Arrow: Proposer → Prompt Set -->
+  <line x1="170" y1="165" x2="220" y2="165" stroke="#8b949e" stroke-width="1.5" marker-end="url(#mut-arrow)"/>
+
+  <!-- Prompt Set -->
+  <rect x="225" y="130" width="130" height="70" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="290" y="158" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="13">Prompt Set</text>
+  <text x="290" y="178" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">8 pos / 8 neg</text>
+
+  <!-- Arrow: Prompt Set → Tokenizer Gate -->
+  <line x1="355" y1="165" x2="405" y2="165" stroke="#8b949e" stroke-width="1.5" marker-end="url(#mut-arrow)"/>
+
+  <!-- Tokenizer Gate -->
+  <rect x="410" y="130" width="140" height="70" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+  <text x="480" y="153" text-anchor="middle" fill="#c9d1d9" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="13">Tokenizer Gate</text>
+  <text x="480" y="173" text-anchor="middle" fill="#f85149" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">single-token?</text>
+  <text x="480" y="190" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="9">diversity check</text>
+
+  <!-- Arrow: Tokenizer Gate → Probe Pipeline (passing) -->
+  <line x1="550" y1="165" x2="600" y2="165" stroke="#3fb950" stroke-width="1.5" marker-end="url(#mut-arrow-green)"/>
+  <text x="575" y="155" text-anchor="middle" fill="#3fb950" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="9">pass</text>
+
+  <!-- Probe Pipeline -->
+  <rect x="605" y="130" width="130" height="70" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="670" y="153" text-anchor="middle" fill="#3fb950" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="13">Probe Pipeline</text>
+  <text x="670" y="173" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">LOO + ablation</text>
+  <text x="670" y="190" text-anchor="middle" fill="#8b949e" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="9">diff score</text>
+
+  <!-- Arrow: Probe Pipeline → Archive -->
+  <line x1="735" y1="165" x2="780" y2="165" stroke="#3fb950" stroke-width="1.5" marker-end="url(#mut-arrow-green)"/>
+
+  <!-- Archive -->
+  <rect x="785" y="130" width="90" height="70" rx="8" fill="#0d2818" stroke="#3fb950" stroke-width="2"/>
+  <text x="830" y="162" text-anchor="middle" fill="#3fb950" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14">Archive</text>
+  <text x="830" y="182" text-anchor="middle" fill="#7ee787" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">SELECTIVE</text>
+
+  <!-- Feedback arrow: Archive back to LLM Proposer (bottom curve) -->
+  <path d="M830 200 L830 320 L105 320 L105 200" fill="none" stroke="#7F77DD" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#mut-arrow-purple)"/>
+  <rect x="380" y="308" width="180" height="20" rx="4" fill="#0d1117"/>
+  <text x="470" y="322" text-anchor="middle" fill="#7F77DD" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">what worked / what failed</text>
+
+  <!-- Correction feedback loop: Tokenizer Gate back to LLM (top curve) -->
+  <path d="M480 130 L480 60 L105 60 L105 130" fill="none" stroke="#f85149" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#mut-arrow-red)"/>
+  <rect x="230" y="48" width="150" height="20" rx="4" fill="#0d1117"/>
+  <text x="305" y="62" text-anchor="middle" fill="#f85149" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">correction (up to 3x)</text>
+
+  <!-- Reject label on tokenizer gate failure -->
+  <text x="480" y="230" text-anchor="middle" fill="#f85149" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="9" opacity="0.7">reject if structural error</text>
+
+  <!-- Attribution -->
+  <text x="870" y="390" text-anchor="end" fill="#484f58" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="10">vasudev.xyz</text>
+</svg>

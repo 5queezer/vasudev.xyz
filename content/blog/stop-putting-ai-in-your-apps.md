@@ -18,6 +18,8 @@ So I built that access. And the difference is night and day.
 
 **The AI should orchestrate your apps, not live inside them.**
 
+![Comparison of AI embedded inside individual apps versus one AI orchestrating all apps through MCP](/images/mcp-architecture-inline.svg)
+
 ## The Architecture is Backwards
 
 Every SaaS company right now is racing to add an AI chat window to their product. Notion has one. Airtable has one. Jira has one. They're all building the same thing: a stateless LLM endpoint with access to one app's data and zero context about the user.

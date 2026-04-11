@@ -49,6 +49,8 @@ Two conditions must both pass before a dream runs: at least 12 hours since the l
 
 ### The pipeline
 
+![Dream Engine pipeline showing phases 0 through 6, with legal vaults branching to skip LLM phases](/images/dream-pipeline-inline.svg)
+
 The Dream Engine reuses four existing consolidation phases, adds three new ones, and modifies one. Phase 0 and the configurable dedup threshold shipped in [PR #306](https://github.com/scrypster/muninndb/pull/306). The LLM phases (2b, 4, 6) are designed and specced for a follow-up PR.
 
 **Phase 0 (new, shipped): Orient.** Read-only scan of each vault. Count entries, check embedding coverage, compute average relevance and stability scores, detect legal vaults. This builds the map before touching anything.

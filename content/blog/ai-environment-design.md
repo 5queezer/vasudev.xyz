@@ -74,6 +74,8 @@ The right discipline is: a successful low-cost intervention should be re-express
 
 The loop has six stages. Observe. Propose. Sandbox. Evaluate. Retain the winner (or reject all candidates). Update the search prior.
 
+![Six-stage mutation/selection cycle: Observe, Propose, Sandbox, Evaluate, Retain/Reject, Update prior](/images/evolution-loop-inline.svg)
+
 Observe means running the current genome against the task battery and recording behavioral metrics. Propose means the search policy generating candidate mutations, one per operator class, in parallel. Sandbox means each candidate runs in isolation: no shared state, hard resource limits, rollback guaranteed. Evaluate means scoring behavioral delta against the current baseline. Retain means writing the winner into the persistence tier with full provenance: before/after metrics, which prompts it affected, which operator class it used, and expiry and revalidation policy. Update search prior means the bandit or evolutionary policy learning which operator classes and which regions of the search space are producing survivors.
 
 Every retained mutation needs a rollback handle. Not as a safety feature. As a design requirement. If you cannot roll back a mutation, you cannot measure its marginal contribution. If you cannot measure its marginal contribution, you are not evolving. You are accumulating.
