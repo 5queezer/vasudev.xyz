@@ -13,11 +13,13 @@
 defer_loading
 (?i)downscaling
 (?i)downselection
+(?i)entos
 (?i)epiphenomenal
 (?i)flatlined
 (?i)hardcoded
 (?i)hippocampal
 (?i)hostname
+(?i)hymon
 (?i)interpretability
 (?i)jagrat
 (?i)mandukya
@@ -28,8 +30,11 @@ defer_loading
 (?i)repo
 (?i)samskara
 (?i)samskaras
+(?i)samadhi
+(?i)sanghas
 (?i)specced
 (?i)stdout
+(?i)supercompensation
 (?i)sushupti
 (?i)svapna
 (?i)taijasa
@@ -49,18 +54,23 @@ Airtable's
 Anthropic's
 BM25
 Barbosa
+Barks
 Birgitta
 Böckeler
 ChromaDB
 ConvoMem
 Dream Engine
 Ebbinghaus
+Examen
+Fana
 Flyxion
 Flyxion's
 FurnitureBench
 Gemini
 Gemma
 Ghosh
+Gnosis
+Ignatian
 (?i)GoodAI
 Goodhart's
 Hebbian
@@ -69,6 +79,7 @@ Hrafn's
 IPs
 Jira
 Jovovich
+Kensho
 Kosha
 Koshas
 LLMs
@@ -83,6 +94,7 @@ MemoryBench
 MemoryOS
 Meta-Harness
 MuninnDB
+Meister
 Māṇḍūkya
 Namespace
 OAuth
@@ -98,6 +110,7 @@ TruthfulQA
 Upaniṣad
 Vec
 Vedantic
+Vipassana
 Xie's
 Zhong
 arXiv

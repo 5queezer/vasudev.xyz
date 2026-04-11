@@ -4,9 +4,11 @@ ai
 architecture
 benchmarks
 claude
+consciousness
 consolidation
 dream-engine
 hrafn
+inner-work
 interpretability
 llm
 llm-agents
@@ -14,10 +16,13 @@ mcp
 mechanistic-interpretability
 memory
 muninndb
+mysticism
 oauth
+philosophy
 rust
 security
 sparse-autoencoders
+spirituality
 tool-use
 typescript
 vector-stores
