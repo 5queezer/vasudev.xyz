@@ -8,7 +8,7 @@ images: ["/blog/direct-divine-access/og-image.png"]
 
 I seldom went to church. Not out of rebellion. Spiritual questions always pulled me, but the organized answer never did. What drew me were the buildings themselves. I would go alone, sit in empty naves, and feel something the services never delivered. Those medieval architects chose their sites with precision. I believe they built on acupuncture points of the earth's magnetic field, and the stone geometry amplifies whatever is there. I respected the builders. I had no use for the institution that moved in afterward.
 
-Reading the Islamic mystics confirmed the instinct. A line widely attributed to Rumi stopped me cold: *"I sought God in every temple of this world. I found him in my own heart."* No institution. No intermediary. No admission fee.
+It was Jesus himself who said it plainest. *"The kingdom of God is within you"* (Luke 17:21). No priest required. No building required. The founder of the religion that built all those cathedrals told people to look inside. The irony lands harder when you realize the institution built in his name spent centuries teaching the opposite.
 
 **Direct connection to the divine was never gone. It was just deliberately hidden.**
 
@@ -58,7 +58,7 @@ This is also not naive solipsism. Exchange, criticism from others, friction in g
 
 A concrete practice protocol: Vipassana breath observation, Ignatian *Examen*, IFS parts work, supercompensation mechanics from sports physiology applied to identity shifts. Each maps to a specific stage of restoring direct access, and each has primary sources freely available ([Dhamma.org](https://www.dhamma.org/en/about/art), [Project Gutenberg](https://www.gutenberg.org/ebooks/23405), Schwartz's [*No Bad Parts*](https://ifs-institute.com/store/419)). That deserves its own post.
 
-The disputed provenance of popular Rumi translations in English. Coleman Barks' versions are beautiful and often far from the Persian originals. Matters more than most readers realize.
+The translation problem in Luke 17:21. The Greek *entos hymon* gets rendered as "within you" or "among you" depending on the translator's theology. That choice alone determines whether Jesus is pointing inward or outward. Matters more than most readers realize.
 
 Whether the "four traditions, one experience" claim survives serious comparative religion scrutiny. It might not. That is the kill condition.
 

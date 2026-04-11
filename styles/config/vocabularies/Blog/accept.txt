@@ -13,11 +13,13 @@
 defer_loading
 (?i)downscaling
 (?i)downselection
+(?i)entos
 (?i)epiphenomenal
 (?i)flatlined
 (?i)hardcoded
 (?i)hippocampal
 (?i)hostname
+(?i)hymon
 (?i)interpretability
 (?i)jagrat
 (?i)mandukya
@@ -100,7 +102,6 @@ Optuna
 Patanjali
 Pojoni
 Postgres
-Rumi
 SAEs
 Sigman
 Sutras
