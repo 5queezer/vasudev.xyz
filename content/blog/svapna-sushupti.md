@@ -6,10 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 5
 description: "Neuroscience, recent AI papers, and an ancient Sanskrit text converge on the same insight about offline consolidation, yet disagree on which phase of sleep matters most."
 images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
-images: ["/images/svapna-sushupti-og.png"]
 ---
 
 

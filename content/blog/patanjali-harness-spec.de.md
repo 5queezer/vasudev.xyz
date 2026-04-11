@@ -6,8 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "Speicherkonsolidierung verschlechterte das Abrufen. Drei Gestaltungsprädizienten aus Agenten‑Gedächtnis‑Benchmarks und ihre überraschenden Parallelen zur yogischen Aufmerksamkeitslehre."
 images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
 translationHash: "b68857d2e17efedb057d0b4955665417"
 chunkHashes: "d4cbf2e12a61dfdf,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---

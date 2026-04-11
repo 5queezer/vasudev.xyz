@@ -3,8 +3,6 @@ title: "Envío de soporte para el protocolo A2A en Rust: 7 errores que nadie adv
 date: 2026-03-25
 description: "Lo que aprendíal agregar soporte de protocolo agente-agente a un marco de agentes de código abierto."
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
-images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
-images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]

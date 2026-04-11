@@ -3,8 +3,6 @@ title: "Hinzufügen von OAuth 2.1 zu einem Self-Hosted MCP Server: 4 Fallen aus 
 date: 2026-03-25
 description: "Was ist beim Anschließen von claude.ai an meine eigene Reactive Resume‑Instanz über OAuth schiefgelaufen?"
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 series: ["Field Notes"]

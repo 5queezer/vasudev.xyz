@@ -6,8 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desconectado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 translationHash: "71f9d659b7e8df2b2a54848debbdf15a"
 chunkHashes: "7364a82cb3eebe67,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---

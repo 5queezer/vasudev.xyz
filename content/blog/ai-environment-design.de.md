@@ -6,8 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Selbstentwickelnde KI-Harnesses scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell liegt richtig: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
 translationHash: "ab8226124574242386745f7c5e6873af"
 chunkHashes: "df9a169530aeaf1d,f75cd0c5f987c056,4699821c947ee4b8,ea0de01ec9fe3288,67074871c33f43bf,46b3940c189647a6"
 ---

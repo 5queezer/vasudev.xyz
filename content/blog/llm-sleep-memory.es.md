@@ -6,8 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Leí 6 artículos sobre lamemoria inspirada biológicamente en agentes de LLM. Solo 2 valen la pena si estás construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
-images: ["/images/llm-sleep-memory-og.png"]
-images: ["/images/llm-sleep-memory-og.png"]
 translationHash: "5188e28ac222b01343c39b22ad9f3c50"
 chunkHashes: "8298230a4d61f2f6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,a9f9fa82c58666a7"
 ---
