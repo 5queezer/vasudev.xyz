@@ -56,7 +56,7 @@ This is also not naive solipsism. Exchange, criticism from others, friction in g
 
 ## What I Left Out
 
-A concrete practice protocol: Vipassana breath observation, Ignatian *Examen*, IFS parts work, supercompensation mechanics from sports physiology applied to identity shifts. Each maps to a specific stage of restoring direct access, and each has primary sources freely available ([Dhamma.org](https://www.dhamma.org/en-US/about/art_of_living), [Project Gutenberg](https://www.gutenberg.org/ebooks/23405), Schwartz's [*No Bad Parts*](https://ifs-institute.com/resources/books)). That deserves its own post.
+A concrete practice protocol: Vipassana breath observation, Ignatian *Examen*, IFS parts work, supercompensation mechanics from sports physiology applied to identity shifts. Each maps to a specific stage of restoring direct access, and each has primary sources freely available ([Dhamma.org](https://www.dhamma.org/en/about/art), [Project Gutenberg](https://www.gutenberg.org/ebooks/23405), Schwartz's [*No Bad Parts*](https://ifs-institute.com/store/419)). That deserves its own post.
 
 The disputed provenance of popular Rumi translations in English. Coleman Barks' versions are beautiful and often far from the Persian originals. Matters more than most readers realize.
 
