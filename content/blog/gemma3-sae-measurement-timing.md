@@ -2,6 +2,8 @@
 title: "Sparse Autoencoders Can't Measure Generation-Time Behavior. That's Not a Bug."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
+series: ["Reading the Residual Stream"]
+series_weight: 1
 description: "Why sycophancy SAE features have Cohen's d=9.9 but hallucination detection fails. The answer turned out to be deeper than measurement timing."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
@@ -54,7 +56,7 @@ The interpretability field has latched onto one measurement window (encoding-tim
 
 ## Where the Bridge Breaks
 
-This principle maps loosely onto an idea from neuroscience about observation and substrate dependency: the same behavior (say, risk-avoidance) can manifest in different neural substrates (amygdala during threat detection, anterior cingulate during conflict resolution). Measure only the amygdala and you see half the phenomenon. The Vedic concept of *pratyahara* (sense withdrawal) has a similar structure: truth perceived through one sense is incomplete when another sense is absent.
+This principle maps loosely onto an idea from neuroscience about observation and substrate dependency: the same behavior (say, risk-avoidance) can manifest in different neural substrates (amygdala during threat detection, anterior cingulate during conflict resolution). Measure only the amygdala and you see half the phenomenon. The Vedic concept of [*pratyahara*](/blog/patanjali-harness-spec/) (sense withdrawal) has a similar structure: truth perceived through one sense is incomplete when another sense is absent.
 
 But here's where the metaphor collapses: unlike biological systems where multiple substrates interact simultaneously, a transformer generates sequentially. Encoding happens, then generation happens. The substrates are temporally ordered. You can't simultaneously measure both and average them. You must choose which phase to interrogate. And most behaviors of practical concern (hallucination, deception, refusal edge cases) happen in the phase you're not measuring.
 

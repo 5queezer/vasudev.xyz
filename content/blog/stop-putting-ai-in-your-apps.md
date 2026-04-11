@@ -62,6 +62,8 @@ This is uncomfortable for SaaS companies that built moats around user lock-in. W
 
 This setup is not turnkey. It requires a power-user willingness to wire up MCP servers, manage OAuth flows, and debug tool integrations. It assumes you trust your AI client with cross-app access to your data, which is a real trust decision, not a checkbox. And it works for a single user with a single AI context. Team-scale orchestration, shared memory, and access controls do not exist yet.
 
+There is also a [context window cost](/blog/mcp-context-window-fix/): every MCP server you connect loads its full tool schema upfront, burning tokens before you type a word.
+
 ## Build the Bridge, Not the Island
 
 If you're building a product today, don't bolt an AI chat window onto your app. Instead, make your app a great MCP server. Expose clean APIs, support standard auth (OAuth 2.1, not custom tokens), and let the user's AI talk to your data.

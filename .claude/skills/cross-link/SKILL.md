@@ -119,7 +119,6 @@ Update this list as new posts are added:
 | memory-metrics-lying-how-to-ground-them | Proxy detachment in memory benchmarks. Goodhart's Law. |
 | stop-putting-ai-in-your-apps | AI inside apps is backwards. MCP flips the architecture. |
 | mcp-context-window-fix | Tool definitions burn 90% of context. Deferred loading as fix. |
-| stop-hoarding-memories-let-your-agent-sleep | Memory hoarding vs. consolidation. Sleep as engineering pattern. |
 | why-ai-agents-need-sleep | Biological sleep stages mapped to agent memory phases. |
 | llm-sleep-memory | LLM sleep/memory consolidation research survey. |
 | svapna-sushupti | Vedic consciousness states (dream/deep sleep) mapped to agent memory. |
@@ -128,6 +127,7 @@ Update this list as new posts are added:
 | adding-oauth-mcp-server-gotchas | OAuth MCP gotchas. Each section: problem, wrong assumption, fix. |
 | shipping-a2a-protocol-support-in-rust | A2A protocol in Rust. Agent-to-agent without central orchestrator. |
 | direct-divine-access | Direct access to the divine. Intermediaries as failure mode. |
+| automated-circuit-discovery | SAE features can't isolate relations. Mutation loop with probes can. Tokenization bottleneck. |
 
 ## Key recurring patterns across the blog
 
