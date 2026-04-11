@@ -15,7 +15,7 @@ The answer is yes. It took 42 failed proposals, a feedback loop that teaches an 
 
 I ran six experiments across two SAE widths (16k and 65k) on Gemma-2-2B looking for a "capital-of" feature. More than 300 candidate features. Layer 12, layer 20. Single-entity prompts, multi-entity prompts. Tight same-frame contrasts, loose contrasts. The best candidate, feature 14610 ("references to specific countries and their roles in various contexts"), passed multi-entity scoring across four countries and showed both steering and ablation causality.
 
-Then I trained a linear probe and projected it onto all 16,384 SAE decoder directions. Feature 14610 ranked four-thousandth in alignment with the actual capital-of direction. It was a red herring. The feature that correlated most with capital-of, feature 4314 ("churches, bishops, geographical locations"), sat at a cosine similarity of 0.34. That is roughly a 30-degree angle from the real direction.
+Then I trained a linear probe and projected it onto all 16,384 SAE decoder directions. Feature 14610 ranked four-thousandth in alignment with the actual capital-of direction. It was a red herring. The feature that correlated most with capital-of, feature 4314 ("churches, bishops, geographical locations"), sat at a cosine similarity of 0.34. That is roughly a 30-degree angle from the real direction. A different limitation from the [measurement timing problem](/blog/gemma3-sae-measurement-timing/), but equally fundamental.
 
 The capital-of relation is distributed across approximately five SAE features. Each one encodes a facet: political centers, geographic entities, formal documents, socioeconomic conditions. None is sufficient. Together they define the concept.
 
@@ -29,7 +29,7 @@ The architecture is minimal. An LLM proposes a new relation: a label, eight posi
 
 The mutation operator receives a structured summary of everything tested so far: which relations were selective (with scores), which were not (with diagnostic reasons), and which were margin-gated before probing. This is the selection pressure. The LLM explores freely, constrained only by what the pipeline can evaluate.
 
-This is open-ended evolutionary search. The genome is the prompt set. The phenotype is the probe result. The evaluator is differential ablation. The archive is the population's memory. There is no fixed objective and no gradient.
+This is open-ended evolutionary search. The genome is the prompt set. The phenotype is the probe result. The evaluator is differential ablation. The archive is the population's memory. There is no fixed objective and no gradient. The [environment does the selection](/blog/ai-environment-design/), not the designer.
 
 ## Where It Broke: Zero Out of Fifteen
 
