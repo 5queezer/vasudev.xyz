@@ -30,6 +30,7 @@ defer_loading
 (?i)repo
 (?i)samskara
 (?i)samskaras
+(?i)samadhi
 (?i)sanghas
 (?i)specced
 (?i)stdout

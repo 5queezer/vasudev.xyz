@@ -2,7 +2,7 @@
 title: "The Bridge Is the Problem. Direct Access to the Divine Needs No Intermediaries."
 date: 2026-04-10
 tags: ["consciousness", "inner-work", "philosophy", "spirituality", "mysticism"]
-description: "Sufism, Gnosticism, early mysticism. They all show the same thing: direct connection was always there. Who blocked it, and how do you get back?"
+description: "Yoga, Gnosticism, Zen, Christian mysticism. They all show the same thing: direct connection was always there. Who blocked it, and how do you get back?"
 images: ["/blog/direct-divine-access/og-image.png"]
 ---
 
@@ -16,9 +16,9 @@ It was Jesus himself who said it plainest. *"The kingdom of God is within you"* 
 
 ## The pattern across traditions
 
-Sufism, Gnosticism, Christian mysticism, Zen Buddhism. Four traditions, four continents, centuries apart. All describe nearly identical experience: direct, unmediated contact with something larger than ego.
+Yoga, Gnosticism, Christian mysticism, Zen Buddhism. Four traditions, four continents, centuries apart. All describe nearly identical experience: direct, unmediated contact with something larger than ego.
 
-The Sufi speaks of *Fana*, dissolution into the divine. The Gnostic of inner knowing (*Gnosis*) that no church can grant. Meister Eckhart wrote that the soul touches God directly, and was nearly declared a heretic for it. The Zen practitioner experiences *Kensho* without doctrine, sometimes from a blow to the shoulder.
+The yogi describes *samadhi*, absorption beyond the fluctuations of mind. The Gnostic speaks of inner knowing (*Gnosis*) that no church can grant. Meister Eckhart wrote that the soul touches God directly, and was nearly declared a heretic for it. The Zen practitioner experiences *Kensho* without doctrine, sometimes from a blow to the shoulder.
 
 The shared structure: direct inner experience comes before doctrine, before institution, before hierarchy. Experience is the original. Institution is the copy. The copy eventually started claiming to be the original.
 
@@ -28,29 +28,33 @@ The shared structure: direct inner experience comes before doctrine, before inst
 
 This is not conspiracy thinking. It is simple system logic.
 
-If you can access the divine directly through meditation, silence, or inner work, you do not need a priest, tithes, or fear of purgatory. Institutions built on mediation have an existential interest in keeping direct connection from being seen as self-evident.
+If you can access the divine directly, you do not need a priest, tithes, or fear of purgatory. Institutions built on mediation have an existential interest in keeping direct access from being self-evident.
 
-The mechanism: complexity. Sin as a technical problem only authorized parties can solve. Ritual as prerequisite, not tool. Scripture as secret knowledge requiring expert interpretation. The bridge between human and divine becomes a product, and whoever owns the bridge controls the crossing.
+The mechanism: complexity. Sin as a technical problem only authorized parties can solve. Ritual as prerequisite, not tool. Scripture as secret knowledge requiring expert interpretation. The bridge becomes a product, and whoever owns the bridge controls the crossing.
 
-This is not malicious by default. Institutions stabilize community, preserve knowledge, provide structure. But there is a point where structure becomes self-serving and the experience it originally served vanishes behind it. At that point, the institution stops being a tool and becomes a filter dimming the light.
+This is not malicious by default. But there is a point where structure becomes self-serving and the experience it served vanishes behind it.
 
 ---
 
 ## The same failure mode in systems
 
-This pattern maps cleanly to information architecture. An intermediary layer that summarizes, filters, or interprets before passing information through consistently loses diagnostic signal.
+This pattern maps to problems I have written about before.
 
-[Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, 2026) showed this empirically. LLM-generated summaries of benchmark traces performed *worse* than raw scores alone (best accuracy 38.7% vs 41.3%), while direct access to full raw traces reached 56.7%. The summary layer collapsed signal alongside noise. The same argument drives the MCP architecture pattern: putting AI inside apps creates a stateless intermediary with no user context, while direct access via tool protocols preserves the full signal.
+Building [MuninnDB's memory consolidation](/blog/patanjali-harness-spec/), deduplication meant to improve retrieval destroyed it in small vaults. The system could not distinguish signal from noise because it treated every entry the same. Patanjali had the diagnosis centuries earlier: *vrtti nirodha* is not about deleting everything. It is about discerning what to keep.
 
-The intermediary is the failure mode, whether the signal being lost is divine experience or benchmark diagnostics.
+[Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, 2026) confirmed the pattern at scale. LLM-generated summaries of benchmark traces performed *worse* than raw scores alone (38.7% vs 41.3%), while direct access to full traces reached 56.7%. The summary layer collapsed signal alongside noise.
+
+The same thing happens with [MCP tool definitions](/blog/mcp-context-window-fix/) burning 90% of context before any work begins. With [AI locked inside apps](/blog/stop-putting-ai-in-your-apps/) creating stateless intermediaries that know nothing about the user. With [memory metrics](/blog/memory-metrics-lying-how-to-ground-them/) that improve on paper while actual retrieval degrades underneath.
+
+Every intermediary optimizes for its own persistence. The signal it was meant to serve disappears behind it. Whether that signal is divine experience or benchmark diagnostics.
 
 ---
 
 ## What this is not
 
-This is not anti-religious. Religious communities can be genuine vessels of spiritual experience. Orders, contemplative groups, and sanghas actively teach and protect the direct path.
+This is not anti-religious. Orders, contemplative groups, and sanghas actively teach and protect the direct path. This is also not naive solipsism. Friction in genuine community is irreplaceable for calibration.
 
-This is also not naive solipsism. Exchange, criticism from others, friction in genuine community: all irreplaceable for calibration. The claim is narrower. When the intermediary stops serving the connection and starts serving itself, you notice it because the signal degrades. In software, you measure it. In spiritual practice, you feel it. Both are data.
+The claim is narrower: when the intermediary stops serving the connection and starts serving itself, the signal degrades. In software, you measure it. In spiritual practice, you feel it. Both are data.
 
 ---
 
