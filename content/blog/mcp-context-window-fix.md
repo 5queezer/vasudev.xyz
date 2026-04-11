@@ -23,6 +23,8 @@ A five-server setup (GitHub with 91 tools, Jira, Slack, Google Drive, a custom i
 
 More tools in context = more tokens burned + worse decisions about which tool to use. It's a double penalty.
 
+![Bar chart showing token usage dropping from 77K to 8.7K with deferred tool loading](/images/context-window-cost-inline.svg)
+
 ## The Fix: defer_loading and Tool Search
 
 Anthropic shipped a solution in November 2025 under the `advanced-tool-use-2025-11-20` beta header. The mechanism is called deferred loading, and the pattern it enables is called Tool Search.
