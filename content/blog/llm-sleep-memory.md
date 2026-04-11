@@ -83,7 +83,7 @@ The Dream Engine's core novel contribution, Phase 2b (LLM adjudication of near-d
 
 Every survey paper in this space cites biological inspiration. Ebbinghaus, Hebbian learning, synaptic consolidation, sleep spindles: the vocabulary is everywhere. The empirical validation is almost nowhere. SleepGate and MemoryBench are exceptions because they commit to testable claims. The surveys commit to taxonomies.
 
-If you're building agent memory: benchmark first, consolidate second, publish third. If your consolidation feature improves a proxy metric without improving retrieval accuracy, you've built a detached proxy, not a feature.
+If you're building agent memory: benchmark first, consolidate second, publish third. If your consolidation feature improves a proxy metric without improving retrieval accuracy, you've built a [detached proxy](/blog/memory-metrics-lying-how-to-ground-them/), not a feature.
 
 Start with [MemoryBench](https://arxiv.org/abs/2510.17281). Read [SleepGate](https://arxiv.org/abs/2603.14517) for the forgetting model. Build your pipeline. Then measure whether it actually helps.
 
