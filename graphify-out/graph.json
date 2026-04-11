@@ -1,0 +1,5712 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "mcp_ecosystem",
+        "label": "MCP Ecosystem",
+        "nodes": [
+          "stop_putting_ai_in_apps__mcp",
+          "mcp_context_window_fix",
+          "adding_oauth_mcp_server_gotchas",
+          "stop_putting_ai_in_apps__nocodb"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
+      },
+      {
+        "id": "hrafn_agent_architecture",
+        "label": "Hrafn Agent Architecture",
+        "nodes": [
+          "why_ai_agents_need_sleep__hrafn",
+          "why_ai_agents_need_sleep__muninndb",
+          "why_ai_agents_need_sleep__dream_engine",
+          "ai_environment_design__persistence_tier",
+          "ai_environment_design__mutation_selection_cycle"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "content/blog/ai-environment-design.md"
+      },
+      {
+        "id": "intermediary_degradation_pattern",
+        "label": "Intermediary Degradation Pattern",
+        "nodes": [
+          "direct_divine_access__intermediary_pattern",
+          "stop_putting_ai_in_apps__ai_orchestration_pattern",
+          "mcp_context_window_fix__token_overhead",
+          "ai_environment_design__goodharts_law"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "content/blog/direct-divine-access.md"
+      },
+      {
+        "id": "building_agents_that_sleep_series",
+        "label": "Building Agents That Sleep Series",
+        "nodes": [
+          "llm_sleep_memory_post",
+          "memory_metrics_post",
+          "patanjali_post",
+          "svapna_post",
+          "llm_sleep_memory_dream_engine",
+          "llm_sleep_memory_muninndb"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "content/blog/llm-sleep-memory.md"
+      },
+      {
+        "id": "vedic_agent_memory_mapping",
+        "label": "Vedic Concepts to Agent Memory",
+        "nodes": [
+          "patanjali_vrtti_nirodha",
+          "patanjali_samskara_vairagya",
+          "patanjali_pratyahara",
+          "svapna_svapna",
+          "svapna_sushupti",
+          "patanjali_min_dedup_vault_size",
+          "patanjali_outcome_tagged_writes"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.9,
+        "source_file": "content/blog/patanjali-harness-spec.md"
+      },
+      {
+        "id": "evolutionary_interpretability_pipeline",
+        "label": "Evolutionary Probe Discovery",
+        "nodes": [
+          "circuit_discovery_mutation_loop",
+          "circuit_discovery_linear_probe",
+          "circuit_discovery_tokenizer_bottleneck",
+          "circuit_discovery_feedback_loop",
+          "circuit_discovery_baldwin_effect",
+          "circuit_discovery_author_nationality"
+        ],
+        "relation": "implement",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.95,
+        "source_file": "content/blog/automated-circuit-discovery.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "main.go",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L1",
+      "id": "main",
+      "community": 1
+    },
+    {
+      "label": "chatRequest",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L27",
+      "id": "translate_chatrequest",
+      "community": 1
+    },
+    {
+      "label": "chatMessage",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L32",
+      "id": "translate_chatmessage",
+      "community": 1
+    },
+    {
+      "label": "chatResponse",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L37",
+      "id": "translate_chatresponse",
+      "community": 1
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L60",
+      "id": "main_main",
+      "community": 1
+    },
+    {
+      "label": "contentHash()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L228",
+      "id": "main_contenthash",
+      "community": 1
+    },
+    {
+      "label": "splitFrontMatterAndBody()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L233",
+      "id": "main_splitfrontmatterandbody",
+      "community": 1
+    },
+    {
+      "label": "extractFrontMatterField()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L245",
+      "id": "main_extractfrontmatterfield",
+      "community": 1
+    },
+    {
+      "label": "buildTranslatedFile()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L235",
+      "id": "main_buildtranslatedfile",
+      "community": 1
+    },
+    {
+      "label": "translateText()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L266",
+      "id": "main_translatetext",
+      "community": 1
+    },
+    {
+      "label": "translateTextWithContext()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L270",
+      "id": "main_translatetextwithcontext",
+      "community": 1
+    },
+    {
+      "label": "resolveModelCandidates()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L482",
+      "id": "main_resolvemodelcandidates",
+      "community": 1
+    },
+    {
+      "label": "parseModelList()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L494",
+      "id": "main_parsemodellist",
+      "community": 1
+    },
+    {
+      "label": "uniqueModels()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L507",
+      "id": "main_uniquemodels",
+      "community": 1
+    },
+    {
+      "label": "splitBodyIntoChunks()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L424",
+      "id": "main_splitbodyintochunks",
+      "community": 1
+    },
+    {
+      "label": "chunkHash()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L455",
+      "id": "main_chunkhash",
+      "community": 1
+    },
+    {
+      "label": "headSnippet()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L461",
+      "id": "main_headsnippet",
+      "community": 1
+    },
+    {
+      "label": "tailSnippet()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L471",
+      "id": "main_tailsnippet",
+      "community": 1
+    },
+    {
+      "label": "extractChunkHashes()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L482",
+      "id": "main_extractchunkhashes",
+      "community": 1
+    },
+    {
+      "label": "translateChunk()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L499",
+      "id": "main_translatechunk",
+      "community": 1
+    },
+    {
+      "label": "shouldFallbackModel()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L524",
+      "id": "main_shouldfallbackmodel",
+      "community": 1
+    },
+    {
+      "label": "main_test.go",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L1",
+      "id": "main_test",
+      "community": 0
+    },
+    {
+      "label": "TestResolveModelCandidatesFromExplicitList()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L11",
+      "id": "main_test_testresolvemodelcandidatesfromexplicitlist",
+      "community": 0
+    },
+    {
+      "label": "TestResolveModelCandidatesFromPrimaryAndFallbacks()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L26",
+      "id": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
+      "community": 0
+    },
+    {
+      "label": "TestTranslateTextFallsBackOnRateLimit()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L42",
+      "id": "main_test_testtranslatetextfallsbackonratelimit",
+      "community": 0
+    },
+    {
+      "label": "TestShouldFallbackModel()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L328",
+      "id": "main_test_testshouldfallbackmodel",
+      "community": 0
+    },
+    {
+      "label": "TestSplitBodyIntoChunks()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L102",
+      "id": "main_test_testsplitbodyintochunks",
+      "community": 0
+    },
+    {
+      "label": "TestSplitBodyIntoChunksIgnoresHeadingsInCodeBlocks()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L121",
+      "id": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
+      "community": 0
+    },
+    {
+      "label": "TestSplitBodyIntoChunksTildeFence()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L136",
+      "id": "main_test_testsplitbodyintochunkstildefence",
+      "community": 0
+    },
+    {
+      "label": "TestSplitBodyIntoChunksNoHeadings()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L148",
+      "id": "main_test_testsplitbodyintochunksnoheadings",
+      "community": 0
+    },
+    {
+      "label": "TestSplitBodyRoundTrip()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L160",
+      "id": "main_test_testsplitbodyroundtrip",
+      "community": 0
+    },
+    {
+      "label": "TestChunkHashDeterministic()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L169",
+      "id": "main_test_testchunkhashdeterministic",
+      "community": 0
+    },
+    {
+      "label": "TestExtractChunkHashes()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L181",
+      "id": "main_test_testextractchunkhashes",
+      "community": 0
+    },
+    {
+      "label": "TestExtractChunkHashesEmpty()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L188",
+      "id": "main_test_testextractchunkhashesempty",
+      "community": 0
+    },
+    {
+      "label": "TestBuildTranslatedFileIncludesChunkHashes()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L196",
+      "id": "main_test_testbuildtranslatedfileincludeschunkhashes",
+      "community": 0
+    },
+    {
+      "label": "TestHeadAndTailSnippet()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L207",
+      "id": "main_test_testheadandtailsnippet",
+      "community": 0
+    },
+    {
+      "label": "TestTranslateChunkContextInSystemPrompt()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L243",
+      "id": "main_test_testtranslatechunkcontextinsystemprompt",
+      "community": 0
+    },
+    {
+      "label": "escaped()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L305",
+      "id": "main_test_escaped",
+      "community": 0
+    },
+    {
+      "label": "assertStringSlicesEqual()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L312",
+      "id": "main_test_assertstringslicesequal",
+      "community": 0
+    },
+    {
+      "label": "roundTripFunc",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L325",
+      "id": "translate_roundtripfunc",
+      "community": 0
+    },
+    {
+      "label": ".RoundTrip()",
+      "file_type": "code",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L327",
+      "id": "translate_roundtripfunc_roundtrip",
+      "community": 0
+    },
+    {
+      "label": "jsonResponse()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L20",
+      "id": "main_test_jsonresponse",
+      "community": 0
+    },
+    {
+      "label": "chatRequest",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L30",
+      "id": "generate_og_images_chatrequest",
+      "community": 1
+    },
+    {
+      "label": "chatMessage",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L35",
+      "id": "generate_og_images_chatmessage",
+      "community": 1
+    },
+    {
+      "label": "chatResponse",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L40",
+      "id": "generate_og_images_chatresponse",
+      "community": 1
+    },
+    {
+      "label": "falRequest",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L52",
+      "id": "generate_og_images_falrequest",
+      "community": 1
+    },
+    {
+      "label": "falImageSize",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L58",
+      "id": "generate_og_images_falimagesize",
+      "community": 1
+    },
+    {
+      "label": "falResponse",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L63",
+      "id": "generate_og_images_falresponse",
+      "community": 1
+    },
+    {
+      "label": "insertImageField()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L266",
+      "id": "main_insertimagefield",
+      "community": 1
+    },
+    {
+      "label": "appendDisclaimer()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L306",
+      "id": "main_appenddisclaimer",
+      "community": 1
+    },
+    {
+      "label": "generatePrompt()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L314",
+      "id": "main_generateprompt",
+      "community": 1
+    },
+    {
+      "label": "generateImage()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L392",
+      "id": "main_generateimage",
+      "community": 1
+    },
+    {
+      "label": "roundTripFunc",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L14",
+      "id": "generate_og_images_roundtripfunc",
+      "community": 0
+    },
+    {
+      "label": ".RoundTrip()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L16",
+      "id": "generate_og_images_roundtripfunc_roundtrip",
+      "community": 0
+    },
+    {
+      "label": "TestSplitFrontMatterAndBody()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L28",
+      "id": "main_test_testsplitfrontmatterandbody",
+      "community": 0
+    },
+    {
+      "label": "TestExtractFrontMatterField()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L42",
+      "id": "main_test_testextractfrontmatterfield",
+      "community": 0
+    },
+    {
+      "label": "TestContentHash()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L56",
+      "id": "main_test_testcontenthash",
+      "community": 0
+    },
+    {
+      "label": "TestInsertImageField()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L72",
+      "id": "main_test_testinsertimagefield",
+      "community": 0
+    },
+    {
+      "label": "TestGeneratePromptWithFallback()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L172",
+      "id": "main_test_testgeneratepromptwithfallback",
+      "community": 0
+    },
+    {
+      "label": "TestGenerateImageSuccess()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L212",
+      "id": "main_test_testgenerateimagesuccess",
+      "community": 0
+    },
+    {
+      "label": "TestContentHashSkipsUnchanged()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L263",
+      "id": "main_test_testcontenthashskipsunchanged",
+      "community": 0
+    },
+    {
+      "label": "TestPostFilteringSkipsTranslations()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L292",
+      "id": "main_test_testpostfilteringskipstranslations",
+      "community": 0
+    },
+    {
+      "label": "projectRoot()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L341",
+      "id": "main_test_projectroot",
+      "community": 0
+    },
+    {
+      "label": "readAllowedTags()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L348",
+      "id": "main_test_readallowedtags",
+      "community": 0
+    },
+    {
+      "label": "TestAllowedTagsContainsNewTags()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L365",
+      "id": "main_test_testallowedtagscontainsnewtags",
+      "community": 0
+    },
+    {
+      "label": "TestAllowedTagsIsSorted()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L380",
+      "id": "main_test_testallowedtagsissorted",
+      "community": 0
+    },
+    {
+      "label": "TestAllowedTagsNoDuplicates()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L390",
+      "id": "main_test_testallowedtagsnoduplicates",
+      "community": 0
+    },
+    {
+      "label": "TestAllowedTagsFormat()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L404",
+      "id": "main_test_testallowedtagsformat",
+      "community": 0
+    },
+    {
+      "label": "parseTagList()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L419",
+      "id": "main_test_parsetaglist",
+      "community": 0
+    },
+    {
+      "label": "TestParseTagList()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L435",
+      "id": "main_test_testparsetaglist",
+      "community": 0
+    },
+    {
+      "label": "TestNewBlogPostHasRequiredFields()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L460",
+      "id": "main_test_testnewblogposthasrequiredfields",
+      "community": 0
+    },
+    {
+      "label": "TestNewBlogPostTagsAreAllowed()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L476",
+      "id": "main_test_testnewblogposttagsareallowed",
+      "community": 0
+    },
+    {
+      "label": "TestNewBlogPostUsesNewTags()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L498",
+      "id": "main_test_testnewblogpostusesnewtags",
+      "community": 0
+    },
+    {
+      "label": "TestNewBlogPostDateFormat()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L519",
+      "id": "main_test_testnewblogpostdateformat",
+      "community": 0
+    },
+    {
+      "label": "TestNewBlogPostBodyIsNonEmpty()",
+      "file_type": "code",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L537",
+      "id": "main_test_testnewblogpostbodyisnonempty",
+      "community": 0
+    },
+    {
+      "label": "linkLocation",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L18",
+      "id": "check_links_linklocation",
+      "community": 1
+    },
+    {
+      "label": "checkResult",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L25",
+      "id": "check_links_checkresult",
+      "community": 1
+    },
+    {
+      "label": "arxivFeed",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L34",
+      "id": "check_links_arxivfeed",
+      "community": 1
+    },
+    {
+      "label": "arxivEntry",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L38",
+      "id": "check_links_arxiventry",
+      "community": 1
+    },
+    {
+      "label": "crossrefResponse",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L43",
+      "id": "check_links_crossrefresponse",
+      "community": 1
+    },
+    {
+      "label": "collectFiles()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L130",
+      "id": "main_collectfiles",
+      "community": 1
+    },
+    {
+      "label": "extractURLs()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L167",
+      "id": "main_extracturls",
+      "community": 1
+    },
+    {
+      "label": "cleanURL()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L214",
+      "id": "main_cleanurl",
+      "community": 1
+    },
+    {
+      "label": "cleanBareURL()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L219",
+      "id": "main_cleanbareurl",
+      "community": 1
+    },
+    {
+      "label": "shouldSkipURL()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L233",
+      "id": "main_shouldskipurl",
+      "community": 1
+    },
+    {
+      "label": "checkURL()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L274",
+      "id": "main_checkurl",
+      "community": 1
+    },
+    {
+      "label": "checkArxivTitle()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L347",
+      "id": "main_checkarxivtitle",
+      "community": 1
+    },
+    {
+      "label": "checkDOITitle()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L387",
+      "id": "main_checkdoititle",
+      "community": 1
+    },
+    {
+      "label": "extractArxivID()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L433",
+      "id": "main_extractarxivid",
+      "community": 1
+    },
+    {
+      "label": "extractDOI()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L442",
+      "id": "main_extractdoi",
+      "community": 1
+    },
+    {
+      "label": "fuzzyMatch()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L452",
+      "id": "main_fuzzymatch",
+      "community": 1
+    },
+    {
+      "label": "normalizeWhitespace()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L462",
+      "id": "main_normalizewhitespace",
+      "community": 1
+    },
+    {
+      "label": "TestExtractURLs()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L10",
+      "id": "main_test_testextracturls",
+      "community": 0
+    },
+    {
+      "label": "TestExtractURLsLineNumbers()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L73",
+      "id": "main_test_testextracturlslinenumbers",
+      "community": 0
+    },
+    {
+      "label": "TestExtractArxivID()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L107",
+      "id": "main_test_testextractarxivid",
+      "community": 0
+    },
+    {
+      "label": "TestExtractDOI()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L128",
+      "id": "main_test_testextractdoi",
+      "community": 0
+    },
+    {
+      "label": "TestFuzzyMatch()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L148",
+      "id": "main_test_testfuzzymatch",
+      "community": 0
+    },
+    {
+      "label": "TestCleanBareURL()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L172",
+      "id": "main_test_testcleanbareurl",
+      "community": 0
+    },
+    {
+      "label": "TestShouldSkipURL()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L194",
+      "id": "main_test_testshouldskipurl",
+      "community": 0
+    },
+    {
+      "label": "TestCollectFilesWithFlag()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L222",
+      "id": "main_test_testcollectfileswithflag",
+      "community": 0
+    },
+    {
+      "label": "TestNormalizeWhitespace()",
+      "file_type": "code",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L235",
+      "id": "main_test_testnormalizewhitespace",
+      "community": 0
+    },
+    {
+      "label": "Stop Putting AI in Your Apps",
+      "file_type": "document",
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "id": "stop_putting_ai_in_apps",
+      "community": 3
+    },
+    {
+      "label": "Model Context Protocol (MCP)",
+      "file_type": "concept",
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "source_url": "https://modelcontextprotocol.io/",
+      "id": "stop_putting_ai_in_apps__mcp",
+      "community": 3
+    },
+    {
+      "label": "AI as Orchestrator Architecture",
+      "file_type": "concept",
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "id": "stop_putting_ai_in_apps__ai_orchestration_pattern",
+      "community": 3
+    },
+    {
+      "label": "NocoDB (Open Source Database with MCP)",
+      "file_type": "concept",
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "id": "stop_putting_ai_in_apps__nocodb",
+      "community": 3
+    },
+    {
+      "label": "SaaS Commoditization via AI Orchestration",
+      "file_type": "concept",
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "id": "stop_putting_ai_in_apps__saas_commoditization",
+      "community": 3
+    },
+    {
+      "label": "Context Window Cost of MCP",
+      "file_type": "concept",
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "id": "stop_putting_ai_in_apps__context_window_cost",
+      "community": 3
+    },
+    {
+      "label": "Why AI Agents Need Sleep",
+      "file_type": "document",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep",
+      "community": 4
+    },
+    {
+      "label": "MuninnDB (Cognitive Database)",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "source_url": "https://github.com/scrypster/muninndb",
+      "id": "why_ai_agents_need_sleep__muninndb",
+      "community": 4
+    },
+    {
+      "label": "Dream Engine (LLM Memory Consolidation)",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__dream_engine",
+      "community": 4
+    },
+    {
+      "label": "Hrafn (AI Agent Runtime)",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "source_url": "https://github.com/5queezer/hrafn",
+      "id": "why_ai_agents_need_sleep__hrafn",
+      "community": 4
+    },
+    {
+      "label": "Human Sleep Memory Consolidation",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__memory_consolidation",
+      "community": 4
+    },
+    {
+      "label": "MemoryBank (Zhong et al. 2023)",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__memorybank",
+      "community": 4
+    },
+    {
+      "label": "SleepGate Framework",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__sleepgate",
+      "community": 4
+    },
+    {
+      "label": "Auto Dream (Anthropic)",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__auto_dream",
+      "community": 4
+    },
+    {
+      "label": "Vault Trust Tiers",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__vault_trust_tiers",
+      "community": 4
+    },
+    {
+      "label": "Ebbinghaus Forgetting Curves",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__ebbinghaus_decay",
+      "community": 4
+    },
+    {
+      "label": "Configurable Dedup Threshold",
+      "file_type": "concept",
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "id": "why_ai_agents_need_sleep__dedup_threshold",
+      "community": 4
+    },
+    {
+      "label": "Direct Divine Access",
+      "file_type": "document",
+      "source_file": "content/blog/direct-divine-access.md",
+      "id": "direct_divine_access",
+      "community": 3
+    },
+    {
+      "label": "Intermediary Self-Optimization Pattern",
+      "file_type": "concept",
+      "source_file": "content/blog/direct-divine-access.md",
+      "id": "direct_divine_access__intermediary_pattern",
+      "community": 3
+    },
+    {
+      "label": "Meta-Harness (Stanford/MIT)",
+      "file_type": "concept",
+      "source_file": "content/blog/direct-divine-access.md",
+      "id": "direct_divine_access__meta_harness",
+      "community": 3
+    },
+    {
+      "label": "Direct Inner Experience",
+      "file_type": "concept",
+      "source_file": "content/blog/direct-divine-access.md",
+      "id": "direct_divine_access__direct_experience",
+      "community": 7
+    },
+    {
+      "label": "MCP Context Window Fix",
+      "file_type": "document",
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "id": "mcp_context_window_fix",
+      "community": 3
+    },
+    {
+      "label": "Deferred Tool Loading",
+      "file_type": "concept",
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "id": "mcp_context_window_fix__deferred_loading",
+      "community": 3
+    },
+    {
+      "label": "Tool Search (BM25)",
+      "file_type": "concept",
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "id": "mcp_context_window_fix__tool_search",
+      "community": 3
+    },
+    {
+      "label": "MCP Token Overhead Problem",
+      "file_type": "concept",
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "id": "mcp_context_window_fix__token_overhead",
+      "community": 3
+    },
+    {
+      "label": "MCP Toolset Deferral",
+      "file_type": "concept",
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "id": "mcp_context_window_fix__mcp_toolset",
+      "community": 13
+    },
+    {
+      "label": "OAuth MCP Server Gotchas",
+      "file_type": "document",
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "id": "adding_oauth_mcp_server_gotchas",
+      "community": 3
+    },
+    {
+      "label": "Reactive Resume PR #2829",
+      "file_type": "concept",
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "id": "adding_oauth_mcp_server_gotchas__reactive_resume",
+      "community": 3
+    },
+    {
+      "label": "Two .well-known Endpoints",
+      "file_type": "concept",
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "id": "adding_oauth_mcp_server_gotchas__two_wellknown_endpoints",
+      "community": 3
+    },
+    {
+      "label": "Dual Auth Path",
+      "file_type": "concept",
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "id": "adding_oauth_mcp_server_gotchas__dual_auth_path",
+      "community": 3
+    },
+    {
+      "label": "better-auth Deprecation",
+      "file_type": "concept",
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "id": "adding_oauth_mcp_server_gotchas__better_auth_deprecation",
+      "community": 3
+    },
+    {
+      "label": "Multi-Layer Auth Chain",
+      "file_type": "concept",
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "id": "adding_oauth_mcp_server_gotchas__auth_chain_layers",
+      "community": 3
+    },
+    {
+      "label": "AI Environment Design",
+      "file_type": "document",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design",
+      "community": 4
+    },
+    {
+      "label": "Genotype/Phenotype Separation",
+      "file_type": "concept",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design__genotype_phenotype",
+      "community": 4
+    },
+    {
+      "label": "Evaluator Is Not a Loss Function",
+      "file_type": "concept",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design__evaluator_not_loss_function",
+      "community": 4
+    },
+    {
+      "label": "Mutation/Selection Cycle",
+      "file_type": "concept",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design__mutation_selection_cycle",
+      "community": 4
+    },
+    {
+      "label": "SAE Steering Operator",
+      "file_type": "concept",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design__sae_steering_operator",
+      "community": 4
+    },
+    {
+      "label": "Goodhart's Law",
+      "file_type": "concept",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design__goodharts_law",
+      "community": 4
+    },
+    {
+      "label": "Persistence Tier",
+      "file_type": "concept",
+      "source_file": "content/blog/ai-environment-design.md",
+      "id": "ai_environment_design__persistence_tier",
+      "community": 4
+    },
+    {
+      "label": "SAE Measurement Timing",
+      "file_type": "document",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae_measurement_timing",
+      "community": 7
+    },
+    {
+      "label": "Encoding vs Generation Time",
+      "file_type": "concept",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae__encoding_vs_generation",
+      "community": 7
+    },
+    {
+      "label": "Sycophancy Detection (d=9.9)",
+      "file_type": "concept",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae__sycophancy_detection",
+      "community": 7
+    },
+    {
+      "label": "Hallucination Taxonomy",
+      "file_type": "concept",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae__hallucination_taxonomy",
+      "community": 7
+    },
+    {
+      "label": "Generation-Time Hypothesis Falsified",
+      "file_type": "concept",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae__hypothesis_falsified",
+      "community": 7
+    },
+    {
+      "label": "Pratyahara Bridge",
+      "file_type": "concept",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae__pratyahara_bridge",
+      "community": 7
+    },
+    {
+      "label": "Dimensional Overfitting",
+      "file_type": "concept",
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "id": "gemma3_sae__dimensional_overfitting",
+      "community": 7
+    },
+    {
+      "label": "Sleep-Inspired Memory for LLM Agents",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_post",
+      "community": 2
+    },
+    {
+      "label": "Dream Engine Pipeline",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "source_url": "https://github.com/scrypster/muninndb",
+      "id": "llm_sleep_memory_dream_engine",
+      "community": 2
+    },
+    {
+      "label": "MuninnDB",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "source_url": "https://muninndb.com",
+      "id": "llm_sleep_memory_muninndb",
+      "community": 2
+    },
+    {
+      "label": "SleepGate Paper",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_sleepgate",
+      "community": 2
+    },
+    {
+      "label": "MemoryBench Paper",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_memorybench",
+      "community": 2
+    },
+    {
+      "label": "SynapticRAG Paper",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_synapticrag",
+      "community": 2
+    },
+    {
+      "label": "GoodAI LTM Benchmark",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_goodai_benchmark",
+      "community": 2
+    },
+    {
+      "label": "Ebbinghaus Decay",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_ebbinghaus_decay",
+      "community": 2
+    },
+    {
+      "label": "Hebbian Association",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_hebbian_association",
+      "community": 2
+    },
+    {
+      "label": "Phase Selectivity Principle",
+      "file_type": "document",
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "id": "llm_sleep_memory_phase_selectivity",
+      "community": 2
+    },
+    {
+      "label": "Memory Metrics Are Lying",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_post",
+      "community": 2
+    },
+    {
+      "label": "Proxy Detachment",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_proxy_detachment",
+      "community": 2
+    },
+    {
+      "label": "Proxy Integrity Collapse (Flyxion)",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_flyxion_essay",
+      "community": 2
+    },
+    {
+      "label": "Goodhart's Law as Structural Attractor",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_goodharts_law",
+      "community": 2
+    },
+    {
+      "label": "LongMemEval Benchmark",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_longmemeval",
+      "community": 2
+    },
+    {
+      "label": "MemPalace",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_mempalace",
+      "community": 2
+    },
+    {
+      "label": "Hrafn (Rust Agent Runtime)",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "source_url": "https://github.com/5queezer/hrafn",
+      "id": "memory_metrics_hrafn",
+      "community": 2
+    },
+    {
+      "label": "Grounding Criterion",
+      "file_type": "document",
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "id": "memory_metrics_grounding_criterion",
+      "community": 2
+    },
+    {
+      "label": "Shipping A2A Protocol in Rust",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "id": "a2a_post",
+      "community": 2
+    },
+    {
+      "label": "A2A Protocol (Google)",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "source_url": "https://github.com/google/A2A",
+      "id": "a2a_protocol",
+      "community": 2
+    },
+    {
+      "label": "SSRF Protection",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "id": "a2a_ssrf_protection",
+      "community": 2
+    },
+    {
+      "label": "TaskStore Cap (DoS Prevention)",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "id": "a2a_taskstore_cap",
+      "community": 2
+    },
+    {
+      "label": "Constant-Time Token Comparison",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "id": "a2a_constant_time_comparison",
+      "community": 2
+    },
+    {
+      "label": "Agent Cards",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "id": "a2a_agent_cards",
+      "community": 2
+    },
+    {
+      "label": "Hrafn PR #4166",
+      "file_type": "document",
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "id": "a2a_pr_4166",
+      "community": 2
+    },
+    {
+      "label": "Patanjali Harness Spec",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_post",
+      "community": 2
+    },
+    {
+      "label": "Vrtti Nirodha",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_vrtti_nirodha",
+      "community": 2
+    },
+    {
+      "label": "Samskara and Vairagya",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_samskara_vairagya",
+      "community": 2
+    },
+    {
+      "label": "Pratyahara",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_pratyahara",
+      "community": 2
+    },
+    {
+      "label": "Meta-Harness Paper",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_meta_harness",
+      "community": 2
+    },
+    {
+      "label": "Boeckeler Harness Framework",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_boeckeler",
+      "community": 2
+    },
+    {
+      "label": "MinDedupVaultSize Guard",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_min_dedup_vault_size",
+      "community": 2
+    },
+    {
+      "label": "Outcome-Tagged Writes",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_outcome_tagged_writes",
+      "community": 2
+    },
+    {
+      "label": "Advaitic Policy Optimization",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_advaitic_policy_optimization",
+      "community": 2
+    },
+    {
+      "label": "Dream Engine Ablation PR #367",
+      "file_type": "document",
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "id": "patanjali_ablation_pr_367",
+      "community": 2
+    },
+    {
+      "label": "Svapna or Sushupti",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_post",
+      "community": 2
+    },
+    {
+      "label": "Mandukya Upanishad",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_mandukya_upanishad",
+      "community": 2
+    },
+    {
+      "label": "Jagrat (Waking State)",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_jagrat",
+      "community": 14
+    },
+    {
+      "label": "Svapna (Dreaming State)",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_svapna",
+      "community": 2
+    },
+    {
+      "label": "Sushupti (Deep Sleep)",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_sushupti",
+      "community": 2
+    },
+    {
+      "label": "Turiya (Pure Awareness)",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_turiya",
+      "community": 15
+    },
+    {
+      "label": "LightMem Paper",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_lightmem",
+      "community": 2
+    },
+    {
+      "label": "Active Dreaming Memory",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_adm",
+      "community": 2
+    },
+    {
+      "label": "Dissolution Outperforms Recombination",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_dissolution_hypothesis",
+      "community": 2
+    },
+    {
+      "label": "NREM Sleep (Triple Coupling)",
+      "file_type": "document",
+      "source_file": "content/blog/svapna-sushupti.md",
+      "id": "svapna_nrem_sleep",
+      "community": 2
+    },
+    {
+      "label": "Automated Circuit Discovery",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_post",
+      "community": 6
+    },
+    {
+      "label": "Mutation-Selection Loop",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_mutation_loop",
+      "community": 6
+    },
+    {
+      "label": "SAE Features",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_sae_features",
+      "community": 6
+    },
+    {
+      "label": "Linear Probe",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_linear_probe",
+      "community": 6
+    },
+    {
+      "label": "Tokenizer Bottleneck",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_tokenizer_bottleneck",
+      "community": 6
+    },
+    {
+      "label": "Feedback Loop Fix",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_feedback_loop",
+      "community": 6
+    },
+    {
+      "label": "Baldwin Effect",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_baldwin_effect",
+      "community": 6
+    },
+    {
+      "label": "Gemma-2-2B",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_gemma_2_2b",
+      "community": 6
+    },
+    {
+      "label": "Capital-of Is Distributed",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_capital_of_distributed",
+      "community": 6
+    },
+    {
+      "label": "Author-Nationality Circuit",
+      "file_type": "document",
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "id": "circuit_discovery_author_nationality",
+      "community": 6
+    },
+    {
+      "label": "vasudev.xyz Site",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_url": "https://vasudev.xyz",
+      "id": "readme_vasudev_site",
+      "community": 5
+    },
+    {
+      "label": "Hugo Static Site Generator",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "readme_hugo",
+      "community": 5
+    },
+    {
+      "label": "GitHub Pages Deployment",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "readme_github_pages",
+      "community": 5
+    },
+    {
+      "label": "GitHub Actions CI/CD",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "readme_github_actions",
+      "community": 5
+    },
+    {
+      "label": "CodeRabbit Review",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "readme_coderabbit",
+      "community": 5
+    },
+    {
+      "label": "Custom Theme",
+      "file_type": "document",
+      "source_file": "README.md",
+      "id": "readme_custom_theme",
+      "community": 5
+    },
+    {
+      "label": "CLAUDE.md Config",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_project_config",
+      "community": 5
+    },
+    {
+      "label": "Iron Rule: empirical to tradition",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_iron_rule",
+      "community": 5
+    },
+    {
+      "label": "Cross-disciplinary Bridging",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_cross_disciplinary_bridging",
+      "community": 5
+    },
+    {
+      "label": "Vedic Philosophy Framework",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_vedic_philosophy",
+      "community": 5
+    },
+    {
+      "label": "Neuroscience Framework",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_neuroscience",
+      "community": 5
+    },
+    {
+      "label": "Evolutionary Biology Framework",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_evolutionary_biology",
+      "community": 5
+    },
+    {
+      "label": "Vale Prose Linter",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_vale_linter",
+      "community": 5
+    },
+    {
+      "label": "Auto-translation Pipeline",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_auto_translation",
+      "community": 5
+    },
+    {
+      "label": "Translation Script (Go)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "id": "claudemd_translate_go",
+      "community": 5
+    },
+    {
+      "label": "Series: Building Agents That Sleep",
+      "file_type": "document",
+      "source_file": "content/series/building-agents-that-sleep/_index.md",
+      "id": "series_building_agents_that_sleep",
+      "community": 5
+    },
+    {
+      "label": "Series: Field Notes",
+      "file_type": "document",
+      "source_file": "content/series/field-notes/_index.md",
+      "id": "series_field_notes",
+      "community": 16
+    },
+    {
+      "label": "Sleep-inspired Memory Consolidation",
+      "file_type": "document",
+      "source_file": "content/series/building-agents-that-sleep/_index.md",
+      "id": "series_sleep_memory_consolidation",
+      "community": 5
+    },
+    {
+      "label": "AI Orchestrating Apps (MCP Way)",
+      "file_type": "image",
+      "source_file": "static/images/ai-architecture.svg",
+      "id": "ai_architecture_mcp_way",
+      "community": 9
+    },
+    {
+      "label": "Central AI Hub",
+      "file_type": "image",
+      "source_file": "static/images/ai-architecture.svg",
+      "id": "ai_architecture_central_ai",
+      "community": 9
+    },
+    {
+      "label": "MCP Protocol (Diagram)",
+      "file_type": "image",
+      "source_file": "static/images/ai-architecture.svg",
+      "id": "ai_architecture_mcp_protocol",
+      "community": 9
+    },
+    {
+      "label": "Dream Engine Pipeline (Diagram)",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_pipeline",
+      "community": 11
+    },
+    {
+      "label": "Phase 0: Orient",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase0",
+      "community": 8
+    },
+    {
+      "label": "Phase 1: Replay",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase1",
+      "community": 8
+    },
+    {
+      "label": "Phase 2: Dedup",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase2",
+      "community": 8
+    },
+    {
+      "label": "Phase 2b: LLM Consolidate",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase2b",
+      "community": 8
+    },
+    {
+      "label": "Phase 3: Schema Promotion",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase3",
+      "community": 8
+    },
+    {
+      "label": "Phase 4: Bidirectional Stability",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase4",
+      "community": 8
+    },
+    {
+      "label": "Phase 5: Transitive Inference",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase5",
+      "community": 8
+    },
+    {
+      "label": "Phase 6: Dream Journal",
+      "file_type": "image",
+      "source_file": "static/images/dream-engine.svg",
+      "id": "dream_engine_phase6",
+      "community": 8
+    },
+    {
+      "label": "defer_loading Optimization",
+      "file_type": "image",
+      "source_file": "static/images/context-window-cost-inline.svg",
+      "id": "context_window_defer_loading",
+      "community": 9
+    },
+    {
+      "label": "Dream Pipeline Vault Trust Tiers",
+      "file_type": "image",
+      "source_file": "static/images/dream-pipeline-inline.svg",
+      "id": "dream_pipeline_vault_tiers",
+      "community": 11
+    },
+    {
+      "label": "Evolution Loop Cycle",
+      "file_type": "image",
+      "source_file": "static/images/evolution-loop-inline.svg",
+      "id": "evolution_loop_cycle",
+      "community": 12
+    },
+    {
+      "label": "MCP Architecture Diagram",
+      "file_type": "image",
+      "source_file": "static/images/mcp-architecture-inline.svg",
+      "id": "mcp_architecture_diagram",
+      "community": 9
+    },
+    {
+      "label": "Measurement Timing Diagram",
+      "file_type": "image",
+      "source_file": "static/images/measurement-timing-inline.svg",
+      "id": "measurement_timing_diagram",
+      "community": 17
+    },
+    {
+      "label": "Mutation Loop Pipeline",
+      "file_type": "image",
+      "source_file": "static/images/mutation-loop-inline.svg",
+      "id": "mutation_loop_pipeline",
+      "community": 12
+    },
+    {
+      "label": "LLM Proposer",
+      "file_type": "image",
+      "source_file": "static/images/mutation-loop-inline.svg",
+      "id": "mutation_loop_llm_proposer",
+      "community": 10
+    },
+    {
+      "label": "Tokenizer Gate",
+      "file_type": "image",
+      "source_file": "static/images/mutation-loop-inline.svg",
+      "id": "mutation_loop_tokenizer_gate",
+      "community": 10
+    },
+    {
+      "label": "Probe Pipeline",
+      "file_type": "image",
+      "source_file": "static/images/mutation-loop-inline.svg",
+      "id": "mutation_loop_probe_pipeline",
+      "community": 10
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "translate_chatrequest",
+      "source": "main",
+      "target": "translate_chatrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "translate_chatmessage",
+      "source": "main",
+      "target": "translate_chatmessage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "translate_chatresponse",
+      "source": "main",
+      "target": "translate_chatresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L60",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_main",
+      "source": "main",
+      "target": "main_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L228",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_contenthash",
+      "source": "main",
+      "target": "main_contenthash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L233",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_splitfrontmatterandbody",
+      "source": "main",
+      "target": "main_splitfrontmatterandbody",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L245",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_extractfrontmatterfield",
+      "source": "main",
+      "target": "main_extractfrontmatterfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L235",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_buildtranslatedfile",
+      "source": "main",
+      "target": "main_buildtranslatedfile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_translatetext",
+      "source": "main",
+      "target": "main_translatetext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L270",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_translatetextwithcontext",
+      "source": "main",
+      "target": "main_translatetextwithcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L482",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_resolvemodelcandidates",
+      "source": "main",
+      "target": "main_resolvemodelcandidates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L494",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_parsemodellist",
+      "source": "main",
+      "target": "main_parsemodellist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L507",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_uniquemodels",
+      "source": "main",
+      "target": "main_uniquemodels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L424",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_splitbodyintochunks",
+      "source": "main",
+      "target": "main_splitbodyintochunks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L455",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_chunkhash",
+      "source": "main",
+      "target": "main_chunkhash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L461",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_headsnippet",
+      "source": "main",
+      "target": "main_headsnippet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L471",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_tailsnippet",
+      "source": "main",
+      "target": "main_tailsnippet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L482",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_extractchunkhashes",
+      "source": "main",
+      "target": "main_extractchunkhashes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L499",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_translatechunk",
+      "source": "main",
+      "target": "main_translatechunk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L524",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_shouldfallbackmodel",
+      "source": "main",
+      "target": "main_shouldfallbackmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "generate_og_images_chatrequest",
+      "source": "main",
+      "target": "generate_og_images_chatrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "generate_og_images_chatmessage",
+      "source": "main",
+      "target": "generate_og_images_chatmessage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "generate_og_images_chatresponse",
+      "source": "main",
+      "target": "generate_og_images_chatresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "generate_og_images_falrequest",
+      "source": "main",
+      "target": "generate_og_images_falrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "generate_og_images_falimagesize",
+      "source": "main",
+      "target": "generate_og_images_falimagesize",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "generate_og_images_falresponse",
+      "source": "main",
+      "target": "generate_og_images_falresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_insertimagefield",
+      "source": "main",
+      "target": "main_insertimagefield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L306",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_appenddisclaimer",
+      "source": "main",
+      "target": "main_appenddisclaimer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L314",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_generateprompt",
+      "source": "main",
+      "target": "main_generateprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L392",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_generateimage",
+      "source": "main",
+      "target": "main_generateimage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "check_links_linklocation",
+      "source": "main",
+      "target": "check_links_linklocation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "check_links_checkresult",
+      "source": "main",
+      "target": "check_links_checkresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "check_links_arxivfeed",
+      "source": "main",
+      "target": "check_links_arxivfeed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L38",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "check_links_arxiventry",
+      "source": "main",
+      "target": "check_links_arxiventry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "check_links_crossrefresponse",
+      "source": "main",
+      "target": "check_links_crossrefresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L130",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_collectfiles",
+      "source": "main",
+      "target": "main_collectfiles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L167",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_extracturls",
+      "source": "main",
+      "target": "main_extracturls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L214",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_cleanurl",
+      "source": "main",
+      "target": "main_cleanurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L219",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_cleanbareurl",
+      "source": "main",
+      "target": "main_cleanbareurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L233",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_shouldskipurl",
+      "source": "main",
+      "target": "main_shouldskipurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L274",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_checkurl",
+      "source": "main",
+      "target": "main_checkurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L347",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_checkarxivtitle",
+      "source": "main",
+      "target": "main_checkarxivtitle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L387",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_checkdoititle",
+      "source": "main",
+      "target": "main_checkdoititle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L433",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_extractarxivid",
+      "source": "main",
+      "target": "main_extractarxivid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L442",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_extractdoi",
+      "source": "main",
+      "target": "main_extractdoi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L452",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_fuzzymatch",
+      "source": "main",
+      "target": "main_fuzzymatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L462",
+      "weight": 1.0,
+      "_src": "main",
+      "_tgt": "main_normalizewhitespace",
+      "source": "main",
+      "target": "main_normalizewhitespace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_resolvemodelcandidates",
+      "source": "main_main",
+      "target": "main_resolvemodelcandidates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L181",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_contenthash",
+      "source": "main_main",
+      "target": "main_contenthash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L165",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_extractfrontmatterfield",
+      "source": "main_main",
+      "target": "main_extractfrontmatterfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L175",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_splitfrontmatterandbody",
+      "source": "main_main",
+      "target": "main_splitfrontmatterandbody",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L121",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_translatetext",
+      "source": "main_main",
+      "target": "main_translatetext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L130",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_splitbodyintochunks",
+      "source": "main_main",
+      "target": "main_splitbodyintochunks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L135",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_tailsnippet",
+      "source": "main_main",
+      "target": "main_tailsnippet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L139",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_headsnippet",
+      "source": "main_main",
+      "target": "main_headsnippet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_chunkhash",
+      "source": "main_main",
+      "target": "main_chunkhash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_extractchunkhashes",
+      "source": "main_main",
+      "target": "main_extractchunkhashes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L172",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_translatechunk",
+      "source": "main_main",
+      "target": "main_translatechunk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L187",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_buildtranslatedfile",
+      "source": "main_main",
+      "target": "main_buildtranslatedfile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L198",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_generateprompt",
+      "source": "main_main",
+      "target": "main_generateprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L207",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_generateimage",
+      "source": "main_main",
+      "target": "main_generateimage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L215",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_insertimagefield",
+      "source": "main_main",
+      "target": "main_insertimagefield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_collectfiles",
+      "source": "main_main",
+      "target": "main_collectfiles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_extracturls",
+      "source": "main_main",
+      "target": "main_extracturls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L97",
+      "weight": 1.0,
+      "_src": "main_main",
+      "_tgt": "main_checkurl",
+      "source": "main_main",
+      "target": "main_checkurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L267",
+      "weight": 1.0,
+      "_src": "main_insertimagefield",
+      "_tgt": "main_splitfrontmatterandbody",
+      "source": "main_splitfrontmatterandbody",
+      "target": "main_insertimagefield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L483",
+      "weight": 1.0,
+      "_src": "main_extractchunkhashes",
+      "_tgt": "main_extractfrontmatterfield",
+      "source": "main_extractfrontmatterfield",
+      "target": "main_extractchunkhashes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L267",
+      "weight": 1.0,
+      "_src": "main_translatetext",
+      "_tgt": "main_translatetextwithcontext",
+      "source": "main_translatetext",
+      "target": "main_translatetextwithcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L347",
+      "weight": 1.0,
+      "_src": "main_translatetextwithcontext",
+      "_tgt": "main_shouldfallbackmodel",
+      "source": "main_translatetextwithcontext",
+      "target": "main_shouldfallbackmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L509",
+      "weight": 1.0,
+      "_src": "main_translatechunk",
+      "_tgt": "main_translatetextwithcontext",
+      "source": "main_translatetextwithcontext",
+      "target": "main_translatechunk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L483",
+      "weight": 1.0,
+      "_src": "main_resolvemodelcandidates",
+      "_tgt": "main_uniquemodels",
+      "source": "main_resolvemodelcandidates",
+      "target": "main_uniquemodels",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L483",
+      "weight": 1.0,
+      "_src": "main_resolvemodelcandidates",
+      "_tgt": "main_parsemodellist",
+      "source": "main_resolvemodelcandidates",
+      "target": "main_parsemodellist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L506",
+      "weight": 1.0,
+      "_src": "main_translatechunk",
+      "_tgt": "main_headsnippet",
+      "source": "main_headsnippet",
+      "target": "main_translatechunk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main.go",
+      "source_location": "L503",
+      "weight": 1.0,
+      "_src": "main_translatechunk",
+      "_tgt": "main_tailsnippet",
+      "source": "main_tailsnippet",
+      "target": "main_translatechunk",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L362",
+      "weight": 1.0,
+      "_src": "main_generateprompt",
+      "_tgt": "main_shouldfallbackmodel",
+      "source": "main_shouldfallbackmodel",
+      "target": "main_generateprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testresolvemodelcandidatesfromexplicitlist",
+      "source": "main_test",
+      "target": "main_test_testresolvemodelcandidatesfromexplicitlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
+      "source": "main_test",
+      "target": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testtranslatetextfallsbackonratelimit",
+      "source": "main_test",
+      "target": "main_test_testtranslatetextfallsbackonratelimit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L328",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testshouldfallbackmodel",
+      "source": "main_test",
+      "target": "main_test_testshouldfallbackmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L102",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testsplitbodyintochunks",
+      "source": "main_test",
+      "target": "main_test_testsplitbodyintochunks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L121",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
+      "source": "main_test",
+      "target": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L136",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testsplitbodyintochunkstildefence",
+      "source": "main_test",
+      "target": "main_test_testsplitbodyintochunkstildefence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testsplitbodyintochunksnoheadings",
+      "source": "main_test",
+      "target": "main_test_testsplitbodyintochunksnoheadings",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L160",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testsplitbodyroundtrip",
+      "source": "main_test",
+      "target": "main_test_testsplitbodyroundtrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L169",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testchunkhashdeterministic",
+      "source": "main_test",
+      "target": "main_test_testchunkhashdeterministic",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L181",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextractchunkhashes",
+      "source": "main_test",
+      "target": "main_test_testextractchunkhashes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L188",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextractchunkhashesempty",
+      "source": "main_test",
+      "target": "main_test_testextractchunkhashesempty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L196",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testbuildtranslatedfileincludeschunkhashes",
+      "source": "main_test",
+      "target": "main_test_testbuildtranslatedfileincludeschunkhashes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L207",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testheadandtailsnippet",
+      "source": "main_test",
+      "target": "main_test_testheadandtailsnippet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L243",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testtranslatechunkcontextinsystemprompt",
+      "source": "main_test",
+      "target": "main_test_testtranslatechunkcontextinsystemprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L305",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_escaped",
+      "source": "main_test",
+      "target": "main_test_escaped",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L312",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_assertstringslicesequal",
+      "source": "main_test",
+      "target": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L325",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "translate_roundtripfunc",
+      "source": "main_test",
+      "target": "translate_roundtripfunc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_jsonresponse",
+      "source": "main_test",
+      "target": "main_test_jsonresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "generate_og_images_roundtripfunc",
+      "source": "main_test",
+      "target": "generate_og_images_roundtripfunc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testsplitfrontmatterandbody",
+      "source": "main_test",
+      "target": "main_test_testsplitfrontmatterandbody",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextractfrontmatterfield",
+      "source": "main_test",
+      "target": "main_test_testextractfrontmatterfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testcontenthash",
+      "source": "main_test",
+      "target": "main_test_testcontenthash",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L72",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testinsertimagefield",
+      "source": "main_test",
+      "target": "main_test_testinsertimagefield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L172",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testgeneratepromptwithfallback",
+      "source": "main_test",
+      "target": "main_test_testgeneratepromptwithfallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L212",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testgenerateimagesuccess",
+      "source": "main_test",
+      "target": "main_test_testgenerateimagesuccess",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L263",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testcontenthashskipsunchanged",
+      "source": "main_test",
+      "target": "main_test_testcontenthashskipsunchanged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L292",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testpostfilteringskipstranslations",
+      "source": "main_test",
+      "target": "main_test_testpostfilteringskipstranslations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L341",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test",
+      "target": "main_test_projectroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L348",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_readallowedtags",
+      "source": "main_test",
+      "target": "main_test_readallowedtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L365",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testallowedtagscontainsnewtags",
+      "source": "main_test",
+      "target": "main_test_testallowedtagscontainsnewtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L380",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testallowedtagsissorted",
+      "source": "main_test",
+      "target": "main_test_testallowedtagsissorted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L390",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testallowedtagsnoduplicates",
+      "source": "main_test",
+      "target": "main_test_testallowedtagsnoduplicates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L404",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testallowedtagsformat",
+      "source": "main_test",
+      "target": "main_test_testallowedtagsformat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L419",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_parsetaglist",
+      "source": "main_test",
+      "target": "main_test_parsetaglist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L435",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testparsetaglist",
+      "source": "main_test",
+      "target": "main_test_testparsetaglist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L460",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testnewblogposthasrequiredfields",
+      "source": "main_test",
+      "target": "main_test_testnewblogposthasrequiredfields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L476",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testnewblogposttagsareallowed",
+      "source": "main_test",
+      "target": "main_test_testnewblogposttagsareallowed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L498",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testnewblogpostusesnewtags",
+      "source": "main_test",
+      "target": "main_test_testnewblogpostusesnewtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L519",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testnewblogpostdateformat",
+      "source": "main_test",
+      "target": "main_test_testnewblogpostdateformat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L537",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testnewblogpostbodyisnonempty",
+      "source": "main_test",
+      "target": "main_test_testnewblogpostbodyisnonempty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextracturls",
+      "source": "main_test",
+      "target": "main_test_testextracturls",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L73",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextracturlslinenumbers",
+      "source": "main_test",
+      "target": "main_test_testextracturlslinenumbers",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L107",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextractarxivid",
+      "source": "main_test",
+      "target": "main_test_testextractarxivid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L128",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testextractdoi",
+      "source": "main_test",
+      "target": "main_test_testextractdoi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L148",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testfuzzymatch",
+      "source": "main_test",
+      "target": "main_test_testfuzzymatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L172",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testcleanbareurl",
+      "source": "main_test",
+      "target": "main_test_testcleanbareurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L194",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testshouldskipurl",
+      "source": "main_test",
+      "target": "main_test_testshouldskipurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L222",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testcollectfileswithflag",
+      "source": "main_test",
+      "target": "main_test_testcollectfileswithflag",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main_test.go",
+      "source_location": "L235",
+      "weight": 1.0,
+      "_src": "main_test",
+      "_tgt": "main_test_testnormalizewhitespace",
+      "source": "main_test",
+      "target": "main_test_testnormalizewhitespace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "main_test_testresolvemodelcandidatesfromexplicitlist",
+      "_tgt": "main_test_assertstringslicesequal",
+      "source": "main_test_testresolvemodelcandidatesfromexplicitlist",
+      "target": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_src": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
+      "_tgt": "main_test_assertstringslicesequal",
+      "source": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
+      "target": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_src": "main_test_testtranslatetextfallsbackonratelimit",
+      "_tgt": "translate_roundtripfunc",
+      "source": "main_test_testtranslatetextfallsbackonratelimit",
+      "target": "translate_roundtripfunc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "main_test_testtranslatetextfallsbackonratelimit",
+      "_tgt": "main_test_jsonresponse",
+      "source": "main_test_testtranslatetextfallsbackonratelimit",
+      "target": "main_test_jsonresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_src": "main_test_testtranslatetextfallsbackonratelimit",
+      "_tgt": "main_test_assertstringslicesequal",
+      "source": "main_test_testtranslatetextfallsbackonratelimit",
+      "target": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L185",
+      "weight": 1.0,
+      "_src": "main_test_testextractchunkhashes",
+      "_tgt": "main_test_assertstringslicesequal",
+      "source": "main_test_testextractchunkhashes",
+      "target": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L252",
+      "weight": 1.0,
+      "_src": "main_test_testtranslatechunkcontextinsystemprompt",
+      "_tgt": "translate_roundtripfunc",
+      "source": "main_test_testtranslatechunkcontextinsystemprompt",
+      "target": "translate_roundtripfunc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L264",
+      "weight": 1.0,
+      "_src": "main_test_testtranslatechunkcontextinsystemprompt",
+      "_tgt": "main_test_jsonresponse",
+      "source": "main_test_testtranslatechunkcontextinsystemprompt",
+      "target": "main_test_jsonresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/translate/main_test.go",
+      "source_location": "L327",
+      "weight": 1.0,
+      "_src": "translate_roundtripfunc",
+      "_tgt": "translate_roundtripfunc_roundtrip",
+      "source": "translate_roundtripfunc",
+      "target": "translate_roundtripfunc_roundtrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L192",
+      "weight": 1.0,
+      "_src": "main_test_testgeneratepromptwithfallback",
+      "_tgt": "main_test_jsonresponse",
+      "source": "main_test_jsonresponse",
+      "target": "main_test_testgeneratepromptwithfallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L234",
+      "weight": 1.0,
+      "_src": "main_test_testgenerateimagesuccess",
+      "_tgt": "main_test_jsonresponse",
+      "source": "main_test_jsonresponse",
+      "target": "main_test_testgenerateimagesuccess",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main.go",
+      "source_location": "L297",
+      "weight": 1.0,
+      "_src": "main_insertimagefield",
+      "_tgt": "main_appenddisclaimer",
+      "source": "main_insertimagefield",
+      "target": "main_appenddisclaimer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "generate_og_images_roundtripfunc",
+      "_tgt": "generate_og_images_roundtripfunc_roundtrip",
+      "source": "generate_og_images_roundtripfunc",
+      "target": "generate_og_images_roundtripfunc_roundtrip",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L180",
+      "weight": 1.0,
+      "_src": "main_test_testgeneratepromptwithfallback",
+      "_tgt": "generate_og_images_roundtripfunc",
+      "source": "generate_og_images_roundtripfunc",
+      "target": "main_test_testgeneratepromptwithfallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L224",
+      "weight": 1.0,
+      "_src": "main_test_testgenerateimagesuccess",
+      "_tgt": "generate_og_images_roundtripfunc",
+      "source": "generate_og_images_roundtripfunc",
+      "target": "main_test_testgenerateimagesuccess",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L350",
+      "weight": 1.0,
+      "_src": "main_test_readallowedtags",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test_projectroot",
+      "target": "main_test_readallowedtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L461",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogposthasrequiredfields",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test_projectroot",
+      "target": "main_test_testnewblogposthasrequiredfields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L477",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogposttagsareallowed",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test_projectroot",
+      "target": "main_test_testnewblogposttagsareallowed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L499",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogpostusesnewtags",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test_projectroot",
+      "target": "main_test_testnewblogpostusesnewtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L520",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogpostdateformat",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test_projectroot",
+      "target": "main_test_testnewblogpostdateformat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L538",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogpostbodyisnonempty",
+      "_tgt": "main_test_projectroot",
+      "source": "main_test_projectroot",
+      "target": "main_test_testnewblogpostbodyisnonempty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L366",
+      "weight": 1.0,
+      "_src": "main_test_testallowedtagscontainsnewtags",
+      "_tgt": "main_test_readallowedtags",
+      "source": "main_test_readallowedtags",
+      "target": "main_test_testallowedtagscontainsnewtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L381",
+      "weight": 1.0,
+      "_src": "main_test_testallowedtagsissorted",
+      "_tgt": "main_test_readallowedtags",
+      "source": "main_test_readallowedtags",
+      "target": "main_test_testallowedtagsissorted",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L391",
+      "weight": 1.0,
+      "_src": "main_test_testallowedtagsnoduplicates",
+      "_tgt": "main_test_readallowedtags",
+      "source": "main_test_readallowedtags",
+      "target": "main_test_testallowedtagsnoduplicates",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L405",
+      "weight": 1.0,
+      "_src": "main_test_testallowedtagsformat",
+      "_tgt": "main_test_readallowedtags",
+      "source": "main_test_readallowedtags",
+      "target": "main_test_testallowedtagsformat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L485",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogposttagsareallowed",
+      "_tgt": "main_test_readallowedtags",
+      "source": "main_test_readallowedtags",
+      "target": "main_test_testnewblogposttagsareallowed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L446",
+      "weight": 1.0,
+      "_src": "main_test_testparsetaglist",
+      "_tgt": "main_test_parsetaglist",
+      "source": "main_test_parsetaglist",
+      "target": "main_test_testparsetaglist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L483",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogposttagsareallowed",
+      "_tgt": "main_test_parsetaglist",
+      "source": "main_test_parsetaglist",
+      "target": "main_test_testnewblogposttagsareallowed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/generate-og-images/main_test.go",
+      "source_location": "L505",
+      "weight": 1.0,
+      "_src": "main_test_testnewblogpostusesnewtags",
+      "_tgt": "main_test_parsetaglist",
+      "source": "main_test_parsetaglist",
+      "target": "main_test_testnewblogpostusesnewtags",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L183",
+      "weight": 1.0,
+      "_src": "main_extracturls",
+      "_tgt": "main_cleanurl",
+      "source": "main_extracturls",
+      "target": "main_cleanurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L184",
+      "weight": 1.0,
+      "_src": "main_extracturls",
+      "_tgt": "main_shouldskipurl",
+      "source": "main_extracturls",
+      "target": "main_shouldskipurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L198",
+      "weight": 1.0,
+      "_src": "main_extracturls",
+      "_tgt": "main_cleanbareurl",
+      "source": "main_extracturls",
+      "target": "main_cleanbareurl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L330",
+      "weight": 1.0,
+      "_src": "main_checkurl",
+      "_tgt": "main_checkarxivtitle",
+      "source": "main_checkurl",
+      "target": "main_checkarxivtitle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L333",
+      "weight": 1.0,
+      "_src": "main_checkurl",
+      "_tgt": "main_checkdoititle",
+      "source": "main_checkurl",
+      "target": "main_checkdoititle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L348",
+      "weight": 1.0,
+      "_src": "main_checkarxivtitle",
+      "_tgt": "main_extractarxivid",
+      "source": "main_checkarxivtitle",
+      "target": "main_extractarxivid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L377",
+      "weight": 1.0,
+      "_src": "main_checkarxivtitle",
+      "_tgt": "main_normalizewhitespace",
+      "source": "main_checkarxivtitle",
+      "target": "main_normalizewhitespace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L378",
+      "weight": 1.0,
+      "_src": "main_checkarxivtitle",
+      "_tgt": "main_fuzzymatch",
+      "source": "main_checkarxivtitle",
+      "target": "main_fuzzymatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L388",
+      "weight": 1.0,
+      "_src": "main_checkdoititle",
+      "_tgt": "main_extractdoi",
+      "source": "main_checkdoititle",
+      "target": "main_extractdoi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L425",
+      "weight": 1.0,
+      "_src": "main_checkdoititle",
+      "_tgt": "main_fuzzymatch",
+      "source": "main_checkdoititle",
+      "target": "main_fuzzymatch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "cmd/check-links/main.go",
+      "source_location": "L453",
+      "weight": 1.0,
+      "_src": "main_fuzzymatch",
+      "_tgt": "main_normalizewhitespace",
+      "source": "main_fuzzymatch",
+      "target": "main_normalizewhitespace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 1.0,
+      "_src": "stop_putting_ai_in_apps",
+      "_tgt": "stop_putting_ai_in_apps__mcp",
+      "source": "stop_putting_ai_in_apps",
+      "target": "stop_putting_ai_in_apps__mcp"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 1.0,
+      "_src": "stop_putting_ai_in_apps",
+      "_tgt": "stop_putting_ai_in_apps__ai_orchestration_pattern",
+      "source": "stop_putting_ai_in_apps",
+      "target": "stop_putting_ai_in_apps__ai_orchestration_pattern"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 1.0,
+      "_src": "stop_putting_ai_in_apps",
+      "_tgt": "stop_putting_ai_in_apps__nocodb",
+      "source": "stop_putting_ai_in_apps",
+      "target": "stop_putting_ai_in_apps__nocodb"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 1.0,
+      "_src": "stop_putting_ai_in_apps",
+      "_tgt": "mcp_context_window_fix",
+      "source": "stop_putting_ai_in_apps",
+      "target": "mcp_context_window_fix"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/direct-divine-access.md",
+      "weight": 0.8,
+      "_src": "direct_divine_access",
+      "_tgt": "stop_putting_ai_in_apps",
+      "source": "stop_putting_ai_in_apps",
+      "target": "direct_divine_access"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "weight": 0.9,
+      "_src": "mcp_context_window_fix",
+      "_tgt": "stop_putting_ai_in_apps__mcp",
+      "source": "stop_putting_ai_in_apps__mcp",
+      "target": "mcp_context_window_fix"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "weight": 0.8,
+      "_src": "adding_oauth_mcp_server_gotchas",
+      "_tgt": "stop_putting_ai_in_apps__mcp",
+      "source": "stop_putting_ai_in_apps__mcp",
+      "target": "adding_oauth_mcp_server_gotchas"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 0.9,
+      "_src": "stop_putting_ai_in_apps__ai_orchestration_pattern",
+      "_tgt": "stop_putting_ai_in_apps__saas_commoditization",
+      "source": "stop_putting_ai_in_apps__ai_orchestration_pattern",
+      "target": "stop_putting_ai_in_apps__saas_commoditization"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "content/blog/direct-divine-access.md",
+      "weight": 0.8,
+      "_src": "direct_divine_access__intermediary_pattern",
+      "_tgt": "stop_putting_ai_in_apps__ai_orchestration_pattern",
+      "source": "stop_putting_ai_in_apps__ai_orchestration_pattern",
+      "target": "direct_divine_access__intermediary_pattern"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 0.9,
+      "_src": "stop_putting_ai_in_apps__nocodb",
+      "_tgt": "adding_oauth_mcp_server_gotchas",
+      "source": "stop_putting_ai_in_apps__nocodb",
+      "target": "adding_oauth_mcp_server_gotchas"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "content/blog/direct-divine-access.md",
+      "weight": 0.7,
+      "_src": "stop_putting_ai_in_apps__saas_commoditization",
+      "_tgt": "direct_divine_access__intermediary_pattern",
+      "source": "stop_putting_ai_in_apps__saas_commoditization",
+      "target": "direct_divine_access__intermediary_pattern"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
+      "weight": 1.0,
+      "_src": "stop_putting_ai_in_apps__context_window_cost",
+      "_tgt": "mcp_context_window_fix__token_overhead",
+      "source": "stop_putting_ai_in_apps__context_window_cost",
+      "target": "mcp_context_window_fix__token_overhead"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 1.0,
+      "_src": "why_ai_agents_need_sleep",
+      "_tgt": "why_ai_agents_need_sleep__muninndb",
+      "source": "why_ai_agents_need_sleep",
+      "target": "why_ai_agents_need_sleep__muninndb"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 1.0,
+      "_src": "why_ai_agents_need_sleep",
+      "_tgt": "why_ai_agents_need_sleep__dream_engine",
+      "source": "why_ai_agents_need_sleep",
+      "target": "why_ai_agents_need_sleep__dream_engine"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 0.9,
+      "_src": "why_ai_agents_need_sleep",
+      "_tgt": "why_ai_agents_need_sleep__hrafn",
+      "source": "why_ai_agents_need_sleep",
+      "target": "why_ai_agents_need_sleep__hrafn"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 1.0,
+      "_src": "why_ai_agents_need_sleep__muninndb",
+      "_tgt": "why_ai_agents_need_sleep__hrafn",
+      "source": "why_ai_agents_need_sleep__muninndb",
+      "target": "why_ai_agents_need_sleep__hrafn"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design",
+      "_tgt": "why_ai_agents_need_sleep__muninndb",
+      "source": "why_ai_agents_need_sleep__muninndb",
+      "target": "ai_environment_design"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design__persistence_tier",
+      "_tgt": "why_ai_agents_need_sleep__muninndb",
+      "source": "why_ai_agents_need_sleep__muninndb",
+      "target": "ai_environment_design__persistence_tier"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 1.0,
+      "_src": "why_ai_agents_need_sleep__dream_engine",
+      "_tgt": "why_ai_agents_need_sleep__memory_consolidation",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__memory_consolidation"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 0.8,
+      "_src": "why_ai_agents_need_sleep__dream_engine",
+      "_tgt": "why_ai_agents_need_sleep__memorybank",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__memorybank"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 0.8,
+      "_src": "why_ai_agents_need_sleep__dream_engine",
+      "_tgt": "why_ai_agents_need_sleep__sleepgate",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__sleepgate"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 0.7,
+      "_src": "why_ai_agents_need_sleep__dream_engine",
+      "_tgt": "why_ai_agents_need_sleep__auto_dream",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__auto_dream"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 0.9,
+      "_src": "why_ai_agents_need_sleep__dream_engine",
+      "_tgt": "why_ai_agents_need_sleep__ebbinghaus_decay",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__ebbinghaus_decay"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 1.0,
+      "_src": "why_ai_agents_need_sleep__dream_engine",
+      "_tgt": "why_ai_agents_need_sleep__dedup_threshold",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__dedup_threshold"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/why-ai-agents-need-sleep.md",
+      "weight": 0.9,
+      "_src": "why_ai_agents_need_sleep__vault_trust_tiers",
+      "_tgt": "why_ai_agents_need_sleep__dream_engine",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "why_ai_agents_need_sleep__vault_trust_tiers"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 0.9,
+      "_src": "ai_environment_design",
+      "_tgt": "why_ai_agents_need_sleep__dream_engine",
+      "source": "why_ai_agents_need_sleep__dream_engine",
+      "target": "ai_environment_design"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design",
+      "_tgt": "why_ai_agents_need_sleep__hrafn",
+      "source": "why_ai_agents_need_sleep__hrafn",
+      "target": "ai_environment_design"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/direct-divine-access.md",
+      "weight": 1.0,
+      "_src": "direct_divine_access",
+      "_tgt": "direct_divine_access__intermediary_pattern",
+      "source": "direct_divine_access",
+      "target": "direct_divine_access__intermediary_pattern"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/direct-divine-access.md",
+      "weight": 0.9,
+      "_src": "direct_divine_access",
+      "_tgt": "direct_divine_access__meta_harness",
+      "source": "direct_divine_access",
+      "target": "direct_divine_access__meta_harness"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/direct-divine-access.md",
+      "weight": 0.8,
+      "_src": "direct_divine_access",
+      "_tgt": "mcp_context_window_fix",
+      "source": "direct_divine_access",
+      "target": "mcp_context_window_fix"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.78,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 0.8,
+      "_src": "ai_environment_design__goodharts_law",
+      "_tgt": "direct_divine_access__intermediary_pattern",
+      "source": "direct_divine_access__intermediary_pattern",
+      "target": "ai_environment_design__goodharts_law"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 0.7,
+      "_src": "gemma3_sae__pratyahara_bridge",
+      "_tgt": "direct_divine_access__direct_experience",
+      "source": "direct_divine_access__direct_experience",
+      "target": "gemma3_sae__pratyahara_bridge"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "weight": 1.0,
+      "_src": "mcp_context_window_fix",
+      "_tgt": "mcp_context_window_fix__deferred_loading",
+      "source": "mcp_context_window_fix",
+      "target": "mcp_context_window_fix__deferred_loading"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "weight": 1.0,
+      "_src": "mcp_context_window_fix",
+      "_tgt": "mcp_context_window_fix__tool_search",
+      "source": "mcp_context_window_fix",
+      "target": "mcp_context_window_fix__tool_search"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "weight": 1.0,
+      "_src": "mcp_context_window_fix",
+      "_tgt": "mcp_context_window_fix__token_overhead",
+      "source": "mcp_context_window_fix",
+      "target": "mcp_context_window_fix__token_overhead"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/mcp-context-window-fix.md",
+      "weight": 1.0,
+      "_src": "mcp_context_window_fix__deferred_loading",
+      "_tgt": "mcp_context_window_fix__tool_search",
+      "source": "mcp_context_window_fix__deferred_loading",
+      "target": "mcp_context_window_fix__tool_search"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "weight": 1.0,
+      "_src": "adding_oauth_mcp_server_gotchas",
+      "_tgt": "adding_oauth_mcp_server_gotchas__reactive_resume",
+      "source": "adding_oauth_mcp_server_gotchas",
+      "target": "adding_oauth_mcp_server_gotchas__reactive_resume"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "weight": 1.0,
+      "_src": "adding_oauth_mcp_server_gotchas",
+      "_tgt": "adding_oauth_mcp_server_gotchas__two_wellknown_endpoints",
+      "source": "adding_oauth_mcp_server_gotchas",
+      "target": "adding_oauth_mcp_server_gotchas__two_wellknown_endpoints"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "weight": 1.0,
+      "_src": "adding_oauth_mcp_server_gotchas",
+      "_tgt": "adding_oauth_mcp_server_gotchas__dual_auth_path",
+      "source": "adding_oauth_mcp_server_gotchas",
+      "target": "adding_oauth_mcp_server_gotchas__dual_auth_path"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "weight": 1.0,
+      "_src": "adding_oauth_mcp_server_gotchas",
+      "_tgt": "adding_oauth_mcp_server_gotchas__better_auth_deprecation",
+      "source": "adding_oauth_mcp_server_gotchas",
+      "target": "adding_oauth_mcp_server_gotchas__better_auth_deprecation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
+      "weight": 1.0,
+      "_src": "adding_oauth_mcp_server_gotchas",
+      "_tgt": "adding_oauth_mcp_server_gotchas__auth_chain_layers",
+      "source": "adding_oauth_mcp_server_gotchas",
+      "target": "adding_oauth_mcp_server_gotchas__auth_chain_layers"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design",
+      "_tgt": "ai_environment_design__genotype_phenotype",
+      "source": "ai_environment_design",
+      "target": "ai_environment_design__genotype_phenotype"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design",
+      "_tgt": "ai_environment_design__evaluator_not_loss_function",
+      "source": "ai_environment_design",
+      "target": "ai_environment_design__evaluator_not_loss_function"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design",
+      "_tgt": "ai_environment_design__mutation_selection_cycle",
+      "source": "ai_environment_design",
+      "target": "ai_environment_design__mutation_selection_cycle"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design",
+      "_tgt": "ai_environment_design__sae_steering_operator",
+      "source": "ai_environment_design",
+      "target": "ai_environment_design__sae_steering_operator"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 1.0,
+      "_src": "ai_environment_design__evaluator_not_loss_function",
+      "_tgt": "ai_environment_design__goodharts_law",
+      "source": "ai_environment_design__evaluator_not_loss_function",
+      "target": "ai_environment_design__goodharts_law"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "content/blog/ai-environment-design.md",
+      "weight": 0.8,
+      "_src": "ai_environment_design__sae_steering_operator",
+      "_tgt": "gemma3_sae__encoding_vs_generation",
+      "source": "ai_environment_design__sae_steering_operator",
+      "target": "gemma3_sae__encoding_vs_generation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 1.0,
+      "_src": "gemma3_sae_measurement_timing",
+      "_tgt": "gemma3_sae__encoding_vs_generation",
+      "source": "gemma3_sae_measurement_timing",
+      "target": "gemma3_sae__encoding_vs_generation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 1.0,
+      "_src": "gemma3_sae_measurement_timing",
+      "_tgt": "gemma3_sae__sycophancy_detection",
+      "source": "gemma3_sae_measurement_timing",
+      "target": "gemma3_sae__sycophancy_detection"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 1.0,
+      "_src": "gemma3_sae_measurement_timing",
+      "_tgt": "gemma3_sae__hallucination_taxonomy",
+      "source": "gemma3_sae_measurement_timing",
+      "target": "gemma3_sae__hallucination_taxonomy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 1.0,
+      "_src": "gemma3_sae_measurement_timing",
+      "_tgt": "gemma3_sae__hypothesis_falsified",
+      "source": "gemma3_sae_measurement_timing",
+      "target": "gemma3_sae__hypothesis_falsified"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 0.8,
+      "_src": "gemma3_sae_measurement_timing",
+      "_tgt": "gemma3_sae__pratyahara_bridge",
+      "source": "gemma3_sae_measurement_timing",
+      "target": "gemma3_sae__pratyahara_bridge"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 1.0,
+      "_src": "gemma3_sae__hallucination_taxonomy",
+      "_tgt": "gemma3_sae__hypothesis_falsified",
+      "source": "gemma3_sae__hallucination_taxonomy",
+      "target": "gemma3_sae__hypothesis_falsified"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/gemma3-sae-measurement-timing.md",
+      "weight": 0.9,
+      "_src": "gemma3_sae__hypothesis_falsified",
+      "_tgt": "gemma3_sae__dimensional_overfitting",
+      "source": "gemma3_sae__hypothesis_falsified",
+      "target": "gemma3_sae__dimensional_overfitting"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_post",
+      "_tgt": "llm_sleep_memory_dream_engine",
+      "source": "llm_sleep_memory_post",
+      "target": "llm_sleep_memory_dream_engine"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_post",
+      "_tgt": "llm_sleep_memory_sleepgate",
+      "source": "llm_sleep_memory_post",
+      "target": "llm_sleep_memory_sleepgate"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_post",
+      "_tgt": "llm_sleep_memory_memorybench",
+      "source": "llm_sleep_memory_post",
+      "target": "llm_sleep_memory_memorybench"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_post",
+      "_tgt": "llm_sleep_memory_synapticrag",
+      "source": "llm_sleep_memory_post",
+      "target": "llm_sleep_memory_synapticrag"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_post",
+      "_tgt": "llm_sleep_memory_goodai_benchmark",
+      "source": "llm_sleep_memory_post",
+      "target": "llm_sleep_memory_goodai_benchmark"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_post",
+      "_tgt": "memory_metrics_post",
+      "source": "llm_sleep_memory_post",
+      "target": "memory_metrics_post"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_dream_engine",
+      "_tgt": "llm_sleep_memory_muninndb",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "llm_sleep_memory_muninndb"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_dream_engine",
+      "_tgt": "llm_sleep_memory_ebbinghaus_decay",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "llm_sleep_memory_ebbinghaus_decay"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_dream_engine",
+      "_tgt": "llm_sleep_memory_hebbian_association",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "llm_sleep_memory_hebbian_association"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md",
+      "weight": 1.0,
+      "_src": "llm_sleep_memory_phase_selectivity",
+      "_tgt": "llm_sleep_memory_dream_engine",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "llm_sleep_memory_phase_selectivity"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "llm_sleep_memory_dream_engine",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "memory_metrics_post"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_ablation_pr_367",
+      "_tgt": "llm_sleep_memory_dream_engine",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "patanjali_ablation_pr_367"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 0.8,
+      "_src": "svapna_svapna",
+      "_tgt": "llm_sleep_memory_dream_engine",
+      "source": "llm_sleep_memory_dream_engine",
+      "target": "svapna_svapna"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "llm_sleep_memory_muninndb",
+      "source": "llm_sleep_memory_muninndb",
+      "target": "memory_metrics_post"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "llm_sleep_memory_muninndb",
+      "source": "llm_sleep_memory_muninndb",
+      "target": "patanjali_post"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "llm_sleep_memory_muninndb",
+      "source": "llm_sleep_memory_muninndb",
+      "target": "svapna_post"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "llm_sleep_memory_sleepgate",
+      "source": "llm_sleep_memory_sleepgate",
+      "target": "svapna_post"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 0.8,
+      "_src": "svapna_sushupti",
+      "_tgt": "llm_sleep_memory_sleepgate",
+      "source": "llm_sleep_memory_sleepgate",
+      "target": "svapna_sushupti"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "llm_sleep_memory_memorybench",
+      "source": "llm_sleep_memory_memorybench",
+      "target": "memory_metrics_post"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "llm_sleep_memory_goodai_benchmark",
+      "source": "llm_sleep_memory_goodai_benchmark",
+      "target": "memory_metrics_post"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_samskara_vairagya",
+      "_tgt": "llm_sleep_memory_hebbian_association",
+      "source": "llm_sleep_memory_hebbian_association",
+      "target": "patanjali_samskara_vairagya"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "memory_metrics_flyxion_essay",
+      "source": "memory_metrics_post",
+      "target": "memory_metrics_flyxion_essay"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "memory_metrics_goodharts_law",
+      "source": "memory_metrics_post",
+      "target": "memory_metrics_goodharts_law"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "memory_metrics_longmemeval",
+      "source": "memory_metrics_post",
+      "target": "memory_metrics_longmemeval"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "memory_metrics_mempalace",
+      "source": "memory_metrics_post",
+      "target": "memory_metrics_mempalace"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_post",
+      "_tgt": "memory_metrics_hrafn",
+      "source": "memory_metrics_post",
+      "target": "memory_metrics_hrafn"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_proxy_detachment",
+      "_tgt": "memory_metrics_flyxion_essay",
+      "source": "memory_metrics_proxy_detachment",
+      "target": "memory_metrics_flyxion_essay"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 1.0,
+      "_src": "memory_metrics_grounding_criterion",
+      "_tgt": "memory_metrics_proxy_detachment",
+      "source": "memory_metrics_proxy_detachment",
+      "target": "memory_metrics_grounding_criterion"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.72,
+      "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
+      "weight": 0.7,
+      "_src": "memory_metrics_proxy_detachment",
+      "_tgt": "patanjali_vrtti_nirodha",
+      "source": "memory_metrics_proxy_detachment",
+      "target": "patanjali_vrtti_nirodha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_post",
+      "_tgt": "memory_metrics_hrafn",
+      "source": "memory_metrics_hrafn",
+      "target": "a2a_post"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_pr_4166",
+      "_tgt": "memory_metrics_hrafn",
+      "source": "memory_metrics_hrafn",
+      "target": "a2a_pr_4166"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "memory_metrics_hrafn",
+      "source": "memory_metrics_hrafn",
+      "target": "patanjali_post"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "memory_metrics_hrafn",
+      "source": "memory_metrics_hrafn",
+      "target": "svapna_post"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_post",
+      "_tgt": "a2a_protocol",
+      "source": "a2a_post",
+      "target": "a2a_protocol"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_post",
+      "_tgt": "a2a_ssrf_protection",
+      "source": "a2a_post",
+      "target": "a2a_ssrf_protection"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_post",
+      "_tgt": "a2a_taskstore_cap",
+      "source": "a2a_post",
+      "target": "a2a_taskstore_cap"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_post",
+      "_tgt": "a2a_constant_time_comparison",
+      "source": "a2a_post",
+      "target": "a2a_constant_time_comparison"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
+      "weight": 1.0,
+      "_src": "a2a_post",
+      "_tgt": "a2a_agent_cards",
+      "source": "a2a_post",
+      "target": "a2a_agent_cards"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_meta_harness",
+      "source": "patanjali_post",
+      "target": "patanjali_meta_harness"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_boeckeler",
+      "source": "patanjali_post",
+      "target": "patanjali_boeckeler"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_vrtti_nirodha",
+      "source": "patanjali_post",
+      "target": "patanjali_vrtti_nirodha"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_samskara_vairagya",
+      "source": "patanjali_post",
+      "target": "patanjali_samskara_vairagya"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_pratyahara",
+      "source": "patanjali_post",
+      "target": "patanjali_pratyahara"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_min_dedup_vault_size",
+      "source": "patanjali_post",
+      "target": "patanjali_min_dedup_vault_size"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_outcome_tagged_writes",
+      "source": "patanjali_post",
+      "target": "patanjali_outcome_tagged_writes"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_advaitic_policy_optimization",
+      "source": "patanjali_post",
+      "target": "patanjali_advaitic_policy_optimization"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_post",
+      "_tgt": "patanjali_ablation_pr_367",
+      "source": "patanjali_post",
+      "target": "patanjali_ablation_pr_367"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_vrtti_nirodha",
+      "_tgt": "patanjali_min_dedup_vault_size",
+      "source": "patanjali_vrtti_nirodha",
+      "target": "patanjali_min_dedup_vault_size"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 1.0,
+      "_src": "patanjali_outcome_tagged_writes",
+      "_tgt": "patanjali_vrtti_nirodha",
+      "source": "patanjali_vrtti_nirodha",
+      "target": "patanjali_outcome_tagged_writes"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.68,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 0.6,
+      "_src": "circuit_discovery_baldwin_effect",
+      "_tgt": "patanjali_samskara_vairagya",
+      "source": "patanjali_samskara_vairagya",
+      "target": "circuit_discovery_baldwin_effect"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "content/blog/patanjali-harness-spec.md",
+      "weight": 0.8,
+      "_src": "patanjali_pratyahara",
+      "_tgt": "patanjali_meta_harness",
+      "source": "patanjali_pratyahara",
+      "target": "patanjali_meta_harness"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "patanjali_ablation_pr_367",
+      "source": "patanjali_ablation_pr_367",
+      "target": "svapna_post"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_dissolution_hypothesis",
+      "_tgt": "patanjali_ablation_pr_367",
+      "source": "patanjali_ablation_pr_367",
+      "target": "svapna_dissolution_hypothesis"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "svapna_mandukya_upanishad",
+      "source": "svapna_post",
+      "target": "svapna_mandukya_upanishad"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "svapna_lightmem",
+      "source": "svapna_post",
+      "target": "svapna_lightmem"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "svapna_adm",
+      "source": "svapna_post",
+      "target": "svapna_adm"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 1.0,
+      "_src": "svapna_post",
+      "_tgt": "svapna_dissolution_hypothesis",
+      "source": "svapna_post",
+      "target": "svapna_dissolution_hypothesis"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/svapna-sushupti.md",
+      "weight": 0.9,
+      "_src": "svapna_nrem_sleep",
+      "_tgt": "svapna_sushupti",
+      "source": "svapna_sushupti",
+      "target": "svapna_nrem_sleep"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_post",
+      "_tgt": "circuit_discovery_mutation_loop",
+      "source": "circuit_discovery_post",
+      "target": "circuit_discovery_mutation_loop"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_post",
+      "_tgt": "circuit_discovery_sae_features",
+      "source": "circuit_discovery_post",
+      "target": "circuit_discovery_sae_features"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_post",
+      "_tgt": "circuit_discovery_linear_probe",
+      "source": "circuit_discovery_post",
+      "target": "circuit_discovery_linear_probe"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_post",
+      "_tgt": "circuit_discovery_tokenizer_bottleneck",
+      "source": "circuit_discovery_post",
+      "target": "circuit_discovery_tokenizer_bottleneck"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_post",
+      "_tgt": "circuit_discovery_baldwin_effect",
+      "source": "circuit_discovery_post",
+      "target": "circuit_discovery_baldwin_effect"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_post",
+      "_tgt": "circuit_discovery_gemma_2_2b",
+      "source": "circuit_discovery_post",
+      "target": "circuit_discovery_gemma_2_2b"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_mutation_loop",
+      "_tgt": "circuit_discovery_linear_probe",
+      "source": "circuit_discovery_mutation_loop",
+      "target": "circuit_discovery_linear_probe"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_mutation_loop",
+      "_tgt": "circuit_discovery_author_nationality",
+      "source": "circuit_discovery_mutation_loop",
+      "target": "circuit_discovery_author_nationality"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_capital_of_distributed",
+      "_tgt": "circuit_discovery_sae_features",
+      "source": "circuit_discovery_sae_features",
+      "target": "circuit_discovery_capital_of_distributed"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 1.0,
+      "_src": "circuit_discovery_feedback_loop",
+      "_tgt": "circuit_discovery_tokenizer_bottleneck",
+      "source": "circuit_discovery_tokenizer_bottleneck",
+      "target": "circuit_discovery_feedback_loop"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/automated-circuit-discovery.md",
+      "weight": 0.8,
+      "_src": "circuit_discovery_baldwin_effect",
+      "_tgt": "circuit_discovery_feedback_loop",
+      "source": "circuit_discovery_feedback_loop",
+      "target": "circuit_discovery_baldwin_effect"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "weight": 1.0,
+      "_src": "readme_vasudev_site",
+      "_tgt": "readme_hugo",
+      "source": "readme_vasudev_site",
+      "target": "readme_hugo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "weight": 1.0,
+      "_src": "readme_vasudev_site",
+      "_tgt": "readme_github_pages",
+      "source": "readme_vasudev_site",
+      "target": "readme_github_pages"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "weight": 1.0,
+      "_src": "readme_vasudev_site",
+      "_tgt": "readme_github_actions",
+      "source": "readme_vasudev_site",
+      "target": "readme_github_actions"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "weight": 1.0,
+      "_src": "readme_vasudev_site",
+      "_tgt": "readme_custom_theme",
+      "source": "readme_vasudev_site",
+      "target": "readme_custom_theme"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "weight": 1.0,
+      "_src": "readme_vasudev_site",
+      "_tgt": "readme_coderabbit",
+      "source": "readme_vasudev_site",
+      "target": "readme_coderabbit"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 1.0,
+      "_src": "claudemd_project_config",
+      "_tgt": "readme_vasudev_site",
+      "source": "readme_vasudev_site",
+      "target": "claudemd_project_config"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "CLAUDE.md",
+      "weight": 0.9,
+      "_src": "claudemd_auto_translation",
+      "_tgt": "readme_github_actions",
+      "source": "readme_github_actions",
+      "target": "claudemd_auto_translation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 1.0,
+      "_src": "claudemd_project_config",
+      "_tgt": "claudemd_iron_rule",
+      "source": "claudemd_project_config",
+      "target": "claudemd_iron_rule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 1.0,
+      "_src": "claudemd_project_config",
+      "_tgt": "claudemd_cross_disciplinary_bridging",
+      "source": "claudemd_project_config",
+      "target": "claudemd_cross_disciplinary_bridging"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 0.8,
+      "_src": "claudemd_project_config",
+      "_tgt": "claudemd_vale_linter",
+      "source": "claudemd_project_config",
+      "target": "claudemd_vale_linter"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 0.8,
+      "_src": "claudemd_project_config",
+      "_tgt": "claudemd_auto_translation",
+      "source": "claudemd_project_config",
+      "target": "claudemd_auto_translation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 0.9,
+      "_src": "claudemd_iron_rule",
+      "_tgt": "claudemd_vedic_philosophy",
+      "source": "claudemd_iron_rule",
+      "target": "claudemd_vedic_philosophy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 0.9,
+      "_src": "claudemd_iron_rule",
+      "_tgt": "claudemd_neuroscience",
+      "source": "claudemd_iron_rule",
+      "target": "claudemd_neuroscience"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 0.9,
+      "_src": "claudemd_iron_rule",
+      "_tgt": "claudemd_evolutionary_biology",
+      "source": "claudemd_iron_rule",
+      "target": "claudemd_evolutionary_biology"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CLAUDE.md",
+      "weight": 0.9,
+      "_src": "claudemd_cross_disciplinary_bridging",
+      "_tgt": "claudemd_iron_rule",
+      "source": "claudemd_iron_rule",
+      "target": "claudemd_cross_disciplinary_bridging"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "CLAUDE.md",
+      "weight": 0.7,
+      "_src": "claudemd_vedic_philosophy",
+      "_tgt": "claudemd_evolutionary_biology",
+      "source": "claudemd_vedic_philosophy",
+      "target": "claudemd_evolutionary_biology"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "content/series/building-agents-that-sleep/_index.md",
+      "weight": 0.8,
+      "_src": "series_sleep_memory_consolidation",
+      "_tgt": "claudemd_neuroscience",
+      "source": "claudemd_neuroscience",
+      "target": "series_sleep_memory_consolidation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "weight": 1.0,
+      "_src": "claudemd_auto_translation",
+      "_tgt": "claudemd_translate_go",
+      "source": "claudemd_auto_translation",
+      "target": "claudemd_translate_go"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/series/building-agents-that-sleep/_index.md",
+      "weight": 1.0,
+      "_src": "series_building_agents_that_sleep",
+      "_tgt": "series_sleep_memory_consolidation",
+      "source": "series_building_agents_that_sleep",
+      "target": "series_sleep_memory_consolidation"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/ai-architecture.svg",
+      "weight": 1.0,
+      "_src": "ai_architecture_central_ai",
+      "_tgt": "ai_architecture_mcp_way",
+      "source": "ai_architecture_mcp_way",
+      "target": "ai_architecture_central_ai"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/mcp-architecture-inline.svg",
+      "weight": 1.0,
+      "_src": "mcp_architecture_diagram",
+      "_tgt": "ai_architecture_mcp_way",
+      "source": "ai_architecture_mcp_way",
+      "target": "mcp_architecture_diagram"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/ai-architecture.svg",
+      "weight": 1.0,
+      "_src": "ai_architecture_mcp_protocol",
+      "_tgt": "ai_architecture_central_ai",
+      "source": "ai_architecture_central_ai",
+      "target": "ai_architecture_mcp_protocol"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "static/images/context-window-cost-inline.svg",
+      "weight": 0.6,
+      "_src": "context_window_defer_loading",
+      "_tgt": "ai_architecture_mcp_protocol",
+      "source": "ai_architecture_mcp_protocol",
+      "target": "context_window_defer_loading"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/mcp-architecture-inline.svg",
+      "weight": 1.0,
+      "_src": "mcp_architecture_diagram",
+      "_tgt": "ai_architecture_mcp_protocol",
+      "source": "ai_architecture_mcp_protocol",
+      "target": "mcp_architecture_diagram"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "static/images/dream-pipeline-inline.svg",
+      "weight": 0.9,
+      "_src": "dream_pipeline_vault_tiers",
+      "_tgt": "dream_engine_pipeline",
+      "source": "dream_engine_pipeline",
+      "target": "dream_pipeline_vault_tiers"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase0",
+      "_tgt": "dream_engine_phase1",
+      "source": "dream_engine_phase0",
+      "target": "dream_engine_phase1"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase1",
+      "_tgt": "dream_engine_phase2",
+      "source": "dream_engine_phase1",
+      "target": "dream_engine_phase2"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase2",
+      "_tgt": "dream_engine_phase2b",
+      "source": "dream_engine_phase2",
+      "target": "dream_engine_phase2b"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase2b",
+      "_tgt": "dream_engine_phase3",
+      "source": "dream_engine_phase2b",
+      "target": "dream_engine_phase3"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase3",
+      "_tgt": "dream_engine_phase4",
+      "source": "dream_engine_phase3",
+      "target": "dream_engine_phase4"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase4",
+      "_tgt": "dream_engine_phase5",
+      "source": "dream_engine_phase4",
+      "target": "dream_engine_phase5"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/dream-engine.svg",
+      "weight": 1.0,
+      "_src": "dream_engine_phase5",
+      "_tgt": "dream_engine_phase6",
+      "source": "dream_engine_phase5",
+      "target": "dream_engine_phase6"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "static/images/evolution-loop-inline.svg",
+      "weight": 0.7,
+      "_src": "evolution_loop_cycle",
+      "_tgt": "mutation_loop_pipeline",
+      "source": "evolution_loop_cycle",
+      "target": "mutation_loop_pipeline"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/mutation-loop-inline.svg",
+      "weight": 1.0,
+      "_src": "mutation_loop_llm_proposer",
+      "_tgt": "mutation_loop_tokenizer_gate",
+      "source": "mutation_loop_llm_proposer",
+      "target": "mutation_loop_tokenizer_gate"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "static/images/mutation-loop-inline.svg",
+      "weight": 1.0,
+      "_src": "mutation_loop_tokenizer_gate",
+      "_tgt": "mutation_loop_probe_pipeline",
+      "source": "mutation_loop_tokenizer_gate",
+      "target": "mutation_loop_probe_pipeline"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "mcp_ecosystem",
+      "label": "MCP Ecosystem",
+      "nodes": [
+        "stop_putting_ai_in_apps__mcp",
+        "mcp_context_window_fix",
+        "adding_oauth_mcp_server_gotchas",
+        "stop_putting_ai_in_apps__nocodb"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
+    },
+    {
+      "id": "hrafn_agent_architecture",
+      "label": "Hrafn Agent Architecture",
+      "nodes": [
+        "why_ai_agents_need_sleep__hrafn",
+        "why_ai_agents_need_sleep__muninndb",
+        "why_ai_agents_need_sleep__dream_engine",
+        "ai_environment_design__persistence_tier",
+        "ai_environment_design__mutation_selection_cycle"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/ai-environment-design.md"
+    },
+    {
+      "id": "intermediary_degradation_pattern",
+      "label": "Intermediary Degradation Pattern",
+      "nodes": [
+        "direct_divine_access__intermediary_pattern",
+        "stop_putting_ai_in_apps__ai_orchestration_pattern",
+        "mcp_context_window_fix__token_overhead",
+        "ai_environment_design__goodharts_law"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "content/blog/direct-divine-access.md"
+    },
+    {
+      "id": "building_agents_that_sleep_series",
+      "label": "Building Agents That Sleep Series",
+      "nodes": [
+        "llm_sleep_memory_post",
+        "memory_metrics_post",
+        "patanjali_post",
+        "svapna_post",
+        "llm_sleep_memory_dream_engine",
+        "llm_sleep_memory_muninndb"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/llm-sleep-memory.md"
+    },
+    {
+      "id": "vedic_agent_memory_mapping",
+      "label": "Vedic Concepts to Agent Memory",
+      "nodes": [
+        "patanjali_vrtti_nirodha",
+        "patanjali_samskara_vairagya",
+        "patanjali_pratyahara",
+        "svapna_svapna",
+        "svapna_sushupti",
+        "patanjali_min_dedup_vault_size",
+        "patanjali_outcome_tagged_writes"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "content/blog/patanjali-harness-spec.md"
+    },
+    {
+      "id": "evolutionary_interpretability_pipeline",
+      "label": "Evolutionary Probe Discovery",
+      "nodes": [
+        "circuit_discovery_mutation_loop",
+        "circuit_discovery_linear_probe",
+        "circuit_discovery_tokenizer_bottleneck",
+        "circuit_discovery_feedback_loop",
+        "circuit_discovery_baldwin_effect",
+        "circuit_discovery_author_nationality"
+      ],
+      "relation": "implement",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "content/blog/automated-circuit-discovery.md"
+    }
+  ]
+}
