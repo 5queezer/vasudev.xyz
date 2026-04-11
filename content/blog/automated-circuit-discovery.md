@@ -15,7 +15,7 @@ The answer is yes. It took 42 failed proposals, a feedback loop that teaches an 
 
 I ran six experiments across two SAE widths (16k and 65k) on Gemma-2-2B looking for a "capital-of" feature. More than 300 candidate features. Layer 12, layer 20. Single-entity prompts, multi-entity prompts. Tight same-frame contrasts, loose contrasts. The best candidate, feature 14610 ("references to specific countries and their roles in various contexts"), passed multi-entity scoring across four countries and showed both steering and ablation causality.
 
-Then I trained a linear probe and projected it onto all 16,384 SAE decoder directions. Feature 14610 ranked 4,060th in alignment with the actual capital-of direction. It was a red herring. The feature that correlated most with capital-of, feature 4314 ("churches, bishops, geographical locations"), sat at a cosine similarity of 0.34. That is roughly a 30-degree angle from the real direction.
+Then I trained a linear probe and projected it onto all 16,384 SAE decoder directions. Feature 14610 ranked four-thousandth in alignment with the actual capital-of direction. It was a red herring. The feature that correlated most with capital-of, feature 4314 ("churches, bishops, geographical locations"), sat at a cosine similarity of 0.34. That is roughly a 30-degree angle from the real direction.
 
 The capital-of relation is distributed across approximately five SAE features. Each one encodes a facet: political centers, geographic entities, formal documents, socioeconomic conditions. None is sufficient. Together they define the concept.
 
@@ -64,7 +64,7 @@ Proposal pass rate: 0 out of 15 without feedback. 3 out of 5 with feedback.
 
 ## author-nationality: The First Machine-Found Circuit
 
-The mutation operator proposed "author-nationality" after one correction round. It initially offered " Dystopian" and " Satire" as targets, both two tokens in Gemma. After correction it produced: "The nationality of author Jane Austen is" mapping to " British", "The nationality of author Haruki Murakami is" mapping to " Japanese", against "The literary genre of author Jane Austen is" mapping to " Romance" and similar.
+The mutation operator proposed the relation `author-nationality` after one correction round. It initially offered ` Dystopian` and ` Satire` as targets, both two tokens in Gemma. After correction it produced valid prompt sets: `"The nationality of author Jane Austen is"` mapping to ` British`, `"The nationality of author Haruki Murakami is"` mapping to ` Japanese`, against `"The literary genre of author Jane Austen is"` mapping to ` Romance` and similar.
 
 Pipeline result: LOO accuracy 1.000. Differential score +1.02. Verdict: SELECTIVE.
 
