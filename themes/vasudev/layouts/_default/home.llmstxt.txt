@@ -4,6 +4,10 @@
 
 {{ .Site.BaseURL }}
 
+## About
+
+{{ with .Site.GetPage "/about" }}{{ .RawContent }}{{ end }}
+
 ## Blog Posts
 
 {{ range where .Site.RegularPages "Section" "blog" }}{{ if eq .Language.Lang "en" }}{{ $page := . }}{{ with .OutputFormats.Get "txtplain" }}- [{{ $page.Title }}]({{ .Permalink }}): {{ $page.Description }}

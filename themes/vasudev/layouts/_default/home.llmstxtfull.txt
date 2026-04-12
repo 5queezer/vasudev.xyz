@@ -4,6 +4,12 @@
 
 {{ .Site.BaseURL }}
 
+---
+
+# About
+
+{{ with .Site.GetPage "/about" }}{{ .RawContent }}{{ end }}
+
 {{ range where .Site.RegularPages "Section" "blog" }}{{ if eq .Language.Lang "en" }}---
 
 # {{ .Title }}
