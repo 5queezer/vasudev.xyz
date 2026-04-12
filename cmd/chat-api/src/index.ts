@@ -1,5 +1,6 @@
 import { createOpenAI } from "@ai-sdk/openai";
-import { streamText } from "ai";
+import { streamText, tool } from "ai";
+import { z } from "zod";
 
 interface Env {
   OPENROUTER_API_KEY: string;
@@ -40,6 +41,29 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+interface GraphNode {
+  id: string;
+  label: string;
+  source_file?: string;
+}
+
+interface GraphEdge {
+  from: string;
+  to: string;
+  relation: string;
+}
+
+interface GraphHyperedge {
+  label: string;
+  nodes: string[];
+}
+
+interface GraphData {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  hyperedges?: GraphHyperedge[];
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const origin = request.headers.get("Origin") ?? "";
@@ -78,13 +102,152 @@ export default {
       apiKey: env.OPENROUTER_API_KEY,
     });
 
+    let cachedGraph: GraphData | null = null;
+
+    async function fetchGraph(): Promise<GraphData> {
+      if (cachedGraph) return cachedGraph;
+      const res = await fetch("https://vasudev.xyz/data/graph.json");
+      cachedGraph = (await res.json()) as GraphData;
+      return cachedGraph;
+    }
+
     const result = streamText({
       model: openrouter("nvidia/nemotron-3-super-120b-a12b:free"),
       system: `You are a knowledgeable assistant for the blog vasudev.xyz by Christian Pojoni. You answer questions about the blog post the reader is currently viewing. Be concise, direct, and technical. Do not use filler phrases. If the post bridges engineering with philosophy (Vedic, neuroscience, etc.), engage with both sides seriously.
 
 Post content:
-${body.postContent}`,
+${body.postContent}
+
+You have tools available:
+- showConnections: show knowledge graph connections for a concept
+- analyzeMetaphor: render a structured metaphor analysis card
+- suggestReadingPath: suggest an ordered reading path for a topic
+- showCode: fetch and display code from GitHub repos (5queezer org)
+- showChart: render a bar or line chart from data
+Use tools when they would be more helpful than plain text. For showCode, only fetch from repos under the 5queezer GitHub org.`,
       messages: body.messages as Parameters<typeof streamText>[0]["messages"],
+      maxSteps: 3,
+      tools: {
+        showConnections: tool({
+          description: "Query the knowledge graph to find connections between concepts or posts",
+          parameters: z.object({
+            query: z.string().describe("The concept or post to find connections for"),
+          }),
+          execute: async ({ query }) => {
+            const graph = await fetchGraph();
+            const lowerQuery = query.toLowerCase();
+
+            const matches = graph.nodes
+              .filter(
+                (n) =>
+                  n.label.toLowerCase().includes(lowerQuery) &&
+                  n.source_file?.startsWith("content/blog/")
+              )
+              .slice(0, 5)
+              .map((n) => ({ id: n.id, label: n.label, sourceFile: n.source_file ?? "" }));
+
+            const matchIds = new Set(matches.map((m) => m.id));
+
+            const nodeById = new Map(graph.nodes.map((n) => [n.id, n]));
+
+            const connections = (graph.edges ?? [])
+              .filter((e) => matchIds.has(e.from) || matchIds.has(e.to))
+              .slice(0, 10)
+              .map((e) => ({
+                from: e.from,
+                to: e.to,
+                relation: e.relation,
+                fromLabel: nodeById.get(e.from)?.label ?? e.from,
+                toLabel: nodeById.get(e.to)?.label ?? e.to,
+              }));
+
+            const hyperedges = (graph.hyperedges ?? [])
+              .filter((h) => h.nodes.some((nid) => matchIds.has(nid)))
+              .map((h) => ({ label: h.label, nodes: h.nodes }));
+
+            return { matches, connections, hyperedges };
+          },
+        }),
+
+        analyzeMetaphor: tool({
+          description: "Render a structured metaphor analysis card",
+          parameters: z.object({
+            metaphor: z.string().describe("The metaphor/analogy being analyzed"),
+            domain1: z.string().describe("The engineering/technical domain"),
+            domain2: z.string().describe("The philosophical/scientific domain"),
+            holds: z.array(z.string()).describe("Where the metaphor holds"),
+            breaks: z.array(z.string()).describe("Where the metaphor breaks"),
+            killCondition: z.string().describe("Measurable condition that would invalidate the metaphor"),
+          }),
+          execute: async ({ metaphor, domain1, domain2, holds, breaks, killCondition }) => {
+            return { metaphor, domain1, domain2, holds, breaks, killCondition };
+          },
+        }),
+
+        suggestReadingPath: tool({
+          description: "Suggest an ordered reading path for a topic",
+          parameters: z.object({
+            topic: z.string().describe("The topic the reader is interested in"),
+            posts: z.array(
+              z.object({
+                title: z.string(),
+                slug: z.string().describe("URL slug like 'why-ai-agents-need-sleep'"),
+                hook: z.string().describe("One-line description of why to read this post"),
+              })
+            ).describe("Ordered list of posts to read, max 6"),
+          }),
+          execute: async ({ topic, posts }) => {
+            return { topic, posts };
+          },
+        }),
+
+        showCode: tool({
+          description: "Fetch and display code from a GitHub repository",
+          parameters: z.object({
+            repo: z.string().describe("GitHub repo in owner/name format, e.g. '5queezer/hrafn'"),
+            path: z.string().describe("File path in the repo"),
+            startLine: z.number().optional().describe("Start line number"),
+            endLine: z.number().optional().describe("End line number"),
+          }),
+          execute: async ({ repo, path, startLine, endLine }) => {
+            try {
+              const res = await fetch(
+                `https://raw.githubusercontent.com/${repo}/HEAD/${path}`
+              );
+              if (!res.ok) {
+                return { error: "Could not fetch file" };
+              }
+              const text = await res.text();
+              const lines = text.split("\n");
+              const start = startLine ?? 1;
+              const end = Math.min(endLine ?? start + 49, start + 49, lines.length);
+              const code = lines.slice(start - 1, end).join("\n");
+              const url = `https://github.com/${repo}/blob/HEAD/${path}#L${start}-L${end}`;
+              return { repo, path, startLine: start, endLine: end, code, url };
+            } catch {
+              return { error: "Could not fetch file" };
+            }
+          },
+        }),
+
+        showChart: tool({
+          description: "Structure data for a chart visualization",
+          parameters: z.object({
+            title: z.string().describe("Chart title"),
+            type: z.enum(["bar", "line"]).describe("Chart type"),
+            labels: z.array(z.string()).describe("X-axis labels"),
+            datasets: z.array(
+              z.object({
+                label: z.string(),
+                data: z.array(z.number()),
+              })
+            ).describe("Data series to plot"),
+          }),
+          execute: async ({ title, type, labels, datasets }) => {
+            return { title, type, labels, datasets };
+          },
+        }),
+      },
     });
 
     const response = result.toDataStreamResponse();

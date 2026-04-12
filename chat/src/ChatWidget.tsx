@@ -1,5 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 import { useChat } from "@ai-sdk/react";
+import { ConnectionsCard } from "./tools/ConnectionsCard";
+import { MetaphorCard } from "./tools/MetaphorCard";
+import { ReadingPathCard } from "./tools/ReadingPathCard";
+import { CodeBlock } from "./tools/CodeBlock";
+import { ChartCard } from "./tools/ChartCard";
+
+const toolComponents: Record<string, React.ComponentType<{ args: any; result?: any }>> = {
+  showConnections: ConnectionsCard,
+  analyzeMetaphor: MetaphorCard,
+  suggestReadingPath: ReadingPathCard,
+  showCode: CodeBlock,
+  showChart: ChartCard,
+};
+
+function ToolResult({ invocation }: { invocation: any }) {
+  const Component = toolComponents[invocation.toolName as keyof typeof toolComponents];
+  if (!Component) return null;
+  const isLoading = invocation.state !== "result";
+  return <Component args={invocation.args} result={isLoading ? undefined : invocation.result} />;
+}
 
 interface ChatWidgetProps {
   apiUrl: string;
@@ -78,7 +98,10 @@ export function ChatWidget({ apiUrl, postUrl }: ChatWidgetProps) {
                 msg.role === "user" ? "chat-msg chat-msg-user" : "chat-msg chat-msg-assistant"
               }
             >
-              {msg.content}
+              {msg.content && <div>{msg.content}</div>}
+              {msg.toolInvocations?.map((inv: any, i: number) => (
+                <ToolResult key={`${msg.id}-tool-${i}`} invocation={inv} />
+              ))}
             </div>
           ))}
           {isLoading && (

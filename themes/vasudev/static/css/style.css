@@ -1462,3 +1462,247 @@ a.tag:hover {
     right: 1rem;
   }
 }
+
+/* ── Chat tool cards ── */
+
+.chat-tool-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+}
+
+.chat-tool-title {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.chat-tool-subtitle {
+  color: var(--dim);
+  font-size: 0.75rem;
+}
+
+.chat-tool-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.chat-tool-badge {
+  display: inline-block;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.chat-tool-badge-link {
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chat-tool-badge-link:hover {
+  text-decoration: underline;
+}
+
+.chat-tool-connections {
+  margin-top: 0.375rem;
+}
+
+.chat-tool-connection {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.chat-tool-connection-arrow {
+  color: var(--accent);
+}
+
+.chat-tool-connection-relation {
+  color: var(--dim);
+  font-size: 0.7rem;
+}
+
+.chat-tool-hyperedges {
+  margin-top: 0.5rem;
+}
+
+.chat-tool-hyperedge {
+  margin-bottom: 0.5rem;
+}
+
+.chat-tool-section {
+  margin-top: 0.5rem;
+}
+
+.chat-tool-holds {
+  color: var(--accent2);
+  font-size: 0.75rem;
+  padding: 0.125rem 0;
+}
+
+.chat-tool-breaks {
+  color: #e57373;
+  font-size: 0.75rem;
+  padding: 0.125rem 0;
+}
+
+.chat-tool-kill {
+  color: var(--accent);
+  font-size: 0.75rem;
+  padding: 0.125rem 0;
+}
+
+.chat-tool-check {
+  display: inline;
+  margin-right: 0.25rem;
+}
+
+.chat-tool-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.chat-tool-timeline-item {
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.chat-tool-timeline-dot {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.125rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-soft);
+}
+
+.chat-tool-timeline-line {
+  position: absolute;
+  left: calc(-1.5rem + 4px);
+  top: 12px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.chat-tool-timeline-step {
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0;
+}
+
+.chat-tool-post-title {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.chat-tool-post-title:hover {
+  text-decoration: underline;
+}
+
+.chat-tool-post-hook {
+  color: var(--dim);
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
+}
+
+.chat-tool-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.375rem 0.625rem;
+  background: var(--bg-elevated);
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  font-size: 0.7rem;
+  color: var(--dim);
+}
+
+.chat-tool-code-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.chat-tool-code-link:hover {
+  text-decoration: underline;
+}
+
+.chat-tool-code-pre {
+  margin: 0;
+  padding: 0.625rem;
+  background: var(--pre-bg);
+  border: 1px solid var(--border);
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--mono);
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.chat-tool-code-line-num {
+  display: inline-block;
+  width: 2.5rem;
+  text-align: right;
+  padding-right: 0.75rem;
+  color: var(--dim);
+  user-select: none;
+}
+
+.chat-tool-chart-svg {
+  width: 100%;
+  max-width: 280px;
+}
+
+.chat-tool-legend {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.chat-tool-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.chat-tool-legend-swatch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.chat-tool-skeleton {
+  height: 0.8rem;
+  background: var(--code-bg);
+  border-radius: 0.25rem;
+  animation: chat-pulse 1.2s ease-in-out infinite;
+}
