@@ -1739,3 +1739,65 @@ a.tag:hover {
   border-radius: 0.25rem;
   animation: chat-pulse 1.2s ease-in-out infinite;
 }
+
+/* arXiv paper cards */
+.chat-tool-arxiv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.chat-tool-arxiv-paper {
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-tool-arxiv-paper:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.chat-tool-arxiv-title {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+  display: block;
+}
+
+.chat-tool-arxiv-title:hover {
+  text-decoration: underline;
+}
+
+.chat-tool-arxiv-meta {
+  color: var(--dim);
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.chat-tool-arxiv-summary {
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+.chat-tool-arxiv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.375rem;
+  align-items: center;
+}
+
+.chat-tool-arxiv-pdf {
+  color: var(--accent2);
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.chat-tool-arxiv-pdf:hover {
+  text-decoration: underline;
+}

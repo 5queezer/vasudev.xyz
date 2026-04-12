@@ -5,6 +5,7 @@ import { MetaphorCard } from "./tools/MetaphorCard";
 import { ReadingPathCard } from "./tools/ReadingPathCard";
 import { CodeBlock } from "./tools/CodeBlock";
 import { ChartCard } from "./tools/ChartCard";
+import { ArxivCard } from "./tools/ArxivCard";
 
 const toolComponents: Record<string, React.ComponentType<{ args: any; result?: any }>> = {
   showConnections: ConnectionsCard,
@@ -12,6 +13,7 @@ const toolComponents: Record<string, React.ComponentType<{ args: any; result?: a
   suggestReadingPath: ReadingPathCard,
   showCode: CodeBlock,
   showChart: ChartCard,
+  searchArxiv: ArxivCard,
 };
 
 function ToolResult({ invocation }: { invocation: any }) {

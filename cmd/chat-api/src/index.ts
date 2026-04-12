@@ -124,6 +124,7 @@ You have tools available:
 - suggestReadingPath: suggest an ordered reading path for a topic
 - showCode: fetch and display code from GitHub repos (5queezer org)
 - showChart: render a bar or line chart from data
+- searchArxiv: search arXiv for academic papers to verify citations or find related research
 Use tools when they would be more helpful than plain text. For showCode, only fetch from repos under the 5queezer GitHub org.`,
       messages: body.messages as Parameters<typeof streamText>[0]["messages"],
       maxSteps: 3,
@@ -245,6 +246,47 @@ Use tools when they would be more helpful than plain text. For showCode, only fe
           }),
           execute: async ({ title, type, labels, datasets }) => {
             return { title, type, labels, datasets };
+          },
+        }),
+
+        searchArxiv: tool({
+          description: "Search arXiv for academic papers. Use this to verify paper citations, find related research, or answer questions about specific papers mentioned in the post.",
+          parameters: z.object({
+            query: z.string().describe("Search query for arXiv papers"),
+          }),
+          execute: async ({ query }) => {
+            try {
+              const url = `https://export.arxiv.org/api/query?search_query=all:${encodeURIComponent(query)}&max_results=5&sortBy=relevance`;
+              const res = await fetch(url);
+              if (!res.ok) return { papers: [], error: "arXiv API unavailable" };
+              const xml = await res.text();
+
+              const entries = xml.split("<entry>").slice(1);
+              const papers = entries.map((entry) => {
+                const get = (tag: string) => {
+                  const m = entry.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`));
+                  return m ? m[1].trim() : "";
+                };
+                const authors = [...entry.matchAll(/<author>\s*<name>([^<]+)<\/name>/g)].map(m => m[1]);
+                const id = get("id");
+                const arxivId = id.replace("http://arxiv.org/abs/", "");
+                return {
+                  id: arxivId,
+                  title: get("title").replace(/\s+/g, " "),
+                  authors: authors.slice(0, 4),
+                  authorCount: authors.length,
+                  summary: get("summary").replace(/\s+/g, " ").slice(0, 300),
+                  published: get("published").slice(0, 10),
+                  url: id.replace("http://", "https://"),
+                  pdf: `https://arxiv.org/pdf/${arxivId}`,
+                  categories: [...entry.matchAll(/category term="([^"]+)"/g)].map(m => m[1]).slice(0, 3),
+                };
+              });
+
+              return { papers };
+            } catch {
+              return { papers: [], error: "Failed to search arXiv" };
+            }
           },
         }),
       },
