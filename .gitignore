@@ -7,3 +7,6 @@ styles/Google/
 .omx/
 cmd/generate-og-images/generate-og-images
 cmd/translate/translate
+chat/node_modules/
+cmd/chat-api/node_modules/
+static/js/chat.js

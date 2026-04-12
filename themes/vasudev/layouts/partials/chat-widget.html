@@ -1,0 +1,7 @@
+{{ if eq .Section "blog" }}
+<div id="chat-widget-root"
+     data-api-url="{{ .Site.Params.chatApiUrl | default "https://vasudev-chat.dev-95e.workers.dev" }}"
+     data-post-url="{{ .RelPermalink }}index.txt">
+</div>
+<script src="{{ "js/chat.js" | relURL }}" defer></script>
+{{ end }}
