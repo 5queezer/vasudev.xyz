@@ -1,3 +1,4 @@
+(?i)agentic
 (?i)allowlist
 (?i)anandamaya
 (?i)autoencoder
@@ -6,7 +7,9 @@
 (?i)backpropagation
 (?i)cingulate
 (?i)commoditized
+(?i)composability
 (?i)config
+(?i)debuggability
 (?i)dedup
 (?i)deduplicates
 (?i)deduplication
@@ -30,7 +33,9 @@ defer_loading
 (?i)nirodha
 (?i)overfitting
 (?i)pratyahara
+(?i)renderers
 (?i)repo
+(?i)sandboxing
 (?i)samskara
 (?i)samskaras
 (?i)samadhi
@@ -40,6 +45,7 @@ defer_loading
 (?i)supercompensation
 (?i)tokenization
 (?i)tokenizer
+(?i)untrusted
 (?i)sushupti
 (?i)svapna
 (?i)taijasa
@@ -62,12 +68,14 @@ Barbosa
 Barks
 Birgitta
 Böckeler
+Chainlit
 ChromaDB
 ConvoMem
 Dream Engine
 Ebbinghaus
 Examen
 Fana
+Figma
 Flyxion
 Flyxion's
 FurnitureBench
@@ -75,6 +83,7 @@ Gemini
 Gemma
 Ghosh
 Gnosis
+Gradio
 Ignatian
 (?i)GoodAI
 Goodhart's
@@ -86,6 +95,7 @@ IPs
 Jira
 Jovovich
 Kensho
+Kombai
 Kosha
 Koshas
 LLM's
@@ -94,6 +104,8 @@ LOO
 LocOMo
 Loihi
 LongMemEval
+MCP's
+Mastra
 Maṇḍūkya
 Mem0
 Murakami
@@ -116,9 +128,13 @@ Sigman
 Sutras
 Transposases
 TruthfulQA
+UIs
 Upaniṣad
 Vec
 Vedantic
+Vercel
+Vercel's
+Vue
 Vipassana
 Xie's
 Zhong
@@ -142,6 +158,7 @@ pramanas
 sandboxed
 scrypster
 scrypster's
+streamUI's
 soteriological
 underperform
 vasana

@@ -4,6 +4,7 @@ ai
 architecture
 benchmarks
 claude
+frontend
 interpretability
 llm
 mcp
