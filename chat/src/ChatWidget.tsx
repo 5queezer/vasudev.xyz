@@ -54,7 +54,32 @@ interface ChatWidgetProps {
   apiUrl: string;
   postUrl: string;
   mode: "post" | "index";
+  lang: string;
 }
+
+const i18n: Record<string, Record<string, string>> = {
+  en: {
+    title: "Ask this post",
+    titleIndex: "Ask this blog",
+    welcome: "Ask me anything about this post.",
+    welcomeIndex: "Ask me about any topic covered on this blog.",
+    placeholder: "Type a question...",
+  },
+  de: {
+    title: "Frag diesen Post",
+    titleIndex: "Frag diesen Blog",
+    welcome: "Frag mich etwas zu diesem Post.",
+    welcomeIndex: "Frag mich zu einem Thema dieses Blogs.",
+    placeholder: "Frage eingeben...",
+  },
+  es: {
+    title: "Pregunta sobre este post",
+    titleIndex: "Pregunta sobre este blog",
+    welcome: "Pregúntame lo que quieras sobre este post.",
+    welcomeIndex: "Pregúntame sobre cualquier tema de este blog.",
+    placeholder: "Escribe una pregunta...",
+  },
+};
 
 const DEFAULT_WIDTH = 380;
 const DEFAULT_HEIGHT = 500;
@@ -82,7 +107,8 @@ function loadPanelSize(): { width: number; height: number } {
   return { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT };
 }
 
-export function ChatWidget({ apiUrl, postUrl, mode }: ChatWidgetProps) {
+export function ChatWidget({ apiUrl, postUrl, mode, lang }: ChatWidgetProps) {
+  const t = i18n[lang] || i18n.en;
   const [isOpen, setIsOpen] = useState(false);
   const [postContent, setPostContent] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -161,14 +187,12 @@ export function ChatWidget({ apiUrl, postUrl, mode }: ChatWidgetProps) {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
       api: apiUrl,
-      body: { postContent, mode },
+      body: { postContent, mode, lang },
       initialMessages: [
         {
           id: "welcome",
           role: "assistant",
-          content: mode === "index"
-            ? "Ask me about any topic covered on this blog."
-            : "Ask me anything about this post.",
+          content: mode === "index" ? t.welcomeIndex : t.welcome,
         },
       ],
     });
@@ -206,7 +230,7 @@ export function ChatWidget({ apiUrl, postUrl, mode }: ChatWidgetProps) {
           onTouchStart={handleResizeStart}
         />
         <div className="chat-header">
-          <span className="chat-title">Ask this post</span>
+          <span className="chat-title">{mode === "index" ? t.titleIndex : t.title}</span>
           <button
             className="chat-close"
             onClick={() => setIsOpen(false)}
@@ -249,7 +273,7 @@ export function ChatWidget({ apiUrl, postUrl, mode }: ChatWidgetProps) {
             type="text"
             value={input}
             onChange={handleInputChange}
-            placeholder="Type a question..."
+            placeholder={t.placeholder}
             autoComplete="off"
           />
           <button className="chat-send" type="submit" disabled={isLoading || !input.trim()}>

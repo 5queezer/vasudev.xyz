@@ -1,6 +1,7 @@
 {{ if or (eq .Section "blog") (eq .Kind "taxonomy") (eq .Kind "term") }}
 <div id="chat-widget-root"
      data-api-url="{{ .Site.Params.chatApiUrl | default "https://vasudev-chat.dev-95e.workers.dev" }}"
+     data-lang="{{ .Site.Language.Lang }}"
      {{ if .IsPage }}
      data-post-url="{{ .RelPermalink }}index.txt"
      data-mode="post"

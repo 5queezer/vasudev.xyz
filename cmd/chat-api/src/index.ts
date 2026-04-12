@@ -82,7 +82,7 @@ export default {
       return new Response("Rate limit exceeded", { status: 429, headers: cors });
     }
 
-    let body: { messages?: unknown[]; postContent?: string; mode?: string };
+    let body: { messages?: unknown[]; postContent?: string; mode?: string; lang?: string };
     try {
       body = await request.json();
     } catch {
@@ -117,7 +117,11 @@ export default {
         body.mode === "index"
           ? "The reader is browsing the blog index. You have an overview of all posts. Help them find posts by topic, suggest what to read, and answer questions about the blog's content. When recommending posts, use suggestReadingPath to render clickable links. CRITICAL: extract the exact slug from the URL in the blog overview (e.g. from '/blog/patanjali-harness-spec/index.txt' the slug is 'patanjali-harness-spec'). Do NOT invent slugs from post titles."
           : "You answer questions about the blog post the reader is currently viewing."
-      } Be concise, direct, and technical. Do not use filler phrases. If the post bridges engineering with philosophy (Vedic, neuroscience, etc.), engage with both sides seriously.
+      } Be concise, direct, and technical. Do not use filler phrases. If the post bridges engineering with philosophy (Vedic, neuroscience, etc.), engage with both sides seriously.${
+        body.lang && body.lang !== "en"
+          ? `\n\nIMPORTANT: The reader is viewing the ${body.lang === "de" ? "German" : "Spanish"} version of the blog. Always respond in ${body.lang === "de" ? "German" : "Spanish"}.`
+          : ""
+      }
 
 About the author: Christian Pojoni builds backend systems and developer tools. 17 years of shipping software across fintech, consumer electronics, and AI tooling. Currently working with MCP and agent-to-agent protocols in Rust. Previous work includes testing infrastructure at FAANG scale (100k+ daily requests, 60 engineers across three continents) and an OAuth 2.1 contribution to Reactive Resume (35k+ stars). Open source: github.com/5queezer. Austrian, raised in Romania, based in Madrid. Writes in English, thinks in German. Cares about correctness, maintainability, and developer experience.
 
