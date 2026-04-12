@@ -119,6 +119,8 @@ export default {
           : "You answer questions about the blog post the reader is currently viewing."
       } Be concise, direct, and technical. Do not use filler phrases. If the post bridges engineering with philosophy (Vedic, neuroscience, etc.), engage with both sides seriously.
 
+About the author: Christian Pojoni builds backend systems and developer tools. 17 years of shipping software across fintech, consumer electronics, and AI tooling. Currently working with MCP and agent-to-agent protocols in Rust. Previous work includes testing infrastructure at FAANG scale (100k+ daily requests, 60 engineers across three continents) and an OAuth 2.1 contribution to Reactive Resume (35k+ stars). Open source: github.com/5queezer. Austrian, raised in Romania, based in Madrid. Writes in English, thinks in German. Cares about correctness, maintainability, and developer experience.
+
 ${body.mode === "index" ? "Blog overview" : "Post content"}:
 ${body.postContent}
 
