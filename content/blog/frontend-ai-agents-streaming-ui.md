@@ -156,7 +156,7 @@ The mistake is picking a protocol based on feature count or GitHub stars. Pick b
 
 ---
 
-Read the specs and decide by trust boundary, not hype. If you control both sides, [streamUI](https://sdk.vercel.ai/docs) gives you the most with the least effort. If you don't control the agent, [A2UI](https://a2ui.org)'s whitelist model is the only one that addresses injection at the protocol level. If you need visibility into multi-agent workflows, [AG-UI](https://github.com/CopilotKit/ag-ui) is the only protocol that makes the thinking visible.
+Read the specs and decide by trust boundary, not hype. If you control both sides, [streamUI](https://sdk.vercel.ai/docs) gives you the most with the least effort. If you don't control the agent, [A2UI](https://a2ui.org)'s whitelist model is the only one that addresses injection at the protocol level. If you need visibility into multi-agent workflows, [AG-UI](https://github.com/ag-ui-protocol/ag-ui) is the only protocol that makes the thinking visible.
 
 ---
 
