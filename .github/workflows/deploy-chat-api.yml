@@ -1,0 +1,31 @@
+name: Deploy Chat API
+
+on:
+  push:
+    branches: ["master"]
+    paths:
+      - "cmd/chat-api/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "chat-api"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: cd cmd/chat-api && npm ci
+
+      - name: Deploy
+        run: cd cmd/chat-api && npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
