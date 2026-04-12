@@ -925,6 +925,54 @@ button:focus-visible {
   color: var(--muted);
 }
 
+.post-content table {
+  max-width: 100%;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  display: block;
+}
+
+.post-content thead {
+  display: table-header-group;
+}
+
+.post-content tbody {
+  display: table-row-group;
+}
+
+.post-content tr {
+  display: table-row;
+}
+
+.post-content th,
+.post-content td {
+  display: table-cell;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post-content th {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  background: var(--code-bg);
+  white-space: nowrap;
+}
+
+.post-content td:first-child {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .post-content hr {
   border: none;
   border-top: 1px solid var(--border);
