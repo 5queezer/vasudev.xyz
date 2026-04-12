@@ -73,6 +73,10 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
 
+    if (!ALLOWED_ORIGINS.includes(origin)) {
+      return new Response("Forbidden", { status: 403, headers: cors });
+    }
+
     if (request.method !== "POST") {
       return new Response("Method not allowed", { status: 405, headers: cors });
     }
@@ -97,6 +101,10 @@ export default {
       return new Response("Too many messages (max 10)", { status: 400, headers: cors });
     }
 
+    if (body.postContent.length > 50_000) {
+      return new Response("Content too large", { status: 413, headers: cors });
+    }
+
     const openrouter = createOpenAI({
       baseURL: "https://openrouter.ai/api/v1",
       apiKey: env.OPENROUTER_API_KEY,
@@ -109,6 +117,17 @@ export default {
       const res = await fetch("https://vasudev.xyz/data/graph.json");
       cachedGraph = (await res.json()) as GraphData;
       return cachedGraph;
+    }
+
+    const MessageSchema = z.array(
+      z.object({
+        role: z.enum(["user", "assistant"]),
+        content: z.string(),
+      })
+    );
+    const parseResult = MessageSchema.safeParse(body.messages);
+    if (!parseResult.success) {
+      return new Response("Invalid message format", { status: 400, headers: cors });
     }
 
     const result = streamText({
@@ -141,7 +160,7 @@ IMPORTANT rules:
 - Only use showConnections when the user explicitly asks about knowledge graph connections or concept relationships. Do not use it for general post discovery.
 - After a tool call, write only a brief 1-2 sentence comment. The tool renders a rich card with links and details. Do not re-list the information the tool already showed.
 - For showCode, only fetch from repos under the 5queezer GitHub org.`,
-      messages: body.messages as Parameters<typeof streamText>[0]["messages"],
+      messages: parseResult.data,
       maxSteps: 3,
       tools: {
         showConnections: tool({
@@ -226,6 +245,9 @@ IMPORTANT rules:
             endLine: z.number().optional().describe("End line number"),
           }),
           execute: async ({ repo, path, startLine, endLine }) => {
+            if (!repo.startsWith("5queezer/")) {
+              return { error: "Only 5queezer repos are allowed" };
+            }
             try {
               const res = await fetch(
                 `https://raw.githubusercontent.com/${repo}/HEAD/${path}`
