@@ -125,7 +125,10 @@ You have tools available:
 - showCode: fetch and display code from GitHub repos (5queezer org)
 - showChart: render a bar or line chart from data
 - searchArxiv: search arXiv for academic papers to verify citations or find related research
-Use tools when they would be more helpful than plain text. For showCode, only fetch from repos under the 5queezer GitHub org.`,
+IMPORTANT rules:
+- Always use searchArxiv when the reader asks about papers, citations, or research. Never list papers from memory.
+- After a tool call, write only a brief 1-2 sentence comment. The tool renders a rich card with links and details. Do not re-list the information the tool already showed.
+- For showCode, only fetch from repos under the 5queezer GitHub org.`,
       messages: body.messages as Parameters<typeof streamText>[0]["messages"],
       maxSteps: 3,
       tools: {
