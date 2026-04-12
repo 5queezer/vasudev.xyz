@@ -1,7 +1,13 @@
-{{ if eq .Section "blog" }}
+{{ if or (eq .Section "blog") (eq .Kind "taxonomy") (eq .Kind "term") }}
 <div id="chat-widget-root"
      data-api-url="{{ .Site.Params.chatApiUrl | default "https://vasudev-chat.dev-95e.workers.dev" }}"
-     data-post-url="{{ .RelPermalink }}index.txt">
+     {{ if .IsPage }}
+     data-post-url="{{ .RelPermalink }}index.txt"
+     data-mode="post"
+     {{ else }}
+     data-post-url="{{ "/llms.txt" | relURL }}"
+     data-mode="index"
+     {{ end }}>
 </div>
 <script src="{{ "js/chat.js" | relURL }}" defer></script>
 {{ end }}

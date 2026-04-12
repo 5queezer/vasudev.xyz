@@ -7,8 +7,9 @@ function mount() {
 
   const apiUrl = root.dataset.apiUrl || "";
   const postUrl = root.dataset.postUrl || "";
+  const mode = (root.dataset.mode || "post") as "post" | "index";
 
-  createRoot(root).render(<ChatWidget apiUrl={apiUrl} postUrl={postUrl} />);
+  createRoot(root).render(<ChatWidget apiUrl={apiUrl} postUrl={postUrl} mode={mode} />);
 }
 
 if (document.readyState === "loading") {

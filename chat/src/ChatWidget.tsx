@@ -53,6 +53,7 @@ function ToolResult({ invocation }: { invocation: any }) {
 interface ChatWidgetProps {
   apiUrl: string;
   postUrl: string;
+  mode: "post" | "index";
 }
 
 const DEFAULT_WIDTH = 380;
@@ -81,7 +82,7 @@ function loadPanelSize(): { width: number; height: number } {
   return { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT };
 }
 
-export function ChatWidget({ apiUrl, postUrl }: ChatWidgetProps) {
+export function ChatWidget({ apiUrl, postUrl, mode }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [postContent, setPostContent] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -160,12 +161,14 @@ export function ChatWidget({ apiUrl, postUrl }: ChatWidgetProps) {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
       api: apiUrl,
-      body: { postContent },
+      body: { postContent, mode },
       initialMessages: [
         {
           id: "welcome",
           role: "assistant",
-          content: "Ask me anything about this post.",
+          content: mode === "index"
+            ? "Ask me about any topic covered on this blog."
+            : "Ask me anything about this post.",
         },
       ],
     });

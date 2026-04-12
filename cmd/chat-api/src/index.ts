@@ -82,7 +82,7 @@ export default {
       return new Response("Rate limit exceeded", { status: 429, headers: cors });
     }
 
-    let body: { messages?: unknown[]; postContent?: string };
+    let body: { messages?: unknown[]; postContent?: string; mode?: string };
     try {
       body = await request.json();
     } catch {
@@ -113,9 +113,13 @@ export default {
 
     const result = streamText({
       model: openrouter("nvidia/nemotron-3-super-120b-a12b:free"),
-      system: `You are a knowledgeable assistant for the blog vasudev.xyz by Christian Pojoni. You answer questions about the blog post the reader is currently viewing. Be concise, direct, and technical. Do not use filler phrases. If the post bridges engineering with philosophy (Vedic, neuroscience, etc.), engage with both sides seriously.
+      system: `You are a knowledgeable assistant for the blog vasudev.xyz by Christian Pojoni. ${
+        body.mode === "index"
+          ? "The reader is browsing the blog index. You have an overview of all posts. Help them find posts by topic, suggest what to read, and answer questions about the blog's content. When recommending posts, use suggestReadingPath to render clickable links."
+          : "You answer questions about the blog post the reader is currently viewing."
+      } Be concise, direct, and technical. Do not use filler phrases. If the post bridges engineering with philosophy (Vedic, neuroscience, etc.), engage with both sides seriously.
 
-Post content:
+${body.mode === "index" ? "Blog overview" : "Post content"}:
 ${body.postContent}
 
 You have tools available:
