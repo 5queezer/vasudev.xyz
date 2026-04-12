@@ -57,3 +57,6 @@ other = "Copy link"
 
 [copied]
 other = "Copied!"
+
+[about]
+other = "About"
