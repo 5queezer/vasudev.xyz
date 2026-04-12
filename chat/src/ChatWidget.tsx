@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useChat } from "@ai-sdk/react";
 import { ConnectionsCard } from "./tools/ConnectionsCard";
 import { MetaphorCard } from "./tools/MetaphorCard";
@@ -26,10 +26,99 @@ interface ChatWidgetProps {
   postUrl: string;
 }
 
+const DEFAULT_WIDTH = 380;
+const DEFAULT_HEIGHT = 500;
+const MIN_WIDTH = 300;
+const MIN_HEIGHT = 350;
+
+function clampWidth(w: number) {
+  return Math.max(MIN_WIDTH, Math.min(w, window.innerWidth * 0.9));
+}
+function clampHeight(h: number) {
+  return Math.max(MIN_HEIGHT, Math.min(h, window.innerHeight * 0.85));
+}
+
+function loadPanelSize(): { width: number; height: number } {
+  try {
+    const raw = localStorage.getItem("chat-panel-size");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        width: clampWidth(parsed.width ?? DEFAULT_WIDTH),
+        height: clampHeight(parsed.height ?? DEFAULT_HEIGHT),
+      };
+    }
+  } catch {}
+  return { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT };
+}
+
 export function ChatWidget({ apiUrl, postUrl }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [postContent, setPostContent] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const [panelWidth, setPanelWidth] = useState(DEFAULT_WIDTH);
+  const [panelHeight, setPanelHeight] = useState(DEFAULT_HEIGHT);
+  const resizing = useRef(false);
+  const startPos = useRef({ x: 0, y: 0, w: 0, h: 0 });
+
+  useEffect(() => {
+    const saved = loadPanelSize();
+    setPanelWidth(saved.width);
+    setPanelHeight(saved.height);
+  }, []);
+
+  const handleResizeMove = useCallback((clientX: number, clientY: number) => {
+    if (!resizing.current) return;
+    const newWidth = clampWidth(startPos.current.w + (startPos.current.x - clientX));
+    const newHeight = clampHeight(startPos.current.h + (startPos.current.y - clientY));
+    setPanelWidth(newWidth);
+    setPanelHeight(newHeight);
+  }, []);
+
+  const handleResizeEnd = useCallback(() => {
+    if (!resizing.current) return;
+    resizing.current = false;
+    setPanelWidth((w) => {
+      setPanelHeight((h) => {
+        try {
+          localStorage.setItem("chat-panel-size", JSON.stringify({ width: w, height: h }));
+        } catch {}
+        return h;
+      });
+      return w;
+    });
+  }, []);
+
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => handleResizeMove(e.clientX, e.clientY);
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 1) handleResizeMove(e.touches[0].clientX, e.touches[0].clientY);
+    };
+    const onEnd = () => handleResizeEnd();
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onEnd);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onEnd);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onEnd);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onEnd);
+    };
+  }, [handleResizeMove, handleResizeEnd]);
+
+  const handleResizeStart = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      e.preventDefault();
+      resizing.current = true;
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+      startPos.current = { x: clientX, y: clientY, w: panelWidth, h: panelHeight };
+    },
+    [panelWidth, panelHeight],
+  );
 
   useEffect(() => {
     if (!postUrl) return;
@@ -75,7 +164,15 @@ export function ChatWidget({ apiUrl, postUrl }: ChatWidgetProps) {
         )}
       </button>
 
-      <div className={`chat-panel ${isOpen ? "chat-panel-open" : ""}`}>
+      <div
+        className={`chat-panel ${isOpen ? "chat-panel-open" : ""}`}
+        style={isOpen ? { width: panelWidth, height: panelHeight } : undefined}
+      >
+        <div
+          className="chat-resize-handle"
+          onMouseDown={handleResizeStart}
+          onTouchStart={handleResizeStart}
+        />
         <div className="chat-header">
           <span className="chat-title">Ask this post</span>
           <button

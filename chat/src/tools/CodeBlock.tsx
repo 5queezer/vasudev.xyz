@@ -29,7 +29,7 @@ export function CodeBlock({ args: _args, result }: { args: any; result?: CodeRes
   if (result.error) {
     return (
       <div className="chat-tool-card">
-        <div className="chat-tool-breaks">{result.error}</div>
+        <div style={{ color: "var(--dim)", fontSize: "0.85em" }}>{result.error}</div>
       </div>
     );
   }

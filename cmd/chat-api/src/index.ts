@@ -215,17 +215,17 @@ Use tools when they would be more helpful than plain text. For showCode, only fe
                 `https://raw.githubusercontent.com/${repo}/HEAD/${path}`
               );
               if (!res.ok) {
-                return { error: "Could not fetch file" };
+                return { error: `Could not fetch ${repo}/${path}` };
               }
               const text = await res.text();
               const lines = text.split("\n");
               const start = startLine ?? 1;
               const end = Math.min(endLine ?? start + 49, start + 49, lines.length);
               const code = lines.slice(start - 1, end).join("\n");
-              const url = `https://github.com/${repo}/blob/HEAD/${path}#L${start}-L${end}`;
+              const url = `https://github.com/${repo}/blob/master/${path}#L${start}-L${end}`;
               return { repo, path, startLine: start, endLine: end, code, url };
             } catch {
-              return { error: "Could not fetch file" };
+              return { error: `Could not fetch ${repo}/${path}` };
             }
           },
         }),

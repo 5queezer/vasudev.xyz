@@ -1284,8 +1284,10 @@ a.tag:hover {
   bottom: calc(1.5rem + 56px + 0.75rem);
   right: 1.5rem;
   z-index: 1000;
-  width: 380px;
-  max-height: 500px;
+  min-width: 300px;
+  min-height: 350px;
+  max-width: 90vw;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
   background: var(--bg-elevated);
@@ -1297,6 +1299,32 @@ a.tag:hover {
   transform: translateY(12px) scale(0.96);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chat-resize-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nw-resize;
+  z-index: 1;
+}
+
+.chat-resize-handle::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--dim);
+  border-left: 2px solid var(--dim);
+  opacity: 0.5;
+}
+
+.chat-resize-handle:hover::before {
+  opacity: 1;
 }
 
 .chat-panel-open {
@@ -1451,10 +1479,15 @@ a.tag:hover {
 /* Mobile: full-width panel */
 @media (max-width: 480px) {
   .chat-panel {
-    width: calc(100vw - 2rem);
+    width: calc(100vw - 2rem) !important;
+    height: auto !important;
     right: 1rem;
     bottom: calc(1.5rem + 56px + 0.75rem);
     max-height: 60vh;
+  }
+
+  .chat-resize-handle {
+    display: none;
   }
 
   .chat-toggle {
