@@ -1801,3 +1801,60 @@ a.tag:hover {
 .chat-tool-arxiv-pdf:hover {
   text-decoration: underline;
 }
+
+/* Markdown rendering in chat messages */
+.chat-md p {
+  margin: 0 0 0.4em;
+}
+
+.chat-md p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-md strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.chat-md a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.chat-md a:hover {
+  text-decoration: underline;
+}
+
+.chat-md ol,
+.chat-md ul {
+  margin: 0.3em 0;
+  padding-left: 1.4em;
+}
+
+.chat-md li {
+  margin-bottom: 0.2em;
+}
+
+.chat-md-code {
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  font-size: 0.92em;
+}
+
+.chat-md-pre {
+  background: var(--pre-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  margin: 0.4em 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.chat-md-pre code {
+  background: none;
+  padding: 0;
+}

@@ -16,6 +16,33 @@ const toolComponents: Record<string, React.ComponentType<{ args: any; result?: a
   searchArxiv: ArxivCard,
 };
 
+function renderMarkdown(text: string): JSX.Element {
+  const html = text
+    // code blocks (```...```)
+    .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre class="chat-md-pre"><code>$2</code></pre>')
+    // inline code
+    .replace(/`([^`]+)`/g, '<code class="chat-md-code">$1</code>')
+    // bold
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    // italic
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    // links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    // numbered lists
+    .replace(/^(\d+)\.\s+(.+)$/gm, '<li value="$1">$2</li>')
+    // bullet lists
+    .replace(/^[-•]\s+(.+)$/gm, "<li>$1</li>")
+    // wrap consecutive <li> in <ol> or <ul>
+    .replace(/((?:<li value="\d+">[^]*?<\/li>\s*)+)/g, "<ol>$1</ol>")
+    .replace(/((?:<li>(?!.*value=)[^]*?<\/li>\s*)+)/g, "<ul>$1</ul>")
+    // paragraphs (double newline)
+    .replace(/\n\n/g, "</p><p>")
+    // single newlines (not inside pre)
+    .replace(/\n/g, "<br/>");
+
+  return <div className="chat-md" dangerouslySetInnerHTML={{ __html: `<p>${html}</p>` }} />;
+}
+
 function ToolResult({ invocation }: { invocation: any }) {
   const Component = toolComponents[invocation.toolName as keyof typeof toolComponents];
   if (!Component) return null;
@@ -197,7 +224,7 @@ export function ChatWidget({ apiUrl, postUrl }: ChatWidgetProps) {
                 msg.role === "user" ? "chat-msg chat-msg-user" : "chat-msg chat-msg-assistant"
               }
             >
-              {msg.content && <div>{msg.content}</div>}
+              {msg.content && (msg.role === "user" ? <div>{msg.content}</div> : renderMarkdown(msg.content))}
               {msg.toolInvocations?.map((inv: any, i: number) => (
                 <ToolResult key={`${msg.id}-tool-${i}`} invocation={inv} />
               ))}
