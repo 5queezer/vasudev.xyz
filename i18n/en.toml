@@ -57,3 +57,18 @@ other = "Copy link"
 
 [copied]
 other = "Copied!"
+
+[copyPage]
+other = "Copy page"
+
+[copyPageMenu]
+other = "More copy options"
+
+[copyPageDesc]
+other = "Copy page as Markdown for LLMs"
+
+[viewMarkdown]
+other = "View as Markdown"
+
+[viewMarkdownDesc]
+other = "View this page as plain text"

@@ -4,7 +4,36 @@
 
   <article class="post-shell">
     <header class="surface post-hero">
-      <div class="section-label">{{ i18n "blog" }}</div>
+      <div class="post-hero-top">
+        <div class="section-label">{{ i18n "blog" }}</div>
+        <div class="copy-page-wrap">
+          <button class="button button-secondary copy-page-btn" id="copy-page-btn"
+                  data-txt-url="{{ .RelPermalink }}index.txt"
+                  aria-label="{{ i18n "copyPage" }}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            <span>{{ i18n "copyPage" }}</span>
+          </button>
+          <button class="button button-secondary copy-page-chevron" id="copy-page-chevron" aria-label="{{ i18n "copyPageMenu" }}" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="copy-page-dropdown" id="copy-page-dropdown" hidden>
+            <button class="copy-page-dropdown-item" id="copy-page-dropdown-copy">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              <div>
+                <div class="copy-page-dropdown-title">{{ i18n "copyPage" }}</div>
+                <div class="copy-page-dropdown-desc">{{ i18n "copyPageDesc" }}</div>
+              </div>
+            </button>
+            <a class="copy-page-dropdown-item" href="{{ .RelPermalink }}index.txt" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="15 3 21 3 21 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="14" x2="21" y2="3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <div class="copy-page-dropdown-title">{{ i18n "viewMarkdown" }}</div>
+                <div class="copy-page-dropdown-desc">{{ i18n "viewMarkdownDesc" }}</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
       <div class="post-header">
         <h1>{{ .Title }}</h1>
         {{ with .Description }}<p class="page-copy">{{ . }}</p>{{ end }}
@@ -81,4 +110,64 @@
   </footer>
 </div>
 {{ partial "chat-widget.html" . }}
+<script>
+(function() {
+  var wrap = document.querySelector('.copy-page-wrap');
+  var btn = document.getElementById('copy-page-btn');
+  var chevron = document.getElementById('copy-page-chevron');
+  var dropdown = document.getElementById('copy-page-dropdown');
+  var dropdownCopy = document.getElementById('copy-page-dropdown-copy');
+  if (!btn || !chevron || !dropdown) return;
+
+  var txtUrl = btn.getAttribute('data-txt-url');
+  var label = btn.querySelector('span');
+  var defaultLabel = label ? label.textContent : '{{ i18n "copyPage" }}';
+  var copiedTimer;
+
+  function copyMarkdown() {
+    fetch(txtUrl)
+      .then(function(r) {
+        if (!r.ok) throw new Error('Failed to fetch markdown');
+        return r.text();
+      })
+      .then(function(text) {
+        return navigator.clipboard.writeText(text);
+      })
+      .then(function() {
+        if (!label) return;
+        clearTimeout(copiedTimer);
+        label.textContent = '{{ i18n "copied" }}';
+        copiedTimer = setTimeout(function() {
+          label.textContent = defaultLabel;
+        }, 2000);
+      })
+      .catch(function() {
+        if (label) label.textContent = defaultLabel;
+      });
+  }
+
+  function toggle() {
+    var open = dropdown.hidden;
+    dropdown.hidden = !open;
+    chevron.setAttribute('aria-expanded', open);
+  }
+
+  function close() {
+    dropdown.hidden = true;
+    chevron.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', function() { close(); copyMarkdown(); });
+  chevron.addEventListener('click', function(e) { e.stopPropagation(); toggle(); });
+  dropdownCopy.addEventListener('click', function() { close(); copyMarkdown(); });
+
+  document.addEventListener('click', function(e) {
+    if (!wrap.contains(e.target)) close();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
 {{ end }}
