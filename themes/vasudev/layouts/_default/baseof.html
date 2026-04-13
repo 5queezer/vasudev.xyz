@@ -26,6 +26,28 @@
 <body class='{{ if .IsHome }}is-home{{ else }}is-interior{{ end }}'>
   <div class="noise-overlay" aria-hidden="true"></div>
   <script>
+    window.identicon = function(str, size) {
+      var h = 5381;
+      for (var i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
+      var h2 = 2166136261;
+      for (var i = 0; i < str.length; i++) h2 = (h2 ^ str.charCodeAt(i)) * 16777619 >>> 0;
+      var hue = h % 360, sat = 40 + (h2 % 20), lit = 45 + (h2 % 15);
+      var fg = 'hsl(' + hue + ',' + sat + '%,' + lit + '%)';
+      var bg = 'hsl(' + hue + ',' + Math.max(sat - 20, 10) + '%,' + (lit + 35) + '%)';
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 5" width="' + size + '" height="' + size + '" style="border-radius:20%">';
+      svg += '<rect width="5" height="5" fill="' + bg + '"/>';
+      for (var r = 0; r < 5; r++) {
+        for (var c = 0; c < 3; c++) {
+          if ((h >>> (r * 3 + c)) & 1) {
+            svg += '<rect x="' + c + '" y="' + r + '" width="1" height="1" fill="' + fg + '"/>';
+            if (c < 2) svg += '<rect x="' + (4 - c) + '" y="' + r + '" width="1" height="1" fill="' + fg + '"/>';
+          }
+        }
+      }
+      return svg + '</svg>';
+    };
+  </script>
+  <script>
     function toggleTheme() {
       var current = document.documentElement.getAttribute('data-theme');
       var next = current === 'light' ? 'dark' : 'light';

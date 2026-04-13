@@ -25,7 +25,7 @@
       <article class="surface list-card">
         <div class="list-card-link">
           <div class="article-meta">Part {{ add $i 1 }} · {{ $p.Date.Format "2 Jan 2006" }} · {{ $p.ReadingTime }} {{ i18n "minutesShort" }}</div>
-          <h2 class="article-title">{{ $p.Title }}</h2>
+          <h2 class="article-title"><span class="list-identicon" data-slug="{{ $p.File.ContentBaseName }}" aria-hidden="true"></span>{{ $p.Title }}</h2>
           {{ with $p.Description }}<p class="article-copy">{{ . }}</p>{{ end }}
           <a class="article-cta list-card-stretched" href="{{ $p.RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
         </div>
@@ -49,7 +49,7 @@
       <article class="surface list-card">
         <div class="list-card-link">
           <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
-          <h2 class="article-title">{{ .Title }}</h2>
+          <h2 class="article-title"><span class="list-identicon" data-slug="{{ .File.ContentBaseName }}" aria-hidden="true"></span>{{ .Title }}</h2>
           {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
           <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
         </div>
@@ -73,7 +73,7 @@
       <article class="surface list-card">
         <div class="list-card-link">
           <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
-          <h2 class="article-title">{{ .Title }}</h2>
+          <h2 class="article-title"><span class="list-identicon" data-slug="{{ .File.ContentBaseName }}" aria-hidden="true"></span>{{ .Title }}</h2>
           {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
           <a class="article-cta list-card-stretched" href="{{ .RelPermalink }}">Open post <span aria-hidden="true">→</span></a>
         </div>
@@ -92,4 +92,12 @@
   </footer>
 </div>
 {{ partial "chat-widget.html" . }}
+<script>
+(function() {
+  if (!window.identicon) return;
+  document.querySelectorAll('.list-identicon').forEach(function(el) {
+    el.innerHTML = identicon(el.getAttribute('data-slug'), 20);
+  });
+})();
+</script>
 {{ end }}

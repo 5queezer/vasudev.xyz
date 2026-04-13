@@ -35,6 +35,7 @@
         </div>
       </div>
       <div class="post-header">
+        <div class="post-identicon" data-slug="{{ .File.ContentBaseName }}" aria-hidden="true"></div>
         <h1>{{ .Title }}</h1>
         {{ with .Description }}<p class="page-copy">{{ . }}</p>{{ end }}
         <div class="post-meta-row">
@@ -111,6 +112,10 @@
 </div>
 {{ partial "chat-widget.html" . }}
 <script>
+(function() {
+  var ic = document.querySelector('.post-identicon');
+  if (ic && window.identicon) ic.innerHTML = identicon(ic.getAttribute('data-slug'), 48);
+})();
 (function() {
   var wrap = document.querySelector('.copy-page-wrap');
   var btn = document.getElementById('copy-page-btn');
