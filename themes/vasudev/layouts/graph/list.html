@@ -1,0 +1,238 @@
+{{ define "main" }}
+<div class="graph-page">
+  {{ partial "site-header.html" . }}
+
+  <div id="graph-container"></div>
+
+  <div class="graph-controls">
+    <div class="graph-search">
+      <input type="text" id="graph-search" placeholder="Search nodes..." autocomplete="off" />
+    </div>
+    <div class="graph-filters">
+      <button class="graph-btn graph-btn-active" data-filter="all">All</button>
+      <button class="graph-btn" data-filter="posts">Posts</button>
+      <button class="graph-btn" data-filter="concepts">Concepts</button>
+    </div>
+    <div class="graph-legend" id="graph-legend"></div>
+    <div class="graph-stats" id="graph-stats"></div>
+  </div>
+
+  <div class="graph-tooltip" id="graph-tooltip"></div>
+</div>
+
+<script src="https://unpkg.com/3d-force-graph@1"></script>
+<script>
+(function() {
+  var COMMUNITY_COLORS = [
+    '#d7a673', '#8ec5a0', '#7bacd9', '#d98cb8', '#c5c56a',
+    '#e07a6a', '#9b8ed4', '#6ac5c5', '#d4a06a', '#a0d468',
+    '#e0a3d4', '#6ab0d4', '#d4c76a', '#7ad49b', '#d47a9b',
+    '#a3bfe0', '#d4986a', '#6ad4b0'
+  ];
+
+  var graphDataUrl = {{ "data/graph.json" | relURL | jsonify }};
+  var blogBaseUrl = {{ "blog/" | relLangURL | jsonify }};
+
+  var container = document.getElementById('graph-container');
+  var tooltip = document.getElementById('graph-tooltip');
+  var searchInput = document.getElementById('graph-search');
+  var legend = document.getElementById('graph-legend');
+  var stats = document.getElementById('graph-stats');
+  var activeFilter = 'all';
+  var searchTerm = '';
+  var graphData = null;
+  var graph = null;
+
+  function linkId(endpoint) {
+    return typeof endpoint === 'object' ? endpoint.id : endpoint;
+  }
+
+  fetch(graphDataUrl)
+    .then(function(r) { return r.json(); })
+    .then(function(raw) {
+      var nodes = raw.nodes.map(function(n) {
+        return {
+          id: n.id,
+          label: n.label,
+          sourceFile: n.source_file || '',
+          fileType: n.file_type || '',
+          community: n.community != null ? n.community : -1,
+          degree: 0
+        };
+      });
+
+      var edges = (raw.links || []).map(function(e) {
+        return {
+          source: e.source,
+          target: e.target,
+          relation: e.relation,
+          confidence: e.confidence_score || 1.0
+        };
+      });
+
+      var degreeMap = {};
+      edges.forEach(function(e) {
+        degreeMap[e.source] = (degreeMap[e.source] || 0) + 1;
+        degreeMap[e.target] = (degreeMap[e.target] || 0) + 1;
+      });
+      nodes.forEach(function(n) { n.degree = degreeMap[n.id] || 0; });
+
+      graphData = { nodes: nodes, links: edges };
+
+      stats.textContent = nodes.length + ' nodes, ' + edges.length + ' edges';
+
+      var communities = {};
+      nodes.forEach(function(n) {
+        if (n.community >= 0 && !communities[n.community]) {
+          communities[n.community] = true;
+        }
+      });
+      var comKeys = Object.keys(communities).sort(function(a,b) { return a - b; });
+      legend.innerHTML = comKeys.slice(0, 12).map(function(c) {
+        return '<span class="graph-legend-dot" style="background:' +
+          COMMUNITY_COLORS[c % COMMUNITY_COLORS.length] + '"></span>' + c;
+      }).join('  ');
+
+      renderGraph();
+    });
+
+  function isVisible(n) {
+    if (activeFilter === 'posts') {
+      if (!n.sourceFile.startsWith('content/blog/')) return false;
+    } else if (activeFilter === 'concepts') {
+      if (n.fileType === 'code' || n.sourceFile.startsWith('content/blog/')) return false;
+    }
+    if (searchTerm && !n.label.toLowerCase().includes(searchTerm)) return false;
+    return true;
+  }
+
+  function getFilteredData() {
+    if (!graphData) return { nodes: [], links: [] };
+    var visibleIds = {};
+    var filteredNodes = graphData.nodes.filter(function(n) {
+      var v = isVisible(n);
+      if (v) visibleIds[n.id] = true;
+      return v;
+    });
+    var filteredLinks = graphData.links.filter(function(e) {
+      var sourceId = linkId(e.source);
+      var targetId = linkId(e.target);
+      return visibleIds[sourceId] && visibleIds[targetId];
+    });
+    return { nodes: filteredNodes, links: filteredLinks };
+  }
+
+  function slugFromSourceFile(sf) {
+    if (!sf.startsWith('content/blog/')) return null;
+    return sf.replace('content/blog/', '').replace(/\.md$/, '');
+  }
+
+  function buildTooltip(node) {
+    tooltip.textContent = '';
+    var strong = document.createElement('strong');
+    strong.textContent = node.label;
+    tooltip.appendChild(strong);
+
+    tooltip.appendChild(document.createElement('br'));
+    tooltip.appendChild(document.createTextNode(
+      'Community ' + node.community + ' \u00B7 ' + node.degree + ' connections'
+    ));
+
+    if (node.fileType) {
+      tooltip.appendChild(document.createElement('br'));
+      tooltip.appendChild(document.createTextNode('Type: ' + node.fileType));
+    }
+
+    var slug = slugFromSourceFile(node.sourceFile);
+    if (slug) {
+      tooltip.appendChild(document.createElement('br'));
+      tooltip.appendChild(document.createTextNode('Click to read \u2192'));
+    }
+  }
+
+  function renderGraph() {
+    if (!graphData) return;
+    var data = getFilteredData();
+
+    if (graph) {
+      graph.graphData(data);
+      return;
+    }
+
+    var isDark = !document.documentElement.getAttribute('data-theme') ||
+                 document.documentElement.getAttribute('data-theme') !== 'light';
+
+    graph = ForceGraph3D()(container)
+      .graphData(data)
+      .backgroundColor('rgba(0,0,0,0)')
+      .nodeLabel('')
+      .nodeVal(function(n) { return Math.max(n.degree, 1); })
+      .nodeColor(function(n) {
+        if (searchTerm && n.label.toLowerCase().includes(searchTerm)) {
+          return '#ffffff';
+        }
+        if (n.community >= 0) return COMMUNITY_COLORS[n.community % COMMUNITY_COLORS.length];
+        return isDark ? '#555' : '#999';
+      })
+      .nodeOpacity(0.9)
+      .nodeResolution(12)
+      .linkWidth(function(e) {
+        return e.confidence > 0.8 ? 1.2 : 0.4;
+      })
+      .linkColor(function() {
+        return isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+      })
+      .linkOpacity(0.6)
+      .linkDirectionalParticles(function(e) {
+        return e.confidence > 0.8 ? 1 : 0;
+      })
+      .linkDirectionalParticleSpeed(0.003)
+      .linkDirectionalParticleWidth(1.5)
+      .linkDirectionalParticleColor(function() {
+        return isDark ? 'rgba(215,166,115,0.5)' : 'rgba(159,99,55,0.5)';
+      })
+      .onNodeHover(function(node) {
+        container.style.cursor = node ? 'pointer' : 'default';
+        if (node) {
+          buildTooltip(node);
+          tooltip.style.display = 'block';
+        } else {
+          tooltip.style.display = 'none';
+        }
+      })
+      .onNodeClick(function(node) {
+        var slug = slugFromSourceFile(node.sourceFile);
+        if (slug) window.location.href = blogBaseUrl + slug + '/';
+      })
+      .d3AlphaDecay(0.02)
+      .d3VelocityDecay(0.3)
+      .warmupTicks(80)
+      .cooldownTicks(200);
+
+    window.addEventListener('resize', function() {
+      graph.width(container.clientWidth).height(container.clientHeight);
+    });
+  }
+
+  var debounce;
+  searchInput.addEventListener('input', function() {
+    clearTimeout(debounce);
+    debounce = setTimeout(function() {
+      searchTerm = searchInput.value.toLowerCase().trim();
+      renderGraph();
+    }, 200);
+  });
+
+  document.querySelectorAll('.graph-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.graph-btn').forEach(function(b) {
+        b.classList.remove('graph-btn-active');
+      });
+      btn.classList.add('graph-btn-active');
+      activeFilter = btn.getAttribute('data-filter');
+      renderGraph();
+    });
+  });
+})();
+</script>
+{{ end }}

@@ -72,3 +72,6 @@ other = "Ver como Markdown"
 
 [viewMarkdownDesc]
 other = "Ver esta página como texto plano"
+
+[graph]
+other = "Grafo"
