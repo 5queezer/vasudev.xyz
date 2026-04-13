@@ -35,8 +35,19 @@ function loadForceGraph3D(): Promise<any> {
       return;
     }
     const script = document.createElement("script");
-    script.src = "https://unpkg.com/3d-force-graph@1";
-    script.onload = () => resolve((window as any).ForceGraph3D);
+    script.src = "https://unpkg.com/3d-force-graph@1.80.0/dist/3d-force-graph.min.js";
+    script.integrity = "sha384-Y7bC2PBKu8ujxtvo5+Z61OeGdSVRzFsYWBK4i5dnL/U6aFDTodk61qOUkTfInaxS";
+    script.crossOrigin = "anonymous";
+    script.onload = () => {
+      const fg = (window as any).ForceGraph3D;
+      if (fg) {
+        resolve(fg);
+      } else {
+        loadPromise = null;
+        script.remove();
+        reject(new Error("ForceGraph3D global not available after script load"));
+      }
+    };
     script.onerror = (err) => {
       loadPromise = null;
       script.remove();
@@ -116,7 +127,10 @@ export function MiniGraph({ nodes, links }: MiniGraphProps) {
       cancelled = true;
       if (observer) observer.disconnect();
       if (graphRef.current) {
-        graphRef.current._destructor?.();
+        // 3d-force-graph exposes _destructor as its only cleanup method
+        if (typeof graphRef.current._destructor === "function") {
+          graphRef.current._destructor();
+        }
         graphRef.current = null;
       }
     };
