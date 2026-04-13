@@ -47,8 +47,15 @@
     return typeof endpoint === 'object' ? endpoint.id : endpoint;
   }
 
+  if (typeof ForceGraph3D === 'undefined') {
+    stats.textContent = 'Error: 3d-force-graph library failed to load';
+  }
+
   fetch(graphDataUrl)
-    .then(function(r) { return r.json(); })
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
     .then(function(raw) {
       var nodes = raw.nodes.map(function(n) {
         return {
@@ -94,6 +101,10 @@
       }).join('  ');
 
       renderGraph();
+    })
+    .catch(function(err) {
+      stats.textContent = 'Error loading graph: ' + err.message;
+      console.error('Graph load failed:', err);
     });
 
   function isVisible(n) {
@@ -163,6 +174,8 @@
                  document.documentElement.getAttribute('data-theme') !== 'light';
 
     graph = ForceGraph3D()(container)
+      .width(container.clientWidth || window.innerWidth)
+      .height(container.clientHeight || window.innerHeight)
       .graphData(data)
       .backgroundColor('rgba(0,0,0,0)')
       .nodeLabel('')
