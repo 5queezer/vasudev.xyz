@@ -1,10 +1,7 @@
-import { MiniGraph } from "./MiniGraph";
-
 interface Match {
   id: string;
   label: string;
   sourceFile: string;
-  community?: number;
 }
 
 interface Connection {
@@ -58,40 +55,20 @@ function Skeleton() {
 export function ConnectionsCard({ args: _args, result }: { args: any; result?: ConnectionsResult }) {
   if (!result) return <Skeleton />;
 
-  const graphNodes = result.matches.map((m) => ({
-    id: m.id,
-    label: m.label,
-    sourceFile: m.sourceFile,
-    community: m.community,
-  }));
+  const hasContent = result.matches.length > 0 || result.connections.length > 0 || result.hyperedges.length > 0;
 
-  const nodeSet = new Set(graphNodes.map((n) => n.id));
-
-  for (const c of result.connections) {
-    if (!nodeSet.has(c.from)) {
-      nodeSet.add(c.from);
-      graphNodes.push({ id: c.from, label: c.fromLabel, sourceFile: "", community: undefined });
-    }
-    if (!nodeSet.has(c.to)) {
-      nodeSet.add(c.to);
-      graphNodes.push({ id: c.to, label: c.toLabel, sourceFile: "", community: undefined });
-    }
+  if (!hasContent) {
+    return (
+      <div className="chat-tool-card">
+        <div className="chat-tool-title">Knowledge Graph</div>
+        <div className="chat-tool-empty">No matching nodes found. Try a more specific concept name.</div>
+      </div>
+    );
   }
-
-  const graphLinks = result.connections.map((c) => ({
-    source: c.from,
-    target: c.to,
-    relation: c.relation,
-    confidence: c.confidence ?? 1.0,
-  }));
 
   return (
     <div className="chat-tool-card">
       <div className="chat-tool-title">Knowledge Graph</div>
-
-      {graphNodes.length > 1 && graphLinks.length > 0 && (
-        <MiniGraph nodes={graphNodes} links={graphLinks} />
-      )}
 
       {result.matches.length > 0 && (
         <div className="chat-tool-badges">
