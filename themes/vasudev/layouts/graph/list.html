@@ -347,61 +347,64 @@
       .d3AlphaDecay(0.02)
       .d3VelocityDecay(0.3)
       .warmupTicks(80)
-      .cooldownTicks(200)
-      .onRenderFramePost(function() {
-        if (!graph || !graphData) return;
-        var cam = graph.camera().position;
-        var cx = cam.x, cy = cam.y, cz = cam.z;
-        var nodes = graph.graphData().nodes;
-        var w = container.clientWidth;
-        var h = container.clientHeight;
-
-        for (var i = 0; i < nodes.length; i++) {
-          var node = nodes[i];
-          var el = node.__labelEl;
-          if (!el) continue;
-
-          var nx = node.x || 0, ny = node.y || 0, nz = node.z || 0;
-          var dx = cx - nx, dy = cy - ny, dz = cz - nz;
-          var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-          var score = node.degree / (dist || 1);
-
-          var targetOpacity;
-          if (node === hoveredNode) {
-            targetOpacity = 1;
-          } else if (score >= LABEL_FULL_THRESHOLD) {
-            targetOpacity = 1;
-          } else if (score <= LABEL_SHOW_THRESHOLD) {
-            targetOpacity = 0;
-          } else {
-            targetOpacity = (score - LABEL_SHOW_THRESHOLD) / (LABEL_FULL_THRESHOLD - LABEL_SHOW_THRESHOLD);
-          }
-
-          var current = node.__labelOpacity || 0;
-          var newOpacity = current + (targetOpacity - current) * 0.15;
-          if (newOpacity < 0.01) newOpacity = 0;
-          if (newOpacity > 0.99) newOpacity = 1;
-          node.__labelOpacity = newOpacity;
-
-          if (newOpacity <= 0) {
-            el.style.opacity = '0';
-            continue;
-          }
-
-          var nodeRadius = Math.cbrt(Math.max(node.degree, 1)) * 4;
-          var coords = graph.graph2ScreenCoords(nx, ny + nodeRadius + 2, nz);
-          if (coords.x < -100 || coords.x > w + 100 || coords.y < -50 || coords.y > h + 50) {
-            el.style.opacity = '0';
-            continue;
-          }
-
-          el.style.opacity = newOpacity.toFixed(2);
-          el.style.left = coords.x + 'px';
-          el.style.top = coords.y + 'px';
-        }
-      });
+      .cooldownTicks(200);
 
     ensureLabels(data.nodes);
+
+    function updateLabels() {
+      requestAnimationFrame(updateLabels);
+      if (!graph || !graphData) return;
+      var cam = graph.camera().position;
+      var cx = cam.x, cy = cam.y, cz = cam.z;
+      var nodes = graph.graphData().nodes;
+      var w = container.clientWidth;
+      var h = container.clientHeight;
+
+      for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i];
+        var el = node.__labelEl;
+        if (!el) continue;
+
+        var nx = node.x || 0, ny = node.y || 0, nz = node.z || 0;
+        var dx = cx - nx, dy = cy - ny, dz = cz - nz;
+        var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        var score = node.degree / (dist || 1);
+
+        var targetOpacity;
+        if (node === hoveredNode) {
+          targetOpacity = 1;
+        } else if (score >= LABEL_FULL_THRESHOLD) {
+          targetOpacity = 1;
+        } else if (score <= LABEL_SHOW_THRESHOLD) {
+          targetOpacity = 0;
+        } else {
+          targetOpacity = (score - LABEL_SHOW_THRESHOLD) / (LABEL_FULL_THRESHOLD - LABEL_SHOW_THRESHOLD);
+        }
+
+        var current = node.__labelOpacity || 0;
+        var newOpacity = current + (targetOpacity - current) * 0.15;
+        if (newOpacity < 0.01) newOpacity = 0;
+        if (newOpacity > 0.99) newOpacity = 1;
+        node.__labelOpacity = newOpacity;
+
+        if (newOpacity <= 0) {
+          el.style.opacity = '0';
+          continue;
+        }
+
+        var nodeRadius = Math.cbrt(Math.max(node.degree, 1)) * 4;
+        var coords = graph.graph2ScreenCoords(nx, ny + nodeRadius + 2, nz);
+        if (coords.x < -100 || coords.x > w + 100 || coords.y < -50 || coords.y > h + 50) {
+          el.style.opacity = '0';
+          continue;
+        }
+
+        el.style.opacity = newOpacity.toFixed(2);
+        el.style.left = coords.x + 'px';
+        el.style.top = coords.y + 'px';
+      }
+    }
+    requestAnimationFrame(updateLabels);
 
     window.addEventListener('resize', function() {
       graph.width(container.clientWidth).height(container.clientHeight);
