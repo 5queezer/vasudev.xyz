@@ -49,6 +49,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Enrich graph data with community names
+        run: python3 scripts/sync-graph.py
+
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
