@@ -2,7 +2,9 @@
 <div class="graph-page">
   {{ partial "site-header.html" . }}
 
-  <div id="graph-container"></div>
+  <div id="graph-container">
+    <div id="graph-labels" aria-hidden="true"></div>
+  </div>
 
   <div class="graph-controls">
     <div class="graph-search">
@@ -20,6 +22,30 @@
   <div class="graph-tooltip" id="graph-tooltip"></div>
 </div>
 
+<style>
+  #graph-labels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .graph-label {
+    position: absolute;
+    white-space: nowrap;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 11px;
+    line-height: 1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    transform: translate(-50%, -100%);
+    transition: none;
+    will-change: transform, opacity;
+  }
+</style>
+
 <script src="https://unpkg.com/3d-force-graph@1.80.0/dist/3d-force-graph.min.js" integrity="sha384-Y7bC2PBKu8ujxtvo5+Z61OeGdSVRzFsYWBK4i5dnL/U6aFDTodk61qOUkTfInaxS" crossorigin="anonymous"></script>
 <script>
 (function() {
@@ -30,10 +56,15 @@
     '#a3bfe0', '#d4986a', '#6ad4b0'
   ];
 
+  var LABEL_SHOW_THRESHOLD = 0.012;
+  var LABEL_FULL_THRESHOLD = 0.018;
+  var LABEL_MAX_CHARS = 28;
+
   var graphDataUrl = '{{ "/data/graph.json" | relURL }}';
   var blogBaseUrl = '{{ "blog/" | relLangURL }}';
 
   var container = document.getElementById('graph-container');
+  var labelsLayer = document.getElementById('graph-labels');
   var tooltip = document.getElementById('graph-tooltip');
   var searchInput = document.getElementById('graph-search');
   var legend = document.getElementById('graph-legend');
@@ -42,6 +73,7 @@
   var searchTerm = '';
   var graphData = null;
   var graph = null;
+  var hoveredNode = null;
 
   function linkId(endpoint) {
     return typeof endpoint === 'object' ? endpoint.id : endpoint;
@@ -51,6 +83,35 @@
     var el = document.createElement('span');
     el.textContent = s;
     return el.innerHTML;
+  }
+
+  function truncateLabel(text) {
+    if (text.length <= LABEL_MAX_CHARS) return text;
+    return text.substring(0, LABEL_MAX_CHARS - 1) + '\u2026';
+  }
+
+  function createLabelEl(node) {
+    var el = document.createElement('div');
+    el.className = 'graph-label';
+    el.textContent = truncateLabel(node.label);
+    el.style.opacity = '0';
+    el.style.fontSize = node.degree >= 6 ? '12px' : '11px';
+    el.style.fontWeight = node.degree >= 6 ? '600' : '400';
+    labelsLayer.appendChild(el);
+    node.__labelEl = el;
+    node.__labelOpacity = 0;
+    return el;
+  }
+
+  function updateLabelColors() {
+    var dark = isDark();
+    var color = dark ? '#f4f1eb' : '#211d18';
+    var bg = dark ? 'rgba(9,9,11,0.55)' : 'rgba(246,242,235,0.55)';
+    var labels = labelsLayer.children;
+    for (var i = 0; i < labels.length; i++) {
+      labels[i].style.color = color;
+      labels[i].style.backgroundColor = bg;
+    }
   }
 
   if (typeof ForceGraph3D === 'undefined') {
@@ -209,13 +270,38 @@
       }).join('');
   }
 
+  function clearLabels() {
+    labelsLayer.innerHTML = '';
+    if (graphData) {
+      graphData.nodes.forEach(function(n) {
+        n.__labelEl = null;
+        n.__labelOpacity = 0;
+      });
+    }
+  }
+
+  function ensureLabels(nodes) {
+    var dark = isDark();
+    var color = dark ? '#f4f1eb' : '#211d18';
+    var bg = dark ? 'rgba(9,9,11,0.55)' : 'rgba(246,242,235,0.55)';
+    for (var i = 0; i < nodes.length; i++) {
+      if (!nodes[i].__labelEl) {
+        var el = createLabelEl(nodes[i]);
+        el.style.color = color;
+        el.style.backgroundColor = bg;
+      }
+    }
+  }
+
   function renderGraph() {
     if (!graphData) return;
     var data = getFilteredData();
     updateLegend(data.nodes);
 
     if (graph) {
+      clearLabels();
       graph.graphData(data);
+      ensureLabels(data.nodes);
       return;
     }
 
@@ -244,8 +330,9 @@
       .linkDirectionalParticleColor(function() {
         return isDark() ? 'rgba(215,166,115,0.5)' : 'rgba(159,99,55,0.5)';
       })
-      .onNodeHover(function(node) {
+      .onNodeHover(function(node, prevNode) {
         container.style.cursor = node ? 'pointer' : 'default';
+        hoveredNode = node || null;
         if (node) {
           buildTooltip(node);
           tooltip.style.display = 'block';
@@ -260,11 +347,74 @@
       .d3AlphaDecay(0.02)
       .d3VelocityDecay(0.3)
       .warmupTicks(80)
-      .cooldownTicks(200);
+      .cooldownTicks(200)
+      .onRenderFramePost(function() {
+        if (!graph || !graphData) return;
+        var cam = graph.camera().position;
+        var cx = cam.x, cy = cam.y, cz = cam.z;
+        var nodes = graph.graphData().nodes;
+        var w = container.clientWidth;
+        var h = container.clientHeight;
+
+        for (var i = 0; i < nodes.length; i++) {
+          var node = nodes[i];
+          var el = node.__labelEl;
+          if (!el) continue;
+
+          var nx = node.x || 0, ny = node.y || 0, nz = node.z || 0;
+          var dx = cx - nx, dy = cy - ny, dz = cz - nz;
+          var dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          var score = node.degree / (dist || 1);
+
+          var targetOpacity;
+          if (node === hoveredNode) {
+            targetOpacity = 1;
+          } else if (score >= LABEL_FULL_THRESHOLD) {
+            targetOpacity = 1;
+          } else if (score <= LABEL_SHOW_THRESHOLD) {
+            targetOpacity = 0;
+          } else {
+            targetOpacity = (score - LABEL_SHOW_THRESHOLD) / (LABEL_FULL_THRESHOLD - LABEL_SHOW_THRESHOLD);
+          }
+
+          var current = node.__labelOpacity || 0;
+          var newOpacity = current + (targetOpacity - current) * 0.15;
+          if (newOpacity < 0.01) newOpacity = 0;
+          if (newOpacity > 0.99) newOpacity = 1;
+          node.__labelOpacity = newOpacity;
+
+          if (newOpacity <= 0) {
+            el.style.opacity = '0';
+            continue;
+          }
+
+          var nodeRadius = Math.cbrt(Math.max(node.degree, 1)) * 4;
+          var coords = graph.graph2ScreenCoords(nx, ny + nodeRadius + 2, nz);
+          if (coords.x < -100 || coords.x > w + 100 || coords.y < -50 || coords.y > h + 50) {
+            el.style.opacity = '0';
+            continue;
+          }
+
+          el.style.opacity = newOpacity.toFixed(2);
+          el.style.left = coords.x + 'px';
+          el.style.top = coords.y + 'px';
+        }
+      });
+
+    ensureLabels(data.nodes);
 
     window.addEventListener('resize', function() {
       graph.width(container.clientWidth).height(container.clientHeight);
     });
+
+    new MutationObserver(function(mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        if (mutations[i].attributeName === 'data-theme') {
+          updateLabelColors();
+          break;
+        }
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   }
 
   var debounce;
