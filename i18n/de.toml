@@ -72,3 +72,6 @@ other = "Als Markdown anzeigen"
 
 [viewMarkdownDesc]
 other = "Diese Seite als Klartext anzeigen"
+
+[graph]
+other = "Graph"

@@ -37,7 +37,11 @@ function loadForceGraph3D(): Promise<any> {
     const script = document.createElement("script");
     script.src = "https://unpkg.com/3d-force-graph@1";
     script.onload = () => resolve((window as any).ForceGraph3D);
-    script.onerror = reject;
+    script.onerror = (err) => {
+      loadPromise = null;
+      script.remove();
+      reject(err);
+    };
     document.head.appendChild(script);
   });
   return loadPromise;
@@ -57,6 +61,7 @@ export function MiniGraph({ nodes, links }: MiniGraphProps) {
 
     const el = containerRef.current;
     let cancelled = false;
+    let observer: ResizeObserver | null = null;
 
     loadForceGraph3D().then((ForceGraph3D) => {
       if (cancelled || !el) return;
@@ -64,9 +69,10 @@ export function MiniGraph({ nodes, links }: MiniGraphProps) {
       const isDark = !document.documentElement.getAttribute("data-theme") ||
         document.documentElement.getAttribute("data-theme") !== "light";
 
+      const h = el.clientHeight || 220;
       const graph = ForceGraph3D()(el)
         .width(el.clientWidth)
-        .height(220)
+        .height(h)
         .backgroundColor("rgba(0,0,0,0)")
         .nodeLabel("label")
         .nodeVal(() => 3)
@@ -93,6 +99,13 @@ export function MiniGraph({ nodes, links }: MiniGraphProps) {
 
       graphRef.current = graph;
 
+      observer = new ResizeObserver(() => {
+        if (graphRef.current && el) {
+          graphRef.current.width(el.clientWidth).height(el.clientHeight || 220);
+        }
+      });
+      observer.observe(el);
+
       setTimeout(() => {
         if (!cancelled && graph) {
           graph.zoomToFit(300, 40);
@@ -102,6 +115,7 @@ export function MiniGraph({ nodes, links }: MiniGraphProps) {
 
     return () => {
       cancelled = true;
+      if (observer) observer.disconnect();
       if (graphRef.current) {
         graphRef.current._destructor?.();
         graphRef.current = null;
