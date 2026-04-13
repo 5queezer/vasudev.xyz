@@ -40,6 +40,13 @@
     transform: translate(-50%, -100%);
     transition: none;
     will-change: transform, opacity;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .graph-label svg {
+    flex-shrink: 0;
+    vertical-align: middle;
   }
 </style>
 
@@ -87,10 +94,22 @@
     return text.substring(0, LABEL_MAX_CHARS - 1) + '\u2026';
   }
 
+  function slugFromLabel(node) {
+    var sf = node.sourceFile;
+    if (sf && sf.startsWith('content/blog/')) {
+      return sf.replace('content/blog/', '').replace(/\.md$/, '');
+    }
+    return node.id;
+  }
+
   function createLabelEl(node) {
     var el = document.createElement('div');
     el.className = 'graph-label';
-    el.textContent = truncateLabel(node.label);
+    if (window.identicon) {
+      el.innerHTML = identicon(slugFromLabel(node), 16) + ' <span>' + esc(truncateLabel(node.label)) + '</span>';
+    } else {
+      el.textContent = truncateLabel(node.label);
+    }
     el.style.opacity = '0';
     el.style.fontSize = node.degree >= 6 ? '12px' : '11px';
     el.style.fontWeight = node.degree >= 6 ? '600' : '400';

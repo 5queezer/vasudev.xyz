@@ -421,6 +421,18 @@ button:focus-visible {
 }
 
 .spotlight-title,
+.list-identicon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+  position: relative;
+  top: -1px;
+}
+
+.list-identicon svg {
+  display: block;
+}
+
 .article-title,
 .post-list .post-title,
 .project-name {
@@ -833,6 +845,15 @@ button:focus-visible {
 .post-header {
   display: grid;
   gap: 0.8rem;
+}
+
+.post-identicon {
+  width: 48px;
+  height: 48px;
+}
+
+.post-identicon svg {
+  display: block;
 }
 
 .post-header h1 {
