@@ -30,7 +30,7 @@
     '#a3bfe0', '#d4986a', '#6ad4b0'
   ];
 
-  var graphDataUrl = {{ "data/graph.json" | relURL | jsonify }};
+  var graphDataUrl = {{ "/data/graph.json" | relURL | jsonify }};
   var blogBaseUrl = {{ "blog/" | relLangURL | jsonify }};
 
   var container = document.getElementById('graph-container');
