@@ -78,14 +78,17 @@ interface GraphData {
   edges: GraphEdge[];
   hyperedges: GraphHyperedge[];
   nodeById: Map<string, GraphNode>;
-  adj: Map<string, { edge: GraphEdge; neighbor: string }[]>;
+  adj: Map<string, { edge: GraphEdge; neighbor: string; reversed: boolean }[]>;
   degree: Map<string, number>;
 }
 
 function scoreMatch(node: GraphNode, terms: string[]): number {
   const label = node.label.toLowerCase();
+  const normalizedLabel = label.replace(/[_\-]+/g, " ").trim();
+  const fullQuery = terms.join(" ");
   const file = (node.source_file ?? "").toLowerCase();
   let score = 0;
+  if (normalizedLabel === fullQuery) score += 3;
   for (const t of terms) {
     if (label === t) score += 3;
     else if (label.includes(t)) score += 1;
@@ -102,7 +105,7 @@ function buildGraphIndex(raw: RawGraphJSON): GraphData {
   const edges = raw.links ?? [];
   const hyperedges = raw.graph?.hyperedges ?? [];
   const nodeById = new Map(raw.nodes.map((n) => [n.id, n]));
-  const adj = new Map<string, { edge: GraphEdge; neighbor: string }[]>();
+  const adj = new Map<string, { edge: GraphEdge; neighbor: string; reversed: boolean }[]>();
   const degree = new Map<string, number>();
 
   for (const node of raw.nodes) {
@@ -114,11 +117,11 @@ function buildGraphIndex(raw: RawGraphJSON): GraphData {
     const s = e.source;
     const t = e.target;
     if (adj.has(s)) {
-      adj.get(s)!.push({ edge: e, neighbor: t });
+      adj.get(s)!.push({ edge: e, neighbor: t, reversed: false });
       degree.set(s, (degree.get(s) ?? 0) + 1);
     }
     if (adj.has(t)) {
-      adj.get(t)!.push({ edge: e, neighbor: s });
+      adj.get(t)!.push({ edge: e, neighbor: s, reversed: true });
       degree.set(t, (degree.get(t) ?? 0) + 1);
     }
   }
@@ -164,14 +167,21 @@ function bfsTraverse(
   return { visitedNodes: [...visited], traversedEdges };
 }
 
+interface PathEdge {
+  from: string;
+  to: string;
+  relation: string;
+  confidence_score?: number;
+}
+
 function shortestPath(
   graph: GraphData,
   startId: string,
   endId: string,
   maxHops: number,
-): { path: string[]; edges: GraphEdge[] } | null {
+): { path: string[]; edges: PathEdge[] } | null {
   if (startId === endId) return { path: [startId], edges: [] };
-  const prev = new Map<string, { from: string; edge: GraphEdge }>();
+  const prev = new Map<string, { from: string; edge: GraphEdge; reversed: boolean }>();
   const visited = new Set<string>([startId]);
   const queue: { id: string; depth: number }[] = [{ id: startId, depth: 0 }];
 
@@ -179,17 +189,22 @@ function shortestPath(
   while (head < queue.length) {
     const { id, depth } = queue[head++];
     if (depth >= maxHops) continue;
-    for (const { edge, neighbor } of graph.adj.get(id) ?? []) {
+    for (const { edge, neighbor, reversed } of graph.adj.get(id) ?? []) {
       if (!visited.has(neighbor)) {
         visited.add(neighbor);
-        prev.set(neighbor, { from: id, edge });
+        prev.set(neighbor, { from: id, edge, reversed });
         if (neighbor === endId) {
           const path: string[] = [endId];
-          const edges: GraphEdge[] = [];
+          const edges: PathEdge[] = [];
           let cur = endId;
           while (prev.has(cur)) {
             const p = prev.get(cur)!;
-            edges.unshift(p.edge);
+            edges.unshift({
+              from: p.reversed ? p.edge.target : p.edge.source,
+              to: p.reversed ? p.edge.source : p.edge.target,
+              relation: p.edge.relation,
+              confidence_score: p.edge.confidence_score,
+            });
             path.unshift(p.from);
             cur = p.from;
           }
@@ -359,7 +374,7 @@ IMPORTANT rules:
               .filter((h) => h.nodes.some((nid) => visitedSet.has(nid)))
               .map((h) => ({
                 label: h.label,
-                nodes: h.nodes,
+                nodes: h.nodes.map((id) => graph.nodeById.get(id)?.label ?? id),
                 confidence: h.confidence_score ?? 1.0,
               }));
 
@@ -524,8 +539,8 @@ IMPORTANT rules:
             }
 
             const steps = result.edges.map((e) => ({
-              from: graph.nodeById.get(e.source)?.label ?? e.source,
-              to: graph.nodeById.get(e.target)?.label ?? e.target,
+              from: graph.nodeById.get(e.from)?.label ?? e.from,
+              to: graph.nodeById.get(e.to)?.label ?? e.to,
               relation: e.relation,
               confidence: e.confidence_score ?? 1.0,
             }));
@@ -551,14 +566,17 @@ IMPORTANT rules:
           }),
           execute: async ({ count, filter }) => {
             const graph = await fetchGraph();
-            const limit = Math.min(count ?? 8, 15);
+            const limit = Math.min(Math.max(count ?? 8, 1), 15);
             const filterType = filter ?? "all";
 
             let candidates = graph.nodes.filter((n) => {
               const deg = graph.degree.get(n.id) ?? 0;
               if (deg < 2) return false;
               if (filterType === "posts") return n.source_file?.startsWith("content/blog/");
-              if (filterType === "concepts") return n.file_type !== "code";
+              if (filterType === "concepts") {
+                const isPost = n.source_file?.startsWith("content/blog/");
+                return !isPost && n.file_type !== "code";
+              }
               return true;
             });
 
