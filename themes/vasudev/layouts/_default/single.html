@@ -120,16 +120,30 @@
   if (!btn || !chevron || !dropdown) return;
 
   var txtUrl = btn.getAttribute('data-txt-url');
+  var label = btn.querySelector('span');
+  var defaultLabel = label ? label.textContent : '{{ i18n "copyPage" }}';
+  var copiedTimer;
 
   function copyMarkdown() {
-    fetch(txtUrl).then(function(r) { return r.text(); }).then(function(text) {
-      navigator.clipboard.writeText(text).then(function() {
-        var span = btn.querySelector('span');
-        var orig = span.textContent;
-        span.textContent = '{{ i18n "copied" }}';
-        setTimeout(function() { span.textContent = orig; }, 2000);
+    fetch(txtUrl)
+      .then(function(r) {
+        if (!r.ok) throw new Error('Failed to fetch markdown');
+        return r.text();
+      })
+      .then(function(text) {
+        return navigator.clipboard.writeText(text);
+      })
+      .then(function() {
+        if (!label) return;
+        clearTimeout(copiedTimer);
+        label.textContent = '{{ i18n "copied" }}';
+        copiedTimer = setTimeout(function() {
+          label.textContent = defaultLabel;
+        }, 2000);
+      })
+      .catch(function() {
+        if (label) label.textContent = defaultLabel;
       });
-    });
   }
 
   function toggle() {
