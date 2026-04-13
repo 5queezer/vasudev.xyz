@@ -6,6 +6,9 @@ import { ReadingPathCard } from "./tools/ReadingPathCard";
 import { CodeBlock } from "./tools/CodeBlock";
 import { ChartCard } from "./tools/ChartCard";
 import { ArxivCard } from "./tools/ArxivCard";
+import { PathCard } from "./tools/PathCard";
+import { HubNodesCard } from "./tools/HubNodesCard";
+import { CommunityCard } from "./tools/CommunityCard";
 
 const toolComponents: Record<string, React.ComponentType<{ args: any; result?: any }>> = {
   showConnections: ConnectionsCard,
@@ -14,6 +17,9 @@ const toolComponents: Record<string, React.ComponentType<{ args: any; result?: a
   showCode: CodeBlock,
   showChart: ChartCard,
   searchArxiv: ArxivCard,
+  findPath: PathCard,
+  hubNodes: HubNodesCard,
+  exploreCommunity: CommunityCard,
 };
 
 function renderMarkdown(text: string): JSX.Element {

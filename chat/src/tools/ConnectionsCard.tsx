@@ -8,6 +8,7 @@ interface Connection {
   from: string;
   to: string;
   relation: string;
+  confidence?: number;
   fromLabel: string;
   toLabel: string;
 }
@@ -74,6 +75,9 @@ export function ConnectionsCard({ args: _args, result }: { args: any; result?: C
               <span className="chat-tool-connection-arrow">&rarr;</span>
               <span>{c.toLabel}</span>
               <span className="chat-tool-connection-relation">{c.relation}</span>
+              {c.confidence != null && (
+                <span className="chat-tool-confidence">{Math.round(c.confidence * 100)}%</span>
+              )}
             </div>
           ))}
         </div>
