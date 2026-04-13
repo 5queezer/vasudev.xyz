@@ -179,30 +179,12 @@
     return !theme || theme !== 'light';
   }
 
-  function isPost(n) {
-    return n.sourceFile.startsWith('content/blog/');
-  }
-
   function nodeColor(n) {
     if (searchTerm && n.label.toLowerCase().includes(searchTerm)) {
       return isDark() ? '#ffffff' : '#111111';
     }
     if (n.community >= 0) return COMMUNITY_COLORS[n.community % COMMUNITY_COLORS.length];
     return isDark() ? '#555' : '#999';
-  }
-
-  function makeNodeObject(n) {
-    var color = nodeColor(n);
-    var scale = Math.cbrt(Math.max(n.degree, 1)) * 2;
-
-    if (isPost(n)) {
-      var geo = new THREE.BoxGeometry(scale, scale * 1.3, scale * 0.4);
-      var mat = new THREE.MeshLambertMaterial({ color: color, transparent: true, opacity: 0.9 });
-      return new THREE.Mesh(geo, mat);
-    }
-    var geo = new THREE.SphereGeometry(scale * 0.6, 12, 8);
-    var mat = new THREE.MeshLambertMaterial({ color: color, transparent: true, opacity: 0.9 });
-    return new THREE.Mesh(geo, mat);
   }
 
   function updateLegend(nodes) {
@@ -218,12 +200,7 @@
     var comKeys = Object.keys(communities).sort(function(a,b) {
       return communities[b].count - communities[a].count;
     });
-    legend.innerHTML =
-      '<div class="graph-legend-shapes">' +
-        '<span class="graph-legend-shape">&#9632; Post</span>' +
-        '<span class="graph-legend-shape">&#9679; Concept</span>' +
-      '</div>' +
-      comKeys.map(function(c) {
+    legend.innerHTML = comKeys.map(function(c) {
         return '<span class="graph-legend-entry">' +
           '<span class="graph-legend-dot" style="background:' +
           COMMUNITY_COLORS[c % COMMUNITY_COLORS.length] + '"></span>' +
@@ -238,7 +215,6 @@
     updateLegend(data.nodes);
 
     if (graph) {
-      graph.nodeThreeObject(makeNodeObject);
       graph.graphData(data);
       return;
     }
@@ -250,7 +226,9 @@
       .backgroundColor('rgba(0,0,0,0)')
       .nodeLabel('')
       .nodeVal(function(n) { return Math.max(n.degree, 1); })
-      .nodeThreeObject(makeNodeObject)
+      .nodeColor(function(n) { return nodeColor(n); })
+      .nodeOpacity(0.9)
+      .nodeResolution(12)
       .linkWidth(function(e) {
         return e.confidence > 0.8 ? 1.2 : 0.4;
       })
