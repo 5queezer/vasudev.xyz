@@ -55,7 +55,7 @@ jobs:
           cache-dependency-path: cmd/sync-graph/go.mod
 
       - name: Enrich graph data with community names
-        run: go run ./cmd/sync-graph
+        run: cd cmd/sync-graph && go run main.go --graphify-dir ../../graphify-out --output ../../static/data/graph.json
 
       - name: Build with Hugo
         env:
