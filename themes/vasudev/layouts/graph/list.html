@@ -57,7 +57,21 @@
       return r.json();
     })
     .then(function(raw) {
-      var nodes = raw.nodes.map(function(n) {
+      var blogSources = ['content/blog/', 'static/images/'];
+      function isBlogNode(n) {
+        if (n.file_type === 'code') return false;
+        var sf = n.source_file || '';
+        if (sf === 'README.md' || sf === 'CLAUDE.md') return false;
+        if (!sf) return true;
+        for (var i = 0; i < blogSources.length; i++) {
+          if (sf.startsWith(blogSources[i])) return true;
+        }
+        return n.file_type === 'concept';
+      }
+
+      var nodeIds = {};
+      var nodes = raw.nodes.filter(isBlogNode).map(function(n) {
+        nodeIds[n.id] = true;
         return {
           id: n.id,
           label: n.label,
@@ -68,7 +82,9 @@
         };
       });
 
-      var edges = (raw.links || []).map(function(e) {
+      var edges = (raw.links || []).filter(function(e) {
+        return nodeIds[e.source] && nodeIds[e.target];
+      }).map(function(e) {
         return {
           source: e.source,
           target: e.target,
@@ -83,6 +99,7 @@
         degreeMap[e.target] = (degreeMap[e.target] || 0) + 1;
       });
       nodes.forEach(function(n) { n.degree = degreeMap[n.id] || 0; });
+      nodes = nodes.filter(function(n) { return n.degree > 0; });
 
       graphData = { nodes: nodes, links: edges };
 
