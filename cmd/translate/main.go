@@ -282,7 +282,8 @@ func translateTextWithContext(apiURL string, llmModels []string, apiKey, text, l
 
 	systemPrompt := fmt.Sprintf(`You are a professional translator. Translate the following text from English to %s.
 Rules:
-- Preserve all Markdown formatting, code blocks, links, and HTML tags exactly as they are.
+- Preserve Markdown syntax markers (e.g. ## for headings, ** for bold, > for blockquotes, code fences, links, HTML tags) but DO translate the human-readable text within them.
+- Section headings (lines starting with ## or ###) MUST be translated. Keep the ## or ### prefix but translate the heading text that follows it.
 - Do not translate proper nouns, project names, GitHub URLs, or code.
 - Do not translate text inside code blocks (backtick-fenced or indented).
 - Do not add any commentary or explanation. Output only the translated text.
