@@ -104,7 +104,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L1",
       "id": "main",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "chatRequest",
@@ -112,7 +113,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L27",
       "id": "translate_chatrequest",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "chatMessage",
@@ -120,7 +122,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L32",
       "id": "translate_chatmessage",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "chatResponse",
@@ -128,7 +131,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L37",
       "id": "translate_chatresponse",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "main()",
@@ -136,7 +140,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L60",
       "id": "main_main",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "contentHash()",
@@ -144,7 +149,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L228",
       "id": "main_contenthash",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "splitFrontMatterAndBody()",
@@ -152,7 +158,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L233",
       "id": "main_splitfrontmatterandbody",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "extractFrontMatterField()",
@@ -160,7 +167,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L245",
       "id": "main_extractfrontmatterfield",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "buildTranslatedFile()",
@@ -168,7 +176,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L235",
       "id": "main_buildtranslatedfile",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "translateText()",
@@ -176,7 +185,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L266",
       "id": "main_translatetext",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "translateTextWithContext()",
@@ -184,7 +194,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L270",
       "id": "main_translatetextwithcontext",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "resolveModelCandidates()",
@@ -192,7 +203,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L482",
       "id": "main_resolvemodelcandidates",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "parseModelList()",
@@ -200,7 +212,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L494",
       "id": "main_parsemodellist",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "uniqueModels()",
@@ -208,7 +221,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L507",
       "id": "main_uniquemodels",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "splitBodyIntoChunks()",
@@ -216,7 +230,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L424",
       "id": "main_splitbodyintochunks",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "chunkHash()",
@@ -224,7 +239,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L455",
       "id": "main_chunkhash",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "headSnippet()",
@@ -232,7 +248,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L461",
       "id": "main_headsnippet",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "tailSnippet()",
@@ -240,7 +257,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L471",
       "id": "main_tailsnippet",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "extractChunkHashes()",
@@ -248,7 +266,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L482",
       "id": "main_extractchunkhashes",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "translateChunk()",
@@ -256,7 +275,8 @@
       "source_file": "cmd/translate/main.go",
       "source_location": "L499",
       "id": "main_translatechunk",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "shouldFallbackModel()",
@@ -264,7 +284,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L524",
       "id": "main_shouldfallbackmodel",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "main_test.go",
@@ -272,7 +293,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L1",
       "id": "main_test",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestResolveModelCandidatesFromExplicitList()",
@@ -280,7 +302,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L11",
       "id": "main_test_testresolvemodelcandidatesfromexplicitlist",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestResolveModelCandidatesFromPrimaryAndFallbacks()",
@@ -288,7 +311,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L26",
       "id": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestTranslateTextFallsBackOnRateLimit()",
@@ -296,7 +320,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L42",
       "id": "main_test_testtranslatetextfallsbackonratelimit",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestShouldFallbackModel()",
@@ -304,7 +329,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L328",
       "id": "main_test_testshouldfallbackmodel",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestSplitBodyIntoChunks()",
@@ -312,7 +338,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L102",
       "id": "main_test_testsplitbodyintochunks",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestSplitBodyIntoChunksIgnoresHeadingsInCodeBlocks()",
@@ -320,7 +347,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L121",
       "id": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestSplitBodyIntoChunksTildeFence()",
@@ -328,7 +356,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L136",
       "id": "main_test_testsplitbodyintochunkstildefence",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestSplitBodyIntoChunksNoHeadings()",
@@ -336,7 +365,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L148",
       "id": "main_test_testsplitbodyintochunksnoheadings",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestSplitBodyRoundTrip()",
@@ -344,7 +374,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L160",
       "id": "main_test_testsplitbodyroundtrip",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestChunkHashDeterministic()",
@@ -352,7 +383,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L169",
       "id": "main_test_testchunkhashdeterministic",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestExtractChunkHashes()",
@@ -360,7 +392,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L181",
       "id": "main_test_testextractchunkhashes",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestExtractChunkHashesEmpty()",
@@ -368,7 +401,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L188",
       "id": "main_test_testextractchunkhashesempty",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestBuildTranslatedFileIncludesChunkHashes()",
@@ -376,7 +410,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L196",
       "id": "main_test_testbuildtranslatedfileincludeschunkhashes",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestHeadAndTailSnippet()",
@@ -384,7 +419,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L207",
       "id": "main_test_testheadandtailsnippet",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestTranslateChunkContextInSystemPrompt()",
@@ -392,7 +428,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L243",
       "id": "main_test_testtranslatechunkcontextinsystemprompt",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "escaped()",
@@ -400,7 +437,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L305",
       "id": "main_test_escaped",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "assertStringSlicesEqual()",
@@ -408,7 +446,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L312",
       "id": "main_test_assertstringslicesequal",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "roundTripFunc",
@@ -416,7 +455,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L325",
       "id": "translate_roundtripfunc",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": ".RoundTrip()",
@@ -424,7 +464,8 @@
       "source_file": "cmd/translate/main_test.go",
       "source_location": "L327",
       "id": "translate_roundtripfunc_roundtrip",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "jsonResponse()",
@@ -432,7 +473,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L20",
       "id": "main_test_jsonresponse",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "chatRequest",
@@ -440,7 +482,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L30",
       "id": "generate_og_images_chatrequest",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "chatMessage",
@@ -448,7 +491,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L35",
       "id": "generate_og_images_chatmessage",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "chatResponse",
@@ -456,7 +500,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L40",
       "id": "generate_og_images_chatresponse",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "falRequest",
@@ -464,7 +509,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L52",
       "id": "generate_og_images_falrequest",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "falImageSize",
@@ -472,7 +518,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L58",
       "id": "generate_og_images_falimagesize",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "falResponse",
@@ -480,7 +527,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L63",
       "id": "generate_og_images_falresponse",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "insertImageField()",
@@ -488,7 +536,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L266",
       "id": "main_insertimagefield",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "appendDisclaimer()",
@@ -496,7 +545,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L306",
       "id": "main_appenddisclaimer",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "generatePrompt()",
@@ -504,7 +554,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L314",
       "id": "main_generateprompt",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "generateImage()",
@@ -512,7 +563,8 @@
       "source_file": "cmd/generate-og-images/main.go",
       "source_location": "L392",
       "id": "main_generateimage",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "roundTripFunc",
@@ -520,7 +572,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L14",
       "id": "generate_og_images_roundtripfunc",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": ".RoundTrip()",
@@ -528,7 +581,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L16",
       "id": "generate_og_images_roundtripfunc_roundtrip",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestSplitFrontMatterAndBody()",
@@ -536,7 +590,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L28",
       "id": "main_test_testsplitfrontmatterandbody",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestExtractFrontMatterField()",
@@ -544,7 +599,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L42",
       "id": "main_test_testextractfrontmatterfield",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestContentHash()",
@@ -552,7 +608,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L56",
       "id": "main_test_testcontenthash",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestInsertImageField()",
@@ -560,7 +617,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L72",
       "id": "main_test_testinsertimagefield",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestGeneratePromptWithFallback()",
@@ -568,7 +626,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L172",
       "id": "main_test_testgeneratepromptwithfallback",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestGenerateImageSuccess()",
@@ -576,7 +635,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L212",
       "id": "main_test_testgenerateimagesuccess",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestContentHashSkipsUnchanged()",
@@ -584,7 +644,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L263",
       "id": "main_test_testcontenthashskipsunchanged",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestPostFilteringSkipsTranslations()",
@@ -592,7 +653,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L292",
       "id": "main_test_testpostfilteringskipstranslations",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "projectRoot()",
@@ -600,7 +662,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L341",
       "id": "main_test_projectroot",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "readAllowedTags()",
@@ -608,7 +671,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L348",
       "id": "main_test_readallowedtags",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestAllowedTagsContainsNewTags()",
@@ -616,7 +680,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L365",
       "id": "main_test_testallowedtagscontainsnewtags",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestAllowedTagsIsSorted()",
@@ -624,7 +689,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L380",
       "id": "main_test_testallowedtagsissorted",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestAllowedTagsNoDuplicates()",
@@ -632,7 +698,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L390",
       "id": "main_test_testallowedtagsnoduplicates",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestAllowedTagsFormat()",
@@ -640,7 +707,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L404",
       "id": "main_test_testallowedtagsformat",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "parseTagList()",
@@ -648,7 +716,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L419",
       "id": "main_test_parsetaglist",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestParseTagList()",
@@ -656,7 +725,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L435",
       "id": "main_test_testparsetaglist",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestNewBlogPostHasRequiredFields()",
@@ -664,7 +734,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L460",
       "id": "main_test_testnewblogposthasrequiredfields",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestNewBlogPostTagsAreAllowed()",
@@ -672,7 +743,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L476",
       "id": "main_test_testnewblogposttagsareallowed",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestNewBlogPostUsesNewTags()",
@@ -680,7 +752,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L498",
       "id": "main_test_testnewblogpostusesnewtags",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestNewBlogPostDateFormat()",
@@ -688,7 +761,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L519",
       "id": "main_test_testnewblogpostdateformat",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestNewBlogPostBodyIsNonEmpty()",
@@ -696,7 +770,8 @@
       "source_file": "cmd/generate-og-images/main_test.go",
       "source_location": "L537",
       "id": "main_test_testnewblogpostbodyisnonempty",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "linkLocation",
@@ -704,7 +779,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L18",
       "id": "check_links_linklocation",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "checkResult",
@@ -712,7 +788,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L25",
       "id": "check_links_checkresult",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "arxivFeed",
@@ -720,7 +797,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L34",
       "id": "check_links_arxivfeed",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "arxivEntry",
@@ -728,7 +806,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L38",
       "id": "check_links_arxiventry",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "crossrefResponse",
@@ -736,7 +815,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L43",
       "id": "check_links_crossrefresponse",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "collectFiles()",
@@ -744,7 +824,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L130",
       "id": "main_collectfiles",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "extractURLs()",
@@ -752,7 +833,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L167",
       "id": "main_extracturls",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "cleanURL()",
@@ -760,7 +842,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L214",
       "id": "main_cleanurl",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "cleanBareURL()",
@@ -768,7 +851,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L219",
       "id": "main_cleanbareurl",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "shouldSkipURL()",
@@ -776,7 +860,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L233",
       "id": "main_shouldskipurl",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "checkURL()",
@@ -784,7 +869,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L274",
       "id": "main_checkurl",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "checkArxivTitle()",
@@ -792,7 +878,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L347",
       "id": "main_checkarxivtitle",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "checkDOITitle()",
@@ -800,7 +887,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L387",
       "id": "main_checkdoititle",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "extractArxivID()",
@@ -808,7 +896,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L433",
       "id": "main_extractarxivid",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "extractDOI()",
@@ -816,7 +905,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L442",
       "id": "main_extractdoi",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "fuzzyMatch()",
@@ -824,7 +914,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L452",
       "id": "main_fuzzymatch",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "normalizeWhitespace()",
@@ -832,7 +923,8 @@
       "source_file": "cmd/check-links/main.go",
       "source_location": "L462",
       "id": "main_normalizewhitespace",
-      "community": 1
+      "community": 1,
+      "community_name": "Go Data Structures"
     },
     {
       "label": "TestExtractURLs()",
@@ -840,7 +932,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L10",
       "id": "main_test_testextracturls",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestExtractURLsLineNumbers()",
@@ -848,7 +941,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L73",
       "id": "main_test_testextracturlslinenumbers",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestExtractArxivID()",
@@ -856,7 +950,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L107",
       "id": "main_test_testextractarxivid",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestExtractDOI()",
@@ -864,7 +959,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L128",
       "id": "main_test_testextractdoi",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestFuzzyMatch()",
@@ -872,7 +968,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L148",
       "id": "main_test_testfuzzymatch",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestCleanBareURL()",
@@ -880,7 +977,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L172",
       "id": "main_test_testcleanbareurl",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestShouldSkipURL()",
@@ -888,7 +986,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L194",
       "id": "main_test_testshouldskipurl",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestCollectFilesWithFlag()",
@@ -896,7 +995,8 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L222",
       "id": "main_test_testcollectfileswithflag",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "TestNormalizeWhitespace()",
@@ -904,14 +1004,16 @@
       "source_file": "cmd/check-links/main_test.go",
       "source_location": "L235",
       "id": "main_test_testnormalizewhitespace",
-      "community": 0
+      "community": 0,
+      "community_name": "Go Test Infrastructure"
     },
     {
       "label": "Stop Putting AI in Your Apps",
       "file_type": "document",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "id": "stop_putting_ai_in_apps",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Model Context Protocol (MCP)",
@@ -919,42 +1021,48 @@
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "source_url": "https://modelcontextprotocol.io/",
       "id": "stop_putting_ai_in_apps__mcp",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "AI as Orchestrator Architecture",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "id": "stop_putting_ai_in_apps__ai_orchestration_pattern",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "NocoDB (Open Source Database with MCP)",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "id": "stop_putting_ai_in_apps__nocodb",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "SaaS Commoditization via AI Orchestration",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "id": "stop_putting_ai_in_apps__saas_commoditization",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Context Window Cost of MCP",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "id": "stop_putting_ai_in_apps__context_window_cost",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Why AI Agents Need Sleep",
       "file_type": "document",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "MuninnDB (Cognitive Database)",
@@ -962,14 +1070,16 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "source_url": "https://github.com/scrypster/muninndb",
       "id": "why_ai_agents_need_sleep__muninndb",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Dream Engine (LLM Memory Consolidation)",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__dream_engine",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Hrafn (AI Agent Runtime)",
@@ -977,266 +1087,304 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "source_url": "https://github.com/5queezer/hrafn",
       "id": "why_ai_agents_need_sleep__hrafn",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Human Sleep Memory Consolidation",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__memory_consolidation",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "MemoryBank (Zhong et al. 2023)",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__memorybank",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "SleepGate Framework",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__sleepgate",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Auto Dream (Anthropic)",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__auto_dream",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Vault Trust Tiers",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__vault_trust_tiers",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Ebbinghaus Forgetting Curves",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__ebbinghaus_decay",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Configurable Dedup Threshold",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "id": "why_ai_agents_need_sleep__dedup_threshold",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Direct Divine Access",
       "file_type": "document",
       "source_file": "content/blog/direct-divine-access.md",
       "id": "direct_divine_access",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Intermediary Self-Optimization Pattern",
       "file_type": "concept",
       "source_file": "content/blog/direct-divine-access.md",
       "id": "direct_divine_access__intermediary_pattern",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Meta-Harness (Stanford/MIT)",
       "file_type": "concept",
       "source_file": "content/blog/direct-divine-access.md",
       "id": "direct_divine_access__meta_harness",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Direct Inner Experience",
       "file_type": "concept",
       "source_file": "content/blog/direct-divine-access.md",
       "id": "direct_divine_access__direct_experience",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "MCP Context Window Fix",
       "file_type": "document",
       "source_file": "content/blog/mcp-context-window-fix.md",
       "id": "mcp_context_window_fix",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Deferred Tool Loading",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
       "id": "mcp_context_window_fix__deferred_loading",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Tool Search (BM25)",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
       "id": "mcp_context_window_fix__tool_search",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "MCP Token Overhead Problem",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
       "id": "mcp_context_window_fix__token_overhead",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "MCP Toolset Deferral",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
       "id": "mcp_context_window_fix__mcp_toolset",
-      "community": 13
+      "community": 13,
+      "community_name": "MCP Toolset"
     },
     {
       "label": "OAuth MCP Server Gotchas",
       "file_type": "document",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
       "id": "adding_oauth_mcp_server_gotchas",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Reactive Resume PR #2829",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
       "id": "adding_oauth_mcp_server_gotchas__reactive_resume",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Two .well-known Endpoints",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
       "id": "adding_oauth_mcp_server_gotchas__two_wellknown_endpoints",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Dual Auth Path",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
       "id": "adding_oauth_mcp_server_gotchas__dual_auth_path",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "better-auth Deprecation",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
       "id": "adding_oauth_mcp_server_gotchas__better_auth_deprecation",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "Multi-Layer Auth Chain",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
       "id": "adding_oauth_mcp_server_gotchas__auth_chain_layers",
-      "community": 3
+      "community": 3,
+      "community_name": "OAuth & MCP Auth"
     },
     {
       "label": "AI Environment Design",
       "file_type": "document",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Genotype/Phenotype Separation",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design__genotype_phenotype",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Evaluator Is Not a Loss Function",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design__evaluator_not_loss_function",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Mutation/Selection Cycle",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design__mutation_selection_cycle",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "SAE Steering Operator",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design__sae_steering_operator",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Goodhart's Law",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design__goodharts_law",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "Persistence Tier",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
       "id": "ai_environment_design__persistence_tier",
-      "community": 4
+      "community": 4,
+      "community_name": "AI Environment Design"
     },
     {
       "label": "SAE Measurement Timing",
       "file_type": "document",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae_measurement_timing",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Encoding vs Generation Time",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae__encoding_vs_generation",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Sycophancy Detection (d=9.9)",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae__sycophancy_detection",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Hallucination Taxonomy",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae__hallucination_taxonomy",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Generation-Time Hypothesis Falsified",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae__hypothesis_falsified",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Pratyahara Bridge",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae__pratyahara_bridge",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Dimensional Overfitting",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
       "id": "gemma3_sae__dimensional_overfitting",
-      "community": 7
+      "community": 7,
+      "community_name": "SAE Measurement"
     },
     {
       "label": "Sleep-Inspired Memory for LLM Agents",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_post",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Dream Engine Pipeline",
@@ -1244,7 +1392,8 @@
       "source_file": "content/blog/llm-sleep-memory.md",
       "source_url": "https://github.com/scrypster/muninndb",
       "id": "llm_sleep_memory_dream_engine",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "MuninnDB",
@@ -1252,98 +1401,112 @@
       "source_file": "content/blog/llm-sleep-memory.md",
       "source_url": "https://muninndb.com",
       "id": "llm_sleep_memory_muninndb",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "SleepGate Paper",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_sleepgate",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "MemoryBench Paper",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_memorybench",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "SynapticRAG Paper",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_synapticrag",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "GoodAI LTM Benchmark",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_goodai_benchmark",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Ebbinghaus Decay",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_ebbinghaus_decay",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Hebbian Association",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_hebbian_association",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Phase Selectivity Principle",
       "file_type": "document",
       "source_file": "content/blog/llm-sleep-memory.md",
       "id": "llm_sleep_memory_phase_selectivity",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Memory Metrics Are Lying",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_post",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Proxy Detachment",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_proxy_detachment",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Proxy Integrity Collapse (Flyxion)",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_flyxion_essay",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Goodhart's Law as Structural Attractor",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_goodharts_law",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "LongMemEval Benchmark",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_longmemeval",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "MemPalace",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_mempalace",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Hrafn (Rust Agent Runtime)",
@@ -1351,21 +1514,24 @@
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "source_url": "https://github.com/5queezer/hrafn",
       "id": "memory_metrics_hrafn",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Grounding Criterion",
       "file_type": "document",
       "source_file": "content/blog/memory-metrics-lying-how-to-ground-them.md",
       "id": "memory_metrics_grounding_criterion",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Shipping A2A Protocol in Rust",
       "file_type": "document",
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "id": "a2a_post",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "A2A Protocol (Google)",
@@ -1373,252 +1539,288 @@
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "source_url": "https://github.com/google/A2A",
       "id": "a2a_protocol",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "SSRF Protection",
       "file_type": "document",
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "id": "a2a_ssrf_protection",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "TaskStore Cap (DoS Prevention)",
       "file_type": "document",
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "id": "a2a_taskstore_cap",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Constant-Time Token Comparison",
       "file_type": "document",
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "id": "a2a_constant_time_comparison",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Agent Cards",
       "file_type": "document",
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "id": "a2a_agent_cards",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Hrafn PR #4166",
       "file_type": "document",
       "source_file": "content/blog/shipping-a2a-protocol-support-in-rust.md",
       "id": "a2a_pr_4166",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Patanjali Harness Spec",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_post",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Vrtti Nirodha",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_vrtti_nirodha",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Samskara and Vairagya",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_samskara_vairagya",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Pratyahara",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_pratyahara",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Meta-Harness Paper",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_meta_harness",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Boeckeler Harness Framework",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_boeckeler",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "MinDedupVaultSize Guard",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_min_dedup_vault_size",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Outcome-Tagged Writes",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_outcome_tagged_writes",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Advaitic Policy Optimization",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_advaitic_policy_optimization",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Dream Engine Ablation PR #367",
       "file_type": "document",
       "source_file": "content/blog/patanjali-harness-spec.md",
       "id": "patanjali_ablation_pr_367",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Svapna or Sushupti",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_post",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Mandukya Upanishad",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_mandukya_upanishad",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Jagrat (Waking State)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_jagrat",
-      "community": 14
+      "community": 14,
+      "community_name": "Waking State"
     },
     {
       "label": "Svapna (Dreaming State)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_svapna",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Sushupti (Deep Sleep)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_sushupti",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Turiya (Pure Awareness)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_turiya",
-      "community": 15
+      "community": 15,
+      "community_name": "Pure Awareness"
     },
     {
       "label": "LightMem Paper",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_lightmem",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Active Dreaming Memory",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_adm",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Dissolution Outperforms Recombination",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_dissolution_hypothesis",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "NREM Sleep (Triple Coupling)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
       "id": "svapna_nrem_sleep",
-      "community": 2
+      "community": 2,
+      "community_name": "Agent Memory & Protocols"
     },
     {
       "label": "Automated Circuit Discovery",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_post",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Mutation-Selection Loop",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_mutation_loop",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "SAE Features",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_sae_features",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Linear Probe",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_linear_probe",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Tokenizer Bottleneck",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_tokenizer_bottleneck",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Feedback Loop Fix",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_feedback_loop",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Baldwin Effect",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_baldwin_effect",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Gemma-2-2B",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_gemma_2_2b",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Capital-of Is Distributed",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_capital_of_distributed",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "Author-Nationality Circuit",
       "file_type": "document",
       "source_file": "content/blog/automated-circuit-discovery.md",
       "id": "circuit_discovery_author_nationality",
-      "community": 6
+      "community": 6,
+      "community_name": "Circuit Discovery"
     },
     {
       "label": "vasudev.xyz Site",
@@ -1626,273 +1828,312 @@
       "source_file": "README.md",
       "source_url": "https://vasudev.xyz",
       "id": "readme_vasudev_site",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Hugo Static Site Generator",
       "file_type": "document",
       "source_file": "README.md",
       "id": "readme_hugo",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "GitHub Pages Deployment",
       "file_type": "document",
       "source_file": "README.md",
       "id": "readme_github_pages",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "GitHub Actions CI/CD",
       "file_type": "document",
       "source_file": "README.md",
       "id": "readme_github_actions",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "CodeRabbit Review",
       "file_type": "document",
       "source_file": "README.md",
       "id": "readme_coderabbit",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Custom Theme",
       "file_type": "document",
       "source_file": "README.md",
       "id": "readme_custom_theme",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "CLAUDE.md Config",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_project_config",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Iron Rule: empirical to tradition",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_iron_rule",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Cross-disciplinary Bridging",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_cross_disciplinary_bridging",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Vedic Philosophy Framework",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_vedic_philosophy",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Neuroscience Framework",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_neuroscience",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Evolutionary Biology Framework",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_evolutionary_biology",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Vale Prose Linter",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_vale_linter",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Auto-translation Pipeline",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_auto_translation",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Translation Script (Go)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "id": "claudemd_translate_go",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Series: Building Agents That Sleep",
       "file_type": "document",
       "source_file": "content/series/building-agents-that-sleep/_index.md",
       "id": "series_building_agents_that_sleep",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "Series: Field Notes",
       "file_type": "document",
       "source_file": "content/series/field-notes/_index.md",
       "id": "series_field_notes",
-      "community": 16
+      "community": 16,
+      "community_name": "Field Notes"
     },
     {
       "label": "Sleep-inspired Memory Consolidation",
       "file_type": "document",
       "source_file": "content/series/building-agents-that-sleep/_index.md",
       "id": "series_sleep_memory_consolidation",
-      "community": 5
+      "community": 5,
+      "community_name": "Blog Infrastructure"
     },
     {
       "label": "AI Orchestrating Apps (MCP Way)",
       "file_type": "image",
       "source_file": "static/images/ai-architecture.svg",
       "id": "ai_architecture_mcp_way",
-      "community": 9
+      "community": 9,
+      "community_name": "MCP Architecture"
     },
     {
       "label": "Central AI Hub",
       "file_type": "image",
       "source_file": "static/images/ai-architecture.svg",
       "id": "ai_architecture_central_ai",
-      "community": 9
+      "community": 9,
+      "community_name": "MCP Architecture"
     },
     {
       "label": "MCP Protocol (Diagram)",
       "file_type": "image",
       "source_file": "static/images/ai-architecture.svg",
       "id": "ai_architecture_mcp_protocol",
-      "community": 9
+      "community": 9,
+      "community_name": "MCP Architecture"
     },
     {
       "label": "Dream Engine Pipeline (Diagram)",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_pipeline",
-      "community": 11
+      "community": 11,
+      "community_name": "Dream Pipeline"
     },
     {
       "label": "Phase 0: Orient",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase0",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 1: Replay",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase1",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 2: Dedup",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase2",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 2b: LLM Consolidate",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase2b",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 3: Schema Promotion",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase3",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 4: Bidirectional Stability",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase4",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 5: Transitive Inference",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase5",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "Phase 6: Dream Journal",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
       "id": "dream_engine_phase6",
-      "community": 8
+      "community": 8,
+      "community_name": "Dream Engine Phases"
     },
     {
       "label": "defer_loading Optimization",
       "file_type": "image",
       "source_file": "static/images/context-window-cost-inline.svg",
       "id": "context_window_defer_loading",
-      "community": 9
+      "community": 9,
+      "community_name": "MCP Architecture"
     },
     {
       "label": "Dream Pipeline Vault Trust Tiers",
       "file_type": "image",
       "source_file": "static/images/dream-pipeline-inline.svg",
       "id": "dream_pipeline_vault_tiers",
-      "community": 11
+      "community": 11,
+      "community_name": "Dream Pipeline"
     },
     {
       "label": "Evolution Loop Cycle",
       "file_type": "image",
       "source_file": "static/images/evolution-loop-inline.svg",
       "id": "evolution_loop_cycle",
-      "community": 12
+      "community": 12,
+      "community_name": "Evolution Loop"
     },
     {
       "label": "MCP Architecture Diagram",
       "file_type": "image",
       "source_file": "static/images/mcp-architecture-inline.svg",
       "id": "mcp_architecture_diagram",
-      "community": 9
+      "community": 9,
+      "community_name": "MCP Architecture"
     },
     {
       "label": "Measurement Timing Diagram",
       "file_type": "image",
       "source_file": "static/images/measurement-timing-inline.svg",
       "id": "measurement_timing_diagram",
-      "community": 17
+      "community": 17,
+      "community_name": "Measurement Timing"
     },
     {
       "label": "Mutation Loop Pipeline",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
       "id": "mutation_loop_pipeline",
-      "community": 12
+      "community": 12,
+      "community_name": "Evolution Loop"
     },
     {
       "label": "LLM Proposer",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
       "id": "mutation_loop_llm_proposer",
-      "community": 10
+      "community": 10,
+      "community_name": "Mutation Loop"
     },
     {
       "label": "Tokenizer Gate",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
       "id": "mutation_loop_tokenizer_gate",
-      "community": 10
+      "community": 10,
+      "community_name": "Mutation Loop"
     },
     {
       "label": "Probe Pipeline",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
       "id": "mutation_loop_probe_pipeline",
-      "community": 10
+      "community": 10,
+      "community_name": "Mutation Loop"
     }
   ],
   "links": [
