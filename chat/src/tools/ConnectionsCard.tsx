@@ -1,7 +1,10 @@
+import { MiniGraph } from "./MiniGraph";
+
 interface Match {
   id: string;
   label: string;
   sourceFile: string;
+  community?: number;
 }
 
 interface Connection {
@@ -52,6 +55,36 @@ function Skeleton() {
   );
 }
 
+function buildGraphData(result: ConnectionsResult) {
+  const nodes: { id: string; label: string; sourceFile: string; community?: number }[] = [];
+  const nodeSet = new Set<string>();
+
+  for (const m of result.matches) {
+    nodeSet.add(m.id);
+    nodes.push({ id: m.id, label: m.label, sourceFile: m.sourceFile, community: m.community });
+  }
+
+  for (const c of result.connections) {
+    if (!nodeSet.has(c.from)) {
+      nodeSet.add(c.from);
+      nodes.push({ id: c.from, label: c.fromLabel, sourceFile: "", community: undefined });
+    }
+    if (!nodeSet.has(c.to)) {
+      nodeSet.add(c.to);
+      nodes.push({ id: c.to, label: c.toLabel, sourceFile: "", community: undefined });
+    }
+  }
+
+  const links = result.connections.map((c) => ({
+    source: c.from,
+    target: c.to,
+    relation: c.relation,
+    confidence: c.confidence ?? 1.0,
+  }));
+
+  return { nodes, links };
+}
+
 export function ConnectionsCard({ args: _args, result }: { args: any; result?: ConnectionsResult }) {
   if (!result) return <Skeleton />;
 
@@ -66,9 +99,15 @@ export function ConnectionsCard({ args: _args, result }: { args: any; result?: C
     );
   }
 
+  const { nodes: graphNodes, links: graphLinks } = buildGraphData(result);
+
   return (
     <div className="chat-tool-card">
       <div className="chat-tool-title">Knowledge Graph</div>
+
+      {graphNodes.length > 1 && graphLinks.length > 0 && (
+        <MiniGraph nodes={graphNodes} links={graphLinks} />
+      )}
 
       {result.matches.length > 0 && (
         <div className="chat-tool-badges">
