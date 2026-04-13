@@ -20,7 +20,7 @@
   <div class="graph-tooltip" id="graph-tooltip"></div>
 </div>
 
-<script src="https://unpkg.com/three@0.170.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.170.0/build/three.min.js" integrity="sha384-pXCbG1SJtSbas3I2W0gTvSd+ziPHgzr89SQS+ynbwk2sLo0sxJvT2wE71+h0Rm8N" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/3d-force-graph@1.80.0/dist/3d-force-graph.min.js" integrity="sha384-Y7bC2PBKu8ujxtvo5+Z61OeGdSVRzFsYWBK4i5dnL/U6aFDTodk61qOUkTfInaxS" crossorigin="anonymous"></script>
 <script>
 (function() {
@@ -113,31 +113,6 @@
 
       stats.textContent = nodes.length + ' nodes, ' + edges.length + ' edges';
 
-      var communities = {};
-      nodes.forEach(function(n) {
-        if (n.community >= 0) {
-          if (!communities[n.community]) {
-            communities[n.community] = { name: n.communityName || ('Community ' + n.community), count: 0 };
-          }
-          communities[n.community].count++;
-        }
-      });
-      var comKeys = Object.keys(communities).sort(function(a,b) {
-        return communities[b].count - communities[a].count;
-      });
-      legend.innerHTML =
-        '<div class="graph-legend-shapes">' +
-          '<span class="graph-legend-shape">&#9632; Post</span>' +
-          '<span class="graph-legend-shape">&#9679; Concept</span>' +
-        '</div>' +
-        comKeys.map(function(c) {
-          return '<span class="graph-legend-entry">' +
-            '<span class="graph-legend-dot" style="background:' +
-            COMMUNITY_COLORS[c % COMMUNITY_COLORS.length] + '"></span>' +
-            '<span class="graph-legend-name">' + esc(communities[c].name) + '</span>' +
-            '<span class="graph-legend-count">' + communities[c].count + '</span></span>';
-        }).join('');
-
       renderGraph();
     })
     .catch(function(err) {
@@ -200,17 +175,21 @@
     }
   }
 
-  var isDark = !document.documentElement.getAttribute('data-theme') ||
-               document.documentElement.getAttribute('data-theme') !== 'light';
+  function isDark() {
+    var theme = document.documentElement.getAttribute('data-theme');
+    return !theme || theme !== 'light';
+  }
 
   function isPost(n) {
     return n.sourceFile.startsWith('content/blog/');
   }
 
   function nodeColor(n) {
-    if (searchTerm && n.label.toLowerCase().includes(searchTerm)) return '#ffffff';
+    if (searchTerm && n.label.toLowerCase().includes(searchTerm)) {
+      return isDark() ? '#ffffff' : '#111111';
+    }
     if (n.community >= 0) return COMMUNITY_COLORS[n.community % COMMUNITY_COLORS.length];
-    return isDark ? '#555' : '#999';
+    return isDark() ? '#555' : '#999';
   }
 
   function makeNodeObject(n) {
@@ -227,9 +206,37 @@
     return new THREE.Mesh(geo, mat);
   }
 
+  function updateLegend(nodes) {
+    var communities = {};
+    nodes.forEach(function(n) {
+      if (n.community >= 0) {
+        if (!communities[n.community]) {
+          communities[n.community] = { name: n.communityName || ('Community ' + n.community), count: 0 };
+        }
+        communities[n.community].count++;
+      }
+    });
+    var comKeys = Object.keys(communities).sort(function(a,b) {
+      return communities[b].count - communities[a].count;
+    });
+    legend.innerHTML =
+      '<div class="graph-legend-shapes">' +
+        '<span class="graph-legend-shape">&#9632; Post</span>' +
+        '<span class="graph-legend-shape">&#9679; Concept</span>' +
+      '</div>' +
+      comKeys.map(function(c) {
+        return '<span class="graph-legend-entry">' +
+          '<span class="graph-legend-dot" style="background:' +
+          COMMUNITY_COLORS[c % COMMUNITY_COLORS.length] + '"></span>' +
+          '<span class="graph-legend-name">' + esc(communities[c].name) + '</span>' +
+          '<span class="graph-legend-count">' + communities[c].count + '</span></span>';
+      }).join('');
+  }
+
   function renderGraph() {
     if (!graphData) return;
     var data = getFilteredData();
+    updateLegend(data.nodes);
 
     if (graph) {
       graph.nodeThreeObject(makeNodeObject);
@@ -249,7 +256,7 @@
         return e.confidence > 0.8 ? 1.2 : 0.4;
       })
       .linkColor(function() {
-        return isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+        return isDark() ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
       })
       .linkOpacity(0.6)
       .linkDirectionalParticles(function(e) {
@@ -258,7 +265,7 @@
       .linkDirectionalParticleSpeed(0.003)
       .linkDirectionalParticleWidth(1.5)
       .linkDirectionalParticleColor(function() {
-        return isDark ? 'rgba(215,166,115,0.5)' : 'rgba(159,99,55,0.5)';
+        return isDark() ? 'rgba(215,166,115,0.5)' : 'rgba(159,99,55,0.5)';
       })
       .onNodeHover(function(node) {
         container.style.cursor = node ? 'pointer' : 'default';
