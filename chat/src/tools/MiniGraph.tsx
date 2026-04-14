@@ -10,6 +10,8 @@ interface MiniGraphNode {
   id: string;
   label: string;
   sourceFile: string;
+  sourceUrl?: string;
+  sourceAnchor?: string;
   community?: number;
 }
 
@@ -98,8 +100,16 @@ export function MiniGraph({ nodes, links }: MiniGraphProps) {
         .linkColor(() => isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.1)")
         .linkOpacity(0.7)
         .onNodeClick((node: any) => {
+          if (node.sourceUrl) {
+            window.open(node.sourceUrl, "_blank", "noopener");
+            return;
+          }
           const slug = slugFromSourceFile(node.sourceFile || "");
-          if (slug) window.location.href = `/blog/${slug}/`;
+          if (slug) {
+            let url = `/blog/${slug}/`;
+            if (node.sourceAnchor) url += `#${node.sourceAnchor}`;
+            window.location.href = url;
+          }
         })
         .d3AlphaDecay(0.06)
         .d3VelocityDecay(0.4)

@@ -45,6 +45,8 @@ interface GraphNode {
   id: string;
   label: string;
   source_file?: string;
+  source_url?: string;
+  source_anchor?: string;
   file_type?: string;
   community?: number;
 }
@@ -347,6 +349,8 @@ IMPORTANT rules:
               id: s.node.id,
               label: s.node.label,
               sourceFile: s.node.source_file ?? "",
+              sourceUrl: s.node.source_url ?? "",
+              sourceAnchor: s.node.source_anchor ?? "",
               score: s.score,
               community: s.node.community,
             }));
@@ -551,6 +555,8 @@ IMPORTANT rules:
                 id,
                 label: n?.label ?? id,
                 sourceFile: n?.source_file ?? "",
+                sourceUrl: n?.source_url ?? "",
+                sourceAnchor: n?.source_anchor ?? "",
               };
             });
 
@@ -588,6 +594,8 @@ IMPORTANT rules:
               id: n.id,
               label: n.label,
               sourceFile: n.source_file ?? "",
+              sourceUrl: n.source_url ?? "",
+              sourceAnchor: n.source_anchor ?? "",
               degree: graph.degree.get(n.id) ?? 0,
               community: n.community,
             }));
@@ -621,6 +629,8 @@ IMPORTANT rules:
                 id: n.id,
                 label: n.label,
                 sourceFile: n.source_file ?? "",
+                sourceUrl: n.source_url ?? "",
+                sourceAnchor: n.source_anchor ?? "",
                 degree: graph.degree.get(n.id) ?? 0,
                 fileType: n.file_type ?? "",
               }))

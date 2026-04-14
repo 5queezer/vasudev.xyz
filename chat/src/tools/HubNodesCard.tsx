@@ -2,6 +2,8 @@ interface Hub {
   id: string;
   label: string;
   sourceFile: string;
+  sourceUrl?: string;
+  sourceAnchor?: string;
   degree: number;
   community?: number;
 }
@@ -39,16 +41,30 @@ export function HubNodesCard({ args: _args, result }: { args: any; result?: HubN
       </div>
       <div className="chat-tool-hub-list">
         {result.hubs.map((hub) => {
-          const slug = slugFromSourceFile(hub.sourceFile);
-          return (
-            <div key={hub.id} className="chat-tool-hub-item">
-              {slug ? (
-                <a href={`/blog/${slug}/`} className="chat-tool-badge chat-tool-badge-link">
+          let badge;
+          if (hub.sourceUrl) {
+            badge = (
+              <a href={hub.sourceUrl} target="_blank" rel="noopener" className="chat-tool-badge chat-tool-badge-link">
+                {hub.label}
+              </a>
+            );
+          } else {
+            const slug = slugFromSourceFile(hub.sourceFile);
+            if (slug) {
+              let url = `/blog/${slug}/`;
+              if (hub.sourceAnchor) url += `#${hub.sourceAnchor}`;
+              badge = (
+                <a href={url} className="chat-tool-badge chat-tool-badge-link">
                   {hub.label}
                 </a>
-              ) : (
-                <span className="chat-tool-badge">{hub.label}</span>
-              )}
+              );
+            } else {
+              badge = <span className="chat-tool-badge">{hub.label}</span>;
+            }
+          }
+          return (
+            <div key={hub.id} className="chat-tool-hub-item">
+              {badge}
               <span className="chat-tool-hub-degree">{hub.degree} connections</span>
             </div>
           );
