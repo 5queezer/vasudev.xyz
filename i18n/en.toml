@@ -75,3 +75,33 @@ other = "View this page as plain text"
 
 [graph]
 other = "Graph"
+
+[graphSearchPlaceholder]
+other = "Search nodes…"
+
+[graphFilterAll]
+other = "All"
+
+[graphFilterPosts]
+other = "Posts"
+
+[graphFilterConcepts]
+other = "Concepts"
+
+[graphStats]
+other = "{{ .Nodes }} nodes, {{ .Edges }} edges"
+
+[graphConnections]
+other = "{{ . }} connections"
+
+[graphType]
+other = "Type: {{ . }}"
+
+[graphClickToRead]
+other = "Click to read →"
+
+[graphErrorLibrary]
+other = "Error: 3D graph library failed to load"
+
+[graphErrorLoading]
+other = "Error loading graph"

@@ -7,12 +7,12 @@
 
   <div class="graph-controls">
     <div class="graph-search">
-      <input type="text" id="graph-search" placeholder="Search nodes..." autocomplete="off" />
+      <input type="text" id="graph-search" placeholder="{{ i18n "graphSearchPlaceholder" }}" autocomplete="off" />
     </div>
     <div class="graph-filters">
-      <button class="graph-btn graph-btn-active" data-filter="all">All</button>
-      <button class="graph-btn" data-filter="posts">Posts</button>
-      <button class="graph-btn" data-filter="concepts">Concepts</button>
+      <button class="graph-btn graph-btn-active" data-filter="all">{{ i18n "graphFilterAll" }}</button>
+      <button class="graph-btn" data-filter="posts">{{ i18n "graphFilterPosts" }}</button>
+      <button class="graph-btn" data-filter="concepts">{{ i18n "graphFilterConcepts" }}</button>
     </div>
     <div class="graph-legend" id="graph-legend"></div>
     <div class="graph-stats" id="graph-stats"></div>
@@ -53,12 +53,22 @@
 <script src="https://unpkg.com/3d-force-graph@1.80.0/dist/3d-force-graph.min.js" integrity="sha384-Y7bC2PBKu8ujxtvo5+Z61OeGdSVRzFsYWBK4i5dnL/U6aFDTodk61qOUkTfInaxS" crossorigin="anonymous"></script>
 <script>
 (function() {
-  var COMMUNITY_COLORS = [
+  var COMMUNITY_COLORS_DARK = [
     '#d7a673', '#8ec5a0', '#7bacd9', '#d98cb8', '#c5c56a',
     '#e07a6a', '#9b8ed4', '#6ac5c5', '#d4a06a', '#a0d468',
     '#e0a3d4', '#6ab0d4', '#d4c76a', '#7ad49b', '#d47a9b',
     '#a3bfe0', '#d4986a', '#6ad4b0'
   ];
+  var COMMUNITY_COLORS_LIGHT = [
+    '#9f6337', '#35694a', '#3a6e9a', '#a8477a', '#7a7a2e',
+    '#b84a3a', '#6b4ea6', '#2a8a8a', '#a86e2e', '#5a9a2e',
+    '#a85e9a', '#2a7aa6', '#9a8a2e', '#3a9a5e', '#a63a6e',
+    '#4a6ea6', '#a86a2e', '#2a9a7a'
+  ];
+
+  function communityColors() {
+    return isDark() ? COMMUNITY_COLORS_DARK : COMMUNITY_COLORS_LIGHT;
+  }
 
   var LABEL_SHOW_THRESHOLD = 0.012;
   var LABEL_FULL_THRESHOLD = 0.018;
@@ -66,6 +76,15 @@
 
   var graphDataUrl = '{{ "/data/graph.json" | relURL }}';
   var blogBaseUrl = '{{ "blog/" | relLangURL }}';
+
+  var i18nStrings = {
+    stats: '{{ i18n "graphStats" (dict "Nodes" "__NODES__" "Edges" "__EDGES__") }}',
+    connections: '{{ i18n "graphConnections" "__N__" }}',
+    type: '{{ i18n "graphType" "__T__" }}',
+    clickToRead: '{{ i18n "graphClickToRead" }}',
+    errorLibrary: '{{ i18n "graphErrorLibrary" }}',
+    errorLoading: '{{ i18n "graphErrorLoading" }}'
+  };
 
   var container = document.getElementById('graph-container');
   var labelsLayer = document.getElementById('graph-labels');
@@ -131,7 +150,7 @@
   }
 
   if (typeof ForceGraph3D === 'undefined') {
-    stats.textContent = 'Error: 3d-force-graph library failed to load';
+    stats.textContent = i18nStrings.errorLibrary;
   }
 
   fetch(graphDataUrl)
@@ -187,12 +206,12 @@
 
       graphData = { nodes: nodes, links: edges };
 
-      stats.textContent = nodes.length + ' nodes, ' + edges.length + ' edges';
+      stats.textContent = i18nStrings.stats.replace('__NODES__', nodes.length).replace('__EDGES__', edges.length);
 
       renderGraph();
     })
     .catch(function(err) {
-      stats.textContent = 'Error loading graph: ' + err.message;
+      stats.textContent = i18nStrings.errorLoading + ': ' + err.message;
       console.error('Graph load failed:', err);
     });
 
@@ -235,19 +254,20 @@
 
     tooltip.appendChild(document.createElement('br'));
     var commLabel = node.communityName || ('Community ' + node.community);
+    var connText = i18nStrings.connections.replace('__N__', node.degree);
     tooltip.appendChild(document.createTextNode(
-      commLabel + ' \u00B7 ' + node.degree + ' connections'
+      commLabel + ' \u00B7 ' + connText
     ));
 
     if (node.fileType) {
       tooltip.appendChild(document.createElement('br'));
-      tooltip.appendChild(document.createTextNode('Type: ' + node.fileType));
+      tooltip.appendChild(document.createTextNode(i18nStrings.type.replace('__T__', node.fileType)));
     }
 
     var slug = slugFromSourceFile(node.sourceFile);
     if (slug) {
       tooltip.appendChild(document.createElement('br'));
-      tooltip.appendChild(document.createTextNode('Click to read \u2192'));
+      tooltip.appendChild(document.createTextNode(i18nStrings.clickToRead));
     }
   }
 
@@ -260,7 +280,8 @@
     if (searchTerm && n.label.toLowerCase().includes(searchTerm)) {
       return isDark() ? '#ffffff' : '#111111';
     }
-    if (n.community >= 0) return COMMUNITY_COLORS[n.community % COMMUNITY_COLORS.length];
+    var colors = communityColors();
+    if (n.community >= 0) return colors[n.community % colors.length];
     return isDark() ? '#555' : '#999';
   }
 
@@ -280,7 +301,7 @@
     legend.innerHTML = comKeys.map(function(c) {
         return '<span class="graph-legend-entry">' +
           '<span class="graph-legend-dot" style="background:' +
-          COMMUNITY_COLORS[c % COMMUNITY_COLORS.length] + '"></span>' +
+          communityColors()[c % communityColors().length] + '"></span>' +
           '<span class="graph-legend-name">' + esc(communities[c].name) + '</span>' +
           '<span class="graph-legend-count">' + communities[c].count + '</span></span>';
       }).join('');
@@ -430,6 +451,17 @@
       for (var i = 0; i < mutations.length; i++) {
         if (mutations[i].attributeName === 'data-theme') {
           updateLabelColors();
+          if (graph) {
+            graph
+              .nodeColor(function(n) { return nodeColor(n); })
+              .linkColor(function() {
+                return isDark() ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+              })
+              .linkDirectionalParticleColor(function() {
+                return isDark() ? 'rgba(215,166,115,0.5)' : 'rgba(159,99,55,0.5)';
+              });
+            updateLegend(graph.graphData().nodes);
+          }
           break;
         }
       }

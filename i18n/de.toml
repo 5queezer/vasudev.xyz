@@ -75,3 +75,33 @@ other = "Diese Seite als Klartext anzeigen"
 
 [graph]
 other = "Graph"
+
+[graphSearchPlaceholder]
+other = "Knoten suchen…"
+
+[graphFilterAll]
+other = "Alle"
+
+[graphFilterPosts]
+other = "Beiträge"
+
+[graphFilterConcepts]
+other = "Konzepte"
+
+[graphStats]
+other = "{{ .Nodes }} Knoten, {{ .Edges }} Kanten"
+
+[graphConnections]
+other = "{{ . }} Verbindungen"
+
+[graphType]
+other = "Typ: {{ . }}"
+
+[graphClickToRead]
+other = "Klicken zum Lesen →"
+
+[graphErrorLibrary]
+other = "Fehler: 3D-Graph-Bibliothek konnte nicht geladen werden"
+
+[graphErrorLoading]
+other = "Fehler beim Laden des Graphen"

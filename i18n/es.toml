@@ -75,3 +75,33 @@ other = "Ver esta página como texto plano"
 
 [graph]
 other = "Grafo"
+
+[graphSearchPlaceholder]
+other = "Buscar nodos…"
+
+[graphFilterAll]
+other = "Todos"
+
+[graphFilterPosts]
+other = "Artículos"
+
+[graphFilterConcepts]
+other = "Conceptos"
+
+[graphStats]
+other = "{{ .Nodes }} nodos, {{ .Edges }} aristas"
+
+[graphConnections]
+other = "{{ . }} conexiones"
+
+[graphType]
+other = "Tipo: {{ . }}"
+
+[graphClickToRead]
+other = "Clic para leer →"
+
+[graphErrorLibrary]
+other = "Error: no se pudo cargar la biblioteca del grafo 3D"
+
+[graphErrorLoading]
+other = "Error al cargar el grafo"
