@@ -230,6 +230,7 @@ func run(graphifyDir, output string) error {
 		if !ok {
 			h, l, err := parseHeadings(sf)
 			if err != nil {
+				fmt.Fprintf(os.Stderr, "Warning: could not parse %s: %v\n", sf, err)
 				md = &mdCache{}
 			} else {
 				md = &mdCache{headings: h, lines: l}
