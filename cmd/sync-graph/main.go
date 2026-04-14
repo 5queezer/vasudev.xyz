@@ -149,7 +149,7 @@ func parseCommunityNames(reportPath string) (map[int]string, error) {
 	return names, scanner.Err()
 }
 
-func run(graphifyDir, output string) error {
+func run(graphifyDir, output, repoRoot string) error {
 	graphPath := filepath.Join(graphifyDir, "graph.json")
 	reportPath := filepath.Join(graphifyDir, "GRAPH_REPORT.md")
 
@@ -228,7 +228,7 @@ func run(graphifyDir, output string) error {
 
 		md, ok := mdFiles[sf]
 		if !ok {
-			h, l, err := parseHeadings(sf)
+			h, l, err := parseHeadings(filepath.Join(repoRoot, sf))
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "Warning: could not parse %s: %v\n", sf, err)
 				md = &mdCache{}
@@ -279,9 +279,10 @@ func run(graphifyDir, output string) error {
 func main() {
 	graphifyDir := flag.String("graphify-dir", "graphify-out", "directory containing graphify output")
 	output := flag.String("output", "static/data/graph.json", "output path for enriched graph.json")
+	repoRoot := flag.String("root", ".", "repository root for resolving source_file paths")
 	flag.Parse()
 
-	if err := run(*graphifyDir, *output); err != nil {
+	if err := run(*graphifyDir, *output, *repoRoot); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
