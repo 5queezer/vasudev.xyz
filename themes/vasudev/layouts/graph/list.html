@@ -159,6 +159,8 @@
           id: n.id,
           label: n.label,
           sourceFile: n.source_file || '',
+          sourceUrl: n.source_url || '',
+          sourceAnchor: n.source_anchor || '',
           fileType: n.file_type || '',
           community: n.community != null ? n.community : -1,
           communityName: n.community_name || '',
@@ -244,10 +246,15 @@
       tooltip.appendChild(document.createTextNode('Type: ' + node.fileType));
     }
 
-    var slug = slugFromSourceFile(node.sourceFile);
-    if (slug) {
+    if (node.sourceUrl) {
       tooltip.appendChild(document.createElement('br'));
-      tooltip.appendChild(document.createTextNode('Click to read \u2192'));
+      tooltip.appendChild(document.createTextNode('Click to open \u2192'));
+    } else {
+      var slug = slugFromSourceFile(node.sourceFile);
+      if (slug) {
+        tooltip.appendChild(document.createElement('br'));
+        tooltip.appendChild(document.createTextNode('Click to read \u2192'));
+      }
     }
   }
 
@@ -357,8 +364,16 @@
         }
       })
       .onNodeClick(function(node) {
+        if (node.sourceUrl) {
+          window.open(node.sourceUrl, '_blank', 'noopener');
+          return;
+        }
         var slug = slugFromSourceFile(node.sourceFile);
-        if (slug) window.location.href = blogBaseUrl + slug + '/';
+        if (slug) {
+          var url = blogBaseUrl + slug + '/';
+          if (node.sourceAnchor) url += '#' + node.sourceAnchor;
+          window.location.href = url;
+        }
       })
       .d3AlphaDecay(0.02)
       .d3VelocityDecay(0.3)

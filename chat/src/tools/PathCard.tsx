@@ -2,6 +2,8 @@ interface PathNode {
   id: string;
   label: string;
   sourceFile: string;
+  sourceUrl?: string;
+  sourceAnchor?: string;
 }
 
 interface Step {
@@ -56,14 +58,27 @@ export function PathCard({ args: _args, result }: { args: any; result?: PathResu
       {result.pathNodes && (
         <div className="chat-tool-path">
           {result.pathNodes.map((node, i) => {
-            const slug = slugFromSourceFile(node.sourceFile);
-            const label = slug ? (
-              <a href={`/blog/${slug}/`} className="chat-tool-badge chat-tool-badge-link">
-                {node.label}
-              </a>
-            ) : (
-              <span className="chat-tool-badge">{node.label}</span>
-            );
+            let label;
+            if (node.sourceUrl) {
+              label = (
+                <a href={node.sourceUrl} target="_blank" rel="noopener" className="chat-tool-badge chat-tool-badge-link">
+                  {node.label}
+                </a>
+              );
+            } else {
+              const slug = slugFromSourceFile(node.sourceFile);
+              if (slug) {
+                let url = `/blog/${slug}/`;
+                if (node.sourceAnchor) url += `#${node.sourceAnchor}`;
+                label = (
+                  <a href={url} className="chat-tool-badge chat-tool-badge-link">
+                    {node.label}
+                  </a>
+                );
+              } else {
+                label = <span className="chat-tool-badge">{node.label}</span>;
+              }
+            }
             const step = result.steps?.[i];
             return (
               <div key={node.id} className="chat-tool-path-node">

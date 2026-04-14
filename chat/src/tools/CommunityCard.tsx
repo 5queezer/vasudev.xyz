@@ -2,6 +2,8 @@ interface Member {
   id: string;
   label: string;
   sourceFile: string;
+  sourceUrl?: string;
+  sourceAnchor?: string;
   degree: number;
   fileType: string;
 }
@@ -53,15 +55,21 @@ export function CommunityCard({ args: _args, result }: { args: any; result?: Com
       </div>
       <div className="chat-tool-badges" style={{ flexWrap: "wrap" }}>
         {result.members?.map((m) => {
-          const slug = slugFromSourceFile(m.sourceFile);
           const isSeed = m.id === result.seed?.id;
-          if (slug) {
+          const cls = `chat-tool-badge chat-tool-badge-link${isSeed ? " chat-tool-badge-active" : ""}`;
+          if (m.sourceUrl) {
             return (
-              <a
-                key={m.id}
-                href={`/blog/${slug}/`}
-                className={`chat-tool-badge chat-tool-badge-link${isSeed ? " chat-tool-badge-active" : ""}`}
-              >
+              <a key={m.id} href={m.sourceUrl} target="_blank" rel="noopener" className={cls}>
+                {m.label}
+              </a>
+            );
+          }
+          const slug = slugFromSourceFile(m.sourceFile);
+          if (slug) {
+            let url = `/blog/${slug}/`;
+            if (m.sourceAnchor) url += `#${m.sourceAnchor}`;
+            return (
+              <a key={m.id} href={url} className={cls}>
                 {m.label}
               </a>
             );

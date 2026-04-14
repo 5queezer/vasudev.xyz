@@ -4,6 +4,8 @@ interface Match {
   id: string;
   label: string;
   sourceFile: string;
+  sourceUrl?: string;
+  sourceAnchor?: string;
   community?: number;
 }
 
@@ -33,10 +35,19 @@ function slugFromSourceFile(sourceFile: string): string | null {
 }
 
 function NodeBadge({ match }: { match: Match }) {
+  if (match.sourceUrl) {
+    return (
+      <a href={match.sourceUrl} target="_blank" rel="noopener" className="chat-tool-badge chat-tool-badge-link">
+        {match.label}
+      </a>
+    );
+  }
   const slug = slugFromSourceFile(match.sourceFile);
   if (slug) {
+    let url = `/blog/${slug}/`;
+    if (match.sourceAnchor) url += `#${match.sourceAnchor}`;
     return (
-      <a href={`/blog/${slug}/`} className="chat-tool-badge chat-tool-badge-link">
+      <a href={url} className="chat-tool-badge chat-tool-badge-link">
         {match.label}
       </a>
     );
@@ -56,12 +67,12 @@ function Skeleton() {
 }
 
 function buildGraphData(result: ConnectionsResult) {
-  const nodes: { id: string; label: string; sourceFile: string; community?: number }[] = [];
+  const nodes: { id: string; label: string; sourceFile: string; sourceUrl?: string; sourceAnchor?: string; community?: number }[] = [];
   const nodeSet = new Set<string>();
 
   for (const m of result.matches) {
     nodeSet.add(m.id);
-    nodes.push({ id: m.id, label: m.label, sourceFile: m.sourceFile, community: m.community });
+    nodes.push({ id: m.id, label: m.label, sourceFile: m.sourceFile, sourceUrl: m.sourceUrl, sourceAnchor: m.sourceAnchor, community: m.community });
   }
 
   for (const c of result.connections) {
