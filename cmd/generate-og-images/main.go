@@ -358,8 +358,14 @@ func generatePrompt(apiURL string, llmModels []string, apiKey, content string) s
 			}
 
 			if resp.StatusCode != http.StatusOK {
-				fmt.Fprintf(os.Stderr, "model %s returned %d: %s\n", llmModel, resp.StatusCode, string(respBody))
+				var chatResp chatResponse
+				errMsg := "unknown error"
+				if err := json.Unmarshal(respBody, &chatResp); err == nil && chatResp.Error != nil && chatResp.Error.Message != "" {
+					errMsg = chatResp.Error.Message
+				}
+				fmt.Fprintf(os.Stderr, "model %s returned %d: %s\n", llmModel, resp.StatusCode, errMsg)
 				if shouldFallbackModel(resp.StatusCode, respBody) && modelIndex < len(llmModels)-1 {
+					fmt.Fprintf(os.Stderr, "falling back from %s to %s\n", llmModel, llmModels[modelIndex+1])
 					break
 				}
 				continue
@@ -374,6 +380,7 @@ func generatePrompt(apiURL string, llmModels []string, apiKey, content string) s
 			if chatResp.Error != nil {
 				fmt.Fprintf(os.Stderr, "API error for model %s: %s\n", llmModel, chatResp.Error.Message)
 				if shouldFallbackModel(resp.StatusCode, []byte(chatResp.Error.Message)) && modelIndex < len(llmModels)-1 {
+					fmt.Fprintf(os.Stderr, "falling back from %s to %s\n", llmModel, llmModels[modelIndex+1])
 					break
 				}
 				continue
@@ -433,11 +440,16 @@ func generateImage(falURL, falKey, prompt, outputPath string) error {
 		}
 
 		if resp.StatusCode != http.StatusOK {
-			fmt.Fprintf(os.Stderr, "fal.ai returned %d: %s\n", resp.StatusCode, string(respBody))
+			var falErr falResponse
+			errMsg := "unknown error"
+			if err := json.Unmarshal(respBody, &falErr); err == nil && falErr.Detail != "" {
+				errMsg = falErr.Detail
+			}
+			fmt.Fprintf(os.Stderr, "fal.ai returned %d: %s\n", resp.StatusCode, errMsg)
 			if resp.StatusCode >= 500 || resp.StatusCode == 429 {
 				continue
 			}
-			return fmt.Errorf("fal.ai error %d: %s", resp.StatusCode, string(respBody))
+			return fmt.Errorf("fal.ai error %d: %s", resp.StatusCode, errMsg)
 		}
 
 		if err := json.Unmarshal(respBody, &falResp); err != nil {
