@@ -2239,6 +2239,99 @@ a.tag:hover {
 .graph-legend-dot {
   display: inline-block;
   width: 8px;
+/* ── Homepage visual polish (issue #122) ── */
+
+/* 1. Scroll-triggered reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal .feature-card,
+.reveal .article-card {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed .feature-card,
+.reveal.revealed .article-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.revealed .feature-card:nth-child(1),
+.reveal.revealed .article-card:nth-child(1) { transition-delay: 0.05s; }
+.reveal.revealed .feature-card:nth-child(2),
+.reveal.revealed .article-card:nth-child(2) { transition-delay: 0.12s; }
+.reveal.revealed .feature-card:nth-child(3),
+.reveal.revealed .article-card:nth-child(3) { transition-delay: 0.19s; }
+.reveal.revealed .feature-card:nth-child(4),
+.reveal.revealed .article-card:nth-child(4) { transition-delay: 0.26s; }
+
+/* 2. Typography: serif for readable copy */
+.project-desc,
+.article-copy,
+.spotlight-copy,
+.fact-value,
+.feature-card-footer {
+  font-family: var(--serif);
+}
+
+/* 3. Feature card enhancements */
+.feature-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22),
+              0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+.feature-card:hover .project-badge {
+  transform: scale(1.08);
+}
+.project-badge {
+  transition: transform 0.3s ease;
+}
+
+/* 4. Article grid first-child magazine style */
+.article-grid .article-card:first-child .article-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-family: var(--serif);
+  line-height: 1.15;
+}
+
+/* 5. Section and footer refinements */
+.section-block::before {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 65%, white), color-mix(in srgb, var(--accent2) 45%, transparent));
+}
+.site-footer {
+  padding: 1.5rem 0 0.8rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.article-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal .feature-card,
+  .reveal .article-card { opacity: 1; transform: none; transition: none; }
+}
+
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
