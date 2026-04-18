@@ -4,7 +4,7 @@
 
 Date: {{ .Date.Format "2006-01-02" }}
 Author: {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}
-Tags: {{ delimit .Params.tags ", " }}
+Tags: {{ with .Params.tags }}{{ delimit . ", " }}{{ else }}None{{ end }}
 URL: {{ .Permalink }}
 
 {{ .RawContent }}
