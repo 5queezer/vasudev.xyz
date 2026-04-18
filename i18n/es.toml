@@ -40,6 +40,12 @@ other = "inicio"
 [blog]
 other = "Blog"
 
+[about]
+other = "Sobre mí"
+
+[siteFooter]
+other = "Notas sobre sistemas, agentes, memoria y software centrado en la privacidad."
+
 [backToAllPosts]
 other = "Volver a todas las publicaciones"
 

@@ -101,14 +101,7 @@
     {{ partial "giscus.html" . }}
   </article>
 
-  <footer class="site-footer">
-    <div class="site-footer-copy">Notes on systems, agents, memory, and privacy-first software.</div>
-    <div class="site-footer-links">
-      <a href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
-      <a href="{{ relLangURL "" }}">{{ i18n "home" }}</a>
-      <a href="mailto:christian.pojoni@gmail.com">{{ i18n "email" }}</a>
-    </div>
-  </footer>
+  {{ partial "site-footer.html" . }}
 </div>
 {{ partial "chat-widget.html" . }}
 <script>

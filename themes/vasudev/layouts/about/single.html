@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="site-shell site-shell-narrow">
+  {{ partial "site-header.html" . }}
+
+  <section class="surface intro-panel">
+    <div class="section-label">{{ i18n "about" }}</div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{ partial "site-footer.html" . }}
+</div>
+{{ partial "chat-widget.html" . }}
+{{ end }}
