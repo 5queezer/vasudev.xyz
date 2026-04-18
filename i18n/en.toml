@@ -40,6 +40,12 @@ other = "home"
 [blog]
 other = "Blog"
 
+[about]
+other = "About"
+
+[siteFooter]
+other = "Notes on systems, agents, memory, and privacy-first software."
+
 [backToAllPosts]
 other = "Back to all posts"
 

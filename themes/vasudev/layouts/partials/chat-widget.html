@@ -1,8 +1,8 @@
-{{ if or (eq .Section "blog") (eq .Kind "taxonomy") (eq .Kind "term") }}
+{{ if or (eq .Section "blog") (eq .Kind "taxonomy") (eq .Kind "term") (eq .Type "about") }}
 <div id="chat-widget-root"
      data-api-url="{{ .Site.Params.chatApiUrl | default "https://vasudev-chat.dev-95e.workers.dev" }}"
      data-lang="{{ .Site.Language.Lang }}"
-     {{ if .IsPage }}
+     {{ if and .IsPage (ne .Type "about") }}
      data-post-url="{{ .RelPermalink }}index.txt"
      data-mode="post"
      {{ else }}
