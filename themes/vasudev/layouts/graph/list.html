@@ -66,6 +66,14 @@
 
   var graphDataUrl = '{{ "/data/graph.json" | relURL }}';
   var blogBaseUrl = '{{ "blog/" | relLangURL }}';
+  {{- $lang := .Site.Language.Lang }}
+  {{- $communityTranslations := index .Site.Data.graph_communities $lang }}
+  {{- if not $communityTranslations }}{{ $communityTranslations = dict }}{{ end }}
+  var COMMUNITY_TRANSLATIONS = {{ $communityTranslations | jsonify }};
+  function localizeCommunity(name) {
+    if (!name) return name;
+    return COMMUNITY_TRANSLATIONS[name] || name;
+  }
   var I18N = {
     libError: {{ i18n "graphLibError" | jsonify }},
     loadError: {{ i18n "graphLoadError" | jsonify }},
@@ -247,7 +255,7 @@
     tooltip.appendChild(strong);
 
     tooltip.appendChild(document.createElement('br'));
-    var commLabel = node.communityName || (I18N.community + ' ' + node.community);
+    var commLabel = localizeCommunity(node.communityName) || (I18N.community + ' ' + node.community);
     tooltip.appendChild(document.createTextNode(
       commLabel + ' \u00B7 ' + node.degree + ' ' + I18N.connections
     ));
@@ -287,7 +295,7 @@
     nodes.forEach(function(n) {
       if (n.community >= 0) {
         if (!communities[n.community]) {
-          communities[n.community] = { name: n.communityName || (I18N.community + ' ' + n.community), count: 0 };
+          communities[n.community] = { name: localizeCommunity(n.communityName) || (I18N.community + ' ' + n.community), count: 0 };
         }
         communities[n.community].count++;
       }
