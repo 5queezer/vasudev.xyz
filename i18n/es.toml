@@ -75,3 +75,48 @@ other = "Ver esta página como texto plano"
 
 [graph]
 other = "Grafo"
+
+[graphTitle]
+other = "Grafo de conocimiento"
+
+[graphDescription]
+other = "Visualización 3D interactiva de cómo se conectan los conceptos, las publicaciones y las ideas en vasudev.xyz"
+
+[graphSearchPlaceholder]
+other = "Buscar nodos..."
+
+[graphFilterAll]
+other = "Todos"
+
+[graphFilterPosts]
+other = "Publicaciones"
+
+[graphFilterConcepts]
+other = "Conceptos"
+
+[graphLibError]
+other = "Error: la biblioteca 3d-force-graph no se pudo cargar"
+
+[graphLoadError]
+other = "Error al cargar el grafo: "
+
+[graphCommunity]
+other = "Comunidad"
+
+[graphConnections]
+other = "conexiones"
+
+[graphType]
+other = "Tipo:"
+
+[graphClickToOpen]
+other = "Clic para abrir"
+
+[graphClickToRead]
+other = "Clic para leer"
+
+[graphNodes]
+other = "nodos"
+
+[graphEdges]
+other = "aristas"
