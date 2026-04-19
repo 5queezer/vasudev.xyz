@@ -35,6 +35,7 @@ defer_loading
 (?i)pratyahara
 (?i)renderers
 (?i)repo
+(?i)repos
 (?i)sandboxing
 (?i)samskara
 (?i)samskaras
@@ -57,6 +58,9 @@ defer_loading
 (?i)vrittis
 (?i)vrtti
 A-Mem
+ADR
+ADRs
+AGENTbench
 APIs
 APO
 Advaitic
@@ -104,6 +108,7 @@ LOO
 LocOMo
 Loihi
 LongMemEval
+Lulla
 MCP's
 Mastra
 Maṇḍūkya
@@ -117,6 +122,8 @@ MuninnDB
 Meister
 Māṇḍūkya
 Namespace
+Nygard
+Nygard's
 OAuth
 Ollama
 Optuna
@@ -125,6 +132,8 @@ Pojoni
 Postgres
 SAEs
 Sigman
+Stetsenko
+Stetsenko's
 Sutras
 Transposases
 TruthfulQA
@@ -140,6 +149,7 @@ Xie's
 Zhong
 arXiv
 benchmarked
+camelCase
 chakras
 chitta
 cron
@@ -163,3 +173,4 @@ soteriological
 underperform
 vasana
 vasanas
+vectorbt
