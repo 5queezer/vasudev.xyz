@@ -4,103 +4,54 @@
   "graph": {
     "hyperedges": [
       {
-        "id": "mcp_ecosystem",
-        "label": "MCP Ecosystem",
+        "id": "ui_streaming_protocol_quartet",
+        "label": "Four UI Streaming Approaches Compared",
         "nodes": [
-          "stop_putting_ai_in_apps__mcp",
-          "mcp_context_window_fix",
-          "adding_oauth_mcp_server_gotchas",
-          "stop_putting_ai_in_apps__nocodb"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 0.9,
-        "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
-      },
-      {
-        "id": "hrafn_agent_architecture",
-        "label": "Hrafn Agent Architecture",
-        "nodes": [
-          "why_ai_agents_need_sleep__hrafn",
-          "why_ai_agents_need_sleep__muninndb",
-          "why_ai_agents_need_sleep__dream_engine",
-          "ai_environment_design__persistence_tier",
-          "ai_environment_design__mutation_selection_cycle"
-        ],
-        "relation": "implement",
-        "confidence": "EXTRACTED",
-        "confidence_score": 0.85,
-        "source_file": "content/blog/ai-environment-design.md"
-      },
-      {
-        "id": "intermediary_degradation_pattern",
-        "label": "Intermediary Degradation Pattern",
-        "nodes": [
-          "direct_divine_access__intermediary_pattern",
-          "stop_putting_ai_in_apps__ai_orchestration_pattern",
-          "mcp_context_window_fix__token_overhead",
-          "ai_environment_design__goodharts_law"
-        ],
-        "relation": "form",
-        "confidence": "INFERRED",
-        "confidence_score": 0.75,
-        "source_file": "content/blog/direct-divine-access.md"
-      },
-      {
-        "id": "building_agents_that_sleep_series",
-        "label": "Building Agents That Sleep Series",
-        "nodes": [
-          "llm_sleep_memory_post",
-          "memory_metrics_post",
-          "patanjali_post",
-          "svapna_post",
-          "llm_sleep_memory_dream_engine",
-          "llm_sleep_memory_muninndb"
+          "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+          "frontend_ai_agents_streaming_ui__ag_ui",
+          "frontend_ai_agents_streaming_ui__a2ui",
+          "frontend_ai_agents_streaming_ui__kombai"
         ],
         "relation": "participate_in",
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
-        "source_file": "content/blog/llm-sleep-memory.md"
+        "source_file": "content/blog/frontend-ai-agents-streaming-ui.md"
       },
       {
-        "id": "vedic_agent_memory_mapping",
-        "label": "Vedic Concepts to Agent Memory",
+        "id": "code_data_events_axis",
+        "label": "Code/Data/Events Architectural Trichotomy",
         "nodes": [
-          "patanjali_vrtti_nirodha",
-          "patanjali_samskara_vairagya",
-          "patanjali_pratyahara",
-          "svapna_svapna",
-          "svapna_sushupti",
-          "patanjali_min_dedup_vault_size",
-          "patanjali_outcome_tagged_writes"
+          "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+          "frontend_ai_agents_streaming_ui__a2ui",
+          "frontend_ai_agents_streaming_ui__ag_ui",
+          "frontend_ai_agents_streaming_ui__code_data_events_divide"
         ],
         "relation": "form",
         "confidence": "EXTRACTED",
-        "confidence_score": 0.9,
-        "source_file": "content/blog/patanjali-harness-spec.md"
+        "confidence_score": 1.0,
+        "source_file": "content/blog/frontend-ai-agents-streaming-ui.md"
       },
       {
-        "id": "evolutionary_interpretability_pipeline",
-        "label": "Evolutionary Probe Discovery",
+        "id": "agent_context_residency_layers",
+        "label": "Four Agent Context Residency Layers",
         "nodes": [
-          "circuit_discovery_mutation_loop",
-          "circuit_discovery_linear_probe",
-          "circuit_discovery_tokenizer_bottleneck",
-          "circuit_discovery_feedback_loop",
-          "circuit_discovery_baldwin_effect",
-          "circuit_discovery_author_nationality"
+          "push_pull_context__claude_md",
+          "push_pull_context__adr",
+          "push_pull_context__specs_directory",
+          "push_pull_context__claude_skills",
+          "push_pull_context__layered_decision_residency"
         ],
-        "relation": "implement",
+        "relation": "participate_in",
         "confidence": "EXTRACTED",
-        "confidence_score": 0.95,
-        "source_file": "content/blog/automated-circuit-discovery.md"
+        "confidence_score": 1.0,
+        "source_file": "content/blog/push-pull-context.md"
       }
     ]
   },
   "nodes": [
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main",
       "label": "main.go",
@@ -109,7 +60,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "translate_chatrequest",
       "label": "chatRequest",
@@ -118,7 +69,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "translate_chatmessage",
       "label": "chatMessage",
@@ -127,7 +78,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "translate_chatresponse",
       "label": "chatResponse",
@@ -136,7 +87,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_main",
       "label": "main()",
@@ -145,7 +96,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_contenthash",
       "label": "contentHash()",
@@ -154,7 +105,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_splitfrontmatterandbody",
       "label": "splitFrontMatterAndBody()",
@@ -163,7 +114,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_extractfrontmatterfield",
       "label": "extractFrontMatterField()",
@@ -172,7 +123,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_buildtranslatedfile",
       "label": "buildTranslatedFile()",
@@ -181,7 +132,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_translatetext",
       "label": "translateText()",
@@ -190,7 +141,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_translatetextwithcontext",
       "label": "translateTextWithContext()",
@@ -199,7 +150,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_resolvemodelcandidates",
       "label": "resolveModelCandidates()",
@@ -208,7 +159,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_parsemodellist",
       "label": "parseModelList()",
@@ -217,7 +168,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_uniquemodels",
       "label": "uniqueModels()",
@@ -226,7 +177,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_splitbodyintochunks",
       "label": "splitBodyIntoChunks()",
@@ -235,7 +186,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_chunkhash",
       "label": "chunkHash()",
@@ -244,7 +195,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_headsnippet",
       "label": "headSnippet()",
@@ -253,7 +204,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_tailsnippet",
       "label": "tailSnippet()",
@@ -262,7 +213,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_extractchunkhashes",
       "label": "extractChunkHashes()",
@@ -271,7 +222,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_translatechunk",
       "label": "translateChunk()",
@@ -280,7 +231,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_shouldfallbackmodel",
       "label": "shouldFallbackModel()",
@@ -289,7 +240,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test",
       "label": "main_test.go",
@@ -298,7 +249,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testresolvemodelcandidatesfromexplicitlist",
       "label": "TestResolveModelCandidatesFromExplicitList()",
@@ -307,7 +258,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
       "label": "TestResolveModelCandidatesFromPrimaryAndFallbacks()",
@@ -316,7 +267,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testtranslatetextfallsbackonratelimit",
       "label": "TestTranslateTextFallsBackOnRateLimit()",
@@ -325,7 +276,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testshouldfallbackmodel",
       "label": "TestShouldFallbackModel()",
@@ -334,7 +285,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testsplitbodyintochunks",
       "label": "TestSplitBodyIntoChunks()",
@@ -343,7 +294,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
       "label": "TestSplitBodyIntoChunksIgnoresHeadingsInCodeBlocks()",
@@ -352,7 +303,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testsplitbodyintochunkstildefence",
       "label": "TestSplitBodyIntoChunksTildeFence()",
@@ -361,7 +312,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testsplitbodyintochunksnoheadings",
       "label": "TestSplitBodyIntoChunksNoHeadings()",
@@ -370,7 +321,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testsplitbodyroundtrip",
       "label": "TestSplitBodyRoundTrip()",
@@ -379,7 +330,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testchunkhashdeterministic",
       "label": "TestChunkHashDeterministic()",
@@ -388,7 +339,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextractchunkhashes",
       "label": "TestExtractChunkHashes()",
@@ -397,7 +348,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextractchunkhashesempty",
       "label": "TestExtractChunkHashesEmpty()",
@@ -406,7 +357,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testbuildtranslatedfileincludeschunkhashes",
       "label": "TestBuildTranslatedFileIncludesChunkHashes()",
@@ -415,7 +366,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testheadandtailsnippet",
       "label": "TestHeadAndTailSnippet()",
@@ -424,7 +375,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testtranslatechunkcontextinsystemprompt",
       "label": "TestTranslateChunkContextInSystemPrompt()",
@@ -433,7 +384,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_escaped",
       "label": "escaped()",
@@ -442,7 +393,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_assertstringslicesequal",
       "label": "assertStringSlicesEqual()",
@@ -451,7 +402,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "translate_roundtripfunc",
       "label": "roundTripFunc",
@@ -460,7 +411,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "translate_roundtripfunc_roundtrip",
       "label": ".RoundTrip()",
@@ -469,7 +420,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_jsonresponse",
       "label": "jsonResponse()",
@@ -478,7 +429,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "generate_og_images_chatrequest",
       "label": "chatRequest",
@@ -487,7 +438,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "generate_og_images_chatmessage",
       "label": "chatMessage",
@@ -496,7 +447,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "generate_og_images_chatresponse",
       "label": "chatResponse",
@@ -505,7 +456,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "generate_og_images_falrequest",
       "label": "falRequest",
@@ -514,7 +465,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "generate_og_images_falimagesize",
       "label": "falImageSize",
@@ -523,7 +474,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "generate_og_images_falresponse",
       "label": "falResponse",
@@ -532,7 +483,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_insertimagefield",
       "label": "insertImageField()",
@@ -541,7 +492,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_appenddisclaimer",
       "label": "appendDisclaimer()",
@@ -550,7 +501,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_generateprompt",
       "label": "generatePrompt()",
@@ -559,7 +510,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_generateimage",
       "label": "generateImage()",
@@ -568,7 +519,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "generate_og_images_roundtripfunc",
       "label": "roundTripFunc",
@@ -577,7 +528,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "generate_og_images_roundtripfunc_roundtrip",
       "label": ".RoundTrip()",
@@ -586,7 +537,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testsplitfrontmatterandbody",
       "label": "TestSplitFrontMatterAndBody()",
@@ -595,7 +546,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextractfrontmatterfield",
       "label": "TestExtractFrontMatterField()",
@@ -604,7 +555,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testcontenthash",
       "label": "TestContentHash()",
@@ -613,7 +564,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testinsertimagefield",
       "label": "TestInsertImageField()",
@@ -622,7 +573,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testgeneratepromptwithfallback",
       "label": "TestGeneratePromptWithFallback()",
@@ -631,7 +582,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testgenerateimagesuccess",
       "label": "TestGenerateImageSuccess()",
@@ -640,7 +591,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testcontenthashskipsunchanged",
       "label": "TestContentHashSkipsUnchanged()",
@@ -649,7 +600,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testpostfilteringskipstranslations",
       "label": "TestPostFilteringSkipsTranslations()",
@@ -658,7 +609,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_projectroot",
       "label": "projectRoot()",
@@ -667,7 +618,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_readallowedtags",
       "label": "readAllowedTags()",
@@ -676,7 +627,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testallowedtagscontainsnewtags",
       "label": "TestAllowedTagsContainsNewTags()",
@@ -685,7 +636,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testallowedtagsissorted",
       "label": "TestAllowedTagsIsSorted()",
@@ -694,7 +645,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testallowedtagsnoduplicates",
       "label": "TestAllowedTagsNoDuplicates()",
@@ -703,7 +654,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testallowedtagsformat",
       "label": "TestAllowedTagsFormat()",
@@ -712,7 +663,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_parsetaglist",
       "label": "parseTagList()",
@@ -721,7 +672,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testparsetaglist",
       "label": "TestParseTagList()",
@@ -730,7 +681,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testnewblogposthasrequiredfields",
       "label": "TestNewBlogPostHasRequiredFields()",
@@ -739,7 +690,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testnewblogposttagsareallowed",
       "label": "TestNewBlogPostTagsAreAllowed()",
@@ -748,7 +699,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testnewblogpostusesnewtags",
       "label": "TestNewBlogPostUsesNewTags()",
@@ -757,7 +708,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testnewblogpostdateformat",
       "label": "TestNewBlogPostDateFormat()",
@@ -766,7 +717,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testnewblogpostbodyisnonempty",
       "label": "TestNewBlogPostBodyIsNonEmpty()",
@@ -775,7 +726,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "check_links_linklocation",
       "label": "linkLocation",
@@ -784,7 +735,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "check_links_checkresult",
       "label": "checkResult",
@@ -793,7 +744,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "check_links_arxivfeed",
       "label": "arxivFeed",
@@ -802,7 +753,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "check_links_arxiventry",
       "label": "arxivEntry",
@@ -811,7 +762,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "check_links_crossrefresponse",
       "label": "crossrefResponse",
@@ -820,7 +771,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_collectfiles",
       "label": "collectFiles()",
@@ -829,7 +780,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_extracturls",
       "label": "extractURLs()",
@@ -838,7 +789,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_cleanurl",
       "label": "cleanURL()",
@@ -847,7 +798,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_cleanbareurl",
       "label": "cleanBareURL()",
@@ -856,7 +807,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_shouldskipurl",
       "label": "shouldSkipURL()",
@@ -865,7 +816,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_checkurl",
       "label": "checkURL()",
@@ -874,7 +825,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_checkarxivtitle",
       "label": "checkArxivTitle()",
@@ -883,7 +834,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_checkdoititle",
       "label": "checkDOITitle()",
@@ -892,7 +843,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_extractarxivid",
       "label": "extractArxivID()",
@@ -901,7 +852,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_extractdoi",
       "label": "extractDOI()",
@@ -910,7 +861,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_fuzzymatch",
       "label": "fuzzyMatch()",
@@ -919,7 +870,7 @@
     },
     {
       "community": 1,
-      "community_name": "Go Data Structures",
+      "community_name": "Link Checker Internals",
       "file_type": "code",
       "id": "main_normalizewhitespace",
       "label": "normalizeWhitespace()",
@@ -928,7 +879,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextracturls",
       "label": "TestExtractURLs()",
@@ -937,7 +888,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextracturlslinenumbers",
       "label": "TestExtractURLsLineNumbers()",
@@ -946,7 +897,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextractarxivid",
       "label": "TestExtractArxivID()",
@@ -955,7 +906,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testextractdoi",
       "label": "TestExtractDOI()",
@@ -964,7 +915,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testfuzzymatch",
       "label": "TestFuzzyMatch()",
@@ -973,7 +924,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testcleanbareurl",
       "label": "TestCleanBareURL()",
@@ -982,7 +933,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testshouldskipurl",
       "label": "TestShouldSkipURL()",
@@ -991,7 +942,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testcollectfileswithflag",
       "label": "TestCollectFilesWithFlag()",
@@ -1000,7 +951,7 @@
     },
     {
       "community": 0,
-      "community_name": "Go Test Infrastructure",
+      "community_name": "Link Checker Tests",
       "file_type": "code",
       "id": "main_test_testnormalizewhitespace",
       "label": "TestNormalizeWhitespace()",
@@ -1008,16 +959,16 @@
       "source_location": "L235"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "document",
       "id": "stop_putting_ai_in_apps",
       "label": "Stop Putting AI in Your Apps",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "stop_putting_ai_in_apps__mcp",
       "label": "Model Context Protocol (MCP)",
@@ -1025,16 +976,16 @@
       "source_url": "https://modelcontextprotocol.io/"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "stop_putting_ai_in_apps__ai_orchestration_pattern",
       "label": "AI as Orchestrator Architecture",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "stop_putting_ai_in_apps__nocodb",
       "label": "NocoDB (Open Source Database with MCP)",
@@ -1042,16 +993,16 @@
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "stop_putting_ai_in_apps__saas_commoditization",
       "label": "SaaS Commoditization via AI Orchestration",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "stop_putting_ai_in_apps__context_window_cost",
       "label": "Context Window Cost of MCP",
@@ -1059,16 +1010,16 @@
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "document",
       "id": "why_ai_agents_need_sleep",
       "label": "Why AI Agents Need Sleep",
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__muninndb",
       "label": "MuninnDB (Cognitive Database)",
@@ -1076,8 +1027,8 @@
       "source_url": "https://github.com/scrypster/muninndb"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__dream_engine",
       "label": "Dream Engine (LLM Memory Consolidation)",
@@ -1085,8 +1036,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__hrafn",
       "label": "Hrafn (AI Agent Runtime)",
@@ -1094,8 +1045,8 @@
       "source_url": "https://github.com/5queezer/hrafn"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__memory_consolidation",
       "label": "Human Sleep Memory Consolidation",
@@ -1103,8 +1054,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__memorybank",
       "label": "MemoryBank (Zhong et al. 2023)",
@@ -1112,8 +1063,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__sleepgate",
       "label": "SleepGate Framework",
@@ -1121,8 +1072,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__auto_dream",
       "label": "Auto Dream (Anthropic)",
@@ -1130,8 +1081,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__vault_trust_tiers",
       "label": "Vault Trust Tiers",
@@ -1139,8 +1090,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__ebbinghaus_decay",
       "label": "Ebbinghaus Forgetting Curves",
@@ -1148,8 +1099,8 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "why_ai_agents_need_sleep__dedup_threshold",
       "label": "Configurable Dedup Threshold",
@@ -1157,24 +1108,24 @@
       "source_file": "content/blog/why-ai-agents-need-sleep.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "document",
       "id": "direct_divine_access",
       "label": "Direct Divine Access",
       "source_file": "content/blog/direct-divine-access.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "direct_divine_access__intermediary_pattern",
       "label": "Intermediary Self-Optimization Pattern",
       "source_file": "content/blog/direct-divine-access.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "direct_divine_access__meta_harness",
       "label": "Meta-Harness (Stanford/MIT)",
@@ -1182,8 +1133,8 @@
       "source_file": "content/blog/direct-divine-access.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "direct_divine_access__direct_experience",
       "label": "Direct Inner Experience",
@@ -1191,16 +1142,16 @@
       "source_file": "content/blog/direct-divine-access.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "document",
       "id": "mcp_context_window_fix",
       "label": "MCP Context Window Fix",
       "source_file": "content/blog/mcp-context-window-fix.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "mcp_context_window_fix__deferred_loading",
       "label": "Deferred Tool Loading",
@@ -1208,8 +1159,8 @@
       "source_file": "content/blog/mcp-context-window-fix.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "mcp_context_window_fix__tool_search",
       "label": "Tool Search (BM25)",
@@ -1217,32 +1168,32 @@
       "source_file": "content/blog/mcp-context-window-fix.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "mcp_context_window_fix__token_overhead",
       "label": "MCP Token Overhead Problem",
       "source_file": "content/blog/mcp-context-window-fix.md"
     },
     {
-      "community": 13,
-      "community_name": "MCP Toolset",
+      "community": 15,
+      "community_name": "MCP Toolset Deferral",
       "file_type": "concept",
       "id": "mcp_context_window_fix__mcp_toolset",
       "label": "MCP Toolset Deferral",
       "source_file": "content/blog/mcp-context-window-fix.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "document",
       "id": "adding_oauth_mcp_server_gotchas",
       "label": "OAuth MCP Server Gotchas",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "adding_oauth_mcp_server_gotchas__reactive_resume",
       "label": "Reactive Resume PR #2829",
@@ -1250,8 +1201,8 @@
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "adding_oauth_mcp_server_gotchas__two_wellknown_endpoints",
       "label": "Two .well-known Endpoints",
@@ -1259,8 +1210,8 @@
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "adding_oauth_mcp_server_gotchas__dual_auth_path",
       "label": "Dual Auth Path",
@@ -1268,40 +1219,40 @@
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "adding_oauth_mcp_server_gotchas__better_auth_deprecation",
       "label": "better-auth Deprecation",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md"
     },
     {
-      "community": 3,
-      "community_name": "OAuth \u0026 MCP Auth",
+      "community": 4,
+      "community_name": "MCP and Auth Pitfalls",
       "file_type": "concept",
       "id": "adding_oauth_mcp_server_gotchas__auth_chain_layers",
       "label": "Multi-Layer Auth Chain",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "document",
       "id": "ai_environment_design",
       "label": "AI Environment Design",
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "ai_environment_design__genotype_phenotype",
       "label": "Genotype/Phenotype Separation",
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "ai_environment_design__evaluator_not_loss_function",
       "label": "Evaluator Is Not a Loss Function",
@@ -1309,8 +1260,8 @@
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "ai_environment_design__mutation_selection_cycle",
       "label": "Mutation/Selection Cycle",
@@ -1318,16 +1269,16 @@
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "ai_environment_design__sae_steering_operator",
       "label": "SAE Steering Operator",
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "ai_environment_design__goodharts_law",
       "label": "Goodhart's Law",
@@ -1335,8 +1286,8 @@
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 4,
-      "community_name": "AI Environment Design",
+      "community": 5,
+      "community_name": "Evolutionary AI Design",
       "file_type": "concept",
       "id": "ai_environment_design__persistence_tier",
       "label": "Persistence Tier",
@@ -1344,56 +1295,56 @@
       "source_file": "content/blog/ai-environment-design.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "document",
       "id": "gemma3_sae_measurement_timing",
       "label": "SAE Measurement Timing",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "gemma3_sae__encoding_vs_generation",
       "label": "Encoding vs Generation Time",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "gemma3_sae__sycophancy_detection",
       "label": "Sycophancy Detection (d=9.9)",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "gemma3_sae__hallucination_taxonomy",
       "label": "Hallucination Taxonomy",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "gemma3_sae__hypothesis_falsified",
       "label": "Generation-Time Hypothesis Falsified",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "gemma3_sae__pratyahara_bridge",
       "label": "Pratyahara Bridge",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md"
     },
     {
-      "community": 7,
-      "community_name": "SAE Measurement",
+      "community": 9,
+      "community_name": "SAE and Hallucinations",
       "file_type": "concept",
       "id": "gemma3_sae__dimensional_overfitting",
       "label": "Dimensional Overfitting",
@@ -1402,7 +1353,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_post",
       "label": "Sleep-Inspired Memory for LLM Agents",
@@ -1410,7 +1361,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_dream_engine",
       "label": "Dream Engine Pipeline",
@@ -1419,7 +1370,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_muninndb",
       "label": "MuninnDB",
@@ -1428,7 +1379,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_sleepgate",
       "label": "SleepGate Paper",
@@ -1436,7 +1387,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_memorybench",
       "label": "MemoryBench Paper",
@@ -1444,7 +1395,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_synapticrag",
       "label": "SynapticRAG Paper",
@@ -1452,7 +1403,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_goodai_benchmark",
       "label": "GoodAI LTM Benchmark",
@@ -1460,7 +1411,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_ebbinghaus_decay",
       "label": "Ebbinghaus Decay",
@@ -1468,7 +1419,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_hebbian_association",
       "label": "Hebbian Association",
@@ -1476,7 +1427,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "llm_sleep_memory_phase_selectivity",
       "label": "Phase Selectivity Principle",
@@ -1484,7 +1435,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_post",
       "label": "Memory Metrics Are Lying",
@@ -1492,7 +1443,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_proxy_detachment",
       "label": "Proxy Detachment",
@@ -1500,7 +1451,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_flyxion_essay",
       "label": "Proxy Integrity Collapse (Flyxion)",
@@ -1508,7 +1459,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_goodharts_law",
       "label": "Goodhart's Law as Structural Attractor",
@@ -1516,7 +1467,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_longmemeval",
       "label": "LongMemEval Benchmark",
@@ -1524,7 +1475,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_mempalace",
       "label": "MemPalace",
@@ -1532,7 +1483,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_hrafn",
       "label": "Hrafn (Rust Agent Runtime)",
@@ -1541,7 +1492,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "memory_metrics_grounding_criterion",
       "label": "Grounding Criterion",
@@ -1549,7 +1500,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_post",
       "label": "Shipping A2A Protocol in Rust",
@@ -1557,7 +1508,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_protocol",
       "label": "A2A Protocol (Google)",
@@ -1566,7 +1517,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_ssrf_protection",
       "label": "SSRF Protection",
@@ -1574,7 +1525,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_taskstore_cap",
       "label": "TaskStore Cap (DoS Prevention)",
@@ -1582,7 +1533,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_constant_time_comparison",
       "label": "Constant-Time Token Comparison",
@@ -1590,7 +1541,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_agent_cards",
       "label": "Agent Cards",
@@ -1598,7 +1549,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "a2a_pr_4166",
       "label": "Hrafn PR #4166",
@@ -1606,7 +1557,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_post",
       "label": "Patanjali Harness Spec",
@@ -1614,7 +1565,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_vrtti_nirodha",
       "label": "Vrtti Nirodha",
@@ -1622,7 +1573,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_samskara_vairagya",
       "label": "Samskara and Vairagya",
@@ -1630,7 +1581,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_pratyahara",
       "label": "Pratyahara",
@@ -1638,7 +1589,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_meta_harness",
       "label": "Meta-Harness Paper",
@@ -1646,7 +1597,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_boeckeler",
       "label": "Boeckeler Harness Framework",
@@ -1654,7 +1605,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_min_dedup_vault_size",
       "label": "MinDedupVaultSize Guard",
@@ -1662,7 +1613,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_outcome_tagged_writes",
       "label": "Outcome-Tagged Writes",
@@ -1670,7 +1621,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_advaitic_policy_optimization",
       "label": "Advaitic Policy Optimization",
@@ -1678,7 +1629,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "patanjali_ablation_pr_367",
       "label": "Dream Engine Ablation PR #367",
@@ -1686,7 +1637,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_post",
       "label": "Svapna or Sushupti",
@@ -1694,15 +1645,15 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_mandukya_upanishad",
       "label": "Mandukya Upanishad",
       "source_file": "content/blog/svapna-sushupti.md"
     },
     {
-      "community": 14,
-      "community_name": "Waking State",
+      "community": 16,
+      "community_name": "Jagrat State",
       "file_type": "document",
       "id": "svapna_jagrat",
       "label": "Jagrat (Waking State)",
@@ -1710,7 +1661,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_svapna",
       "label": "Svapna (Dreaming State)",
@@ -1718,15 +1669,15 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_sushupti",
       "label": "Sushupti (Deep Sleep)",
       "source_file": "content/blog/svapna-sushupti.md"
     },
     {
-      "community": 15,
-      "community_name": "Pure Awareness",
+      "community": 17,
+      "community_name": "Turiya State",
       "file_type": "document",
       "id": "svapna_turiya",
       "label": "Turiya (Pure Awareness)",
@@ -1734,7 +1685,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_lightmem",
       "label": "LightMem Paper",
@@ -1742,7 +1693,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_adm",
       "label": "Active Dreaming Memory",
@@ -1750,7 +1701,7 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_dissolution_hypothesis",
       "label": "Dissolution Outperforms Recombination",
@@ -1758,95 +1709,95 @@
     },
     {
       "community": 2,
-      "community_name": "Agent Memory \u0026 Protocols",
+      "community_name": "Agent Memory and Protocols",
       "file_type": "document",
       "id": "svapna_nrem_sleep",
       "label": "NREM Sleep (Triple Coupling)",
       "source_file": "content/blog/svapna-sushupti.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_post",
       "label": "Automated Circuit Discovery",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_mutation_loop",
       "label": "Mutation-Selection Loop",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_sae_features",
       "label": "SAE Features",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_linear_probe",
       "label": "Linear Probe",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_tokenizer_bottleneck",
       "label": "Tokenizer Bottleneck",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_feedback_loop",
       "label": "Feedback Loop Fix",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_baldwin_effect",
       "label": "Baldwin Effect",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_gemma_2_2b",
       "label": "Gemma-2-2B",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_capital_of_distributed",
       "label": "Capital-of Is Distributed",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 6,
-      "community_name": "Circuit Discovery",
+      "community": 8,
+      "community_name": "Mechanistic Interpretability",
       "file_type": "document",
       "id": "circuit_discovery_author_nationality",
       "label": "Author-Nationality Circuit",
       "source_file": "content/blog/automated-circuit-discovery.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "readme_vasudev_site",
       "label": "vasudev.xyz Site",
@@ -1854,175 +1805,175 @@
       "source_url": "https://vasudev.xyz"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "readme_hugo",
       "label": "Hugo Static Site Generator",
       "source_file": "README.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "readme_github_pages",
       "label": "GitHub Pages Deployment",
       "source_file": "README.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "readme_github_actions",
       "label": "GitHub Actions CI/CD",
       "source_file": "README.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "readme_coderabbit",
       "label": "CodeRabbit Review",
       "source_file": "README.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "readme_custom_theme",
       "label": "Custom Theme",
       "source_file": "README.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_project_config",
       "label": "CLAUDE.md Config",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_iron_rule",
       "label": "Iron Rule: empirical to tradition",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_cross_disciplinary_bridging",
       "label": "Cross-disciplinary Bridging",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_vedic_philosophy",
       "label": "Vedic Philosophy Framework",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_neuroscience",
       "label": "Neuroscience Framework",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_evolutionary_biology",
       "label": "Evolutionary Biology Framework",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_vale_linter",
       "label": "Vale Prose Linter",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_auto_translation",
       "label": "Auto-translation Pipeline",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "claudemd_translate_go",
       "label": "Translation Script (Go)",
       "source_file": "CLAUDE.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "series_building_agents_that_sleep",
       "label": "Series: Building Agents That Sleep",
       "source_file": "content/series/building-agents-that-sleep/_index.md"
     },
     {
-      "community": 16,
-      "community_name": "Field Notes",
+      "community": 18,
+      "community_name": "Field Notes Series",
       "file_type": "document",
       "id": "series_field_notes",
       "label": "Series: Field Notes",
       "source_file": "content/series/field-notes/_index.md"
     },
     {
-      "community": 5,
-      "community_name": "Blog Infrastructure",
+      "community": 7,
+      "community_name": "Site and Series Meta",
       "file_type": "document",
       "id": "series_sleep_memory_consolidation",
       "label": "Sleep-inspired Memory Consolidation",
       "source_file": "content/series/building-agents-that-sleep/_index.md"
     },
     {
-      "community": 9,
-      "community_name": "MCP Architecture",
+      "community": 11,
+      "community_name": "AI Architecture Diagrams",
       "file_type": "image",
       "id": "ai_architecture_mcp_way",
       "label": "AI Orchestrating Apps (MCP Way)",
       "source_file": "static/images/ai-architecture.svg"
     },
     {
-      "community": 9,
-      "community_name": "MCP Architecture",
+      "community": 11,
+      "community_name": "AI Architecture Diagrams",
       "file_type": "image",
       "id": "ai_architecture_central_ai",
       "label": "Central AI Hub",
       "source_file": "static/images/ai-architecture.svg"
     },
     {
-      "community": 9,
-      "community_name": "MCP Architecture",
+      "community": 11,
+      "community_name": "AI Architecture Diagrams",
       "file_type": "image",
       "id": "ai_architecture_mcp_protocol",
       "label": "MCP Protocol (Diagram)",
       "source_file": "static/images/ai-architecture.svg"
     },
     {
-      "community": 11,
-      "community_name": "Dream Pipeline",
+      "community": 13,
+      "community_name": "Dream Engine Architecture",
       "file_type": "image",
       "id": "dream_engine_pipeline",
       "label": "Dream Engine Pipeline (Diagram)",
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase0",
@@ -2030,7 +1981,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase1",
@@ -2038,7 +1989,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase2",
@@ -2046,7 +1997,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase2b",
@@ -2054,7 +2005,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase3",
@@ -2062,7 +2013,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase4",
@@ -2070,7 +2021,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase5",
@@ -2078,7 +2029,7 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 8,
+      "community": 10,
       "community_name": "Dream Engine Phases",
       "file_type": "image",
       "id": "dream_engine_phase6",
@@ -2086,39 +2037,39 @@
       "source_file": "static/images/dream-engine.svg"
     },
     {
-      "community": 9,
-      "community_name": "MCP Architecture",
+      "community": 11,
+      "community_name": "AI Architecture Diagrams",
       "file_type": "image",
       "id": "context_window_defer_loading",
       "label": "defer_loading Optimization",
       "source_file": "static/images/context-window-cost-inline.svg"
     },
     {
-      "community": 11,
-      "community_name": "Dream Pipeline",
+      "community": 13,
+      "community_name": "Dream Engine Architecture",
       "file_type": "image",
       "id": "dream_pipeline_vault_tiers",
       "label": "Dream Pipeline Vault Trust Tiers",
       "source_file": "static/images/dream-pipeline-inline.svg"
     },
     {
-      "community": 12,
-      "community_name": "Evolution Loop",
+      "community": 14,
+      "community_name": "Evolution Loops",
       "file_type": "image",
       "id": "evolution_loop_cycle",
       "label": "Evolution Loop Cycle",
       "source_file": "static/images/evolution-loop-inline.svg"
     },
     {
-      "community": 9,
-      "community_name": "MCP Architecture",
+      "community": 11,
+      "community_name": "AI Architecture Diagrams",
       "file_type": "image",
       "id": "mcp_architecture_diagram",
       "label": "MCP Architecture Diagram",
       "source_file": "static/images/mcp-architecture-inline.svg"
     },
     {
-      "community": 17,
+      "community": 19,
       "community_name": "Measurement Timing",
       "file_type": "image",
       "id": "measurement_timing_diagram",
@@ -2126,36 +2077,569 @@
       "source_file": "static/images/measurement-timing-inline.svg"
     },
     {
-      "community": 12,
-      "community_name": "Evolution Loop",
+      "community": 14,
+      "community_name": "Evolution Loops",
       "file_type": "image",
       "id": "mutation_loop_pipeline",
       "label": "Mutation Loop Pipeline",
       "source_file": "static/images/mutation-loop-inline.svg"
     },
     {
-      "community": 10,
-      "community_name": "Mutation Loop",
+      "community": 12,
+      "community_name": "Mutation Pipeline",
       "file_type": "image",
       "id": "mutation_loop_llm_proposer",
       "label": "LLM Proposer",
       "source_file": "static/images/mutation-loop-inline.svg"
     },
     {
-      "community": 10,
-      "community_name": "Mutation Loop",
+      "community": 12,
+      "community_name": "Mutation Pipeline",
       "file_type": "image",
       "id": "mutation_loop_tokenizer_gate",
       "label": "Tokenizer Gate",
       "source_file": "static/images/mutation-loop-inline.svg"
     },
     {
-      "community": 10,
-      "community_name": "Mutation Loop",
+      "community": 12,
+      "community_name": "Mutation Pipeline",
       "file_type": "image",
       "id": "mutation_loop_probe_pipeline",
       "label": "Probe Pipeline",
       "source_file": "static/images/mutation-loop-inline.svg"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__post",
+      "label": "Streaming UI from AI Agents: 4 Approaches Ranked",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "label": "Vercel AI SDK streamUI",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/vercel/ai"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__ag_ui",
+      "label": "AG-UI Protocol",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/ag-ui-protocol/ag-ui"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__a2ui",
+      "label": "A2UI Protocol",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/google/A2UI"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__kombai",
+      "label": "Kombai",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://www.kombai.com"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__react_server_components",
+      "label": "React Server Components",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__sse_event_streaming",
+      "label": "SSE Bi-directional Event Streaming",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__progressive_json_streaming",
+      "label": "Progressive JSON Streaming",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__copilotkit",
+      "label": "CopilotKit",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/CopilotKit/CopilotKit"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__langgraph",
+      "label": "LangGraph",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/langchain-ai/langgraph"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__crewai",
+      "label": "CrewAI",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/crewAIInc/crewAI"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__mastra",
+      "label": "Mastra",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/mastra-ai/mastra"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__whitelisted_component_catalog",
+      "label": "Whitelisted Component Catalog",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__schema_validation",
+      "label": "Schema Validation for UI Injection Prevention",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://developers.googleblog.com/introducing-a2ui-an-open-project-for-agent-driven-interfaces/"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__trust_boundary_decision",
+      "label": "Trust Boundary Decision Framework",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__code_data_events_divide",
+      "label": "Code vs Data vs Events Architectural Divide",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__generative_ui_playground",
+      "label": "CopilotKit Generative UI Playground",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://github.com/CopilotKit/generative-ui"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__ai_sdk_paused_october_2024",
+      "label": "AI SDK RSC Paused October 2024",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://sdk.vercel.ai/docs"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__griddynamics_a2ui_orchestration",
+      "label": "Grid Dynamics A2UI Orchestrator Inspection",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": "https://www.griddynamics.com/blog/ai-agent-for-ui-a2ui"
+    },
+    {
+      "author": "Christian Pojoni",
+      "captured_at": null,
+      "community": 6,
+      "community_name": "Streaming UI Protocols",
+      "contributor": null,
+      "file_type": "document",
+      "id": "frontend_ai_agents_streaming_ui__mcp",
+      "label": "MCP (Model Context Protocol)",
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__post",
+      "label": "Stop Putting Decisions in CLAUDE.md",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__push_context",
+      "label": "Push Context",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__pull_context",
+      "label": "Pull Context",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__claude_md",
+      "label": "CLAUDE.md / AGENTS.md",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__eth_zurich_study",
+      "label": "ETH Zurich AGENTS.md Study (2026)",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://arxiv.org/abs/2602.11988"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__lulla_et_al_study",
+      "label": "Lulla et al. Paired AGENTS.md Study",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://arxiv.org/abs/2601.20404"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__lore_paper",
+      "label": "Lore Paper (Stetsenko, March 2026)",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://arxiv.org/abs/2603.15566"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__nygard_adr_format",
+      "label": "Nygard ADR Format",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__adr",
+      "label": "Architecture Decision Records",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__specs_directory",
+      "label": "docs/specs Per-feature Intent",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__claude_skills",
+      "label": ".claude/skills Triggered Workflow Protocols",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__progressive_disclosure",
+      "label": "Progressive Disclosure",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://github.com/shanraisshan/claude-code-best-practice"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__intent_framework",
+      "label": "Intent Spec-Driven Framework",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://www.augmentcode.com/guides/how-to-build-agents-md"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__token_tax",
+      "label": "20% Per-Session Token Tax",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__decision_shadow",
+      "label": "Decision Shadow (Implementation-Level Reasoning)",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__layered_decision_residency",
+      "label": "Layered Decision Residency (Commits/ADRs/Specs/CLAUDE.md)",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__humanlayer_warning",
+      "label": "Anthropic Harness CLAUDE.md Relevance Warning",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://www.humanlayer.dev/blog/writing-a-good-claude-md"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__marktechpost_eth_writeup",
+      "label": "MarkTechPost ETH Study Writeup",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://www.marktechpost.com/2026/02/25/new-eth-zurich-study-proves-your-ai-coding-agents-are-failing-because-your-agents-md-files-are-too-detailed/"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__hrafn",
+      "label": "Hrafn Rust Agent Framework",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": "https://github.com/5queezer/hrafn"
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__rationale_pull_context",
+      "label": "Rationale: Why Pull Context Beats Push for Decisions",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
+    },
+    {
+      "author": null,
+      "captured_at": null,
+      "community": 3,
+      "community_name": "Context Engineering Patterns",
+      "contributor": null,
+      "file_type": "document",
+      "id": "push_pull_context__rationale_adr_properties",
+      "label": "Rationale: Four ADR Properties That Make Them Agent-Friendly",
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "source_url": null
     }
   ],
   "links": [
@@ -2167,9 +2651,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "translate_chatrequest",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "translate_chatrequest",
-      "confidence_score": 1.0
+      "target": "translate_chatrequest"
     },
     {
       "relation": "contains",
@@ -2179,9 +2663,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "translate_chatmessage",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "translate_chatmessage",
-      "confidence_score": 1.0
+      "target": "translate_chatmessage"
     },
     {
       "relation": "contains",
@@ -2191,9 +2675,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "translate_chatresponse",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "translate_chatresponse",
-      "confidence_score": 1.0
+      "target": "translate_chatresponse"
     },
     {
       "relation": "contains",
@@ -2203,9 +2687,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_main",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_main",
-      "confidence_score": 1.0
+      "target": "main_main"
     },
     {
       "relation": "contains",
@@ -2215,9 +2699,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_contenthash",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_contenthash",
-      "confidence_score": 1.0
+      "target": "main_contenthash"
     },
     {
       "relation": "contains",
@@ -2227,9 +2711,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_splitfrontmatterandbody",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_splitfrontmatterandbody",
-      "confidence_score": 1.0
+      "target": "main_splitfrontmatterandbody"
     },
     {
       "relation": "contains",
@@ -2239,9 +2723,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_extractfrontmatterfield",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_extractfrontmatterfield",
-      "confidence_score": 1.0
+      "target": "main_extractfrontmatterfield"
     },
     {
       "relation": "contains",
@@ -2251,9 +2735,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_buildtranslatedfile",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_buildtranslatedfile",
-      "confidence_score": 1.0
+      "target": "main_buildtranslatedfile"
     },
     {
       "relation": "contains",
@@ -2263,9 +2747,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_translatetext",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_translatetext",
-      "confidence_score": 1.0
+      "target": "main_translatetext"
     },
     {
       "relation": "contains",
@@ -2275,9 +2759,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_translatetextwithcontext",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_translatetextwithcontext",
-      "confidence_score": 1.0
+      "target": "main_translatetextwithcontext"
     },
     {
       "relation": "contains",
@@ -2287,9 +2771,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_resolvemodelcandidates",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_resolvemodelcandidates",
-      "confidence_score": 1.0
+      "target": "main_resolvemodelcandidates"
     },
     {
       "relation": "contains",
@@ -2299,9 +2783,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_parsemodellist",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_parsemodellist",
-      "confidence_score": 1.0
+      "target": "main_parsemodellist"
     },
     {
       "relation": "contains",
@@ -2311,9 +2795,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_uniquemodels",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_uniquemodels",
-      "confidence_score": 1.0
+      "target": "main_uniquemodels"
     },
     {
       "relation": "contains",
@@ -2323,9 +2807,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_splitbodyintochunks",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_splitbodyintochunks",
-      "confidence_score": 1.0
+      "target": "main_splitbodyintochunks"
     },
     {
       "relation": "contains",
@@ -2335,9 +2819,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_chunkhash",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_chunkhash",
-      "confidence_score": 1.0
+      "target": "main_chunkhash"
     },
     {
       "relation": "contains",
@@ -2347,9 +2831,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_headsnippet",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_headsnippet",
-      "confidence_score": 1.0
+      "target": "main_headsnippet"
     },
     {
       "relation": "contains",
@@ -2359,9 +2843,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_tailsnippet",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_tailsnippet",
-      "confidence_score": 1.0
+      "target": "main_tailsnippet"
     },
     {
       "relation": "contains",
@@ -2371,9 +2855,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_extractchunkhashes",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_extractchunkhashes",
-      "confidence_score": 1.0
+      "target": "main_extractchunkhashes"
     },
     {
       "relation": "contains",
@@ -2383,9 +2867,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_translatechunk",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_translatechunk",
-      "confidence_score": 1.0
+      "target": "main_translatechunk"
     },
     {
       "relation": "contains",
@@ -2395,9 +2879,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_shouldfallbackmodel",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_shouldfallbackmodel",
-      "confidence_score": 1.0
+      "target": "main_shouldfallbackmodel"
     },
     {
       "relation": "contains",
@@ -2407,9 +2891,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "generate_og_images_chatrequest",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "generate_og_images_chatrequest",
-      "confidence_score": 1.0
+      "target": "generate_og_images_chatrequest"
     },
     {
       "relation": "contains",
@@ -2419,9 +2903,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "generate_og_images_chatmessage",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "generate_og_images_chatmessage",
-      "confidence_score": 1.0
+      "target": "generate_og_images_chatmessage"
     },
     {
       "relation": "contains",
@@ -2431,9 +2915,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "generate_og_images_chatresponse",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "generate_og_images_chatresponse",
-      "confidence_score": 1.0
+      "target": "generate_og_images_chatresponse"
     },
     {
       "relation": "contains",
@@ -2443,9 +2927,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "generate_og_images_falrequest",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "generate_og_images_falrequest",
-      "confidence_score": 1.0
+      "target": "generate_og_images_falrequest"
     },
     {
       "relation": "contains",
@@ -2455,9 +2939,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "generate_og_images_falimagesize",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "generate_og_images_falimagesize",
-      "confidence_score": 1.0
+      "target": "generate_og_images_falimagesize"
     },
     {
       "relation": "contains",
@@ -2467,9 +2951,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "generate_og_images_falresponse",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "generate_og_images_falresponse",
-      "confidence_score": 1.0
+      "target": "generate_og_images_falresponse"
     },
     {
       "relation": "contains",
@@ -2479,9 +2963,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_insertimagefield",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_insertimagefield",
-      "confidence_score": 1.0
+      "target": "main_insertimagefield"
     },
     {
       "relation": "contains",
@@ -2491,9 +2975,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_appenddisclaimer",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_appenddisclaimer",
-      "confidence_score": 1.0
+      "target": "main_appenddisclaimer"
     },
     {
       "relation": "contains",
@@ -2503,9 +2987,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_generateprompt",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_generateprompt",
-      "confidence_score": 1.0
+      "target": "main_generateprompt"
     },
     {
       "relation": "contains",
@@ -2515,9 +2999,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_generateimage",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_generateimage",
-      "confidence_score": 1.0
+      "target": "main_generateimage"
     },
     {
       "relation": "contains",
@@ -2527,9 +3011,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "check_links_linklocation",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "check_links_linklocation",
-      "confidence_score": 1.0
+      "target": "check_links_linklocation"
     },
     {
       "relation": "contains",
@@ -2539,9 +3023,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "check_links_checkresult",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "check_links_checkresult",
-      "confidence_score": 1.0
+      "target": "check_links_checkresult"
     },
     {
       "relation": "contains",
@@ -2551,9 +3035,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "check_links_arxivfeed",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "check_links_arxivfeed",
-      "confidence_score": 1.0
+      "target": "check_links_arxivfeed"
     },
     {
       "relation": "contains",
@@ -2563,9 +3047,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "check_links_arxiventry",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "check_links_arxiventry",
-      "confidence_score": 1.0
+      "target": "check_links_arxiventry"
     },
     {
       "relation": "contains",
@@ -2575,9 +3059,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "check_links_crossrefresponse",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "check_links_crossrefresponse",
-      "confidence_score": 1.0
+      "target": "check_links_crossrefresponse"
     },
     {
       "relation": "contains",
@@ -2587,9 +3071,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_collectfiles",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_collectfiles",
-      "confidence_score": 1.0
+      "target": "main_collectfiles"
     },
     {
       "relation": "contains",
@@ -2599,9 +3083,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_extracturls",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_extracturls",
-      "confidence_score": 1.0
+      "target": "main_extracturls"
     },
     {
       "relation": "contains",
@@ -2611,9 +3095,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_cleanurl",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_cleanurl",
-      "confidence_score": 1.0
+      "target": "main_cleanurl"
     },
     {
       "relation": "contains",
@@ -2623,9 +3107,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_cleanbareurl",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_cleanbareurl",
-      "confidence_score": 1.0
+      "target": "main_cleanbareurl"
     },
     {
       "relation": "contains",
@@ -2635,9 +3119,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_shouldskipurl",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_shouldskipurl",
-      "confidence_score": 1.0
+      "target": "main_shouldskipurl"
     },
     {
       "relation": "contains",
@@ -2647,9 +3131,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_checkurl",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_checkurl",
-      "confidence_score": 1.0
+      "target": "main_checkurl"
     },
     {
       "relation": "contains",
@@ -2659,9 +3143,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_checkarxivtitle",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_checkarxivtitle",
-      "confidence_score": 1.0
+      "target": "main_checkarxivtitle"
     },
     {
       "relation": "contains",
@@ -2671,9 +3155,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_checkdoititle",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_checkdoititle",
-      "confidence_score": 1.0
+      "target": "main_checkdoititle"
     },
     {
       "relation": "contains",
@@ -2683,9 +3167,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_extractarxivid",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_extractarxivid",
-      "confidence_score": 1.0
+      "target": "main_extractarxivid"
     },
     {
       "relation": "contains",
@@ -2695,9 +3179,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_extractdoi",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_extractdoi",
-      "confidence_score": 1.0
+      "target": "main_extractdoi"
     },
     {
       "relation": "contains",
@@ -2707,9 +3191,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_fuzzymatch",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_fuzzymatch",
-      "confidence_score": 1.0
+      "target": "main_fuzzymatch"
     },
     {
       "relation": "contains",
@@ -2719,9 +3203,9 @@
       "weight": 1.0,
       "_src": "main",
       "_tgt": "main_normalizewhitespace",
+      "confidence_score": 1.0,
       "source": "main",
-      "target": "main_normalizewhitespace",
-      "confidence_score": 1.0
+      "target": "main_normalizewhitespace"
     },
     {
       "relation": "calls",
@@ -2731,9 +3215,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_resolvemodelcandidates",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_resolvemodelcandidates",
-      "confidence_score": 1.0
+      "target": "main_resolvemodelcandidates"
     },
     {
       "relation": "calls",
@@ -2743,9 +3227,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_contenthash",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_contenthash",
-      "confidence_score": 1.0
+      "target": "main_contenthash"
     },
     {
       "relation": "calls",
@@ -2755,9 +3239,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_extractfrontmatterfield",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_extractfrontmatterfield",
-      "confidence_score": 1.0
+      "target": "main_extractfrontmatterfield"
     },
     {
       "relation": "calls",
@@ -2767,9 +3251,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_splitfrontmatterandbody",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_splitfrontmatterandbody",
-      "confidence_score": 1.0
+      "target": "main_splitfrontmatterandbody"
     },
     {
       "relation": "calls",
@@ -2779,9 +3263,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_translatetext",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_translatetext",
-      "confidence_score": 1.0
+      "target": "main_translatetext"
     },
     {
       "relation": "calls",
@@ -2791,9 +3275,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_splitbodyintochunks",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_splitbodyintochunks",
-      "confidence_score": 1.0
+      "target": "main_splitbodyintochunks"
     },
     {
       "relation": "calls",
@@ -2803,9 +3287,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_tailsnippet",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_tailsnippet",
-      "confidence_score": 1.0
+      "target": "main_tailsnippet"
     },
     {
       "relation": "calls",
@@ -2815,9 +3299,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_headsnippet",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_headsnippet",
-      "confidence_score": 1.0
+      "target": "main_headsnippet"
     },
     {
       "relation": "calls",
@@ -2827,9 +3311,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_chunkhash",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_chunkhash",
-      "confidence_score": 1.0
+      "target": "main_chunkhash"
     },
     {
       "relation": "calls",
@@ -2839,9 +3323,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_extractchunkhashes",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_extractchunkhashes",
-      "confidence_score": 1.0
+      "target": "main_extractchunkhashes"
     },
     {
       "relation": "calls",
@@ -2851,9 +3335,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_translatechunk",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_translatechunk",
-      "confidence_score": 1.0
+      "target": "main_translatechunk"
     },
     {
       "relation": "calls",
@@ -2863,9 +3347,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_buildtranslatedfile",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_buildtranslatedfile",
-      "confidence_score": 1.0
+      "target": "main_buildtranslatedfile"
     },
     {
       "relation": "calls",
@@ -2875,9 +3359,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_generateprompt",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_generateprompt",
-      "confidence_score": 1.0
+      "target": "main_generateprompt"
     },
     {
       "relation": "calls",
@@ -2887,9 +3371,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_generateimage",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_generateimage",
-      "confidence_score": 1.0
+      "target": "main_generateimage"
     },
     {
       "relation": "calls",
@@ -2899,9 +3383,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_insertimagefield",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_insertimagefield",
-      "confidence_score": 1.0
+      "target": "main_insertimagefield"
     },
     {
       "relation": "calls",
@@ -2911,9 +3395,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_collectfiles",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_collectfiles",
-      "confidence_score": 1.0
+      "target": "main_collectfiles"
     },
     {
       "relation": "calls",
@@ -2923,9 +3407,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_extracturls",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_extracturls",
-      "confidence_score": 1.0
+      "target": "main_extracturls"
     },
     {
       "relation": "calls",
@@ -2935,9 +3419,9 @@
       "weight": 1.0,
       "_src": "main_main",
       "_tgt": "main_checkurl",
+      "confidence_score": 1.0,
       "source": "main_main",
-      "target": "main_checkurl",
-      "confidence_score": 1.0
+      "target": "main_checkurl"
     },
     {
       "relation": "calls",
@@ -2947,9 +3431,9 @@
       "weight": 1.0,
       "_src": "main_insertimagefield",
       "_tgt": "main_splitfrontmatterandbody",
+      "confidence_score": 1.0,
       "source": "main_splitfrontmatterandbody",
-      "target": "main_insertimagefield",
-      "confidence_score": 1.0
+      "target": "main_insertimagefield"
     },
     {
       "relation": "calls",
@@ -2959,9 +3443,9 @@
       "weight": 1.0,
       "_src": "main_extractchunkhashes",
       "_tgt": "main_extractfrontmatterfield",
+      "confidence_score": 1.0,
       "source": "main_extractfrontmatterfield",
-      "target": "main_extractchunkhashes",
-      "confidence_score": 1.0
+      "target": "main_extractchunkhashes"
     },
     {
       "relation": "calls",
@@ -2971,9 +3455,9 @@
       "weight": 1.0,
       "_src": "main_translatetext",
       "_tgt": "main_translatetextwithcontext",
+      "confidence_score": 1.0,
       "source": "main_translatetext",
-      "target": "main_translatetextwithcontext",
-      "confidence_score": 1.0
+      "target": "main_translatetextwithcontext"
     },
     {
       "relation": "calls",
@@ -2983,9 +3467,9 @@
       "weight": 1.0,
       "_src": "main_translatetextwithcontext",
       "_tgt": "main_shouldfallbackmodel",
+      "confidence_score": 1.0,
       "source": "main_translatetextwithcontext",
-      "target": "main_shouldfallbackmodel",
-      "confidence_score": 1.0
+      "target": "main_shouldfallbackmodel"
     },
     {
       "relation": "calls",
@@ -2995,9 +3479,9 @@
       "weight": 1.0,
       "_src": "main_translatechunk",
       "_tgt": "main_translatetextwithcontext",
+      "confidence_score": 1.0,
       "source": "main_translatetextwithcontext",
-      "target": "main_translatechunk",
-      "confidence_score": 1.0
+      "target": "main_translatechunk"
     },
     {
       "relation": "calls",
@@ -3007,9 +3491,9 @@
       "weight": 1.0,
       "_src": "main_resolvemodelcandidates",
       "_tgt": "main_uniquemodels",
+      "confidence_score": 1.0,
       "source": "main_resolvemodelcandidates",
-      "target": "main_uniquemodels",
-      "confidence_score": 1.0
+      "target": "main_uniquemodels"
     },
     {
       "relation": "calls",
@@ -3019,9 +3503,9 @@
       "weight": 1.0,
       "_src": "main_resolvemodelcandidates",
       "_tgt": "main_parsemodellist",
+      "confidence_score": 1.0,
       "source": "main_resolvemodelcandidates",
-      "target": "main_parsemodellist",
-      "confidence_score": 1.0
+      "target": "main_parsemodellist"
     },
     {
       "relation": "calls",
@@ -3031,9 +3515,9 @@
       "weight": 1.0,
       "_src": "main_translatechunk",
       "_tgt": "main_headsnippet",
+      "confidence_score": 1.0,
       "source": "main_headsnippet",
-      "target": "main_translatechunk",
-      "confidence_score": 1.0
+      "target": "main_translatechunk"
     },
     {
       "relation": "calls",
@@ -3043,9 +3527,9 @@
       "weight": 1.0,
       "_src": "main_translatechunk",
       "_tgt": "main_tailsnippet",
+      "confidence_score": 1.0,
       "source": "main_tailsnippet",
-      "target": "main_translatechunk",
-      "confidence_score": 1.0
+      "target": "main_translatechunk"
     },
     {
       "relation": "calls",
@@ -3055,9 +3539,9 @@
       "weight": 1.0,
       "_src": "main_generateprompt",
       "_tgt": "main_shouldfallbackmodel",
+      "confidence_score": 1.0,
       "source": "main_shouldfallbackmodel",
-      "target": "main_generateprompt",
-      "confidence_score": 1.0
+      "target": "main_generateprompt"
     },
     {
       "relation": "contains",
@@ -3067,9 +3551,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testresolvemodelcandidatesfromexplicitlist",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testresolvemodelcandidatesfromexplicitlist",
-      "confidence_score": 1.0
+      "target": "main_test_testresolvemodelcandidatesfromexplicitlist"
     },
     {
       "relation": "contains",
@@ -3079,9 +3563,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
-      "confidence_score": 1.0
+      "target": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks"
     },
     {
       "relation": "contains",
@@ -3091,9 +3575,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testtranslatetextfallsbackonratelimit",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testtranslatetextfallsbackonratelimit",
-      "confidence_score": 1.0
+      "target": "main_test_testtranslatetextfallsbackonratelimit"
     },
     {
       "relation": "contains",
@@ -3103,9 +3587,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testshouldfallbackmodel",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testshouldfallbackmodel",
-      "confidence_score": 1.0
+      "target": "main_test_testshouldfallbackmodel"
     },
     {
       "relation": "contains",
@@ -3115,9 +3599,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testsplitbodyintochunks",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testsplitbodyintochunks",
-      "confidence_score": 1.0
+      "target": "main_test_testsplitbodyintochunks"
     },
     {
       "relation": "contains",
@@ -3127,9 +3611,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks",
-      "confidence_score": 1.0
+      "target": "main_test_testsplitbodyintochunksignoresheadingsincodeblocks"
     },
     {
       "relation": "contains",
@@ -3139,9 +3623,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testsplitbodyintochunkstildefence",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testsplitbodyintochunkstildefence",
-      "confidence_score": 1.0
+      "target": "main_test_testsplitbodyintochunkstildefence"
     },
     {
       "relation": "contains",
@@ -3151,9 +3635,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testsplitbodyintochunksnoheadings",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testsplitbodyintochunksnoheadings",
-      "confidence_score": 1.0
+      "target": "main_test_testsplitbodyintochunksnoheadings"
     },
     {
       "relation": "contains",
@@ -3163,9 +3647,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testsplitbodyroundtrip",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testsplitbodyroundtrip",
-      "confidence_score": 1.0
+      "target": "main_test_testsplitbodyroundtrip"
     },
     {
       "relation": "contains",
@@ -3175,9 +3659,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testchunkhashdeterministic",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testchunkhashdeterministic",
-      "confidence_score": 1.0
+      "target": "main_test_testchunkhashdeterministic"
     },
     {
       "relation": "contains",
@@ -3187,9 +3671,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextractchunkhashes",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextractchunkhashes",
-      "confidence_score": 1.0
+      "target": "main_test_testextractchunkhashes"
     },
     {
       "relation": "contains",
@@ -3199,9 +3683,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextractchunkhashesempty",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextractchunkhashesempty",
-      "confidence_score": 1.0
+      "target": "main_test_testextractchunkhashesempty"
     },
     {
       "relation": "contains",
@@ -3211,9 +3695,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testbuildtranslatedfileincludeschunkhashes",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testbuildtranslatedfileincludeschunkhashes",
-      "confidence_score": 1.0
+      "target": "main_test_testbuildtranslatedfileincludeschunkhashes"
     },
     {
       "relation": "contains",
@@ -3223,9 +3707,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testheadandtailsnippet",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testheadandtailsnippet",
-      "confidence_score": 1.0
+      "target": "main_test_testheadandtailsnippet"
     },
     {
       "relation": "contains",
@@ -3235,9 +3719,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testtranslatechunkcontextinsystemprompt",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testtranslatechunkcontextinsystemprompt",
-      "confidence_score": 1.0
+      "target": "main_test_testtranslatechunkcontextinsystemprompt"
     },
     {
       "relation": "contains",
@@ -3247,9 +3731,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_escaped",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_escaped",
-      "confidence_score": 1.0
+      "target": "main_test_escaped"
     },
     {
       "relation": "contains",
@@ -3259,9 +3743,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_assertstringslicesequal",
-      "confidence_score": 1.0
+      "target": "main_test_assertstringslicesequal"
     },
     {
       "relation": "contains",
@@ -3271,9 +3755,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "translate_roundtripfunc",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "translate_roundtripfunc",
-      "confidence_score": 1.0
+      "target": "translate_roundtripfunc"
     },
     {
       "relation": "contains",
@@ -3283,9 +3767,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_jsonresponse",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_jsonresponse",
-      "confidence_score": 1.0
+      "target": "main_test_jsonresponse"
     },
     {
       "relation": "contains",
@@ -3295,9 +3779,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "generate_og_images_roundtripfunc",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "generate_og_images_roundtripfunc",
-      "confidence_score": 1.0
+      "target": "generate_og_images_roundtripfunc"
     },
     {
       "relation": "contains",
@@ -3307,9 +3791,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testsplitfrontmatterandbody",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testsplitfrontmatterandbody",
-      "confidence_score": 1.0
+      "target": "main_test_testsplitfrontmatterandbody"
     },
     {
       "relation": "contains",
@@ -3319,9 +3803,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextractfrontmatterfield",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextractfrontmatterfield",
-      "confidence_score": 1.0
+      "target": "main_test_testextractfrontmatterfield"
     },
     {
       "relation": "contains",
@@ -3331,9 +3815,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testcontenthash",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testcontenthash",
-      "confidence_score": 1.0
+      "target": "main_test_testcontenthash"
     },
     {
       "relation": "contains",
@@ -3343,9 +3827,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testinsertimagefield",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testinsertimagefield",
-      "confidence_score": 1.0
+      "target": "main_test_testinsertimagefield"
     },
     {
       "relation": "contains",
@@ -3355,9 +3839,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testgeneratepromptwithfallback",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testgeneratepromptwithfallback",
-      "confidence_score": 1.0
+      "target": "main_test_testgeneratepromptwithfallback"
     },
     {
       "relation": "contains",
@@ -3367,9 +3851,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testgenerateimagesuccess",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testgenerateimagesuccess",
-      "confidence_score": 1.0
+      "target": "main_test_testgenerateimagesuccess"
     },
     {
       "relation": "contains",
@@ -3379,9 +3863,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testcontenthashskipsunchanged",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testcontenthashskipsunchanged",
-      "confidence_score": 1.0
+      "target": "main_test_testcontenthashskipsunchanged"
     },
     {
       "relation": "contains",
@@ -3391,9 +3875,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testpostfilteringskipstranslations",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testpostfilteringskipstranslations",
-      "confidence_score": 1.0
+      "target": "main_test_testpostfilteringskipstranslations"
     },
     {
       "relation": "contains",
@@ -3403,9 +3887,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_projectroot",
-      "confidence_score": 1.0
+      "target": "main_test_projectroot"
     },
     {
       "relation": "contains",
@@ -3415,9 +3899,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_readallowedtags",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_readallowedtags",
-      "confidence_score": 1.0
+      "target": "main_test_readallowedtags"
     },
     {
       "relation": "contains",
@@ -3427,9 +3911,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testallowedtagscontainsnewtags",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testallowedtagscontainsnewtags",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagscontainsnewtags"
     },
     {
       "relation": "contains",
@@ -3439,9 +3923,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testallowedtagsissorted",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testallowedtagsissorted",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagsissorted"
     },
     {
       "relation": "contains",
@@ -3451,9 +3935,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testallowedtagsnoduplicates",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testallowedtagsnoduplicates",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagsnoduplicates"
     },
     {
       "relation": "contains",
@@ -3463,9 +3947,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testallowedtagsformat",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testallowedtagsformat",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagsformat"
     },
     {
       "relation": "contains",
@@ -3475,9 +3959,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_parsetaglist",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_parsetaglist",
-      "confidence_score": 1.0
+      "target": "main_test_parsetaglist"
     },
     {
       "relation": "contains",
@@ -3487,9 +3971,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testparsetaglist",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testparsetaglist",
-      "confidence_score": 1.0
+      "target": "main_test_testparsetaglist"
     },
     {
       "relation": "contains",
@@ -3499,9 +3983,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testnewblogposthasrequiredfields",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testnewblogposthasrequiredfields",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogposthasrequiredfields"
     },
     {
       "relation": "contains",
@@ -3511,9 +3995,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testnewblogposttagsareallowed",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testnewblogposttagsareallowed",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogposttagsareallowed"
     },
     {
       "relation": "contains",
@@ -3523,9 +4007,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testnewblogpostusesnewtags",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testnewblogpostusesnewtags",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostusesnewtags"
     },
     {
       "relation": "contains",
@@ -3535,9 +4019,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testnewblogpostdateformat",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testnewblogpostdateformat",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostdateformat"
     },
     {
       "relation": "contains",
@@ -3547,9 +4031,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testnewblogpostbodyisnonempty",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testnewblogpostbodyisnonempty",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostbodyisnonempty"
     },
     {
       "relation": "contains",
@@ -3559,9 +4043,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextracturls",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextracturls",
-      "confidence_score": 1.0
+      "target": "main_test_testextracturls"
     },
     {
       "relation": "contains",
@@ -3571,9 +4055,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextracturlslinenumbers",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextracturlslinenumbers",
-      "confidence_score": 1.0
+      "target": "main_test_testextracturlslinenumbers"
     },
     {
       "relation": "contains",
@@ -3583,9 +4067,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextractarxivid",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextractarxivid",
-      "confidence_score": 1.0
+      "target": "main_test_testextractarxivid"
     },
     {
       "relation": "contains",
@@ -3595,9 +4079,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testextractdoi",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testextractdoi",
-      "confidence_score": 1.0
+      "target": "main_test_testextractdoi"
     },
     {
       "relation": "contains",
@@ -3607,9 +4091,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testfuzzymatch",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testfuzzymatch",
-      "confidence_score": 1.0
+      "target": "main_test_testfuzzymatch"
     },
     {
       "relation": "contains",
@@ -3619,9 +4103,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testcleanbareurl",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testcleanbareurl",
-      "confidence_score": 1.0
+      "target": "main_test_testcleanbareurl"
     },
     {
       "relation": "contains",
@@ -3631,9 +4115,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testshouldskipurl",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testshouldskipurl",
-      "confidence_score": 1.0
+      "target": "main_test_testshouldskipurl"
     },
     {
       "relation": "contains",
@@ -3643,9 +4127,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testcollectfileswithflag",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testcollectfileswithflag",
-      "confidence_score": 1.0
+      "target": "main_test_testcollectfileswithflag"
     },
     {
       "relation": "contains",
@@ -3655,9 +4139,9 @@
       "weight": 1.0,
       "_src": "main_test",
       "_tgt": "main_test_testnormalizewhitespace",
+      "confidence_score": 1.0,
       "source": "main_test",
-      "target": "main_test_testnormalizewhitespace",
-      "confidence_score": 1.0
+      "target": "main_test_testnormalizewhitespace"
     },
     {
       "relation": "calls",
@@ -3667,9 +4151,9 @@
       "weight": 1.0,
       "_src": "main_test_testresolvemodelcandidatesfromexplicitlist",
       "_tgt": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0,
       "source": "main_test_testresolvemodelcandidatesfromexplicitlist",
-      "target": "main_test_assertstringslicesequal",
-      "confidence_score": 1.0
+      "target": "main_test_assertstringslicesequal"
     },
     {
       "relation": "calls",
@@ -3679,9 +4163,9 @@
       "weight": 1.0,
       "_src": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
       "_tgt": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0,
       "source": "main_test_testresolvemodelcandidatesfromprimaryandfallbacks",
-      "target": "main_test_assertstringslicesequal",
-      "confidence_score": 1.0
+      "target": "main_test_assertstringslicesequal"
     },
     {
       "relation": "calls",
@@ -3691,9 +4175,9 @@
       "weight": 1.0,
       "_src": "main_test_testtranslatetextfallsbackonratelimit",
       "_tgt": "translate_roundtripfunc",
+      "confidence_score": 1.0,
       "source": "main_test_testtranslatetextfallsbackonratelimit",
-      "target": "translate_roundtripfunc",
-      "confidence_score": 1.0
+      "target": "translate_roundtripfunc"
     },
     {
       "relation": "calls",
@@ -3703,9 +4187,9 @@
       "weight": 1.0,
       "_src": "main_test_testtranslatetextfallsbackonratelimit",
       "_tgt": "main_test_jsonresponse",
+      "confidence_score": 1.0,
       "source": "main_test_testtranslatetextfallsbackonratelimit",
-      "target": "main_test_jsonresponse",
-      "confidence_score": 1.0
+      "target": "main_test_jsonresponse"
     },
     {
       "relation": "calls",
@@ -3715,9 +4199,9 @@
       "weight": 1.0,
       "_src": "main_test_testtranslatetextfallsbackonratelimit",
       "_tgt": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0,
       "source": "main_test_testtranslatetextfallsbackonratelimit",
-      "target": "main_test_assertstringslicesequal",
-      "confidence_score": 1.0
+      "target": "main_test_assertstringslicesequal"
     },
     {
       "relation": "calls",
@@ -3727,9 +4211,9 @@
       "weight": 1.0,
       "_src": "main_test_testextractchunkhashes",
       "_tgt": "main_test_assertstringslicesequal",
+      "confidence_score": 1.0,
       "source": "main_test_testextractchunkhashes",
-      "target": "main_test_assertstringslicesequal",
-      "confidence_score": 1.0
+      "target": "main_test_assertstringslicesequal"
     },
     {
       "relation": "calls",
@@ -3739,9 +4223,9 @@
       "weight": 1.0,
       "_src": "main_test_testtranslatechunkcontextinsystemprompt",
       "_tgt": "translate_roundtripfunc",
+      "confidence_score": 1.0,
       "source": "main_test_testtranslatechunkcontextinsystemprompt",
-      "target": "translate_roundtripfunc",
-      "confidence_score": 1.0
+      "target": "translate_roundtripfunc"
     },
     {
       "relation": "calls",
@@ -3751,9 +4235,9 @@
       "weight": 1.0,
       "_src": "main_test_testtranslatechunkcontextinsystemprompt",
       "_tgt": "main_test_jsonresponse",
+      "confidence_score": 1.0,
       "source": "main_test_testtranslatechunkcontextinsystemprompt",
-      "target": "main_test_jsonresponse",
-      "confidence_score": 1.0
+      "target": "main_test_jsonresponse"
     },
     {
       "relation": "method",
@@ -3763,9 +4247,9 @@
       "weight": 1.0,
       "_src": "translate_roundtripfunc",
       "_tgt": "translate_roundtripfunc_roundtrip",
+      "confidence_score": 1.0,
       "source": "translate_roundtripfunc",
-      "target": "translate_roundtripfunc_roundtrip",
-      "confidence_score": 1.0
+      "target": "translate_roundtripfunc_roundtrip"
     },
     {
       "relation": "calls",
@@ -3775,9 +4259,9 @@
       "weight": 1.0,
       "_src": "main_test_testgeneratepromptwithfallback",
       "_tgt": "main_test_jsonresponse",
+      "confidence_score": 1.0,
       "source": "main_test_jsonresponse",
-      "target": "main_test_testgeneratepromptwithfallback",
-      "confidence_score": 1.0
+      "target": "main_test_testgeneratepromptwithfallback"
     },
     {
       "relation": "calls",
@@ -3787,9 +4271,9 @@
       "weight": 1.0,
       "_src": "main_test_testgenerateimagesuccess",
       "_tgt": "main_test_jsonresponse",
+      "confidence_score": 1.0,
       "source": "main_test_jsonresponse",
-      "target": "main_test_testgenerateimagesuccess",
-      "confidence_score": 1.0
+      "target": "main_test_testgenerateimagesuccess"
     },
     {
       "relation": "calls",
@@ -3799,9 +4283,9 @@
       "weight": 1.0,
       "_src": "main_insertimagefield",
       "_tgt": "main_appenddisclaimer",
+      "confidence_score": 1.0,
       "source": "main_insertimagefield",
-      "target": "main_appenddisclaimer",
-      "confidence_score": 1.0
+      "target": "main_appenddisclaimer"
     },
     {
       "relation": "method",
@@ -3811,9 +4295,9 @@
       "weight": 1.0,
       "_src": "generate_og_images_roundtripfunc",
       "_tgt": "generate_og_images_roundtripfunc_roundtrip",
+      "confidence_score": 1.0,
       "source": "generate_og_images_roundtripfunc",
-      "target": "generate_og_images_roundtripfunc_roundtrip",
-      "confidence_score": 1.0
+      "target": "generate_og_images_roundtripfunc_roundtrip"
     },
     {
       "relation": "calls",
@@ -3823,9 +4307,9 @@
       "weight": 1.0,
       "_src": "main_test_testgeneratepromptwithfallback",
       "_tgt": "generate_og_images_roundtripfunc",
+      "confidence_score": 1.0,
       "source": "generate_og_images_roundtripfunc",
-      "target": "main_test_testgeneratepromptwithfallback",
-      "confidence_score": 1.0
+      "target": "main_test_testgeneratepromptwithfallback"
     },
     {
       "relation": "calls",
@@ -3835,9 +4319,9 @@
       "weight": 1.0,
       "_src": "main_test_testgenerateimagesuccess",
       "_tgt": "generate_og_images_roundtripfunc",
+      "confidence_score": 1.0,
       "source": "generate_og_images_roundtripfunc",
-      "target": "main_test_testgenerateimagesuccess",
-      "confidence_score": 1.0
+      "target": "main_test_testgenerateimagesuccess"
     },
     {
       "relation": "calls",
@@ -3847,9 +4331,9 @@
       "weight": 1.0,
       "_src": "main_test_readallowedtags",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test_projectroot",
-      "target": "main_test_readallowedtags",
-      "confidence_score": 1.0
+      "target": "main_test_readallowedtags"
     },
     {
       "relation": "calls",
@@ -3859,9 +4343,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogposthasrequiredfields",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test_projectroot",
-      "target": "main_test_testnewblogposthasrequiredfields",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogposthasrequiredfields"
     },
     {
       "relation": "calls",
@@ -3871,9 +4355,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogposttagsareallowed",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test_projectroot",
-      "target": "main_test_testnewblogposttagsareallowed",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogposttagsareallowed"
     },
     {
       "relation": "calls",
@@ -3883,9 +4367,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogpostusesnewtags",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test_projectroot",
-      "target": "main_test_testnewblogpostusesnewtags",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostusesnewtags"
     },
     {
       "relation": "calls",
@@ -3895,9 +4379,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogpostdateformat",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test_projectroot",
-      "target": "main_test_testnewblogpostdateformat",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostdateformat"
     },
     {
       "relation": "calls",
@@ -3907,9 +4391,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogpostbodyisnonempty",
       "_tgt": "main_test_projectroot",
+      "confidence_score": 1.0,
       "source": "main_test_projectroot",
-      "target": "main_test_testnewblogpostbodyisnonempty",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostbodyisnonempty"
     },
     {
       "relation": "calls",
@@ -3919,9 +4403,9 @@
       "weight": 1.0,
       "_src": "main_test_testallowedtagscontainsnewtags",
       "_tgt": "main_test_readallowedtags",
+      "confidence_score": 1.0,
       "source": "main_test_readallowedtags",
-      "target": "main_test_testallowedtagscontainsnewtags",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagscontainsnewtags"
     },
     {
       "relation": "calls",
@@ -3931,9 +4415,9 @@
       "weight": 1.0,
       "_src": "main_test_testallowedtagsissorted",
       "_tgt": "main_test_readallowedtags",
+      "confidence_score": 1.0,
       "source": "main_test_readallowedtags",
-      "target": "main_test_testallowedtagsissorted",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagsissorted"
     },
     {
       "relation": "calls",
@@ -3943,9 +4427,9 @@
       "weight": 1.0,
       "_src": "main_test_testallowedtagsnoduplicates",
       "_tgt": "main_test_readallowedtags",
+      "confidence_score": 1.0,
       "source": "main_test_readallowedtags",
-      "target": "main_test_testallowedtagsnoduplicates",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagsnoduplicates"
     },
     {
       "relation": "calls",
@@ -3955,9 +4439,9 @@
       "weight": 1.0,
       "_src": "main_test_testallowedtagsformat",
       "_tgt": "main_test_readallowedtags",
+      "confidence_score": 1.0,
       "source": "main_test_readallowedtags",
-      "target": "main_test_testallowedtagsformat",
-      "confidence_score": 1.0
+      "target": "main_test_testallowedtagsformat"
     },
     {
       "relation": "calls",
@@ -3967,9 +4451,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogposttagsareallowed",
       "_tgt": "main_test_readallowedtags",
+      "confidence_score": 1.0,
       "source": "main_test_readallowedtags",
-      "target": "main_test_testnewblogposttagsareallowed",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogposttagsareallowed"
     },
     {
       "relation": "calls",
@@ -3979,9 +4463,9 @@
       "weight": 1.0,
       "_src": "main_test_testparsetaglist",
       "_tgt": "main_test_parsetaglist",
+      "confidence_score": 1.0,
       "source": "main_test_parsetaglist",
-      "target": "main_test_testparsetaglist",
-      "confidence_score": 1.0
+      "target": "main_test_testparsetaglist"
     },
     {
       "relation": "calls",
@@ -3991,9 +4475,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogposttagsareallowed",
       "_tgt": "main_test_parsetaglist",
+      "confidence_score": 1.0,
       "source": "main_test_parsetaglist",
-      "target": "main_test_testnewblogposttagsareallowed",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogposttagsareallowed"
     },
     {
       "relation": "calls",
@@ -4003,9 +4487,9 @@
       "weight": 1.0,
       "_src": "main_test_testnewblogpostusesnewtags",
       "_tgt": "main_test_parsetaglist",
+      "confidence_score": 1.0,
       "source": "main_test_parsetaglist",
-      "target": "main_test_testnewblogpostusesnewtags",
-      "confidence_score": 1.0
+      "target": "main_test_testnewblogpostusesnewtags"
     },
     {
       "relation": "calls",
@@ -4015,9 +4499,9 @@
       "weight": 1.0,
       "_src": "main_extracturls",
       "_tgt": "main_cleanurl",
+      "confidence_score": 1.0,
       "source": "main_extracturls",
-      "target": "main_cleanurl",
-      "confidence_score": 1.0
+      "target": "main_cleanurl"
     },
     {
       "relation": "calls",
@@ -4027,9 +4511,9 @@
       "weight": 1.0,
       "_src": "main_extracturls",
       "_tgt": "main_shouldskipurl",
+      "confidence_score": 1.0,
       "source": "main_extracturls",
-      "target": "main_shouldskipurl",
-      "confidence_score": 1.0
+      "target": "main_shouldskipurl"
     },
     {
       "relation": "calls",
@@ -4039,9 +4523,9 @@
       "weight": 1.0,
       "_src": "main_extracturls",
       "_tgt": "main_cleanbareurl",
+      "confidence_score": 1.0,
       "source": "main_extracturls",
-      "target": "main_cleanbareurl",
-      "confidence_score": 1.0
+      "target": "main_cleanbareurl"
     },
     {
       "relation": "calls",
@@ -4051,9 +4535,9 @@
       "weight": 1.0,
       "_src": "main_checkurl",
       "_tgt": "main_checkarxivtitle",
+      "confidence_score": 1.0,
       "source": "main_checkurl",
-      "target": "main_checkarxivtitle",
-      "confidence_score": 1.0
+      "target": "main_checkarxivtitle"
     },
     {
       "relation": "calls",
@@ -4063,9 +4547,9 @@
       "weight": 1.0,
       "_src": "main_checkurl",
       "_tgt": "main_checkdoititle",
+      "confidence_score": 1.0,
       "source": "main_checkurl",
-      "target": "main_checkdoititle",
-      "confidence_score": 1.0
+      "target": "main_checkdoititle"
     },
     {
       "relation": "calls",
@@ -4075,9 +4559,9 @@
       "weight": 1.0,
       "_src": "main_checkarxivtitle",
       "_tgt": "main_extractarxivid",
+      "confidence_score": 1.0,
       "source": "main_checkarxivtitle",
-      "target": "main_extractarxivid",
-      "confidence_score": 1.0
+      "target": "main_extractarxivid"
     },
     {
       "relation": "calls",
@@ -4087,9 +4571,9 @@
       "weight": 1.0,
       "_src": "main_checkarxivtitle",
       "_tgt": "main_normalizewhitespace",
+      "confidence_score": 1.0,
       "source": "main_checkarxivtitle",
-      "target": "main_normalizewhitespace",
-      "confidence_score": 1.0
+      "target": "main_normalizewhitespace"
     },
     {
       "relation": "calls",
@@ -4099,9 +4583,9 @@
       "weight": 1.0,
       "_src": "main_checkarxivtitle",
       "_tgt": "main_fuzzymatch",
+      "confidence_score": 1.0,
       "source": "main_checkarxivtitle",
-      "target": "main_fuzzymatch",
-      "confidence_score": 1.0
+      "target": "main_fuzzymatch"
     },
     {
       "relation": "calls",
@@ -4111,9 +4595,9 @@
       "weight": 1.0,
       "_src": "main_checkdoititle",
       "_tgt": "main_extractdoi",
+      "confidence_score": 1.0,
       "source": "main_checkdoititle",
-      "target": "main_extractdoi",
-      "confidence_score": 1.0
+      "target": "main_extractdoi"
     },
     {
       "relation": "calls",
@@ -4123,9 +4607,9 @@
       "weight": 1.0,
       "_src": "main_checkdoititle",
       "_tgt": "main_fuzzymatch",
+      "confidence_score": 1.0,
       "source": "main_checkdoititle",
-      "target": "main_fuzzymatch",
-      "confidence_score": 1.0
+      "target": "main_fuzzymatch"
     },
     {
       "relation": "calls",
@@ -4135,9 +4619,9 @@
       "weight": 1.0,
       "_src": "main_fuzzymatch",
       "_tgt": "main_normalizewhitespace",
+      "confidence_score": 1.0,
       "source": "main_fuzzymatch",
-      "target": "main_normalizewhitespace",
-      "confidence_score": 1.0
+      "target": "main_normalizewhitespace"
     },
     {
       "relation": "references",
@@ -5876,6 +6360,618 @@
       "_tgt": "mutation_loop_probe_pipeline",
       "source": "mutation_loop_tokenizer_gate",
       "target": "mutation_loop_probe_pipeline"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__ag_ui",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__ag_ui"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__a2ui",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__a2ui"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__kombai",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__kombai"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__generative_ui_playground",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__generative_ui_playground"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__code_data_events_divide",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__code_data_events_divide"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__trust_boundary_decision",
+      "_tgt": "frontend_ai_agents_streaming_ui__post",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__trust_boundary_decision"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__post",
+      "_tgt": "frontend_ai_agents_streaming_ui__mcp",
+      "source": "frontend_ai_agents_streaming_ui__post",
+      "target": "frontend_ai_agents_streaming_ui__mcp"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "_tgt": "frontend_ai_agents_streaming_ui__react_server_components",
+      "source": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "target": "frontend_ai_agents_streaming_ui__react_server_components"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "_tgt": "frontend_ai_agents_streaming_ui__ai_sdk_paused_october_2024",
+      "source": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "target": "frontend_ai_agents_streaming_ui__ai_sdk_paused_october_2024"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__code_data_events_divide",
+      "_tgt": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "source": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
+      "target": "frontend_ai_agents_streaming_ui__code_data_events_divide"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__ag_ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__sse_event_streaming",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__sse_event_streaming"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__ag_ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__copilotkit",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__copilotkit"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__ag_ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__langgraph",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__langgraph"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__ag_ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__crewai",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__crewai"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__ag_ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__mastra",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__mastra"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__code_data_events_divide",
+      "_tgt": "frontend_ai_agents_streaming_ui__ag_ui",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__code_data_events_divide"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__ag_ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__a2ui",
+      "source": "frontend_ai_agents_streaming_ui__ag_ui",
+      "target": "frontend_ai_agents_streaming_ui__a2ui"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__a2ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__progressive_json_streaming",
+      "source": "frontend_ai_agents_streaming_ui__a2ui",
+      "target": "frontend_ai_agents_streaming_ui__progressive_json_streaming"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__a2ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__whitelisted_component_catalog",
+      "source": "frontend_ai_agents_streaming_ui__a2ui",
+      "target": "frontend_ai_agents_streaming_ui__whitelisted_component_catalog"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__a2ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__schema_validation",
+      "source": "frontend_ai_agents_streaming_ui__a2ui",
+      "target": "frontend_ai_agents_streaming_ui__schema_validation"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__a2ui",
+      "_tgt": "frontend_ai_agents_streaming_ui__griddynamics_a2ui_orchestration",
+      "source": "frontend_ai_agents_streaming_ui__a2ui",
+      "target": "frontend_ai_agents_streaming_ui__griddynamics_a2ui_orchestration"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__code_data_events_divide",
+      "_tgt": "frontend_ai_agents_streaming_ui__a2ui",
+      "source": "frontend_ai_agents_streaming_ui__a2ui",
+      "target": "frontend_ai_agents_streaming_ui__code_data_events_divide"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__a2ui",
+      "_tgt": "push_pull_context__pull_context",
+      "source": "frontend_ai_agents_streaming_ui__a2ui",
+      "target": "push_pull_context__pull_context"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__progressive_json_streaming",
+      "_tgt": "push_pull_context__progressive_disclosure",
+      "source": "frontend_ai_agents_streaming_ui__progressive_json_streaming",
+      "target": "push_pull_context__progressive_disclosure"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__copilotkit",
+      "_tgt": "frontend_ai_agents_streaming_ui__generative_ui_playground",
+      "source": "frontend_ai_agents_streaming_ui__copilotkit",
+      "target": "frontend_ai_agents_streaming_ui__generative_ui_playground"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "content/blog/frontend-ai-agents-streaming-ui.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "frontend_ai_agents_streaming_ui__trust_boundary_decision",
+      "_tgt": "push_pull_context__layered_decision_residency",
+      "source": "frontend_ai_agents_streaming_ui__trust_boundary_decision",
+      "target": "push_pull_context__layered_decision_residency"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__push_context",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__push_context"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__pull_context",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__pull_context"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__eth_zurich_study",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__eth_zurich_study"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__lulla_et_al_study",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__lulla_et_al_study"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__lore_paper",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__lore_paper"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__marktechpost_eth_writeup",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__marktechpost_eth_writeup"
+    },
+    {
+      "relation": "cites",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__humanlayer_warning",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__humanlayer_warning"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__post",
+      "_tgt": "push_pull_context__hrafn",
+      "source": "push_pull_context__post",
+      "target": "push_pull_context__hrafn"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__claude_md",
+      "_tgt": "push_pull_context__push_context",
+      "source": "push_pull_context__push_context",
+      "target": "push_pull_context__claude_md"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__push_context",
+      "_tgt": "push_pull_context__token_tax",
+      "source": "push_pull_context__push_context",
+      "target": "push_pull_context__token_tax"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__adr",
+      "_tgt": "push_pull_context__pull_context",
+      "source": "push_pull_context__pull_context",
+      "target": "push_pull_context__adr"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__specs_directory",
+      "_tgt": "push_pull_context__pull_context",
+      "source": "push_pull_context__pull_context",
+      "target": "push_pull_context__specs_directory"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__claude_skills",
+      "_tgt": "push_pull_context__pull_context",
+      "source": "push_pull_context__pull_context",
+      "target": "push_pull_context__claude_skills"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__rationale_pull_context",
+      "_tgt": "push_pull_context__pull_context",
+      "source": "push_pull_context__pull_context",
+      "target": "push_pull_context__rationale_pull_context"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__layered_decision_residency",
+      "_tgt": "push_pull_context__claude_md",
+      "source": "push_pull_context__claude_md",
+      "target": "push_pull_context__layered_decision_residency"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__eth_zurich_study",
+      "_tgt": "push_pull_context__lulla_et_al_study",
+      "source": "push_pull_context__eth_zurich_study",
+      "target": "push_pull_context__lulla_et_al_study"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__lore_paper",
+      "_tgt": "push_pull_context__decision_shadow",
+      "source": "push_pull_context__lore_paper",
+      "target": "push_pull_context__decision_shadow"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__adr",
+      "_tgt": "push_pull_context__nygard_adr_format",
+      "source": "push_pull_context__nygard_adr_format",
+      "target": "push_pull_context__adr"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__rationale_adr_properties",
+      "_tgt": "push_pull_context__adr",
+      "source": "push_pull_context__adr",
+      "target": "push_pull_context__rationale_adr_properties"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__layered_decision_residency",
+      "_tgt": "push_pull_context__adr",
+      "source": "push_pull_context__adr",
+      "target": "push_pull_context__layered_decision_residency"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__specs_directory",
+      "_tgt": "push_pull_context__intent_framework",
+      "source": "push_pull_context__specs_directory",
+      "target": "push_pull_context__intent_framework"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__layered_decision_residency",
+      "_tgt": "push_pull_context__specs_directory",
+      "source": "push_pull_context__specs_directory",
+      "target": "push_pull_context__layered_decision_residency"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__claude_skills",
+      "_tgt": "push_pull_context__progressive_disclosure",
+      "source": "push_pull_context__claude_skills",
+      "target": "push_pull_context__progressive_disclosure"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/push-pull-context.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_src": "push_pull_context__decision_shadow",
+      "_tgt": "push_pull_context__layered_decision_residency",
+      "source": "push_pull_context__decision_shadow",
+      "target": "push_pull_context__layered_decision_residency"
     }
   ]
 }
