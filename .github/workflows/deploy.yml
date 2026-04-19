@@ -54,6 +54,32 @@ jobs:
           go-version: "1.22"
           cache-dependency-path: cmd/sync-graph/go.mod
 
+      - name: Check graph freshness
+        run: |
+          set -euo pipefail
+          posts=$(find content/blog -maxdepth 1 -name '*.md' ! -name '_*.md' ! -name '*.de.md' ! -name '*.es.md' | sort)
+          indexed=$(python3 -c "
+          import json
+          d = json.load(open('graphify-out/graph.json'))
+          for f in sorted({n.get('source_file','') for n in d['nodes']}):
+              if f.startswith('content/blog/'):
+                  print(f)
+          ")
+          missing=()
+          while IFS= read -r p; do
+            grep -qxF "$p" <<<"$indexed" || missing+=("$p")
+          done <<<"$posts"
+          if (( ${#missing[@]} > 0 )); then
+            echo "::error::Graph is stale. Missing posts in graphify-out/graph.json:"
+            printf '  - %s\n' "${missing[@]}"
+            echo ""
+            echo "Fix locally:"
+            echo "  /graphify content/blog --update"
+            echo "  git add graphify-out/ && git commit && git push"
+            exit 1
+          fi
+          echo "Graph fresh: $(wc -l <<<"$posts") posts indexed."
+
       - name: Enrich graph data with community names
         run: cd cmd/sync-graph && go run main.go --graphify-dir ../../graphify-out --output ../../static/data/graph.json --root ../..
 
