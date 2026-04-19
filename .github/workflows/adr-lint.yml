@@ -86,7 +86,8 @@ jobs:
             superseded=$(grep -E '^- Status: Superseded by ADR-[0-9]{4}$' "$f" || true)
             if [ -n "$superseded" ]; then
               target=$(echo "$superseded" | grep -oE 'ADR-[0-9]{4}' | sed 's/ADR-//')
-              if ! ls "docs/adr/${target}-"*.md >/dev/null 2>&1; then
+              matches=(docs/adr/"${target}"-*.md)
+              if [ "${#matches[@]}" -eq 0 ]; then
                 echo "::error file=${f}::Superseded target ADR-${target} does not exist"
                 status=1
               fi

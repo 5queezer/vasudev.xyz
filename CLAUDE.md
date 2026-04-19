@@ -28,7 +28,7 @@ instead. If it is a binding architectural decision, it lives in `docs/adr/`.
 
 Run after writing or editing any post:
 
-```
+```bash
 vale --glob='!*.{de,es}.md' content/blog/<post-file>.md
 ```
 
