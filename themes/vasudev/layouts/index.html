@@ -1,228 +1,241 @@
 {{ define "main" }}
 {{ $posts := (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+
 <div class="site-shell">
-  {{ partial "site-header.html" . }}
 
-  <section class="hero-grid">
-    <div class="surface hero-panel">
-      <div class="hero-chips">
-        <span class="eyebrow-chip chip-rust">Rust</span>
-        <span class="eyebrow-chip chip-python">Python</span>
-        <span class="eyebrow-chip chip-protocol">MCP</span>
-        <span class="eyebrow-chip chip-protocol">A2A</span>
-        <span class="eyebrow-chip chip-security">privacy-first</span>
-      </div>
-      <h1 class="hero-title">{{ .Site.Title }}</h1>
-      <p class="hero-copy">{{ .Site.Params.description }}</p>
-      <div class="hero-facts">
-        <div class="fact-card">
-          <div class="fact-label">Builds</div>
-          <div class="fact-value">Agent runtimes, memory systems, and protocol-aware tools.</div>
-        </div>
-        <div class="fact-card">
-          <div class="fact-label">Writes</div>
-          <div class="fact-value">Essays on AI architecture, retrieval quality, and privacy-first software.</div>
-        </div>
-      </div>
-      <div class="hero-actions">
-        <a class="button button-primary" href="#selected-work">{{ i18n "selectedWork" }}</a>
-        <a class="button button-secondary" href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
-      </div>
-    </div>
+    {{ partial "site-header.html" . }}
 
-    <div class="hero-stack">
-      {{ if gt (len $posts) 0 }}
-      {{ $featured := index $posts 0 }}
-      <div class="surface spotlight-card">
-        <div class="section-label">{{ i18n "latestWriting" }}</div>
-        <div class="spotlight-title">{{ $featured.Title }}</div>
-        <div class="article-meta">{{ $featured.Date.Format "2 Jan 2006" }} · {{ $featured.ReadingTime }} {{ i18n "minutesShort" }}</div>
-        {{ with $featured.Description }}<p class="spotlight-copy">{{ . }}</p>{{ end }}
-        {{ with $featured.Params.tags }}
-        <div class="tag-row">
-          {{ range first 2 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+    <section class="hero-grid">
+        <div class="surface hero-panel">
+            <div class="hero-chips">
+                <span class="eyebrow-chip chip-rust">Rust</span>
+                <span class="eyebrow-chip chip-python">Python</span>
+                <span class="eyebrow-chip chip-protocol">MCP</span>
+                <span class="eyebrow-chip chip-protocol">A2A</span>
+                <span class="eyebrow-chip chip-security">privacy-first</span>
+            </div>
+            <h1 class="hero-title">{{ .Site.Title }}</h1>
+            <p class="hero-copy">{{ .Site.Params.description }}</p>
+            <div class="hero-facts">
+                <div class="fact-card">
+                    <div class="fact-label">Builds</div>
+                    <div class="fact-value">Agent runtimes, memory systems, and protocol-aware tools.</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-label">Writes</div>
+                    <div class="fact-value">Essays on AI architecture, retrieval quality, and privacy-first software.</div>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a class="button button-primary" href="#selected-work">{{ i18n "selectedWork" }}</a>
+                <a class="button button-secondary" href="{{ relLangURL "blog/" }}">{{ i18n "blog" }}</a>
+            </div>
         </div>
-        {{ end }}
-        <a class="inline-link spotlight-stretched" href="{{ $featured.RelPermalink }}">{{ i18n "blog" }} <span aria-hidden="true">→</span></a>
-      </div>
-      {{ end }}
 
-      <div class="surface compact-card">
-        <div class="section-label">{{ i18n "elsewhere" }}</div>
-        <div class="quick-links">
-          <a class="quick-link-github" href="https://github.com/5queezer" target="_blank" rel="noopener">
-            <span class="quick-link-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </span>
-            GitHub
-          </a>
-          <a class="quick-link-linkedin" href="https://linkedin.com/in/christian-pojoni" target="_blank" rel="noopener">
-            <span class="quick-link-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </span>
-            LinkedIn
-          </a>
-          <a class="quick-link-nexus" href="https://nexus.vasudev.xyz" target="_blank" rel="noopener">
-            <span class="quick-link-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            </span>
-            Nexus CRM
-          </a>
-          <a class="quick-link-email" href="mailto:christian.pojoni@gmail.com">
-            <span class="quick-link-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-            </span>
-            Email
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="hero-stack">
+            {{ if gt (len $posts) 0 }}
+            {{ $featured := index $posts 0 }}
+            <div class="surface spotlight-card">
+                <div class="section-label">{{ i18n "latestWriting" }}</div>
+                <div class="spotlight-title">{{ $featured.Title }}</div>
+                <div class="article-meta">{{ $featured.Date.Format "2 Jan 2006" }} · {{ $featured.ReadingTime }} {{ i18n "minutesShort" }}</div>
+                {{ with $featured.Description }}<p class="spotlight-copy">{{ . }}</p>{{ end }}
+                {{ with $featured.Params.tags }}
+                <div class="tag-row">
+                    {{ range first 2 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+                </div>
+                {{ end }}
+                <a class="inline-link spotlight-stretched" href="{{ $featured.RelPermalink }}">{{ i18n "blog" }} <span aria-hidden="true">→</span></a>
+            </div>
+            {{ end }}
 
-  <section class="section-block" id="selected-work">
-    <div class="section-heading">
-      <div>
-        <div class="section-label">{{ i18n "selectedWork" }}</div>
-        <h2 class="section-title">{{ i18n "selectedWorkIntro" }}</h2>
-      </div>
-    </div>
+            <div class="surface compact-card">
+                <div class="section-label">{{ i18n "elsewhere" }}</div>
+                <div class="quick-links">
+                    <a class="quick-link-github" href="https://github.com/5queezer" target="_blank" rel="noopener">
+                        <span class="quick-link-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </span>
+                        GitHub
+                    </a>
+                    <a class="quick-link-linkedin" href="https://linkedin.com/in/christian-pojoni" target="_blank" rel="noopener">
+                        <span class="quick-link-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </span>
+                        LinkedIn
+                    </a>
+                    <a class="quick-link-nexus" href="https://nexus.vasudev.xyz" target="_blank" rel="noopener">
+                        <span class="quick-link-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        </span>
+                        Nexus CRM
+                    </a>
+                    <a class="quick-link-email" href="mailto:christian.pojoni@gmail.com">
+                        <span class="quick-link-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+                        </span>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="feature-grid">
-      <a class="surface feature-card" href="https://github.com/5queezer/hrafn" target="_blank" rel="noopener">
-        <div class="feature-card-header">
-          <div class="project-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <circle cx="6" cy="6" r="2"/>
-              <circle cx="18" cy="6" r="2"/>
-              <circle cx="12" cy="18" r="2"/>
-              <path d="M8 7.5 10.5 16M16 7.5 13.5 16M8 6h8"/>
-            </svg>
-          </div>
-          <span class="status-pill">runtime</span>
+    <section class="section-block reveal" id="selected-work">
+        <div class="section-heading">
+            <div>
+                <div class="section-label">{{ i18n "selectedWork" }}</div>
+                <h2 class="section-title">{{ i18n "selectedWorkIntro" }}</h2>
+            </div>
         </div>
-        <div class="card-topline">
-          <div class="project-name">hrafn</div>
-          <span class="metric-chip">Rust runtime</span>
-        </div>
-        <p class="project-desc">Lightweight, modular AI agent runtime in Rust with MCP plugins, MuninnDB memory, and A2A protocol support.</p>
-        <div class="tag-row">
-          <span class="tag tag-rust">Rust</span>
-          <span class="tag tag-protocol">MCP</span>
-          <span class="tag tag-protocol">A2A</span>
-        </div>
-        <div class="feature-card-footer">Plugin-driven execution with protocol-aware messaging.</div>
-      </a>
+        <div class="feature-grid">
+            <a class="surface feature-card" href="https://github.com/5queezer/hrafn" target="_blank" rel="noopener">
+                <div class="feature-card-header">
+                    <div class="project-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="6" cy="6" r="2"/>
+                            <circle cx="18" cy="6" r="2"/>
+                            <circle cx="12" cy="18" r="2"/>
+                            <path d="M8 7.5 10.5 16M16 7.5 13.5 16M8 6h8"/>
+                        </svg>
+                    </div>
+                    <span class="status-pill">runtime</span>
+                </div>
+                <div class="card-topline">
+                    <div class="project-name">hrafn</div>
+                    <span class="metric-chip">Rust runtime</span>
+                </div>
+                <p class="project-desc">Lightweight, modular AI agent runtime in Rust with MCP plugins, MuninnDB memory, and A2A protocol support.</p>
+                <div class="tag-row">
+                    <span class="tag tag-rust">Rust</span>
+                    <span class="tag tag-protocol">MCP</span>
+                    <span class="tag tag-protocol">A2A</span>
+                </div>
+                <div class="feature-card-footer">Plugin-driven execution with protocol-aware messaging.</div>
+            </a>
 
-      <a class="surface feature-card" href="https://github.com/5queezer/axiom-vault" target="_blank" rel="noopener">
-        <div class="feature-card-header">
-          <div class="project-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 3 19 6v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/>
-              <path d="M9.5 11V9.5a2.5 2.5 0 1 1 5 0V11"/>
-              <rect x="8" y="11" width="8" height="6" rx="1.5"/>
-            </svg>
-          </div>
-          <span class="status-pill">security</span>
-        </div>
-        <div class="card-topline">
-          <div class="project-name">axiom-vault</div>
-          <span class="metric-chip">Encrypted vault</span>
-        </div>
-        <p class="project-desc">Cross-platform encrypted vault in Rust with XChaCha20-Poly1305, FFI bindings, and CI/CD pipelines.</p>
-        <div class="tag-row">
-          <span class="tag tag-rust">Rust</span>
-          <span class="tag tag-security">FFI</span>
-          <span class="tag tag-security">Crypto</span>
-        </div>
-        <div class="feature-card-footer">Systems-level security primitives packaged for real apps.</div>
-      </a>
+            <a class="surface feature-card" href="https://github.com/5queezer/axiom-vault" target="_blank" rel="noopener">
+                <div class="feature-card-header">
+                    <div class="project-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3 19 6v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/>
+                            <path d="M9.5 11V9.5a2.5 2.5 0 1 1 5 0V11"/>
+                            <rect x="8" y="11" width="8" height="6" rx="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="status-pill">security</span>
+                </div>
+                <div class="card-topline">
+                    <div class="project-name">axiom-vault</div>
+                    <span class="metric-chip">Encrypted vault</span>
+                </div>
+                <p class="project-desc">Cross-platform encrypted vault in Rust with XChaCha20-Poly1305, FFI bindings, and CI/CD pipelines.</p>
+                <div class="tag-row">
+                    <span class="tag tag-rust">Rust</span>
+                    <span class="tag tag-security">FFI</span>
+                    <span class="tag tag-security">Crypto</span>
+                </div>
+                <div class="feature-card-footer">Systems-level security primitives packaged for real apps.</div>
+            </a>
 
-      <a class="surface feature-card" href="https://github.com/5queezer/distill" target="_blank" rel="noopener">
-        <div class="feature-card-header">
-          <div class="project-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <ellipse cx="10" cy="6" rx="5.5" ry="2.5"/>
-              <path d="M4.5 6v6c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V6"/>
-              <path d="M4.5 12v6c0 1.4 2.5 2.5 5.5 2.5 1.6 0 3-.3 4-.8"/>
-              <circle cx="18" cy="18" r="2.5"/>
-              <path d="m20 20 2 2"/>
-            </svg>
-          </div>
-          <span class="status-pill">memory</span>
-        </div>
-        <div class="card-topline">
-          <div class="project-name">distill</div>
-          <span class="metric-chip">Team memory</span>
-        </div>
-        <p class="project-desc">Privacy-first MCP server for team memory with FastMCP, SQLite FTS5, and local vector search.</p>
-        <div class="tag-row">
-          <span class="tag tag-python">Python</span>
-          <span class="tag tag-data">SQLite</span>
-          <span class="tag tag-data">Vectors</span>
-        </div>
-        <div class="feature-card-footer">Retrieval-first memory infrastructure without cloud lock-in.</div>
-      </a>
+            <a class="surface feature-card" href="https://github.com/5queezer/distill" target="_blank" rel="noopener">
+                <div class="feature-card-header">
+                    <div class="project-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <ellipse cx="10" cy="6" rx="5.5" ry="2.5"/>
+                            <path d="M4.5 6v6c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5V6"/>
+                            <path d="M4.5 12v6c0 1.4 2.5 2.5 5.5 2.5 1.6 0 3-.3 4-.8"/>
+                            <circle cx="18" cy="18" r="2.5"/>
+                            <path d="m20 20 2 2"/>
+                        </svg>
+                    </div>
+                    <span class="status-pill">memory</span>
+                </div>
+                <div class="card-topline">
+                    <div class="project-name">distill</div>
+                    <span class="metric-chip">Team memory</span>
+                </div>
+                <p class="project-desc">Privacy-first MCP server for team memory with FastMCP, SQLite FTS5, and local vector search.</p>
+                <div class="tag-row">
+                    <span class="tag tag-python">Python</span>
+                    <span class="tag tag-data">SQLite</span>
+                    <span class="tag tag-data">Vectors</span>
+                </div>
+                <div class="feature-card-footer">Retrieval-first memory infrastructure without cloud lock-in.</div>
+            </a>
 
-      <a class="surface feature-card" href="https://github.com/5queezer/nexus-crm" target="_blank" rel="noopener">
-        <div class="feature-card-header">
-          <div class="project-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="5" width="6" height="14" rx="1.5"/>
-              <rect x="10.5" y="5" width="10.5" height="5" rx="1.5"/>
-              <rect x="10.5" y="12" width="10.5" height="7" rx="1.5"/>
-            </svg>
-          </div>
-          <span class="status-pill">product</span>
+            <a class="surface feature-card" href="https://github.com/5queezer/nexus-crm" target="_blank" rel="noopener">
+                <div class="feature-card-header">
+                    <div class="project-badge" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="5" width="6" height="14" rx="1.5"/>
+                            <rect x="10.5" y="5" width="10.5" height="5" rx="1.5"/>
+                            <rect x="10.5" y="12" width="10.5" height="7" rx="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="status-pill">product</span>
+                </div>
+                <div class="card-topline">
+                    <div class="project-name">nexus-crm</div>
+                    <span class="metric-chip">Full-stack app</span>
+                </div>
+                <p class="project-desc">Full-stack CRM with Kanban workflows built on Next.js, TanStack, Prisma, and Google OAuth.</p>
+                <div class="tag-row">
+                    <span class="tag tag-web">Next.js</span>
+                    <span class="tag tag-web">Prisma</span>
+                    <span class="tag tag-web">OAuth</span>
+                </div>
+                <div class="feature-card-footer">Operational UX with workflow-heavy product surfaces.</div>
+            </a>
         </div>
-        <div class="card-topline">
-          <div class="project-name">nexus-crm</div>
-          <span class="metric-chip">Full-stack app</span>
-        </div>
-        <p class="project-desc">Full-stack CRM with Kanban workflows built on Next.js, TanStack, Prisma, and Google OAuth.</p>
-        <div class="tag-row">
-          <span class="tag tag-web">Next.js</span>
-          <span class="tag tag-web">Prisma</span>
-          <span class="tag tag-web">OAuth</span>
-        </div>
-        <div class="feature-card-footer">Operational UX with workflow-heavy product surfaces.</div>
-      </a>
-    </div>
-  </section>
+    </section>
 
-  {{ if $posts }}
-  <section class="section-block" id="latest-writing">
-    <div class="section-heading">
-      <div>
-        <div class="section-label">{{ i18n "latestWriting" }}</div>
-        <h2 class="section-title">{{ i18n "latestWritingIntro" }}</h2>
-      </div>
-    </div>
-
-    <div class="article-grid">
-      {{ range first 3 $posts }}
-      <div class="surface article-card">
-        <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
-        <div class="article-title">{{ .Title }}</div>
-        {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
-        {{ with .Params.tags }}
-        <div class="tag-row">
-          {{ range first 3 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+    {{ if $posts }}
+    <section class="section-block reveal" id="latest-writing">
+        <div class="section-heading">
+            <div>
+                <div class="section-label">{{ i18n "latestWriting" }}</div>
+                <h2 class="section-title">{{ i18n "latestWritingIntro" }}</h2>
+            </div>
         </div>
-        {{ end }}
-        <a class="article-cta article-card-stretched" href="{{ .RelPermalink }}">Read essay <span aria-hidden="true">→</span></a>
-      </div>
-      {{ end }}
-    </div>
-  </section>
-  {{ end }}
+        <div class="article-grid">
+            {{ range first 3 $posts }}
+            <div class="surface article-card">
+                <div class="article-meta">{{ .Date.Format "2 Jan 2006" }} · {{ .ReadingTime }} {{ i18n "minutesShort" }}</div>
+                <div class="article-title">{{ .Title }}</div>
+                {{ with .Description }}<p class="article-copy">{{ . }}</p>{{ end }}
+                {{ with .Params.tags }}
+                <div class="tag-row">
+                    {{ range first 3 . }}<a class="tag {{ partial "tag-color.html" . }}" href='{{ relLangURL (printf "tags/%s/" (. | urlize)) }}'>{{ . }}</a>{{ end }}
+                </div>
+                {{ end }}
+                <a class="article-cta article-card-stretched" href="{{ .RelPermalink }}">Read essay <span aria-hidden="true">→</span></a>
+            </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
 
-  <footer class="site-footer">
-    <div class="site-footer-copy">Built with Hugo, shaped for systems writing, and tuned for dark mode.</div>
-    <div class="site-footer-links">
-      <a href="mailto:christian.pojoni@gmail.com">{{ i18n "email" }}</a>
-      <a href="https://github.com/5queezer" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/christian-pojoni" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </footer>
+    {{ partial "site-footer.html" . }}
 </div>
+
+<script>
+(function() {
+    var sections = document.querySelectorAll('.reveal');
+    if (!sections.length || !('IntersectionObserver' in window)) {
+        sections.forEach(function(s) { s.classList.add('revealed'); });
+        return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    sections.forEach(function(s) { observer.observe(s); });
+})();
+</script>
+
 {{ end }}

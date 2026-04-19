@@ -40,6 +40,12 @@ other = "home"
 [blog]
 other = "Blog"
 
+[about]
+other = "About"
+
+[siteFooter]
+other = "Notes on systems, agents, memory, and privacy-first software."
+
 [backToAllPosts]
 other = "Back to all posts"
 
@@ -57,3 +63,66 @@ other = "Copy link"
 
 [copied]
 other = "Copied!"
+
+[copyPage]
+other = "Copy page"
+
+[copyPageMenu]
+other = "More copy options"
+
+[copyPageDesc]
+other = "Copy page as Markdown for LLMs"
+
+[viewMarkdown]
+other = "View as Markdown"
+
+[viewMarkdownDesc]
+other = "View this page as plain text"
+
+[graph]
+other = "Graph"
+
+[graphTitle]
+other = "Knowledge Graph"
+
+[graphDescription]
+other = "Interactive 3D visualization of how concepts, posts, and ideas connect across vasudev.xyz"
+
+[graphSearchPlaceholder]
+other = "Search nodes..."
+
+[graphFilterAll]
+other = "All"
+
+[graphFilterPosts]
+other = "Posts"
+
+[graphFilterConcepts]
+other = "Concepts"
+
+[graphLibError]
+other = "Error: 3d-force-graph library failed to load"
+
+[graphLoadError]
+other = "Error loading graph: "
+
+[graphCommunity]
+other = "Community"
+
+[graphConnections]
+other = "connections"
+
+[graphType]
+other = "Type:"
+
+[graphClickToOpen]
+other = "Click to open"
+
+[graphClickToRead]
+other = "Click to read"
+
+[graphNodes]
+other = "nodes"
+
+[graphEdges]
+other = "edges"

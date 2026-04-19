@@ -1,0 +1,132 @@
+name: ADR Lint
+
+on:
+  pull_request:
+    paths:
+      - "docs/adr/**"
+      - ".github/workflows/adr-lint.yml"
+  push:
+    branches: [master]
+    paths:
+      - "docs/adr/**"
+
+jobs:
+  structure:
+    name: ADR structure check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate ADR files
+        run: |
+          set -euo pipefail
+          status=0
+          shopt -s nullglob
+
+          # Collect ADR files. _template.md and README.md are not ADRs.
+          mapfile -t adrs < <(
+            for f in docs/adr/*.md; do
+              base=$(basename "$f")
+              [ "$base" = "README.md" ] && continue
+              [ "$base" = "_template.md" ] && continue
+              echo "$f"
+            done | sort
+          )
+
+          if [ "${#adrs[@]}" -eq 0 ]; then
+            echo "No ADR files found under docs/adr/. Nothing to validate."
+            exit 0
+          fi
+
+          required_sections=(
+            "## Context"
+            "## Decision"
+            "## Consequences"
+            "## Alternatives considered"
+          )
+
+          valid_status_regex='^- Status: (Proposed|Accepted|Deprecated|Superseded by ADR-[0-9]{4})$'
+
+          declare -a numbers
+          for f in "${adrs[@]}"; do
+            base=$(basename "$f")
+
+            # Filename must match NNNN-kebab-case.md
+            if ! echo "$base" | grep -Eq '^[0-9]{4}-[a-z0-9]+(-[a-z0-9]+)*\.md$'; then
+              echo "::error file=${f}::Filename does not match NNNN-kebab-case.md"
+              status=1
+              continue
+            fi
+
+            num=${base%%-*}
+            numbers+=("$num")
+
+            # Title line must start with # ADR-NNNN:
+            first_line=$(head -n 1 "$f")
+            if ! echo "$first_line" | grep -Eq "^# ADR-${num}: "; then
+              echo "::error file=${f}::First line must be '# ADR-${num}: <title>' (got: ${first_line})"
+              status=1
+            fi
+
+            # Status line must exist and match the allowed set
+            if ! grep -Eq "$valid_status_regex" "$f"; then
+              echo "::error file=${f}::Missing or invalid Status line. Must be one of: Proposed, Accepted, Deprecated, Superseded by ADR-NNNN"
+              status=1
+            fi
+
+            # Required sections
+            for section in "${required_sections[@]}"; do
+              if ! grep -Fxq "$section" "$f"; then
+                echo "::error file=${f}::Missing required section: ${section}"
+                status=1
+              fi
+            done
+
+            # Superseded ADRs must reference a target that exists
+            superseded=$(grep -E '^- Status: Superseded by ADR-[0-9]{4}$' "$f" || true)
+            if [ -n "$superseded" ]; then
+              target=$(echo "$superseded" | grep -oE 'ADR-[0-9]{4}' | sed 's/ADR-//')
+              matches=(docs/adr/"${target}"-*.md)
+              if [ "${#matches[@]}" -eq 0 ]; then
+                echo "::error file=${f}::Superseded target ADR-${target} does not exist"
+                status=1
+              fi
+            fi
+          done
+
+          # Sequential numbering, no gaps, no duplicates
+          expected=1
+          for num in "${numbers[@]}"; do
+            n=$((10#$num))
+            if [ "$n" -ne "$expected" ]; then
+              echo "::error::ADR numbering has a gap or duplicate. Expected ADR-$(printf '%04d' $expected), got ADR-${num}"
+              status=1
+            fi
+            expected=$((expected + 1))
+          done
+
+          exit $status
+
+      - name: Validate README index lists every ADR
+        run: |
+          set -euo pipefail
+          status=0
+          shopt -s nullglob
+
+          readme="docs/adr/README.md"
+          if [ ! -f "$readme" ]; then
+            echo "::error::docs/adr/README.md is missing"
+            exit 1
+          fi
+
+          for f in docs/adr/*.md; do
+            base=$(basename "$f")
+            [ "$base" = "README.md" ] && continue
+            [ "$base" = "_template.md" ] && continue
+            if ! grep -Fq "$base" "$readme"; then
+              echo "::error file=${f}::ADR is not linked from docs/adr/README.md"
+              status=1
+            fi
+          done
+
+          exit $status

@@ -40,6 +40,12 @@ other = "Start"
 [blog]
 other = "Blog"
 
+[about]
+other = "Über mich"
+
+[siteFooter]
+other = "Notizen zu Systemen, Agents, Memory und datenschutzorientierter Software."
+
 [backToAllPosts]
 other = "Zurück zu allen Beiträgen"
 
@@ -57,3 +63,66 @@ other = "Link kopieren"
 
 [copied]
 other = "Kopiert!"
+
+[copyPage]
+other = "Seite kopieren"
+
+[copyPageMenu]
+other = "Weitere Kopieroptionen"
+
+[copyPageDesc]
+other = "Seite als Markdown für LLMs kopieren"
+
+[viewMarkdown]
+other = "Als Markdown anzeigen"
+
+[viewMarkdownDesc]
+other = "Diese Seite als Klartext anzeigen"
+
+[graph]
+other = "Graph"
+
+[graphTitle]
+other = "Wissensgraph"
+
+[graphDescription]
+other = "Interaktive 3D-Visualisierung, wie Konzepte, Beiträge und Ideen auf vasudev.xyz miteinander verbunden sind"
+
+[graphSearchPlaceholder]
+other = "Knoten suchen..."
+
+[graphFilterAll]
+other = "Alle"
+
+[graphFilterPosts]
+other = "Beiträge"
+
+[graphFilterConcepts]
+other = "Konzepte"
+
+[graphLibError]
+other = "Fehler: 3d-force-graph-Bibliothek konnte nicht geladen werden"
+
+[graphLoadError]
+other = "Fehler beim Laden des Graphen: "
+
+[graphCommunity]
+other = "Gemeinschaft"
+
+[graphConnections]
+other = "Verbindungen"
+
+[graphType]
+other = "Typ:"
+
+[graphClickToOpen]
+other = "Klicken zum Öffnen"
+
+[graphClickToRead]
+other = "Klicken zum Lesen"
+
+[graphNodes]
+other = "Knoten"
+
+[graphEdges]
+other = "Kanten"

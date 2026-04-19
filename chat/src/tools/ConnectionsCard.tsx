@@ -1,13 +1,19 @@
+import { MiniGraph } from "./MiniGraph";
+
 interface Match {
   id: string;
   label: string;
   sourceFile: string;
+  sourceUrl?: string;
+  sourceAnchor?: string;
+  community?: number;
 }
 
 interface Connection {
   from: string;
   to: string;
   relation: string;
+  confidence?: number;
   fromLabel: string;
   toLabel: string;
 }
@@ -29,10 +35,19 @@ function slugFromSourceFile(sourceFile: string): string | null {
 }
 
 function NodeBadge({ match }: { match: Match }) {
+  if (match.sourceUrl) {
+    return (
+      <a href={match.sourceUrl} target="_blank" rel="noopener" className="chat-tool-badge chat-tool-badge-link">
+        {match.label}
+      </a>
+    );
+  }
   const slug = slugFromSourceFile(match.sourceFile);
   if (slug) {
+    let url = `/blog/${slug}/`;
+    if (match.sourceAnchor) url += `#${match.sourceAnchor}`;
     return (
-      <a href={`/blog/${slug}/`} className="chat-tool-badge chat-tool-badge-link">
+      <a href={url} className="chat-tool-badge chat-tool-badge-link">
         {match.label}
       </a>
     );
@@ -51,12 +66,59 @@ function Skeleton() {
   );
 }
 
+function buildGraphData(result: ConnectionsResult) {
+  const nodes: { id: string; label: string; sourceFile: string; sourceUrl?: string; sourceAnchor?: string; community?: number }[] = [];
+  const nodeSet = new Set<string>();
+
+  for (const m of result.matches) {
+    nodeSet.add(m.id);
+    nodes.push({ id: m.id, label: m.label, sourceFile: m.sourceFile, sourceUrl: m.sourceUrl, sourceAnchor: m.sourceAnchor, community: m.community });
+  }
+
+  for (const c of result.connections) {
+    if (!nodeSet.has(c.from)) {
+      nodeSet.add(c.from);
+      nodes.push({ id: c.from, label: c.fromLabel, sourceFile: "", community: undefined });
+    }
+    if (!nodeSet.has(c.to)) {
+      nodeSet.add(c.to);
+      nodes.push({ id: c.to, label: c.toLabel, sourceFile: "", community: undefined });
+    }
+  }
+
+  const links = result.connections.map((c) => ({
+    source: c.from,
+    target: c.to,
+    relation: c.relation,
+    confidence: c.confidence ?? 1.0,
+  }));
+
+  return { nodes, links };
+}
+
 export function ConnectionsCard({ args: _args, result }: { args: any; result?: ConnectionsResult }) {
   if (!result) return <Skeleton />;
+
+  const hasContent = result.matches.length > 0 || result.connections.length > 0 || result.hyperedges.length > 0;
+
+  if (!hasContent) {
+    return (
+      <div className="chat-tool-card">
+        <div className="chat-tool-title">Knowledge Graph</div>
+        <div className="chat-tool-empty">No matching nodes found. Try a more specific concept name.</div>
+      </div>
+    );
+  }
+
+  const { nodes: graphNodes, links: graphLinks } = buildGraphData(result);
 
   return (
     <div className="chat-tool-card">
       <div className="chat-tool-title">Knowledge Graph</div>
+
+      {graphNodes.length > 1 && graphLinks.length > 0 && (
+        <MiniGraph nodes={graphNodes} links={graphLinks} />
+      )}
 
       {result.matches.length > 0 && (
         <div className="chat-tool-badges">
@@ -74,6 +136,9 @@ export function ConnectionsCard({ args: _args, result }: { args: any; result?: C
               <span className="chat-tool-connection-arrow">&rarr;</span>
               <span>{c.toLabel}</span>
               <span className="chat-tool-connection-relation">{c.relation}</span>
+              {c.confidence != null && (
+                <span className="chat-tool-confidence">{Math.round(c.confidence * 100)}%</span>
+              )}
             </div>
           ))}
         </div>

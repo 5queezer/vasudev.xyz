@@ -49,6 +49,14 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+          cache-dependency-path: cmd/sync-graph/go.mod
+
+      - name: Enrich graph data with community names
+        run: cd cmd/sync-graph && go run main.go --graphify-dir ../../graphify-out --output ../../static/data/graph.json --root ../..
+
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

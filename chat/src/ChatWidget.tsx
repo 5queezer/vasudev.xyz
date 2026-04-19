@@ -6,6 +6,9 @@ import { ReadingPathCard } from "./tools/ReadingPathCard";
 import { CodeBlock } from "./tools/CodeBlock";
 import { ChartCard } from "./tools/ChartCard";
 import { ArxivCard } from "./tools/ArxivCard";
+import { PathCard } from "./tools/PathCard";
+import { HubNodesCard } from "./tools/HubNodesCard";
+import { CommunityCard } from "./tools/CommunityCard";
 
 const toolComponents: Record<string, React.ComponentType<{ args: any; result?: any }>> = {
   showConnections: ConnectionsCard,
@@ -14,6 +17,9 @@ const toolComponents: Record<string, React.ComponentType<{ args: any; result?: a
   showCode: CodeBlock,
   showChart: ChartCard,
   searchArxiv: ArxivCard,
+  findPath: PathCard,
+  hubNodes: HubNodesCard,
+  exploreCommunity: CommunityCard,
 };
 
 function renderMarkdown(text: string): JSX.Element {
@@ -27,7 +33,10 @@ function renderMarkdown(text: string): JSX.Element {
     // italic
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     // links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, text, url) => {
+      const safeUrl = /^https?:\/\//.test(url) ? url : '#';
+      return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+    })
     // numbered lists
     .replace(/^(\d+)\.\s+(.+)$/gm, '<li value="$1">$2</li>')
     // bullet lists
