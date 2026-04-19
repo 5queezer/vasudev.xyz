@@ -1,7 +1,8 @@
-# ADR-0005: Tag allowlist in `data/allowed-tags.txt`
+# ADR-0005: Tag allowlist in `.github/allowed-tags.txt`
 
 - Status: Accepted
 - Date: 2025-03-01
+- Revised: 2026-04-19. File moved from `data/allowed-tags.txt` to `.github/allowed-tags.txt` because Hugo scans `/data/` and rejects non-YAML/JSON/TOML files. Path changed, decision unchanged.
 
 ## Context
 
@@ -12,7 +13,7 @@ a tag expects every post on that topic to appear.
 
 ## Decision
 
-Maintain a committed allowlist at `data/allowed-tags.txt`, one tag per line,
+Maintain a committed allowlist at `.github/allowed-tags.txt`, one tag per line,
 sorted alphabetically, lowercase, kebab-case. A CI job in
 `.github/workflows/prose-lint.yml` fails any post whose `tags:` front matter
 field contains a value not in the allowlist. Adding a new tag is a

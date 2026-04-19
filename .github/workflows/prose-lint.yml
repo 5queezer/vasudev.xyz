@@ -44,7 +44,7 @@ jobs:
       - name: Validate tags against allowlist
         run: |
           status=0
-          allowed="data/allowed-tags.txt"
+          allowed=".github/allowed-tags.txt"
           for file in content/blog/*.md; do
             [ "$(basename "$file")" = "_index.md" ] && continue
             echo "$(basename "$file")" | grep -qE '\.(de|es)\.md$' && continue
