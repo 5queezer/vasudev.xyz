@@ -67,7 +67,7 @@ So a single transient network blip against one configured plugin disables every 
 
 This is a pattern. An error handler that widens its blast radius beyond the component that failed will produce error reports that look unrelated to the underlying cause. **The blast radius of an error handler matters more than the error it catches.** When a retry, a reset, or a fallback spans multiple subsystems, someone downstream will report the wrong bug.
 
-The fix in [PR #13006](https://github.com/traefik/traefik/pull/13006) narrows the blast radius by making the remote calls non-fatal when a previously-downloaded archive is already on disk. Hash pinning via `plugin.Hash` is still enforced, so supply-chain safety for fresh installs is preserved. It is a one-file change plus three test cases.
+The fix in [PR #13006](https://github.com/traefik/traefik/pull/13006) narrows the blast radius. When `Download` fails against the registry and a previously-downloaded archive for the same plugin and version is on disk, the install falls back to that cached archive instead of wiping the plugin environment. An `integrity check` failure is tolerated *only* in that fallback path, because the cached archive was validated on the prior successful install. A `Check` failure after a *successful* `Download` stays fatal, so freshly-downloaded content still has to pass integrity. Hash pinning via `plugin.Hash` is always enforced. One file, four test cases.
 
 ## 4. A locked issue is not a dead issue
 
@@ -86,6 +86,10 @@ A second reproduction variant for the cached-plugin case. Production users hit t
 Two alternative fix shapes. An `experimental.plugins.offline: true` config flag (operator opt-in, zero behaviour change for everyone else) and an async post-startup `Check()` (decouples startup entirely but adds concurrency to a formerly straightforward path). Both are in the upstream issue as options. If maintainers prefer either over the in-PR approach, the shape is a day of work and a new PR.
 
 A Traefik integration test that exercises `extra_hosts`-style network isolation end-to-end. The three unit tests in the PR exercise the new branches directly via a mock downloader. An end-to-end test would be strictly better. It was also a tangent I chose not to expand the PR with. If a maintainer asks for it, it is easy to add.
+
+## Tightened before the first review
+
+My first draft of the fix tolerated any integrity-check failure whenever a cached archive existed at the start of `InstallPlugin`. On re-read I noticed that `Download` overwrites the archive on success, so "archive existed at start" did not prove the on-disk content was the previously-validated one. A post-download integrity mismatch would have slipped through as a warning, which is exactly the property the integrity check is supposed to enforce. The current version uses a `fallback` flag set only when `Download` itself failed. The test suite now asserts that a `Check` failure after a successful `Download` stays fatal. The commit history on the PR shows the progression. Build your own tolerance gates narrowly. Every `if` that lets a failure through is an invariant you have to defend in review.
 
 ## Try it yourself
 
