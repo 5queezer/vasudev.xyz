@@ -22,7 +22,7 @@ instead. If it is a binding architectural decision, it lives in `docs/adr/`.
 - English is the default. German or Spanish files are generated (see translation note below).
 - Front matter must include: `title`, `date`, `tags`, `description`.
 - og:image is 1200x630 PNG.
-- Tags must come from `data/allowed-tags.txt`, one per line, sorted. To add a new tag, add it to the file first, commit with `chore:` prefix, then use it in a post.
+- Tags must come from `.github/allowed-tags.txt`, one per line, sorted. To add a new tag, add it to the file first, commit with `chore:` prefix, then use it in a post.
 
 ## Vale prose linter
 

@@ -216,7 +216,7 @@ images: ["/blog/post-slug/og-image.png"]
 
 Rules:
 - `description` is mandatory. It controls what LinkedIn, Twitter, and HN show. Write it like a tweet, not an abstract.
-- `tags` must only use values from `data/allowed-tags.txt`. If a new post genuinely needs a new tag, add it to the allowlist file first (keep sorted), then use it. Do not invent ad-hoc tags.
+- `tags` must only use values from `.github/allowed-tags.txt`. If a new post genuinely needs a new tag, add it to the allowlist file first (keep sorted), then use it. Do not invent ad-hoc tags.
 - `images` points to the og:image (1200x630px). If no image exists, omit the field (Hugo falls back to site default).
 - Hugo uses `_internal/opengraph.html` for og:* tags. Twitter cards need `_internal/twitter_cards.html` in the theme's baseof.html.
 
@@ -329,7 +329,7 @@ Hugo front matter template:
 ---
 title: "..."
 date: YYYY-MM-DD
-tags: ["ai", "mcp"]  # only values from data/allowed-tags.txt
+tags: ["ai", "mcp"]  # only values from .github/allowed-tags.txt
 description: "Under 160 chars. Sharp. This is the social preview."
 images: ["/blog/post-slug/og-image.png"]
 ---

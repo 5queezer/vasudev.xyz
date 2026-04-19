@@ -25,5 +25,5 @@ Copy `_template.md` when starting a new ADR.
 - [ADR-0002: GitHub Pages as the deployment target](0002-github-pages-deployment.md)
 - [ADR-0003: LLM auto-translation outside the build](0003-llm-auto-translation.md)
 - [ADR-0004: Vale with custom Vasudev prose rules](0004-vale-custom-prose-rules.md)
-- [ADR-0005: Tag allowlist in `data/allowed-tags.txt`](0005-tag-allowlist.md)
+- [ADR-0005: Tag allowlist in `.github/allowed-tags.txt`](0005-tag-allowlist.md)
 - [ADR-0006: Push vs pull context split for agent files](0006-push-pull-context-split.md)

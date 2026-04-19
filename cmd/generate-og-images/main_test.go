@@ -344,10 +344,10 @@ func projectRoot() string {
 	return filepath.Join("..", "..")
 }
 
-// readAllowedTags parses data/allowed-tags.txt into a slice, skipping blank lines.
+// readAllowedTags parses .github/allowed-tags.txt into a slice, skipping blank lines.
 func readAllowedTags(t *testing.T) []string {
 	t.Helper()
-	path := filepath.Join(projectRoot(), "data", "allowed-tags.txt")
+	path := filepath.Join(projectRoot(), ".github", "allowed-tags.txt")
 	raw, err := os.ReadFile(path)
 	if err != nil {
 		t.Fatalf("read allowed-tags.txt: %v", err)
