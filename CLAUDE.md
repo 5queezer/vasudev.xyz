@@ -1,138 +1,65 @@
-## What this blog is
+# CLAUDE.md
 
-Engineering blog that bridges systems engineering with cross-disciplinary
-frameworks (Vedic philosophy, neuroscience, evolutionary biology). The brand
-is the bridge. "vasudev" = all-pervading.
+Push context for this repo. Universally relevant on every session. If a rule
+only applies when writing a post, it lives in `.claude/skills/blog-writer/`
+instead. If it is a binding architectural decision, it lives in `docs/adr/`.
 
-## Voice
+## Stack
 
-- First person, direct, opinionated
-- No hedging. No "it's worth noting." No "interestingly."
-- Short paragraphs. Sentences that land.
-- Bold pull-quotes as section openers (Hugo shortcode or markdown `>`)
-- Sign-off: *Christian Pojoni builds [current project]. More at vasudev.xyz.*
-
-## Structure: The Iron Rule
-
-Every post follows: **empirical result → principle → tradition → testable hypothesis**
-
-The cross-disciplinary frame (yoga, neuroscience, evolution) ENTERS as an
-EXPLANATION of something that already happened in code. Never as motivation
-for something not yet built.
-
-- OK: "My ablation broke. Then I found Patanjali had the filtering spec."
-- NOT OK: "Patanjali says X, so let's build Y."
-
-The reader's reaction must be discovery ("the Upanishad predicted this?"),
-not justification ("he read an Upanishad and now wants to build something").
-
-## Cross-disciplinary bridging rules
-
-1. Lead with the empirical surprise, not the tradition
-2. Every philosophical concept must arrive with its kill condition
-   ("if X doesn't produce measurable Y, we skip the complexity")
-3. Sanskrit/technical terms only when they add precision English lacks
-   - OK: "pratyahara" when it distinguishes agent-not-seeing from engineer-seeing
-   - NOT OK: "svapna" when you just mean "REM sleep"
-4. Always include "Where the metaphor breaks" to show the limits honestly
-5. Traditions are lenses, not authorities. They generate hypotheses, not conclusions.
-
-## Post types (strongest to weakest)
-
-1. **Gotcha posts** (A2A, OAuth): One PR, N gotchas, each with code and commit.
-   Every section: problem, wrong assumption, fix, lesson.
-   Include "What I left out" as explicit scope decisions with issue links.
-
-2. **Benchmark/result posts** (Patanjali, Metrics): Must have a real bug or
-   surprising result that already happened. Must have data (table, benchmark
-   number, PR link). Bridge to tradition only AFTER the result is established.
-
-3. **Architecture posts** (Environment Design): Only write these when you have
-   results, not plans. If it's a roadmap, say so. Don't disguise specs as posts.
-
-4. **Literature reviews** (6 Papers Ranked): Opinionated ranking with clear
-   criteria stated upfront. "Skip this" is more valuable than "read this."
-
-5. **Manifesto posts** (Stop Putting AI in Apps): Keep under 800 words. The
-   thesis is a tweet. The post is the evidence. Need at minimum one concrete
-   technical comparison, not just opinion.
-
-## "What I Left Out" sections
-
-These are consistently the most interesting parts. Treat them as seeds
-for future posts, not appendices. If a "left out" item is more interesting
-than a main section, promote it.
-
-## What NOT to write
-
-- Design specs disguised as blog posts (if the phases haven't shipped, don't write as if they have)
-- Mock outputs presented without labeling them as mocks
-- Posts where the "What I Left Out" is more interesting than the body. Restructure first.
-- Pure opinion without code, data, or at minimum a specific PR
-
-## Tone calibration
-
-Read the Patanjali post and the A2A post back to back.
-That's the range. Stay inside it.
-
-## Project
-
-- Hugo static site (vasudev.xyz)
-- Custom theme at themes/vasudev/
-- Content in content/blog/ (one .md file per post)
-- Config: hugo.toml
-- Deployed via GitHub Pages (GitHub Actions)
+- Hugo static site (vasudev.xyz). Content in `content/blog/`. Config in `hugo.toml`. Custom theme at `themes/vasudev/`.
+- Deployed to GitHub Pages via `.github/workflows/deploy.yml` on push to master.
 
 ## Local dev
 
-- `hugo server -D` to preview with drafts
-- Posts go in content/blog/<slug>.md
+- Preview with drafts: `hugo server -D`
+- Posts live at `content/blog/<slug>.md`
 
-## Review automation
+## Writing rules (always apply, even outside the skill)
 
-- CodeRabbit fact-checks changed English source posts in `content/blog/*.md`
-- Generated translation files (`*.de.md`, `*.es.md`) and blog index files are excluded from CodeRabbit review
-- For factual claims, prefer inline citations or source links so the fact-check gate can verify dates, numbers, product behavior, standards, and similar assertions against authoritative public sources
-
-## Writing rules
-
-- No em-dashes or double dashes. Rephrase instead.
+- No em-dashes or double dashes. Rephrase.
 - No semicolons. Split into separate sentences or rephrase.
-- No bullet lists in post body. Prose only.
-- English default. German only if explicitly requested.
-- Front matter must include: title, date, tags, description
-- og:image format: 1200x630 PNG
-- Tags must come from `data/allowed-tags.txt` (one tag per line, sorted). To add a new tag, add it to the file first.
+- No bullet lists in the body of a blog post. Prose only. (Numbered lists and bullets in non-post docs are fine.)
+- English is the default. German or Spanish files are generated (see translation note below).
+- Front matter must include: `title`, `date`, `tags`, `description`.
+- og:image is 1200x630 PNG.
+- Tags must come from `data/allowed-tags.txt`, one per line, sorted. To add a new tag, add it to the file first, commit with `chore:` prefix, then use it in a post.
 
 ## Vale prose linter
 
-- Config: `.vale.ini` (Google style + custom Vasudev rules)
-- Word allowlist: `styles/config/vocabularies/Blog/accept.txt`
-- **After writing or editing a blog post, always run:**
-  ```
-  vale --glob='!*.{de,es}.md' content/blog/<post-file>.md
-  ```
-- If Vale reports `Vale.Spelling` errors for legitimate proper nouns, Sanskrit terms, product names, or technical acronyms:
-  1. Add each word to `styles/config/vocabularies/Blog/accept.txt` (one word per line, keep sorted alphabetically, case-sensitive)
-  2. Re-run Vale to confirm errors are resolved
-  3. Commit vocab additions separately with prefix `chore:`
-- Do not add common misspellings or informal words to accept.txt. Only add terms that are correctly spelled but unknown to Vale.
-- If Vale reports style errors (Vasudev.EmDash, Vasudev.Semicolon, etc.), fix the prose instead of suppressing the rule
-- Run `vale sync` first if styles/Google is missing
+Run after writing or editing any post:
 
-## Auto-translation
+```
+vale --glob='!*.{de,es}.md' content/blog/<post-file>.md
+```
 
-- On push to master, GitHub Actions runs `cmd/translate/main.go` via `.github/workflows/translate.yml`
-- Translates every English post (`content/blog/*.md`) to German (`.de.md`) and Spanish (`.es.md`)
-- Translation is committed back to master automatically by `github-actions[bot]`
-- Do not manually create or edit `.de.md` / `.es.md` files -- they are generated and will be overwritten
+- Style errors (EmDash, DoubleDash, Semicolon, BulletList) must be fixed in prose, not suppressed.
+- Spelling exceptions for proper nouns, Sanskrit terms, and product names go in `styles/config/vocabularies/Blog/accept.txt`, sorted alphabetically. Commit vocab additions separately with `chore:` prefix.
+- Run `vale sync` first if styles are missing.
+
+## Auto-translation (do not hand-edit)
+
+- `.github/workflows/translate.yml` runs `cmd/translate/main.go` on push to master.
+- It writes `content/blog/<slug>.de.md` and `content/blog/<slug>.es.md` for every English post.
+- `github-actions[bot]` commits the translations back.
+- Do not manually create or edit `.de.md` or `.es.md` files. They will be overwritten.
+
+## Review automation
+
+- CodeRabbit fact-checks changed English source posts in `content/blog/*.md`. Translation files and blog index files are excluded.
+- For factual claims, prefer inline citations or source links so the fact-check gate can verify dates, numbers, product behavior, and standards against authoritative public sources.
 
 ## Commit conventions
 
-- One commit per post or per logical change
-- Prefix: "post:" for new posts, "seo:" for meta changes, "chore:" for tooling, "i18n:" for translation-related changes
-- Include Claude Code session link in commit body
+- One commit per post or logical change.
+- Prefixes: `post:` for new posts, `seo:` for meta changes, `chore:` for tooling, `i18n:` for translation-related changes, `adr:` for ADR additions or status changes.
+- Include a Claude Code session link in the commit body.
 
-## Skills
+## Where the rest lives (pull context)
 
-- .claude/skills/blog-writer/SKILL.md -- read before writing any blog post
+Read these files when the current task touches their area. Do not copy their
+content into this file.
+
+- `docs/adr/` holds binding architectural decisions in Nygard format. Read the relevant ADR before proposing structural changes. Index at `docs/adr/README.md`.
+- `docs/specs/` holds per-feature intent documents. Read the spec for the feature you are working on. Index at `docs/specs/README.md`.
+- `.claude/skills/blog-writer/SKILL.md` covers voice, post structure, post types, tone calibration, and every other writing-specific rule. Triggered when the task is to write or edit a blog post.
+- `.claude/skills/cross-link/SKILL.md` covers the cross-linking protocol for existing posts.
