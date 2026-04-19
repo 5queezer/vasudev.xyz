@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: translate-posts
@@ -42,7 +43,9 @@ jobs:
             --content-dir ../../content/blog \
             --languages de,es
 
-      - name: Commit translations
+      - name: Open PR with translations
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -52,21 +55,15 @@ jobs:
             exit 0
           fi
 
+          branch="bot/translations-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
           git commit -m "i18n: auto-translate blog posts to de/es"
+          git push origin "$branch"
 
-          for attempt in 1 2 3; do
-            git fetch origin master
-            if git rebase origin/master && git push origin HEAD:master; then
-              exit 0
-            fi
+          gh pr create \
+            --base master \
+            --head "$branch" \
+            --title "i18n: auto-translate blog posts to de/es" \
+            --body "Automated translation of blog posts to German and Spanish from workflow run ${GITHUB_RUN_ID}."
 
-            git rebase --abort || true
-
-            if [ "$attempt" -lt 3 ]; then
-              echo "Push attempt $attempt failed; retrying on latest origin/master"
-              sleep 5
-            fi
-          done
-
-          echo "Failed to push translated posts after rebasing onto latest origin/master" >&2
-          exit 1
+          gh pr merge --auto --squash --delete-branch "$branch"
