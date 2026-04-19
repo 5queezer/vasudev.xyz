@@ -1,6 +1,7 @@
 (?i)agentic
 (?i)allowlist
 (?i)anandamaya
+(?i)async
 (?i)autoencoder
 (?i)autoencoders
 (?i)autoregressively
@@ -15,6 +16,7 @@
 (?i)deduplication
 defer_loading
 (?i)downscaling
+(?i)downloader
 (?i)downselection
 (?i)entos
 (?i)epiphenomenal
@@ -28,11 +30,13 @@ defer_loading
 (?i)logits
 (?i)jagrat
 (?i)mandukya
+(?i)middleware
 (?i)mutator
 (?i)neocortex
 (?i)nirodha
 (?i)overfitting
 (?i)pratyahara
+(?i)reachability
 (?i)renderers
 (?i)repo
 (?i)repos
@@ -131,10 +135,12 @@ Patanjali
 Pojoni
 Postgres
 SAEs
+Sablier
 Sigman
 Stetsenko
 Stetsenko's
 Sutras
+Traefik
 Transposases
 TruthfulQA
 UIs
