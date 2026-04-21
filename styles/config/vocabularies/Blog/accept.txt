@@ -93,6 +93,7 @@ IPs
 (?i)renderers
 (?i)repo
 (?i)repos
+(?i)rollout
 (?i)samadhi
 (?i)samskara
 (?i)samskaras
