@@ -87,6 +87,12 @@ Two alternative fix shapes. An `experimental.plugins.offline: true` config flag 
 
 A Traefik integration test that exercises `extra_hosts`-style network isolation end-to-end. The three unit tests in the PR exercise the new branches directly via a mock downloader. An end-to-end test would be strictly better. It was also a tangent I chose not to expand the PR with. If a maintainer asks for it, it is easy to add.
 
+## Deployed in production
+
+The patched Traefik is running on my own Coolify-on-Hetzner box at the time of writing. Before the switch the box was pinned at 7.2 GiB of 7.5 GiB resident memory with 4 GiB of swap in use, dominated by idle MCP servers and low-traffic Coolify applications that collectively served perhaps a dozen requests per day. The cached-archive fallback is what let me wire Sablier onto them at all. Every restart of the patched Traefik since has reloaded the Sablier plugin from the local archive without a registry round-trip, which is the second reproduction variant I deferred in the PR description.
+
+Eight MCP servers and four Coolify applications now sit behind Sablier with a ten-minute idle window. The box has recovered 3.1 GiB of resident memory and 2 GiB of swap. Wake-up latency on the blocking strategy runs 300 ms to 10 seconds depending on container cold-start, which is acceptable for workloads that see sparse traffic. I want more restart cycles and a real registry flake on the timeline before claiming the property holds broadly, but the shape of the deployment matches the scenario the fix targets.
+
 ## Tightened before the first review
 
 My first draft of the fix tolerated any integrity-check failure whenever a cached archive existed at the start of `InstallPlugin`. On re-read I noticed that `Download` overwrites the archive on success, so "archive existed at start" did not prove the on-disk content was the previously-validated one. A post-download integrity mismatch would have slipped through as a warning, which is exactly the property the integrity check is supposed to enforce. The current version uses a `fallback` flag set only when `Download` itself failed. The test suite now asserts that a `Check` failure after a successful `Download` stays fatal. The commit history on the PR shows the progression. Build your own tolerance gates narrowly. Every `if` that lets a failure through is an invariant you have to defend in review.
