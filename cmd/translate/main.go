@@ -344,7 +344,12 @@ Rules:
 			}
 
 			if resp.StatusCode != http.StatusOK {
-				fmt.Fprintf(os.Stderr, "model %s returned %d: %s\n", llmModel, resp.StatusCode, string(respBody))
+				var chatResp chatResponse
+				errMsg := "unknown error"
+				if err := json.Unmarshal(respBody, &chatResp); err == nil && chatResp.Error != nil && chatResp.Error.Message != "" {
+					errMsg = chatResp.Error.Message
+				}
+				fmt.Fprintf(os.Stderr, "model %s returned %d: %s\n", llmModel, resp.StatusCode, errMsg)
 				if shouldFallbackModel(resp.StatusCode, respBody) && modelIndex < len(llmModels)-1 {
 					fmt.Fprintf(os.Stderr, "falling back from %s to %s\n", llmModel, llmModels[modelIndex+1])
 					break
