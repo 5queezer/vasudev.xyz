@@ -56,7 +56,7 @@ jobs:
             exit 0
           fi
 
-          branch="bot/og-images-${GITHUB_RUN_ID}"
+          branch="bot/og-images-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           git checkout -b "$branch"
           git commit -m "chore: auto-generate og:images for blog posts"
           git push origin "$branch"
