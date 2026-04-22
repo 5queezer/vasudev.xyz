@@ -861,7 +861,7 @@
       "label": "Stop Putting AI in Your Apps",
       "file_type": "document",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
-      "community": 4,
+      "community": 6,
       "id": "stop_putting_ai_in_apps"
     },
     {
@@ -869,42 +869,42 @@
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
       "source_url": "https://modelcontextprotocol.io/",
-      "community": 4,
+      "community": 6,
       "id": "stop_putting_ai_in_apps__mcp"
     },
     {
       "label": "AI as Orchestrator Architecture",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
-      "community": 4,
+      "community": 6,
       "id": "stop_putting_ai_in_apps__ai_orchestration_pattern"
     },
     {
       "label": "NocoDB (Open Source Database with MCP)",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
-      "community": 4,
+      "community": 6,
       "id": "stop_putting_ai_in_apps__nocodb"
     },
     {
       "label": "SaaS Commoditization via AI Orchestration",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
-      "community": 4,
+      "community": 6,
       "id": "stop_putting_ai_in_apps__saas_commoditization"
     },
     {
       "label": "Context Window Cost of MCP",
       "file_type": "concept",
       "source_file": "content/blog/stop-putting-ai-in-your-apps.md",
-      "community": 4,
+      "community": 6,
       "id": "stop_putting_ai_in_apps__context_window_cost"
     },
     {
       "label": "Why AI Agents Need Sleep",
       "file_type": "document",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep"
     },
     {
@@ -912,14 +912,14 @@
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "source_url": "https://github.com/scrypster/muninndb",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__muninndb"
     },
     {
       "label": "Dream Engine (LLM Memory Consolidation)",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__dream_engine"
     },
     {
@@ -927,259 +927,259 @@
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
       "source_url": "https://github.com/5queezer/hrafn",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__hrafn"
     },
     {
       "label": "Human Sleep Memory Consolidation",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__memory_consolidation"
     },
     {
       "label": "MemoryBank (Zhong et al. 2023)",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__memorybank"
     },
     {
       "label": "SleepGate Framework",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__sleepgate"
     },
     {
       "label": "Auto Dream (Anthropic)",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__auto_dream"
     },
     {
       "label": "Vault Trust Tiers",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__vault_trust_tiers"
     },
     {
       "label": "Ebbinghaus Forgetting Curves",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__ebbinghaus_decay"
     },
     {
       "label": "Configurable Dedup Threshold",
       "file_type": "concept",
       "source_file": "content/blog/why-ai-agents-need-sleep.md",
-      "community": 5,
+      "community": 4,
       "id": "why_ai_agents_need_sleep__dedup_threshold"
     },
     {
       "label": "Direct Divine Access",
       "file_type": "document",
       "source_file": "content/blog/direct-divine-access.md",
-      "community": 4,
+      "community": 6,
       "id": "direct_divine_access"
     },
     {
       "label": "Intermediary Self-Optimization Pattern",
       "file_type": "concept",
       "source_file": "content/blog/direct-divine-access.md",
-      "community": 4,
+      "community": 6,
       "id": "direct_divine_access__intermediary_pattern"
     },
     {
       "label": "Meta-Harness (Stanford/MIT)",
       "file_type": "concept",
       "source_file": "content/blog/direct-divine-access.md",
-      "community": 4,
+      "community": 6,
       "id": "direct_divine_access__meta_harness"
     },
     {
       "label": "Direct Inner Experience",
       "file_type": "concept",
       "source_file": "content/blog/direct-divine-access.md",
-      "community": 9,
+      "community": 4,
       "id": "direct_divine_access__direct_experience"
     },
     {
       "label": "MCP Context Window Fix",
       "file_type": "document",
       "source_file": "content/blog/mcp-context-window-fix.md",
-      "community": 4,
+      "community": 6,
       "id": "mcp_context_window_fix"
     },
     {
       "label": "Deferred Tool Loading",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
-      "community": 4,
+      "community": 6,
       "id": "mcp_context_window_fix__deferred_loading"
     },
     {
       "label": "Tool Search (BM25)",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
-      "community": 4,
+      "community": 6,
       "id": "mcp_context_window_fix__tool_search"
     },
     {
       "label": "MCP Token Overhead Problem",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
-      "community": 4,
+      "community": 6,
       "id": "mcp_context_window_fix__token_overhead"
     },
     {
       "label": "MCP Toolset Deferral",
       "file_type": "concept",
       "source_file": "content/blog/mcp-context-window-fix.md",
-      "community": 15,
+      "community": 14,
       "id": "mcp_context_window_fix__mcp_toolset"
     },
     {
       "label": "OAuth MCP Server Gotchas",
       "file_type": "document",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
-      "community": 4,
+      "community": 6,
       "id": "adding_oauth_mcp_server_gotchas"
     },
     {
       "label": "Reactive Resume PR #2829",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
-      "community": 4,
+      "community": 6,
       "id": "adding_oauth_mcp_server_gotchas__reactive_resume"
     },
     {
       "label": "Two .well-known Endpoints",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
-      "community": 4,
+      "community": 6,
       "id": "adding_oauth_mcp_server_gotchas__two_wellknown_endpoints"
     },
     {
       "label": "Dual Auth Path",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
-      "community": 4,
+      "community": 6,
       "id": "adding_oauth_mcp_server_gotchas__dual_auth_path"
     },
     {
       "label": "better-auth Deprecation",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
-      "community": 4,
+      "community": 6,
       "id": "adding_oauth_mcp_server_gotchas__better_auth_deprecation"
     },
     {
       "label": "Multi-Layer Auth Chain",
       "file_type": "concept",
       "source_file": "content/blog/adding-oauth-mcp-server-gotchas.md",
-      "community": 4,
+      "community": 6,
       "id": "adding_oauth_mcp_server_gotchas__auth_chain_layers"
     },
     {
       "label": "AI Environment Design",
       "file_type": "document",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design"
     },
     {
       "label": "Genotype/Phenotype Separation",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design__genotype_phenotype"
     },
     {
       "label": "Evaluator Is Not a Loss Function",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design__evaluator_not_loss_function"
     },
     {
       "label": "Mutation/Selection Cycle",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design__mutation_selection_cycle"
     },
     {
       "label": "SAE Steering Operator",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design__sae_steering_operator"
     },
     {
       "label": "Goodhart's Law",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design__goodharts_law"
     },
     {
       "label": "Persistence Tier",
       "file_type": "concept",
       "source_file": "content/blog/ai-environment-design.md",
-      "community": 5,
+      "community": 4,
       "id": "ai_environment_design__persistence_tier"
     },
     {
       "label": "SAE Measurement Timing",
       "file_type": "document",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae_measurement_timing"
     },
     {
       "label": "Encoding vs Generation Time",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae__encoding_vs_generation"
     },
     {
       "label": "Sycophancy Detection (d=9.9)",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae__sycophancy_detection"
     },
     {
       "label": "Hallucination Taxonomy",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae__hallucination_taxonomy"
     },
     {
       "label": "Generation-Time Hypothesis Falsified",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae__hypothesis_falsified"
     },
     {
       "label": "Pratyahara Bridge",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae__pratyahara_bridge"
     },
     {
       "label": "Dimensional Overfitting",
       "file_type": "concept",
       "source_file": "content/blog/gemma3-sae-measurement-timing.md",
-      "community": 9,
+      "community": 4,
       "id": "gemma3_sae__dimensional_overfitting"
     },
     {
@@ -1449,7 +1449,7 @@
       "label": "Jagrat (Waking State)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
-      "community": 16,
+      "community": 15,
       "id": "svapna_jagrat"
     },
     {
@@ -1470,7 +1470,7 @@
       "label": "Turiya (Pure Awareness)",
       "file_type": "document",
       "source_file": "content/blog/svapna-sushupti.md",
-      "community": 17,
+      "community": 16,
       "id": "svapna_turiya"
     },
     {
@@ -1688,7 +1688,7 @@
       "label": "Series: Field Notes",
       "file_type": "document",
       "source_file": "content/series/field-notes/_index.md",
-      "community": 18,
+      "community": 17,
       "id": "series_field_notes"
     },
     {
@@ -1702,147 +1702,147 @@
       "label": "AI Orchestrating Apps (MCP Way)",
       "file_type": "image",
       "source_file": "static/images/ai-architecture.svg",
-      "community": 11,
+      "community": 10,
       "id": "ai_architecture_mcp_way"
     },
     {
       "label": "Central AI Hub",
       "file_type": "image",
       "source_file": "static/images/ai-architecture.svg",
-      "community": 11,
+      "community": 10,
       "id": "ai_architecture_central_ai"
     },
     {
       "label": "MCP Protocol (Diagram)",
       "file_type": "image",
       "source_file": "static/images/ai-architecture.svg",
-      "community": 11,
+      "community": 10,
       "id": "ai_architecture_mcp_protocol"
     },
     {
       "label": "Dream Engine Pipeline (Diagram)",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 13,
+      "community": 12,
       "id": "dream_engine_pipeline"
     },
     {
       "label": "Phase 0: Orient",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase0"
     },
     {
       "label": "Phase 1: Replay",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase1"
     },
     {
       "label": "Phase 2: Dedup",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase2"
     },
     {
       "label": "Phase 2b: LLM Consolidate",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase2b"
     },
     {
       "label": "Phase 3: Schema Promotion",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase3"
     },
     {
       "label": "Phase 4: Bidirectional Stability",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase4"
     },
     {
       "label": "Phase 5: Transitive Inference",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase5"
     },
     {
       "label": "Phase 6: Dream Journal",
       "file_type": "image",
       "source_file": "static/images/dream-engine.svg",
-      "community": 10,
+      "community": 9,
       "id": "dream_engine_phase6"
     },
     {
       "label": "defer_loading Optimization",
       "file_type": "image",
       "source_file": "static/images/context-window-cost-inline.svg",
-      "community": 11,
+      "community": 10,
       "id": "context_window_defer_loading"
     },
     {
       "label": "Dream Pipeline Vault Trust Tiers",
       "file_type": "image",
       "source_file": "static/images/dream-pipeline-inline.svg",
-      "community": 13,
+      "community": 12,
       "id": "dream_pipeline_vault_tiers"
     },
     {
       "label": "Evolution Loop Cycle",
       "file_type": "image",
       "source_file": "static/images/evolution-loop-inline.svg",
-      "community": 14,
+      "community": 13,
       "id": "evolution_loop_cycle"
     },
     {
       "label": "MCP Architecture Diagram",
       "file_type": "image",
       "source_file": "static/images/mcp-architecture-inline.svg",
-      "community": 11,
+      "community": 10,
       "id": "mcp_architecture_diagram"
     },
     {
       "label": "Measurement Timing Diagram",
       "file_type": "image",
       "source_file": "static/images/measurement-timing-inline.svg",
-      "community": 19,
+      "community": 18,
       "id": "measurement_timing_diagram"
     },
     {
       "label": "Mutation Loop Pipeline",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
-      "community": 14,
+      "community": 13,
       "id": "mutation_loop_pipeline"
     },
     {
       "label": "LLM Proposer",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
-      "community": 12,
+      "community": 11,
       "id": "mutation_loop_llm_proposer"
     },
     {
       "label": "Tokenizer Gate",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
-      "community": 12,
+      "community": 11,
       "id": "mutation_loop_tokenizer_gate"
     },
     {
       "label": "Probe Pipeline",
       "file_type": "image",
       "source_file": "static/images/mutation-loop-inline.svg",
-      "community": 12,
+      "community": 11,
       "id": "mutation_loop_probe_pipeline"
     },
     {
@@ -1854,8 +1854,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__post",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__post"
     },
     {
       "label": "Vercel AI SDK streamUI",
@@ -1866,8 +1866,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__vercel_ai_sdk_streamui"
     },
     {
       "label": "AG-UI Protocol",
@@ -1878,8 +1878,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__ag_ui",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__ag_ui"
     },
     {
       "label": "A2UI Protocol",
@@ -1890,8 +1890,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__a2ui",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__a2ui"
     },
     {
       "label": "Kombai",
@@ -1902,8 +1902,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__kombai",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__kombai"
     },
     {
       "label": "React Server Components",
@@ -1914,8 +1914,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__react_server_components",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__react_server_components"
     },
     {
       "label": "SSE Bi-directional Event Streaming",
@@ -1926,8 +1926,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__sse_event_streaming",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__sse_event_streaming"
     },
     {
       "label": "Progressive JSON Streaming",
@@ -1938,8 +1938,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__progressive_json_streaming",
-      "community": 3
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__progressive_json_streaming"
     },
     {
       "label": "CopilotKit",
@@ -1950,8 +1950,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__copilotkit",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__copilotkit"
     },
     {
       "label": "LangGraph",
@@ -1962,8 +1962,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__langgraph",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__langgraph"
     },
     {
       "label": "CrewAI",
@@ -1974,8 +1974,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__crewai",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__crewai"
     },
     {
       "label": "Mastra",
@@ -1986,8 +1986,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__mastra",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__mastra"
     },
     {
       "label": "Whitelisted Component Catalog",
@@ -1998,8 +1998,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__whitelisted_component_catalog",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__whitelisted_component_catalog"
     },
     {
       "label": "Schema Validation for UI Injection Prevention",
@@ -2010,8 +2010,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__schema_validation",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__schema_validation"
     },
     {
       "label": "Trust Boundary Decision Framework",
@@ -2022,8 +2022,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__trust_boundary_decision",
-      "community": 3
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__trust_boundary_decision"
     },
     {
       "label": "Code vs Data vs Events Architectural Divide",
@@ -2034,8 +2034,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__code_data_events_divide",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__code_data_events_divide"
     },
     {
       "label": "CopilotKit Generative UI Playground",
@@ -2046,8 +2046,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__generative_ui_playground",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__generative_ui_playground"
     },
     {
       "label": "AI SDK RSC Paused October 2024",
@@ -2058,8 +2058,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__ai_sdk_paused_october_2024",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__ai_sdk_paused_october_2024"
     },
     {
       "label": "Grid Dynamics A2UI Orchestrator Inspection",
@@ -2070,8 +2070,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__griddynamics_a2ui_orchestration",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__griddynamics_a2ui_orchestration"
     },
     {
       "label": "MCP (Model Context Protocol)",
@@ -2082,8 +2082,8 @@
       "captured_at": null,
       "author": "Christian Pojoni",
       "contributor": null,
-      "id": "frontend_ai_agents_streaming_ui__mcp",
-      "community": 6
+      "community": 3,
+      "id": "frontend_ai_agents_streaming_ui__mcp"
     },
     {
       "label": "Stop Putting Decisions in CLAUDE.md",
@@ -2094,8 +2094,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__post",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__post"
     },
     {
       "label": "Push Context",
@@ -2106,8 +2106,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__push_context",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__push_context"
     },
     {
       "label": "Pull Context",
@@ -2118,8 +2118,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__pull_context",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__pull_context"
     },
     {
       "label": "CLAUDE.md / AGENTS.md",
@@ -2130,8 +2130,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__claude_md",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__claude_md"
     },
     {
       "label": "ETH Zurich AGENTS.md Study (2026)",
@@ -2142,8 +2142,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__eth_zurich_study",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__eth_zurich_study"
     },
     {
       "label": "Lulla et al. Paired AGENTS.md Study",
@@ -2154,8 +2154,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__lulla_et_al_study",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__lulla_et_al_study"
     },
     {
       "label": "Lore Paper (Stetsenko, March 2026)",
@@ -2166,8 +2166,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__lore_paper",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__lore_paper"
     },
     {
       "label": "Nygard ADR Format",
@@ -2178,8 +2178,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__nygard_adr_format",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__nygard_adr_format"
     },
     {
       "label": "Architecture Decision Records",
@@ -2190,8 +2190,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__adr",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__adr"
     },
     {
       "label": "docs/specs Per-feature Intent",
@@ -2202,8 +2202,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__specs_directory",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__specs_directory"
     },
     {
       "label": ".claude/skills Triggered Workflow Protocols",
@@ -2214,8 +2214,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__claude_skills",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__claude_skills"
     },
     {
       "label": "Progressive Disclosure",
@@ -2226,8 +2226,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__progressive_disclosure",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__progressive_disclosure"
     },
     {
       "label": "Intent Spec-Driven Framework",
@@ -2238,8 +2238,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__intent_framework",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__intent_framework"
     },
     {
       "label": "20% Per-Session Token Tax",
@@ -2250,8 +2250,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__token_tax",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__token_tax"
     },
     {
       "label": "Decision Shadow (Implementation-Level Reasoning)",
@@ -2262,8 +2262,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__decision_shadow",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__decision_shadow"
     },
     {
       "label": "Layered Decision Residency (Commits/ADRs/Specs/CLAUDE.md)",
@@ -2274,8 +2274,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__layered_decision_residency",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__layered_decision_residency"
     },
     {
       "label": "Anthropic Harness CLAUDE.md Relevance Warning",
@@ -2286,8 +2286,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__humanlayer_warning",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__humanlayer_warning"
     },
     {
       "label": "MarkTechPost ETH Study Writeup",
@@ -2298,8 +2298,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__marktechpost_eth_writeup",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__marktechpost_eth_writeup"
     },
     {
       "label": "Hrafn Rust Agent Framework",
@@ -2310,8 +2310,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__hrafn",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__hrafn"
     },
     {
       "label": "Rationale: Why Pull Context Beats Push for Decisions",
@@ -2322,8 +2322,8 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__rationale_pull_context",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__rationale_pull_context"
     },
     {
       "label": "Rationale: Four ADR Properties That Make Them Agent-Friendly",
@@ -2334,8 +2334,248 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "push_pull_context__rationale_adr_properties",
-      "community": 3
+      "community": 3,
+      "id": "push_pull_context__rationale_adr_properties"
+    },
+    {
+      "label": "A Sablier Bug That Wasn't Sablier (blog post)",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Field-notes post tracing a sporadic 'invalid middleware' error in Sablier to a hidden startup dependency introduced by a Traefik 3.5.3 refactor.",
+      "id": "a_sablier_bug_that_wasnt_sablier_post",
+      "community": 5
+    },
+    {
+      "label": "Sablier",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Scale-to-zero middleware for self-hosted Docker containers; reverse-proxy wakes target containers on demand and shuts them down after an idle timeout.",
+      "id": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "community": 5
+    },
+    {
+      "label": "Traefik",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Reverse-proxy hosting the Sablier plugin; v3.5.3 refactored its plugin system and introduced the startup dependency described in the post.",
+      "id": "a_sablier_bug_that_wasnt_sablier_traefik",
+      "community": 5
+    },
+    {
+      "label": "invalid middleware error",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Sporadic error 'invalid middleware type or middleware does not exist' reported by Sablier users, actually caused by Traefik plugin install failure.",
+      "id": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error",
+      "community": 5
+    },
+    {
+      "label": "Traefik PR #12035 (plugin system refactor)",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Merged in Traefik v3.5.3; split plugin client into Manager, Downloader, and new hash-verification plumbing, coupling plugin startup to plugins.traefik.io reachability.",
+      "id": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "community": 5
+    },
+    {
+      "label": "plugins.traefik.io registry dependency",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Hidden startup dependency: Manager.InstallPlugin unconditionally calls Downloader.Download and Downloader.Check, both hitting the registry; failure aborts install.",
+      "id": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "community": 5
+    },
+    {
+      "label": "Manager.InstallPlugin code block (v3.5.3)",
+      "file_type": "code",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Affected Go code on v3.5.3 showing unconditional Download then Check calls, with failure paths returning errors that abort install.",
+      "id": "a_sablier_bug_that_wasnt_sablier_install_plugin_snippet",
+      "community": 5
+    },
+    {
+      "label": "sablier-traefik-repro repository",
+      "file_type": "code",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Deterministic reproduction repo published at github.com/5queezer/sablier-traefik-repro.",
+      "id": "a_sablier_bug_that_wasnt_sablier_reproduction_repo",
+      "community": 5
+    },
+    {
+      "label": "docker-compose.netblock.yml override",
+      "file_type": "code",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "One-line Docker override mapping plugins.traefik.io to 127.0.0.1 to force 'connection refused' and deterministically reproduce the bug.",
+      "id": "a_sablier_bug_that_wasnt_sablier_netblock_override",
+      "community": 5
+    },
+    {
+      "label": "Traefik issue #13005",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Fresh upstream issue filed against Traefik with deterministic reproduction, root-cause pointer to PR #12035, and a menu of fix options.",
+      "id": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "community": 5
+    },
+    {
+      "label": "Traefik fix PR #13006",
+      "file_type": "code",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Fix PR that narrows blast radius: falls back to cached archive when Download fails, keeps Check-after-successful-Download fatal, always enforces hash pinning.",
+      "id": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "community": 5
+    },
+    {
+      "label": "Traefik issue #12137 (frozen-due-to-age)",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Earlier issue reporting the same root cause, auto-closed and locked by the stale-issue bot, preventing new comments.",
+      "id": "a_sablier_bug_that_wasnt_sablier_locked_issue_12137",
+      "community": 5
+    },
+    {
+      "label": "ResetAll blast-radius rationale",
+      "file_type": "rationale",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "One plugin's install failure calls manager.ResetAll(), which wipes the entire archives directory, disabling every plugin-backed middleware in the deployment.",
+      "id": "a_sablier_bug_that_wasnt_sablier_reset_all_blast_radius",
+      "community": 5
+    },
+    {
+      "label": "'sporadic = hidden dependency' heuristic",
+      "file_type": "rationale",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Debugging heuristic: when timing-based reproduction fails, stop varying timing and start varying what the process can reach on the network.",
+      "id": "a_sablier_bug_that_wasnt_sablier_sporadic_hidden_dependency_heuristic",
+      "community": 5
+    },
+    {
+      "label": "Refile-a-locked-issue rationale",
+      "file_type": "rationale",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "A locked issue is not a dead issue: filing a fresh one with repro + root-cause pointer creates a new triage signal and an open thread for future users.",
+      "id": "a_sablier_bug_that_wasnt_sablier_locked_issue_refile_rationale",
+      "community": 5
+    },
+    {
+      "label": "Narrow tolerance-gate rationale",
+      "file_type": "rationale",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "First draft tolerated any integrity-check failure when a cached archive existed; tightened to a 'fallback' flag set only when Download itself failed, keeping post-download Check failures fatal.",
+      "id": "a_sablier_bug_that_wasnt_sablier_tightened_fix_rationale",
+      "community": 5
+    },
+    {
+      "label": "Coolify-on-Hetzner production deployment",
+      "file_type": "document",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Author's box running patched Traefik plus Sablier; recovered 3.1 GiB RAM and 2 GiB swap with a ten-minute idle window on eight MCP servers and four Coolify apps.",
+      "id": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "community": 5
+    },
+    {
+      "label": "Coolify reconcile loop vs Sablier conflict",
+      "file_type": "rationale",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Coolify's health loop sees Sablier-stopped containers as exited:unhealthy, marks them crashed, and garbage-collects them; Sablier then 404s on wake. Compose stacks are unaffected.",
+      "id": "a_sablier_bug_that_wasnt_sablier_coolify_reconcile_conflict",
+      "community": 5
+    },
+    {
+      "label": "file-provider router sync gist",
+      "file_type": "code",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "GitHub gist with a small sync tool that regenerates the file-provider router URL to match Coolify's UUID-suffixed container names so Sablier middleware persists across redeploys.",
+      "id": "a_sablier_bug_that_wasnt_sablier_file_provider_router_gist",
+      "community": 5
+    },
+    {
+      "label": "Traefik docker-provider router drop gotcha",
+      "file_type": "rationale",
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "source_url": null,
+      "captured_at": null,
+      "author": "Christian Pojoni",
+      "contributor": null,
+      "summary": "Docker provider drops a router the moment its backing container stops, so the Sablier middleware never fires and callers see 503; fix is a higher-priority file-provider router by docker DNS name.",
+      "id": "a_sablier_bug_that_wasnt_sablier_docker_provider_router_drop",
+      "community": 5
     }
   ],
   "links": [
@@ -6668,6 +6908,286 @@
       "_tgt": "push_pull_context__layered_decision_residency",
       "source": "push_pull_context__decision_shadow",
       "target": "push_pull_context__layered_decision_residency"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_post",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "source": "a_sablier_bug_that_wasnt_sablier_post",
+      "target": "a_sablier_bug_that_wasnt_sablier_sablier"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_post",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_traefik",
+      "source": "a_sablier_bug_that_wasnt_sablier_post",
+      "target": "a_sablier_bug_that_wasnt_sablier_traefik"
+    },
+    {
+      "relation": "cites",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_post",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_reproduction_repo",
+      "source": "a_sablier_bug_that_wasnt_sablier_post",
+      "target": "a_sablier_bug_that_wasnt_sablier_reproduction_repo"
+    },
+    {
+      "relation": "cites",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_post",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "source": "a_sablier_bug_that_wasnt_sablier_post",
+      "target": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005"
+    },
+    {
+      "relation": "cites",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_post",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "source": "a_sablier_bug_that_wasnt_sablier_post",
+      "target": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006"
+    },
+    {
+      "relation": "implements",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_traefik",
+      "source": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "target": "a_sablier_bug_that_wasnt_sablier_traefik"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "source": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "target": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "source": "a_sablier_bug_that_wasnt_sablier_sablier",
+      "target": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_traefik",
+      "source": "a_sablier_bug_that_wasnt_sablier_traefik",
+      "target": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "source": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error",
+      "target": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_reset_all_blast_radius",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error",
+      "source": "a_sablier_bug_that_wasnt_sablier_invalid_middleware_error",
+      "target": "a_sablier_bug_that_wasnt_sablier_reset_all_blast_radius"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "source": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "target": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency"
+    },
+    {
+      "relation": "implements",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_install_plugin_snippet",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "source": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "target": "a_sablier_bug_that_wasnt_sablier_install_plugin_snippet"
+    },
+    {
+      "relation": "cites",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "source": "a_sablier_bug_that_wasnt_sablier_traefik_pr_12035",
+      "target": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_install_plugin_snippet",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "source": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "target": "a_sablier_bug_that_wasnt_sablier_install_plugin_snippet"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_netblock_override",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "source": "a_sablier_bug_that_wasnt_sablier_plugins_traefik_io_dependency",
+      "target": "a_sablier_bug_that_wasnt_sablier_netblock_override"
+    },
+    {
+      "relation": "references",
+      "provenance": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_reproduction_repo",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_netblock_override",
+      "source": "a_sablier_bug_that_wasnt_sablier_reproduction_repo",
+      "target": "a_sablier_bug_that_wasnt_sablier_netblock_override"
+    },
+    {
+      "relation": "cites",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_reproduction_repo",
+      "source": "a_sablier_bug_that_wasnt_sablier_reproduction_repo",
+      "target": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_sporadic_hidden_dependency_heuristic",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_netblock_override",
+      "source": "a_sablier_bug_that_wasnt_sablier_netblock_override",
+      "target": "a_sablier_bug_that_wasnt_sablier_sporadic_hidden_dependency_heuristic"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "source": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "target": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_locked_issue_12137",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "source": "a_sablier_bug_that_wasnt_sablier_upstream_issue_13005",
+      "target": "a_sablier_bug_that_wasnt_sablier_locked_issue_12137"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_reset_all_blast_radius",
+      "source": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "target": "a_sablier_bug_that_wasnt_sablier_reset_all_blast_radius"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_tightened_fix_rationale",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "source": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "target": "a_sablier_bug_that_wasnt_sablier_tightened_fix_rationale"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "source": "a_sablier_bug_that_wasnt_sablier_fix_pr_13006",
+      "target": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_locked_issue_refile_rationale",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_locked_issue_12137",
+      "source": "a_sablier_bug_that_wasnt_sablier_locked_issue_12137",
+      "target": "a_sablier_bug_that_wasnt_sablier_locked_issue_refile_rationale"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_coolify_reconcile_conflict",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "source": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "target": "a_sablier_bug_that_wasnt_sablier_coolify_reconcile_conflict"
+    },
+    {
+      "relation": "references",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_file_provider_router_gist",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "source": "a_sablier_bug_that_wasnt_sablier_coolify_hetzner_deployment",
+      "target": "a_sablier_bug_that_wasnt_sablier_file_provider_router_gist"
+    },
+    {
+      "relation": "rationale_for",
+      "provenance": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "content/blog/a-sablier-bug-that-wasnt-sablier.md",
+      "_src": "a_sablier_bug_that_wasnt_sablier_docker_provider_router_drop",
+      "_tgt": "a_sablier_bug_that_wasnt_sablier_file_provider_router_gist",
+      "source": "a_sablier_bug_that_wasnt_sablier_file_provider_router_gist",
+      "target": "a_sablier_bug_that_wasnt_sablier_docker_provider_router_drop"
     }
   ],
   "hyperedges": [
