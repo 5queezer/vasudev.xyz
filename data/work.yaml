@@ -1,0 +1,27 @@
+- name: hrafn
+  type: Rust runtime
+  subtitle: Plugin-driven execution with protocol-aware messaging.
+  desc: Lightweight, modular AI agent runtime in Rust with MCP plugins, MuninnDB memory, and A2A protocol support.
+  tags: [Rust, MCP, A2A]
+  link: https://github.com/5queezer/hrafn
+
+- name: axiom-vault
+  type: Encrypted vault
+  subtitle: Systems-level security primitives packaged for real apps.
+  desc: Cross-platform encrypted vault in Rust with XChaCha20-Poly1305, FFI bindings, and CI/CD pipelines.
+  tags: [Rust, FFI, Crypto]
+  link: https://github.com/5queezer/axiom-vault
+
+- name: distill
+  type: Team memory
+  subtitle: Retrieval-first memory infrastructure without cloud lock-in.
+  desc: Privacy-first MCP server for team memory with FastMCP, SQLite FTS5, and local vector search.
+  tags: [Python, SQLite, Vectors]
+  link: https://github.com/5queezer/distill
+
+- name: nexus-crm
+  type: Full-stack app
+  subtitle: Operational UX with workflow-heavy product surfaces.
+  desc: Full-stack CRM with Kanban workflows built on Next.js, TanStack, Prisma, and Google OAuth.
+  tags: [Next.js, Prisma, OAuth]
+  link: https://github.com/5queezer/nexus-crm

@@ -1,0 +1,28 @@
+<section id="work" class="selected-work container">
+  <div class="section-header">
+    <h2 class="section-eyebrow">{{ i18n "section_work" }}</h2>
+    <h3 class="section-title">{{ i18n "section_work_h" }}</h3>
+  </div>
+
+  <div class="work-list">
+    {{ range site.Data.work }}
+      <a href="{{ .link }}" target="_blank" rel="noopener" class="work-row">
+        <div class="work-row-inner">
+          <div class="work-meta">
+            <h4 class="work-name">{{ .name }}</h4>
+            <div class="work-type">{{ .type }}</div>
+          </div>
+          <div class="work-body">
+            <p class="work-subtitle">{{ .subtitle }}</p>
+            <p class="work-desc">{{ .desc }}</p>
+            <div class="tag-row">
+              {{ range .tags }}<span class="tag">{{ . }}</span>{{ end }}
+            </div>
+          </div>
+          <div class="work-arrow" aria-hidden="true">↗</div>
+        </div>
+      </a>
+    {{ end }}
+    <div class="work-list-end"></div>
+  </div>
+</section>

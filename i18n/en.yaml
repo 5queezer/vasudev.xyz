@@ -1,0 +1,68 @@
+- id: nav_agent
+  translation: Agent
+- id: nav_work
+  translation: Work
+- id: nav_writing
+  translation: Writing
+- id: nav_about
+  translation: About
+- id: nav_contact
+  translation: Contact
+
+- id: hero_systems_engineer
+  translation: Systems Engineer
+- id: hero_blueprint_label
+  translation: "vasudev.xyz — Hugo, GitHub Pages, Giscus, on-site Nemotron agent."
+- id: hero_builds
+  translation: Builds
+- id: hero_writes
+  translation: Writes
+- id: hero_status
+  translation: "System Status: Nominal"
+- id: hero_location
+  translation: "Location: Earth"
+
+- id: section_principles
+  translation: 01 / Principles
+- id: section_work
+  translation: 02 / Selected Work
+- id: section_work_h
+  translation: Crafted Systems.
+- id: section_writing
+  translation: 03 / Writing
+- id: section_writing_h
+  translation: Essays & Architecture.
+- id: section_about
+  translation: 04 / About
+- id: section_about_h
+  translation: The Workshop.
+- id: section_contact
+  translation: 05 / Elsewhere
+- id: section_contact_h
+  translation: Let's build.
+- id: section_agent
+  translation: 00 / The Agent
+- id: section_agent_h
+  translation: The chat box that lives on the blog.
+
+- id: agent_intro
+  translation: A tiny JS island posting to a Cloudflare Worker that streams answers from a free Nemotron endpoint. No origin server. No database. The static site stays static — this one box is the only thing that breathes.
+- id: agent_welcome
+  translation: "Hello. I'm the on-site agent. Ask me about the writing, the projects, or the stack that powers me."
+- id: agent_placeholder
+  translation: Ask the agent something…
+- id: agent_streaming
+  translation: streaming response…
+- id: agent_chip_who
+  translation: Who is Christian?
+- id: agent_chip_hrafn
+  translation: Tell me about hrafn
+- id: agent_chip_stack
+  translation: What's the agent stack?
+- id: agent_chip_site
+  translation: How does this site work?
+
+- id: comments_signin
+  translation: Sign in with GitHub to comment
+- id: footer_built
+  translation: Built with Hugo · GitHub Pages · Giscus · Cloudflare Workers · Nemotron
