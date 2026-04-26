@@ -1,15 +1,8 @@
-name: Deploy Hugo site to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["master"]
-    paths-ignore:
-      - "content/blog/*.md"
-      - "cmd/translate/**"
-  workflow_run:
-    workflows: ["Translate blog posts"]
-    types: [completed]
-    branches: ["master"]
+    branches: [master, main]
   workflow_dispatch:
 
 permissions:
@@ -21,82 +14,31 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   build:
-    if: >-
-      github.event_name != 'workflow_run' ||
-      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: "0.145.0"
+      HUGO_VERSION: 0.140.0
+      HUGO_PARAMS_AGENTENDPOINT: ${{ vars.AGENT_ENDPOINT }}
     steps:
       - name: Install Hugo CLI
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
 
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build chat widget
-        run: cd chat && npm ci && npm run build
-
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v4
         with:
-          go-version: "1.22"
-          cache-dependency-path: cmd/sync-graph/go.mod
+          submodules: recursive
+          fetch-depth: 0
 
-      - name: Check graph freshness
-        run: |
-          set -euo pipefail
-          posts=$(find content/blog -maxdepth 1 -name '*.md' ! -name '_*.md' ! -name '*.de.md' ! -name '*.es.md' | sort)
-          indexed=$(python3 -c "
-          import json
-          d = json.load(open('graphify-out/graph.json'))
-          for f in sorted({n.get('source_file','') for n in d['nodes']}):
-              if f.startswith('content/blog/'):
-                  print(f)
-          ")
-          missing=()
-          while IFS= read -r p; do
-            grep -qxF "$p" <<<"$indexed" || missing+=("$p")
-          done <<<"$posts"
-          if (( ${#missing[@]} > 0 )); then
-            echo "::error::Graph is stale. Missing posts in graphify-out/graph.json:"
-            printf '  - %s\n' "${missing[@]}"
-            echo ""
-            echo "Fix locally:"
-            echo "  /graphify content/blog --update"
-            echo "  git add graphify-out/ && git commit && git push"
-            exit 1
-          fi
-          echo "Graph fresh: $(wc -l <<<"$posts") posts indexed."
+      - uses: actions/configure-pages@v5
 
-      - name: Enrich graph data with community names
-        run: cd cmd/sync-graph && go run main.go --graphify-dir ../../graphify-out --output ../../static/data/graph.json --root ../..
-
-      - name: Build with Hugo
+      - name: Build
         env:
-          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
-          TZ: Europe/Vienna
-          HUGO_PARAMS_CFBEACONTOKEN: ${{ secrets.CF_BEACON_TOKEN }}
-        run: |
-          hugo \
-            --gc \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --minify --gc
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
@@ -107,6 +49,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4

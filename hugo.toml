@@ -3,6 +3,29 @@ title = "Christian Pojoni"
 theme = "vasudev"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+
+[params]
+  description = "Systems engineer working in Rust, Python, AI tooling, and privacy-first architecture."
+  author = "Christian Pojoni"
+  email = "christian.pojoni@gmail.com"
+  github = "https://github.com/5queezer"
+  linkedin = "https://linkedin.com/in/christian-pojoni"
+  nexusUrl = "https://nexus.vasudev.xyz/"
+  agentEndpoint = "https://agent.vasudev.workers.dev"
+
+  [params.giscus]
+    repo = "5queezer/vasudev.xyz"
+    repoId = "R_kgDOLkjiMw"
+    category = "Announcements"
+    categoryId = "DIC_kwDOLkjiM84C5UUx"
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "top"
+    theme = "preferred_color_scheme"
+    lang = "en"
 
 [languages]
   [languages.en]
@@ -10,35 +33,30 @@ defaultContentLanguageInSubdir = false
     languageCode = "en-us"
     weight = 1
     [languages.en.params]
-      description = "Systems engineer. Rust, Python, AI tooling, privacy-first architecture."
+      tagline = "Systems engineer working in Rust, Python, AI tooling, and privacy-first architecture."
   [languages.de]
     languageName = "Deutsch"
     languageCode = "de"
     weight = 2
     [languages.de.params]
-      description = "Systemingenieur. Rust, Python, KI-Werkzeuge, datenschutzorientierte Architektur."
+      tagline = "Systemingenieur. Rust, Python, KI-Werkzeuge, datenschutzorientierte Architektur."
   [languages.es]
     languageName = "Español"
     languageCode = "es"
     weight = 3
     [languages.es.params]
-      description = "Ingeniero de sistemas. Rust, Python, herramientas de IA, arquitectura centrada en la privacidad."
+      tagline = "Ingeniero de sistemas. Rust, Python, herramientas de IA, arquitectura centrada en la privacidad."
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style    = "base16-snazzy"
+    noClasses = false
 
 [taxonomies]
   tag = "tags"
   series = "series"
-
-[params]
-  author = "Christian Pojoni"
-
-[markup]
-  [markup.highlight]
-    style = "monokai"
-    lineNos = false
-    guessSyntax = true
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
 
 [mediaTypes]
   [mediaTypes."text/plain"]
@@ -67,13 +85,13 @@ defaultContentLanguageInSubdir = false
   section = ["html"]
   page = ["html", "txtplain"]
 
-[params.giscus]
-  repo = "5queezer/vasudev.xyz"
-  repoID = "R_kgDOLkjiMw"
-  category = "Announcements"
-  categoryID = "DIC_kwDOLkjiM84C5UUx"
-  mapping = "pathname"
-  reactionsEnabled = "1"
-  emitMetadata = "0"
-  inputPosition = "top"
-  lang = "en"
+[permalinks]
+  blog = "/blog/:slug/"
+
+[build]
+  writeStats = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min      = "0.140.0"

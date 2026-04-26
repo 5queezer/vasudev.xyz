@@ -1,0 +1,30 @@
+{{- $current := .Site.Language.Lang -}}
+{{- $translations := .AllTranslations -}}
+<nav class="navbar" data-navbar>
+  <div class="navbar-inner">
+    <a href="{{ "/" | relLangURL }}#top" class="navbar-brand">
+      <span class="brand-mark">CP</span>
+      <span class="brand-sep">/</span>
+      <span>vasudev.xyz</span>
+    </a>
+
+    <div class="navbar-links">
+      <a href="{{ relLangURL "" }}#agent">{{ i18n "nav_agent" }}</a>
+      <a href="{{ relLangURL "" }}#work">{{ i18n "nav_work" }}</a>
+      <a href="{{ relLangURL "" }}#writing">{{ i18n "nav_writing" }}</a>
+      <a href="{{ relLangURL "" }}#about">{{ i18n "nav_about" }}</a>
+      <a href="{{ relLangURL "" }}#contact" class="link-primary">{{ i18n "nav_contact" }}</a>
+
+      <div class="lang-toggle">
+        {{- range .Site.Languages }}
+          {{- $matches := where $translations "Lang" .Lang -}}
+          {{- $target := $.Site.Home -}}
+          {{- if gt (len $matches) 0 }}
+            {{- $target = index $matches 0 -}}
+          {{- end -}}
+          <a href="{{ $target.RelPermalink }}" class="{{ if eq $current .Lang }}is-active{{ end }}">{{ upper .Lang }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</nav>

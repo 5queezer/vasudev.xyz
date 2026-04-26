@@ -1,0 +1,21 @@
+<section id="contact" class="elsewhere">
+  <div class="container">
+    <h2 class="section-eyebrow opacity-70">{{ i18n "section_contact" }}</h2>
+    <h3 class="elsewhere-title">{{ i18n "section_contact_h" }}</h3>
+
+    <div class="elsewhere-grid">
+      <a href="mailto:{{ .Site.Params.email }}" class="elsewhere-link">
+        <span>Email</span><span class="elsewhere-link-value">{{ .Site.Params.email }}</span>
+      </a>
+      <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener" class="elsewhere-link">
+        <span>GitHub</span><span class="elsewhere-link-value">@5queezer</span>
+      </a>
+      <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener" class="elsewhere-link">
+        <span>LinkedIn</span><span class="elsewhere-link-value">christian-pojoni</span>
+      </a>
+      <a href="{{ .Site.Params.nexusUrl }}" target="_blank" rel="noopener" class="elsewhere-link">
+        <span>Nexus CRM</span><span class="elsewhere-link-value">nexus.vasudev.xyz</span>
+      </a>
+    </div>
+  </div>
+</section>

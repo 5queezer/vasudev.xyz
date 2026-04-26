@@ -1,0 +1,6 @@
+- num: "001"
+  text: Software should respect the reader's attention. No artificial friction. No unnecessary calls.
+- num: "002"
+  text: Systems-level security primitives belong in everyday applications. Encrypt by default.
+- num: "003"
+  text: Agent architecture is moving from monoliths to modular protocols. Build small, compose big.

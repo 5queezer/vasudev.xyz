@@ -4,7 +4,6 @@ date: 2026-04-12
 tags: ["ai", "agents", "frontend", "architecture"]
 description: "AG-UI, A2UI, Vercel AI SDK streamUI, and Kombai take four different bets on how agents should build interfaces. One question decides which wins."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
-images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
 ---
 

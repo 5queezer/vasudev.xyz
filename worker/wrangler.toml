@@ -1,0 +1,14 @@
+name = "agent"
+main = "src/index.ts"
+compatibility_date = "2026-01-15"
+workers_dev = true
+
+# Optional: bind a custom route once you've added a domain to Cloudflare.
+# routes = [{ pattern = "agent.vasudev.xyz/*", custom_domain = true }]
+
+[vars]
+ALLOWED_ORIGINS = "https://vasudev.xyz,http://localhost:1313"
+
+# Set with:
+#   wrangler secret put OPENROUTER_API_KEY
+# (Get a free key at https://openrouter.ai/ — Nemotron 70B is on the free tier.)

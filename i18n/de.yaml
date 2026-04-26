@@ -1,0 +1,68 @@
+- id: nav_agent
+  translation: Agent
+- id: nav_work
+  translation: Arbeit
+- id: nav_writing
+  translation: Schreiben
+- id: nav_about
+  translation: Über
+- id: nav_contact
+  translation: Kontakt
+
+- id: hero_systems_engineer
+  translation: Systemingenieur
+- id: hero_blueprint_label
+  translation: "vasudev.xyz — Hugo, GitHub Pages, Giscus, Nemotron-Agent vor Ort."
+- id: hero_builds
+  translation: Baut
+- id: hero_writes
+  translation: Schreibt
+- id: hero_status
+  translation: "Systemstatus: Nominal"
+- id: hero_location
+  translation: "Standort: Erde"
+
+- id: section_principles
+  translation: 01 / Prinzipien
+- id: section_work
+  translation: 02 / Ausgewählte Arbeiten
+- id: section_work_h
+  translation: Handgefertigte Systeme.
+- id: section_writing
+  translation: 03 / Schreiben
+- id: section_writing_h
+  translation: Essays & Architektur.
+- id: section_about
+  translation: 04 / Über
+- id: section_about_h
+  translation: Die Werkstatt.
+- id: section_contact
+  translation: 05 / Anderswo
+- id: section_contact_h
+  translation: Lass uns bauen.
+- id: section_agent
+  translation: 00 / Der Agent
+- id: section_agent_h
+  translation: Die Chatbox, die im Blog wohnt.
+
+- id: agent_intro
+  translation: Eine winzige JS-Insel, die einen Cloudflare Worker anspricht, der Antworten von einem kostenlosen Nemotron-Endpunkt streamt. Kein Ursprungsserver. Keine Datenbank. Die statische Seite bleibt statisch — nur diese eine Box atmet.
+- id: agent_welcome
+  translation: "Hallo. Ich bin der Vor-Ort-Agent. Frag mich nach den Texten, den Projekten oder dem Stack, der mich antreibt."
+- id: agent_placeholder
+  translation: Frag den Agenten etwas…
+- id: agent_streaming
+  translation: Antwort wird gestreamt…
+- id: agent_chip_who
+  translation: Wer ist Christian?
+- id: agent_chip_hrafn
+  translation: Erzähl mir von hrafn
+- id: agent_chip_stack
+  translation: Was ist der Agenten-Stack?
+- id: agent_chip_site
+  translation: Wie funktioniert diese Seite?
+
+- id: comments_signin
+  translation: Mit GitHub anmelden, um zu kommentieren
+- id: footer_built
+  translation: Gebaut mit Hugo · GitHub Pages · Giscus · Cloudflare Workers · Nemotron

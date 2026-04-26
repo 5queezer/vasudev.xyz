@@ -1,0 +1,31 @@
+{{ define "main" }}
+<article class="article container-narrow">
+  <header class="article-header">
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{ if eq .Section "blog" }}
+    <div class="article-meta">
+      <span>
+        By {{ .Site.Params.author }}
+        {{- with .Params.coAuthor }} · with {{ . }} as co-author{{ end -}}
+      </span>
+      <span class="muted-50">/</span>
+      <span>{{ .Date.Format "02 Jan 2006" }}</span>
+      {{ with .Params.tags }}
+        <span class="muted-50">/</span>
+        <div class="tag-row">
+          {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{ if eq .Section "blog" }}
+    {{ partial "giscus.html" . }}
+  {{ end }}
+</article>
+{{ end }}
