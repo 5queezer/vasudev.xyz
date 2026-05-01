@@ -6,8 +6,10 @@ tags: ["ai", "agents", "frontend", "architecture"]
 description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI, and Kombai take different bets on how agents should build interfaces. The architectural question decides which wins."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
+images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
 ---
+
 
 
 

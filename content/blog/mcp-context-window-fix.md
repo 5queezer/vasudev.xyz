@@ -6,7 +6,9 @@ description: "Every MCP tool you connect loads its full schema upfront, before y
 images: ["/images/mcp-context-window-fix-og.png"]
 images: ["/images/mcp-context-window-fix-og.png"]
 images: ["/images/mcp-context-window-fix-og.png"]
+images: ["/images/mcp-context-window-fix-og.png"]
 ---
+
 
 
 
