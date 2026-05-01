@@ -4,6 +4,8 @@
   translation: Arbeit
 - id: nav_writing
   translation: Schreiben
+- id: nav_guides
+  translation: Leitfäden
 - id: nav_about
   translation: Über
 - id: nav_contact
@@ -32,6 +34,10 @@
   translation: 03 / Schreiben
 - id: section_writing_h
   translation: Essays & Architektur.
+- id: section_guides
+  translation: 04 / Leitfäden
+- id: section_guides_h
+  translation: Feldleitfäden.
 - id: section_about
   translation: 04 / Über
 - id: section_about_h

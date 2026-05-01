@@ -4,6 +4,8 @@
   translation: Trabajo
 - id: nav_writing
   translation: Escritos
+- id: nav_guides
+  translation: Guías
 - id: nav_about
   translation: Acerca
 - id: nav_contact
@@ -32,6 +34,10 @@
   translation: 03 / Escritos
 - id: section_writing_h
   translation: Ensayos & Arquitectura.
+- id: section_guides
+  translation: 04 / Guías
+- id: section_guides_h
+  translation: Guías de Campo.
 - id: section_about
   translation: 04 / Acerca
 - id: section_about_h

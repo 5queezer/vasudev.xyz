@@ -19,5 +19,7 @@
   <script defer src="{{ $agentJS.RelPermalink }}"></script>
   {{- $langJS := resources.Get "js/lang-toggle.js" | resources.Minify | resources.Fingerprint -}}
   <script defer src="{{ $langJS.RelPermalink }}"></script>
+  {{- $codeCopyJS := resources.Get "js/code-copy.js" | resources.Minify | resources.Fingerprint -}}
+  <script defer src="{{ $codeCopyJS.RelPermalink }}"></script>
 </body>
 </html>

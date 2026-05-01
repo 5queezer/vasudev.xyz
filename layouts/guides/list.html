@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="writing">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-eyebrow">{{ i18n "section_guides" }}</h2>
+      <h3 class="section-title">{{ i18n "section_guides_h" }}</h3>
+    </div>
+
+    <div class="writing-grid">
+      {{ range .Pages.ByWeight }}
+        <a href="{{ .RelPermalink }}" class="essay-card">
+          <div class="essay-meta">
+            {{ if .Date }}<span>{{ .Date.Format "02 Jan 2006" }}</span>{{ end }}
+            <span>{{ len .RegularPages }} topics</span>
+          </div>
+          <h4 class="essay-title">{{ .Title }}</h4>
+          <p class="essay-desc">{{ .Description }}</p>
+          <div class="tag-row mt-auto">
+            {{ range .Params.guideTags }}<span class="tag tag-sm">{{ . }}</span>{{ end }}
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
