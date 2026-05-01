@@ -71,4 +71,4 @@ jobs:
             --title "i18n: auto-translate guide indexes to de/es" \
             --body "Automated translation of guide indexes to German and Spanish from workflow run ${GITHUB_RUN_ID}."
 
-          gh pr merge --auto --squash --delete-branch "$branch"
+          gh pr merge --squash --delete-branch "$branch"
