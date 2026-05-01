@@ -42,13 +42,13 @@ jobs:
         run: |
           cd cmd/translate
           go run main.go \
-            --content-dir ../../content/blog \
-            --languages de,es
-          go run main.go \
             --content-dir ../../content/guides \
             --languages de,es \
             --include-index \
             --index-only
+          go run main.go \
+            --content-dir ../../content/blog \
+            --languages de,es
 
       - name: Open PR with translations
         env:
