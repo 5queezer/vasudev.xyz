@@ -1,14 +1,15 @@
 ---
-title: "Patanjali tenía la especificación de filtrado. Nosotros sólo escribimos las pruebas."
+title: "Patanjali tenía la especificación de filtrado. Nosotros simplemente escribimos las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes y sus paralelos inesperados en la teoría de la atención yóguica."
+description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus inesperados paralelos en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "f26a2b8ce42e17b8c39a6f7d9006dfe9"
+translationHash: "6cc274fc33e684fc5f96e27d19b48f3d"
 chunkHashes: "9b3b5651c6cca98c,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
+
 [MuninnDB](https://github.com/scrypster/muninndb)'s sistema de consolidación fusionó tres engramas duplicados con variaciones de color exactamente como estaba previsto (similitud coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, eliminar los duplicados desplazó el ancla de normalización, haciendo que los resultados relevantes bajaran en la clasificación. La solución fue una cláusula de guardia: `MinDedupVaultSize` (valor predeterminado 20), que omite la deduplicación de la Fase 2 en bóvedas pequeñas. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
 
 El fallo no fue un error en el algoritmo de deduplicación. Fue una falla de *discernimiento*: una operación de consolidación válida aplicada en un contexto donde causó daño. Cuándo consolidar, cuándo dejarlo como está, qué se cuenta como ruido versus señal. Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en los [Yoga Sutras](https://es.wikipedia.org/wiki/Yoga_Sutra_de_Patanjali) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, marzo de 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), y el [marco de ingeniería de harness de Böckeler](https://martinfowler.com/articles/harness-engineering.html).

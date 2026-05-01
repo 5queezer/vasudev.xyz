@@ -1,14 +1,15 @@
 ---
-title: "Ein Sablier-Fehler, der kein Sablier war: 4 Stolperfallen beim Nachverfolgen eines Traefik‑Plugin‑Fehlers"
+title: "Ein Sablier‑Bug, der kein Sablier war: 4 Fallstricke beim Nachverfolgen eines Traefik‑Plugin‑Fehlers"
 date: 2026-04-19
-description: "Nachverfolgung eines sporadischen ‘invalid middleware’-Fehlers in Sablier zu einer verborgenen Startabhängigkeit, die durch eine Traefik 3.5.3‑Refactorierung eingeführt wurde."
+description: "Verfolgen eines sporadischen „invalid middleware“-Fehlers in Sablier zu einer versteckten Startabhängigkeit, die durch eine Refaktorierung von Traefik 3.5.3 eingeführt wurde."
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
 series: ["Field Notes"]
-translationHash: "62d5bb434393d26d88b269a846a4d471"
+translationHash: "af6c194b72d6947b124045e0effec4b6"
 chunkHashes: "278fb8e0d3039274,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"
 ---
+
 [Sablier](https://github.com/sablierapp/sablier) gibt Ihnen Cloud‑Run‑ähnliches Scale‑to‑Zero für selbstgehostete Docker‑Container. Anfragen treffen auf eine Reverse‑Proxy‑Middleware, die Middleware weckt den Ziel‑Container bei Bedarf, und der Container fährt nach einer Leerlauf‑Timeout wieder herunter. Ich habe einen Nachmittag damit verbracht, einen sporadischen `invalid middleware`‑Fehler nachzuvollziehen, den Sablier‑Nutzer seit Monaten melden. Der Fehler lag nicht in Sablier. Die Arbeit hat drei öffentliche Artefakte hervorgebracht: ein [deterministisches Reproduktions‑Repository](https://github.com/5queezer/sablier-traefik-repro), ein upstream [Issue](https://github.com/traefik/traefik/issues/13005) und ein [Fix‑PR](https://github.com/traefik/traefik/pull/13006). Hier sind vier Dinge, die Sie wissen sollten, bevor Sie Ihren nächsten `invalid middleware`‑Fehler debuggen.
 
 **Ein Refactoring, das in einer Traefik‑Punkt‑Release veröffentlicht wurde, ließ stillschweigend jeden Plugin‑Start von der Erreichbarkeit von `plugins.traefik.io` abhängen, und kein einzelner Middleware‑Besitzer war in der Lage, dies zu bemerken.**

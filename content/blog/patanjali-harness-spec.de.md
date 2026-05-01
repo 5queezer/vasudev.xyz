@@ -1,14 +1,15 @@
 ---
-title: "Patanjali hatte die Filter‑Spezifikation. Wir haben gerade die Tests geschrieben."
+title: "Patanjali hatte das Filter‑Spezifikations‑Dokument. Wir haben nur die Tests geschrieben."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "Gedächtniskonsolidierung verschlechterte das Abrufen. Drei Gestaltungsprinzipien aus Agent‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur yogischen Aufmerksamkeits­theorie."
+description: "Memory-Konsolidierung verschlechterte das Abrufen. Drei Gestaltungsprinzipien aus Agent‑Speicher‑Benchmarks und ihre unerwarteten Parallelen zur yogischen Aufmerksamkeitstheorie."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "f26a2b8ce42e17b8c39a6f7d9006dfe9"
+translationHash: "6cc274fc33e684fc5f96e27d19b48f3d"
 chunkHashes: "9b3b5651c6cca98c,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
+
 [MuninnDB](https://github.com/scrypster/muninndb)s Konsolidierungssystem hat drei farbvarianten­gleiche Duplikat‑Engramme genau wie vorgesehen zusammengeführt (Kosinus‑Ähnlichkeit ≥ 0,95). Der Abruf wurde schlechter. In einem 13‑Engram‑Tresor verschob das Entfernen von Duplikaten den Normalisierungs‑Anker und drückte relevante Ergebnisse im Ranking nach unten. Die Lösung war eine Guard‑Clause: `MinDedupVaultSize` (Standard 20), die Phase‑2‑Dedup in kleinen Tresoren überspringt. [PR #359](https://github.com/scrypster/muninndb/pull/359) hat das Problem behoben.
 
 Der Fehler war kein Bug im Dedup‑Algorithmus. Es war ein Versagen des *Urteilsvermögens*: ein gültiger Konsolidierungs‑Vorgang wurde in einem Kontext angewendet, in dem er Schaden anrichtete. Wann konsolidieren, wann es lassen, was als Rauschen und was als Signal gilt. Dieses Problem hat eine lange Geschichte außerhalb der Informatik. Ich fand drei konkrete Designprinzipien in den [Yoga‑Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali), die zu empirischen Ergebnissen aus [Meta‑Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [Harness‑Engineering‑Framework](https://martinfowler.com/articles/harness-engineering.html) passen.

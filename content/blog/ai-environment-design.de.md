@@ -1,14 +1,15 @@
 ---
-title: "Stoppe das Entwerfen deines KI-Systems. Gestalte seine Umgebung."
+title: "Hören Sie auf, Ihr KI‑System zu entwerfen. Gestalten Sie dessen Umgebung."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "Selbstentwickelnde KI nutzt Versagen, wenn sie einen festen Evaluator optimiert. Das biologische Modell ist richtig: Was sich weiterentwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
+description: "Selbst‑evolvierende KI scheitert, wenn sie einen festen Evaluator optimiert. Das biologische Modell ist richtig: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "2f5a8bf02a2b63e2cf15d09ded86d65a"
+translationHash: "2cbdd2c9d7b81a63e37d9a0a48fff9ad"
 chunkHashes: "8402b112ebff21c5,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
+
 Ich habe eine Woche damit verbracht, eine „vektornative Programmiersprache für LLMs“ zu entwerfen. Die Idee war, das Verhalten des Modells direkt auf der Aktivierungsebene zu programmieren, ohne Prompts, nur mit Interventionsvektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich tatsächlich wollte, war keine Sprache. Es war ein Organismus.
 
 **Die Einheit der Evolution ist nicht das Merkmal. Sie ist der Mutations‑/Selektionszyklus.**

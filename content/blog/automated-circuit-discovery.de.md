@@ -4,11 +4,12 @@ date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 2
-description: "SAE‑Funktionen können Beziehungen in Gemma-2-2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die das kann. Der Engpass war die Tokenisierung."
+description: "SAE‑Funktionen können Beziehungen in Gemma‑2‑2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die das kann. Der Engpass war die Tokenisierung."
 images: ["/images/automated-circuit-discovery-og.png"]
-translationHash: "f5543543e162c3f00f6fb54e79b2943a"
+translationHash: "354cd3788fde91c72bc3726caa49cef5"
 chunkHashes: "87c19f46217159cd,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,2fd2687fbe575b06"
 ---
+
 **Der Engpass bei automatischer Interpretierbarkeit sind nicht Probes, nicht SAEs, nicht Rechenleistung. Es ist die Tokenisierung.**
 
 Element‑Symbol hat einen differentiellen Ablationswert von -16,72 in Gemma-2-2B. Das ist das stärkste kausale Signal, das ich im Residual‑Stream des Modells gefunden habe, und ich habe es von Hand entdeckt. Die Frage, die alles, was folgt, antrieb: Kann eine Maschine solche Signale selbst finden?

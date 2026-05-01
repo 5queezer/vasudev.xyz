@@ -1,14 +1,15 @@
 ---
-title: "Schlaf-inspirierter Speicher für LLM‑Agenten: 6 Arbeiten nach dem, was du diese Woche liefern kannst, bewertet"
+title: "Schlaf-inspirierter Speicher für LLM‑Agenten: 6 Papiere nach dem, was Sie diese Woche bereitstellen können"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Ich habe 6 Arbeiten über biologisch inspirierte Gedächtnis‑Wiederholungen für LLM‑Agenten gelesen. Nur 2 sind Ihre Zeit wert, wenn Sie bauen, nicht veröffentlichen."
+description: "Ich habe 6 Paper über biologisch inspiriertes Gedächtnis‑Replay für LLM‑Agenten gelesen. Nur 2 sind deine Zeit wert, wenn du baust und nicht veröffentlichst."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "28f2286c6f28d42e79fb602755b5f27e"
+translationHash: "4b869d4415764a73124624e9fa833590"
 chunkHashes: "7e318b173cc3c1d6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
+
 Most LLM‑Memory‑Forschung lebt in einer bequemen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung behaupten, weiterziehen. Wenn Sie tatsächlich Agent‑Memory aufbauen, entscheiden, was gespeichert, was vergessen und wann konsolidiert wird, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
 
 Ich betreibe die [Dream Engine](https://github.com/scrypster/muninndb), eine schlaf‑inspirierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus‑Verfall, hebräische Assoziation, Near‑Duplicate‑Merging und transitive Schlussfolgerungen im Agent‑Memory zwischen Sitzungen aus. Meine Ablationsstudie zeigte, dass **die gleichzeitige Ausführung aller Konsolidierungsphasen netto negativ ist**, ähnlich dem daDREAM‑Mutantenprotein, das die Langzeitpotenzierung verstärkt, aber das tatsächliche Lernen behindert. Die Selektivität der Phasen ist wichtiger als die Anzahl der Phasen.

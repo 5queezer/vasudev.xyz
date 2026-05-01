@@ -1,14 +1,15 @@
 ---
-title: "Agregar OAuth 2.1 a un servidor MCP autogestionado: 4 problemas desde el frente"
+title: "Agregar OAuth 2.1 a un servidor MCP autoalojado: 4 errores comunes desde el frente"
 date: 2026-03-25
-description: "¿Qué se rompió cuando conecté claude.ai a mi propia instancia de Reactive Resume vía OAuth?"
+description: "¿Qué se rompió cuando conecté claude.ai a mi propia instancia de Reactive Resume mediante OAuth?"
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 series: ["Field Notes"]
-translationHash: "c80e75aa728e9520e437feeab02f9d09"
+translationHash: "da1f4e0bcb968ef16e8aee972d212c86"
 chunkHashes: "1a0ca76a3309f99b,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
+
 MCP (Model Context Protocol) permite que los asistentes de IA llamen herramientas en servidores remotos. Pero si tu servidor MCP está auto‑alojado, claude.ai necesita autenticarse contra tus cuentas de usuario, no contra las de Anthropic. Eso significa que tu servidor debe convertirse en un proveedor completo de OAuth 2.1: registro dinámico de clientes, código de autorización con PKCE, intercambio de tokens.
 
 Presenté el [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para añadir esto a [Reactive Resume](https://github.com/amruthpillai/reactive-resume), el creador de currículums de código abierto. Seis commits, una refactorización a medio PR después de que el mantenedor señalara una deprecación, y varias horas depurando cadenas de autenticación. Esta es la parte de OAuth de [esa historia](/blog/shipping-a2a-protocol-support-in-rust/).

@@ -2,11 +2,12 @@
 title: "Tu configuración de MCP está consumiendo el 90 % de su ventana de contexto. Aquí está la solución."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
-description: "Cada herramienta MCP a la que te conectas carga su esquema completo de antemano, antes de que escribas una sola palabra. La carga diferida de Anthropic soluciona esto."
+description: "Cada herramienta MCP a la que te conectas carga su esquema completo de inmediato, antes de que escribas una sola palabra. La carga diferida de Anthropic soluciona esto."
 images: ["/images/mcp-context-window-fix-og.png"]
-translationHash: "59baaf1f34cfa050309416d377d1ef07"
+translationHash: "5c05d47751f368bf83f3519c443cab82"
 chunkHashes: "1ec8fbd39517d451,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---
+
 Connecta el [servidor MCP de GitHub](https://github.com/github/github-mcp-server) a Claude. Ahora revisa tu contador de tokens antes de enviar un solo mensaje. [46 000 tokens, el 22 % de la ventana de contexto de Claude Opus](https://www.candede.com/articles/claude-tool-search), consumidos por definiciones de herramientas que aún no has usado. Añade Jira (otros ~17 K), un servidor Slack, Google Drive, y estarás superando los 100 K tokens de sobrecarga antes de que comience cualquier trabajo real. [Anthropic midió configuraciones internas que alcanzan 134 K tokens](https://www.anthropic.com/engineering/advanced-tool-use) solo en definiciones de herramientas.
 
 **Cada herramienta MCP que conectas es un impuesto pagado por adelantado, haya o no uso de la herramienta.**

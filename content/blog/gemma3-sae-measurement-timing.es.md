@@ -1,14 +1,15 @@
 ---
-title: "Los Autoencoders Escasos No Pueden Medir el Comportamiento en Tiempo de Generación. Eso No Es un Error."
+title: "Los autoencoders escasos no pueden medir el comportamiento en tiempo de generación. Eso no es un error."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "¿Por qué las características de sycophancy SAE tienen un d de Cohen=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
+description: "¿Por qué las características SAE de servilismo tienen Cohen's d=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
+translationHash: "a262e452d7486d8ecd7c5b6798267987"
 chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
+
 **Tu ventana de medición determina qué comportamientos puedes observar. La servilismo se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usa el momento equivocado y tu d de Cohen colapsará.**
 
 Pasé dos horas la semana pasada mirando el gráfico de características de un auto‑codificador esparso (SAE) de Gemma3 preguntándome por qué la detección de servilismo funcionaba perfectamente (d de Cohen alrededor de 9,9) mientras que la detección de alucinación se quedaba plana (d < 1,0). Mismo modelo. Mismo SAE. Misma metodología. Las barras de error no se solapaban. Esto no debería ser posible si los SAE realmente están encontrando “características conductuales” como afirma la comunidad de interpretabilidad.

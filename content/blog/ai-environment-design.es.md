@@ -6,9 +6,10 @@ series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "La IA autoevolutiva falla cuando optimiza un evaluador fijo. El modelo biológico es correcto: lo que debe evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "2f5a8bf02a2b63e2cf15d09ded86d65a"
+translationHash: "2cbdd2c9d7b81a63e37d9a0a48fff9ad"
 chunkHashes: "8402b112ebff21c5,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
+
 Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLMs". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin prompts, solo vectores de intervención. Fue intelectualmente satisfactorio y prácticamente incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
 
 **La unidad de evolución no es la característica. Es el ciclo mutación/selección.**

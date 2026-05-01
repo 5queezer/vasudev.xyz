@@ -1,14 +1,15 @@
 ---
-title: "Capital-of No es una característica única de SAE. Así que construí un bucle de mutación para encontrar qué es."
+title: "Capital-of No es una característica SAE única. Así que construí un bucle de mutación para descubrir qué es."
 date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 2
-description: "Las características SAE no pueden aislar relaciones en Gemma-2-2B. Construí un bucle de mutación‑selección que sí puede. El cuello de botella era la tokenización."
+description: "Las funciones SAE no pueden aislar relaciones en Gemma-2-2B. Construí un bucle de mutación‑selección que sí puede. El cuello de botella fue la tokenización."
 images: ["/images/automated-circuit-discovery-og.png"]
-translationHash: "f5543543e162c3f00f6fb54e79b2943a"
+translationHash: "354cd3788fde91c72bc3726caa49cef5"
 chunkHashes: "87c19f46217159cd,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,2fd2687fbe575b06"
 ---
+
 **El cuello de botella en la interpretabilidad automática no son los sondas, ni los SAE, ni el cómputo. Es la tokenización.**
 
 Element-symbol tiene una puntuación de ablación diferencial de -16.72 en Gemma-2-2B. Esa es la señal causal más fuerte que he encontrado en el flujo residual del modelo, y la descubrí manualmente. La pregunta que impulsó todo lo que sigue: ¿puede una máquina encontrar señales como esta por sí misma?

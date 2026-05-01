@@ -4,11 +4,12 @@ date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurociencia, artículos recientes de IA y un texto sánscrito antiguo convergen en la misma idea sobre la consolidación offline, aunque difieren en qué fase del sueño es la más importante."
+description: "La neurociencia, los recientes artículos de IA y un antiguo texto sánscrito convergen en la misma idea sobre la consolidación offline, pero discrepan sobre qué fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "cb99c33064749f0b0b4e7be0966486a1"
+translationHash: "829cd154ef2430f5f6127beea9e079d9"
 chunkHashes: "5a1b4745079458a7,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
+
 [Mi última publicación](/blog/why-ai-agents-need-sleep/) argumentó que los agentes de IA necesitan dormir. Varias personas preguntaron lo obvio que sigue: ¿qué significa eso realmente? ¿Es el “sueño” solo una metáfora para ejecutar un cron job, o la analogía va más allá?
 
 Pasé una semana leyendo entre tres cuerpos de literatura que casi nunca se citan entre sí: artículos recientes sobre memoria en IA, neurociencia del sueño y la [Mandukya Upanishad](https://es.wikipedia.org/wiki/Mandukya_Upanishad). Convergen en la misma idea central sobre la consolidación offline. También revelan un desacuerdo que resulta ser la cuestión de diseño más importante en los sistemas de memoria de IA en la actualidad.

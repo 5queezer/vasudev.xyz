@@ -4,11 +4,12 @@ date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "Warum Sycophancy‑SAE‑Merkmale ein Cohen’s d von 9,9 haben, aber die Halluzinationsdetektion fehlschlägt. Die Antwort erwies sich als tiefergehend als der Messzeitpunkt."
+description: "Warum haben Sycophancy‑SAE‑Features Cohen's d=9,9, aber die Halluzinationserkennung versagt. Die Antwort stellte sich tiefer als das Messzeitpunkt heraus."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
+translationHash: "a262e452d7486d8ecd7c5b6798267987"
 chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
+
 **Dein Messfenster bestimmt, welche Verhaltensweisen du sehen kannst. Sycophanz manifestiert sich während der Kodierung. Halluzination manifestiert sich während der Generierung. Verwende das falsche Timing und dein Cohen's d bricht zusammen.**
 
 Ich habe letzte Woche zwei Stunden damit verbracht, mir ein Feature‑Diagramm eines Gemma‑3‑Sparse‑Autoencoders (SAE) anzuschauen und mich zu fragen, warum die Erkennung von Sycophanz perfekt funktionierte (Cohen's d ≈ 9,9), während die Erkennung von Halluzinationen völlig ausfiel (d < 1,0). Derselbe Modell. Derselbe SAE. Derselbe Methodik. Die Fehlermargen überschnitten sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „verhaltensbezogene Merkmale“ finden, wie die Interpretierbarkeits‑Community behauptet.

@@ -1,14 +1,15 @@
 ---
-title: "Las métricas de memoria de tu agente te están mintiendo. Así es como puedes fundamentarlas."
+title: "Las métricas de memoria de tu agente te están mintiendo. Así es como fundamentarlas."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."
+description: "La consolidación de la memoria luce genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desconectado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "b8a709b4d0147300deb327ef4fe4178d"
+translationHash: "65aad571a929acf3a7516a22a0ac37b9"
 chunkHashes: "62a1f14b771987f7,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
+
 Construí un sistema de consolidación de recuerdos para agentes de IA. Deduplica memorias, refuerza asociaciones, hace decaer entradas obsoletas y genera un diario de sueños que realmente puedes leer. El panel de control se ve fantástico: la tasa de deduplicación sube, el recuento de memorias baja y la densidad de asociaciones aumenta.
 
 Nada de eso te indica si el agente recuerda lo correcto en el momento correcto.

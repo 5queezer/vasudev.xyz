@@ -4,11 +4,12 @@ date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurowissenschaften, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text kommen zur selben Erkenntnis über die Offline‑Konsolidierung, streiten jedoch darüber, welche Schlafphase am wichtigsten ist."
+description: "Neurowissenschaften, aktuelle KI‑Papier­arbeiten und ein uralter Sanskrit‑Text kommen zu derselben Erkenntnis über die Offline‑Konsolidierung, unterscheiden sich jedoch darin, welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "cb99c33064749f0b0b4e7be0966486a1"
+translationHash: "829cd154ef2430f5f6127beea9e079d9"
 chunkHashes: "5a1b4745079458a7,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
+
 [My last post](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Anschlussfrage: Was bedeutet das eigentlich? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
 
 Ich verbrachte eine Woche damit, Literatur aus drei nahezu nie zitierten Bereichen zu lesen: aktuelle KI‑Memory‑Publikationen, Schlaf‑Neurowissenschaften und die [Mandukya Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie convergieren auf dieselbe zentrale Erkenntnis zur offline Konsolidierung. Gleichzeitig kommt ein Dissens ans Licht, der sich als die wichtigste Designfrage in KI‑Memory‑Systemen herausstellt.

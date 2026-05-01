@@ -1,14 +1,15 @@
 ---
-title: "Memoria inspirada en el sueño para agentes LLM: 6 artículos clasificados por lo que puedes lanzar esta semana"
+title: "Memoria Inspirada en el Sueño para Agentes LLM: 6 Artículos Clasificados según lo que Puedes Enviar Esta Semana"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Leí 6 artículos sobre reproducción de memoria inspirada biológicamente para agentes LLM. Solo 2 valen tu tiempo si estás construyendo, no publicando."
+description: "Leí 6 artículos sobre reproducción de memoria biológicamente inspirada para agentes LLM. Solo 2 valen tu tiempo si estás construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "28f2286c6f28d42e79fb602755b5f27e"
+translationHash: "4b869d4415764a73124624e9fa833590"
 chunkHashes: "7e318b173cc3c1d6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
+
 Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
 
 I maintain the [Dream Engine](https://github.com/scrypster/muninndb), a sleep-inspired consolidation pipeline for [MuninnDB](https://muninndb.com). It runs Ebbinghaus decay, Hebbian association, near-duplicate merging, and transitive inference on agent memory between sessions. My ablation study showed que **running all consolidation phases simultaneously is net-negative**, much like the daDREAM mutant protein that enhances long-term potentiation but impairs actual learning. Phase selectivity matters more than phase count.

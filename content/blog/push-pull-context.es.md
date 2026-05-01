@@ -1,12 +1,13 @@
 ---
-title: "Deja de poner decisiones en CLAUDE.md. Colócalas donde el agente no siempre las lea."
+title: "Deja de poner decisiones en CLAUDE.md. Ponlas donde el agente no siempre las lea."
 date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
-description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que separas el contexto de envío del contexto de extracción."
+description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que separas el contexto de empuje del contexto de extracción."
 images: ["/images/push-pull-context-og.png"]
-translationHash: "1efe46f0746426b51d508fdcc4e7a4df"
+translationHash: "ef1d3848a7067362c90e534c743fb785"
 chunkHashes: "b817ba1b27214d6a,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
 ---
+
 Dos estudios rigurosos de 2026 midieron si los archivos de contexto del agente ayudan a los agentes de codificación de IA. Llegaron a conclusiones opuestas. El grupo de ETH Zurich ejecutó SWE-bench Lite y AGENTbench en varios modelos y [descubrió que los archivos AGENTS.md generados por LLM redujeron el éxito de la tarea en un 3 % e inflaron el costo de inferencia en un 20 %](https://arxiv.org/abs/2602.11988). Los archivos escritos por desarrolladores dieron un aumento marginal del 4 % con el mismo incremento de costo. Un mes antes, [Lulla et al. informaron lo contrario](https://arxiv.org/abs/2601.20404) en un experimento pareado y limpio con 124 PR reales de GitHub: la presencia de AGENTS.md redujo el tiempo de ejecución medio en un 28,64 % y los tokens de salida en un 16,58 %.
 
 Ambos estudios son cuidadosos. Ambos midieron cosas reales. El campo se dividió inmediatamente en campamentos.

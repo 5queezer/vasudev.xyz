@@ -1,12 +1,13 @@
 ---
-title: "Ihr MCP‑Setup verbraucht 90 % seines Kontextfensters. So beheben Sie das."
+title: "Deine MCP‑Setup verbrennt 90 % ihres Kontextfensters. Hier ist die Lösung."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
 description: "Jedes MCP‑Tool, das Sie verbinden, lädt sein vollständiges Schema im Voraus, bevor Sie ein Wort tippen. Anthropic’s verzögertes Laden behebt das."
 images: ["/images/mcp-context-window-fix-og.png"]
-translationHash: "59baaf1f34cfa050309416d377d1ef07"
+translationHash: "5c05d47751f368bf83f3519c443cab82"
 chunkHashes: "1ec8fbd39517d451,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---
+
 Connect [GitHub's MCP server](https://github.com/github/github-mcp-server) to Claude. Jetzt prüfe deinen Token‑Zähler, bevor du eine einzige Nachricht sendest. [46.000 Token, 22 % von Claude Opus’ Kontextfenster](https://www.candede.com/articles/claude-tool-search) werden bereits durch Tool‑Definitionen verbraucht, die du noch nicht benutzt hast. Füge Jira (weitere ~17 k), einen Slack‑Server, Google Drive hinzu, und du hast über 100 k Token Overhead, bevor irgendeine eigentliche Arbeit beginnt. [Anthropic benchmarkte interne Setups, die allein in Tool‑Definitionen 134 k Token erreichten](https://www.anthropic.com/engineering/advanced-tool-use).
 
 **Jedes MCP‑Tool, das du verbindest, ist eine im Voraus zu zahlende Steuer, egal ob das Tool genutzt wird oder nicht.**
