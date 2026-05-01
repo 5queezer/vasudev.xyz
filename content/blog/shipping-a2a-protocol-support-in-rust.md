@@ -5,6 +5,10 @@ description: "What I learned adding Agent-to-Agent protocol support to an open-s
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
+agentQuestions:
+  - "What are the A2A protocol gotchas in Rust?"
+  - "How should A2A auth and security work?"
+  - "What broke during protocol integration?"
 series: ["Field Notes"]
 ---
 

@@ -2,6 +2,10 @@
 title: "Patanjali Had the Filtering Spec. We Just Wrote the Tests."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
+agentQuestions:
+  - "What filtering spec does Patanjali suggest?"
+  - "Why did consolidation make retrieval worse?"
+  - "What should an agent memory harness test?"
 series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "Memory consolidation made retrieval worse. Three design principles from agent memory benchmarks, and their unexpected parallels in yogic attention theory."

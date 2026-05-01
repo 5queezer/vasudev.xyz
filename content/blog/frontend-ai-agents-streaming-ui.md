@@ -3,6 +3,10 @@ title: "Streaming UI from AI Agents: 5 Tools Ranked"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
+agentQuestions:
+  - "Which streaming UI tool wins and why?"
+  - "How do AG-UI and Vercel AI SDK differ?"
+  - "What architecture matters for agent UI?"
 description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI, and Kombai take different bets on how agents should build interfaces. The architectural question decides which wins."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
@@ -27,7 +31,7 @@ Your answer determines your security model, your framework coupling, and whether
 | **What ships** | Tool output (RSC paused) | Tool output (client render) | Interaction events | Declarative JSON UI trees | Generated source code |
 | **Transport** | SSE, RSC streaming | SSE, HTTP streaming, async iterables, RPC | SSE, bi-directional events | Progressive JSON streaming | HTTP (batch) |
 | **Framework lock** | Next.js leaning, React first | Framework-agnostic core (React, Solid, Preact) | Any (protocol-level) | Any (protocol-level) | Outputs React, Vue, HTML |
-| **Security model** | Trusted execution | Sandboxed code (Node, Workers, QuickJS) | Event schema validation | Whitelisted component catalog | Static output, no runtime risk |
+| **Security model** | Trusted execution | sandboxed code (Node, Workers, QuickJS) | Event schema validation | Whitelisted component catalog | Static output, no runtime risk |
 | **Cross-platform** | Web only | Web | Web | Flutter, Angular, Lit (React planned) | Web |
 | **MCP support** | Native (AI SDK 6) | Not yet | Indirect via tool-call events | N/A | N/A |
 | **GitHub** | [Vercel/ai](https://github.com/vercel/ai) (~23K stars) | [TanStack/ai](https://github.com/tanstack/ai) (~2.6K, alpha) | [ag-ui-protocol/ag-ui](https://github.com/ag-ui-protocol/ag-ui) (~13K stars) | [google/A2UI](https://github.com/google/A2UI) (~14K stars) | Closed source |

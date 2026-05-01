@@ -5,6 +5,10 @@ description: "What broke when I wired up claude.ai to my own Reactive Resume ins
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
+agentQuestions:
+  - "What breaks when adding OAuth 2.1 to MCP?"
+  - "How should MCP OAuth discovery be configured?"
+  - "What are the self-hosted OAuth gotchas?"
 series: ["Field Notes"]
 ---
 

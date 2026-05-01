@@ -2,6 +2,10 @@
 title: "Your MCP Setup Is Burning 90% of Its Context Window. Here's the Fix."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
+agentQuestions:
+  - "Why does MCP burn context window?"
+  - "How does deferred tool loading fix MCP?"
+  - "What should MCP servers expose upfront?"
 description: "Every MCP tool you connect loads its full schema upfront, before you type a word. Anthropic's deferred loading fixes this."
 images: ["/images/mcp-context-window-fix-og.png"]
 ---

@@ -4,6 +4,10 @@ date: 2026-03-27
 description: "Why AI features inside traditional apps are backwards, and how MCP flips the architecture."
 author: "Christian Pojoni"
 tags: ["mcp", "ai", "architecture"]
+agentQuestions:
+  - "Why put apps in AI instead of AI in apps?"
+  - "How does MCP flip app architecture?"
+  - "What is wrong with embedded AI chat boxes?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
 ---

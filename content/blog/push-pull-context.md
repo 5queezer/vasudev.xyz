@@ -2,6 +2,10 @@
 title: "Stop Putting Decisions in CLAUDE.md. Put Them Where the Agent Won't Always Read Them."
 date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
+agentQuestions:
+  - "What belongs in push context vs pull context?"
+  - "Why is CLAUDE.md the wrong place for decisions?"
+  - "How should agents retrieve ADRs instead?"
 description: "Two 2026 studies disagree about whether AGENTS.md helps coding agents. The fight makes sense once you separate push context from pull context."
 images: ["/images/push-pull-context-og.png"]
 ---

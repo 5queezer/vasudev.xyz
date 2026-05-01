@@ -2,6 +2,10 @@
 title: "Why AI Agents Need Sleep"
 date: 2026-03-28
 tags: ["ai", "memory", "muninndb", "architecture"]
+agentQuestions:
+  - "Why do AI agents need sleep?"
+  - "How does MuninnDB’s Dream Engine work?"
+  - "What does consolidation fix in agent memory?"
 series: ["Building Agents That Sleep"]
 series_weight: 1
 description: "AI agents capture memories but never consolidate them. Here's how MuninnDB's Dream Engine borrows from neuroscience to fix that."

@@ -2,6 +2,10 @@
 title: "The Bridge Is the Problem. Direct Access to the Divine Needs No Intermediaries."
 date: 2026-04-10
 tags: ["philosophy", "spirituality"]
+agentQuestions:
+  - "Why is the bridge the problem?"
+  - "How do these traditions describe direct access?"
+  - "What practice protocol follows from the post?"
 description: "Yoga, Gnosticism, Zen, Christian mysticism. They all show the same thing: direct connection was always there. Who blocked it, and how do you get back?"
 images: ["/blog/direct-divine-access/og-image.png"]
 ---

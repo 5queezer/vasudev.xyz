@@ -5,6 +5,10 @@ description: "Tracing a sporadic 'invalid middleware' error in Sablier to a hidd
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
+agentQuestions:
+  - "Why was this a Traefik bug, not a Sablier bug?"
+  - "What changed in Traefik 3.5.3 plugin startup?"
+  - "How can I reproduce the invalid middleware failure?"
 series: ["Field Notes"]
 ---
 
