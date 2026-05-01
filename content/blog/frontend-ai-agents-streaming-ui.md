@@ -1,9 +1,9 @@
 ---
-title: "Streaming UI from AI Agents: 4 Approaches Ranked"
+title: "Streaming UI from AI Agents: 5 Tools Ranked"
 date: 2026-04-12
+lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
-description: "AG-UI, A2UI, Vercel AI SDK streamUI, and Kombai take four different bets on how agents should build interfaces. One question decides which wins."
-images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
+description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI, and Kombai take different bets on how agents should build interfaces. The architectural question decides which wins."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
 ---
@@ -11,7 +11,7 @@ author: "Christian Pojoni"
 
 Every AI agent today talks through a chat window. User asks a question, agent streams tokens back, maybe with a code block. The entire frontend is a glorified terminal emulator.
 
-Four projects bet that agents should stream real interfaces instead of text. They disagree violently on how.
+Five tools bet that agents should stream real interfaces instead of text. They disagree on how, and two of them disagree only on the details.
 
 **The protocols split on one question: should the agent send executable code, structured data, or interaction events?**
 
@@ -19,17 +19,17 @@ Your answer determines your security model, your framework coupling, and whether
 
 ## The Comparison
 
-| | Vercel AI SDK (streamUI) | AG-UI | A2UI | Kombai |
-|---|---|---|---|---|
-| **What ships** | React Server Components | Interaction events | Declarative JSON UI trees | Generated source code |
-| **Transport** | RSC streaming | SSE, bi-directional events | Progressive JSON streaming | HTTP (batch) |
-| **Framework lock** | Next.js + React | Any (protocol-level) | Any (protocol-level) | Outputs React, Vue, HTML |
-| **Security model** | Trusted execution | Event schema validation | Whitelisted component catalog | Static output, no runtime risk |
-| **Cross-platform** | Web only | Web | Flutter, Angular, Lit (React planned) | Web |
-| **Agent integration** | Built into AI SDK tools | LangGraph, CrewAI, CopilotKit | Any agent via JSON | Standalone (Figma input) |
-| **GitHub** | [Vercel/ai](https://github.com/vercel/ai) (~23K stars) | [ag-ui-protocol/ag-ui](https://github.com/ag-ui-protocol/ag-ui) (~13K stars) | [google/A2UI](https://github.com/google/A2UI) (~14K stars) | Closed source |
-| **License** | Apache 2.0 | MIT | Apache 2.0 | Proprietary |
-| **Pick when** | You own the agent and the Next.js frontend | You need agent observability and human-in-the-loop | You need cross-platform from untrusted agents | You're converting Figma designs to code |
+| | Vercel AI SDK | TanStack AI | AG-UI | A2UI | Kombai |
+|---|---|---|---|---|---|
+| **What ships** | Tool output (RSC paused) | Tool output (client render) | Interaction events | Declarative JSON UI trees | Generated source code |
+| **Transport** | SSE, RSC streaming | SSE, HTTP streaming, async iterables, RPC | SSE, bi-directional events | Progressive JSON streaming | HTTP (batch) |
+| **Framework lock** | Next.js leaning, React first | Framework-agnostic core (React, Solid, Preact) | Any (protocol-level) | Any (protocol-level) | Outputs React, Vue, HTML |
+| **Security model** | Trusted execution | Sandboxed code (Node, Workers, QuickJS) | Event schema validation | Whitelisted component catalog | Static output, no runtime risk |
+| **Cross-platform** | Web only | Web | Web | Flutter, Angular, Lit (React planned) | Web |
+| **MCP support** | Native (AI SDK 6) | Not yet | Indirect via tool-call events | N/A | N/A |
+| **GitHub** | [Vercel/ai](https://github.com/vercel/ai) (~23K stars) | [TanStack/ai](https://github.com/tanstack/ai) (~2.6K, alpha) | [ag-ui-protocol/ag-ui](https://github.com/ag-ui-protocol/ag-ui) (~13K stars) | [google/A2UI](https://github.com/google/A2UI) (~14K stars) | Closed source |
+| **License** | Apache 2.0 | MIT | MIT | Apache 2.0 | Proprietary |
+| **Pick when** | You ship on Vercel and want the AI Gateway | You want portability and per-model type narrowing | You need agent observability and human-in-the-loop | You need cross-platform from untrusted agents | You're converting Figma designs to code |
 
 That's the dashboard. Now the opinions.
 
@@ -61,9 +61,41 @@ Here's what the tutorials skip: `streamUI` lives in the AI SDK RSC module, which
 
 That matters because the original pitch for `streamUI` was "stream full server components from your agent." The current recommendation is closer to "stream structured data, render locally." Which, if you squint, is the same direction A2UI is going, just without the protocol-level security.
 
-You're also locked to React and Next.js. Your agent sends executable component trees. That means full trust between agent and frontend. Fine for first-party agents. Dangerous the moment you accept tool output from third parties. There is no sandboxing layer in the protocol.
+You're also leaning hard on React and Next.js. Your agent sends executable component trees in the RSC path, which means full trust between agent and frontend. Fine for first-party agents. Dangerous the moment you accept tool output from third parties. There is no sandboxing layer in the SDK.
 
-**Use it** if you own both the agent and the Next.js app and accept the experimental status. **Skip it** if your agents come from external sources, or if "web only" is a constraint you can't accept.
+What the SDK has gained since the streamUI pause is the rest of a platform. AI SDK 6 ships native [MCP support](https://sdk.vercel.ai/docs), durable agent abstractions like `ToolLoopAgent` and `DurableAgent`, and optional integration with the [AI Gateway](https://vercel.com/kb/guide/vercel-ai-sdk-vs-tanstack-ai) (one endpoint for 20+ providers, automatic failover, zero markup for teams on Vercel). The SDK is now less about generative UI and more about the agent runtime around it.
+
+**Use it** if you ship on Vercel and want the gateway, MCP, and durable agents in one box. **Skip it** if you need cross-platform output, or if Next.js coupling is friction you cannot pay.
+
+---
+
+## TanStack AI: Same Bet, Different Priors
+
+[TanStack AI](https://github.com/tanstack/ai) (~2.6K stars, alpha as of January 2026) is the same architectural bet as the modern Vercel SDK. Tools run on the server, the model calls them, the client renders the result. The split is everything that wraps that loop.
+
+The core is framework-agnostic. A single headless `ChatClient` ships adapters for React, Solid, and Preact. Vue and Svelte are planned. There is no RSC story and the team [explicitly rejected](https://tanstack.com/ai/latest/docs/comparison/vercel-ai-sdk) that path. That puts TanStack AI roughly where the Vercel SDK has landed after pausing streamUI, just without the Next.js gravity.
+
+```ts
+const weather = defineTool({
+  schema: z.object({ city: z.string() }),
+  server: async ({ city }) => getWeather(city),
+  client: ({ result }) => <WeatherCard data={result} />,
+})
+```
+
+Three things stand out from the spec.
+
+First, isomorphic tool definitions. One schema validates on both sides and the `server` and `client` halves share it. The Vercel SDK splits the same tool across two files and asks you to keep them in sync. The [LogRocket benchmark](https://blog.logrocket.com/tanstack-vs-vercel-ai-library-react/) clocks ten tools at roughly 600 lines on Vercel against 300 on TanStack AI. Most of the savings is duplication that no longer exists.
+
+Second, per-model type narrowing. Picking a specific model (not just a provider) actually changes the inferred options and response types. Vercel narrows by provider. If your code branches on model capabilities, the difference is visible in the type checker.
+
+Third, sandboxed code execution drivers. TanStack ships isolate runtimes for Node, Cloudflare Workers, and QuickJS so model-generated code runs in a confined VM. Vercel does not provide this at the SDK layer. The trust calculus shifts. You can accept code from less-trusted models without rolling your own sandbox.
+
+What you give up: MCP and the platform. TanStack AI has no MCP integration today and no AI Gateway equivalent. If you are deploying through Vercel, the gateway alone is reason to stay. If you are not, the gateway is dead weight and the lock is the cost.
+
+The other catch is maturity. Alpha software, breaking changes between minor versions, ~2.6K stars against Vercel's ~23K. Adopt accordingly.
+
+**Use it** if you want a portable, type-strict SDK that does not assume Next.js, and you can wait out the alpha. **Skip it** if you need MCP, durable agent abstractions, or the AI Gateway today.
 
 ---
 
@@ -134,13 +166,15 @@ Kombai is closed source and proprietary (free tier at 300 credits/month, paid fr
 
 The comparison table is useful but it hides the architectural question that actually matters.
 
-Vercel's streamUI sends **code**. The agent produces React components. Maximum expressiveness, maximum trust required. This is the native app model applied to AI: the agent is the developer, shipping UI at runtime.
+Vercel's streamUI sent **code**. The agent produced React components, the server streamed them. Maximum expressiveness, maximum trust required. Vercel paused that path in October 2024.
+
+What replaced it, in both AI SDK 6 and TanStack AI, is streaming **tool output**. The agent calls a typed tool, the result returns to the client, the client renders. The agent never produces UI directly. Same trust assumption, narrower surface. The split inside this camp is portability versus platform. TanStack rejects framework lock and adds sandboxed code execution. Vercel keeps MCP, durable agents, and the gateway.
 
 A2UI sends **data**. The agent describes what it wants, the client decides how to render. Maximum safety, constrained expressiveness. This is the web content model: the agent is an author, the client is the browser.
 
 AG-UI sends **events**. It sends what the agent is doing, and the frontend decides what to show. This is the observability model: the agent does its work, the UI is a monitoring dashboard.
 
-Each model is correct for its trust boundary. First-party agents on your own infrastructure? Stream code. Third-party agents from external services? Require declarative data. Complex multi-agent orchestration where humans need to intervene? Stream events.
+Each model is correct for its trust boundary. First-party agents on your own infrastructure? Stream tool output through whichever SDK matches your platform. Third-party agents from external services? Require declarative data. Complex multi-agent orchestration where humans need to intervene? Stream events.
 
 Here's the thing most comparisons miss: AG-UI and A2UI are designed to be complementary. AG-UI defines *how* the agent and frontend communicate (the transport). A2UI defines *what* UI to render (the content). You could run A2UI payloads over AG-UI events. CopilotKit already hosts a [Generative UI Playground](https://github.com/CopilotKit/generative-ui) showing AG-UI, A2UI, and MCP Apps working together. The real architecture might not be "pick one" but "layer them."
 
@@ -158,7 +192,7 @@ The mistake is picking a protocol based on feature count or GitHub stars. Pick b
 
 ---
 
-Read the specs and decide by trust boundary, not hype. If you control both sides, [streamUI](https://sdk.vercel.ai/docs) gives you the most with the least effort. If you don't control the agent, [A2UI](https://a2ui.org)'s whitelist model is the only one that addresses injection at the protocol level. If you need visibility into multi-agent workflows, [AG-UI](https://github.com/ag-ui-protocol/ag-ui) is the only protocol that makes the thinking visible.
+Read the specs and decide by trust boundary, not hype. If you ship on Vercel and want MCP, the gateway, and durable agents in one box, the [Vercel SDK](https://sdk.vercel.ai/docs) is the path of least resistance. If you want the same architecture without Next.js gravity and with sandboxed execution, [TanStack AI](https://tanstack.com/ai) is the credible alternative once the alpha settles. If you don't control the agent, [A2UI](https://a2ui.org)'s whitelist model is the only one that addresses injection at the protocol level. If you need visibility into multi-agent workflows, [AG-UI](https://github.com/ag-ui-protocol/ag-ui) is the only protocol that makes the thinking visible.
 
 ---
 
