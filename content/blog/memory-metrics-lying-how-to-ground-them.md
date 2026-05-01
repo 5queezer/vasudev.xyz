@@ -7,7 +7,11 @@ series_weight: 3
 description: "Memory consolidation looks great on dashboards. But if your metrics can improve without retrieval getting better, you're optimizing a detached proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 ---
+
+
 
 
 

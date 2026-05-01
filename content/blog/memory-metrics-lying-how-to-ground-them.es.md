@@ -4,16 +4,19 @@ date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desvinculado."
+description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "db953832e48549d0cdc6086a53a1a185"
-chunkHashes: "0de2ded757ec0bc8,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,d12a42aa3aa119ce"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "b8a709b4d0147300deb327ef4fe4178d"
+chunkHashes: "62a1f14b771987f7,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Construí un sistema de consolidación de memoria para agentes de IA. Deduplica recuerdos, refuerza asociaciones, hace decaer las entradas obsoletas y genera un diario de sueños que realmente puedes leer. El panel se ve fantástico: la tasa de deduplicación sube, el recuento de memorias baja y la densidad de asociaciones aumenta.
+Construí un sistema de consolidación de recuerdos para agentes de IA. Deduplica memorias, refuerza asociaciones, hace decaer entradas obsoletas y genera un diario de sueños que realmente puedes leer. El panel de control se ve fantástico: la tasa de deduplicación sube, el recuento de memorias baja y la densidad de asociaciones aumenta.
 
-Nada de eso te dice si el agente recuerda lo correcto en el momento correcto.
+Nada de eso te indica si el agente recuerda lo correcto en el momento correcto.
 
-**Si una métrica puede mejorar sin que también mejore la calidad de la recuperación, esa métrica es un proxy desacoplado. Deja de optimizarla.**
+**Si una métrica puede mejorar sin que mejore también la calidad de recuperación, esa métrica es un proxy desacoplado. Deja de optimizarla.**
 ## El Problema Tiene un Nombre
 
 Recientemente leí un ensayo titulado ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) de un investigador independiente llamado Flyxion. El argumento central: cuando una señal medible se desacopla del proceso que se supone debe rastrear, la señal se vuelve autorreferencial. Terminas optimizando el mapa mientras el territorio se descompone.
@@ -75,14 +78,16 @@ No he abordado el caso de múltiples agentes, donde la memoria consolidada de un
 El análisis del ensayo sobre los incentivos de la plataforma (los modelos publicitarios están económicamente aislados de la degradación de la señal) tiene un análogo en el código abierto: los recuentos de estrellas y las métricas de descargas son proxies de utilidad que pueden desconectarse con la misma facilidad. Pero eso es una publicación distinta.
 ## El Principio
 
-La consolidación de memoria no es compresión. Es curación. La diferencia está en si basas tus decisiones en la calidad de la recuperación o en métricas del panel que resultan fáciles de calcular.
+La consolidación de la memoria no es compresión. Es curación. La diferencia está en si estás basando tus decisiones en la calidad de la recuperación o en métricas del panel que resultan fáciles de calcular.
 
 Si tus métricas de consolidación pueden subir mientras la capacidad de tu agente para responder preguntas reales disminuye, estás construyendo un sistema que optimiza sus propias señales internas. El mapa se vuelve autorreferencial. El territorio desaparece.
 
-Fundamenta tus métricas. Realiza pruebas de referencia antes de lanzar. Descarta cualquier señal que pueda moverse independientemente de lo que realmente te importe.
+Fundamenta tus métricas. Realiza pruebas comparativas antes de lanzar. Descarta cualquier señal que pueda moverse independientemente de lo que realmente te importa.
 
-La implementación completa de Dream Engine está en [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). El harness de benchmark que bloquea las rutas de escritura es [issue #311](https://github.com/scrypster/muninndb/issues/311). Si estás construyendo sistemas de memoria para agentes y quieres comparar notas sobre la fundamentación de métricas de recuperación, abre una issue en [Hrafn](https://github.com/5queezer/hrafn).
+La implementación completa de Dream Engine está en [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). El harness de benchmark que bloquea los caminos de escritura es [issue #311](https://github.com/scrypster/muninndb/issues/311). Si estás construyendo sistemas de memoria para agentes y quieres comparar notas sobre la fundamentación de métricas de recuperación, abre un issue en [Hrafn](https://github.com/5queezer/hrafn).
 
 ---
 
-*Christian Pojoni crea [Hrafn](https://github.com/5queezer/hrafn), un runtime ligero de agentes IA para hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un entorno de ejecución ligero para agentes de IA en hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de este artículo fue generada por IA.*

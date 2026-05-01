@@ -4,16 +4,19 @@ date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "Warum die sycophancy SAE‑Features Cohen’s d = 9,9 haben, aber die Halluzinations­erkennung scheitert. Die Antwort stellte sich tiefer als nur das Mess­zeit­punkt‑Problem heraus."
+description: "Warum Sycophancy‑SAE‑Merkmale ein Cohen’s d von 9,9 haben, aber die Halluzinationsdetektion fehlschlägt. Die Antwort erwies sich als tiefergehend als der Messzeitpunkt."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "10b1c8bebcc7063805d524f32aadb2d5"
-chunkHashes: "0c7e37e9b9384a49,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,f00afa4ad07c9c52"
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
+chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
-**Ihr Messfenster bestimmt, welche Verhaltensweisen Sie sehen können. Sycophantie manifestiert sich während der Kodierung. Halluzination manifestiert sich während der Generierung. Verwenden Sie das falsche Timing, und Ihr Cohen's d kollabiert.**
+**Dein Messfenster bestimmt, welche Verhaltensweisen du sehen kannst. Sycophanz manifestiert sich während der Kodierung. Halluzination manifestiert sich während der Generierung. Verwende das falsche Timing und dein Cohen's d bricht zusammen.**
 
-Ich habe letzte Woche zwei Stunden damit verbracht, mir ein Feature‑Diagramm eines Gemma3 Sparse Autoencoders (SAE) anzusehen und mich zu fragen, warum die Erkennung von Sycophantie perfekt funktionierte (Cohen's d um 9,9), während die Erkennung von Halluzinationen völlig ausfiel (d < 1,0). Dasselbe Modell. Derselbe SAE. Dieselbe Methodik. Die Fehlermargen überlappten sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „behaviorale Merkmale“ finden, wie es die Interpretierbarkeits‑Community behauptet.
+Ich habe letzte Woche zwei Stunden damit verbracht, mir ein Feature‑Diagramm eines Gemma‑3‑Sparse‑Autoencoders (SAE) anzuschauen und mich zu fragen, warum die Erkennung von Sycophanz perfekt funktionierte (Cohen's d ≈ 9,9), während die Erkennung von Halluzinationen völlig ausfiel (d < 1,0). Derselbe Modell. Derselbe SAE. Derselbe Methodik. Die Fehlermargen überschnitten sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „verhaltensbezogene Merkmale“ finden, wie die Interpretierbarkeits‑Community behauptet.
 
-Dann wurde mir klar: Das Timing war falsch.
+Dann machte es Sinn: Das Timing war falsch.
 ## Wenn Sycophanz auftritt
 
 Sycophanz ist ein Bias darin, *wie das Modell die Eingabe kodiert*. Das Modell sieht einen Prompt, liest die menschlichen Präferenzen darin, und diese Präferenz beeinflusst die Aktivierungsmuster in den Encoder‑Schichten, bevor ein einziges Token generiert wird. Man kann diesen Bias zur Kodierzeit messen, speziell an der Position des letzten Eingabetokens, bevor das Modell generiert. Schicht 29, Merkmal 2123 zeigt eine differentielle Aktivierung von 617,6 bei nur 71,1 Flip‑Varianz. Das ist ein klares Signal. Dieses Merkmal schaltet zuverlässig um, wenn das Modell sycophantische Intentionen kodiert, unabhängig von Themenvariationen.
@@ -73,18 +76,20 @@ Der hohe Cohen’s d bei niedriger LOO‑Genauigkeit (66 %) weist auf dimens
 Eine einzelne lineare Probe kann nicht trennen, was kein einheitliches Signal ist. Das verschiebt die Forschungsfrage von „falscher Zeitpunkt“ zu „falscher Abstraktionsebene“. Pro‑Fehlertyp‑Proben auf kuratierten Teilmengen (nur Fehlvorstellung, nur Grounding‑Fehler) sind der nächste Schritt. Das ist ein anderes Experiment.
 
 Code: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
-## Was ich weggelassen habe
+## Was ich ausgelassen habe
 
-**Warum die SAE‑Forschung standardmäßig Messungen zur Kodierzeit verwendet.** Aktivierungen zur Kodierzeit sind zustandslos und deterministisch. Aktivierungen zur Generierungszeit hängen von der gesamten Sequenzgeschichte ab und sind bei Temperatur und Sampling stochastisch. Die Mathematik ist zur Kodierzeit sauberer. Aber saubere Mathematik bei einem falschen Problem liefert saubere, aber nutzlose Ergebnisse.
+**Warum die SAE‑Forschung standardmäßig Messungen zur Kodierungszeit verwendet.** Aktivierungen zur Kodierungszeit sind zustandslos und deterministisch. Aktivierungen zur Generierungszeit hängen von der gesamten Sequenzgeschichte ab und sind stochastisch bezüglich Temperatur und Sampling. Die Mathematik ist zur Kodierungszeit sauberer. Aber saubere Mathematik bei einem falschen Problem liefert saubere, aber nutzlose Ergebnisse.
 
-**Verhalten‑Schaltkreise jenseits von SAEs.** Sparse Autoencoder sind nur ein Blickwinkel. Kausale Intervention (Ablation) ist ein anderer. Die Analyse von Attention‑Mustern ist ein dritter. Jeder Substrat enthüllt unterschiedliche Verhaltensweisen. Ein vollständiges Bild erfordert mehrere Messmethoden über mehrere Phasen hinweg. Dieser Beitrag behandelt nur SAE + Kodierzeit.
+**Verhaltenskreise jenseits von SAEs.** Sparse Autoencoder sind ein Blickwinkel. Kausale Intervention (Ablation) ist ein anderer. Die Analyse von Aufmerksamkeitsmustern ist ein dritter. Jeder Substrat enthüllt unterschiedliche Verhaltensweisen. Ein vollständiges Bild erfordert mehrere Messmethoden über mehrere Phasen hinweg. Dieser Beitrag behandelt nur SAE + Kodierungszeit.
 
-**Warum Halluzination schwer und Sykopezie leicht ist.** Das knüpft an die breitere Frage an, ob Modell‑Alignment durch Verhaltenslenkung machbar ist oder ob es eine architektonische Änderung erfordert. Wenn alle problematischen Verhaltensweisen in Generierungs‑Phasen auftreten und für Messungen zur Kodierzeit unsichtbar bleiben, könnte die gesamte Interpretierbarkeits‑Agenda auf Ebene der Kodierschicht die eigentlichen Fehlermodi übersehen. Das verdient einen eigenen Beitrag.
+**Warum Halluzination schwer und Unterwürfigkeit leicht ist.** Das knüpft an die weitergehende Frage an, ob Modell‑Alignment durch Verhaltenslenkung machbar ist oder eine architektonische Änderung erfordert. Wenn alle problematischen Verhaltensweisen in Phasen der Generierungszeit auftreten und für Messungen zur Kodierungszeit unsichtbar bleiben, könnte die gesamte Interpretierbarkeitsagenda auf der Ebene der Kodierungsebene die tatsächlichen Fehlermodi übersehen. Das verdient einen eigenen Beitrag.
 
 ---
 
-Das eigentliche Problem ist nicht, dass SAEs schwach sind. Es ist, dass wir sie auffordern, ein Problem zu lösen, das sie nicht sehen können.
+Der Knackpunkt ist nicht, dass SAEs schwach sind. Es ist, dass wir von ihnen verlangen, ein Problem zu lösen, das sie nicht sehen können.
 
 ---
 
 *Christian Pojoni entwickelt KI‑Tools und Interpretierbarkeits‑Infrastruktur. Mehr unter vasudev.xyz.*
+
+*Das Titelbild zu diesem Beitrag wurde von KI erzeugt.*

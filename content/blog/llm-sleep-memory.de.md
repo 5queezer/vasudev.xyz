@@ -1,19 +1,22 @@
 ---
-title: "Schlafinspirierter Speicher für LLM-Agenten: 6 Paper nach dem, was du diese Woche liefern kannst"
+title: "Schlaf-inspirierter Speicher für LLM‑Agenten: 6 Arbeiten nach dem, was du diese Woche liefern kannst, bewertet"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Ich habe 6 Fachartikel über biologisch inspirierte Gedächtnis‑Wiedergabe für LLM‑Agenten gelesen. Nur 2 sind deine Zeit wert, wenn du baust, nicht veröffentlichst."
+description: "Ich habe 6 Arbeiten über biologisch inspirierte Gedächtnis‑Wiederholungen für LLM‑Agenten gelesen. Nur 2 sind Ihre Zeit wert, wenn Sie bauen, nicht veröffentlichen."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "5442b89ab3eb0a51f14feda5e79d5bdd"
-chunkHashes: "8d8169ec337b4cb2,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,74ad075b15bb058d"
+images: ["/images/llm-sleep-memory-og.png"]
+images: ["/images/llm-sleep-memory-og.png"]
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "28f2286c6f28d42e79fb602755b5f27e"
+chunkHashes: "7e318b173cc3c1d6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
-Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
+Most LLM‑Memory‑Forschung lebt in einer bequemen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung behaupten, weiterziehen. Wenn Sie tatsächlich Agent‑Memory aufbauen, entscheiden, was gespeichert, was vergessen und wann konsolidiert wird, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
 
-I maintain the [Dream Engine](https://github.com/scrypster/muninndb), a sleep-inspired consolidation pipeline for [MuninnDB](https://muninndb.com). It runs Ebbinghaus decay, Hebbian association, near-duplicate merging, and transitive inference on agent memory between sessions. My ablation study showed that **running all consolidation phases simultaneously is net-negative**, much like the daDREAM mutant protein that enhances long-term potentiation but impairs actual learning. Phase selectivity matters more than phase count.
+Ich betreibe die [Dream Engine](https://github.com/scrypster/muninndb), eine schlaf‑inspirierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus‑Verfall, hebräische Assoziation, Near‑Duplicate‑Merging und transitive Schlussfolgerungen im Agent‑Memory zwischen Sitzungen aus. Meine Ablationsstudie zeigte, dass **die gleichzeitige Ausführung aller Konsolidierungsphasen netto negativ ist**, ähnlich dem daDREAM‑Mutantenprotein, das die Langzeitpotenzierung verstärkt, aber das tatsächliche Lernen behindert. Die Selektivität der Phasen ist wichtiger als die Anzahl der Phasen.
 
-**If you're building agent memory, read SleepGate and MemoryBench. Skip the rest.**
+**Wenn Sie Agent‑Memory bauen, lesen Sie SleepGate und MemoryBench. Überspringen Sie den Rest.**
 ## SleepGate: Das Papier, das direkt auf Offline‑Konsolidierung abbildet
 
 „Learning to Forget: Sleep‑Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models“ macht genau das, was der Titel verspricht. Es wendet einen erlernten Schlafzyklus, synaptische Downscaling und aktives Vergessen auf den KV‑Cache an, um proaktive Interferenz zu reduzieren.
@@ -50,14 +53,16 @@ Beide Umfragen teilen das gleiche Fehlverhalten: Sie beschreiben den Design‑Ra
 Das Papier, das ich mir wünschen würde, existiert nicht: ein direkter Vergleich von Konsolidierung an vs. Konsolidierung aus über standardisierte Benchmarks mit kontrollierter LLM-Varianz (Temperatur auf 0 festgesetzt oder N≥5 Durchläufe mit Mittelwerten und Standardabweichungen). Meine eigene Ablation zeigte Phase 5 (transitive Schlussfolgerung) als die einzige netto-positive Phase (+0,022 zusammengesetztes Delta), aber die Evaluationsvarianz von LLMs ist so hoch, dass dafür mehr Durchläufe nötig sind, um eine definitive Aussage zu treffen.
 
 Der Kernbeitrag des Dream Engine, Phase 2b (LLM‑Beurteilung von nahezu doppelten Clustern), bleibt unvalidiert, weil kein LLM‑Anbieter auf dem Benchmark‑Server konfiguriert war. Das ist das Nächste, das wir liefern sollten, nicht das nächste Papier, das wir lesen.
-## Das unbequeme Muster
+## Das unangenehme Muster
 
 Jedes Übersichts‑Paper in diesem Bereich zitiert biologische Inspirationen. Ebbinghaus, Hebb‑Lernen, synaptische Konsolidierung, Schlafspindeln: Das Vokabular ist überall. Die empirische Validierung ist fast nirgends. SleepGate und MemoryBench sind Ausnahmen, weil sie sich zu testbaren Behauptungen verpflichten. Die Übersichten verpflichten sich zu Taxonomien.
 
-Wenn du Agent‑Speicher baust: zuerst Benchmark, dann Konsolidierung, dann Veröffentlichung. Wenn dein Konsolidierungs‑Feature eine Proxy‑Metrik verbessert, ohne die Abruf‑Genauigkeit zu steigern, hast du einen [abgesonderten Proxy](/blog/memory-metrics-lying-how-to-ground-them/) gebaut, kein Feature.
+Wenn du Agent‑Speicher baust: zuerst benchmarken, dann konsolidieren, dann veröffentlichen. Wenn dein Konsolidierungs‑Feature eine Proxy‑Metrik verbessert, ohne die Abruf‑Genauigkeit zu steigern, hast du einen [abgetrennten Proxy](/blog/memory-metrics-lying-how-to-ground-them/) gebaut, nicht ein Feature.
 
 Fange mit [MemoryBench](https://arxiv.org/abs/2510.17281) an. Lies [SleepGate](https://arxiv.org/abs/2603.14517) für das Vergessens‑Modell. Baue deine Pipeline. Dann messe, ob es tatsächlich hilft.
 
 ---
 
-*Christian Pojoni baut Edge‑First‑KI‑Agent‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist die Laufzeit. [MuninnDB](https://muninndb.com) ist der Speicher. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni baut Edge‑First‑KI‑Agent‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist die Laufzeitumgebung. [MuninnDB](https://muninndb.com) ist der Speicher. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Titelbild für diesen Beitrag wurde von KI generiert.*

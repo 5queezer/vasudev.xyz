@@ -7,7 +7,11 @@ series_weight: 4
 description: "Memory consolidation made retrieval worse. Three design principles from agent memory benchmarks, and their unexpected parallels in yogic attention theory."
 images: ["/images/patanjali-harness-spec-og.png"]
 images: ["/images/patanjali-harness-spec-og.png"]
+images: ["/images/patanjali-harness-spec-og.png"]
+images: ["/images/patanjali-harness-spec-og.png"]
 ---
+
+
 
 
 

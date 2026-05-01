@@ -1,17 +1,20 @@
 ---
-title: "Deine MCP‑Konfiguration verbrennt 90 % ihres Kontextfensters. Hier ist die Lösung."
+title: "Ihr MCP‑Setup verbraucht 90 % seines Kontextfensters. So beheben Sie das."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
 description: "Jedes MCP‑Tool, das Sie verbinden, lädt sein vollständiges Schema im Voraus, bevor Sie ein Wort tippen. Anthropic’s verzögertes Laden behebt das."
 images: ["/images/mcp-context-window-fix-og.png"]
-translationHash: "851b611a7fad60bdbf0b056717be27ff"
-chunkHashes: "791e7a47fd043742,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,f78d911664403f62"
+images: ["/images/mcp-context-window-fix-og.png"]
+images: ["/images/mcp-context-window-fix-og.png"]
+images: ["/images/mcp-context-window-fix-og.png"]
+translationHash: "59baaf1f34cfa050309416d377d1ef07"
+chunkHashes: "1ec8fbd39517d451,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---
-Connect [GitHub's MCP server](https://github.com/github/github-mcp-server) to Claude. Now check your token counter before sending a single message. [46.000 Token, 22 % des Claude‑Opus‑Kontextfensters](https://www.candede.com/articles/claude-tool-search), verbraucht durch Tool‑Definitionen, die du noch nicht verwendet hast. Füge Jira (weitere ~17 K), einen Slack‑Server, Google Drive hinzu und du schiebst über 100 K Token Overhead, bevor überhaupt echte Arbeit beginnt. [Anthropic benchmarkte interne Setups, die allein bei Tool‑Definitionen 134 K Token erreichten](https://www.anthropic.com/engineering/advanced-tool-use).
+Connect [GitHub's MCP server](https://github.com/github/github-mcp-server) to Claude. Jetzt prüfe deinen Token‑Zähler, bevor du eine einzige Nachricht sendest. [46.000 Token, 22 % von Claude Opus’ Kontextfenster](https://www.candede.com/articles/claude-tool-search) werden bereits durch Tool‑Definitionen verbraucht, die du noch nicht benutzt hast. Füge Jira (weitere ~17 k), einen Slack‑Server, Google Drive hinzu, und du hast über 100 k Token Overhead, bevor irgendeine eigentliche Arbeit beginnt. [Anthropic benchmarkte interne Setups, die allein in Tool‑Definitionen 134 k Token erreichten](https://www.anthropic.com/engineering/advanced-tool-use).
 
-**Jedes MCP‑Tool, das du verbindest, ist eine im Voraus bezahlte Steuer, egal ob das Tool genutzt wird oder nicht.**
+**Jedes MCP‑Tool, das du verbindest, ist eine im Voraus zu zahlende Steuer, egal ob das Tool genutzt wird oder nicht.**
 
-Dies ist das Standardverhalten von MCP‑Clients heute: Alle Tool‑Definitionen zu Beginn jeder Anfrage in den Kontext laden. Die Spezifikation verlangt das nicht. Es ist einfach der Weg des geringsten Widerstands, und er skaliert schlecht.
+Das ist das Standardverhalten von MCP‑Clients heute: Alle Tool‑Definitionen zu Beginn jeder Anfrage in den Kontext laden. Die Spezifikation verlangt das nicht. Es ist einfach der Weg des geringsten Widerstands und skaliert schlecht.
 ## Warum das passiert
 
 MCP‑Server bewerben ihre Werkzeuge als JSON‑Schema‑Objekte: Namen, Beschreibungen, Parametertypen, erforderliche Felder, Beispiele. Diese Schemata sind nützlich. Sie zeigen Claude, was ein Werkzeug tut und wie es korrekt aufgerufen wird. Aber „nützlich“ und „muss jederzeit im Kontext sein“ sind verschiedene Dinge.
@@ -101,18 +104,20 @@ Die Schlussfolgerung: Schreiben Sie Ihre Tool‑Beschreibungen, als müsste BM25
 Tool Search funktioniert nicht mit Beispielen für Tool‑Verwendung (Few‑Shot‑Prompting für Tool‑Aufrufe). Wenn Sie auf Beispiele für Genauigkeit angewiesen sind, benötigen Sie eine Umgehungslösung.
 ## Was ich ausgelassen habe
 
-**Prompt‑Caching + Deferred Tools.** In den Anthropic‑Docs wird die Kombination von `defer_loading` mit zwischengespeicherten Tool‑Definitionen erwähnt. Ich habe das noch nicht benchmarked. Die Interaktion zwischen Cache‑Invalidierung und Just‑in‑Time‑Schema‑Injection ist nicht offensichtlich. [Relevante Docs hier.](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
+**Prompt-Caching + verzögerte Werkzeuge.** Anthropics Dokumentation erwähnt die Kombination von `defer_loading` mit zwischengespeicherten Werkzeugdefinitionen. Ich habe das noch nicht benchmarked. Die Wechselwirkung zwischen Cache‑Invalidierung und Just‑in‑Time‑Schema‑Injection ist nicht offensichtlich. [Relevante Dokumentation hier.](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
 
-**Eigene Suchimplementierungen.** Du kannst dein eigenes Such‑Tool mit Embeddings oder semantischer Suche implementieren und dabei `tool_reference`‑Blöcke zurückgeben. Das ist der richtige Ansatz für große Kataloge (1.000+ Tools), bei denen die Genauigkeit von BM25‑Retrieval nicht ausreicht. Anthropics [Code‑Execution‑Mit‑MCP‑Beitrag](https://www.anthropic.com/engineering/code-execution-with-mcp) beschreibt das breitere Muster, MCP‑Server als Code‑APIs statt direkter Tool‑Aufrufe zu präsentieren. Lese es als Ergänzung.
+**Eigene Suchimplementierungen.** Sie können Ihr eigenes Suchwerkzeug mit Embeddings oder semantischer Suche implementieren und `tool_reference`‑Blöcke zurückgeben. Das ist der richtige Weg für große Kataloge (1.000+ Werkzeuge), bei denen die BM25‑Abrufgenauigkeit nicht ausreicht. Anthropics [Code‑Execution‑Beitrag mit MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) behandelt das allgemeinere Muster, MCP‑Server als Code‑APIs statt direkter Werkzeugaufrufe zu präsentieren. Lohnenswert zu lesen als Ergänzung.
 
-**Agent‑SDK‑Unterstützung.** Seit Anfang 2026 stellt das Python Agent SDK `defer_loading` nicht mehr als Parameter bereit. Du musst auf die rohe API ausweichen. [Dieses GitHub‑Issue](https://github.com/anthropics/claude-agent-sdk-python/issues/525) verfolgt das.
+**Agent‑SDK‑Unterstützung.** Anfang 2026 stellt das Python Agent SDK `defer_loading` nicht als Parameter zur Verfügung. Sie müssen auf die rohe API ausweichen. [Dieses GitHub‑Issue](https://github.com/anthropics/claude-agent-sdk-python/issues/525) verfolgt das.
 
-**Andere Modell‑Provider.** `defer_loading` ist ein Claude‑API‑Feature, kein MCP‑Protokoll‑Feature. OpenAI, Gemini und andere haben noch kein Äquivalent. Wenn du provider‑agnostische Agents baust, brauchst du stattdessen eine clientseitige Routing‑Schicht.
-
----
-
-Aktiviere `defer_loading` für alles, was du nicht in jeder Sitzung benutzt. Das sind wahrscheinlich 80 % deiner Tools. Beginne mit den [offiziellen Docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) und dem [Anthropic‑Engineering‑Post](https://www.anthropic.com/engineering/advanced-tool-use) für die vollständige API‑Referenz.
+**Andere Modell‑Anbieter.** `defer_loading` ist ein Claude‑API‑Feature, kein MCP‑Protokoll‑Feature. OpenAI, Gemini und andere haben noch kein Äquivalent. Wenn Sie provider‑agnostische Agenten bauen, benötigen Sie stattdessen eine clientseitige Routing‑Schicht.
 
 ---
 
-*Christian Pojoni baut kontext‑effiziente Agents. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+Aktivieren Sie `defer_loading` für alles, was Sie nicht in jeder Sitzung verwenden. Das sind wahrscheinlich 80 % Ihrer Werkzeuge. Beginnen Sie mit den [offiziellen Docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) und dem [Anthropic Engineering‑Beitrag](https://www.anthropic.com/engineering/advanced-tool-use) für die vollständige API‑Referenz.
+
+---
+
+*Christian Pojoni entwickelt kontext‑effiziente Agenten. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Titelbild für diesen Beitrag wurde von KI generiert.*

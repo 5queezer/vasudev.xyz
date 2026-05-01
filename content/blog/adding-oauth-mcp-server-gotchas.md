@@ -4,10 +4,14 @@ date: 2026-03-25
 description: "What broke when I wired up claude.ai to my own Reactive Resume instance via OAuth."
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
+images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
+images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 series: ["Field Notes"]
 ---
+
+
 
 
 
