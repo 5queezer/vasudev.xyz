@@ -1,14 +1,19 @@
 ---
-title: "Stoppen Sie, KI in Ihre Apps zu integrieren. Setzen Sie Ihre Apps in KI."
+title: "Stoppe das Einbinden von KI in deine Apps. Setze deine Apps in KI."
 date: 2026-03-27
 description: "Warum KI‑Funktionen in traditionellen Apps rückwärtsgewandt sind und wie MCP die Architektur umkehrt."
 author: "Christian Pojoni"
 tags: ["mcp", "ai", "architecture"]
+agentQuestions:
+  - "Why put apps in AI instead of AI in apps?"
+  - "How does MCP flip app architecture?"
+  - "What is wrong with embedded AI chat boxes?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
-translationHash: "e8002c90b2434015c25a0c3a98977756"
+translationHash: "0ce521fb8f264107799bc51cbd547f5c"
 chunkHashes: "639269d02ff6ee0f,69da4ec5d449ecb3,c9b0ece7b9bb2623,768e66d34188f536,f94fd15b666a8f6e,9aa2f7ac14ac90c4,a9fe755e3099498b,b5d7d81ad4b20b30"
 ---
+
 Ich habe kürzlich Airtable ausprobiert. Es hat jetzt KI‑Funktionen. Ein kleines Textfeld innerhalb der App, in das man Fragen zu den eigenen Daten stellen kann. Es fühlte sich sofort falsch an, und es dauerte ein paar Tage, bis ich genau benennen konnte, warum.
 
 Das KI‑Fenster in Airtable kennt mich nicht. Es ist ein Fremder, der im Haus eines anderen sitzt und mich auffordert, alles von Grund auf zu erklären.

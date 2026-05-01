@@ -1,19 +1,25 @@
 ---
-title: "Stoppe das Entwerfen deines KI-Systems. Gestalte seine Umgebung."
+title: "Stoppen Sie das Entwerfen Ihres KI-Systems. Entwerfen Sie seine Umgebung."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
+agentQuestions:
+  - "Why design the environment instead of the AI system?"
+  - "What is the mutation and selection cycle here?"
+  - "How does this apply to self-evolving agents?"
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "Selbstentwickelnde KI nutzt Versagen, wenn sie einen festen Evaluator optimiert. Das biologische Modell ist richtig: Was sich weiterentwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
+description: "Selbstentwickelnde KI‑Bewertungsfunktionen scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell liegt richtig: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "2f5a8bf02a2b63e2cf15d09ded86d65a"
-chunkHashes: "8402b112ebff21c5,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
+translationHash: "1da0be4f5958e30250cbcea567f1647d"
+chunkHashes: "9d0ab02967fb8ff0,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
-Ich habe eine Woche damit verbracht, eine „vektornative Programmiersprache für LLMs“ zu entwerfen. Die Idee war, das Verhalten des Modells direkt auf der Aktivierungsebene zu programmieren, ohne Prompts, nur mit Interventionsvektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich tatsächlich wollte, war keine Sprache. Es war ein Organismus.
+I spent a week trying to design a "vector-native programming language for LLMs." The idea was to program model behavior directly at the activation level, no prompts, just intervention vectors. It was intellectually satisfying and practically wrong. What I actually wanted was not a language. It was an organism.
 
-**Die Einheit der Evolution ist nicht das Merkmal. Sie ist der Mutations‑/Selektionszyklus.**
+**Die Einheit der Evolution ist nicht das Feature. Es ist der Mutations‑/Selektionszyklus.**
 
-Diese Unterscheidung ändert alles daran, wie man ein sich selbst weiterentwickelndes KI‑System entwirft. Die meisten Systeme, die sich „selbstverbessernd“ nennen, führen AutoML durch. Sie optimieren innerhalb eines festen Suchraums hin zu einem festen Ziel. Das kann Anpassung erzeugen, ist aber eher AutoML als offene Evolution. Der Unterschied erweist sich architektonisch in zweierlei Hinsicht als entscheidend.
+That distinction changes everything about how you build a self-evolving AI harness. Most systems that call themselves "self-improving" are doing AutoML. They optimize over a fixed search space toward a fixed objective. That can produce adaptation, but it is closer to AutoML than to open-ended evolution. The difference turns out to be architecturally decisive in two ways.
+
+---
 ## Genotyp und Phänotyp sind nicht dieselbe Schicht
 
 Biologische Systeme trennen das, was erhalten bleibt, vom dem, was ausgewählt wird. Das Genom wird nicht direkt getestet. Der Phänotyp wird es. Mutationen passieren am Genom. Selektion geschieht am Phänotyp. Das Genom überlebt, indem es Phänotypen hervorbringt, die überleben. Diese Asymmetrie ist die Quelle der Evolvierbarkeit selbst.

@@ -1,17 +1,21 @@
 ---
-title: "Ein Sablier-Fehler, der kein Sablier war: 4 Stolperfallen beim Nachverfolgen eines Traefik‑Plugin‑Fehlers"
+title: "Ein Sablier-Bug, der kein Sablier war: 4 Fallstricke beim Nachverfolgen eines Traefik-Plugin-Fehlers"
 date: 2026-04-19
-description: "Nachverfolgung eines sporadischen ‘invalid middleware’-Fehlers in Sablier zu einer verborgenen Startabhängigkeit, die durch eine Traefik 3.5.3‑Refactorierung eingeführt wurde."
+description: "Verfolgung eines sporadischen „invalid middleware“-Fehlers in Sablier zu einer versteckten Start‑Abhängigkeit, die durch ein Traefik 3.5.3‑Refactoring eingeführt wurde."
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
+agentQuestions:
+  - "Why was this a Traefik bug, not a Sablier bug?"
+  - "What changed in Traefik 3.5.3 plugin startup?"
+  - "How can I reproduce the invalid middleware failure?"
 series: ["Field Notes"]
-translationHash: "62d5bb434393d26d88b269a846a4d471"
-chunkHashes: "278fb8e0d3039274,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"
+translationHash: "75744b97b5a70de6eb8521d19c8569c7"
+chunkHashes: "7e18fa5668bb7516,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"
 ---
-[Sablier](https://github.com/sablierapp/sablier) gibt Ihnen Cloud‑Run‑ähnliches Scale‑to‑Zero für selbstgehostete Docker‑Container. Anfragen treffen auf eine Reverse‑Proxy‑Middleware, die Middleware weckt den Ziel‑Container bei Bedarf, und der Container fährt nach einer Leerlauf‑Timeout wieder herunter. Ich habe einen Nachmittag damit verbracht, einen sporadischen `invalid middleware`‑Fehler nachzuvollziehen, den Sablier‑Nutzer seit Monaten melden. Der Fehler lag nicht in Sablier. Die Arbeit hat drei öffentliche Artefakte hervorgebracht: ein [deterministisches Reproduktions‑Repository](https://github.com/5queezer/sablier-traefik-repro), ein upstream [Issue](https://github.com/traefik/traefik/issues/13005) und ein [Fix‑PR](https://github.com/traefik/traefik/pull/13006). Hier sind vier Dinge, die Sie wissen sollten, bevor Sie Ihren nächsten `invalid middleware`‑Fehler debuggen.
+[Sablier](https://github.com/sablierapp/sablier) gibt dir Cloud‑Run‑ähnliches Scale‑to‑Zero für selbstgehostete Docker‑Container. Anfragen treffen auf eine Reverse‑Proxy‑Middleware, die Middleware weckt den Ziel‑Container bei Bedarf, und der Container fährt nach einer Untätigkeits‑Timeout wieder herunter. Ich habe einen Nachmittag damit verbracht, einen sporadischen `invalid middleware`‑Fehler nachzuvollziehen, den Sablier‑Benutzer seit Monaten melden. Der Fehler lag nicht in Sablier. Die Arbeit ergab drei öffentliche Artefakte: ein [deterministisches Reproduktions‑Repo](https://github.com/5queezer/sablier-traefik-repro), ein upstream [Issue](https://github.com/traefik/traefik/issues/13005) und ein [Fix‑PR](https://github.com/traefik/traefik/pull/13006). Hier sind vier Dinge, die es wert sind, vorher zu wissen, bevor du deinen nächsten `invalid middleware`‑Fehler debuggst.
 
-**Ein Refactoring, das in einer Traefik‑Punkt‑Release veröffentlicht wurde, ließ stillschweigend jeden Plugin‑Start von der Erreichbarkeit von `plugins.traefik.io` abhängen, und kein einzelner Middleware‑Besitzer war in der Lage, dies zu bemerken.**
+**Ein Refactoring, das in einem Traefik‑Punktrelease ausgeliefert wurde, ließ stillschweigend jeden Plugin‑Start von der Erreichbarkeit von `plugins.traefik.io` abhängen, und kein einzelner Middleware‑Besitzer war in der Position, dies zu bemerken.**
 ## 1. Der Fehler lag im Refactoring, nicht im Feature
 
 Das Symptom landete im Sablier‑Tracker als `invalid middleware "whoami-sablier@file" configuration: invalid middleware type or middleware does not exist`. Sablier liefert ein Traefik‑Plugin, also ist das natürlich dort, wo Nutzer melden. Es war jedoch kein Sablier‑Fehler.

@@ -1,17 +1,21 @@
 ---
-title: "Interfaz de transmisión de agentes de IA: 5 herramientas clasificadas"
+title: "UI de streaming de agentes de IA: 5 herramientas clasificadas"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
+agentQuestions:
+  - "Which streaming UI tool wins and why?"
+  - "How do AG-UI and Vercel AI SDK differ?"
+  - "What architecture matters for agent UI?"
 description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI y Kombai hacen diferentes apuestas sobre cómo los agentes deben construir interfaces. La cuestión arquitectónica decide cuál gana."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
-translationHash: "e080a7201a1b5e56a6d5f5960ed43b86"
-chunkHashes: "fbfb967328a5621b,9986d2d6e18f0fe6,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
+translationHash: "2c7cbee149762b3b7301944fd4192557"
+chunkHashes: "0a3ef6b037df964b,27e2991ea2cd0ab5,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
 ---
-Cada agente de IA hoy habla a través de una ventana de chat. El usuario hace una pregunta, el agente transmite tokens de vuelta, tal vez con un bloque de código. Todo el frontend es un emulador de terminal glorificado.
+Cada agente de IA hoy en día conversa a través de una ventana de chat. El usuario hace una pregunta, el agente transmite tokens de vuelta, quizá con un bloque de código. Todo el frontend es un emulador de terminal glorificado.
 
-Cinco herramientas apuestan a que los agentes deberían transmitir interfaces reales en lugar de texto. No están de acuerdo en cómo, y dos de ellas difieren solo en los detalles.
+Cinco herramientas apuestan a que los agentes deberían transmitir interfaces reales en lugar de texto. Discrepan en cómo hacerlo, y dos de ellas solo difieren en los detalles.
 
 **Los protocolos se dividen en una cuestión: ¿debe el agente enviar código ejecutable, datos estructurados o eventos de interacción?**
 
@@ -20,17 +24,17 @@ Tu respuesta determina tu modelo de seguridad, el acoplamiento de tu framework y
 
 | | Vercel AI SDK | TanStack AI | AG-UI | A2UI | Kombai |
 |---|---|---|---|---|---|
-| **Qué entrega** | Salida de herramienta (RSC pausado) | Salida de herramienta (render en cliente) | Eventos de interacción | Árboles de UI JSON declarativos | Código fuente generado |
-| **Transporte** | SSE, streaming RSC | SSE, streaming HTTP, iterables asíncronos, RPC | SSE, eventos bidireccionales | Streaming progresivo de JSON | HTTP (por lotes) |
-| **Bloqueo de framework** | Enfoque en Next.js, React primero | Núcleo agnóstico al framework (React, Solid, Preact) | Cualquier (a nivel de protocolo) | Cualquier (a nivel de protocolo) | Genera React, Vue, HTML |
-| **Modelo de seguridad** | Ejecución confiada | Código aislado (Node, Workers, QuickJS) | Validación de esquema de eventos | Catálogo de componentes en lista blanca | Salida estática, sin riesgo de tiempo de ejecución |
-| **Multiplataforma** | Solo web | Web | Web | Flutter, Angular, Lit (React planificado) | Web |
-| **Soporte MCP** | Nativo (AI SDK 6) | Aún no | Indirecto vía eventos de llamada de herramienta | N/D | N/D |
+| **Qué entrega** | Salida de herramienta (RSC en pausa) | Salida de herramienta (renderizado en cliente) | Eventos de interacción | Árboles JSON UI declarativos | Código fuente generado |
+| **Transporte** | SSE, transmisión RSC | SSE, transmisión HTTP, iterables async, RPC | SSE, eventos bidireccionales | Transmisión JSON progresiva | HTTP (por lotes) |
+| **Bloqueo de framework** | Orientado a Next.js, React primero | Núcleo independiente de framework (React, Solid, Preact) | Cualquiera (a nivel de protocolo) | Cualquiera (a nivel de protocolo) | Genera React, Vue, HTML |
+| **Modelo de seguridad** | Ejecución confiable | Código aislado (Node, Workers, QuickJS) | Validación de esquema de eventos | Catálogo de componentes en lista blanca | Salida estática, sin riesgo en tiempo de ejecución |
+| **Multiplataforma** | Solo web | Web | Web | Flutter, Angular, Lit (React planeado) | Web |
+| **Soporte MCP** | Nativo (AI SDK 6) | Aún no | Indirecto mediante eventos de llamada a herramienta | N/D | N/D |
 | **GitHub** | [Vercel/ai](https://github.com/vercel/ai) (~23K estrellas) | [TanStack/ai](https://github.com/tanstack/ai) (~2.6K, alfa) | [ag-ui-protocol/ag-ui](https://github.com/ag-ui-protocol/ag-ui) (~13K estrellas) | [google/A2UI](https://github.com/google/A2UI) (~14K estrellas) | Código cerrado |
 | **Licencia** | Apache 2.0 | MIT | MIT | Apache 2.0 | Propietaria |
-| **Cuándo elegirlo** | Cuando despliegas en Vercel y quieres el AI Gateway | Cuando necesitas portabilidad y afinado por tipo de modelo | Cuando requieres observabilidad del agente y hombre‑en‑el‑bucle | Cuando necesitas multiplataforma desde agentes no confiables | Cuando conviertes diseños de Figma a código |
+| **Cuándo elegir** | Cuando despliegas en Vercel y deseas el AI Gateway | Cuando buscas portabilidad y afinación por tipo de modelo | Cuando necesitas observabilidad del agente y ciclo humano‑en‑el‑bucle | Cuando requieres multiplataforma desde agentes no confiables | Cuando conviertes diseños de Figma a código |
 
-Ese es el panel. Ahora las opiniones.
+Eso es el panel de control. Ahora las opiniones.
 ## Vercel AI SDK: Transmit el Componente
 
 El [AI SDK](https://github.com/vercel/ai) de Vercel (~23 K estrellas en GitHub) permite que tu agente devuelva componentes completos de React Server en lugar de texto. El modelo llama a una herramienta, la herramienta devuelve JSX, el framework lo transmite al navegador. Sin tubería de WebSocket. Sin configuración manual de SSE. El componente aparece progresivamente a medida que el modelo lo genera.

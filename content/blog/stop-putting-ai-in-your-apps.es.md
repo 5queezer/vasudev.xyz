@@ -1,14 +1,19 @@
 ---
 title: "Deja de poner IA en tus aplicaciones. Pon tus aplicaciones en IA."
 date: 2026-03-27
-description: "¿Por qué las funciones de IA dentro de las aplicaciones tradicionales son retroactivas y cómo MCP invierte la arquitectura?"
+description: "Por qué las funciones de IA dentro de aplicaciones tradicionales son contraproducentes, y cómo MCP invierte la arquitectura."
 author: "Christian Pojoni"
 tags: ["mcp", "ai", "architecture"]
+agentQuestions:
+  - "Why put apps in AI instead of AI in apps?"
+  - "How does MCP flip app architecture?"
+  - "What is wrong with embedded AI chat boxes?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
-translationHash: "e8002c90b2434015c25a0c3a98977756"
+translationHash: "0ce521fb8f264107799bc51cbd547f5c"
 chunkHashes: "639269d02ff6ee0f,69da4ec5d449ecb3,c9b0ece7b9bb2623,768e66d34188f536,f94fd15b666a8f6e,9aa2f7ac14ac90c4,a9fe755e3099498b,b5d7d81ad4b20b30"
 ---
+
 Intenté Airtable recientemente. Ahora tiene funciones de IA. Un pequeño cuadro de texto dentro de la aplicación donde puedes hacer preguntas sobre tus datos. Me pareció incorrecto de inmediato, y me tomó unos días articular por qué.
 
 La ventana de IA dentro de Airtable no sabe quién soy. Es un desconocido sentado dentro de la casa de otra persona, pidiéndome que explique todo desde cero.

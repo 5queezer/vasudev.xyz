@@ -1,36 +1,42 @@
 ---
-title: "Streaming-UI von KI-Agenten: 5 Werkzeuge bewertet"
+title: "Streaming UI von KI-Agenten: 5 Werkzeuge eingestuft"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
-description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI und Kombai setzen unterschiedliche Einsätze darauf, wie Agenten Schnittstellen erstellen sollten. Die architektonische Frage entscheidet, welcher gewinnt."
+agentQuestions:
+  - "Which streaming UI tool wins and why?"
+  - "How do AG-UI and Vercel AI SDK differ?"
+  - "What architecture matters for agent UI?"
+description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI und Kombai setzen auf unterschiedliche Ansätze, wie Agenten Schnittstellen erstellen sollen. Die architektonische Frage entscheidet, welcher Ansatz gewinnt."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
-translationHash: "e080a7201a1b5e56a6d5f5960ed43b86"
-chunkHashes: "fbfb967328a5621b,9986d2d6e18f0fe6,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
+translationHash: "2c7cbee149762b3b7301944fd4192557"
+chunkHashes: "0a3ef6b037df964b,27e2991ea2cd0ab5,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
 ---
-Jeder KI‑Agent kommuniziert heute über ein Chat‑Fenster. Der Benutzer stellt eine Frage, der Agent streamt Tokens zurück, eventuell mit einem Code‑Block. Das gesamte Frontend ist im Grunde ein glorifizierter Terminal‑Emulator.
+Jeder KI‑Agent von heute kommuniziert über ein Chat‑Fenster. Der Benutzer stellt eine Frage, der Agent streamt Tokens zurück, möglicherweise mit einem Code‑Block. Das gesamte Front‑End ist ein glorifizierter Terminal‑Emulator.
 
-Fünf Werkzeuge wetten darauf, dass Agenten echte Schnittstellen statt Text streamen sollten. Sie unterscheiden sich darin, **wie** sie das tun, und bei zwei geht es nur um Details.
+Fünf Werkzeuge setzen darauf, dass Agenten echte Oberflächen statt Text streamen sollten. Sie streiten darüber, **wie** – und zwei von ihnen streiten nur über Details.
 
-**Die Protokolle spalten sich bei einer Frage: Soll der Agent ausführbaren Code, strukturierte Daten oder Interaktions‑Events senden?**
+**Die Protokolle teilen sich bei einer Frage: Sollte der Agent ausführbaren Code, strukturierte Daten oder Interaktionsereignisse senden?**
 
-Ihre Antwort bestimmt Ihr Sicherheitsmodell, die Kopplung an das Framework und ob Ihr Agent UI für etwas anderes als einen Browser‑Tab erstellen kann.
+Ihre Antwort bestimmt Ihr Sicherheitsmodell, die Kopplung Ihres Frameworks und ob Ihr Agent UI für mehr als nur einen Browser‑Tab erstellen kann.
 ## Der Vergleich
 
 | | Vercel AI SDK | TanStack AI | AG-UI | A2UI | Kombai |
 |---|---|---|---|---|---|
-| **Was bereitgestellt wird** | Werkzeugausgabe (RSC pausiert) | Werkzeugausgabe (Client-Rendering) | Interaktionsereignisse | Deklarative JSON-UI-Bäume | Generierter Quellcode |
-| **Transport** | SSE, RSC-Streaming | SSE, HTTP-Streaming, asynchrone Iterables, RPC | SSE, bidirektionale Ereignisse | Progressive JSON-Streaming | HTTP (Batch) |
-| **Framework-Bindung** | Next.js-orientiert, React zuerst | Framework-unabhängiger Kern (React, Solid, Preact) | Beliebig (Protokollebene) | Beliebig (Protokollebene) | Gibt React, Vue, HTML aus |
-| **Sicherheitsmodell** | Vertrauenswürdige Ausführung | Sandgeboßter Code (Node, Workers, QuickJS) | Ereignis‑Schema‑Validierung | Whitelist‑Katalog für Komponenten | Statischer Output, kein Laufzeit‑Risiko |
-| **Plattformübergreifend** | Nur Web | Web | Web | Flutter, Angular, Lit (React geplant) | Web |
-| **MCP-Unterstützung** | Nativ (AI SDK 6) | Noch nicht | Indirekt über Werkzeugaufruf‑Ereignisse | k.A. | k.A. |
-| **GitHub** | [Vercel/ai](https://github.com/vercel/ai) (~23K stars) | [TanStack/ai](https://github.com/tanstack/ai) (~2.6K, alpha) | [ag-ui-protocol/ag-ui](https://github.com/ag-ui-protocol/ag-ui) (~13K stars) | [google/A2UI](https://github.com/google/A2UI) (~14K stars) | Closed source |
-| **Lizenz** | Apache 2.0 | MIT | MIT | Apache 2.0 | Proprietary |
-| **Wann wählen** | Du deployst auf Vercel und möchtest das AI Gateway | Du willst Portabilität und modellspezifische Typenspezifizierung | Du benötigst Agenten‑Observierbarkeit und Human‑in‑the‑Loop | Du brauchst plattformübergreifend von nicht vertrauenswürdigen Agenten | Du konvertierst Figma‑Designs zu Code |
+| **Was geliefert wird** | Tool‑Ausgabe (RSC pausiert) | Tool‑Ausgabe (Client‑Render) | Interaktions‑Events | Deklarative JSON‑UI‑Bäume | Generierter Quellcode |
+| **Transport** | SSE, RSC‑Streaming | SSE, HTTP‑Streaming, async‑Iterables, RPC | SSE, bidirektionale Events | Progressive JSON‑Streaming | HTTP (Batch) |
+| **Framework‑Bindung** | Next.js‑orientiert, React zuerst | Framework‑agnostischer Kern (React, Solid, Preact) | Beliebig (Protokoll‑Ebene) | Beliebig (Protokoll‑Ebene) | Gibt React, Vue, HTML aus |
+| **Sicherheitsmodell** | Vertrauenswürdige Ausführung | Sandgepackter Code (Node, Workers, QuickJS) | Event‑Schema‑Validierung | Whitelist‑Komponentenkatalog | Statischer Output, kein Laufzeit‑Risiko |
+| **Plattform‑übergreifend** | Nur Web | Web | Web | Flutter, Angular, Lit (React geplant) | Web |
+| **MCP‑Unterstützung** | Nativ (AI SDK 6) | Noch nicht | Indirekt via Tool‑Call‑Events | Nicht zutreffend | Nicht zutreffend |
+| **GitHub** | [Vercel/ai](https://github.com/vercel/ai) (~23 K Sterne) | [TanStack/ai](https://github.com/tanstack/ai) (~2,6 K, Alpha) | [ag-ui-protocol/ag-ui](https://github.com/ag-ui-protocol/ag-ui) (~13 K Sterne) | [google/A2UI](https://github.com/google/A2UI) (~14 K Sterne) | Closed source |
+| **Lizenz** | Apache 2.0 | MIT | MIT | Apache 2.0 | Proprietär |
+| **Wählen, wenn** | Du hostest auf Vercel und willst das AI‑Gateway | Du willst Portabilität und Modellspezifische Eingrenzung | Du brauchst Agent‑Beobachtbarkeit und Human‑in‑the‑Loop | Du brauchst plattformübergreifende Unterstützung von nicht vertrauenswürdigen Agenten | Du konvertierst Figma‑Designs in Code |
 
 Das ist das Dashboard. Jetzt die Meinungen.
+
+---
 ## Vercel AI SDK: Stream die Komponente  
 
 Vercels [AI SDK](https://github.com/vercel/ai) (~23 K GitHub‑Sterne) lässt deinen Agenten vollständige React Server Components statt Text zurückgeben. Das Modell ruft ein Tool auf, das Tool gibt JSX zurück, das Framework streamt es zum Browser. Kein WebSocket‑Boilerplate. Keine manuelle SSE‑Einrichtung. Die Komponente erscheint nach und nach, während das Modell sie generiert.

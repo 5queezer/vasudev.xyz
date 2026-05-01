@@ -2,18 +2,22 @@
 title: "Capital-of ist kein einzelnes SAE-Feature. Also habe ich eine Mutationsschleife gebaut, um herauszufinden, was es ist."
 date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
+agentQuestions:
+  - "Why is capital-of not a single SAE feature?"
+  - "How did the mutation loop find better signals?"
+  - "Why was tokenization the bottleneck?"
 series: ["Reading the Residual Stream"]
 series_weight: 2
-description: "SAE‑Funktionen können Beziehungen in Gemma-2-2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die das kann. Der Engpass war die Tokenisierung."
+description: "SAE-Features können Beziehungen in Gemma-2-2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die es kann. Der Engpass war die Tokenisierung."
 images: ["/images/automated-circuit-discovery-og.png"]
-translationHash: "f5543543e162c3f00f6fb54e79b2943a"
-chunkHashes: "87c19f46217159cd,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,2fd2687fbe575b06"
+translationHash: "5333903ece9522e2172766ff161ef3d8"
+chunkHashes: "e3de2da89c8de2aa,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,2fd2687fbe575b06"
 ---
-**Der Engpass bei automatischer Interpretierbarkeit sind nicht Probes, nicht SAEs, nicht Rechenleistung. Es ist die Tokenisierung.**
+**Der Flaschenhals bei der automatisierten Interpretierbarkeit liegt nicht bei Proben, nicht bei SAEs, nicht bei der Rechenleistung. Es ist die Tokenisierung.**
 
-Element‑Symbol hat einen differentiellen Ablationswert von -16,72 in Gemma-2-2B. Das ist das stärkste kausale Signal, das ich im Residual‑Stream des Modells gefunden habe, und ich habe es von Hand entdeckt. Die Frage, die alles, was folgt, antrieb: Kann eine Maschine solche Signale selbst finden?
+Element‑symbol hat in Gemma-2-2B einen differentiellen Ablationswert von -16,72. Das ist das stärkste kausale Signal, das ich im Residual‑Stream des Modells gefunden habe, und ich habe es von Hand gefunden. Die Frage, die alles, was folgt, antrieb: Kann eine Maschine solche Signale selbst finden?
 
-Die Antwort lautet ja. Es benötigte 42 gescheiterte Vorschläge, eine Feedback‑Schleife, die einem LLM beibringt, was der Tokenizer eines anderen Modells macht, und die Erkenntnis, dass der schwierigste Teil der automatischen Interpretierbarkeit nichts mit Interpretierbarkeit zu tun hat.
+Die Antwort ist ja. Es erforderte 42 gescheiterte Vorschläge, einen Feedback‑Loop, der einem LLM beibringt, was der Tokenizer eines anderen Modells tut, und die Erkenntnis, dass der schwierigste Teil der automatisierten Interpretierbarkeit nichts mit Interpretierbarkeit zu tun hat.
 ## Capital-of Existiert Nicht als Einziges Merkmal
 
 Ich führte sechs Experimente über zwei SAE‑Breiten (16 k und 65 k) auf Gemma‑2‑2B durch, um ein „capital‑of“-Merkmal zu finden. Mehr als 300 Kandidaten‑Merkmale. Schicht 12, Schicht 20. Einzel‑Entität‑Prompts, Mehr‑Entität‑Prompts. Enge Same‑Frame‑Kontraste, lose Kontraste. Der beste Kandidat, Merkmal 14610 („Referenzen zu spezifischen Ländern und ihren Rollen in verschiedenen Kontexten“), bestand den Mehr‑Entität‑Score über vier Länder hinweg und zeigte sowohl Steering‑ als auch Ablations‑Kausalität.
