@@ -24,6 +24,7 @@ series: ["Field Notes"]
 
 
 
+
 MCP (Model Context Protocol) lets AI assistants call tools on remote servers. But if your MCP server is self-hosted, claude.ai needs to authenticate against your user accounts, not Anthropic's. That means your server needs to become a full OAuth 2.1 provider: Dynamic Client Registration, Authorization Code with PKCE, token exchange.
 
 I submitted [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) to add this to [Reactive Resume](https://github.com/amruthpillai/reactive-resume), the open-source resume builder. Six commits, one mid-PR refactor after the maintainer flagged a deprecation, and several hours of debugging auth chains. This is the OAuth side of [that story](/blog/shipping-a2a-protocol-support-in-rust/).

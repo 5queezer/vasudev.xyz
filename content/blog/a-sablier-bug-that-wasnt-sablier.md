@@ -12,6 +12,7 @@ series: ["Field Notes"]
 
 
 
+
 [Sablier](https://github.com/sablierapp/sablier) gives you Cloud-Run-style scale-to-zero for self-hosted Docker containers. Requests hit a reverse-proxy middleware, the middleware wakes the target container on demand, and the container shuts down again after an idle timeout. I spent an afternoon tracing a sporadic `invalid middleware` error that Sablier users have been reporting for months. The bug was not in Sablier. The work produced three public artifacts: a [deterministic reproduction repo](https://github.com/5queezer/sablier-traefik-repro), an upstream [issue](https://github.com/traefik/traefik/issues/13005), and a [fix PR](https://github.com/traefik/traefik/pull/13006). Here are four things worth knowing before you debug your next `invalid middleware` error.
 
 **A refactor shipped in a Traefik point release quietly made every plugin startup depend on `plugins.traefik.io` being reachable, and no single middleware owner was positioned to notice.**

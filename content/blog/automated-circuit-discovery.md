@@ -13,6 +13,7 @@ images: ["/images/automated-circuit-discovery-og.png"]
 
 
 
+
 **The bottleneck in automated interpretability is not probes, not SAEs, not compute. It is tokenization.**
 
 Element-symbol has a differential ablation score of -16.72 in Gemma-2-2B. That is the strongest causal signal I have found in the model's residual stream, and I found it by hand. The question that drove everything that follows: can a machine find signals like this on its own?

@@ -25,6 +25,7 @@ images: ["/images/ai-environment-design-og.png"]
 
 
 
+
 I spent a week trying to design a "vector-native programming language for LLMs." The idea was to program model behavior directly at the activation level, no prompts, just intervention vectors. It was intellectually satisfying and practically wrong. What I actually wanted was not a language. It was an organism.
 
 **The unit of evolution is not the feature. It is the mutation/selection cycle.**
