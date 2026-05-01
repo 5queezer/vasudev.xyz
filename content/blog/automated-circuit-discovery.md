@@ -8,7 +8,9 @@ description: "SAE features can't isolate relations in Gemma-2-2B. I built a muta
 images: ["/images/automated-circuit-discovery-og.png"]
 images: ["/images/automated-circuit-discovery-og.png"]
 images: ["/images/automated-circuit-discovery-og.png"]
+images: ["/images/automated-circuit-discovery-og.png"]
 ---
+
 
 
 

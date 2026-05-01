@@ -5,7 +5,9 @@ tags: ["adr", "agents", "architecture", "claude"]
 description: "Two 2026 studies disagree about whether AGENTS.md helps coding agents. The fight makes sense once you separate push context from pull context."
 images: ["/images/push-pull-context-og.png"]
 images: ["/images/push-pull-context-og.png"]
+images: ["/images/push-pull-context-og.png"]
 ---
+
 
 
 
