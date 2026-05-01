@@ -1,19 +1,20 @@
 ---
-title: "Die Speicherkennzahlen Ihres Agenten lügen Sie an. So können Sie sie verifizieren."
+title: "Die Speicherkennzahlen Ihres Agenten lügen Sie an. So können Sie sie belegen."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "Speicher‑Konsolidierung sieht auf Dashboards großartig aus. Aber wenn deine Metriken sich verbessern können, ohne dass die Abrufleistung besser wird, optimierst du einen losgelösten Proxy."
+description: "Speicherkonsolidierung sieht in Dashboards großartig aus. Aber wenn Ihre Metriken sich verbessern können, ohne dass die Abrufleistung besser wird, optimieren Sie einen losgelösten Proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "db953832e48549d0cdc6086a53a1a185"
-chunkHashes: "0de2ded757ec0bc8,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,d12a42aa3aa119ce"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "f7fae02b1b6237c5a73f7f0a6c66f939"
+chunkHashes: "cecec19aaf26da69,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Ich habe ein System zur Gedächtniskonsolidierung für KI‑Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, lässt veraltete Einträge verfallen und erzeugt ein Traumtagebuch, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: Deduplizierungsrate steigt, Gedächtniszähler sinkt, Assoziationsdichte steigt.
+Ich habe ein System zur Gedächtniskonsolidierung für KI‑Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, lässt veraltete Einträge zerfallen und erzeugt ein Traumjournal, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: Deduplizierungsrate steigt, Gedächtnisanzahl sinkt, Assoziationsdichte steigt.
 
 Keines davon sagt Ihnen, ob der Agent zur richtigen Zeit das Richtige erinnert.
 
-**Wenn eine Metrik verbessert werden kann, ohne dass sich die Abruf‑Qualität ebenfalls verbessert, ist diese Metrik ein losgelöster Proxy. Hören Sie auf, sie zu optimieren.**
+**Wenn sich eine Kennzahl verbessern kann, ohne dass sich die Abrufqualität ebenfalls verbessert, ist diese Kennzahl ein losgelöster Proxy. Hören Sie auf, sie zu optimieren.**
 ## Das Problem hat einen Namen
 
 Ich habe kürzlich einen Aufsatz namens ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) von einer unabhängigen Forscherin namens Flyxion gelesen. Das Kernargument: Wenn ein messbares Signal von dem Prozess, den es verfolgen soll, entkoppelt wird, wird das Signal selbstreferenziell. Man optimiert die Karte, während das Territorium verrottet.
@@ -75,14 +76,16 @@ Ich habe den Multi‑Agent‑Fall nicht behandelt, bei dem das konsolidierte Ged
 Die Analyse des Aufsatzes zu Plattform‑Anreizen (Werbemodelle sind wirtschaftlich von Signaldegradation isoliert) hat ein Gegenstück in Open‑Source: Sternzahlen und Download‑Metriken sind Proxy‑Werte für Nutzen, die sich ebenso leicht entkoppeln können. Aber das ist ein anderer Beitrag.
 ## Das Prinzip
 
-Memory-Konsolidierung ist keine Kompression. Es ist Kuratierung. Der Unterschied besteht darin, ob du deine Entscheidungen auf der Qualität der Retrievals oder auf Dashboard‑Metriken begründest, die sich einfach berechnen lassen.
+Speicherkonsolidierung ist keine Kompression. Es ist Kuratierung. Der Unterschied besteht darin, ob du deine Entscheidungen auf der Qualität der Abrufung oder auf Dashboard‑Metriken basierst, die zufällig leicht zu berechnen sind.
 
 Wenn deine Konsolidierungs‑Metriken steigen können, während die Fähigkeit deines Agenten, echte Fragen zu beantworten, sinkt, baust du ein System, das seine eigenen internen Signale optimiert. Die Karte wird selbstreferenziell. Das Territorium verschwindet.
 
-Begründe deine Metriken. Setze Benchmarks, bevor du release gehst. Verwerfe jedes Signal, das sich unabhängig von dem bewegen lässt, was dir wirklich wichtig ist.
+Verankere deine Metriken. Führe Benchmarks durch, bevor du veröffentlichst. Verwerfe jedes Signal, das unabhängig von dem, was dir tatsächlich wichtig ist, verschoben werden kann.
 
-Die vollständige Dream‑Engine‑Implementierung findest du in [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). Das Benchmark‑Framework, das die Schreibpfade blockiert, ist [Issue #311](https://github.com/scrypster/muninndb/issues/311). Wenn du Agent‑Speichersysteme baust und Notizen zum Grounding von Retrieval‑Metriken austauschen möchtest, öffne ein Issue auf [Hrafn](https://github.com/5queezer/hrafn).
+Die vollständige Dream‑Engine‑Implementierung findet sich in [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). Das Benchmark‑Gerüst, das die Schreibpfade blockiert, ist [issue #311](https://github.com/scrypster/muninndb/issues/311). Wenn du Agent‑Speichersysteme baust und Notizen zum Verankern von Abruf‑Metriken vergleichen möchtest, öffne ein Issue auf [Hrafn](https://github.com/5queezer/hrafn).
 
 ---
 
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), eine leichte AI‑Agent‑Runtime für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges KI‑Agent‑Runtime für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Titelbild dieses Beitrags wurde von KI erzeugt.*

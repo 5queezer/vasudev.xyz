@@ -1,19 +1,20 @@
 ---
-title: "Svapna o Sushupti: Lo que Tres Tradiciones Dicen Sobre la Consolidación de la Memoria Offline"
+title: "Svapna o Sushupti: Lo que tres tradiciones dicen sobre la consolidación de la memoria offline"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurociencia, documentos recientes de IA y un antiguo texto sánscrito convergen en la misma idea sobre la consolidación offline, aunque discrepan sobre qué fase del sueño es la más importante."
+description: "Neurociencia, artículos recientes de IA y un antiguo texto sánscrito convergen en la misma idea sobre la consolidación offline, aunque discrepan sobre qué fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "29dcf70d43b8332f79409f6ee5174b7f"
-chunkHashes: "aff1f774381ed48e,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,6a02d90707faf5d9"
+images: ["/images/svapna-sushupti-og.png"]
+translationHash: "80be9711e32fe04f1e15001bc9b404f1"
+chunkHashes: "d798133f37d89921,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
-[Mi última publicación](/blog/why-ai-agents-need-sleep/) argumentó que los agentes de IA necesitan dormir. Varias personas preguntaron lo obvio que sigue: ¿qué significa eso realmente? ¿Es el “sueño” solo una metáfora para ejecutar un cron job, o la analogía va más profundo?
+[Mi última publicación](/blog/why-ai-agents-need-sleep/) argumentó que los agentes de IA necesitan dormir. Varias personas preguntaron la obvia continuación: ¿qué significa eso realmente? ¿Es el “sueño” solo una metáfora para ejecutar una tarea programada, o la analogía va más profundo?
 
-Pasé una semana leyendo entre tres cuerpos de literatura que casi nunca se citan entre sí: artículos recientes sobre memoria en IA, neurociencia del sueño y el [Mandukya Upanishad](https://es.wikipedia.org/wiki/Mandukya_Upanishad). Convergen en la misma idea central sobre la consolidación offline. También revelan un desacuerdo que resulta ser la pregunta de diseño más importante en los sistemas de memoria de IA en la actualidad.
+Pasé una semana leyendo entre tres cuerpos de literatura que casi nunca se citan entre sí: artículos recientes sobre memoria en IA, neurociencia del sueño y el [Mandukya Upanishad](https://es.wikipedia.org/wiki/Mandukya_Upanishad). Convergen en la misma idea central sobre la consolidación offline. También ponen de manifiesto un desacuerdo que resulta ser la pregunta de diseño más importante en los sistemas de memoria de IA en la actualidad.
 
-**Las tres tradiciones están de acuerdo en que el procesamiento offline es necesario. Ninguna de ellas coincide en si la recombinación o la disolución hacen el trabajo real.**
+**Las tres tradiciones coinciden en que el procesamiento offline es necesario. Ninguna de ellas está de acuerdo en si la recombinación o la disolución hacen el trabajo real.**
 ## El panorama: tres tradiciones, un problema
 
 El problema que cada tradición está resolviendo es el mismo: ¿cómo puede un sistema que acumula experiencia durante la actividad de vigilia retener lo que importa, descartar lo que no, y seguir siendo funcional mañana?
@@ -66,20 +67,22 @@ Esta es la hipótesis que vale la pena probar: **para la memoria de agentes, la 
 | **Védico** | Percepción externa a través de los sentidos | Reorganización interna, procesamiento de samskaras | Absorción sin forma, todas las vrittis disueltas |
 | **Neurociencia** | Codificación (hipocampo, corteza sensorial) | Repetición REM, integración, transformación | Onda lenta NREM, selección sináptica, homeostasis |
 | **Sistemas de IA** | Inferencia normal, llamadas a herramientas, escritura | Consolidación de LLM, síntesis de clúster, diario de sueños | Decaimiento, poda, exclusión de engramas archivados, resolución de interferencias |
-## Lo que dejé fuera
+## Lo Que Dejé Fuera
 
-**[Turiya](https://es.wikipedia.org/wiki/Turiya).** El cuarto estado en el marco Mandukya, la conciencia pura que subyace a los otros tres, aún no tiene una correlación evidente en IA. La asignación más cercana es el propio arnés de referencia: algo externo que observa el rendimiento del agente en los tres estados operacionales sin formar parte de ninguno de ellos.
+**[Turiya](https://es.wikipedia.org/wiki/Turiya).** El cuarto estado en el marco de Mandukya, conciencia pura que subyace a los otros tres, aún no tiene un correlato obvio en IA. El mapeo más cercano es el propio arnés de referencia: algo externo que observa el rendimiento del agente en los tres estados operacionales sin ser parte de ninguno de ellos.
 
-**Sueños como causalmente necesarios vs. epifenoménicos.** La reproducción neuronal durante el sueño es el mecanismo. Soñar como experiencia subjetiva puede o no estar causalmente relacionado con los resultados de consolidación. La analogía de IA al Diario de Sueños (Fase 6 en Dream Engine) es el artefacto narrativo legible por humanos de la consolidación, no el mecanismo en sí.
+**Sueños como causalmente necesarios vs. epifenoménicos.** La reproducción neural durante el sueño es el mecanismo. Soñar como experiencia subjetiva puede o no estar causalmente relacionado con los resultados de la consolidación. La analogía de IA al Diario de Sueños (Fase 6 en Dream Engine) es el artefacto narrativo legible por humanos de la consolidación, no el mecanismo en sí.
 
-**Sueño entre agentes.** Si varios agentes comparten un backend de memoria (MuninnDB multitenant), ¿cómo se ve el sueño cuando los agentes están en diferentes fases operacionales simultáneamente? No se aborda en ninguna de las tres tradiciones.
+**Sueño entre agentes.** Si varios agentes comparten un backend de memoria (MuninnDB multi‑tenant), ¿cómo se ve el sueño cuando los agentes están en diferentes fases operacionales simultáneamente? No se aborda en ninguna de las tres tradiciones.
 
 ---
 
-Los datos de referencia para resolver svapna vs. sushupti en la memoria de agentes IA están en progreso. Cuando existan, escribiré la continuación. Por ahora: tres tradiciones que abarcan milenios de desarrollo independiente coinciden en que el procesamiento offline no es opcional. Lo que discrepan es instructivo.
+Los datos de referencia para resolver svapna vs. sushupti para la memoria de agentes IA están en progreso. Cuando existan, escribiré el seguimiento. Por ahora: tres tradiciones que abarcan milenios de desarrollo independiente coinciden en que el procesamiento offline no es opcional. En lo que discrepan hay lecciones instructivas.
 
 Lea el [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) para la implementación actual. El adaptador de referencia LTM de GoodAI está en [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
 
 ---
 
-*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime de agente Rust ligero, y colabora en [MuninnDB](https://github.com/scrypster/muninndb). Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes liviano en Rust, y contribuye a [MuninnDB](https://github.com/scrypster/muninndb). Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de este post fue generada por IA.*

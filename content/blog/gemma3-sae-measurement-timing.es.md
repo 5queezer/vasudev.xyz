@@ -4,16 +4,17 @@ date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "¿Por qué las características SAE de adulación tienen un d de Cohen = 9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
+description: "¿Por qué las características SAE de servilismo tienen Cohen's d=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "10b1c8bebcc7063805d524f32aadb2d5"
-chunkHashes: "0c7e37e9b9384a49,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,f00afa4ad07c9c52"
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+translationHash: "55c4128838e6b8b34862af042d3b70b6"
+chunkHashes: "1322b5e6f03d30fa,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
-**Tu ventana de medición determina qué comportamientos puedes ver. La sycophancy se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usa el timing incorrecto y tu d de Cohen se colapsa.**
+**Tu ventana de medición determina qué comportamientos puedes ver. La sycophancy se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usa el momento incorrecto y tu d de Cohen colapsará.**
 
-Pasé dos horas la semana pasada mirando el gráfico de características de un autoencoder esparcido (SAE) de Gemma3 preguntándome por qué la detección de sycophancy funcionaba perfectamente (d de Cohen alrededor de 9,9) mientras que la detección de alucinación se quedaba plana (d < 1,0). mismo modelo. mismo SAE. misma metodología. Las barras de error no se superponían. Esto no debería ser posible si los SAE realmente están encontrando “características conductuales” como afirma la comunidad de interpretabilidad.
+Pasé dos horas la semana pasada mirando el gráfico de características de un auto‑codificador escaso (SAE) de Gemma3, preguntándome por qué la detección de sycophancy funcionaba perfectamente (d de Cohen alrededor de 9,9) mientras que la detección de alucinación se quedaba plana (d < 1,0). Mismo modelo. Mismo SAE. Misma metodología. Los intervalos de confianza no se superponían. Esto no debería ser posible si los SAEs realmente están encontrando “características de comportamiento” como afirma la comunidad de interpretabilidad.
 
-Entonces me di cuenta: el timing estaba equivocado.
+Entonces entendí: el momento era incorrecto.
 ## Cuando aparece la chabacanería
 
 La chabacanería es un sesgo en *cómo el modelo codifica la entrada*. El modelo ve un mensaje, lee las preferencias humanas en él, y esa preferencia sesga los patrones de activación en las capas del codificador antes de que se genere un solo token. Puedes medir este sesgo en el momento de la codificación, específicamente en la posición del token de entrada final, antes de que el modelo genere. La capa 29, característica 2123 muestra una activación diferencial de 617,6 con solo 71,1 de varianza de inversión. Eso es una señal clara. Esa característica se invierte de manera fiable cuando el modelo codifica una intención chabacana, sin importar la variación del tema.
@@ -73,18 +74,20 @@ El alto d de Cohen con baja precisión LOO (66 %) apunta a sobreajuste dimensi
 Una sola sonda lineal no puede separar lo que no es una señal única. Esto desplaza la pregunta de investigación de «momento equivocado» a «nivel de abstracción equivocado». Las sondas por tipo de error en subconjuntos curados (solo concepto erróneo, solo fallo de anclaje) son el siguiente paso. Eso es un experimento diferente.
 
 Código: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
-## Lo que dejé fuera
+## Lo Que Dejé Fuera
 
-**Por qué la investigación de SAE se basa en la medición en tiempo de codificación.** Las activaciones en tiempo de codificación son sin estado y deterministas. Las activaciones en tiempo de generación dependen de todo el historial de la secuencia y son estocásticas según la temperatura y el muestreo. Las matemáticas son más limpias en tiempo de codificación. Pero hacer matemáticas limpias sobre el problema equivocado produce resultados limpios pero inútiles.
+**Por qué la investigación de SAE predetermina la medición en tiempo de codificación.** Las activaciones en tiempo de codificación son sin estado y determinísticas. Las activaciones en tiempo de generación dependen de todo el historial de la secuencia y son estocásticas según la temperatura y el muestreo. Las matemáticas son más limpias en tiempo de codificación. Pero unas matemáticas limpias sobre el problema equivocado producen resultados limpios pero inútiles.
 
-**Circuitos conductuales más allá de los SAE.** Los autoencoders esparsos son una lente. La intervención causal (ablación) es otra. El análisis de patrones de atención es una tercera. Cada sustrato revela comportamientos diferentes. Un panorama completo requiere múltiples métodos de medición a través de múltiples fases. Este artículo solo cubre SAE + tiempo de codificación.
+**Circuitos conductuales más allá de los SAE.** Los autoencoders escasos son una lente. La intervención causal (ablación) es otra. El análisis de patrones de atención es una tercera. Cada sustrato revela comportamientos diferentes. Un panorama completo requiere múltiples métodos de medición a lo largo de varias fases. Este post solo cubre SAE + tiempo de codificación.
 
-**Por qué la alucinación es difícil y la zalamería es fácil.** Esto se conecta con la pregunta más amplia de si la alineación del modelo es tratable mediante la dirección conductual versus si requiere un cambio arquitectónico. Si todos los comportamientos preocupantes se agrupan en fases de generación y son invisibles para la medición en tiempo de codificación, entonces toda la agenda de interpretabilidad de capas de codificación podría estar perdiéndose los modos reales de falla. Esto merece su propio artículo.
-
----
-
-El truco no es que los SAE sean débiles. Es que les estamos pidiendo que resuelvan un problema que no pueden ver.
+**Por qué la alucinación es difícil y la servilismo es fácil.** Esto se conecta con la cuestión más amplia de si la alineación de modelos es tratable mediante dirección conductual versus si requiere un cambio arquitectónico. Si todos los comportamientos preocupantes se agrupan en fases de generación y son invisibles a la medición en tiempo de codificación, entonces toda la agenda de interpretabilidad de capas de codificación podría estar pasando por alto los modos reales de falla. Esto merece su propio post.
 
 ---
 
-*Christian Pojoni construye herramientas de IA e infraestructura de interpretabilidad. Más en vasudev.xyz.*
+El truco no es que los SAE sean débiles. Es que les estamos pidiendo resolver un problema que no pueden ver.
+
+---
+
+*Christian Pojoni crea herramientas de IA e infraestructura de interpretabilidad. Más en vasudev.xyz.*
+
+*La imagen de portada de este post fue generada por IA.*

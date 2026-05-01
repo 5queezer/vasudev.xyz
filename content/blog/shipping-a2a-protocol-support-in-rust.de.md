@@ -1,19 +1,20 @@
 ---
-title: "Bereitstellung von A2A‑Protokollunterstützung in Rust: 7 Fallstricke, vor denen dich niemand warnt"
+title: "Bereitstellung der A2A-Protokollunterstützung in Rust: 7 Fallstricke, vor denen dich niemand warnt"
 date: 2026-03-25
-description: "Was ich beim Hinzufügen der Agent‑zu‑Agent‑Protokollunterstützung zu einem Open‑Source‑Agenten‑Framework gelernt habe."
+description: "Was ich lernte, als ich Agent‑to‑Agent‑Protokollunterstützung zu einem Open‑Source‑Agenten‑Framework hinzufügte."
+images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]
-translationHash: "6a8b9a4973b461622ddd4b97d2c4e9b4"
-chunkHashes: "a783028a64b777e6,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,79810e003718ad6f"
+translationHash: "c481da85a7125a8dee12f30b97a474cb"
+chunkHashes: "adfbb8bc3387540a,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
 ---
-Die [A2A (Agent-to-Agent)‑Protokoll](https://github.com/google/A2A) ist Googles offener Standard für die Interoperabilität von Agenten: Entdeckung, Aufgabendelegierung, Lebenszyklus‑Management über HTTP/JSON‑RPC. Es sitzt neben MCP so, wie TCP neben USB sitzt: das eine verbindet Agenten miteinander, das andere verbindet Agenten mit Werkzeugen.
+[**A2A (Agent-to-Agent)‑Protokoll**](https://github.com/google/A2A) ist Googles offener Standard für die Interoperabilität von Agenten: Entdeckung, Aufgaben‑Delegierung, Lebenszyklus‑Management über HTTP/JSON‑RPC. Es sitzt neben MCP wie TCP neben USB: das eine verbindet Agenten mit Agenten, das andere verbindet Agenten mit Werkzeugen.
 
-Ich habe kürzlich [PR #4166](https://github.com/5queezer/hrafn/pull/4166) veröffentlicht, der native A2A‑Unterstützung zu Hrafn hinzufügt. Das bedeutet sowohl einen eingehenden JSON‑RPC 2.0‑Server als auch ein ausgehendes Client‑Tool, geschrieben in Rust. Der PR bestand 40 Tests und lief End‑zu‑Ende über fünf Raspberry Pi Zero 2 W‑Instanzen. Dabei bin ich auf jede scharfe Kante gestoßen, die in der Spezifikation nicht erwähnt wird.
+Ich habe kürzlich [PR #4166](https://github.com/5queezer/hrafn/pull/4166) veröffentlicht, der native A2A‑Unterstützung zu Hrafn hinzufügt. Das bedeutet sowohl einen eingehenden JSON‑RPC 2.0‑Server als auch ein ausgehendes Client‑Tool, geschrieben in Rust. Der PR bestand 40 Tests und wurde end‑to‑end über fünf Raspberry Pi Zero 2 W‑Instanzen ausgeführt. Unterwegs bin ich an jede scharfe Kante gestoßen, die das Spec nicht erwähnt.
 
-**Die A2A‑Spezifikation ist auf dem Papier sauber. Die Sicherheitsschwachstellen werden Sie in der Produktion treffen.**
+**Das A2A‑Spec ist auf dem Papier sauber. Die Sicherheits­kante werden Sie in der Produktion treffen.**
 ## 1. Agent Cards sind per Design nicht authentifiziert, und das ist in Ordnung
 
 Die A2A‑Spezifikation besagt, dass `GET /.well-known/agent-card.json` öffentlich zugänglich sein muss. Kein Bearer‑Token, kein API‑Key. Der erste Gedanke: Das sei ein Informationsleck.
@@ -172,16 +173,18 @@ Der PR beinhaltet ausdrücklich nicht:
 * **Task‑Eviction.** Das Limit von 10 K ist eine harte Grenze, kein LRU‑Cache. Für v1 ausreichend.
 
 Jedes „nicht enthaltene“ ist eine Scope‑Entscheidung, keine Lücke. Die PR‑Beschreibung listet jedes einzelne mit einem Link zum entsprechenden Folge‑Issue auf. Reviewer können genau sehen, was berücksichtigt und zurückgestellt wurde.
-## Das Setup, das bewies, dass es funktioniert
+## Das Setup, das die Funktionsfähigkeit beweist
 
-Fünf Hrafn‑Instanzen auf einem einzigen Raspberry Pi Zero 2 W (Quad‑Core‑ARM, 512 MB), jede mit einer eigenen Persona (Kerf, Sentinel, Architect, Critic, Researcher), kommunizieren via A2A über die localhost‑Ports 3001‑3005. Unterstützt von gpt‑5.1‑codex‑mini.
+Fünf Hrafn‑Instanzen auf einem einzigen Raspberry Pi Zero 2 W (Quad‑Core‑ARM, 512 MB), jede mit einer eigenen Persona (Kerf, Sentinel, Architect, Critic, Researcher), die über A2A auf den lokalen Ports 3001‑3005 kommunizieren. Unterstützt von gpt‑5.1‑codex‑mini.
 
-Instanz A entdeckt die Agent‑Karte von Instanz B, sendet eine Aufgabe („review this code for security issues“), erhält eine Antwort über die reguläre `process_message`‑Pipeline. Keine benutzerdefinierte Orchestrierung. Die A2A‑Schicht ist einfach ein weiterer Eingabekanal.
+Instanz A entdeckt die Agent‑Karte von Instanz B, sendet eine Aufgabe („prüfe diesen Code auf Sicherheitsprobleme“), erhält eine Antwort über die normale `process_message`‑Pipeline. Keine benutzerdefinierte Orchestrierung. Die A2A‑Schicht ist nur ein weiterer Eingabekanal.
 
-Wenn es auf einem Pi Zero läuft, läuft es überall.
+Läuft sie auf einem Pi Zero, läuft sie überall.
 
-Lies die vollständige Implementierung im [PR #4166](https://github.com/5queezer/hrafn/pull/4166). Jeder oben genannte Gotcha entspricht einem konkreten Commit mit Tests. Wenn du A2A in dein eigenes Framework einbaust, starte mit dem SSRF‑Schutz in `a2a_client.rs` und der TaskStore‑Cap in `task_store.rs`. Das Follow‑up für Peer‑Discovery und LAN‑mDNS wird in [#4643](https://github.com/5queezer/hrafn/issues/4643) nachverfolgt.
+Lies die vollständige Implementierung in [PR #4166](https://github.com/5queezer/hrafn/pull/4166). Jeder oben genannte Stolperstein verweist auf einen konkreten Commit mit Tests. Wenn du A2A in dein eigenes Framework einbauen willst, beginne mit dem SSRF‑Schutz in `a2a_client.rs` und der TaskStore‑Beschränkung in `task_store.rs`. Das Follow‑Up für Peer‑Discovery und LAN‑mDNS wird in [#4643](https://github.com/5queezer/hrafn/issues/4643) nachverfolgt.
 
 ---
 
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), eine Rust‑Agent‑Runtime für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), eine Rust‑Agent‑Laufzeit für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Titelbild für diesen Beitrag wurde von KI generiert.*

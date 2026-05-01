@@ -1,19 +1,20 @@
 ---
-title: "Patanjali tenía la especificación de filtrado. Nosotros simplemente escribimos las pruebas."
+title: "Patanjali tenía la especificación de filtrado. Nosotros solo escribimos las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes y sus inesperados paralelos en la teoría de la atención yóguica."
+description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus paralelos inesperados en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "23f635aa5ccf9c7ebc9fecd4512d4498"
-chunkHashes: "31381edb8546ec1f,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,246c64c22c93fe91"
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "3a56c9102d1b554a5d9765b63e74e5b9"
+chunkHashes: "60dc7a128d96d18d,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-[MuninnDB](https://github.com/scrypster/muninndb)'s consolidation system merged three color‑variant duplicate engrams exactly as designed (cosine similarity >= 0.95). Retrieval got worse. In a 13‑engram vault, removing duplicates shifted the normalization anchor, pushing relevant results down the ranking. The fix was a guard clause: `MinDedupVaultSize` (default 20), skipping Phase 2 dedup in small vaults. [PR #359](https://github.com/scrypster/muninndb/pull/359) closed the issue.
+[MuninnDB](https://github.com/scrypster/muninndb)'s sistema de consolidación fusionó tres engramas duplicados con variaciones de color exactamente como estaba diseñado (similaridad del coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, eliminar los duplicados desplazó el ancla de normalización, empujando los resultados relevantes hacia abajo en la clasificación. La solución fue una cláusula de guardia: `MinDedupVaultSize` (por defecto 20), que omite la fase 2 de deduplicación en bóvedas pequeñas. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
 
-The failure wasn't a bug in the dedup algorithm. It was a failure of *discernment*: a valid consolidation operation applied in a context where it caused harm. When to consolidate, when to leave alone, what counts as noise vs. signal. That problem has a long history outside computer science. I found three specific design principles in the [Yoga Sutras](https://es.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali) that map to empirical results from [Meta‑Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, March 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), and Böckeler's [harness engineering framework](https://martinfowler.com/articles/harness-engineering.html).
+El fallo no fue un error en el algoritmo de deduplicación. Fue una falla de *discernimiento*: una operación de consolidación válida aplicada en un contexto donde causó daño. Cuándo consolidar, cuándo dejarlo tal cual, qué cuenta como ruido frente a señal. Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en los [Sutras del Yoga](https://es.wikipedia.org/wiki/Sutras_del_Yoga) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, marzo 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) y el [marco de ingeniería de harness de Böckeler](https://martinfowler.com/articles/harness-engineering.html).
 
-**The contemplative traditions built sophisticated models of attention filtering. Some of those models generate testable hypotheses that the current agent memory literature doesn't make.**
+**Las tradiciones contemplativas elaboraron modelos sofisticados de filtrado de atención. Algunos de esos modelos generan hipótesis verificables que la literatura actual sobre memoria de agentes no plantea.**
 ## 1. No todo ruido es igual (Vrtti Nirodha)
 
 Antes del fallo de deduplicación, el [benchmark #311](https://github.com/scrypster/muninndb/issues/311) encontró un problema más básico. La puntuación ACT‑R de MuninnDB ([issue #331](https://github.com/scrypster/muninndb/issues/331)) fijaba los engramas nuevos a raw=1.0, haciendo que todas las puntuaciones de recuperación fueran idénticas en 0.9000. El sistema no podía distinguir señal de ruido. Cada entrada parecía igualmente relevante. Después de la corrección ([PR #337](https://github.com/scrypster/muninndb/pull/337)), el rango de puntuaciones mejoró a 0.18‑0.90 y la recuperación correcta top‑1 pasó a 5/5 consultas. El trato uniforme de las entradas había estado destruyendo la calidad de la recuperación.
@@ -113,8 +114,10 @@ Pratyahara ya está implementado correctamente: el rasgo Memory devuelve top‑k
 Ninguno de estos requiere creer en chakras. Requieren tomar las discriminaciones en serio como heurísticas de ingeniería y medir si mejoran la capacidad de recuerdo del agente en cargas de trabajo realistas. El benchmark inicial obligó a un cambio de diseño. El generador sintético de bóvedas decide el resto.
 ## Lecturas adicionales
 
-[Marco de ingeniería de arneses de Böckeler](https://martinfowler.com/articles/harness-engineering.html), la taxonomía (guías, sensores, computacional, inferencial). [Meta-Arnés](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), evidencia empírica de que los cambios de arnés generan brechas de rendimiento de 6x. [Optimización de Política Advaita](https://www.researchgate.net/publication/389264820), el arte previo más cercano que mapea Vedanta a la arquitectura de agentes (conceptual, sin benchmarks aún). Yoga Sutras 1.2-1.16, el modelo de filtrado de atención que lo precede todo. [MuninnDB](https://github.com/scrypster/muninndb), donde se prueban las hipótesis. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), los resultados iniciales. [PR #337](https://github.com/scrypster/muninndb/pull/337), la corrección de saturación de puntuación. [PR #359](https://github.com/scrypster/muninndb/pull/359), la guarda contra duplicados. [Hrafn](https://github.com/5queezer/hrafn), el runtime que se ejecuta en una Raspberry Pi de $10.
+[Marco de ingeniería de arneses de Böckeler](https://martinfowler.com/articles/harness-engineering.html), la taxonomía (guías, sensores, computacional, inferencial). [Meta-Arnés](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), evidencia empírica de que los cambios de arnés producen brechas de rendimiento de 6×. [Optimización de Política Advaita](https://www.researchgate.net/publication/389264820), el arte previo más cercano que asigna Vedanta a la arquitectura de agentes (conceptual, sin benchmarks todavía). Yoga Sutras 1.2‑1.16, el modelo de filtrado de atención que lo precede todo. [MuninnDB](https://github.com/scrypster/muninndb), donde se ponen a prueba las hipótesis. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), los resultados iniciales. [PR #337](https://github.com/scrypster/muninndb/pull/337), la corrección de saturación de puntuación. [PR #359](https://github.com/scrypster/muninndb/pull/359), la protección contra duplicados. [Hrafn](https://github.com/5queezer/hrafn), el entorno de ejecución que funciona en una Raspberry Pi de $10.
 
 ---
 
-*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime de agente ligero en Rust. Publicación anterior: [Why AI Agents Need Sleep](/blog/why-ai-agents-need-sleep/).*
+*Christian Pojoni crea [Hrafn](https://github.com/5queezer/hrafn), un entorno de agente ligero en Rust. Publicación anterior: [Por qué los agentes de IA necesitan dormir](/blog/why-ai-agents-need-sleep/).*
+
+*La imagen de portada de esta publicación fue generada por IA.*

@@ -4,14 +4,15 @@ date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 2
-description: "SAE‑Funktionen können die Beziehungen in Gemma-2-2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die das kann. Der Engpass war die Tokenisierung."
+description: "SAE‑Funktionen können Beziehungen in Gemma‑2‑2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die das kann. Der Engpass war die Tokenisierung."
 images: ["/images/automated-circuit-discovery-og.png"]
-translationHash: "9befcce93ec95923217969c0d61ba785"
-chunkHashes: "860f306da84ee4cc,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,1c2a62becafc5e4d"
+images: ["/images/automated-circuit-discovery-og.png"]
+translationHash: "68d0e70014a4c15cfe2fb40629124b0a"
+chunkHashes: "acab22439fca4a35,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,2fd2687fbe575b06"
 ---
-**Der Engpass bei automatisierter Interpretierbarkeit sind nicht Proben, nicht SAEs, nicht Rechenleistung. Es ist die Tokenisierung.**
+**Der Engpass bei der automatisierten Interpretierbarkeit sind nicht Proben, nicht SAEs, nicht Rechenleistung. Es ist die Tokenisierung.**
 
-Element‑Symbol hat einen differentiellen Ablationswert von -16,72 in Gemma-2-2B. Das ist das stärkste kausale Signal, das ich im Residual‑Stream des Modells gefunden habe, und ich habe es manuell entdeckt. Die Frage, die alles Weitere antreibt: Kann eine Maschine solche Signale eigenständig finden?
+Element‑Symbol hat einen differentiellen Ablationswert von -16,72 in Gemma‑2‑2B. Das ist das stärkste kausale Signal, das ich im Residual‑Stream des Modells gefunden habe, und ich habe es von Hand entdeckt. Die Frage, die alles Weitere antrieb: Kann eine Maschine solche Signale selbst finden?
 
 Die Antwort lautet ja. Es erforderte 42 gescheiterte Vorschläge, einen Feedback‑Loop, der einem LLM beibringt, was der Tokenizer eines anderen Modells tut, und die Erkenntnis, dass der schwierigste Teil der automatisierten Interpretierbarkeit nichts mit Interpretierbarkeit zu tun hat.
 ## Capital-of Existiert Nicht als Einziges Merkmal
@@ -86,14 +87,16 @@ Wenn die Engstelle Tokenizer‑Blindheit ist und die Lösung Feedback, dann soll
 Die Vorhersage: Mit einem vorab berechneten Token‑Wortschatz sollte die Durchlauf­rate der Vorschläge von 3/5 auf über 4/5 steigen, und der dominante Fehlertyp sollte sich von der Tokenisierung zur Margin‑Gate verschieben (ob Gemma das erwartete Ziel‑Token selbstbewusst vorhersagt). Wenn sich die Engstelle nicht verschiebt, ist die Token‑Tabelle nicht die eigentliche Lösung und das Problem liegt tiefer als ein Vokabular‑Mismatch.
 ## Was ich weggelassen habe
 
-Das Margin‑Gate ist jetzt der primäre Engpass. Drei von fünf Vorschlägen haben die Validierung bestanden, aber nur einer hat das Margin‑Gate passiert, das verlangt, dass die Top‑1‑Vorhersage des Modells mit dem erwarteten Ziel eine ausreichende Logit‑Margin aufweist. Relationen wie „bird‑habitat“ und „painter‑style“ haben unscharfe Ziele, bei denen Gemma keinen einzelnen nächsten Token stark vorhersagt. Der Mutationsoperator muss darauf trainiert werden, Relationen vorzuschlagen, bei denen das Modell hohe Zuversicht hat – das ist das nächste Problem.
+Das Margin-Gate ist jetzt der primäre Engpass. Drei von fünf Vorschlägen bestanden die Validierung, aber nur einer bestand das Margin-Gate, das verlangt, dass die Top‑1‑Vorhersage des Modells mit dem erwarteten Ziel eine ausreichende Logit‑Marge aufweist. Beziehungen wie „bird‑habitat“ und „painter‑style“ haben unscharfe Ziele, bei denen Gemma keinen einzelnen nächsten Token stark vorhersagt. Der Mutationsoperator zu lehren, Beziehungen vorzuschlagen, bei denen das Modell hohes Vertrauen hat, ist das nächste Problem.
 
-Steering funktioniert nicht für relationale Probe‑Richtungen. Jede Richtung im Archiv zeigt starke Abblösung, aber null oder negatives Steering. Das Hinzufügen weiterer „capital‑of“‑Richtungen macht die Vorhersagen bei jedem Multiplikator schlechter, getestet bis zu 200 ×. Diese Richtungen sind Routing‑Signale. Das Modell liest das Vorhandensein oder Fehlen, nicht die Amplitude. Das hat Auswirkungen auf die gesamte Aktivierungs‑Steering‑Agenda in der Align‑Forschung.
+Steering funktioniert nicht für relationale Probe‑Richtungen. Jede Richtung im Archiv zeigt starke Ablation, aber null oder negatives Steering. Das Hinzufügen weiterer „capital‑of“‑Richtungen verschlechtert die Vorhersagen bei jedem Multiplikator, getestet bis zu 200‑fach. Diese Richtungen sind Routing‑Signale. Das Modell liest Anwesenheit oder Abwesenheit, nicht Amplitude. Das hat Auswirkungen auf die gesamte Aktivierungs‑Steering‑Agenda in der Alignments‑Forschung.
 
-Die Gemma 4‑Migration ist blockiert, weil die GemmaScope‑SAE noch nicht verfügbar ist. Die 30‑Grad‑Verteilungs‑Entdeckung könnte in größeren Modellen mit breiteren Residual‑Streams replizierbar sein oder auch nicht. Dieses Experiment wartet auf die Werkzeuge.
+Die Gemma 4‑Migration ist blockiert durch die Verfügbarkeit von GemmaScope SAE. Die 30‑Grad‑Verteilungsfindung könnte sich in größeren Modellen mit breiteren Residual‑Streams reproduzieren oder auch nicht. Dieses Experiment wartet auf Werkzeuge.
 
-Der Code befindet sich in `discover.py` (Probe‑Schleife) und `mutate.py` (Mutationsoperator). Meld dich, wenn du Zugriff auf das Repo möchtest.
+Der Code befindet sich in `discover.py` (Probe‑Schleife) und `mutate.py` (Mutationsoperator). Meldet euch, wenn ihr Zugriff auf das Repository wollt.
 
 ---
 
 *Christian Pojoni entwickelt automatisierte Werkzeuge für mechanistische Interpretierbarkeit. Mehr unter vasudev.xyz.*
+
+*Das Deckblattbild für diesen Beitrag wurde von KI erzeugt.*
