@@ -5,7 +5,7 @@ tags: ["agents", "ai", "architecture"]
 description: "Shamsi's Memory Layer is right that agents need a graph. It stops one layer short. The middle layer is what carries an LLM through a repo."
 ---
 
-Andrej Karpathy made the argument in one post: memory is a structure you inhabit, not a cache you refill every prompt. Forty-eight hours later, Safi Shamsi shipped [Graphify](https://pypi.org/project/graphifyy/) and wrote [The Memory Layer](https://www.amazon.com/Memory-Layer-Knowledge-Graphs-48-Hour-ebook/dp/B0FSC7G1WR) around it. The thesis is that an AI agent should walk a knowledge graph instead of grepping a vector index, because relationships live in the white space between chunks and a vector store cannot see them.
+Andrej Karpathy made the argument in one post: memory is a structure you inhabit, not a cache you refill every prompt. Forty-eight hours later, Safi Shamsi shipped [Graphify](https://github.com/safishamsi/graphify) and wrote *The Memory Layer* around it. The thesis is that an AI agent should walk a knowledge graph instead of grepping a vector index, because relationships live in the white space between chunks and a vector store cannot see them.
 
 I agree with the thesis. I think the book stops one layer short.
 
