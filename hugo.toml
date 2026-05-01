@@ -12,7 +12,7 @@ enableRobotsTXT = true
   github = "https://github.com/5queezer"
   linkedin = "https://linkedin.com/in/christian-pojoni"
   nexusUrl = "https://nexus.vasudev.xyz/"
-  agentEndpoint = "https://agent.vasudev.workers.dev"
+  agentEndpoint = "https://vasudev-chat.dev-95e.workers.dev"
 
   [params.giscus]
     repo = "5queezer/vasudev.xyz"

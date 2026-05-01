@@ -20,7 +20,10 @@
     <div
       id="agent-chat"
       class="agent-chat"
-      data-agent-endpoint="{{ .Site.Params.agentEndpoint }}"
+      data-agent-endpoint="{{ .Site.Params.agentEndpoint | default "https://vasudev-chat.dev-95e.workers.dev" }}"
+      data-agent-post-url="{{ "/llms.txt" | relURL }}"
+      data-agent-mode="index"
+      data-agent-lang="{{ .Site.Language.Lang }}"
       data-agent-welcome="{{ i18n "agent_welcome" }}"
       data-agent-placeholder="{{ i18n "agent_placeholder" }}"
       data-agent-streaming="{{ i18n "agent_streaming" }}"

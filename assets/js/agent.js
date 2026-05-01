@@ -14,11 +14,20 @@
   if (!root) return;
 
   const endpoint = root.dataset.agentEndpoint;
+  const postUrl = root.dataset.agentPostUrl || '/llms.txt';
+  const mode = root.dataset.agentMode || 'index';
+  const lang = root.dataset.agentLang || document.documentElement.lang || 'en';
   const placeholder = root.dataset.agentPlaceholder || 'Ask the agent something…';
   const streamingText = root.dataset.agentStreaming || 'streaming response…';
   const welcome = root.dataset.agentWelcome || 'Hello.';
   let chips = [];
+  let postContent = '';
   try { chips = JSON.parse(root.dataset.agentChips || '[]'); } catch (_) {}
+
+  fetch(postUrl)
+    .then(res => res.ok ? res.text() : '')
+    .then(text => { postContent = text.slice(0, 50000); })
+    .catch(() => { postContent = ''; });
 
   // ---- markup ----
   root.innerHTML = `
@@ -119,7 +128,12 @@
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ messages: history })
+        body: JSON.stringify({
+          messages: history,
+          postContent,
+          mode,
+          lang
+        })
       });
       if (!res.ok || !res.body) throw new Error('HTTP ' + res.status);
 
@@ -132,19 +146,26 @@
         if (done) break;
         buffer += decoder.decode(value, { stream: true });
 
-        // SSE frames are separated by blank lines.
+        // Supports both simple SSE frames from the legacy worker and
+        // Vercel AI SDK data stream lines from cmd/chat-api.
         let idx;
-        while ((idx = buffer.indexOf('\n\n')) !== -1) {
-          const frame = buffer.slice(0, idx);
-          buffer = buffer.slice(idx + 2);
-          for (const line of frame.split('\n')) {
-            if (!line.startsWith('data:')) continue;
-            const data = line.slice(5).trimStart();
+        while ((idx = buffer.indexOf('\n')) !== -1) {
+          const line = buffer.slice(0, idx).trim();
+          buffer = buffer.slice(idx + 1);
+          if (!line) continue;
+
+          let data = '';
+          if (line.startsWith('data:')) {
+            data = line.slice(5).trimStart();
             if (data === '[DONE]') continue;
-            full += data;
-            node._textNode.textContent = full;
-            msgsEl.scrollTop = msgsEl.scrollHeight;
+          } else if (line.startsWith('0:')) {
+            try { data = JSON.parse(line.slice(2)); } catch (_) { data = ''; }
           }
+
+          if (!data) continue;
+          full += data;
+          node._textNode.textContent = full;
+          msgsEl.scrollTop = msgsEl.scrollHeight;
         }
       }
     } catch (err) {

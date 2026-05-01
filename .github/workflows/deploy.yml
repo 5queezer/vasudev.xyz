@@ -23,7 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.140.0
-      HUGO_PARAMS_AGENTENDPOINT: ${{ vars.AGENT_ENDPOINT }}
     steps:
       - name: Install Hugo CLI
         run: |
