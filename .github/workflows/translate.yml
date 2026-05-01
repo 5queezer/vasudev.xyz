@@ -9,6 +9,7 @@ on:
       - "!content/**/*.de.md"
       - "!content/**/*.es.md"
       - "cmd/translate/**"
+      - ".github/workflows/translate.yml"
   workflow_dispatch:
 
 permissions:
