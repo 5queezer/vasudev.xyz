@@ -33,3 +33,8 @@ For remote deployment, run `git push origin master`, inspect GitHub Actions with
 - Resolved merge conflicts in blog front matter and the deploy workflow.
 - Removed Graphify deploy steps, graph page content, graph layout, graph data, graph community data, graph nav link, graph i18n strings, and graph page CSS.
 - Fixed duplicate `images` front matter entries that broke Hugo parsing.
+- Pushed HEAD `4fd1ba1` to `origin/master`.
+- Verified Deploy to GitHub Pages runs `25226889617` and `25226974565` completed successfully for current HEAD.
+- Verified live `https://vasudev.xyz/` returns HTTP 200.
+- Extended diagnostics verified `https://vasudev.xyz/blog/` returns HTTP 200 and removed `https://vasudev.xyz/graph/` returns HTTP 404.
+- Avoid stale GitHub Actions conclusions by selecting the deploy run whose `headSha` equals `git rev-parse HEAD`.

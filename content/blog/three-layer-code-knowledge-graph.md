@@ -4,7 +4,6 @@ date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
 description: "Memory should be a graph. The graph should be four layers. The middle one carries navigation. The top one turns navigation into action."
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
-images: ["/images/three-layer-code-knowledge-graph-og.png"]
 ---
 
 

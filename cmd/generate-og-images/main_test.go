@@ -116,6 +116,25 @@ func TestInsertImageField(t *testing.T) {
 		}
 	})
 
+	t.Run("does not duplicate existing images after description", func(t *testing.T) {
+		path := filepath.Join(dir, "test-existing-after-description.md")
+		data := []byte("---\ntitle: \"Test\"\ndescription: \"A test\"\nimages: [\"/images/old.png\"]\n---\nBody\n")
+		os.WriteFile(path, data, 0644)
+
+		err := insertImageField(path, data, "/images/test-existing-og.png")
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		result, _ := os.ReadFile(path)
+		if got := strings.Count(string(result), "images:"); got != 1 {
+			t.Fatalf("images field count = %d, want 1:\n%s", got, result)
+		}
+		if !strings.Contains(string(result), "images: [\"/images/test-existing-og.png\"]") {
+			t.Fatalf("images field not replaced:\n%s", result)
+		}
+	})
+
 	t.Run("no description field inserts before closing dashes", func(t *testing.T) {
 		path := filepath.Join(dir, "test3.md")
 		data := []byte("---\ntitle: \"Test\"\ntags: [\"go\"]\n---\nBody without description\n")

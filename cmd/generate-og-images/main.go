@@ -271,18 +271,28 @@ func insertImageField(filePath string, data []byte, imageRef string) error {
 
 	var b strings.Builder
 	lines := strings.Split(fm, "\n")
+	hasImages := false
+	for _, line := range lines {
+		if strings.HasPrefix(line, "images:") {
+			hasImages = true
+			break
+		}
+	}
+
 	inserted := false
 	for _, line := range lines {
 		if strings.HasPrefix(line, "images:") {
-			// Replace existing images field
-			b.WriteString(fmt.Sprintf("images: [\"%s\"]\n", imageRef))
-			inserted = true
+			// Replace the first existing images field and drop any duplicates.
+			if !inserted {
+				b.WriteString(fmt.Sprintf("images: [\"%s\"]\n", imageRef))
+				inserted = true
+			}
 			continue
 		}
 		b.WriteString(line)
 		b.WriteString("\n")
-		// Insert after description line
-		if !inserted && strings.HasPrefix(line, "description:") {
+		// Insert after description line only when no images field exists later.
+		if !hasImages && !inserted && strings.HasPrefix(line, "description:") {
 			b.WriteString(fmt.Sprintf("images: [\"%s\"]\n", imageRef))
 			inserted = true
 		}
