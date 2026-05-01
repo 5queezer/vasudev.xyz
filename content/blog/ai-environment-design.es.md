@@ -3,21 +3,21 @@ title: "Deja de diseñar tu sistema de IA. Diseña su entorno."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
 agentQuestions:
-  - "¿Por qué diseñar el entorno en vez del sistema de IA?"
-  - "¿Cuál es aquí el ciclo de mutación y selección?"
-  - "¿Cómo se aplica a agentes autoevolutivos?"
+  - "¿Por qué diseñar el entorno en lugar del sistema de IA?"
+  - "¿Cuál es el ciclo de mutación y selección aquí?"
+  - "¿Cómo se aplica esto a los agentes autoevolutivos?"
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "La IA autoevolutiva falla cuando optimiza un evaluador fijo. El modelo biológico es correcto: lo que debe evolucionar es la presión de selección, no solo el genoma."
+description: "Los aprovechamientos de IA autoevolutiva fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "2f5a8bf02a2b63e2cf15d09ded86d65a"
-chunkHashes: "8402b112ebff21c5,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
+translationHash: "1da0be4f5958e30250cbcea567f1647d"
+chunkHashes: "9d0ab02967fb8ff0,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
-Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLMs". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin prompts, solo vectores de intervención. Fue intelectualmente satisfactorio y prácticamente incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
+I spent a week trying to design a "vector-native programming language for LLMs." The idea was to program model behavior directly at the activation level, no prompts, just intervention vectors. It was intellectually satisfying and practically wrong. What I actually wanted was not a language. It was an organism.
 
-**La unidad de evolución no es la característica. Es el ciclo mutación/selección.**
+**La unidad de evolución no es la característica. Es el ciclo de mutación/selección.**
 
-Esa distinción lo cambia todo sobre cómo construyes un arnés de IA autoevolutivo. La mayoría de los sistemas que se autodenominan "auto‑mejorables" están haciendo AutoML. Optimiza dentro de un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero está más cerca de AutoML que de la evolución abierta. La diferencia resulta ser decisiva arquitectónicamente en dos formas.
+That distinction changes everything about how you build a self-evolving AI harness. Most systems that call themselves "self-improving" are doing AutoML. They optimize over a fixed search space toward a fixed objective. That can produce adaptation, but it is closer to AutoML than to open-ended evolution. The difference turns out to be architecturally decisive in two ways.
 
 ---
 ## Genotipo y Fenotipo No Son la Misma Capa

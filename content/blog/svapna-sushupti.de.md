@@ -1,23 +1,23 @@
 ---
-title: "Svapna oder Sushupti: Was drei Traditionen über Offline‑Gedächtniskonsolidierung sagen"
+title: "Svapna oder Sushupti: Was drei Traditionen über die Offline‑Gedächtniskonsolidierung sagen."
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 agentQuestions:
-  - "Svapna oder Sushupti: Welche Schlafphase zählt?"
-  - "Wie vergleichen sich Neurowissenschaft und Vedanta?"
-  - "Was bedeutet das für Agenten-Memory?"
+  - "Svapna oder sushupti: welche Schlafphase ist wichtig?"
+  - "Wie vergleichen sich Neurowissenschaften und Vedanta?"
+  - "Was bedeutet das für das Gedächtnis des Agenten?"
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurowissenschaften, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text kommen zur selben Erkenntnis über die Offline‑Konsolidierung, streiten jedoch darüber, welche Schlafphase am wichtigsten ist."
+description: "Neurowissenschaft, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text führen zur selben Erkenntnis über Offline‑Konsolidierung, unterscheiden sich jedoch darin, welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "cb99c33064749f0b0b4e7be0966486a1"
-chunkHashes: "5a1b4745079458a7,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
+translationHash: "63870ef6fa2f5af16cc207e07a3c663c"
+chunkHashes: "a643ecf4e84e8c37,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
-[My last post](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Anschlussfrage: Was bedeutet das eigentlich? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
+[My last post](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Anschlussfrage: Was bedeutet das überhaupt? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
 
-Ich verbrachte eine Woche damit, Literatur aus drei nahezu nie zitierten Bereichen zu lesen: aktuelle KI‑Memory‑Publikationen, Schlaf‑Neurowissenschaften und die [Mandukya Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie convergieren auf dieselbe zentrale Erkenntnis zur offline Konsolidierung. Gleichzeitig kommt ein Dissens ans Licht, der sich als die wichtigste Designfrage in KI‑Memory‑Systemen herausstellt.
+Ich verbrachte eine Woche damit, Literatur aus drei nahezu nie zitierten Bereichen zu lesen: aktuelle KI‑Gedächtnis‑Paper, Schlaf‑Neurowissenschaften und die [Mandukya‑Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie kommen zu derselben Kernerkenntnis über offline Konsolidierung. Gleichzeitig offenbaren sie einen Streitpunkt, der sich als die wichtigste Designfrage in heutigen KI‑Gedächtnissystemen erweist.
 
-**Alle drei Traditionen stimmen darin überein, dass offline Verarbeitung notwendig ist. Keine von ihnen einigt sich darauf, ob Rekombination oder Auflösung die eigentliche Arbeit leistet.**
+**Alle drei Traditionen sind sich einig, dass Offline‑Verarbeitung notwendig ist. Keine von ihnen stimmt darüber überein, ob Rekombination oder Auflösung die eigentliche Arbeit leistet.**
 ## The Landscape: Three Traditions, One Problem
 
 Das Problem, das jede Tradition löst, ist dasselbe: Wie kann ein System, das während wacher Aktivitäten Erfahrung sammelt, das Wichtige behalten, das Unwichtige verwerfen und am nächsten Tag funktionstüchtig bleiben?
