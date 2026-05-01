@@ -4,7 +4,9 @@ date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
 description: "Memory should be a graph. The graph should be four layers. The middle one carries navigation. The top one turns navigation into action."
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
+images: ["/images/three-layer-code-knowledge-graph-og.png"]
 ---
+
 
 
 Andrej Karpathy made the argument in one post: memory is a structure you inhabit, not a cache you refill every prompt. Forty-eight hours later, Safi Shamsi shipped [Graphify](https://github.com/safishamsi/graphify) and wrote *The Memory Layer* around it. The thesis is that an AI agent should walk a knowledge graph instead of grepping a vector index, because relationships live in the white space between chunks and a vector store cannot see them.

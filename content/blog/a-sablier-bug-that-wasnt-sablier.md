@@ -3,10 +3,12 @@ title: "A Sablier Bug That Wasn't Sablier: 4 Gotchas from Tracing a Traefik Plug
 date: 2026-04-19
 description: "Tracing a sporadic 'invalid middleware' error in Sablier to a hidden startup dependency introduced by a Traefik 3.5.3 refactor."
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
+images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
 series: ["Field Notes"]
 ---
+
 
 
 
