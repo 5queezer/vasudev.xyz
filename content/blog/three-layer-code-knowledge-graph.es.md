@@ -1,21 +1,21 @@
 ---
-title: "Tu Grafo de Conocimiento de Código Necesita Cuatro Capas, No Una"
+title: "Tu Gráfico de Conocimiento de Código Necesita Cuatro Capas, No Una"
 date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
-description: "La memoria debería ser un grafo. El grafo debería tener cuatro capas. La del medio lleva la navegación. La superior convierte la navegación en acción."
+description: "La memoria debería ser un grafo. El grafo debería tener cuatro capas. La capa intermedia lleva la navegación. La capa superior convierte la navegación en acción."
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
-translationHash: "0acb6db7b368f620871d12894199b3c4"
-chunkHashes: "21d501db1a1defd9,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,d713ecba99fef97b,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"
+translationHash: "0e623b3b9bf9e2e72ecea70ec245d769"
+chunkHashes: "9e6944bc5d80e730,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,d713ecba99fef97b,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"
 ---
-Andrej Karpathy hizo el argumento en una publicación: la memoria es una estructura que habitas, no una caché que recargas en cada solicitud. Cuarenta y ocho horas después, Safi Shamsi lanzó [Graphify](https://github.com/safishamsi/graphify) y escribió *The Memory Layer* a su alrededor. La tesis es que un agente de IA debería recorrer un grafo de conocimiento en lugar de hacer búsquedas en un índice vectorial, porque las relaciones viven en el espacio vacío entre los fragmentos y una tienda de vectores no puede verlas.
+Andrej Karpathy hizo el argumento en una publicación: la memoria es una estructura que habitas, no una caché que recargas en cada solicitud. Cuarenta y ocho horas después, Safi Shamsi lanzó [Graphify](https://github.com/safishamsi/graphify) y escribió *The Memory Layer* a su alrededor. La tesis es que un agente de IA debería recorrer un grafo de conocimiento en lugar de buscar en un índice vectorial, porque las relaciones viven en el espacio vacío entre fragmentos y un almacén vectorial no puede verlas.
 
-Estoy de acuerdo con la tesis. Creo que el libro se detiene una capa antes. Entonces lo publiqué, y de inmediato noté que se detiene dos capas antes.
+Estoy de acuerdo con la tesis. Creo que el libro se detiene una capa antes. Luego lo publiqué y, de inmediato, noté que se detiene dos capas antes.
 
-Generé un grafo Graphify para una base de código de agente de programación la semana pasada. La primera versión fue lo obvio. Los nodos eran archivos, clases, funciones, métodos. Los bordes eran `imports`, `calls`, `contains`, `method`. Abrirlo en Obsidian me dio una maraña. Lo agrupé en comunidades y etiqueté cada una con un nombre de concepto. Mejor. Pero los bordes aún decían cosas como `calls×32 / method×7 / contains×11`. Útil como evidencia. No útil como mapa. Entonces reescribí los bordes como frases de relaciones humanas: "impulsa y observa conversaciones", "suministra credenciales a", "renderiza markdown con". De repente el grafo se leía como una oración. De repente un LLM podía orientarse en él.
+Generé un grafo Graphify para una base de código de agente de programación la semana pasada. La primera versión era lo obvio. Los nodos eran archivos, clases, funciones, métodos. Las aristas eran `imports`, `calls`, `contains`, `method`. Abrirlo en Obsidian me dio una maraña de hilos. Lo agrupé en comunidades y etiqueté cada una con un nombre de concepto. Mejor. Pero las aristas aún mostraban cosas como `calls×32 / method×7 / contains×11`. Útil como evidencia. No útil como mapa. Entonces reescribí las aristas como frases de relaciones humanas: “impulsa y observa conversaciones”, “provee credenciales a”, “renderiza markdown con”. De repente el grafo se leía como una oración. De pronto un LLM podía orientarse en él.
 
-Eso me dio tres capas. Luego intenté usarlas en una tarea real ("agregar un nuevo proveedor de modelo a esta CLI") y me di cuenta de que necesitaba una cuarta.
+Eso me dio tres capas. Luego intenté usarlas en una tarea real (“agregar un nuevo proveedor de modelo a este CLI”) y me di cuenta de que necesitaba una cuarta.
 
-**Un grafo de conocimiento de código para un agente LLM debería tener cuatro capas. La capa dos se encarga de la navegación. La capa cuatro realiza el trabajo.**
+**Un grafo de conocimiento de código para un agente LLM debe tener cuatro capas. La capa dos se encarga de la navegación. La capa cuatro realiza el trabajo.**
 ## Qué Es Esto Realmente
 
 Toma un límite de subsistema real en el tiempo de ejecución de un agente de codificación. La UI de terminal interactiva habla con el ciclo de vida de la sesión del agente. Eso es un hecho arquitectónico real. Ahora hay cuatro maneras diferentes de describirlo.

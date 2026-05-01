@@ -2,20 +2,20 @@
 title: "Ihr Code Knowledge Graph benötigt vier Ebenen, nicht nur eine"
 date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
-description: "Das Gedächtnis sollte ein Graph sein. Der Graph sollte vier Ebenen haben. Die mittlere trägt die Navigation. Die oberste verwandelt Navigation in Aktion."
+description: "Der Speicher sollte ein Graph sein. Der Graph sollte vier Ebenen haben. Die mittlere Ebene trägt die Navigation. Die oberste Ebene wandelt die Navigation in Aktion um."
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
-translationHash: "0acb6db7b368f620871d12894199b3c4"
-chunkHashes: "21d501db1a1defd9,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,d713ecba99fef97b,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"
+translationHash: "0e623b3b9bf9e2e72ecea70ec245d769"
+chunkHashes: "9e6944bc5d80e730,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,d713ecba99fef97b,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"
 ---
-Andrej Karpathy machte das Argument in einem Beitrag: Gedächtnis ist eine Struktur, in der man sich befindet, nicht ein Cache, den man bei jeder Eingabe auffüllt. Zweiundachtzig Stunden später veröffentlichte Safi Shamsi [Graphify](https://github.com/safishamsi/graphify) und schrieb *The Memory Layer* darum herum. Die These ist, dass ein KI‑Agent einen Wissensgraphen durchlaufen sollte, anstatt einen Vektor‑Index zu durchsuchen, weil Beziehungen im Weißraum zwischen den Chunks leben und ein Vektorspeicher sie nicht erkennen kann.
+Andrej Karpathy machte das Argument in einem Beitrag: Speicher ist eine Struktur, in der du lebst, nicht ein Cache, den du bei jeder Eingabe auffüllst. Achtundvierzig Stunden später veröffentlichte Safi Shamsi [Graphify](https://github.com/safishamsi/graphify) und schrieb *The Memory Layer* darum herum. Die These lautet, dass ein KI‑Agent einen Wissensgraphen durchlaufen sollte, anstatt einen Vektor‑Index zu durchsuchen, weil Beziehungen im Weißraum zwischen den Chunks liegen und ein Vektor‑Store sie nicht erkennen kann.
 
-Ich stimme der These zu. Ich denke, das Buch bleibt eine Ebene zu kurz. Dann schrieb ich das und bemerkte sofort, dass es zwei Ebenen zu kurz bleibt.
+Ich stimme der These zu. Ich denke, das Buch bleibt eine Ebene zu kurz. Dann habe ich das gepostet und sofort bemerkt, dass es zwei Ebenen zu kurz bleibt.
 
-Ich habe letzte Woche einen Graphify‑Graphen für den Code‑Base eines Coding‑Agents erzeugt. Die erste Version war das Offensichtliche. Knoten waren Dateien, Klassen, Funktionen, Methoden. Kanten waren `imports`, `calls`, `contains`, `method`. Das Öffnen in Obsidian ergab ein Haarball‑Diagramm. Ich clusterte es in Gemeinschaften und benannte jede mit einem Konzeptnamen. Besser. Aber die Kanten lauteten immer noch Dinge wie `calls×32 / method×7 / contains×11`. Nützlich als Evidenz. Nicht nützlich als Karte. Dann schrieb ich die Kanten als menschliche Beziehungsphrasen um: „steuert und beobachtet Unterhaltungen“, „stellt Anmeldeinformationen bereit für“, „rendert Markdown mit“. Plötzlich las sich der Graph wie ein Satz. Plötzlich konnte ein LLM sich darauf orientieren.
+Ich habe letzte Woche einen Graphify‑Graphen für den Code‑Base eines Coding‑Agents erzeugt. Die erste Version war das Offensichtliche. Knoten waren Dateien, Klassen, Funktionen, Methoden. Kanten waren `imports`, `calls`, `contains`, `method`. In Obsidian geöffnet, sah es aus wie ein Haarball. Ich clusterte ihn in Communities und benannte jede mit einem Konzeptnamen. Besser. Aber die Kanten zeigten immer noch Dinge wie `calls×32 / method×7 / contains×11`. Nützlich als Beleg. Nicht nützlich als Karte. Dann schrieb ich die Kanten als menschliche Beziehungsphrasen um: „steuert und beobachtet Unterhaltungen“, „liefert Anmeldeinformationen an“, „rendert Markdown mit“. Plötzlich las sich der Graph wie ein Satz. Plötzlich konnte ein LLM sich darauf orientieren.
 
-Das gab mir drei Ebenen. Dann versuchte ich, sie in einer realen Aufgabe zu verwenden („einen neuen Modell‑Provider zu diesem CLI hinzufügen“) und stellte fest, dass ich eine vierte benötigte.
+Das gab mir drei Ebenen. Dann versuchte ich, sie bei einer echten Aufgabe („einen neuen Modell‑Provider zu diesem CLI hinzufügen“) zu verwenden und stellte fest, dass ich eine vierte Ebene brauchte.
 
-**Ein Code‑Wissensgraph für einen LLM‑Agenten sollte vier Ebenen haben. Ebene zwei übernimmt die Navigation. Ebene vier erledigt die Arbeit.**
+**Ein Code‑Wissensgraph für einen LLM‑Agent sollte vier Ebenen haben. Ebene zwei übernimmt die Navigation. Ebene vier erledigt die Arbeit.**
 ## Wie das tatsächlich aussieht
 
 Nehmen wir eine reale Subsystemgrenze in einer Coding‑Agent‑Runtime. Die interaktive Terminal‑UI spricht mit dem Lebenszyklus der Agent‑Session. Das ist ein echter architektonischer Fakt. Es gibt jetzt vier verschiedene Arten, sie zu beschreiben.

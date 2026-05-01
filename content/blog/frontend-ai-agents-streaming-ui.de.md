@@ -1,21 +1,21 @@
 ---
-title: "Streaming-UI von KI-Agenten: 5 Werkzeuge bewertet"
+title: "Streaming-UI von KI-Agenten: 5 Tools bewertet"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
-description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI und Kombai setzen unterschiedliche Einsätze darauf, wie Agenten Schnittstellen erstellen sollten. Die architektonische Frage entscheidet, welcher gewinnt."
+description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI und Kombai setzen unterschiedliche Wetten darauf, wie Agenten Schnittstellen erstellen sollten. Die architektonische Frage entscheidet, wer gewinnt."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
-translationHash: "e080a7201a1b5e56a6d5f5960ed43b86"
-chunkHashes: "fbfb967328a5621b,9986d2d6e18f0fe6,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
+translationHash: "4bbe625e982cccd5ba0f0e94c55da758"
+chunkHashes: "0a3ef6b037df964b,9986d2d6e18f0fe6,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
 ---
-Jeder KI‑Agent kommuniziert heute über ein Chat‑Fenster. Der Benutzer stellt eine Frage, der Agent streamt Tokens zurück, eventuell mit einem Code‑Block. Das gesamte Frontend ist im Grunde ein glorifizierter Terminal‑Emulator.
+Jeder KI‑Agent kommuniziert heute über ein Chat‑Fenster. Der Benutzer stellt eine Frage, der Agent überträgt Tokens zurück, eventuell mit einem Code‑Block. Das gesamte Frontend ist ein glorifizierter Terminal‑Emulator.
 
-Fünf Werkzeuge wetten darauf, dass Agenten echte Schnittstellen statt Text streamen sollten. Sie unterscheiden sich darin, **wie** sie das tun, und bei zwei geht es nur um Details.
+Fünf Werkzeuge wetten darauf, dass Agenten echte Schnittstellen statt Text streamen sollten. Sie unterscheiden sich darin, **wie** sie das tun, und zwei von ihnen unterscheiden sich nur in den Details.
 
-**Die Protokolle spalten sich bei einer Frage: Soll der Agent ausführbaren Code, strukturierte Daten oder Interaktions‑Events senden?**
+**Die Protokolle teilen sich bei einer Frage: Sollte der Agent ausführbaren Code, strukturierte Daten oder Interaktions‑Events senden?**
 
-Ihre Antwort bestimmt Ihr Sicherheitsmodell, die Kopplung an das Framework und ob Ihr Agent UI für etwas anderes als einen Browser‑Tab erstellen kann.
+Ihre Antwort bestimmt Ihr Sicherheitsmodell, die Kopplung an das Framework und ob Ihr Agent UI für mehr als nur einen Browser‑Tab erstellen kann.
 ## Der Vergleich
 
 | | Vercel AI SDK | TanStack AI | AG-UI | A2UI | Kombai |

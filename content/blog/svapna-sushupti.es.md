@@ -1,19 +1,19 @@
 ---
-title: "Svapna o Sushupti: Lo que tres tradiciones dicen sobre la consolidación de la memoria offline"
+title: "Svapna o Sushupti: Lo que Tres Tradiciones Dicen Sobre la Consolidación de la Memoria Offline"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurociencia, artículos recientes de IA y un texto sánscrito antiguo convergen en la misma idea sobre la consolidación offline, aunque difieren en qué fase del sueño es la más importante."
+description: "La neurociencia, los recientes artículos de IA y un antiguo texto sánscrito convergen en la misma idea sobre la consolidación offline, pero discrepan sobre qué fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "cb99c33064749f0b0b4e7be0966486a1"
-chunkHashes: "5a1b4745079458a7,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
+translationHash: "38ec4e5ea8a8e76e92ccf3758b3ecc60"
+chunkHashes: "a643ecf4e84e8c37,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
-[Mi última publicación](/blog/why-ai-agents-need-sleep/) argumentó que los agentes de IA necesitan dormir. Varias personas preguntaron lo obvio que sigue: ¿qué significa eso realmente? ¿Es el “sueño” solo una metáfora para ejecutar un cron job, o la analogía va más allá?
+[Mi última publicación](/blog/why-ai-agents-need-sleep/) argumentó que los agentes de IA necesitan dormir. Varias personas hicieron la obvia pregunta de seguimiento: ¿qué significa eso realmente? ¿Es el “sueño” solo una metáfora para ejecutar un trabajo cron, o la analogía va más profundo?
 
-Pasé una semana leyendo entre tres cuerpos de literatura que casi nunca se citan entre sí: artículos recientes sobre memoria en IA, neurociencia del sueño y la [Mandukya Upanishad](https://es.wikipedia.org/wiki/Mandukya_Upanishad). Convergen en la misma idea central sobre la consolidación offline. También revelan un desacuerdo que resulta ser la cuestión de diseño más importante en los sistemas de memoria de IA en la actualidad.
+Pasé una semana leyendo tres cuerpos de literatura que casi nunca se citan entre sí: artículos recientes sobre memoria en IA, neurociencia del sueño y el [Mandukya Upanishad](https://en.wikipedia.org/wiki/Mandukya_Upanishad). Convergen en la misma idea central sobre la consolidación offline. También revelan un desacuerdo que resulta ser la cuestión de diseño más importante en los sistemas de memoria de IA en la actualidad.
 
-**Las tres tradiciones están de acuerdo en que el procesamiento offline es necesario. Ninguna de ellas concuerda sobre si la recombinación o la disolución hacen el trabajo real.**
+**Las tres tradiciones están de acuerdo en que el procesamiento offline es necesario. Ninguna de ellas concuerda en si la recombinación o la disolución es lo que realmente hace el trabajo.**
 ## El panorama: tres tradiciones, un problema
 
 El problema que cada tradición está resolviendo es el mismo: ¿cómo puede un sistema que acumula experiencia durante la actividad de vigilia retener lo que importa, descartar lo que no, y seguir siendo funcional mañana?

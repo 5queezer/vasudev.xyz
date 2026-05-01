@@ -4,16 +4,16 @@ date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "La IA autoevolutiva falla cuando optimiza un evaluador fijo. El modelo biológico es correcto: lo que debe evolucionar es la presión de selección, no solo el genoma."
+description: "La IA auto‑evolutiva falla cuando optimiza un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "2f5a8bf02a2b63e2cf15d09ded86d65a"
-chunkHashes: "8402b112ebff21c5,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
+translationHash: "72bce595c8cf9e7c95f19a506b181aad"
+chunkHashes: "d7f5ca06d3a4ffd9,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
-Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLMs". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin prompts, solo vectores de intervención. Fue intelectualmente satisfactorio y prácticamente incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
+Pasé una semana intentando diseñar un “lenguaje de programación nativo de vectores para LLMs”. La idea era programar el comportamiento del modelo directamente a nivel de activación, sin *prompts*, solo vectores de intervención. Fue intelectualmente satisfactorio y, en la práctica, incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
 
 **La unidad de evolución no es la característica. Es el ciclo mutación/selección.**
 
-Esa distinción lo cambia todo sobre cómo construyes un arnés de IA autoevolutivo. La mayoría de los sistemas que se autodenominan "auto‑mejorables" están haciendo AutoML. Optimiza dentro de un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero está más cerca de AutoML que de la evolución abierta. La diferencia resulta ser decisiva arquitectónicamente en dos formas.
+Esa distinción lo cambia todo sobre cómo construyes un arnés de IA auto‑evolutiva. La mayoría de los sistemas que se autodenominan “auto‑mejorables” están haciendo AutoML. Optimizar sobre un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero se parece más a AutoML que a una evolución sin límites. La diferencia resulta ser decisiva arquitectónicamente de dos maneras.
 
 ---
 ## Genotipo y Fenotipo No Son la Misma Capa

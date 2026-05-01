@@ -1,19 +1,19 @@
 ---
-title: "Memoria inspirada en el sueño para agentes LLM: 6 artículos clasificados por lo que puedes lanzar esta semana"
+title: "Memoria Inspirada en el Sueño para Agentes LLM: 6 Artículos Clasificados por lo que Puedes Enviar Esta Semana"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Leí 6 artículos sobre reproducción de memoria inspirada biológicamente para agentes LLM. Solo 2 valen tu tiempo si estás construyendo, no publicando."
+description: "Leí 6 artículos sobre reproducción de memoria inspirada biológicamente para agentes LLM. Sólo 2 valen su tiempo si está construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "28f2286c6f28d42e79fb602755b5f27e"
-chunkHashes: "7e318b173cc3c1d6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
+translationHash: "8f8af495ebb9cb29f0f2d9003250aee7"
+chunkHashes: "54b02139cb0cce9d,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
-Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
+La mayoría de la investigación sobre memoria en LLM vive en un bucle cómodo: proponer una arquitectura, probarla en un benchmark personalizado, afirmar una mejora y seguir adelante. Si realmente estás construyendo memoria para agentes, decidiendo qué almacenar, qué olvidar y cuándo consolidar, la relación señal‑ruido en la literatura es brutal.
 
-I maintain the [Dream Engine](https://github.com/scrypster/muninndb), a sleep-inspired consolidation pipeline for [MuninnDB](https://muninndb.com). It runs Ebbinghaus decay, Hebbian association, near-duplicate merging, and transitive inference on agent memory between sessions. My ablation study showed que **running all consolidation phases simultaneously is net-negative**, much like the daDREAM mutant protein that enhances long-term potentiation but impairs actual learning. Phase selectivity matters more than phase count.
+Mantengo el [Dream Engine](https://github.com/scrypster/muninndb), una canalización de consolidación inspirada en el sueño para [MuninnDB](https://muninndb.com). Ejecuta la decadencia de Ebbinghaus, la asociación hebbiana, la fusión de duplicados cercanos y la inferencia transitiva en la memoria del agente entre sesiones. Mi estudio de ablación mostró que **ejecutar todas las fases de consolidación simultáneamente tiene un efecto neto negativo**, al igual que la proteína mutante daDREAM que potencia la potenciación a largo plazo pero deteriora el aprendizaje real. La selectividad de fase importa más que la cantidad de fases.
 
-**If you're building agent memory, read SleepGate and MemoryBench. Skip the rest.**
+**Si estás construyendo memoria para agentes, lee SleepGate y MemoryBench. Omite el resto.**
 ## SleepGate: El artículo que se mapea directamente a la consolidación offline
 
 "Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" hace exactamente lo que dice el título. Aplica un ciclo de sueño aprendido, reducción sináptica y olvido activo, sobre la KV‑cache para reducir la interferencia proactiva.

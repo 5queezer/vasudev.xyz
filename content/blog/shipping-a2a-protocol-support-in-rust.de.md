@@ -1,19 +1,19 @@
 ---
-title: "Bereitstellung der A2A-Protokollunterstützung in Rust: 7 Fallstricke, vor denen dich niemand warnt"
+title: "A2A‑Protokollunterstützung in Rust bereitstellen: 7 Fallstricke, vor denen dich niemand warnt"
 date: 2026-03-25
-description: "Was ich gelernt habe, als ich Agent‑zu‑Agent‑Protokollunterstützung zu einem Open‑Source‑Agenten‑Framework hinzugefügt habe."
+description: "Was ich beim Hinzufügen von Agent-to-Agent‑Protokollunterstützung zu einem Open‑Source‑Agenten‑Framework gelernt habe."
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]
-translationHash: "e290bfc379275379386cba67f78293e5"
-chunkHashes: "a794b355e8c4a403,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
+translationHash: "85d29e18de4c7a46ff213053b609a7cb"
+chunkHashes: "63693977f4c62ac9,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
 ---
-Der [A2A (Agent‑to‑Agent)‑Protokoll](https://github.com/google/A2A) ist Googles offener Standard für die Interoperabilität von Agenten: Entdeckung, Aufgabendelegation, Lebenszyklusverwaltung über HTTP/JSON‑RPC. Es sitzt neben MCP so wie TCP neben USB: das eine verbindet Agenten mit Agenten, das andere verbindet Agenten mit Werkzeugen.
+Der [A2A (Agent-to-Agent)‑Protokoll](https://github.com/google/A2A) ist Googles offener Standard für die Interoperabilität von Agenten: Entdeckung, Aufgabenverteilung, Lebenszyklus‑Verwaltung über HTTP/JSON‑RPC. Es liegt neben MCP genauso wie TCP neben USB: das eine verbindet Agenten mit Agenten, das andere verbindet Agenten mit Werkzeugen.
 
-Ich habe kürzlich [PR #4166](https://github.com/5queezer/hrafn/pull/4166) veröffentlicht, die native A2A‑Unterstützung zu Hrafn hinzufügt. Das bedeutet sowohl einen eingehenden JSON‑RPC 2.0‑Server als auch ein ausgehendes Client‑Tool, geschrieben in Rust. Der PR bestand 40 Tests und wurde E2E über fünf Raspberry Pi Zero 2 W‑Instanzen ausgeführt. Dabei bin ich auf jede scharfe Kante gestoßen, die das Spec nicht erwähnt.
+Ich habe kürzlich [PR #4166](https://github.com/5queezer/hrafn/pull/4166) veröffentlicht, der native A2A‑Unterstützung zu Hrafn hinzufügt. Das bedeutet sowohl einen eingehenden JSON‑RPC 2.0‑Server als auch ein ausgehendes Client‑Tool, geschrieben in Rust. Der PR bestand 40 Tests und wurde End‑zu‑Ende auf fünf Raspberry Pi Zero 2 W‑Instanzen ausgeführt. Auf dem Weg dorthin stieß ich auf jede scharfe Kante, die das Spec nicht erwähnt.
 
-**Das A2A‑Spec ist auf dem Papier sauber. Die Sicherheitsaspekte werden dich in der Produktion erwischen.**
+**Das A2A‑Spec ist auf dem Papier sauber. Die Sicherheitsschranken werden Sie in der Produktion erwischen.**
 ## 1. Agent Cards sind per Design nicht authentifiziert, und das ist in Ordnung
 
 Die A2A‑Spezifikation besagt, dass `GET /.well-known/agent-card.json` öffentlich zugänglich sein muss. Kein Bearer‑Token, kein API‑Key. Der erste Gedanke: Das sei ein Informationsleck.
