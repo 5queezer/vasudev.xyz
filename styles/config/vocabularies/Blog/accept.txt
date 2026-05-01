@@ -142,6 +142,7 @@ MemoryBench
 MemoryOS
 MemPalace
 Meta-Harness
+miscalibrated
 MuninnDB
 Murakami
 Namespace
@@ -150,6 +151,8 @@ Nygard
 Nygard's
 OAuth
 Ollama
+ontologies
+ontology
 Optuna
 Patanjali
 Pojoni
@@ -178,6 +181,7 @@ vasanas
 Vec
 vectorbt
 Vedantic
+vendored
 Vercel
 Vercel's
 Vipassana
