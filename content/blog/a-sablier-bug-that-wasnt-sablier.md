@@ -5,10 +5,12 @@ description: "Tracing a sporadic 'invalid middleware' error in Sablier to a hidd
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
+images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
 series: ["Field Notes"]
 ---
+
 
 
 

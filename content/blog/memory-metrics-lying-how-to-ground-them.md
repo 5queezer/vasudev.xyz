@@ -9,7 +9,9 @@ images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 ---
+
 
 
 

@@ -6,7 +6,9 @@ description: "Two 2026 studies disagree about whether AGENTS.md helps coding age
 images: ["/images/push-pull-context-og.png"]
 images: ["/images/push-pull-context-og.png"]
 images: ["/images/push-pull-context-og.png"]
+images: ["/images/push-pull-context-og.png"]
 ---
+
 
 
 
