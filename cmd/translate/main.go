@@ -49,6 +49,7 @@ func main() {
 	contentDir := flag.String("content-dir", "content/blog", "path to content directory")
 	languages := flag.String("languages", "de,es", "comma-separated target languages")
 	includeIndex := flag.Bool("include-index", false, "translate _index.md section pages")
+	indexOnly := flag.Bool("index-only", false, "translate only _index.md section pages")
 	flag.Parse()
 
 	apiURL := os.Getenv("LLM_API_URL")
@@ -71,7 +72,7 @@ func main() {
 
 	langs := strings.Split(*languages, ",")
 
-	sourceFiles, err := collectSourceMarkdownFiles(*contentDir, langs, *includeIndex)
+	sourceFiles, err := collectSourceMarkdownFiles(*contentDir, langs, *includeIndex, *indexOnly)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to read content dir: %v\n", err)
 		os.Exit(1)
@@ -192,7 +193,7 @@ func main() {
 	}
 }
 
-func collectSourceMarkdownFiles(contentDir string, langs []string, includeIndex bool) ([]string, error) {
+func collectSourceMarkdownFiles(contentDir string, langs []string, includeIndex bool, indexOnly bool) ([]string, error) {
 	var files []string
 	err := filepath.WalkDir(contentDir, func(path string, entry os.DirEntry, err error) error {
 		if err != nil {
@@ -210,6 +211,9 @@ func collectSourceMarkdownFiles(contentDir string, langs []string, includeIndex 
 			return nil
 		}
 		if name == "_index.md" && !includeIndex {
+			return nil
+		}
+		if name != "_index.md" && indexOnly {
 			return nil
 		}
 		for _, lang := range langs {

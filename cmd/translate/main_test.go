@@ -18,7 +18,7 @@ func TestCollectSourceMarkdownFilesIncludesNestedGuideIndexes(t *testing.T) {
 	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "01.md"), "---\ntitle: Mental Model\n---\n")
 	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "01.es.md"), "---\ntitle: Modelo mental\n---\n")
 
-	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, true)
+	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, true, false)
 	if err != nil {
 		t.Fatalf("collectSourceMarkdownFiles() error = %v", err)
 	}
@@ -36,12 +36,30 @@ func TestCollectSourceMarkdownFilesCanSkipIndexes(t *testing.T) {
 	writeTestFile(t, filepath.Join(dir, "_index.md"), "---\ntitle: Blog\n---\n")
 	writeTestFile(t, filepath.Join(dir, "post.md"), "---\ntitle: Post\n---\n")
 
-	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, false)
+	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, false, false)
 	if err != nil {
 		t.Fatalf("collectSourceMarkdownFiles() error = %v", err)
 	}
 
 	assertStringSlicesEqual(t, got, []string{"post.md"})
+}
+
+func TestCollectSourceMarkdownFilesIndexOnly(t *testing.T) {
+	dir := t.TempDir()
+	writeTestFile(t, filepath.Join(dir, "_index.md"), "---\ntitle: Guides\n---\n")
+	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "_index.md"), "---\ntitle: Modern C++ Recovery Guide\n---\n")
+	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "01.md"), "---\ntitle: Mental Model\n---\n")
+
+	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, true, true)
+	if err != nil {
+		t.Fatalf("collectSourceMarkdownFiles() error = %v", err)
+	}
+
+	want := []string{
+		"_index.md",
+		filepath.Join("modern-cpp-recovery", "_index.md"),
+	}
+	assertStringSlicesEqual(t, got, want)
 }
 
 func writeTestFile(t *testing.T, path string, content string) {

@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: translate-content
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   translate:
@@ -47,7 +47,8 @@ jobs:
           go run main.go \
             --content-dir ../../content/guides \
             --languages de,es \
-            --include-index
+            --include-index \
+            --index-only
 
       - name: Open PR with translations
         env:
