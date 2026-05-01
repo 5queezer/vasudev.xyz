@@ -1,23 +1,23 @@
 ---
-title: "Los Autoencoders Escasos No Pueden Medir el Comportamiento en Tiempo de Generación. Eso No Es un Error."
+title: "Sparse Autoencoders No Pueden Medir el Comportamiento en Tiempo de Generación. Eso No es un Error."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 agentQuestions:
-  - "¿Por qué los SAE no pueden medir comportamiento durante la generación?"
-  - "¿Qué muestra realmente el resultado de sycophancy?"
-  - "¿Cómo deberían medirse las características de alucinación?"
+  - "¿Por qué los SAE no pueden medir el comportamiento en tiempo de generación?"
+  - "¿Qué muestra realmente el resultado de la adulación?"
+  - "¿Cómo se deben medir las características de alucinación?"
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "¿Por qué las características de sycophancy SAE tienen un d de Cohen=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
+description: "¿Por qué las características SAE de servilismo tienen Cohen's d=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
-chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
+translationHash: "ff4d32ae49c3baffed051adf000b440b"
+chunkHashes: "f8df59952cff9505,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
-**Tu ventana de medición determina qué comportamientos puedes observar. La servilismo se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usa el momento equivocado y tu d de Cohen colapsará.**
+**Tu ventana de medida determina qué comportamientos puedes ver. La sycophancy se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usa el momento equivocado y tu Cohen's d colapsará.**
 
-Pasé dos horas la semana pasada mirando el gráfico de características de un auto‑codificador esparso (SAE) de Gemma3 preguntándome por qué la detección de servilismo funcionaba perfectamente (d de Cohen alrededor de 9,9) mientras que la detección de alucinación se quedaba plana (d < 1,0). Mismo modelo. Mismo SAE. Misma metodología. Las barras de error no se solapaban. Esto no debería ser posible si los SAE realmente están encontrando “características conductuales” como afirma la comunidad de interpretabilidad.
+Pasé dos horas la semana pasada mirando el gráfico de características de un autoencoder esparso (SAE) de Gemma3 preguntándome por qué la detección de sycophancy funcionaba perfectamente (Cohen's d alrededor de 9.9) mientras que la detección de alucinación se quedaba plana (d < 1.0). Mismo modelo. Mismo SAE. Misma metodología. Las barras de error no se superponían. Esto no debería ser posible si los SAE realmente están encontrando "características de comportamiento" como afirma la comunidad de interpretabilidad.
 
-Entonces lo entendí: el momento era incorrecto.
+Entonces me di cuenta: el momento era el incorrecto.
 ## Cuando aparece la chabacanería
 
 La chabacanería es un sesgo en *cómo el modelo codifica la entrada*. El modelo ve un mensaje, lee las preferencias humanas en él, y esa preferencia sesga los patrones de activación en las capas del codificador antes de que se genere un solo token. Puedes medir este sesgo en el momento de la codificación, específicamente en la posición del token de entrada final, antes de que el modelo genere. La capa 29, característica 2123 muestra una activación diferencial de 617,6 con solo 71,1 de varianza de inversión. Eso es una señal clara. Esa característica se invierte de manera fiable cuando el modelo codifica una intención chabacana, sin importar la variación del tema.

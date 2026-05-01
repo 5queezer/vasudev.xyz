@@ -1,23 +1,23 @@
 ---
-title: "Deja de poner decisiones en CLAUDE.md. Colócalas donde el agente no siempre las lea."
+title: "Deja de poner decisiones en CLAUDE.md. Ponlas donde el agente no siempre las lea."
 date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
 agentQuestions:
-  - "¿Qué va en contexto push y qué en contexto pull?"
+  - "¿Qué pertenece al contexto de push versus al contexto de pull?"
   - "¿Por qué CLAUDE.md es el lugar equivocado para decisiones?"
-  - "¿Cómo deberían recuperar ADRs los agentes?"
-description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que separas el contexto de envío del contexto de extracción."
+  - "¿Cómo deben los agentes recuperar los ADRs en su lugar?"
+description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que se separa el contexto de push del contexto de pull."
 images: ["/images/push-pull-context-og.png"]
-translationHash: "1efe46f0746426b51d508fdcc4e7a4df"
-chunkHashes: "b817ba1b27214d6a,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
+translationHash: "9e4e621132dc5df16cef59d00df6e1cf"
+chunkHashes: "68159f4342020e26,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
 ---
-Dos estudios rigurosos de 2026 midieron si los archivos de contexto del agente ayudan a los agentes de codificación de IA. Llegaron a conclusiones opuestas. El grupo de ETH Zurich ejecutó SWE-bench Lite y AGENTbench en varios modelos y [descubrió que los archivos AGENTS.md generados por LLM redujeron el éxito de la tarea en un 3 % e inflaron el costo de inferencia en un 20 %](https://arxiv.org/abs/2602.11988). Los archivos escritos por desarrolladores dieron un aumento marginal del 4 % con el mismo incremento de costo. Un mes antes, [Lulla et al. informaron lo contrario](https://arxiv.org/abs/2601.20404) en un experimento pareado y limpio con 124 PR reales de GitHub: la presencia de AGENTS.md redujo el tiempo de ejecución medio en un 28,64 % y los tokens de salida en un 16,58 %.
+Dos estudios rigurosos de 2026 midieron si los archivos de contexto de agente ayudan a los agentes de codificación de IA. Llegaron a conclusiones opuestas. El grupo de ETH Zurich ejecutó SWE-bench Lite y AGENTbench con varios modelos y [encontró que los archivos AGENTS.md generados por LLM reducían el éxito de la tarea en un 3 % e inflaban el costo de inferencia en un 20 %](https://arxiv.org/abs/2602.11988). Los archivos escritos por desarrolladores dieron un aumento marginal del 4 % con el mismo impacto en costos. Un mes antes, [Lulla et al. reportaron lo contrario](https://arxiv.org/abs/2601.20404) en un experimento limpio y pareado con 124 PR reales de GitHub: la presencia de AGENTS.md redujo el tiempo de ejecución mediano en un 28,64 % y los tokens de salida en un 16,58 %.
 
 Ambos estudios son cuidadosos. Ambos midieron cosas reales. El campo se dividió inmediatamente en campamentos.
 
 La división es evitable. Ambos estudios midieron el mismo artefacto y lo trataron como una sola cosa. No lo es.
 
-**Las decisiones pertenecen al contexto de extracción, no al contexto de inserción. Confundir los dos es la razón por la que la mitad de tu CLAUDE.md probablemente te está perjudicando ahora mismo.**
+**Las decisiones pertenecen al contexto de extracción, no al contexto de empuje. Confundir ambos es la razón por la que la mitad de tu CLAUDE.md probablemente te está perjudicando en este momento.**
 ## Empujar contexto versus extraer contexto
 
 Un agente de codificación lee dos tipos de información del proyecto.

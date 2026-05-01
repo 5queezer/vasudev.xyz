@@ -1,23 +1,23 @@
 ---
-title: "OAuth 2.1 zu einem selbstgehosteten MCP‑Server hinzufügen: 4 Fallstricke aus der Praxis"
+title: "OAuth 2.1 zu einem selbstgehosteten MCP‑Server hinzufügen: 4 Stolperfallen aus der Praxis"
 date: 2026-03-25
-description: "Was kaputt ging, als ich claude.ai mit meiner eigenen Reactive Resume‑Instanz über OAuth verbunden habe."
+description: "Was ging kaputt, als ich claude.ai an meine eigene Reactive Resume‑Instanz via OAuth angeschlossen habe."
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 agentQuestions:
-  - "Was bricht beim Hinzufügen von OAuth 2.1 zu MCP?"
-  - "Wie sollte MCP-OAuth-Discovery konfiguriert werden?"
-  - "Welche OAuth-Fallstricke gibt es beim Self-Hosting?"
+  - "Was funktioniert nicht mehr, wenn man OAuth 2.1 zu MCP hinzufügt?"
+  - "Wie sollte die MCP‑OAuth‑Entdeckung konfiguriert werden?"
+  - "Was sind die Stolperfallen bei selbstgehostetem OAuth?"
 series: ["Field Notes"]
-translationHash: "c80e75aa728e9520e437feeab02f9d09"
-chunkHashes: "1a0ca76a3309f99b,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
+translationHash: "af786211688d6c5e9e0ca57073b600bf"
+chunkHashes: "6eba93364acab05c,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
-MCP (Model Context Protocol) ermöglicht KI‑Assistenten, Werkzeuge auf entfernten Servern aufzurufen. Aber wenn Ihr MCP‑Server selbst gehostet wird, muss sich claude.ai gegen Ihre Benutzerkonten authentifizieren, nicht gegen die von Anthropic. Das bedeutet, Ihr Server muss zu einem vollständigen OAuth 2.1‑Anbieter werden: Dynamische Client‑Registrierung, Autorisierungscode mit PKCE, Token‑Austausch.
+MCP (Model Context Protocol) ermöglicht es KI‑Assistenten, Werkzeuge auf entfernten Servern aufzurufen. Wenn Ihr MCP‑Server jedoch selbst gehostet wird, muss sich claude.ai gegen Ihre Benutzerkonten authentifizieren und nicht gegen die von Anthropic. Das bedeutet, dass Ihr Server zu einem vollständigen OAuth 2.1‑Anbieter werden muss: Dynamische Client‑Registrierung, Autorisierungscode mit PKCE, Token‑Austausch.
 
-Ich habe [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um dies zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume) hinzuzufügen, dem Open‑Source‑Lebenslauf‑Generator. Sechs Commits, ein mittlerer Refactoring‑Commit nachdem der Maintainer eine Veraltung beanstandet hatte, und mehrere Stunden Fehlersuche in den Auth‑Ketten. Dies ist die OAuth‑Seite von [dieser Geschichte](/blog/shipping-a2a-protocol-support-in-rust/).
+Ich habe einen [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um dies zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume) hinzuzufügen, dem Open‑Source‑Lebenslauf‑Builder. Sechs Commits, ein mittlerer Refaktor nach einer De‑precation‑Warnung des Maintainers und mehrere Stunden Debugging der Auth‑Ketten. Dies ist die OAuth‑Seite dieser [Geschichte](/blog/shipping-a2a-protocol-support-in-rust/).
 
-**MCP‑OAuth funktioniert, aber die Spezifikation lässt vier Fallen offen, die Tutorials übergehen.**
+**MCP OAuth funktioniert, aber die Spezifikation enthält vier Fallen, die Tutorials übersehen.**
 ## 1. Ihr MCP‑Server benötigt zwei .well-known‑Endpunkte, nicht nur einen
 
 Wenn sich **claude.ai** mit einem benutzerdefinierten MCP‑Endpunkt verbindet, führt es nicht einfach nur einen POST zu Ihrer URL aus. Zunächst wird nach OAuth‑Metadaten gesucht. Das MCP‑Auth‑Spec verlangt zwei Discovery‑Endpunkte:

@@ -4,20 +4,20 @@ date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 agentQuestions:
   - "¿Por qué mienten las métricas de memoria?"
-  - "¿Qué comprobaciones de recuperación con verdad base importan?"
-  - "¿Cómo afecta la ley de Goodhart a la memoria de agentes?"
+  - "¿Qué verificaciones de recuperación de referencia son importantes?"
+  - "¿Cómo afecta la ley de Goodhart a la memoria del agente?"
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."
+description: "La consolidación de la memoria luce genial en los paneles de control. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "b8a709b4d0147300deb327ef4fe4178d"
-chunkHashes: "62a1f14b771987f7,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+translationHash: "be931aa83e6ee2d7d2fdb4867699e550"
+chunkHashes: "195c2275b5f794ca,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Construí un sistema de consolidación de recuerdos para agentes de IA. Deduplica memorias, refuerza asociaciones, hace decaer entradas obsoletas y genera un diario de sueños que realmente puedes leer. El panel de control se ve fantástico: la tasa de deduplicación sube, el recuento de memorias baja y la densidad de asociaciones aumenta.
+Construí un sistema de consolidación de memoria para agentes de IA. Deduplifica recuerdos, fortalece asociaciones, degrada entradas obsoletas y genera un diario de sueños que realmente puedes leer. El panel se ve fantástico: la tasa de deduplicación sube, la cantidad de memorias disminuye y la densidad de asociaciones aumenta.
 
-Nada de eso te indica si el agente recuerda lo correcto en el momento correcto.
+Nada de eso te dice si el agente recuerda lo correcto en el momento adecuado.
 
-**Si una métrica puede mejorar sin que mejore también la calidad de recuperación, esa métrica es un proxy desacoplado. Deja de optimizarla.**
+**Si una métrica puede mejorar sin que también mejore la calidad de recuperación, esa métrica es un proxy desvinculado. Deja de optimizarla.**
 ## El Problema Tiene un Nombre
 
 Recientemente leí un ensayo titulado ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) de un investigador independiente llamado Flyxion. El argumento central: cuando una señal medible se desacopla del proceso que se supone debe rastrear, la señal se vuelve autorreferencial. Terminas optimizando el mapa mientras el territorio se descompone.
