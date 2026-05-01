@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - "content/blog/*.md"
       - "cmd/translate/**"
+      - "graphify-out/**"
   workflow_run:
     workflows: ["Translate blog posts"]
     types: [completed]
@@ -13,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -54,7 +55,35 @@ jobs:
           go-version: "1.22"
           cache-dependency-path: cmd/sync-graph/go.mod
 
-      - name: Check graph freshness
+      - name: Auto-extend graphify-out with new posts
+        env:
+          LLM_API_URL: ${{ secrets.LLM_API_URL }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          LLM_MODEL_FALLBACKS: ${{ vars.LLM_MODEL_FALLBACKS }}
+          LLM_MODELS: ${{ vars.LLM_MODELS }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY || secrets.OPENROUTER_API_KEY }}
+        run: |
+          cd cmd/graphify-update && go run main.go \
+            --content-dir ../../content/blog \
+            --source-prefix content/blog \
+            --graph-file ../../graphify-out/graph.json
+
+      - name: Commit regenerated graphify-out
+        run: |
+          set -euo pipefail
+          if git diff --quiet graphify-out/; then
+            echo "graphify-out unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add graphify-out/
+          git commit -m "chore: auto-extend graphify-out with new blog posts"
+          # Push to master via the workflow token. The deploy trigger
+          # ignores graphify-out/** so this push does not loop.
+          git push origin HEAD:master
+
+      - name: Verify graph freshness
         run: |
           set -euo pipefail
           posts=$(find content/blog -maxdepth 1 -name '*.md' ! -name '_*.md' ! -name '*.de.md' ! -name '*.es.md' | sort)
@@ -70,10 +99,11 @@ jobs:
             grep -qxF "$p" <<<"$indexed" || missing+=("$p")
           done <<<"$posts"
           if (( ${#missing[@]} > 0 )); then
-            echo "::error::Graph is stale. Missing posts in graphify-out/graph.json:"
+            echo "::error::Graph still stale after auto-extend. Missing posts:"
             printf '  - %s\n' "${missing[@]}"
             echo ""
-            echo "Fix locally:"
+            echo "The auto-extend step did not produce entries for these posts."
+            echo "Check the previous step's logs for LLM errors. As a fallback:"
             echo "  /graphify content/blog --update"
             echo "  git add graphify-out/ && git commit && git push"
             exit 1
