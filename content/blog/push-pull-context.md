@@ -4,7 +4,9 @@ date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
 description: "Two 2026 studies disagree about whether AGENTS.md helps coding agents. The fight makes sense once you separate push context from pull context."
 images: ["/images/push-pull-context-og.png"]
+images: ["/images/push-pull-context-og.png"]
 ---
+
 
 
 Two rigorous 2026 studies measured whether agent context files help AI coding agents. They reached opposite conclusions. The ETH Zurich group ran SWE-bench Lite and AGENTbench across multiple models and [found that LLM-generated AGENTS.md files reduced task success by 3% and inflated inference cost by 20%](https://arxiv.org/abs/2602.11988). Developer-written files gave a marginal 4% bump with the same cost hit. A month earlier, [Lulla et al. reported the opposite](https://arxiv.org/abs/2601.20404) on a clean paired experiment with 124 real GitHub PRs: AGENTS.md presence cut median runtime by 28.64% and output tokens by 16.58%.
