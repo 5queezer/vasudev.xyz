@@ -220,6 +220,21 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
 .agent-msg.is-user .agent-msg-bubble { background: hsla(38 92% 50% / .1); border: 1px solid hsla(38 92% 50% / .3); font-family: var(--font-mono); }
 .agent-msg.is-assistant .agent-msg-bubble { background: hsla(0 0% 12% / .5); border: 1px solid var(--border); color: hsla(0 0% 93% / .9); }
 .agent-msg-role { font-family: var(--font-mono); font-size: 9px; text-transform: uppercase; letter-spacing: .2em; color: hsla(38 92% 50% / .8); margin-bottom: .375rem; }
+.agent-markdown { white-space: normal; }
+.agent-markdown > :first-child { margin-top: 0; }
+.agent-markdown > :last-child { margin-bottom: 0; }
+.agent-markdown p { margin: .55rem 0; }
+.agent-markdown ul,
+.agent-markdown ol { margin: .65rem 0; padding-left: 1.25rem; }
+.agent-markdown li { margin: .25rem 0; }
+.agent-markdown a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.agent-markdown strong { color: var(--fg); font-weight: 600; }
+.agent-markdown :not(pre) > code { font-family: var(--font-mono); font-size: .88em; color: var(--primary); background: hsla(0 0% 100% / .055); border: 1px solid hsla(0 0% 100% / .08); border-radius: .25rem; padding: .08rem .35rem; }
+.agent-markdown pre { margin: .8rem 0; padding: .85rem 1rem; overflow-x: auto; background: #282a36; border: 1px solid hsla(0 0% 100% / .09); font-family: var(--font-mono); font-size: .78rem; line-height: 1.65; }
+.agent-markdown pre code { font-family: inherit; white-space: pre; }
+.agent-markdown .tok-keyword { color: #ff79c6; }
+.agent-markdown .tok-string { color: #f1fa8c; }
+.agent-markdown .tok-comment { color: #6272a4; }
 .agent-cursor { display: inline-block; width: 6px; height: .875rem; background: hsla(38 92% 50% / .8); margin-left: 2px; vertical-align: text-bottom; animation: pulse 1s infinite; }
 .agent-chat-chips { padding: .75rem 1.25rem; border-top: 1px solid hsla(0 0% 15% / .6); display: flex; flex-wrap: wrap; gap: .5rem; flex-shrink: 0; }
 .agent-chip { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; padding: .375rem .75rem; border: 1px solid var(--border); color: var(--muted-fg); background: transparent; transition: all .2s; }

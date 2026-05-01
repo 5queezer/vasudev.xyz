@@ -57,8 +57,57 @@
   let streaming = false;
 
   // ---- render helpers ----
-  function escapeHTML(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function escapeHTML(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
   function escapeAttr(s) { return escapeHTML(String(s)); }
+
+  function highlightCode(code, lang) {
+    let html = escapeHTML(code);
+    if (/^(js|javascript|ts|typescript|go|rust|python|py|bash|sh|yaml|yml|toml|json)$/i.test(lang || '')) {
+      html = html
+        .replace(/(&quot;.*?&quot;|'.*?')/g, '<span class="tok-string">$1</span>')
+        .replace(/(^|\s)(#.*$|\/\/.*$)/gm, '$1<span class="tok-comment">$2</span>')
+        .replace(/\b(const|let|var|function|return|if|else|for|while|async|await|type|interface|struct|func|package|import|from|class|def|try|catch|true|false|null|nil)\b/g, '<span class="tok-keyword">$1</span>');
+    }
+    return html;
+  }
+
+  function renderInlineMarkdown(text) {
+    return escapeHTML(text)
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  }
+
+  function markdownToHTML(markdown) {
+    const src = String(markdown || '').replace(/\\n/g, '\n');
+    const blocks = [];
+    let text = src.replace(/```([^\n`]*)\n([\s\S]*?)```/g, (_, lang, code) => {
+      const token = `@@CODE${blocks.length}@@`;
+      blocks.push(`<pre><code class="language-${escapeAttr((lang || '').trim())}">${highlightCode(code.replace(/\n$/, ''), lang)}</code></pre>`);
+      return `\n${token}\n`;
+    });
+
+    return text.split(/\n{2,}/).map(part => {
+      const trimmed = part.trim();
+      if (!trimmed) return '';
+      const codeIdx = trimmed.match(/^@@CODE(\d+)@@$/);
+      if (codeIdx) return blocks[Number(codeIdx[1])] || '';
+      if (/^[-*] /m.test(trimmed)) {
+        const items = trimmed.split('\n').filter(Boolean).map(line => line.replace(/^[-*] /, '')).map(renderInlineMarkdown);
+        return `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+      }
+      if (/^\d+\. /m.test(trimmed)) {
+        const items = trimmed.split('\n').filter(Boolean).map(line => line.replace(/^\d+\. /, '')).map(renderInlineMarkdown);
+        return `<ol>${items.map(item => `<li>${item}</li>`).join('')}</ol>`;
+      }
+      return `<p>${trimmed.split('\n').map(renderInlineMarkdown).join('<br>')}</p>`;
+    }).join('');
+  }
+
+  function renderAssistantContent(el, text) {
+    el.innerHTML = markdownToHTML(text);
+  }
 
   function renderMessage(role, text, opts = {}) {
     const wrap = document.createElement('div');
@@ -71,15 +120,17 @@
       tag.textContent = 'agent';
       bubble.appendChild(tag);
     }
-    const span = document.createElement('span');
-    span.textContent = text;
-    bubble.appendChild(span);
+    const content = document.createElement('div');
+    content.className = role === 'assistant' ? 'agent-markdown' : 'agent-plain';
+    if (role === 'assistant') renderAssistantContent(content, text);
+    else content.textContent = text;
+    bubble.appendChild(content);
     if (opts.streaming) {
       const cursor = document.createElement('span');
       cursor.className = 'agent-cursor';
       bubble.appendChild(cursor);
       wrap._cursor = cursor;
-      wrap._textNode = span;
+      wrap._contentEl = content;
     }
     wrap.appendChild(bubble);
     msgsEl.appendChild(wrap);
@@ -164,13 +215,13 @@
 
           if (!data) continue;
           full += data;
-          node._textNode.textContent = full;
+          renderAssistantContent(node._contentEl, full);
           msgsEl.scrollTop = msgsEl.scrollHeight;
         }
       }
     } catch (err) {
       full = full || ('Sorry — the agent endpoint is unreachable. ' + err.message);
-      node._textNode.textContent = full;
+      renderAssistantContent(node._contentEl, full);
     } finally {
       if (node._cursor) node._cursor.remove();
       history.push({ role: 'assistant', content: full });
