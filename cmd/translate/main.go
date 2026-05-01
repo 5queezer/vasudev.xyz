@@ -10,18 +10,19 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 )
 
 const (
-	defaultAPIURL = "https://openrouter.ai/api/v1/chat/completions"
-	defaultModel  = "openrouter/free"
-	maxAttempts   = 4
+	defaultAPIURL      = "https://openrouter.ai/api/v1/chat/completions"
+	defaultModel       = "openrouter/free"
+	defaultMaxAttempts = 4
 )
 
 var httpClientFactory = func() *http.Client {
-	return &http.Client{Timeout: 5 * time.Minute}
+	return &http.Client{Timeout: translationHTTPTimeout()}
 }
 
 type chatRequest struct {
@@ -412,7 +413,7 @@ Rules:
 			continue
 		}
 
-		for attempt := 0; attempt < maxAttempts; attempt++ {
+		for attempt := 0; attempt < translationMaxAttempts(); attempt++ {
 			if attempt > 0 {
 				wait := time.Duration(1<<uint(attempt)) * time.Second
 				fmt.Fprintf(os.Stderr, "retrying model %s in %v...\n", llmModel, wait)
@@ -471,6 +472,24 @@ Rules:
 	}
 
 	return ""
+}
+
+func translationMaxAttempts() int {
+	if raw := strings.TrimSpace(os.Getenv("TRANSLATE_MAX_ATTEMPTS")); raw != "" {
+		if n, err := strconv.Atoi(raw); err == nil && n > 0 {
+			return n
+		}
+	}
+	return defaultMaxAttempts
+}
+
+func translationHTTPTimeout() time.Duration {
+	if raw := strings.TrimSpace(os.Getenv("TRANSLATE_HTTP_TIMEOUT_SECONDS")); raw != "" {
+		if n, err := strconv.Atoi(raw); err == nil && n > 0 {
+			return time.Duration(n) * time.Second
+		}
+	}
+	return 5 * time.Minute
 }
 
 func resolveModelCandidates(primary, fallbacks, models string) []string {

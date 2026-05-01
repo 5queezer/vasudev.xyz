@@ -72,6 +72,22 @@ func writeTestFile(t *testing.T, path string, content string) {
 	}
 }
 
+func TestTranslationMaxAttemptsCanBeConfigured(t *testing.T) {
+	t.Setenv("TRANSLATE_MAX_ATTEMPTS", "1")
+
+	if got := translationMaxAttempts(); got != 1 {
+		t.Fatalf("translationMaxAttempts() = %d, want 1", got)
+	}
+}
+
+func TestTranslationHTTPTimeoutCanBeConfigured(t *testing.T) {
+	t.Setenv("TRANSLATE_HTTP_TIMEOUT_SECONDS", "45")
+
+	if got := translationHTTPTimeout().Seconds(); got != 45 {
+		t.Fatalf("translationHTTPTimeout() = %.0fs, want 45s", got)
+	}
+}
+
 func TestResolveModelCandidatesFromExplicitList(t *testing.T) {
 	got := resolveModelCandidates(
 		"qwen/qwen3.6-plus:free",

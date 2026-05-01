@@ -40,6 +40,8 @@ jobs:
           LLM_MODEL_FALLBACKS: ${{ vars.LLM_MODEL_FALLBACKS }}
           LLM_MODELS: ${{ vars.LLM_MODELS }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY || secrets.OPENROUTER_API_KEY }}
+          TRANSLATE_MAX_ATTEMPTS: "1"
+          TRANSLATE_HTTP_TIMEOUT_SECONDS: "45"
         run: |
           cd cmd/translate
           go run main.go \
