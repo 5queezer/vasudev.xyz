@@ -46,8 +46,9 @@ type chatResponse struct {
 }
 
 func main() {
-	contentDir := flag.String("content-dir", "content/blog", "path to blog content directory")
+	contentDir := flag.String("content-dir", "content/blog", "path to content directory")
 	languages := flag.String("languages", "de,es", "comma-separated target languages")
+	includeIndex := flag.Bool("include-index", false, "translate _index.md section pages")
 	flag.Parse()
 
 	apiURL := os.Getenv("LLM_API_URL")
@@ -70,29 +71,15 @@ func main() {
 
 	langs := strings.Split(*languages, ",")
 
-	entries, err := os.ReadDir(*contentDir)
+	sourceFiles, err := collectSourceMarkdownFiles(*contentDir, langs, *includeIndex)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to read content dir: %v\n", err)
 		os.Exit(1)
 	}
 
-entries:
-	for _, entry := range entries {
-		name := entry.Name()
-		if !strings.HasSuffix(name, ".md") {
-			continue
-		}
-		if name == "_index.md" || strings.HasPrefix(name, "_index.") {
-			continue
-		}
-		// Skip translated files
-		for _, lang := range langs {
-			if strings.HasSuffix(name, "."+lang+".md") {
-				continue entries
-			}
-		}
-
-		srcPath := filepath.Join(*contentDir, name)
+	for _, relPath := range sourceFiles {
+		name := filepath.Base(relPath)
+		srcPath := filepath.Join(*contentDir, relPath)
 		slug := strings.TrimSuffix(name, ".md")
 
 		srcData, err := os.ReadFile(srcPath)
@@ -105,7 +92,7 @@ entries:
 
 		for _, lang := range langs {
 			targetName := slug + "." + lang + ".md"
-			targetPath := filepath.Join(*contentDir, targetName)
+			targetPath := filepath.Join(filepath.Dir(srcPath), targetName)
 
 			if existingData, err := os.ReadFile(targetPath); err == nil {
 				if extractFrontMatterField(existingData, "translationHash") == hash {
@@ -203,6 +190,45 @@ entries:
 			fmt.Printf("wrote %s\n", targetName)
 		}
 	}
+}
+
+func collectSourceMarkdownFiles(contentDir string, langs []string, includeIndex bool) ([]string, error) {
+	var files []string
+	err := filepath.WalkDir(contentDir, func(path string, entry os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if entry.IsDir() {
+			return nil
+		}
+
+		name := entry.Name()
+		if !strings.HasSuffix(name, ".md") {
+			return nil
+		}
+		if name != "_index.md" && strings.HasPrefix(name, "_index.") {
+			return nil
+		}
+		if name == "_index.md" && !includeIndex {
+			return nil
+		}
+		for _, lang := range langs {
+			if strings.HasSuffix(name, "."+strings.TrimSpace(lang)+".md") {
+				return nil
+			}
+		}
+
+		relPath, err := filepath.Rel(contentDir, path)
+		if err != nil {
+			return err
+		}
+		files = append(files, relPath)
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return files, nil
 }
 
 func contentHash(data []byte) string {

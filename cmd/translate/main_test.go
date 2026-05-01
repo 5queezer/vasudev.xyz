@@ -4,9 +4,55 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
+
+func TestCollectSourceMarkdownFilesIncludesNestedGuideIndexes(t *testing.T) {
+	dir := t.TempDir()
+	writeTestFile(t, filepath.Join(dir, "_index.md"), "---\ntitle: Guides\n---\n")
+	writeTestFile(t, filepath.Join(dir, "_index.de.md"), "---\ntitle: Leitfäden\n---\n")
+	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "_index.md"), "---\ntitle: Modern C++ Recovery Guide\n---\n")
+	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "01.md"), "---\ntitle: Mental Model\n---\n")
+	writeTestFile(t, filepath.Join(dir, "modern-cpp-recovery", "01.es.md"), "---\ntitle: Modelo mental\n---\n")
+
+	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, true)
+	if err != nil {
+		t.Fatalf("collectSourceMarkdownFiles() error = %v", err)
+	}
+
+	want := []string{
+		"_index.md",
+		filepath.Join("modern-cpp-recovery", "01.md"),
+		filepath.Join("modern-cpp-recovery", "_index.md"),
+	}
+	assertStringSlicesEqual(t, got, want)
+}
+
+func TestCollectSourceMarkdownFilesCanSkipIndexes(t *testing.T) {
+	dir := t.TempDir()
+	writeTestFile(t, filepath.Join(dir, "_index.md"), "---\ntitle: Blog\n---\n")
+	writeTestFile(t, filepath.Join(dir, "post.md"), "---\ntitle: Post\n---\n")
+
+	got, err := collectSourceMarkdownFiles(dir, []string{"de", "es"}, false)
+	if err != nil {
+		t.Fatalf("collectSourceMarkdownFiles() error = %v", err)
+	}
+
+	assertStringSlicesEqual(t, got, []string{"post.md"})
+}
+
+func writeTestFile(t *testing.T, path string, content string) {
+	t.Helper()
+	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+		t.Fatalf("MkdirAll(%s): %v", path, err)
+	}
+	if err := os.WriteFile(path, []byte(content), 0644); err != nil {
+		t.Fatalf("WriteFile(%s): %v", path, err)
+	}
+}
 
 func TestResolveModelCandidatesFromExplicitList(t *testing.T) {
 	got := resolveModelCandidates(

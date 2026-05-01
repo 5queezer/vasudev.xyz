@@ -1,12 +1,13 @@
-name: Translate blog posts
+name: Translate content
 
 on:
   push:
     branches: ["master"]
     paths:
-      - "content/blog/*.md"
-      - "!content/blog/*.de.md"
-      - "!content/blog/*.es.md"
+      - "content/blog/**/*.md"
+      - "content/guides/**/*.md"
+      - "!content/**/*.de.md"
+      - "!content/**/*.es.md"
       - "cmd/translate/**"
   workflow_dispatch:
 
@@ -15,7 +16,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: translate-posts
+  group: translate-content
   cancel-in-progress: false
 
 jobs:
@@ -31,7 +32,7 @@ jobs:
           go-version: "1.22"
           cache-dependency-path: cmd/translate/go.mod
 
-      - name: Translate posts
+      - name: Translate content
         env:
           LLM_API_URL: ${{ secrets.LLM_API_URL }}
           LLM_MODEL: ${{ vars.LLM_MODEL }}
@@ -39,9 +40,14 @@ jobs:
           LLM_MODELS: ${{ vars.LLM_MODELS }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY || secrets.OPENROUTER_API_KEY }}
         run: |
-          cd cmd/translate && go run main.go \
+          cd cmd/translate
+          go run main.go \
             --content-dir ../../content/blog \
             --languages de,es
+          go run main.go \
+            --content-dir ../../content/guides \
+            --languages de,es \
+            --include-index
 
       - name: Open PR with translations
         env:
@@ -49,7 +55,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/blog/*.de.md content/blog/*.es.md
+          git add content/blog content/guides
           if git diff --cached --quiet; then
             echo "No translation changes to commit"
             exit 0
@@ -57,13 +63,13 @@ jobs:
 
           branch="bot/translations-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
           git checkout -b "$branch"
-          git commit -m "i18n: auto-translate blog posts to de/es"
+          git commit -m "i18n: auto-translate content to de/es"
           git push origin "$branch"
 
           gh pr create \
             --base master \
             --head "$branch" \
-            --title "i18n: auto-translate blog posts to de/es" \
-            --body "Automated translation of blog posts to German and Spanish from workflow run ${GITHUB_RUN_ID}."
+            --title "i18n: auto-translate content to de/es" \
+            --body "Automated translation of blog posts and guides to German and Spanish from workflow run ${GITHUB_RUN_ID}."
 
           gh pr merge --auto --squash --delete-branch "$branch"
