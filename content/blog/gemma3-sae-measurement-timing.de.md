@@ -1,20 +1,22 @@
 ---
-title: "Sparse Autoencoders können das Verhalten zur Generierungszeit nicht messen. Das ist kein Fehler."
+title: "Sparse Autoencoders können das Verhalten zur Generierungszeit nicht messen. Das ist kein Bug."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "Warum Sycophanzie‑SAE‑Merkmale ein Cohen's d von 9,9 haben, aber die Halluzinationsdetektion scheitert. Die Antwort erwies sich als tiefergehend als das Messzeitpunkt‑Problem."
+description: "Warum Sycophancy‑SAE‑Merkmale ein Cohen’s d von 9,9 haben, aber die Halluzinationsdetektion fehlschlägt. Die Antwort erwies sich als tiefergehend als der Messzeitpunkt."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "55c4128838e6b8b34862af042d3b70b6"
-chunkHashes: "1322b5e6f03d30fa,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
+chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
-**Dein Messfenster bestimmt, welche Verhaltensweisen du sehen kannst. Sycofanz manifestiert sich während der Codierung. Halluzination manifestiert sich während der Generierung. Verwende das falsche Timing und dein Cohen's d bricht zusammen.**
+**Dein Messfenster bestimmt, welche Verhaltensweisen du sehen kannst. Sycophanz manifestiert sich während der Kodierung. Halluzination manifestiert sich während der Generierung. Verwende das falsche Timing und dein Cohen's d bricht zusammen.**
 
-Ich habe letzte Woche zwei Stunden damit verbracht, mir ein Feature‑Diagramm eines Gemma3 Sparse Autoencoders (SAE) anzusehen und mich zu fragen, warum die Sycofanz‑Erkennung perfekt funktionierte (Cohen's d ≈ 9,9), während die Halluzinations‑Erkennung flach blieb (d < 1,0). Dasselbe Modell. Derselbe SAE. Dieselbe Methodik. Die Fehlermargen überschneiden sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „Verhaltensmerkmale“ finden, wie es die Interpretierbarkeits‑Community behauptet.
+Ich habe letzte Woche zwei Stunden damit verbracht, mir ein Feature‑Diagramm eines Gemma‑3‑Sparse‑Autoencoders (SAE) anzuschauen und mich zu fragen, warum die Erkennung von Sycophanz perfekt funktionierte (Cohen's d ≈ 9,9), während die Erkennung von Halluzinationen völlig ausfiel (d < 1,0). Derselbe Modell. Derselbe SAE. Derselbe Methodik. Die Fehlermargen überschnitten sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „verhaltensbezogene Merkmale“ finden, wie die Interpretierbarkeits‑Community behauptet.
 
-Dann wurde mir klar: Das Timing war falsch.
+Dann machte es Sinn: Das Timing war falsch.
 ## Wenn Sycophanz auftritt
 
 Sycophanz ist ein Bias darin, *wie das Modell die Eingabe kodiert*. Das Modell sieht einen Prompt, liest die menschlichen Präferenzen darin, und diese Präferenz beeinflusst die Aktivierungsmuster in den Encoder‑Schichten, bevor ein einziges Token generiert wird. Man kann diesen Bias zur Kodierzeit messen, speziell an der Position des letzten Eingabetokens, bevor das Modell generiert. Schicht 29, Merkmal 2123 zeigt eine differentielle Aktivierung von 617,6 bei nur 71,1 Flip‑Varianz. Das ist ein klares Signal. Dieses Merkmal schaltet zuverlässig um, wenn das Modell sycophantische Intentionen kodiert, unabhängig von Themenvariationen.

@@ -1,20 +1,22 @@
 ---
-title: "Schlafinspirierter Speicher für LLM‑Agenten: 6 Arbeiten nach dem, was du diese Woche bereitstellen kannst, bewertet"
+title: "Schlaf-inspirierter Speicher für LLM‑Agenten: 6 Arbeiten nach dem, was du diese Woche liefern kannst, bewertet"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Ich habe 6 Arbeiten über biologisch inspirierte Gedächtniswiederholung für LLM‑Agenten gelesen. Nur 2 sind deine Zeit wert, wenn du baust, nicht veröffentlichst."
+description: "Ich habe 6 Arbeiten über biologisch inspirierte Gedächtnis‑Wiederholungen für LLM‑Agenten gelesen. Nur 2 sind Ihre Zeit wert, wenn Sie bauen, nicht veröffentlichen."
 images: ["/images/llm-sleep-memory-og.png"]
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "3da07b269b5989ceafd289f785d2a628"
-chunkHashes: "517e2064e69c1645,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
+images: ["/images/llm-sleep-memory-og.png"]
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "28f2286c6f28d42e79fb602755b5f27e"
+chunkHashes: "7e318b173cc3c1d6,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
-Most LLM‑Speicherforschung lebt in einer komfortablen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung behaupten, weiterziehen. Wenn du tatsächlich Agentenspeicher baust, entscheidest, was gespeichert, was vergessen und wann konsolidiert wird, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
+Most LLM‑Memory‑Forschung lebt in einer bequemen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung behaupten, weiterziehen. Wenn Sie tatsächlich Agent‑Memory aufbauen, entscheiden, was gespeichert, was vergessen und wann konsolidiert wird, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
 
-Ich betreibe die [Dream Engine](https://github.com/scrypster/muninndb), eine schlaf‑inspirierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus‑Verfall, hebbsche Assoziation, Near‑Duplicate‑Merging und transitive Inferenz auf den Agentenspeicher zwischen Sitzungen aus. Meine Ablationsstudie zeigte, dass **das gleichzeitige Ausführen aller Konsolidierungsphasen netto‑negativ ist**, ähnlich dem daDREAM‑Mutantenprotein, das die Langzeitpotenzierung verstärkt, aber das eigentliche Lernen beeinträchtigt. Phasenselektivität ist wichtiger als die Anzahl der Phasen.
+Ich betreibe die [Dream Engine](https://github.com/scrypster/muninndb), eine schlaf‑inspirierte Konsolidierungspipeline für [MuninnDB](https://muninndb.com). Sie führt Ebbinghaus‑Verfall, hebräische Assoziation, Near‑Duplicate‑Merging und transitive Schlussfolgerungen im Agent‑Memory zwischen Sitzungen aus. Meine Ablationsstudie zeigte, dass **die gleichzeitige Ausführung aller Konsolidierungsphasen netto negativ ist**, ähnlich dem daDREAM‑Mutantenprotein, das die Langzeitpotenzierung verstärkt, aber das tatsächliche Lernen behindert. Die Selektivität der Phasen ist wichtiger als die Anzahl der Phasen.
 
-**Wenn du Agentenspeicher baust, lies SleepGate und MemoryBench. Überspringe den Rest.**
+**Wenn Sie Agent‑Memory bauen, lesen Sie SleepGate und MemoryBench. Überspringen Sie den Rest.**
 ## SleepGate: Das Papier, das direkt auf Offline‑Konsolidierung abbildet
 
 „Learning to Forget: Sleep‑Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models“ macht genau das, was der Titel verspricht. Es wendet einen erlernten Schlafzyklus, synaptische Downscaling und aktives Vergessen auf den KV‑Cache an, um proaktive Interferenz zu reduzieren.
