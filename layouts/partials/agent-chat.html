@@ -37,7 +37,7 @@
       data-agent-welcome="{{ i18n "agent_welcome" }}"
       data-agent-placeholder="{{ i18n "agent_placeholder" }}"
       data-agent-streaming="{{ i18n "agent_streaming" }}"
-      data-agent-chips='{{- $chips := slice (i18n "agent_chip_who") (i18n "agent_chip_hrafn") (i18n "agent_chip_stack") (i18n "agent_chip_site") -}}{{- with .Params.agentQuestions -}}{{- $chips = $chips | append . -}}{{- end -}}{{ $chips | jsonify }}'
+      data-agent-chips='{{ .Params.agentQuestions | default (slice) | jsonify }}'
     >
       <noscript>
         <p>The on-site agent requires JavaScript. Source on GitHub.</p>
