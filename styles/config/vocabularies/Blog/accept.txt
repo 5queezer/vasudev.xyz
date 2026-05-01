@@ -1,6 +1,7 @@
 ADR
 ADRs
 Advaitic
+Andrej
 AGENTbench
 Airtable
 Airtable's
@@ -9,6 +10,7 @@ Anthropic's
 APIs
 APO
 arXiv
+Athale
 Barbosa
 Barks
 benchmarked
@@ -51,6 +53,7 @@ Hrafn's
 HybridRAG
 hyperplane
 (?i)agentic
+(?i)agentless
 (?i)allowlist
 (?i)anandamaya
 (?i)async
@@ -129,6 +132,7 @@ Kombai
 Kosha
 Koshas
 Leiden
+literatures
 LLM's
 LLMs
 LocOMo
@@ -149,6 +153,8 @@ MemoryOS
 MemPalace
 Meta-Harness
 miscalibrated
+monorepo
+multimodal
 MuninnDB
 Murakami
 Namespace
@@ -168,6 +174,7 @@ pramana
 pramanas
 Sablier
 SAEs
+Safi
 sandboxed
 scrypster
 scrypster's
@@ -185,6 +192,7 @@ TruthfulQA
 UIs
 underperform
 Upaniṣad
+Vaddina
 vasana
 vasanas
 Vec
@@ -196,4 +204,5 @@ Vercel's
 Vipassana
 Vue
 Xie's
+Yamaguchi
 Zhong
