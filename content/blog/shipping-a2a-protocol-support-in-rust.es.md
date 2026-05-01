@@ -1,19 +1,21 @@
 ---
-title: "Envío de soporte del protocolo A2A en Rust: 7 trampas que nadie te advierte"
+title: "Distribuyendo Soporte del Protocolo A2A en Rust: 7 Problemas Ocultos que Nadie Te Advierte"
 date: 2026-03-25
-description: "Lo que aprendí al añadir soporte del protocolo Agent-to-Agent a un framework de agentes de código abierto."
+description: "Lo que aprendí al añadir soporte de protocolo agente‑a‑agente a un marco de trabajo de agentes de código abierto."
+images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
+images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 series: ["Field Notes"]
-translationHash: "6a8b9a4973b461622ddd4b97d2c4e9b4"
-chunkHashes: "a783028a64b777e6,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,79810e003718ad6f"
+translationHash: "355fee262fb9baca152dd6579f803a31"
+chunkHashes: "138d0a14635cf619,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
 ---
-El [protocolo A2A (Agent-to-Agent)](https://github.com/google/A2A) es el estándar abierto de Google para la interoperabilidad de agentes: descubrimiento, delegación de tareas, gestión del ciclo de vida sobre HTTP/JSON‑RPC. Se sitúa al lado de MCP de la misma forma que TCP está al lado de USB: uno conecta agentes con agentes, el otro conecta agentes con herramientas.
+El [protocolo A2A (Agent-to-Agent)](https://github.com/google/A2A) es el estándar abierto de Google para la interoperabilidad entre agentes: descubrimiento, delegación de tareas, gestión del ciclo de vida sobre HTTP/JSON‑RPC. Se sitúa junto a MCP de la misma manera que TCP está al lado de USB: uno conecta agentes con agentes, el otro conecta agentes con herramientas.
 
-Recientemente publiqué el [PR #4166](https://github.com/5queezer/hrafn/pull/4166) añadiendo soporte nativo para A2A en Hrafn. Eso significa tanto un servidor JSON‑RPC 2.0 entrante como una herramienta cliente saliente, escritas en Rust. El PR aprobó 40 pruebas y se ejecutó de extremo a extremo en cinco instancias de Raspberry Pi Zero 2 W. En el camino me encontré con cada borde afilado que la especificación no menciona.
+Recientemente publiqué el [PR #4166](https://github.com/5queezer/hrafn/pull/4166) que añade soporte nativo de A2A a Hrafn. Eso significa tanto un servidor JSON‑RPC 2.0 entrante como una herramienta cliente saliente, escritas en Rust. El PR aprobó 40 pruebas y se ejecutó de extremo a extremo en cinco instancias de Raspberry Pi Zero 2 W. En el camino topé con cada borde afilado que la especificación no menciona.
 
-**La especificación de A2A es limpia en papel. Los bordes de seguridad te atraparán en producción.**
+**La spec de A2A es clara en papel. Los problemas de seguridad te atraparán en producción.**
 ## 1. Las tarjetas de agente no están autenticadas por diseño, y eso está bien
 
 La especificación de A2A dice que `GET /.well-known/agent-card.json` debe ser accesible públicamente. Sin token bearer, sin clave API. Instinto inicial: eso es una fuga de información.
@@ -174,14 +176,16 @@ El PR explícitamente no incluye:
 Cada “no incluido” es una decisión de alcance, no una brecha. La descripción del PR enumera cada uno con un enlace al issue de seguimiento. Los revisores pueden ver exactamente qué se consideró y se pospuso.
 ## La configuración que demostró que funciona
 
-Cinco instancias de Hrafn en una única Raspberry Pi Zero 2 W (ARM de cuatro núcleos, 512 MB), cada una con una personalidad distinta (Kerf, Sentinel, Architect, Critic, Researcher), comunicándose vía A2A en puertos localhost 3001‑3005. Respaldado por gpt-5.1-codex-mini.
+Cinco instancias de Hrafn en una sola Raspberry Pi Zero 2 W (ARM de cuatro núcleos, 512 MB), cada una con una personalidad distinta (Kerf, Sentinel, Architect, Critic, Researcher), comunicándose mediante A2A en puertos localhost 3001‑3005. Respaldado por gpt‑5.1‑codex‑mini.
 
 La instancia A descubre la tarjeta de agente de la instancia B, envía una tarea (“revisar este código en busca de problemas de seguridad”), recibe una respuesta a través del pipeline estándar `process_message`. Sin orquestación personalizada. La capa A2A es solo otro canal de entrada.
 
 Si funciona en una Pi Zero, funciona en cualquier lugar.
 
-Lee la implementación completa en [PR #4166](https://github.com/5queezer/hrafn/pull/4166). Cada trampa anterior se corresponde con un commit específico con pruebas. Si estás integrando A2A en tu propio framework, comienza con la protección SSRF en `a2a_client.rs` y la capacidad TaskStore en `task_store.rs`. El seguimiento para el descubrimiento de pares y mDNS LAN está registrado en [#4643](https://github.com/5queezer/hrafn/issues/4643).
+Lee la implementación completa en [PR #4166](https://github.com/5queezer/hrafn/pull/4166). Cada trampa mencionada arriba corresponde a un commit específico con pruebas. Si estás integrando A2A en tu propio framework, comienza con la protección SSRF en `a2a_client.rs` y la capacidad TaskStore en `task_store.rs`. El seguimiento para el descubrimiento de pares y mDNS LAN está en [#4643](https://github.com/5queezer/hrafn/issues/4643).
 
 ---
 
-*Christian Pojoni crea [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes en Rust para hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes en Rust para hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de este artículo fue generada por IA.*

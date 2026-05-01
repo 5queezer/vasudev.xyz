@@ -1,17 +1,19 @@
 ---
-title: "Tu configuración MCP está consumiendo el 90 % de su ventana de contexto. Aquí está la solución."
+title: "Tu configuración de MCP está consumiendo el 90 % de su ventana de contexto. Aquí tienes la solución."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
-description: "Cada herramienta MCP a la que te conectas carga su esquema completo de antemano, antes de que escribas una palabra. La carga diferida de Anthropic soluciona esto."
+description: "Cada herramienta MCP que conectas carga su esquema completo de antemano, antes de que escribas una palabra. La carga diferida de Anthropic soluciona esto."
 images: ["/images/mcp-context-window-fix-og.png"]
-translationHash: "851b611a7fad60bdbf0b056717be27ff"
-chunkHashes: "791e7a47fd043742,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,f78d911664403f62"
+images: ["/images/mcp-context-window-fix-og.png"]
+images: ["/images/mcp-context-window-fix-og.png"]
+translationHash: "9d63a016d732196c0848baca371cb0a7"
+chunkHashes: "3886a8ae7806d6a4,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---
-Conecta el [servidor MCP de GitHub](https://github.com/github/github-mcp-server) a Claude. Ahora revisa tu contador de tokens antes de enviar un solo mensaje. [46 000 tokens, el 22 % de la ventana de contexto de Claude Opus](https://www.candede.com/articles/claude-tool-search), consumidos por definiciones de herramientas que aún no has usado. Añade Jira (otros ~17 K), un servidor de Slack, Google Drive, y estarás superando los 100 K tokens de sobrecarga antes de que comience cualquier trabajo real. [Anthropic midió configuraciones internas alcanzando 134 K tokens](https://www.anthropic.com/engineering/advanced-tool-use) solo en definiciones de herramientas.
+Conecta el [servidor MCP de GitHub](https://github.com/github/github-mcp-server) a Claude. Ahora revisa tu contador de tokens antes de enviar un solo mensaje. [46 000 tokens, 22 % de la ventana de contexto de Claude Opus](https://www.candede.com/articles/claude-tool-search), consumidos por definiciones de herramientas que aún no has usado. Añade Jira (otros ~17 K), un servidor Slack, Google Drive, y estarás superando los 100 K tokens de sobrecarga antes de que comience cualquier trabajo real. [Anthropic midió configuraciones internas que alcanzan 134 K tokens](https://www.anthropic.com/engineering/advanced-tool-use) solo en definiciones de herramientas.
 
-**Cada herramienta MCP que conectas es un impuesto pagado por adelantado, ya sea que la herramienta se utilice o no.**
+**Cada herramienta MCP que conectas es un impuesto pagado por adelantado, haya o no que la herramienta se use.**
 
-Este es el comportamiento predeterminado de los clientes MCP hoy: cargar todas las definiciones de herramientas en el contexto al inicio de cada solicitud. La especificación no lo obliga. Es simplemente el camino de menor resistencia, y no escala bien.
+Este es el comportamiento predeterminado de los clientes MCP hoy: cargan todas las definiciones de herramientas en el contexto al inicio de cada solicitud. La especificación no lo exige. Es simplemente el camino de menor resistencia, y escala de forma deficiente.
 ## Por Qué Sucede
 
 Los servidores MCP anuncian sus herramientas como objetos de esquema JSON: nombres, descripciones, tipos de parámetros, campos requeridos, ejemplos. Estos esquemas son útiles. Son la forma en que Claude sabe qué hace una herramienta y cómo llamarla correctamente. Pero “útil” y “necesita estar en contexto en todo momento” son cosas diferentes.
@@ -101,18 +103,20 @@ The implication: write your tool descriptions as if BM25 has to find them withou
 Tool Search does not work with tool use examples (few-shot prompting for tool calls). If you rely on examples for accuracy, you need a workaround.
 ## Lo que omití
 
-**Cache de prompts + herramientas diferidas.** La documentación de Anthropic menciona combinar `defer_loading` con definiciones de herramientas en caché. Todavía no he hecho benchmarks al respecto. La interacción entre la invalidación de caché y la inyección de esquemas justo a tiempo no es obvia. [Documentación relevante aquí.](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
+**Caché de prompts + herramientas diferidas.** La documentación de Anthropic menciona combinar `defer_loading` con definiciones de herramientas en caché. Aún no he hecho benchmarks de esto. La interacción entre la invalidación de la caché y la inyección de esquemas justo a tiempo no es obvia. [Documentación relevante aquí.](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
 
-**Implementaciones de búsqueda personalizadas.** Puedes crear tu propia herramienta de búsqueda usando embeddings o búsqueda semántica, devolviendo bloques `tool_reference`. Este es el camino correcto para catálogos grandes (1.000+ herramientas) donde la precisión de recuperación BM25 no es suficiente. El [post de Anthropic sobre ejecución de código con MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) cubre el patrón más amplio de presentar servidores MCP como APIs de código en lugar de llamadas directas a herramientas. Vale la pena leerlo como complemento.
+**Implementaciones de búsqueda personalizadas.** Puedes crear tu propia herramienta de búsqueda usando incrustaciones o búsqueda semántica, devolviendo bloques `tool_reference`. Este es el camino correcto para catálogos grandes (más de 1 000 herramientas) donde la precisión de recuperación BM25 no es suficiente. El [post de Anthropic sobre ejecución de código con MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) cubre el patrón más amplio de presentar servidores MCP como APIs de código en lugar de llamadas directas a herramientas. Vale la pena leerlo como complemento.
 
-**Soporte del SDK de agentes.** A principios de 2026, el SDK de Agentes de Python no expone `defer_loading` como un parámetro. Tienes que recurrir a la API cruda. [Este issue de GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues/525) lo está rastreando.
+**Soporte del SDK de agentes.** A principios de 2026, el SDK de Agentes de Python no expone `defer_loading` como parámetro. Tienes que recurrir a la API cruda. [Este issue de GitHub](https://github.com/anthropics/claude-agent-sdk-python/issues/525) lo está rastreando.
 
-**Otros proveedores de modelos.** `defer_loading` es una característica de la API de Claude, no del protocolo MCP. OpenAI, Gemini y otros aún no tienen un equivalente. Si construyes agentes independientes del proveedor, necesitas una capa de enrutamiento del lado del cliente en su lugar.
-
----
-
-Habilita `defer_loading` en todo lo que no uses en cada sesión. Probablemente sea el 80 % de tus herramientas. Comienza con la [documentación oficial](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) y el [post de ingeniería de Anthropic](https://www.anthropic.com/engineering/advanced-tool-use) para obtener la referencia completa de la API.
+**Otros proveedores de modelos.** `defer_loading` es una característica de la API de Claude, no del protocolo MCP. OpenAI, Gemini y otros aún no tienen un equivalente. Si estás construyendo agentes independientes del proveedor, necesitas una capa de enrutamiento del lado del cliente en su lugar.
 
 ---
 
-*Christian Pojoni construye agentes eficientes en contexto. Más en [vasudev.xyz](https://vasudev.xyz).*
+Activa `defer_loading` en todo lo que no uses en cada sesión. Eso probablemente sea el 80 % de tus herramientas. Comienza con la [documentación oficial](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) y el [post de ingeniería de Anthropic](https://www.anthropic.com/engineering/advanced-tool-use) para la referencia completa de la API.
+
+---
+
+*Christian Pojoni crea agentes eficientes en contexto. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de este post fue generada por IA.*

@@ -1,17 +1,19 @@
 ---
-title: "Sparse Autoencoders können das Verhalten zur Generierungszeit nicht messen. Das ist kein Bug."
+title: "Sparse Autoencoders können das Verhalten zur Generierungszeit nicht messen. Das ist kein Fehler."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 1
-description: "Warum die sycophancy SAE‑Features Cohen’s d = 9,9 haben, aber die Halluzinations­erkennung scheitert. Die Antwort stellte sich tiefer als nur das Mess­zeit­punkt‑Problem heraus."
+description: "Warum sycophante SAE‑Features Cohen's d=9,9 haben, aber die Halluzinationsdetektion scheitert. Die Antwort stellte sich als tiefer liegend heraus als das Messzeitpunkt‑Problem."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "10b1c8bebcc7063805d524f32aadb2d5"
-chunkHashes: "0c7e37e9b9384a49,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,f00afa4ad07c9c52"
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+images: ["/images/gemma3-sae-measurement-timing-og.png"]
+translationHash: "a4b23d6074a3ab27d041ed4c7e501db3"
+chunkHashes: "5e0fb58e2474b43d,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---
-**Ihr Messfenster bestimmt, welche Verhaltensweisen Sie sehen können. Sycophantie manifestiert sich während der Kodierung. Halluzination manifestiert sich während der Generierung. Verwenden Sie das falsche Timing, und Ihr Cohen's d kollabiert.**
+**Dein Messfenster bestimmt, welches Verhalten du beobachten kannst. Syco​phanz manifestiert sich während der Kodierung. Halluzination manifestiert sich während der Generierung. Verwende das falsche Timing und dein Cohen‑d kollabiert.**
 
-Ich habe letzte Woche zwei Stunden damit verbracht, mir ein Feature‑Diagramm eines Gemma3 Sparse Autoencoders (SAE) anzusehen und mich zu fragen, warum die Erkennung von Sycophantie perfekt funktionierte (Cohen's d um 9,9), während die Erkennung von Halluzinationen völlig ausfiel (d < 1,0). Dasselbe Modell. Derselbe SAE. Dieselbe Methodik. Die Fehlermargen überlappten sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „behaviorale Merkmale“ finden, wie es die Interpretierbarkeits‑Community behauptet.
+Ich habe letzte Woche zwei Stunden damit verbracht, mir das Feature‑Diagramm eines Gemma‑3‑Sparse‑Autoencoders (SAE) anzusehen und mich zu fragen, warum die Syco​phanz‑Erkennung perfekt funktionierte (Cohen‑d um 9,9), während die Halluzinations‑Erkennung völlig flach blieb (d < 1,0). Derselbe Modell. Derselbe SAE. Derselbe Methodik. Die Fehlerbalken überschneiden sich nicht. Das sollte nicht möglich sein, wenn SAEs tatsächlich „Verhaltens‑Features“ finden, wie die Interpretierbarkeits‑Gemeinschaft behauptet.
 
 Dann wurde mir klar: Das Timing war falsch.
 ## Wenn Sycophanz auftritt
@@ -75,16 +77,18 @@ Eine einzelne lineare Probe kann nicht trennen, was kein einheitliches Signal is
 Code: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
 ## Was ich weggelassen habe
 
-**Warum die SAE‑Forschung standardmäßig Messungen zur Kodierzeit verwendet.** Aktivierungen zur Kodierzeit sind zustandslos und deterministisch. Aktivierungen zur Generierungszeit hängen von der gesamten Sequenzgeschichte ab und sind bei Temperatur und Sampling stochastisch. Die Mathematik ist zur Kodierzeit sauberer. Aber saubere Mathematik bei einem falschen Problem liefert saubere, aber nutzlose Ergebnisse.
+**Warum die SAE-Forschung standardmäßig Messungen zur Codierungszeit verwendet.** Aktivierungen zur Codierungszeit sind zustandslos und deterministisch. Aktivierungen zur Generierungszeit hängen von der gesamten Sequenzhistorie ab und sind stochastisch hinsichtlich Temperatur und Sampling. Die Mathematik ist zur Codierungszeit sauberer. Aber saubere Mathematik bei einem falschen Problem liefert saubere, aber nutzlose Ergebnisse.
 
-**Verhalten‑Schaltkreise jenseits von SAEs.** Sparse Autoencoder sind nur ein Blickwinkel. Kausale Intervention (Ablation) ist ein anderer. Die Analyse von Attention‑Mustern ist ein dritter. Jeder Substrat enthüllt unterschiedliche Verhaltensweisen. Ein vollständiges Bild erfordert mehrere Messmethoden über mehrere Phasen hinweg. Dieser Beitrag behandelt nur SAE + Kodierzeit.
+**Verhaltenskreise jenseits von SAEs.** Sparse Autoencoder sind ein Blickwinkel. Kausale Intervention (Ablation) ist ein anderer. Die Analyse von Aufmerksamkeitsmustern ist ein dritter. Jeder Substrat enthüllt unterschiedliche Verhaltensweisen. Ein vollständiges Bild erfordert mehrere Messmethoden über mehrere Phasen hinweg. Dieser Beitrag behandelt nur SAE + Codierungszeit.
 
-**Warum Halluzination schwer und Sykopezie leicht ist.** Das knüpft an die breitere Frage an, ob Modell‑Alignment durch Verhaltenslenkung machbar ist oder ob es eine architektonische Änderung erfordert. Wenn alle problematischen Verhaltensweisen in Generierungs‑Phasen auftreten und für Messungen zur Kodierzeit unsichtbar bleiben, könnte die gesamte Interpretierbarkeits‑Agenda auf Ebene der Kodierschicht die eigentlichen Fehlermodi übersehen. Das verdient einen eigenen Beitrag.
-
----
-
-Das eigentliche Problem ist nicht, dass SAEs schwach sind. Es ist, dass wir sie auffordern, ein Problem zu lösen, das sie nicht sehen können.
+**Warum Halluzination schwer und Unterwürfigkeit leicht ist.** Dies knüpft an die breitere Frage an, ob Modellausrichtung durch Verhaltenslenkung machbar ist oder ob sie architektonische Änderungen erfordert. Wenn alle besorgniserregenden Verhaltensweisen in Generierungsphasen auftreten und für Messungen zur Codierungszeit unsichtbar bleiben, könnte die gesamte Interpretierbarkeitsagenda für die Codierungsschicht die tatsächlichen Fehlermodi übersehen. Das wäre ein eigenständiger Beitrag wert.
 
 ---
 
-*Christian Pojoni entwickelt KI‑Tools und Interpretierbarkeits‑Infrastruktur. Mehr unter vasudev.xyz.*
+Der Haken ist nicht, dass SAEs schwach sind. Es ist, dass wir von ihnen verlangen, ein Problem zu lösen, das sie nicht sehen können.
+
+---
+
+*Christian Pojoni entwickelt KI‑Tools und Interpretierbarkeits‑Infrastructure. Mehr unter vasudev.xyz.*
+
+*Das Titelbild dieses Beitrags wurde von KI generiert.*

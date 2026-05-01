@@ -1,21 +1,21 @@
 ---
-title: "Stoppe das Design deines KI‑Systems. Gestalte seine Umgebung."
+title: "Stop Designing Your AI System. Design Its Environment."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "Selbstentwickelnde KI‑Systeme scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell hat recht: Was sich weiterentwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
+description: "Selbstentwickelnde KI‑Bewertungssysteme scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell hat recht: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "c40af029d9351be1aa6f1752ab99ed4a"
-chunkHashes: "682b09f9f086f4a4,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,c0bac7cdc18b0ad6"
+images: ["/images/ai-environment-design-og.png"]
+images: ["/images/ai-environment-design-og.png"]
+translationHash: "1f5324b38231623627bef07a371d867e"
+chunkHashes: "e592a89514bd3990,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
-Ich habe eine Woche damit verbracht, eine „vektor-nativ programmierbare Sprache für LLMs“ zu entwerfen. Die Idee war, das Verhalten des Modells direkt auf der Aktivierungsebene zu programmieren, ohne Prompt, nur mit Eingriffen über Vektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich tatsächlich wollte, war keine Sprache. Es war ein Organismus.
+Ich verbrachte eine Woche damit, eine „vektor­native Programmiersprache für LLMs“ zu entwerfen. Die Idee war, das Verhalten des Modells direkt auf der Aktivierungsebene zu programmieren, ohne Prompts, nur durch Eingriff‑Vektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich eigentlich wollte, war keine Sprache. Es war ein Organismus.
 
-**Die Einheit der Evolution ist nicht das Merkmal. Es ist der Mutations‑/Selektionszyklus.**
+**Die Einheit der Evolution ist nicht das Merkmal. Sie ist der Mutations‑/Selektionszyklus.**
 
-Diese Unterscheidung verändert alles daran, wie man ein selbst‑evolvierendes KI‑System baut. Die meisten Systeme, die sich „self‑improving“ nennen, betreiben AutoML. Sie optimieren innerhalb eines festen Suchraums hin zu einem festen Ziel. Das kann Anpassung erzeugen, ist aber eher AutoML als offene Evolution. Der Unterschied erweist sich architektonisch in zweierlei Hinsicht als entscheidend.
-
----
+Diese Unterscheidung ändert alles daran, wie man ein selbst‑evolvierendes KI‑System konstruiert. Die meisten Systeme, die sich „selbstverbessernd“ nennen, betreiben AutoML. Sie optimieren über einen festen Suchraum hin zu einem festen Ziel. Das kann Anpassung erzeugen, ist aber eher AutoML als offene Evolution. Der Unterschied erweist sich architektonisch in zweierlei Hinsicht als entscheidend.
 ## Genotyp und Phänotyp sind nicht dieselbe Schicht
 
 Biologische Systeme trennen das, was erhalten bleibt, vom dem, was ausgewählt wird. Das Genom wird nicht direkt getestet. Der Phänotyp wird es. Mutationen passieren am Genom. Selektion geschieht am Phänotyp. Das Genom überlebt, indem es Phänotypen hervorbringt, die überleben. Diese Asymmetrie ist die Quelle der Evolvierbarkeit selbst.
@@ -60,24 +60,26 @@ Die Schleife hat sechs Phasen. Beobachten. Vorschlagen. Sandbox. Evaluieren. Den
 Beobachten bedeutet, das aktuelle Genom gegen den Aufgaben‑Battery laufen zu lassen und Verhaltensmetriken aufzuzeichnen. Vorschlagen bedeutet, dass die Such‑Policy Kandidaten‑Mutationen erzeugt, jeweils eine pro Operator‑Klasse, parallel. Sandbox bedeutet, dass jeder Kandidat in Isolation läuft: kein geteilter Zustand, harte Ressourcen‑Limits, Rollback garantiert. Evaluieren bedeutet, das Verhaltens‑Delta gegenüber dem aktuellen Basis‑Lineup zu bewerten. Behalten bedeutet, den Gewinner in die Persistenz‑Schicht mit voller Provenienz zu schreiben: Vorher‑/Nachher‑Metriken, welche Prompts davon betroffen sind, welche Operator‑Klasse verwendet wurde und Ablauf‑ sowie Revalidierungs‑Policy. Den Such‑Prior aktualisieren bedeutet, dass der Banditen‑ oder Evolutions‑Policy lernt, welche Operator‑Klassen und welche Bereiche des Suchraums Überlebende erzeugen.
 
 Jede behaltene Mutation benötigt einen Rollback‑Handle. Nicht als Sicherheitsfunktion. Als Gestaltungsanforderung. Wenn du eine Mutation nicht zurückrollen kannst, kannst du ihren marginalen Beitrag nicht messen. Wenn du ihren marginalen Beitrag nicht messen kannst, entwickelst du dich nicht weiter. Du akkumuliert nur.
-## Was ich ausgelassen habe
+## Was ich weggelassen habe
 
-**Selbstmodifikation von Code.** Selbstbearbeitung im Stil von Darwin‑Gödel‑Maschinen funktioniert in sandbox‑basierten Coding‑Agent‑Umgebungen mit formalen Verifizierern. Für ein allgemeines Framework ohne diese Einschränkungen ist es ein Phase‑4‑Problem, nicht weil es unmöglich ist, sondern weil die notwendige Infrastruktur (stabiler Evaluator, Rollback‑Garantie, enger Aufgaben‑Umfang) zuerst bereitgestellt werden muss.
+**Selbstmodifikation von Code.** Darwin‑Gödel‑Maschinen‑ähnliche Selbstbearbeitung funktioniert in sandboxed Coding‑Agent‑Umgebungen mit formalen Verifizierern. Für ein allgemeines Harness ohne diese Einschränkungen ist es ein Phase‑4‑Problem, nicht weil es unmöglich ist, sondern weil die notwendige Infrastruktur (stabiler Evaluator, Rollback‑Garantien, enger Aufgaben‑Umfang) zuerst vorhanden sein muss.
 
-**Feature‑Universalität.** SAE‑Features sind modell‑spezifisch und manchmal checkpoint‑spezifisch. Ob nützliche Features über Modellversionen hinweg übertragbar sind, ist eine offene Forschungsfrage. Das Framework sollte so gestaltet werden, dass es Feature‑Dictionaries bei jedem Basis‑Modell‑Update neu extrahiert, anstatt Stabilität anzunehmen.
+**Feature‑Universalität.** SAE‑Features sind modell‑spezifisch und manchmal checkpoint‑spezifisch. Ob nützliche Features über Modell‑Versionen hinweg übertragbar sind, ist eine offene Forschungsfrage. Das Harness sollte so gestaltet sein, dass es Feature‑Dictionaries bei jedem Basis‑Modell‑Update neu extrahiert, anstatt Stabilität vorauszusetzen.
 
-**Multi‑Agent‑Evaluatoren.** Einen Judge‑Model als Teil der Evaluationsschleife zu verwenden, erhöht die Robustheit, schafft aber auch eine adversarische Angriffsfläche. Das System kann lernen, den Judge zu befriedigen, statt die zugrunde liegende Aufgabe zu lösen. Das erfordert explizite Gegenmaßnahmen, die ich noch nicht entworfen habe.
+**Multi‑Agent‑Evaluatoren.** Die Einbindung eines Judge‑Modells in die Bewertungsschleife erhöht die Robustheit, schafft aber auch eine adversarische Angriffsfläche. Das System kann lernen, den Judge zufriedenzustellen statt die zugrunde liegende Aufgabe zu lösen. Dafür sind explizite Gegenmaßnahmen nötig, die ich bisher nicht entworfen habe.
 
-**Rechen‑Budgetierung.** Eine Mutation, die die Fähigkeit um 2 % steigert, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen als erstklassige Beschränkungen im Evaluator berücksichtigt werden, nicht als Nachgedanke.
-
----
-
-Die Verbindung zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenz‑Schicht. Die Dream Engine, modelliert nach der speicher‑konsolidierenden Schlafphase, ist der Mechanismus, der flüchtige Beobachtungen in mittel‑fristige Politik überführt. Die fehlenden Bausteine sind die Such‑Policy und der ko‑evolvierende Evaluator. Das wird als Nächstes gebaut.
-
-Wenn du in diesem Bereich tätig bist, ist das wichtigste Vorwissen nicht aus dem ML‑Bereich zu übernehmen, sondern aus der Evolutionsbiologie: Die Umwelt führt die Selektion durch. Deine Aufgabe ist, die Umwelt zu bauen, nicht das Lebewesen.
-
-Beginne mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB‑Persistenzschicht](https://github.com/5queezer/hrafn). Die Trennung von Genom/Phänotyp ist bereits verdrahtet. Was gebaut werden muss, ist der Evaluator, der sich zusammen mit dem System, das er misst, co‑evolviert.
+**Rechenbudgetierung.** Eine Mutation, die die Leistungsfähigkeit um 2 % steigert, aber die Latenz verdoppelt, ist kein Gewinn. Latenz und Kosten müssen als erstklassige Constraints im Evaluator eingebaut werden, nicht als nachträgliche Überlegungen.
 
 ---
 
-*Christian Pojoni entwickelt AI‑Agent‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agent‑Runtime.*
+Die Verbindung zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenzschicht. Die Dream Engine, basierend auf der konsolidierenden Gedächtnisphase im Schlaf, ist der Mechanismus, der flüchtige Beobachtungen in mittel‑fristige Policies überführt. Die fehlenden Bausteine sind die Such‑Policy und der mitentwickelte Evaluator. Das ist das, was als Nächstes gebaut wird.
+
+Wenn Sie in diesem Bereich arbeiten, ist das am meisten wertvolle Vorwissen nicht aus dem ML‑Bereich. Es stammt aus der Evolutionsbiologie: Die Umwelt führt die Selektion durch. Ihre Aufgabe ist es, die Umwelt zu bauen, nicht das Organismus.
+
+Beginnen Sie mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB‑Persistenzschicht](https://github.com/5queezer/hrafn). Die Trennung von Genom/Phänotyp ist bereits verdrahtet. Was noch gebaut werden muss, ist der Evaluator, der sich zusammen mit dem System, das er misst, weiterentwickelt.
+
+---
+
+*Christian Pojoni baut AI‑Agent‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basierter Agent‑Runtime.*
+
+*Das Titelbild für diesen Beitrag wurde von KI generiert.*

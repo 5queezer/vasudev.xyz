@@ -1,17 +1,19 @@
 ---
-title: "Añadiendo OAuth 2.1 a un Servidor MCP Autohospedado: 4 Trucos del Campo"
+title: "Añadiendo OAuth 2.1 a un Servidor MCP Autogestionado: 4 Trampas desde las trincheras"
 date: 2026-03-25
-description: "Qué se rompió cuando conecté claude.ai a mi propia instancia de Reactive Resume mediante OAuth."
+description: "¿Qué se rompió cuando conecté claude.ai a mi propia instancia de Reactive Resume a través de OAuth?"
+images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
+images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 series: ["Field Notes"]
-translationHash: "d80217d5d5bb7ef21e33373dd4605716"
-chunkHashes: "56bc088479c518e9,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,346ff3f673c2c0e2"
+translationHash: "8f3fdad2810ea7eca7c68918f49995f3"
+chunkHashes: "e2bee7820010391d,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
-MCP (Model Context Protocol) permite que los asistentes de IA llamen a herramientas en servidores remotos. Pero si tu servidor MCP está auto‑alojado, claude.ai necesita autenticarse contra tus cuentas de usuario, no contra las de Anthropic. Eso significa que tu servidor debe convertirse en un proveedor completo de OAuth 2.1: Registro Dinámico de Clientes, Código de Autorización con PKCE, intercambio de tokens.
+MCP (Model Context Protocol) permite que los asistentes de IA llamen a herramientas en servidores remotos. Pero si tu servidor MCP está auto‑alojado, claude.ai necesita autenticarse contra tus cuentas de usuario, no contra las de Anthropic. Eso significa que tu servidor debe convertirse en un proveedor completo de OAuth 2.1: Registro dinámico de clientes, Código de autorización con PKCE, intercambio de tokens.
 
-Presenté el [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para añadir esto a [Reactive Resume](https://github.com/amruthpillai/reactive-resume), el generador de currículums de código abierto. Seis commits, una refactorización intermedia después de que el mantenedor señalara una depreciación, y varias horas depurando cadenas de autenticación. Esta es la parte OAuth de [esa historia](/blog/shipping-a2a-protocol-support-in-rust/).
+Envié el [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para añadir esto a [Reactive Resume](https://github.com/amruthpillai/reactive-resume), el creador de currículums de código abierto. Seis commits, una refactorización intermedia después de que el mantenedor señalara una deprecación, y varias horas depurando cadenas de autenticación. Este es el lado OAuth de [esa historia](/blog/shipping-a2a-protocol-support-in-rust/).
 
 **MCP OAuth funciona, pero la especificación deja cuatro trampas que los tutoriales omiten.**
 ## 1. Su servidor MCP necesita dos endpoints .well-known, no uno
@@ -132,12 +134,14 @@ Un detalle más sutil: `verifyApiKey` puede lanzar una excepción con entrada ma
 - **Pantalla de consentimiento.** El OAuth Provider de better-auth omite la pantalla de consentimiento para aplicaciones de primera parte. Si Reactive Resume alguna vez se convierte en un proveedor OAuth para aplicaciones de terceros, se necesitará una interfaz de consentimiento.
 ## La configuración que demostró que funciona
 
-Reactive Resume auto‑alojado en Google Cloud Run (europe-west1), PostgreSQL en Neon.tech (nivel gratuito). El flujo OAuth se completa en menos de 2 segundos: claude.ai descubre los endpoints, se registra dinámicamente, redirige a la página de inicio de sesión, intercambia el código y comienza a hacer llamadas a herramientas. Listado, lectura y parcheo de currículums funcionan con el token Bearer.
+Reactive Resume auto‑alojado en Google Cloud Run (europe-west1), PostgreSQL en Neon.tech (plan gratuito). El flujo OAuth se completa en menos de 2 segundos: claude.ai descubre los endpoints, se registra dinámicamente, redirige a la página de inicio de sesión, intercambia el código y comienza a hacer llamadas a herramientas. Listar, leer y parchear currículos funciona perfectamente mediante el token Bearer.
 
-El flujo está probado de extremo a extremo en Cloud Run. El PR ha sido fusionado y la función se lanzará con la próxima versión.
+El flujo está comprobado de extremo a extremo en Cloud Run. El PR ha sido fusionado y la característica se incluirá en la siguiente versión.
 
-Si vas a añadir OAuth a tu propio servidor MCP, lee [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para ver la implementación completa. Cada problema mencionado arriba corresponde a un commit específico. Para probar el resultado, apunta claude.ai a tu propia instancia de Reactive Resume y conéctate mediante OAuth. Mi configuración está disponible en [resume.vasudev.xyz](https://resume.vasudev.xyz).
+Si vas a añadir OAuth a tu propio servidor MCP, lee [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) para ver la implementación completa. Cada truco mencionado arriba corresponde a un commit específico. Para probar el resultado, apunta claude.ai a tu propia instancia de Reactive Resume y conéctate vía OAuth. Mi configuración está disponible en [resume.vasudev.xyz](https://resume.vasudev.xyz).
 
 ---
 
 *Christian Pojoni crea integraciones MCP para herramientas de código abierto. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de este artículo fue generada por IA.*

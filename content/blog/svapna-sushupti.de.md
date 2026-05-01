@@ -1,19 +1,21 @@
 ---
-title: "Svapna oder Sushupti: Was drei Traditionen über Offline‑Gedächtniskonsolidierung sagen"
+title: "Svapna oder Sushupti: Was drei Traditionen über die Offline‑Gedächtniskonsolidierung sagen"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurowissenschaften, aktuelle KI‑Papiere und ein alter Sanskrit‑Text kommen zu derselben Erkenntnis über die Offline‑Konsolidierung, unterscheiden sich jedoch darin, welche Schlafphase am wichtigsten ist."
+description: "Neurowissenschaften, aktuelle KI-Papiere und ein antiker Sanskrit-Text convergen auf dieselbe Erkenntnis über Offline‑Konsolidierung, doch sie unterscheiden sich darin, welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "29dcf70d43b8332f79409f6ee5174b7f"
-chunkHashes: "aff1f774381ed48e,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,6a02d90707faf5d9"
+images: ["/images/svapna-sushupti-og.png"]
+images: ["/images/svapna-sushupti-og.png"]
+translationHash: "40ec7b023a242b0d0d78f6589ba3704b"
+chunkHashes: "94d776d6fdaad568,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
-[My last post](/blog/why-ai-agents-need-sleep/) argued that AI agents need sleep. Several people asked the obvious follow‑up: what does that actually mean? Is “sleep” just a metaphor for running a cron job, or does the analogy go deeper?
+[Mein letzter Beitrag](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Anschlussfrage: Was bedeutet das überhaupt? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
 
-I spent a week reading across three bodies of literature that almost never cite each other: recent AI memory papers, sleep neuroscience, and the [Mandukya Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). They converge on the same core insight about offline consolidation. They also surface a disagreement that turns out to be the most important design question in AI memory systems right now.
+Ich habe eine Woche damit verbracht, drei Literaturgebiete zu lesen, die fast nie aufeinander verweisen: aktuelle KI‑Gedächtnis‑Papiere, Schlaf‑Neurowissenschaften und die [Mandukya‑Upanisad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie konvergieren auf dieselbe zentrale Erkenntnis zur Offline‑Konsolidierung. Sie bringen außerdem einen Konflikt ans Licht, der sich als die wichtigste Gestaltungsfrage für KI‑Gedächtnissysteme herausstellt.
 
-**All three traditions agree that offline processing is necessary. None of them agree on whether recombination or dissolution does the real work.**
+**Alle drei Traditionen stimmen darin überein, dass Offline‑Verarbeitung notwendig ist. Keiner von ihnen ist sich darüber einig, ob Rekombination oder Auflösung die eigentliche Arbeit leistet.**
 ## The Landscape: Three Traditions, One Problem
 
 Das Problem, das jede Tradition löst, ist dasselbe: Wie kann ein System, das während wacher Aktivitäten Erfahrung sammelt, das Wichtige behalten, das Unwichtige verwerfen und am nächsten Tag funktionstüchtig bleiben?
@@ -66,20 +68,22 @@ Dies ist die zu prüfende Hypothese: **Für Agent‑Gedächtnisse übertrifft Au
 | **Védisch** | Externe Wahrnehmung über die Sinne | Interne Reorganisation, Verarbeitung von Samskaras | Formlose Aufnahme, alle Vrittis aufgelöst |
 | **Neurowissenschaft** | Kodierung (Hippocampus, sensorischer Kortex) | REM‑Wiedergabe, Integration, Transformation | NREM‑Langsamwelle, synaptische Down‑Selection, Homöostase |
 | **KI‑Systeme** | Normale Inferenz, Werkzeugaufrufe, Schreibvorgänge | LLM‑Konsolidierung, Cluster‑Synthese, Traumtagebuch | Verfall, Beschneidung, Ausschluss archivierter Engramme, Konfliktlösung |
-## What I Left Out
+## Was ich weggelassen habe
 
-**[Turiya](https://de.wikipedia.org/wiki/Turiya).** Der vierte Zustand im Mandukya‑Rahmen, reines Bewusstsein, das den anderen drei zugrunde liegt, hat noch keine offensichtliche KI‑Entsprechung. Die nächstliegende Abbildung ist das Benchmark‑Harness selbst: etwas Externes, das die Agenten‑Performance über alle drei Betriebszustände hinweg beobachtet, ohne Teil von ihnen zu sein.
+**[Turiya](https://de.wikipedia.org/wiki/Turiya).** Der vierte Zustand im Mandukya‑Framework, reines Bewusstsein, das den anderen drei zugrunde liegt, hat noch keine offensichtliche KI‑Entsprechung. Die engste Zuordnung ist das Benchmark‑Harness selbst: etwas Externes, das die Agenten‑Leistung in allen drei Betriebszuständen beobachtet, ohne Teil davon zu sein.
 
-**Träume als kausal notwendige vs. epiphänomale Phänomene.** Neuronales Re‑Play während des Schlafs ist der Mechanismus. Das Träumen als subjektives Erleben kann kausal mit Konsolidierungsergebnissen zusammenhängen oder auch nicht. Die KI‑Analogie zum Dream Journal (Phase 6 im Dream Engine) ist das menschenlesbare narrative Artefakt der Konsolidierung, nicht der Mechanismus selbst.
+**Träume als kausal notwendig vs. epiphänomenal.** Neuronales Replay während des Schlafes ist der Mechanismus. Das Träumen als subjektives Erleben kann kausal mit Konsolidierungsergebnissen zusammenhängen oder auch nicht. Die KI‑Analogie zum Dream Journal (Phase 6 im Dream Engine) ist das menschenlesbare narrative Artefakt der Konsolidierung, nicht der Mechanismus selbst.
 
-**Cross‑Agent‑Sleep.** Wenn mehrere Agenten ein gemeinsames Speicher‑Backend (MuninnDB multi‑tenant) nutzen, wie sieht Schlaf aus, wenn Agenten gleichzeitig in unterschiedlichen Betriebsphasen sind? In keiner der drei Traditionen behandelt.
-
----
-
-Die Benchmark‑Daten, um svapna vs. sushupti für KI‑Agenten‑Gedächtnis zu klären, sind in Arbeit. Sobald sie verfügbar sind, werde ich den Follow‑up schreiben. Für jetzt: drei Traditionen, die sich über Jahrtausende unabhängiger Entwicklung erstrecken, stimmen darin überein, dass Offline‑Verarbeitung nicht optional ist. Was sie darüber hinaus disagrees, ist aufschlussreich.
-
-Lies den [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) für die aktuelle Implementierung. Der GoodAI LTM‑Benchmark‑Adapter befindet sich unter [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
+**Cross‑Agent‑Schlaf.** Wenn mehrere Agenten ein gemeinsames Speicher‑Backend teilen (MuninnDB Multi‑Tenant), wie sieht Schlaf aus, wenn Agenten gleichzeitig in verschiedenen betrieblichen Phasen sind? In keiner der drei Traditionen behandelt.
 
 ---
 
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges Rust‑Agent‑Runtime, und trägt zu [MuninnDB](https://github.com/scrypster/muninndb) bei. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+Die Benchmark‑Daten, um svapna vs. sushupti für KI‑Agenten‑Gedächtnis zu klären, sind in Arbeit. Sobald sie vorliegen, werde ich den Nachtrag schreiben. Für den Moment: Drei Traditionen, die über Jahrtausende unabhängiger Entwicklung entstanden sind, stimmen darin überein, dass Offline‑Verarbeitung nicht optional ist. Was sie nicht einig sind, ist aufschlussreich.
+
+Lies das [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) für die aktuelle Implementierung. Der GoodAI LTM‑Benchmark‑Adapter befindet sich unter [5queezer/goodai-ltm-benchmark](https://github.com/5queezer/goodai-ltm-benchmark/tree/feature/muninn-adapter).
+
+---
+
+*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges Rust‑Agenten‑Runtime, und trägt zu [MuninnDB](https://github.com/scrypster/muninndb) bei. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Titelbild für diesen Beitrag wurde von KI generiert.*

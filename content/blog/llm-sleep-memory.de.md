@@ -1,13 +1,15 @@
 ---
-title: "Schlafinspirierter Speicher für LLM-Agenten: 6 Paper nach dem, was du diese Woche liefern kannst"
+title: "Schlaf-inspirierter Speicher für LLM‑Agenten: 6 Arbeiten, sortiert nach dem, was du diese Woche liefern kannst"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
-description: "Ich habe 6 Fachartikel über biologisch inspirierte Gedächtnis‑Wiedergabe für LLM‑Agenten gelesen. Nur 2 sind deine Zeit wert, wenn du baust, nicht veröffentlichst."
+description: "Ich habe 6 Paper über biologisch inspirierte Gedächtnis‑Wiedergabe für LLM‑Agenten gelesen. Nur 2 sind deine Zeit wert, wenn du baust, nicht veröffentlichst."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "5442b89ab3eb0a51f14feda5e79d5bdd"
-chunkHashes: "8d8169ec337b4cb2,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,74ad075b15bb058d"
+images: ["/images/llm-sleep-memory-og.png"]
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "dc1c61ff16a3fe8d787336ddbc43a7d9"
+chunkHashes: "304fe55422f9d25a,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
 Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
 
@@ -52,12 +54,14 @@ Das Papier, das ich mir wünschen würde, existiert nicht: ein direkter Vergleic
 Der Kernbeitrag des Dream Engine, Phase 2b (LLM‑Beurteilung von nahezu doppelten Clustern), bleibt unvalidiert, weil kein LLM‑Anbieter auf dem Benchmark‑Server konfiguriert war. Das ist das Nächste, das wir liefern sollten, nicht das nächste Papier, das wir lesen.
 ## Das unbequeme Muster
 
-Jedes Übersichts‑Paper in diesem Bereich zitiert biologische Inspirationen. Ebbinghaus, Hebb‑Lernen, synaptische Konsolidierung, Schlafspindeln: Das Vokabular ist überall. Die empirische Validierung ist fast nirgends. SleepGate und MemoryBench sind Ausnahmen, weil sie sich zu testbaren Behauptungen verpflichten. Die Übersichten verpflichten sich zu Taxonomien.
+Jedes Übersichts­papier in diesem Bereich zitiert biologische Inspirationen. Ebbinghaus, Hebb’sches Lernen, synaptische Konsolidierung, Schlafspindeln: Das Vokabular ist überall. Die empirische Validierung ist fast nirgends. SleepGate und MemoryBench sind Ausnahmen, weil sie testbare Behauptungen aufstellen. Die Übersichten beschränken sich auf Taxonomien.
 
-Wenn du Agent‑Speicher baust: zuerst Benchmark, dann Konsolidierung, dann Veröffentlichung. Wenn dein Konsolidierungs‑Feature eine Proxy‑Metrik verbessert, ohne die Abruf‑Genauigkeit zu steigern, hast du einen [abgesonderten Proxy](/blog/memory-metrics-lying-how-to-ground-them/) gebaut, kein Feature.
+Wenn du Agenten‑Gedächtnis baust: zuerst benchmarken, dann konsolidieren, dann veröffentlichen. Wenn dein Konsolidierungs‑Feature eine Proxy‑Metrik verbessert, ohne die Abruf‑Genauigkeit zu erhöhen, hast du einen [abgekoppelten Proxy](/blog/memory-metrics-lying-how-to-ground-them/), nicht ein Feature gebaut.
 
-Fange mit [MemoryBench](https://arxiv.org/abs/2510.17281) an. Lies [SleepGate](https://arxiv.org/abs/2603.14517) für das Vergessens‑Modell. Baue deine Pipeline. Dann messe, ob es tatsächlich hilft.
+Fange mit [MemoryBench](https://arxiv.org/abs/2510.17281) an. Lies [SleepGate](https://arxiv.org/abs/2603.14517) für das Vergessens‑Modell. Baue deine Pipeline. Dann messe, ob es wirklich hilft.
 
 ---
 
-*Christian Pojoni baut Edge‑First‑KI‑Agent‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist die Laufzeit. [MuninnDB](https://muninndb.com) ist der Speicher. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni baut Edge‑First‑KI‑Agenten‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist die Laufzeit. [MuninnDB](https://muninndb.com) ist das Gedächtnis. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+
+*Das Titelbild für diesen Beitrag wurde von KI generiert.*

@@ -1,19 +1,21 @@
 ---
-title: "Patanjali hatte die Filtering‑Spezifikation. Wir haben gerade die Tests geschrieben."
+title: "Patanjali hatte das Filter‑Spezifikationsdokument. Wir haben nur die Tests geschrieben."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "Gedächtniskonsolidierung verschlechterte das Abrufen. Drei Gestaltungsprinzipien aus Agent‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur yogischen Aufmerksamkeitstheorie."
+description: "Gedächtniskonsolidierung verschlechterte das Abrufen. Drei Gestaltungsprinzipien aus Agenten‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur yogischen Aufmerksamkeits­theorie."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "23f635aa5ccf9c7ebc9fecd4512d4498"
-chunkHashes: "31381edb8546ec1f,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,246c64c22c93fe91"
+images: ["/images/patanjali-harness-spec-og.png"]
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "18c8b5fce46eed7a8604eb8b6b1d9f94"
+chunkHashes: "5d09566bcf58b3c1,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-[MuninnDB](https://github.com/scrypster/muninndb)'s Konsolidierungssystem hat drei farbvariante Duplikat‑Engramme exakt wie vorgesehen zusammengeführt (Kosinus‑Ähnlichkeit ≥ 0.95). Die Retrieval‑Leistung verschlechterte sich. In einem 13‑Engram‑Tresor verschob das Entfernen von Duplikaten den Normalisierungs‑Anker und drückte relevante Ergebnisse im Ranking nach unten. Die Lösung war eine Guard‑Clause: `MinDedupVaultSize` (Standard 20), die Phase‑2‑Dedup in kleinen Tresoren überspringt. [PR #359](https://github.com/scrypster/muninndb/pull/359) schloss das Problem.
+[MuninnDB](https://github.com/scrypster/muninndb)’s Konsolidierungssystem hat drei farbvariante Duplikat‑Engramme exakt wie vorgesehen zusammengeführt (Kosinus‑Ähnlichkeit ≥ 0.95). Die Retrieval‑Leistung verschlechterte sich. In einem 13‑Engram‑Vault führte das Entfernen von Duplikaten zu einer Verschiebung des Normalisierungsankers, wodurch relevante Ergebnisse im Ranking nach unten gedrängt wurden. Die Lösung war eine Guard‑Clause: `MinDedupVaultSize` (Standardwert 20), die Phase‑2‑Dedup in kleinen Vaults überspringt. [PR #359](https://github.com/scrypster/muninndb/pull/359) schloss das Problem.
 
-Der Fehler war kein Bug im Dedup‑Algorithmus. Es war ein Versagen der *Unterscheidungs­fähigkeit*: ein gültiger Konsolidierungsschritt, angewendet in einem Kontext, in dem er Schaden anrichtete. Wann konsolidieren, wann unbeeinflusst lassen, was als Rauschen vs. Signal gilt. Dieses Problem hat eine lange Geschichte außerhalb der Informatik. Ich fand drei konkrete Designprinzipien in den [Yoga‑Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_von_Patanjali), die zu empirischen Resultaten aus [Meta‑Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [Harness‑Engineering‑Framework](https://martinfowler.com/articles/harness-engineering.html) passen.
+Der Fehler war kein Bug im Dedup‑Algorithmus. Es war ein Versagen des *Urteils*: ein gültiger Konsolidierungsvorgang, der in einem Kontext angewendet wurde, in dem er Schaden anrichtete. Wann konsolidieren, wann es belassen, was als Rauschen und was als Signal zählt. Dieses Problem hat eine lange Geschichte außerhalb der Informatik. Ich fand drei konkrete Designprinzipien in den [Yoga Sutras](https://de.wikipedia.org/wiki/Yoga_Sutras_of_Patanjali), die zu empirischen Ergebnissen aus [Meta‑Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, März 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) und Böckelers [Harness Engineering Framework](https://martinfowler.com/articles/harness-engineering.html) passen.
 
-**Die kontemplativen Traditionen haben ausgefeilte Modelle der Aufmerksamkeits‑Filterung entwickelt. Einige dieser Modelle erzeugen testbare Hypothesen, die die aktuelle Literatur zur Agent‑Speicherung nicht liefert.**
+**Die kontemplativen Traditionen haben ausgeklügelte Modelle der Aufmerksamkeitsfilterung entwickelt. Einige dieser Modelle erzeugen testbare Hypothesen, die die aktuelle Literatur zur Agenten‑Memory nicht liefert.**
 ## 1. Nicht alle Geräusche sind gleich (Vrtti Nirodha)
 
 Before the dedup failure, [benchmark #311](https://github.com/scrypster/muninndb/issues/311) hit a more basic problem. MuninnDB's ACT-R scoring ([issue #331](https://github.com/scrypster/muninndb/issues/331)) clamped fresh engrams to raw=1.0, making all retrieval scores identical at 0.9000. The system could not distinguish signal from noise. Every entry looked equally relevant. After the fix ([PR #337](https://github.com/scrypster/muninndb/pull/337)), score range improved to 0.18-0.90 and correct top-1 retrieval went to 5/5 queries. Uniform treatment of entries had been destroying retrieval quality.
@@ -113,10 +115,12 @@ Der anfängliche Benchmark hat eine Frage beantwortet. Einheitliches Dedup in kl
 Pratyahara ist bereits korrekt implementiert: Das Memory‑Trait gibt Top‑k zurück, Punkt. Der Benchmark‑Harness erfasst die vollständige Abruf­entscheidung. Der Agent muss nicht wissen, was ausgeschlossen wurde. Der Ingenieur tut es.
 
 Keine dieser Anforderungen verlangt den Glauben an Chakras. Sie verlangen, die Diskriminierungen ernst zu nehmen als ingenieurtechnische Heuristiken und zu messen, ob sie die Erinnerung des Agenten bei realistischen Workloads verbessern. Der Anfangs‑Benchmark zwang zu einer Design‑Änderung. Der synthetische Vault‑Generator entscheidet den Rest.
-## Weiterführende Literatur
+## Weiterführende Lektüre
 
-[Böckeler's Harness Engineering Framework](https://martinfowler.com/articles/harness-engineering.html), die Taxonomie (Leitfäden, Sensoren, rechnerisch, inferenziell). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), empirische Evidenz, dass Änderungen am Harness 6‑fach höhere Leistungsunterschiede erzeugen. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820), das bislang engste Vorbild, das Vedanta auf Agentenarchitekturen überträgt (konzeptionell, noch keine Benchmarks). Yoga‑Sutras 1.2‑1.16, das Aufmerksamkeits‑Filterungsmodell, dem alles andere vorausgeht. [MuninnDB](https://github.com/scrypster/muninndb), wo die Hypothesen getestet werden. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), die ersten Ergebnisse. [PR #337](https://github.com/scrypster/muninndb/pull/337), die Korrektur der Sättigungs‑Score‑Problematik. [PR #359](https://github.com/scrypster/muninndb/pull/359), die Duplikat‑Schutz‑Logik. [Hrafn](https://github.com/5queezer/hrafn), die Laufzeit, die auf einem $10 Raspberry Pi läuft.
+[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html), die Taxonomie (Guides, Sensors, Computational, Inferential). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), empirische Evidenz, dass Änderungen am Harness Leistungsunterschiede von 6× erzeugen. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820), das bisher engste Vorbild, das Vedanta auf Agentenarchitektur abbildet (konzeptionell, noch keine Benchmarks). Yoga Sutras 1.2‑1.16, das Aufmerksamkeitsfilter‑Modell, das allem vorausgeht. [MuninnDB](https://github.com/scrypster/muninndb), wo die Hypothesen getestet werden. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), die ersten Ergebnisse. [PR #337](https://github.com/scrypster/muninndb/pull/337), die Korrektur der Score‑Sättigung. [PR #359](https://github.com/scrypster/muninndb/pull/359), die Duplikat‑Schutzmaßnahme. [Hrafn](https://github.com/5queezer/hrafn), das Laufzeit‑Framework, das auf einem $10 Raspberry Pi läuft.
 
 ---
 
 *Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges Agenten‑Runtime in Rust. Vorheriger Beitrag: [Why AI Agents Need Sleep](/blog/why-ai-agents-need-sleep/).*
+
+*Das Titelbild dieses Beitrags wurde von KI generiert.*
