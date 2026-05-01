@@ -2,6 +2,10 @@
 title: "Ihr Code Knowledge Graph benötigt vier Ebenen, nicht nur eine"
 date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
+agentQuestions:
+  - "Warum braucht ein Code-Knowledge-Graph vier Ebenen?"
+  - "Was fügt Ebene vier für Agenten hinzu?"
+  - "Wie sollte ein LLM durch einen Codegraphen navigieren?"
 description: "Das Gedächtnis sollte ein Graph sein. Der Graph sollte vier Ebenen haben. Die mittlere trägt die Navigation. Die oberste verwandelt Navigation in Aktion."
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
 translationHash: "0acb6db7b368f620871d12894199b3c4"

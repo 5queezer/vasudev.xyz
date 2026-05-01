@@ -2,6 +2,10 @@
 title: "Sparse Autoencoders können das Verhalten zur Generierungszeit nicht messen. Das ist kein Bug."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
+agentQuestions:
+  - "Warum können SAEs Verhalten zur Generierungszeit nicht messen?"
+  - "Was zeigt das Sycophancy-Ergebnis wirklich?"
+  - "Wie sollten Halluzinationsfeatures gemessen werden?"
 series: ["Reading the Residual Stream"]
 series_weight: 1
 description: "Warum Sycophancy‑SAE‑Merkmale ein Cohen’s d von 9,9 haben, aber die Halluzinationsdetektion fehlschlägt. Die Antwort erwies sich als tiefergehend als der Messzeitpunkt."

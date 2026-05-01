@@ -2,6 +2,10 @@
 title: "Svapna oder Sushupti: Was drei Traditionen über Offline‑Gedächtniskonsolidierung sagen"
 date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
+agentQuestions:
+  - "Svapna oder Sushupti: Welche Schlafphase zählt?"
+  - "Wie vergleichen sich Neurowissenschaft und Vedanta?"
+  - "Was bedeutet das für Agenten-Memory?"
 series: ["Building Agents That Sleep"]
 series_weight: 5
 description: "Neurowissenschaften, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text kommen zur selben Erkenntnis über die Offline‑Konsolidierung, streiten jedoch darüber, welche Schlafphase am wichtigsten ist."

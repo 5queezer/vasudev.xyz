@@ -2,6 +2,10 @@
 title: "Schlaf-inspirierter Speicher für LLM‑Agenten: 6 Arbeiten nach dem, was du diese Woche liefern kannst, bewertet"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
+agentQuestions:
+  - "Welche Sleep-Memory-Papers sind praktisch umsetzbar?"
+  - "Was bringt Memory Replay einem LLM-Agenten?"
+  - "Wie würde ich das diese Woche implementieren?"
 series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Ich habe 6 Arbeiten über biologisch inspirierte Gedächtnis‑Wiederholungen für LLM‑Agenten gelesen. Nur 2 sind Ihre Zeit wert, wenn Sie bauen, nicht veröffentlichen."

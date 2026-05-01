@@ -2,6 +2,10 @@
 title: "Memoria inspirada en el sueño para agentes LLM: 6 artículos clasificados por lo que puedes lanzar esta semana"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
+agentQuestions:
+  - "¿Qué papers de memoria inspirada en el sueño se pueden implementar?"
+  - "¿Qué aporta la repetición de memoria a un agente LLM?"
+  - "¿Cómo lo implementaría esta semana?"
 series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Leí 6 artículos sobre reproducción de memoria inspirada biológicamente para agentes LLM. Solo 2 valen tu tiempo si estás construyendo, no publicando."

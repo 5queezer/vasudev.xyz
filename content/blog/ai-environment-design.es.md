@@ -2,6 +2,10 @@
 title: "Deja de diseñar tu sistema de IA. Diseña su entorno."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
+agentQuestions:
+  - "¿Por qué diseñar el entorno en vez del sistema de IA?"
+  - "¿Cuál es aquí el ciclo de mutación y selección?"
+  - "¿Cómo se aplica a agentes autoevolutivos?"
 series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "La IA autoevolutiva falla cuando optimiza un evaluador fijo. El modelo biológico es correcto: lo que debe evolucionar es la presión de selección, no solo el genoma."

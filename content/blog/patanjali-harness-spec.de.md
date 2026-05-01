@@ -2,6 +2,10 @@
 title: "Patanjali hatte die Filter‑Spezifikation. Wir haben gerade die Tests geschrieben."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
+agentQuestions:
+  - "Welche Filtering-Spec schlägt Patanjali vor?"
+  - "Warum machte Konsolidierung Retrieval schlechter?"
+  - "Was sollte ein Agenten-Memory-Harness testen?"
 series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "Gedächtniskonsolidierung verschlechterte das Abrufen. Drei Gestaltungsprinzipien aus Agent‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur yogischen Aufmerksamkeits­theorie."

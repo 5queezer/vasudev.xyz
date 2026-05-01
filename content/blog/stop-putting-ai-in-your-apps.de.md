@@ -4,6 +4,10 @@ date: 2026-03-27
 description: "Warum KI‑Funktionen in traditionellen Apps rückwärtsgewandt sind und wie MCP die Architektur umkehrt."
 author: "Christian Pojoni"
 tags: ["mcp", "ai", "architecture"]
+agentQuestions:
+  - "Warum Apps in KI stecken statt KI in Apps?"
+  - "Wie dreht MCP die App-Architektur um?"
+  - "Was ist falsch an eingebetteten KI-Chatboxen?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
 translationHash: "e8002c90b2434015c25a0c3a98977756"

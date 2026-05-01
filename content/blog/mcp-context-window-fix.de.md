@@ -2,6 +2,10 @@
 title: "Ihr MCP‑Setup verbraucht 90 % seines Kontextfensters. So beheben Sie das."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
+agentQuestions:
+  - "Warum verbrennt MCP Kontextfenster?"
+  - "Wie behebt verzögertes Tool-Laden MCP?"
+  - "Was sollten MCP-Server upfront offenlegen?"
 description: "Jedes MCP‑Tool, das Sie verbinden, lädt sein vollständiges Schema im Voraus, bevor Sie ein Wort tippen. Anthropic’s verzögertes Laden behebt das."
 images: ["/images/mcp-context-window-fix-og.png"]
 translationHash: "59baaf1f34cfa050309416d377d1ef07"

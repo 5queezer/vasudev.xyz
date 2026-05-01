@@ -5,6 +5,10 @@ description: "Nachverfolgung eines sporadischen ‘invalid middleware’-Fehlers
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
+agentQuestions:
+  - "Warum war das ein Traefik-Bug und kein Sablier-Bug?"
+  - "Was änderte sich beim Plugin-Start in Traefik 3.5.3?"
+  - "Wie kann ich den invalid-middleware-Fehler reproduzieren?"
 series: ["Field Notes"]
 translationHash: "62d5bb434393d26d88b269a846a4d471"
 chunkHashes: "278fb8e0d3039274,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"

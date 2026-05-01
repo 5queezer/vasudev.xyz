@@ -2,6 +2,10 @@
 title: "Las métricas de memoria de tu agente te están mintiendo. Así es como puedes fundamentarlas."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
+agentQuestions:
+  - "¿Por qué mienten las métricas de memoria?"
+  - "¿Qué comprobaciones de recuperación con verdad base importan?"
+  - "¿Cómo afecta la ley de Goodhart a la memoria de agentes?"
 series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "La consolidación de la memoria se ve genial en los paneles. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."

@@ -195,13 +195,31 @@ func TestExtractChunkHashesEmpty(t *testing.T) {
 
 func TestBuildTranslatedFileIncludesChunkHashes(t *testing.T) {
 	fm := "---\ntitle: \"Original\"\ndescription: \"Desc\"\n---\n"
-	output := buildTranslatedFile(fm, "Translated", "Beschreibung", "abc123", []string{"h1", "h2", "h3"}, "body")
+	output := buildTranslatedFile(fm, "Translated", "Beschreibung", "abc123", []string{"h1", "h2", "h3"}, nil, "body")
 	if !strings.Contains(output, "chunkHashes: \"h1,h2,h3\"") {
 		t.Fatalf("output should contain chunkHashes, got:\n%s", output)
 	}
 	if !strings.Contains(output, "translationHash: \"abc123\"") {
 		t.Fatalf("output should contain translationHash, got:\n%s", output)
 	}
+}
+
+func TestBuildTranslatedFileLocalizesAgentQuestions(t *testing.T) {
+	fm := "---\ntitle: \"Original\"\ndescription: \"Desc\"\nagentQuestions:\n  - \"English question?\"\ntags: [\"ai\"]\n---\n"
+	output := buildTranslatedFile(fm, "Translated", "Beschreibung", "abc123", nil, []string{"Deutsche Frage?"}, "body")
+	if strings.Contains(output, "English question?") {
+		t.Fatalf("output should not keep source-language agent question:\n%s", output)
+	}
+	if !strings.Contains(output, "  - \"Deutsche Frage?\"") {
+		t.Fatalf("output should contain localized agent question:\n%s", output)
+	}
+}
+
+func TestExtractFrontMatterList(t *testing.T) {
+	data := []byte("---\ntitle: \"Test\"\nagentQuestions:\n  - \"One?\"\n  - \"Two?\"\ntags: [\"ai\"]\n---\nBody")
+	got := extractFrontMatterList(data, "agentQuestions")
+	want := []string{"One?", "Two?"}
+	assertStringSlicesEqual(t, got, want)
 }
 
 func TestHeadAndTailSnippet(t *testing.T) {

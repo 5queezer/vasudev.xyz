@@ -4,6 +4,10 @@ date: 2026-03-27
 description: "¿Por qué las funciones de IA dentro de las aplicaciones tradicionales son retroactivas y cómo MCP invierte la arquitectura?"
 author: "Christian Pojoni"
 tags: ["mcp", "ai", "architecture"]
+agentQuestions:
+  - "¿Por qué poner apps dentro de la IA y no IA dentro de apps?"
+  - "¿Cómo invierte MCP la arquitectura de apps?"
+  - "¿Qué falla en las cajas de chat de IA embebidas?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
 translationHash: "e8002c90b2434015c25a0c3a98977756"

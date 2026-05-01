@@ -3,6 +3,10 @@ title: "Streaming-UI von KI-Agenten: 5 Werkzeuge bewertet"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
+agentQuestions:
+  - "Welches Streaming-UI-Tool gewinnt und warum?"
+  - "Wie unterscheiden sich AG-UI und Vercel AI SDK?"
+  - "Welche Architektur zählt für Agenten-UI?"
 description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI und Kombai setzen unterschiedliche Einsätze darauf, wie Agenten Schnittstellen erstellen sollten. Die architektonische Frage entscheidet, welcher gewinnt."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"

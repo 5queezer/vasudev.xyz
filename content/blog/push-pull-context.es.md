@@ -2,6 +2,10 @@
 title: "Deja de poner decisiones en CLAUDE.md. Colócalas donde el agente no siempre las lea."
 date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
+agentQuestions:
+  - "¿Qué va en contexto push y qué en contexto pull?"
+  - "¿Por qué CLAUDE.md es el lugar equivocado para decisiones?"
+  - "¿Cómo deberían recuperar ADRs los agentes?"
 description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que separas el contexto de envío del contexto de extracción."
 images: ["/images/push-pull-context-og.png"]
 translationHash: "1efe46f0746426b51d508fdcc4e7a4df"

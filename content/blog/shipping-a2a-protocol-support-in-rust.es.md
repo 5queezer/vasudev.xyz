@@ -5,6 +5,10 @@ description: "Lo que aprendí al añadir soporte para el protocolo Agent-to-Agen
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
+agentQuestions:
+  - "¿Qué trampas tiene el protocolo A2A en Rust?"
+  - "¿Cómo deberían funcionar la autenticación y seguridad A2A?"
+  - "¿Qué se rompió durante la integración del protocolo?"
 series: ["Field Notes"]
 translationHash: "e290bfc379275379386cba67f78293e5"
 chunkHashes: "a794b355e8c4a403,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"

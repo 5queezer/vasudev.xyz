@@ -2,6 +2,10 @@
 title: "Capital-of ist kein einzelnes SAE-Feature. Also habe ich eine Mutationsschleife gebaut, um herauszufinden, was es ist."
 date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
+agentQuestions:
+  - "Warum ist capital-of kein einzelnes SAE-Feature?"
+  - "Wie fand die Mutationsschleife bessere Signale?"
+  - "Warum war Tokenisierung der Engpass?"
 series: ["Reading the Residual Stream"]
 series_weight: 2
 description: "SAE‑Funktionen können Beziehungen in Gemma-2-2B nicht isolieren. Ich habe eine Mutations‑Selektions‑Schleife gebaut, die das kann. Der Engpass war die Tokenisierung."

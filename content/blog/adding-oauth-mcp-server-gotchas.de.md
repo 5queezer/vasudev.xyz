@@ -5,6 +5,10 @@ description: "Was kaputt ging, als ich claude.ai mit meiner eigenen Reactive Res
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
+agentQuestions:
+  - "Was bricht beim Hinzufügen von OAuth 2.1 zu MCP?"
+  - "Wie sollte MCP-OAuth-Discovery konfiguriert werden?"
+  - "Welche OAuth-Fallstricke gibt es beim Self-Hosting?"
 series: ["Field Notes"]
 translationHash: "c80e75aa728e9520e437feeab02f9d09"
 chunkHashes: "1a0ca76a3309f99b,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"

@@ -2,6 +2,10 @@
 title: "Stoppe das Entwerfen deines KI-Systems. Gestalte seine Umgebung."
 date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
+agentQuestions:
+  - "Warum die Umgebung statt des KI-Systems gestalten?"
+  - "Was ist hier der Mutations- und Selektionszyklus?"
+  - "Wie gilt das für selbstentwickelnde Agenten?"
 series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Selbstentwickelnde KI nutzt Versagen, wenn sie einen festen Evaluator optimiert. Das biologische Modell ist richtig: Was sich weiterentwickeln muss, ist der Selektionsdruck, nicht nur das Genom."

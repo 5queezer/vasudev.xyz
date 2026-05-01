@@ -2,6 +2,10 @@
 title: "Por qué los agentes de IA necesitan dormir"
 date: 2026-03-28
 tags: ["ai", "memory", "muninndb", "architecture"]
+agentQuestions:
+  - "¿Por qué los agentes de IA necesitan dormir?"
+  - "¿Cómo funciona el Dream Engine de MuninnDB?"
+  - "¿Qué arregla la consolidación en memoria de agentes?"
 series: ["Building Agents That Sleep"]
 series_weight: 1
 description: "Los agentes de IA capturan recuerdos pero nunca los consolidan. Así es como el Dream Engine de MuninnDB se inspira en la neurociencia para solucionar eso."

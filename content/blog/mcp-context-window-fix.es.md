@@ -2,6 +2,10 @@
 title: "Tu configuración de MCP está consumiendo el 90 % de su ventana de contexto. Aquí está la solución."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
+agentQuestions:
+  - "¿Por qué MCP consume la ventana de contexto?"
+  - "¿Cómo arregla MCP la carga diferida de herramientas?"
+  - "¿Qué deben exponer de entrada los servidores MCP?"
 description: "Cada herramienta MCP a la que te conectas carga su esquema completo de antemano, antes de que escribas una sola palabra. La carga diferida de Anthropic soluciona esto."
 images: ["/images/mcp-context-window-fix-og.png"]
 translationHash: "59baaf1f34cfa050309416d377d1ef07"

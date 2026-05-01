@@ -2,6 +2,10 @@
 title: "Capital-of No es una característica única de SAE. Así que construí un bucle de mutación para encontrar qué es."
 date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
+agentQuestions:
+  - "¿Por qué capital-of no es una sola característica SAE?"
+  - "¿Cómo encontró mejores señales el bucle de mutación?"
+  - "¿Por qué la tokenización fue el cuello de botella?"
 series: ["Reading the Residual Stream"]
 series_weight: 2
 description: "Las características SAE no pueden aislar relaciones en Gemma-2-2B. Construí un bucle de mutación‑selección que sí puede. El cuello de botella era la tokenización."

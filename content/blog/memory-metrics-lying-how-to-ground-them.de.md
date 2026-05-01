@@ -2,6 +2,10 @@
 title: "Die Speicherkennzahlen Ihres Agenten lügen Sie an. So verankern Sie sie."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
+agentQuestions:
+  - "Warum lügen Memory-Metriken?"
+  - "Welche Ground-Truth-Retrieval-Checks zählen?"
+  - "Wie trifft Goodharts Gesetz Agenten-Memory?"
 series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "Die Gedächtniskonsolidierung sieht auf Dashboards großartig aus. Aber wenn sich Ihre Metriken verbessern können, ohne dass die Abrufleistung besser wird, optimieren Sie eine losgelöste Stellvertretergröße."

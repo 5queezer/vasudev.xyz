@@ -2,6 +2,10 @@
 title: "Patanjali tenía la especificación de filtrado. Nosotros sólo escribimos las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
+agentQuestions:
+  - "¿Qué especificación de filtrado sugiere Patanjali?"
+  - "¿Por qué la consolidación empeoró la recuperación?"
+  - "¿Qué debería probar un harness de memoria de agentes?"
 series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes y sus paralelos inesperados en la teoría de la atención yóguica."

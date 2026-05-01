@@ -3,6 +3,10 @@ title: "Interfaz de transmisión de agentes de IA: 5 herramientas clasificadas"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
+agentQuestions:
+  - "¿Qué herramienta de streaming UI gana y por qué?"
+  - "¿En qué se diferencian AG-UI y Vercel AI SDK?"
+  - "¿Qué arquitectura importa para UI de agentes?"
 description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI y Kombai hacen diferentes apuestas sobre cómo los agentes deben construir interfaces. La cuestión arquitectónica decide cuál gana."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"

@@ -2,6 +2,10 @@
 title: "El Puente es el Problema. El Acceso Directo a lo Divino No Necesita Intermediarios."
 date: 2026-04-10
 tags: ["philosophy", "spirituality"]
+agentQuestions:
+  - "¿Por qué el puente es el problema?"
+  - "¿Cómo describen estas tradiciones el acceso directo?"
+  - "¿Qué protocolo de práctica se deriva del post?"
 description: "Yoga, gnosticismo, zen, misticismo cristiano. Todos muestran lo mismo: la conexión directa siempre estuvo allí. ¿Quién la bloqueó y cómo puedes recuperarla?"
 images: ["/blog/direct-divine-access/og-image.png"]
 translationHash: "0321b1623a01e17222dc843d25a102af"

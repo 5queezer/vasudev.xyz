@@ -2,6 +2,10 @@
 title: "Los Autoencoders Escasos No Pueden Medir el Comportamiento en Tiempo de Generación. Eso No Es un Error."
 date: 2026-04-07
 tags: ["ai", "interpretability", "sparse-autoencoders"]
+agentQuestions:
+  - "¿Por qué los SAE no pueden medir comportamiento durante la generación?"
+  - "¿Qué muestra realmente el resultado de sycophancy?"
+  - "¿Cómo deberían medirse las características de alucinación?"
 series: ["Reading the Residual Stream"]
 series_weight: 1
 description: "¿Por qué las características de sycophancy SAE tienen un d de Cohen=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."

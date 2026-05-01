@@ -2,6 +2,10 @@
 title: "Tu Grafo de Conocimiento de Código Necesita Cuatro Capas, No Una"
 date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
+agentQuestions:
+  - "¿Por qué un grafo de conocimiento de código necesita cuatro capas?"
+  - "¿Qué añade la capa cuatro para agentes?"
+  - "¿Cómo debería navegar un LLM por un grafo de código?"
 description: "La memoria debería ser un grafo. El grafo debería tener cuatro capas. La del medio lleva la navegación. La superior convierte la navegación en acción."
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
 translationHash: "0acb6db7b368f620871d12894199b3c4"

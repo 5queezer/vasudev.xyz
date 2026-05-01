@@ -2,6 +2,10 @@
 title: "Die Brücke ist das Problem. Direkter Zugang zum Göttlichen erfordert keine Vermittler."
 date: 2026-04-10
 tags: ["philosophy", "spirituality"]
+agentQuestions:
+  - "Warum ist die Brücke das Problem?"
+  - "Wie beschreiben diese Traditionen direkten Zugang?"
+  - "Welches Praxisprotokoll folgt aus dem Beitrag?"
 description: "Yoga, Gnostizismus, Zen, christliche Mystik. Sie alle zeigen dasselbe: Die direkte Verbindung war immer da. Wer hat sie blockiert und wie kommt man zurück?"
 images: ["/blog/direct-divine-access/og-image.png"]
 translationHash: "0321b1623a01e17222dc843d25a102af"

@@ -120,9 +120,20 @@ entries:
 			title := extractFrontMatterField(srcData, "title")
 			translatedTitle := translateText(apiURL, llmModels, apiKey, title, lang, true)
 			translatedDesc := translateText(apiURL, llmModels, apiKey, extractFrontMatterField(srcData, "description"), lang, true)
+			agentQuestions := extractFrontMatterList(srcData, "agentQuestions")
+			translatedAgentQuestions := make([]string, 0, len(agentQuestions))
+			for _, question := range agentQuestions {
+				translatedQuestion := translateText(apiURL, llmModels, apiKey, question, lang, true)
+				if translatedQuestion == "" {
+					fmt.Fprintf(os.Stderr, "agent question translation failed for %s -> %s, skipping\n", name, lang)
+					translatedAgentQuestions = nil
+					break
+				}
+				translatedAgentQuestions = append(translatedAgentQuestions, translatedQuestion)
+			}
 
-			if translatedTitle == "" || translatedDesc == "" {
-				fmt.Fprintf(os.Stderr, "title/description translation failed for %s -> %s, skipping\n", name, lang)
+			if translatedTitle == "" || translatedDesc == "" || (len(agentQuestions) > 0 && translatedAgentQuestions == nil) {
+				fmt.Fprintf(os.Stderr, "front matter translation failed for %s -> %s, skipping\n", name, lang)
 				continue
 			}
 
@@ -184,7 +195,7 @@ entries:
 
 			translatedBody := strings.Join(translatedChunks, "\n")
 
-			output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, newHashes, translatedBody)
+			output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, newHashes, translatedAgentQuestions, translatedBody)
 			if err := os.WriteFile(targetPath, []byte(output), 0644); err != nil {
 				fmt.Fprintf(os.Stderr, "failed to write %s: %v\n", targetPath, err)
 				continue
@@ -232,22 +243,68 @@ func extractFrontMatterField(data []byte, field string) string {
 	return ""
 }
 
-func buildTranslatedFile(originalFM, title, description, hash string, chunkHashes []string, body string) string {
+func extractFrontMatterList(data []byte, field string) []string {
+	content := string(data)
+	if !strings.HasPrefix(content, "---\n") {
+		return nil
+	}
+	end := strings.Index(content[4:], "\n---\n")
+	if end == -1 {
+		return nil
+	}
+	fm := content[4 : 4+end]
+	lines := strings.Split(fm, "\n")
+	for i, line := range lines {
+		if line != field+":" {
+			continue
+		}
+		var values []string
+		for _, item := range lines[i+1:] {
+			trimmed := strings.TrimSpace(item)
+			if !strings.HasPrefix(trimmed, "- ") {
+				break
+			}
+			value := strings.TrimSpace(strings.TrimPrefix(trimmed, "- "))
+			value = strings.Trim(value, "\"")
+			values = append(values, value)
+		}
+		return values
+	}
+	return nil
+}
+
+func buildTranslatedFile(originalFM, title, description, hash string, chunkHashes []string, agentQuestions []string, body string) string {
 	var b strings.Builder
 
-	// Rewrite front matter with translated title/description, hash, and chunk hashes
+	// Rewrite front matter with translated title/description, localized agent questions, hash, and chunk hashes.
 	lines := strings.Split(originalFM, "\n")
+	skipAgentQuestions := false
+	wroteAgentQuestions := false
 	for _, line := range lines {
+		if skipAgentQuestions {
+			if strings.HasPrefix(line, "  - ") || strings.TrimSpace(line) == "" {
+				continue
+			}
+			skipAgentQuestions = false
+		}
+
 		switch {
 		case strings.HasPrefix(line, "title:"):
 			b.WriteString(fmt.Sprintf("title: \"%s\"\n", strings.ReplaceAll(title, "\"", "\\\"")))
 		case strings.HasPrefix(line, "description:"):
 			b.WriteString(fmt.Sprintf("description: \"%s\"\n", strings.ReplaceAll(description, "\"", "\\\"")))
+		case strings.HasPrefix(line, "agentQuestions:"):
+			writeAgentQuestions(&b, agentQuestions)
+			wroteAgentQuestions = true
+			skipAgentQuestions = true
 		case strings.HasPrefix(line, "translationHash:"):
 			// Skip old hash, we add a new one below
 		case strings.HasPrefix(line, "chunkHashes:"):
 			// Skip old chunk hashes, we add new ones below
 		case line == "---" && b.Len() > 0:
+			if !wroteAgentQuestions {
+				writeAgentQuestions(&b, agentQuestions)
+			}
 			b.WriteString(fmt.Sprintf("translationHash: \"%s\"\n", hash))
 			if len(chunkHashes) > 0 {
 				b.WriteString(fmt.Sprintf("chunkHashes: \"%s\"\n", strings.Join(chunkHashes, ",")))
@@ -261,6 +318,16 @@ func buildTranslatedFile(originalFM, title, description, hash string, chunkHashe
 
 	b.WriteString(body)
 	return b.String()
+}
+
+func writeAgentQuestions(b *strings.Builder, questions []string) {
+	if len(questions) == 0 {
+		return
+	}
+	b.WriteString("agentQuestions:\n")
+	for _, q := range questions {
+		b.WriteString(fmt.Sprintf("  - \"%s\"\n", strings.ReplaceAll(q, "\"", "\\\"")))
+	}
 }
 
 func translateText(apiURL string, llmModels []string, apiKey, text, lang string, isShort bool) string {

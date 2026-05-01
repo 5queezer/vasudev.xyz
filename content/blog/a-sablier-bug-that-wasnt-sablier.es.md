@@ -5,6 +5,10 @@ description: "Rastreando un error intermitente 'invalid middleware' en Sablier a
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
+agentQuestions:
+  - "¿Por qué era un bug de Traefik y no de Sablier?"
+  - "¿Qué cambió en el arranque de plugins de Traefik 3.5.3?"
+  - "¿Cómo puedo reproducir el fallo invalid middleware?"
 series: ["Field Notes"]
 translationHash: "62d5bb434393d26d88b269a846a4d471"
 chunkHashes: "278fb8e0d3039274,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"
