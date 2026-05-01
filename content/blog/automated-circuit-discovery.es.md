@@ -1,19 +1,20 @@
 ---
-title: "Capital-of no es una característica única de SAE. Así que construí un bucle de mutación para encontrar lo que es."
+title: "Capital-of No es una característica única de SAE. Así que construí un bucle de mutación para descubrir qué es."
 date: 2026-04-11
 tags: ["ai", "interpretability", "llm", "sparse-autoencoders"]
 series: ["Reading the Residual Stream"]
 series_weight: 2
 description: "Las características SAE no pueden aislar relaciones en Gemma-2-2B. Construí un bucle de mutación‑selección que sí puede. El cuello de botella era la tokenización."
 images: ["/images/automated-circuit-discovery-og.png"]
-translationHash: "9befcce93ec95923217969c0d61ba785"
-chunkHashes: "860f306da84ee4cc,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,1c2a62becafc5e4d"
+images: ["/images/automated-circuit-discovery-og.png"]
+translationHash: "68d0e70014a4c15cfe2fb40629124b0a"
+chunkHashes: "acab22439fca4a35,f39cf8e32af55775,ceab65a020ad92a8,1863605bd2bf822e,932bae736aec5b7a,bba780aaa1eb7651,1fe6140b8907b4a9,50b9a30dd609d40d,c6630f0bbd8ab69d,795fd1b65da9626c,2fd2687fbe575b06"
 ---
-**El cuello de botella en la interpretabilidad automatizada no son los sondas, ni los SAE, ni el cómputo. Es la tokenización.**
+**El cuello de botella en la interpretabilidad automática no son los sondas, no son los SAE, no es el cómputo. Es la tokenización.**
 
-Element-symbol tiene una puntuación de ablación diferencial de -16.72 en Gemma-2-2B. Esa es la señal causal más fuerte que he encontrado en el flujo residual del modelo, y la descubrí manualmente. La pregunta que impulsó todo lo que sigue: ¿puede una máquina encontrar señales como esta por sí misma?
+Element-symbol tiene una puntuación de ablación diferencial de -16.72 en Gemma-2-2B. Ese es la señal causal más fuerte que he encontrado en el flujo residual del modelo, y la descubrí manualmente. La pregunta que impulsó todo lo que sigue: ¿puede una máquina encontrar señales como esta por sí sola?
 
-La respuesta es sí. Requirió 42 propuestas fallidas, un bucle de retroalimentación que enseña a un LLM lo que hace el tokenizador de otro modelo, y la realización de que la parte más difícil de la interpretabilidad automatizada no tiene nada que ver con la interpretabilidad.
+La respuesta es sí. Requirió 42 propuestas fallidas, un bucle de retroalimentación que enseña a un LLM lo que hace el tokenizador de otro modelo, y la constatación de que la parte más difícil de la interpretabilidad automática no tiene nada que ver con la interpretabilidad.
 ## Capital-of No Existe como una Única Característica
 
 Realicé seis experimentos en dos anchos de SAE (16k y 65k) en Gemma-2-2B buscando una característica "capital-of". Más de 300 características candidatas. Capa 12, capa 20. Indicaciones de entidad única, indicaciones de múltiples entidades. Contrastes estrictos del mismo marco, contrastes sueltos. La mejor candidata, característica 14610 ("referencias a países específicos y sus roles en varios contextos"), superó la puntuación de múltiples entidades en cuatro países y mostró tanto causalidad de dirección como de ablación.
@@ -84,16 +85,18 @@ En este sistema, el mutador LLM opera sobre lenguaje natural mientras que el mod
 Si el cuello de botella es la ceguera del tokenizador y la solución es la retroalimentación, entonces mantener la retroalimentación debería eliminar el cuello de botella. Concretamente: pre‑calcular una tabla de completaciones válidas de un solo token para categorías de respuesta comunes (nombres de países, símbolos químicos, instrumentos musicales, números) usando el tokenizador real de Gemma, e inyectar esta tabla en el prompt del sistema.
 
 La predicción: con un vocabulario de tokens pre‑calculado, la tasa de aprobación de propuestas debería aumentar de 3/5 a más de 4/5, y el modo de falla dominante debería pasar de la tokenización a la puerta de margen (si Gemma predice con confianza el token objetivo esperado). Si el cuello de botella no cambia, la tabla de tokens no es la solución real y el problema es más profundo que un desajuste de vocabulario.
-## Lo que dejé fuera
+## Lo que omití
 
-La puerta de margen es ahora el principal cuello de botella. Tres de cinco propuestas pasaron la validación pero sólo una superó la puerta de margen, la cual requiere que la predicción top‑1 del modelo coincida con el objetivo esperado con un margen de logit suficiente. Relaciones como “bird‑habitat” y “painter‑style” tienen objetivos difusos donde Gemma no predice con fuerza ningún token siguiente único. Enseñar al operador de mutación a proponer relaciones donde el modelo tenga alta confianza es el próximo problema.
+La puerta de margen es ahora el principal cuello de botella. Tres de cinco propuestas pasaron la validación pero solo una pasó la puerta de margen, que requiere que la predicción top‑1 del modelo coincida con el objetivo esperado con un margen de logit suficiente. Relaciones como "bird‑habitat" y "painter‑style" tienen objetivos difusos donde Gemma no predice fuertemente ningún token siguiente único. Enseñar al operador de mutación a proponer relaciones donde el modelo tenga alta confianza es el siguiente problema.
 
-La dirección no funciona para las direcciones de pruebas relacionales. Cada dirección en el archivo muestra una fuerte ablación pero una dirección nula o negativa. Añadir más de la dirección capital‑of empeora las predicciones a cualquier multiplicador, probado hasta 200×. Estas direcciones son señales de enrutamiento. El modelo lee presencia o ausencia, no amplitud. Esto tiene implicaciones para toda la agenda de control de activaciones en la investigación de alineación.
+El direccionamiento no funciona para direcciones de sondeo relacionales. Cada dirección en el archivo muestra una fuerte ablación pero cero o negativo direccionamiento. Añadir más de la dirección capital‑de empeora las predicciones a cualquier multiplicador, probado hasta 200×. Estas direcciones son señales de enrutamiento. El modelo lee presencia o ausencia, no amplitud. Esto tiene implicaciones para toda la agenda de direccionamiento de activaciones en la investigación de alineación.
 
-La migración a Gemma 4 está bloqueada a la disponibilidad del SAE de GemmaScope. El hallazgo de distribución de 30 grados puede o no replicarse en modelos más grandes con flujos residuales más anchos. Ese experimento está a la espera de herramientas.
+La migración a Gemma 4 está bloqueada a la disponibilidad de GemmaScope SAE. El hallazgo de distribución a 30 grados puede o no replicarse en modelos mayores con flujos residuales más anchos. Ese experimento está a la espera de herramientas.
 
-El código está en `discover.py` (bucle de prueba) y `mutate.py` (operador de mutación). Contacta si deseas acceso al repositorio.
+El código está en `discover.py` (bucle de sondeo) y `mutate.py` (operador de mutación). Contacta si deseas acceso al repositorio.
 
 ---
 
 *Christian Pojoni crea herramientas automatizadas de interpretabilidad mecánica. Más en vasudev.xyz.*
+
+*La imagen de portada de esta publicación fue generada por IA.*

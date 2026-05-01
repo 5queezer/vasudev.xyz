@@ -4,16 +4,17 @@ date: 2026-04-04
 tags: ["ai", "agents", "architecture", "interpretability", "llm"]
 series: ["Building Agents That Sleep"]
 series_weight: 6
-description: "La IA autoevolutiva falla cuando optimiza un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
+description: "La IA autoevolutiva falla cuando optimiza un evaluador fijo. El modelo biológico es correcto: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "c40af029d9351be1aa6f1752ab99ed4a"
-chunkHashes: "682b09f9f086f4a4,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,c0bac7cdc18b0ad6"
+images: ["/images/ai-environment-design-og.png"]
+translationHash: "f39523d1cce3e995214126a40bd36ebb"
+chunkHashes: "91ded5fec1098e57,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---
-Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLMs". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin *prompts*, solo vectores de intervención. Fue intelectualmente satisfactorio y prácticamente incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
+I spent a week trying to design a "vector-native programming language for LLMs." The idea was to program model behavior directly at the activation level, no prompts, just intervention vectors. It was intellectually satisfying and practically wrong. What I actually wanted was not a language. It was an organism.
 
-**La unidad de evolución no es la característica. Es el ciclo mutación/selección.**
+**La unidad de evolución no es la característica. Es el ciclo de mutación/selección.**
 
-Esa distinción lo cambia todo sobre cómo construyes un arnés de IA auto‑evolutivo. La mayoría de los sistemas que se autodenominan "auto‑mejorables" están haciendo AutoML. Optimicen sobre un espacio de búsqueda fijo hacia un objetivo fijo. Eso puede producir adaptación, pero está más cerca de AutoML que de evolución sin fin. La diferencia resulta ser decisiva a nivel arquitectónico en dos formas.
+That distinction changes everything about how you build a self-evolving AI harness. Most systems that call themselves "self-improving" are doing AutoML. They optimize over a fixed search space toward a fixed objective. That can produce adaptation, but it is closer to AutoML than to open-ended evolution. The difference turns out to be architecturally decisive in two ways.
 
 ---
 ## Genotipo y Fenotipo No Son la Misma Capa
@@ -58,22 +59,24 @@ Observar significa ejecutar el genoma actual contra la batería de tareas y regi
 Cada mutación conservada necesita un manejador de reversión. No como una característica de seguridad. Como un requisito de diseño. Si no puedes revertir una mutación, no puedes medir su contribución marginal. Si no puedes medir su contribución marginal, no estás evolucionando. Estás acumulando.
 ## Lo que omití
 
-**Auto-modificación de código.** La autoedición al estilo de la Máquina Darwin‑Gödel funciona en entornos de agente de codificación aislados con verificadores formales. Para un arnés general sin esas restricciones, es una preocupación de la Fase 4, no porque sea imposible, sino porque la infraestructura previa (evaluador estable, garantías de reversión, alcance de tarea estrecho) necesita estar en su lugar primero.
+**Auto-modificación de código.** La autoedición al estilo Máquina de Darwin‑Gödel funciona en entornos de agente‑código aislados con verificadores formales. Para un arnés general sin esas restricciones, es una preocupación de la Fase 4, no porque sea imposible, sino porque la infraestructura prerequisito (evaluador estable, garantías de reversión, alcance de tarea estrecho) debe estar en su lugar primero.
 
-**Universalidad de características.** Las características SAE son específicas del modelo y a veces del punto de control. Si las características útiles se transfieren entre versiones del modelo es una pregunta de investigación abierta. El arnés debe diseñarse para volver a extraer los diccionarios de características en cada actualización del modelo base en lugar de asumir estabilidad.
+**Universalidad de características.** Las características SAE son específicas del modelo y a veces del punto de control. Si las características útiles se transfieren entre versiones de modelo es una cuestión de investigación abierta. El arnés debe diseñarse para volver a extraer los diccionarios de características en cada actualización del modelo base en lugar de asumir estabilidad.
 
-**Evaluadores multi‑agente.** Usar un modelo juez como parte del bucle de evaluación añade robustez pero también crea una superficie adversarial. El sistema puede aprender a satisfacer al juez en lugar de la tarea subyacente. Esto requiere contramedidas explícitas que aún no he diseñado.
+**Evaluadores multi‑agente.** Usar un modelo juez como parte del bucle de evaluación agrega robustez pero también crea una superficie adversarial. El sistema puede aprender a complacer al juez en lugar de la tarea subyacente. Esto requiere contramedidas explícitas que aún no he diseñado.
 
-**Presupuesto de cómputo.** Una mutación que mejore la capacidad en un 2 % pero duplique la latencia no es una victoria. La latencia y el costo deben ser restricciones de primera clase en el evaluador, no consideraciones posteriores.
-
----
-
-La conexión con [Hrafn](https://github.com/5queezer/hrafn) es directa. MuninnDB es el nivel de persistencia. El Dream Engine, modelado sobre la consolidación de la memoria en la fase de sueño, es el mecanismo que promueve observaciones efímeras a una política de medio plazo. Las piezas que faltan son la política de búsqueda y el evaluador co‑evolutivo. Eso es lo que se construirá a continuación.
-
-Si estás construyendo en este espacio, la presuposición que más vale la pena tomar no proviene del ML. Proviene de la biología evolutiva: el entorno realiza la selección. Tu trabajo es construir el entorno, no el organismo.
-
-Comienza con [Hrafn](https://github.com/5queezer/hrafn) y la capa de persistencia [MuninnDB](https://github.com/5queezer/hrafn). La separación genoma/fenotipo ya está cableada. Lo que necesita construirse es el evaluador que co‑evoluciona con el sistema que mide.
+**Presupuesto de cómputo.** Una mutación que mejora la capacidad en un 2 % pero duplica la latencia no es una victoria. La latencia y el costo deben ser restricciones de primera clase en el evaluador, no consideraciones posteriores.
 
 ---
 
-*Christian Pojoni construye infraestructura para agentes de IA y escribe al respecto en [vasudev.xyz](https://vasudev.xyz). Trabajo actual: [Hrafn](https://github.com/5queezer/hrafn), un runtime de agente basado en Rust.*
+La conexión con [Hrafn](https://github.com/5queezer/hrafn) es directa. MuninnDB es la capa de persistencia. El Motor de Sueño, modelado sobre la consolidación de la memoria en fases de sueño, es el mecanismo que promueve observaciones efímeras a política de medio plazo. Las piezas faltantes son la política de búsqueda y el evaluador co‑evolutivo. Eso es lo que se construirá a continuación.
+
+Si estás trabajando en este espacio, el paradigma que más vale la pena tomar prestado no proviene del ML. Proviene de la biología evolutiva: el entorno hace la selección. Tu trabajo es construir el entorno, no el organismo.
+
+Empieza con [Hrafn](https://github.com/5queezer/hrafn) y la capa de persistencia [MuninnDB](https://github.com/5queezer/hrafn). La separación genoma/fenotipo ya está cableada. Lo que necesita construirse es el evaluador que co‑evoluciona con el sistema que mide.
+
+---
+
+*Christian Pojoni construye infraestructura de agentes de IA y escribe sobre ello en [vasudev.xyz](https://vasudev.xyz). Trabajo actual: [Hrafn](https://github.com/5queezer/hrafn), un runtime de agente basado en Rust.*
+
+*La imagen de portada de este post fue generada por IA.*

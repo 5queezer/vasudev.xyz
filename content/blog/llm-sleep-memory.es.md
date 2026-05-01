@@ -1,19 +1,20 @@
 ---
-title: "Memoria Inspirada en el Sueño para Agentes LLM: 6 Artículos Clasificados por lo que Puedes Entregar Esta Semana"
+title: "Memoria Inspirada en el Sueño para Agentes LLM: 6 artículos clasificados por lo que puedes lanzar esta semana"
 date: 2026-04-06
 tags: ["memory", "llm", "agents", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Leí 6 artículos sobre reproducción de memoria biológicamente inspirada para agentes LLM. Sólo 2 valen la pena si estás construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "5442b89ab3eb0a51f14feda5e79d5bdd"
-chunkHashes: "8d8169ec337b4cb2,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,74ad075b15bb058d"
+images: ["/images/llm-sleep-memory-og.png"]
+translationHash: "3da07b269b5989ceafd289f785d2a628"
+chunkHashes: "517e2064e69c1645,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
 ---
-La mayor parte de la investigación sobre memoria en LLM vive en un cómodo bucle: proponer una arquitectura, probarla en un benchmark personalizado, afirmar una mejora y pasar al siguiente. Si realmente estás construyendo la memoria de un agente, decidiendo qué almacenar, qué olvidar y cuándo consolidar, la relación señal‑ruido en la literatura es brutal.
+Most LLM memory research lives in a comfortable loop: propose architecture, test on custom benchmark, claim improvement, move on. If you're actually building agent memory, deciding what to store, what to forget, and when to consolidate, the signal-to-noise ratio in the literature is brutal.
 
-Mantengo el [Dream Engine](https://github.com/scrypster/muninndb), una canalización de consolidación inspirada en el sueño para [MuninnDB](https://muninndb.com). Ejecuta la decadencia de Ebbinghaus, la asociación hebbiana, la fusión de casi duplicados y la inferencia transitiva en la memoria del agente entre sesiones. Mi estudio de ablación mostró que **ejecutar todas las fases de consolidación simultáneamente es netamente negativo**, muy parecido a la proteína mutante daDREAM que potencia la potenciación a largo plazo pero deteriora el aprendizaje real. La selectividad de fase importa más que la cantidad de fases.
+I maintain the [Dream Engine](https://github.com/scrypster/muninndb), a sleep-inspired consolidation pipeline for [MuninnDB](https://muninndb.com). It runs Ebbinghaus decay, Hebbian association, near-duplicate merging, and transitive inference on agent memory between sessions. My ablation study showed que **running all consolidation phases simultaneously is net-negative**, much like the daDREAM mutant protein that enhances long-term potentiation but impairs actual learning. Phase selectivity matters more than phase count.
 
-**Si estás construyendo la memoria de un agente, lee SleepGate y MemoryBench. Omite el resto.**
+**If you're building agent memory, read SleepGate and MemoryBench. Skip the rest.**
 ## SleepGate: El artículo que se mapea directamente a la consolidación offline
 
 "Learning to Forget: Sleep-Inspired Memory Consolidation for Resolving Proactive Interference in Large Language Models" hace exactamente lo que dice el título. Aplica un ciclo de sueño aprendido, reducción sináptica y olvido activo, sobre la KV‑cache para reducir la interferencia proactiva.
@@ -50,14 +51,16 @@ Ambas encuestas comparten el mismo modo de fallo: describen el espacio de diseñ
 El artículo que desearía que existiera no lo hace: una comparación directa de consolidación activada vs. desactivada en benchmarks estandarizados con la variabilidad de LLM controlada (temperatura fijada en 0 o N≥5 ejecuciones con medias y desviaciones estándar). Mi propia ablación mostró que la Fase 5 (inferencia transitiva) era la única fase con impacto neto positivo (+0.022 de delta compuesto), pero la variabilidad de la evaluación de LLM es lo suficientemente alta como para que se necesiten más ejecuciones y sea definitivo.
 
 La contribución novel central del Dream Engine, la Fase 2b (adjudicación por LLM de grupos casi duplicados), sigue sin validarse porque no se configuró ningún proveedor de LLM en el servidor de benchmark. Eso es lo próximo que hay que lanzar, no el próximo artículo que leer.
-## El patrón incómodo
+## El Patrón Incómodo
 
-Cada trabajo de revisión en este ámbito cita inspiración biológica. Ebbinghaus, aprendizaje hebbiano, consolidación sináptica, husos del sueño: el vocabulario está en todas partes. La validación empírica está casi en ninguna. SleepGate y MemoryBench son excepciones porque se comprometen con afirmaciones verificables. Las revisiones se adhieren a taxonomías.
+Cada artículo de revisión en este ámbito cita inspiración biológica. Ebbinghaus, aprendizaje hebbiano, consolidación sináptica, husos de sueño: el vocabulario está en todas partes. La validación empírica está casi en ninguna. SleepGate y MemoryBench son excepciones porque se comprometen con afirmaciones comprobables. Las revisiones se comprometen con taxonomías.
 
-Si estás construyendo memoria para agentes: benchmark primero, consolidar segundo, publicar tercero. Si tu característica de consolidación mejora una métrica proxy sin mejorar la exactitud de la recuperación, has creado un [proxy desacoplado](/blog/memory-metrics-lying-how-to-ground-them/), no una funcionalidad.
+Si estás construyendo memoria para agentes: primero el benchmark, segundo la consolidación, tercero la publicación. Si tu característica de consolidación mejora una métrica proxy sin mejorar la precisión de recuperación, has creado un [proxy separado](/blog/memory-metrics-lying-how-to-ground-them/), no una característica.
 
 Comienza con [MemoryBench](https://arxiv.org/abs/2510.17281). Lee [SleepGate](https://arxiv.org/abs/2603.14517) para el modelo de olvido. Construye tu pipeline. Luego mide si realmente ayuda.
 
 ---
 
-*Christian Pojoni construye infraestructura de agentes de IA con prioridad en el borde. [Hrafn](https://github.com/5queezer/hrafn) es el runtime. [MuninnDB](https://muninndb.com) es la memoria. Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye infraestructura de agentes IA de borde primero. [Hrafn](https://github.com/5queezer/hrafn) es el runtime. [MuninnDB](https://muninndb.com) es la memoria. Más en [vasudev.xyz](https://vasudev.xyz).*
+
+*La imagen de portada de este artículo fue generada por IA.*
