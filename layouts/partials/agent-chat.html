@@ -17,12 +17,22 @@
     </div>
     <p class="agent-intro">{{ i18n "agent_intro" }}</p>
 
+    {{- $agentPostURL := relLangURL "about/index.txt" -}}
+    {{- $agentMode := "post" -}}
+    {{- if and .IsPage (eq .Section "blog") -}}
+      {{- $agentPostURL = printf "%sindex.txt" .RelPermalink -}}
+    {{- else if or (eq .Section "blog") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+      {{- $agentPostURL = relLangURL "llms.txt" -}}
+      {{- $agentMode = "index" -}}
+    {{- else if and .IsPage .OutputFormats -}}
+      {{- $agentPostURL = printf "%sindex.txt" .RelPermalink -}}
+    {{- end -}}
     <div
       id="agent-chat"
       class="agent-chat"
       data-agent-endpoint="{{ .Site.Params.agentEndpoint | default "https://vasudev-chat.dev-95e.workers.dev" }}"
-      data-agent-post-url="{{ "/llms.txt" | relURL }}"
-      data-agent-mode="index"
+      data-agent-post-url="{{ $agentPostURL }}"
+      data-agent-mode="{{ $agentMode }}"
       data-agent-lang="{{ .Site.Language.Lang }}"
       data-agent-welcome="{{ i18n "agent_welcome" }}"
       data-agent-placeholder="{{ i18n "agent_placeholder" }}"
