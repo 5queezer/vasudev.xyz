@@ -55,8 +55,24 @@ if [ "$failures" -eq 0 ] && [ "$candidate_dirty" -eq 0 ]; then
     done
 
     if [ "$workflow_run_id" = "0" ]; then
+      gh workflow run deploy.yml --ref master >/tmp/autoresearch-dispatch.log 2>&1 || {
+        failures=1
+        cat /tmp/autoresearch-dispatch.log >&2
+      }
+      if [ "$failures" -eq 0 ]; then
+        for _ in {1..36}; do
+          workflow_run_id=$(gh run list --branch master --limit 20 --json databaseId,workflowName,status,createdAt,headSha,event --jq '[.[] | select(.workflowName=="Deploy to GitHub Pages" and .headSha=="'"$head_sha"'" and .event=="workflow_dispatch")][0].databaseId // 0')
+          if [ "$workflow_run_id" != "0" ]; then
+            break
+          fi
+          sleep 5
+        done
+      fi
+    fi
+
+    if [ "$workflow_run_id" = "0" ]; then
       failures=1
-      echo "No Deploy to GitHub Pages workflow run found after push" >&2
+      echo "No Deploy to GitHub Pages workflow run found after push or dispatch" >&2
     elif ! gh run watch "$workflow_run_id" --exit-status --interval 10 >/tmp/autoresearch-gh-watch.log 2>&1; then
       failures=1
       cat /tmp/autoresearch-gh-watch.log >&2
