@@ -3,9 +3,6 @@ title: "Agregar OAuth 2.1 a un servidor MCP autogestionado: 4 problemas desde el
 date: 2026-03-25
 description: "¿Qué se rompió cuando conecté claude.ai a mi propia instancia de Reactive Resume vía OAuth?"
 images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
-images: ["/images/adding-oauth-mcp-server-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["typescript", "mcp", "oauth"]
 series: ["Field Notes"]

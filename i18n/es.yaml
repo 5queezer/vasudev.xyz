@@ -1,0 +1,74 @@
+- id: nav_agent
+  translation: Agente
+- id: nav_work
+  translation: Trabajo
+- id: nav_writing
+  translation: Escritos
+- id: nav_guides
+  translation: Guías
+- id: nav_about
+  translation: Acerca
+- id: nav_contact
+  translation: Contacto
+
+- id: hero_systems_engineer
+  translation: Ingeniero de Sistemas
+- id: hero_blueprint_label
+  translation: "vasudev.xyz — Hugo, GitHub Pages, Giscus, agente Nemotron en el sitio."
+- id: hero_builds
+  translation: Construye
+- id: hero_writes
+  translation: Escribe
+- id: hero_status
+  translation: "Estado del sistema: Nominal"
+- id: hero_location
+  translation: "Ubicación: Tierra"
+
+- id: section_principles
+  translation: 01 / Principios
+- id: section_work
+  translation: 02 / Trabajos Seleccionados
+- id: section_work_h
+  translation: Sistemas Hechos a Mano.
+- id: section_writing
+  translation: 03 / Escritos
+- id: section_writing_h
+  translation: Ensayos & Arquitectura.
+- id: section_guides
+  translation: 04 / Guías
+- id: section_guides_h
+  translation: Guías de Campo.
+- id: section_about
+  translation: 04 / Acerca
+- id: section_about_h
+  translation: El Taller.
+- id: section_contact
+  translation: 05 / En Otros Sitios
+- id: section_contact_h
+  translation: Construyamos.
+- id: section_agent
+  translation: 00 / El Agente
+- id: section_agent_h
+  translation: La caja de chat que vive en el blog.
+
+- id: agent_intro
+  translation: Una pequeña isla JS que envía a un Cloudflare Worker que transmite respuestas desde un endpoint Nemotron gratuito. Sin servidor de origen. Sin base de datos. El sitio estático sigue siendo estático — solo esta caja respira.
+- id: agent_welcome
+  translation: "Hola. Soy el agente del sitio. Pregúntame sobre los escritos, los proyectos, o el stack que me impulsa."
+- id: agent_placeholder
+  translation: Pregúntale algo al agente…
+- id: agent_streaming
+  translation: transmitiendo respuesta…
+- id: agent_chip_who
+  translation: ¿Quién es Christian?
+- id: agent_chip_hrafn
+  translation: Cuéntame sobre hrafn
+- id: agent_chip_stack
+  translation: ¿Cuál es el stack del agente?
+- id: agent_chip_site
+  translation: ¿Cómo funciona este sitio?
+
+- id: comments_signin
+  translation: Inicia sesión con GitHub para comentar
+- id: footer_built
+  translation: Construido con Hugo · GitHub Pages · Giscus · Cloudflare Workers · Nemotron

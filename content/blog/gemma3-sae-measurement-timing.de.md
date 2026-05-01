@@ -6,9 +6,6 @@ series: ["Reading the Residual Stream"]
 series_weight: 1
 description: "Warum Sycophancy‑SAE‑Merkmale ein Cohen’s d von 9,9 haben, aber die Halluzinationsdetektion fehlschlägt. Die Antwort erwies sich als tiefergehend als der Messzeitpunkt."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
 translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
 chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---

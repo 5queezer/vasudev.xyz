@@ -1,0 +1,40 @@
+{{- $tagline := .Site.Params.tagline | default .Site.Params.description -}}
+<section class="hero">
+  <div class="hero-blueprint-label">
+    <span class="dot dot-primary"></span>
+    {{ i18n "hero_blueprint_label" }}
+  </div>
+
+  <div class="hero-body">
+    <div class="eyebrow">
+      <span class="rule"></span>
+      {{ i18n "hero_systems_engineer" }}
+    </div>
+    <h1 class="hero-title">{{ .Site.Title }}.</h1>
+    <p class="hero-tagline">{{ $tagline }}</p>
+
+    <div class="hero-columns">
+      <div>
+        <h3 class="col-label">{{ i18n "hero_builds" }}</h3>
+        <ul>
+          <li>Agent runtimes</li>
+          <li>Memory systems</li>
+          <li>Protocol-aware tools</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="col-label">{{ i18n "hero_writes" }}</h3>
+        <ul>
+          <li>AI architecture</li>
+          <li>Retrieval quality</li>
+          <li>Privacy-first software</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-status">
+    <div><span class="dot dot-live"></span>{{ i18n "hero_status" }}</div>
+    <div class="muted-50">{{ i18n "hero_location" }}</div>
+  </div>
+</section>

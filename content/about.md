@@ -1,11 +1,13 @@
 ---
 title: "About"
 type: "about"
-description: "Christian Pojoni. Systems engineer. Rust, Python, AI tooling."
+description: "Christian Pojoni builds agent runtimes, memory systems, and protocol-aware tools."
 ---
 
-Christian Pojoni. I build agent runtimes, memory systems, and privacy-first tools in Rust and Python.
+I build agent runtimes, memory systems, and protocol-aware tools. My approach focuses on treating software as a crafted system rather than an assembled product.
 
-Austrian, raised in Romania, based in Madrid.
+Working primarily in Rust and Python, I advocate for privacy-first architecture and local retrieval over cloud lock-in. Systems-level primitives should be accessible to real applications.
 
-The chatbot in the corner knows more. Ask it.
+## Core stack
+
+Rust, Python, TypeScript, Next.js, SQLite, Prisma, MCP, A2A.

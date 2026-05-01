@@ -1,0 +1,20 @@
+<section class="manifesto">
+  <div class="container">
+    <h2 class="section-eyebrow opacity-50">{{ i18n "section_principles" }}</h2>
+  </div>
+
+  <div class="manifesto-marquee">
+    <div class="marquee-line marquee-italic">Privacy-first architecture.</div>
+    <div class="marquee-line marquee-primary">Exacting precision.</div>
+    <div class="marquee-line marquee-italic">Local retrieval.</div>
+  </div>
+
+  <div class="container manifesto-grid">
+    {{ range site.Data.principles }}
+      <div>
+        <div class="num">{{ .num }}</div>
+        <p>{{ .text }}</p>
+      </div>
+    {{ end }}
+  </div>
+</section>

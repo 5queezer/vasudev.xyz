@@ -1,0 +1,26 @@
+{{- $about := site.GetPage "about" -}}
+<section id="about" class="about container">
+  <div class="about-grid">
+    <div>
+      <h2 class="section-eyebrow">{{ i18n "section_about" }}</h2>
+      <h3 class="section-title">{{ i18n "section_about_h" }}</h3>
+      <div class="prose">
+        {{ with $about }}{{ .Content }}{{ end }}
+      </div>
+      <div class="stack-row">
+        <h4 class="col-label">Core Stack</h4>
+        <div class="tag-row">
+          {{ range slice "Rust" "Python" "TypeScript" "Next.js" "SQLite" "Prisma" "MCP" "A2A" }}
+            <span class="tag tag-bordered">{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div class="about-mark" aria-hidden="true">
+      <div class="about-mark-glow"></div>
+      <div class="about-mark-letters">CP</div>
+      <div class="about-mark-corner">vasudev.xyz</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+{{- $isHome := .IsHome -}}
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" class="dark">
+{{ partial "head.html" . }}
+<body data-lang="{{ .Site.Language.Lang }}">
+  <div class="noise-bg" aria-hidden="true"></div>
+  {{ partial "navbar.html" . }}
+
+  <main id="top">
+    {{- block "main" . }}{{- end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{- /* Mount the agent chat island on every page. */ -}}
+  {{ partial "agent-chat.html" . }}
+
+  {{- $agentJS := resources.Get "js/agent.js" | resources.Minify | resources.Fingerprint -}}
+  <script defer src="{{ $agentJS.RelPermalink }}"></script>
+  {{- $langJS := resources.Get "js/lang-toggle.js" | resources.Minify | resources.Fingerprint -}}
+  <script defer src="{{ $langJS.RelPermalink }}"></script>
+  {{- $codeCopyJS := resources.Get "js/code-copy.js" | resources.Minify | resources.Fingerprint -}}
+  <script defer src="{{ $codeCopyJS.RelPermalink }}"></script>
+</body>
+</html>

@@ -6,9 +6,6 @@ series: ["Reading the Residual Stream"]
 series_weight: 2
 description: "SAE features can't isolate relations in Gemma-2-2B. I built a mutation-selection loop that can. The bottleneck was tokenization."
 images: ["/images/automated-circuit-discovery-og.png"]
-images: ["/images/automated-circuit-discovery-og.png"]
-images: ["/images/automated-circuit-discovery-og.png"]
-images: ["/images/automated-circuit-discovery-og.png"]
 ---
 
 

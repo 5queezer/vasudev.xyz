@@ -6,9 +6,6 @@ series: ["Reading the Residual Stream"]
 series_weight: 1
 description: "¿Por qué las características de sycophancy SAE tienen un d de Cohen=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
-images: ["/images/gemma3-sae-measurement-timing-og.png"]
 translationHash: "4dd45fda21fbf57455f90cf5bc04adae"
 chunkHashes: "c8f1e70cda7372fd,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
 ---

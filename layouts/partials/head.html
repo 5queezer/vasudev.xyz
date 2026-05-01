@@ -1,0 +1,30 @@
+{{- $title := .Title -}}
+{{- if .IsHome }}{{ $title = .Site.Title }}{{ end -}}
+{{- $desc := .Site.Params.tagline | default .Site.Params.description -}}
+{{- if .Description }}{{ $desc = .Description }}{{ end -}}
+{{- $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint -}}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ $title }}{{ if not .IsHome }} · {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ $desc }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
+
+  <meta property="og:title" content="{{ $title }}" />
+  <meta property="og:description" content="{{ $desc }}" />
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap"
+  />
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+
+  {{ range .AllTranslations -}}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+  {{- end }}
+</head>

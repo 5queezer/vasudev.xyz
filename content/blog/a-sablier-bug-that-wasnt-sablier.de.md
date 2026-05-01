@@ -3,8 +3,6 @@ title: "Ein Sablier-Fehler, der kein Sablier war: 4 Stolperfallen beim Nachverfo
 date: 2026-04-19
 description: "Nachverfolgung eines sporadischen ‘invalid middleware’-Fehlers in Sablier zu einer verborgenen Startabhängigkeit, die durch eine Traefik 3.5.3‑Refactorierung eingeführt wurde."
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
-images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
-images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
 series: ["Field Notes"]

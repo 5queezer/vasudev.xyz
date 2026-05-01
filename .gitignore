@@ -1,6 +1,11 @@
 public/
+resources/
 resources/_gen/
 .hugo_build.lock
+node_modules/
+.DS_Store
+.wrangler/
+.dev.vars
 firebase-debug.log
 styles/Google/
 .codex

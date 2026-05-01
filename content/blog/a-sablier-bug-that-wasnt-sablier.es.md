@@ -3,8 +3,6 @@ title: "Un error de Sablier que no era Sablier: 4 cosas a tener en cuenta al ras
 date: 2026-04-19
 description: "Rastreando un error intermitente 'invalid middleware' en Sablier a una dependencia oculta de inicio introducida por una refactorización de Traefik 3.5.3."
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
-images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
-images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
 series: ["Field Notes"]

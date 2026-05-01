@@ -4,9 +4,6 @@ date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
 description: "Jedes MCP‑Tool, das Sie verbinden, lädt sein vollständiges Schema im Voraus, bevor Sie ein Wort tippen. Anthropic’s verzögertes Laden behebt das."
 images: ["/images/mcp-context-window-fix-og.png"]
-images: ["/images/mcp-context-window-fix-og.png"]
-images: ["/images/mcp-context-window-fix-og.png"]
-images: ["/images/mcp-context-window-fix-og.png"]
 translationHash: "59baaf1f34cfa050309416d377d1ef07"
 chunkHashes: "1ec8fbd39517d451,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---

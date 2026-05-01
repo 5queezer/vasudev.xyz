@@ -6,9 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "Die Gedächtniskonsolidierung sieht auf Dashboards großartig aus. Aber wenn sich Ihre Metriken verbessern können, ohne dass die Abrufleistung besser wird, optimieren Sie eine losgelöste Stellvertretergröße."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 translationHash: "b8a709b4d0147300deb327ef4fe4178d"
 chunkHashes: "62a1f14b771987f7,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---

@@ -6,9 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Selbstentwickelnde KI nutzt Versagen, wenn sie einen festen Evaluator optimiert. Das biologische Modell ist richtig: Was sich weiterentwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
-images: ["/images/ai-environment-design-og.png"]
 translationHash: "2f5a8bf02a2b63e2cf15d09ded86d65a"
 chunkHashes: "8402b112ebff21c5,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
 ---

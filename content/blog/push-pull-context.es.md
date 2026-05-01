@@ -4,8 +4,6 @@ date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
 description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que separas el contexto de envío del contexto de extracción."
 images: ["/images/push-pull-context-og.png"]
-images: ["/images/push-pull-context-og.png"]
-images: ["/images/push-pull-context-og.png"]
 translationHash: "1efe46f0746426b51d508fdcc4e7a4df"
 chunkHashes: "b817ba1b27214d6a,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
 ---

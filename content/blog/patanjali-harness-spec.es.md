@@ -6,9 +6,6 @@ series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes y sus paralelos inesperados en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
-images: ["/images/patanjali-harness-spec-og.png"]
 translationHash: "f26a2b8ce42e17b8c39a6f7d9006dfe9"
 chunkHashes: "9b3b5651c6cca98c,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
