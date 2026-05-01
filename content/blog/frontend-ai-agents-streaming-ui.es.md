@@ -1,17 +1,19 @@
 ---
-title: "Streaming UI de agentes de IA: 5 herramientas clasificadas"
+title: "Interfaz de transmisión de agentes de IA: 5 herramientas clasificadas"
 date: 2026-04-12
 lastmod: 2026-05-01
 tags: ["ai", "agents", "frontend", "architecture"]
 description: "AG-UI, A2UI, Vercel AI SDK, TanStack AI y Kombai hacen diferentes apuestas sobre cómo los agentes deben construir interfaces. La cuestión arquitectónica decide cuál gana."
 images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
+images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
+images: ["/images/frontend-ai-agents-streaming-ui-og.png"]
 author: "Christian Pojoni"
-translationHash: "aa33e6eb32df7bdbfad94bbe76675c65"
-chunkHashes: "369bc41754f08c49,9986d2d6e18f0fe6,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
+translationHash: "e080a7201a1b5e56a6d5f5960ed43b86"
+chunkHashes: "fbfb967328a5621b,9986d2d6e18f0fe6,2bbc871e7787de63,3fa87eb4ac66f92e,1fb95c53987e367b,f8608906d594ce51,d62c99066460a3fc,1793b237843cff7b,22b36b22535bd0fe"
 ---
-Cada agente de IA hoy en día se comunica a través de una ventana de chat. El usuario hace una pregunta, el agente transmite tokens de vuelta, quizás con un bloque de código. Todo el frontend es un emulador de terminal glorificado.
+Cada agente de IA hoy habla a través de una ventana de chat. El usuario hace una pregunta, el agente transmite tokens de vuelta, tal vez con un bloque de código. Todo el frontend es un emulador de terminal glorificado.
 
-Cinco herramientas apuestan a que los agentes deberían transmitir interfaces reales en lugar de texto. No están de acuerdo en cómo hacerlo, y dos de ellas solo difieren en los detalles.
+Cinco herramientas apuestan a que los agentes deberían transmitir interfaces reales en lugar de texto. No están de acuerdo en cómo, y dos de ellas difieren solo en los detalles.
 
 **Los protocolos se dividen en una cuestión: ¿debe el agente enviar código ejecutable, datos estructurados o eventos de interacción?**
 

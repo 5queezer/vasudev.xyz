@@ -1,19 +1,21 @@
 ---
-title: "Stoppe das Ablegen von Entscheidungen in CLAUDE.md. Lege sie dort ab, wo der Agent nicht immer liest."
+title: "Hör auf, Entscheidungen in CLAUDE.md zu platzieren. Platziere sie dort, wo der Agent nicht immer liest."
 date: 2026-04-19
 tags: ["adr", "agents", "architecture", "claude"]
-description: "Zwei Studien aus dem Jahr 2026 sind sich uneinig darüber, ob AGENTS.md Coding‑Agenten hilft. Der Streit ergibt Sinn, sobald man den Push‑Kontext vom Pull‑Kontext trennt."
+description: "Zwei Studien aus dem Jahr 2026 sind uneins darüber, ob AGENTS.md Coding‑Agenten hilft. Der Streit ergibt Sinn, sobald man Kontext‑Push von Kontext‑Pull unterscheidet."
 images: ["/images/push-pull-context-og.png"]
-translationHash: "9515c9a4007b2c70eefe4fd10b9cba8c"
-chunkHashes: "417b6d2067752375,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
+images: ["/images/push-pull-context-og.png"]
+images: ["/images/push-pull-context-og.png"]
+translationHash: "1efe46f0746426b51d508fdcc4e7a4df"
+chunkHashes: "b817ba1b27214d6a,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
 ---
-Zwei rigorose Studien aus dem Jahr 2026 untersuchten, ob Kontextdateien für Agenten KI‑Programmierungsagenten unterstützen. Sie kamen zu gegensätzlichen Schlussfolgerungen. Die ETH‑Zürich‑Gruppe führte SWE‑bench Lite und AGENTbench über mehrere Modelle hinweg durch und **stellte fest, dass von LLM‑generierte AGENTS.md‑Dateien den Aufgabenerfolg um 3 % verringerten und die Inferenzkosten um 20 % erhöhten** [https://arxiv.org/abs/2602.11988](https://arxiv.org/abs/2602.11988). Von Entwicklern geschriebene Dateien brachten einen marginalen Anstieg von 4 % bei denselben Kosten. Einen Monat zuvor **berichten Lulla et al. das Gegenteil** [https://arxiv.org/abs/2601.20404](https://arxiv.org/abs/2601.20404) in einem sauberen, gepaarten Experiment mit 124 echten GitHub‑PRs: Das Vorhandensein von AGENTS.md reduzierte die mittlere Laufzeit um 28,64 % und die ausgegebenen Tokens um 16,58 %.
+Zwei rigorose Studien aus dem Jahr 2026 untersuchten, ob Kontextdateien für Agenten KI‑Programmierungsagenten helfen. Sie kamen zu gegensätzlichen Schlussfolgerungen. Die ETH‑Zürich‑Gruppe führte SWE‑bench Lite und AGENTbench über mehrere Modelle hinweg aus und **stellte fest, dass von LLMs generierte AGENTS.md‑Dateien den Erfolg von Aufgaben um 3 % verringerten und die Inferenzkosten um 20 % erhöhten** (https://arxiv.org/abs/2602.11988). Von Entwicklern geschriebene Dateien brachten einen marginalen Anstieg von 4 % bei gleichen Kosteneinbußen. Einen Monat zuvor berichtete **Lulla et al. das Gegenteil** (https://arxiv.org/abs/2601.20404) in einem sauberen, gepaarten Experiment mit 124 echten GitHub‑Pull‑Requests: Das Vorhandensein von AGENTS.md reduzierte die mittlere Laufzeit um 28,64 % und die Ausgabetoken um 16,58 %.
 
-Beide Studien sind sorgfältig. Beide haben reale Größen gemessen. Das Feld spaltete sich sofort in Lager.
+Beide Studien sind sorgfältig. Beide haben reale Dinge gemessen. Das Feld spaltete sich sofort in Lager.
 
-Die Spaltung ist vermeidbar. Beide Studien maßen dasselbe Artefakt und behandelten es als ein einziges. Das ist es nicht.
+Die Spaltung ist vermeidbar. Beide Studien haben dasselbe Artefakt gemessen und es als ein Ding behandelt. Das ist es nicht.
 
-**Entscheidungen gehören in den Pull‑Context, nicht in den Push‑Context. Das Vermischen der beiden ist der Grund, warum die Hälfte deines CLAUDE.md dich wahrscheinlich jetzt gerade beeinträchtigt.**
+**Entscheidungen gehören in den Pull‑Context, nicht in den Push‑Context. Die Vermischung beider ist der Grund, warum die Hälfte deines CLAUDE.md dich wahrscheinlich gerade jetzt behindert.**
 ## Push‑Kontext versus Pull‑Kontext
 
 Ein Coding‑Agent liest zwei Arten von Projektinformationen.

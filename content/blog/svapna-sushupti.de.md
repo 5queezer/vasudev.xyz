@@ -4,17 +4,19 @@ date: 2026-04-06
 tags: ["ai", "agents", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 5
-description: "Neurowissenschaften, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text kommen zu derselben Erkenntnis über die Offline‑Konsolidierung, unterscheiden sich jedoch darin, welche Schlafphase am wichtigsten ist."
+description: "Neurowissenschaften, aktuelle KI‑Papiere und ein antiker Sanskrit‑Text kommen zur selben Erkenntnis über die Offline‑Konsolidierung, streiten jedoch darüber, welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "80be9711e32fe04f1e15001bc9b404f1"
-chunkHashes: "d798133f37d89921,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
+images: ["/images/svapna-sushupti-og.png"]
+images: ["/images/svapna-sushupti-og.png"]
+translationHash: "cb99c33064749f0b0b4e7be0966486a1"
+chunkHashes: "5a1b4745079458a7,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
 ---
-[Mein letzter Beitrag](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Anschlussfrage: Was bedeutet das eigentlich? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
+[My last post](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Anschlussfrage: Was bedeutet das eigentlich? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
 
-Ich habe eine Woche damit verbracht, Literatur aus drei nahezu völlig unabhängigen Bereichen zu lesen: aktuelle KI‑Speicherrapporte, Schlaf‑Neurowissenschaften und die [Mandukya Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie konvergieren auf dieselbe Kernerkenntnis zur offline Konsolidierung. Gleichzeitig zeigen sie einen Konflikt, der sich als die wichtigste Designfrage für KI‑Speichersysteme herausstellt.
+Ich verbrachte eine Woche damit, Literatur aus drei nahezu nie zitierten Bereichen zu lesen: aktuelle KI‑Memory‑Publikationen, Schlaf‑Neurowissenschaften und die [Mandukya Upanishad](https://de.wikipedia.org/wiki/Mandukya_Upanishad). Sie convergieren auf dieselbe zentrale Erkenntnis zur offline Konsolidierung. Gleichzeitig kommt ein Dissens ans Licht, der sich als die wichtigste Designfrage in KI‑Memory‑Systemen herausstellt.
 
-**Alle drei Traditionen sind sich einig, dass offline Verarbeitung notwendig ist. Keine von ihnen stimmt darüber überein, ob Rekombination oder Auflösung die eigentliche Arbeit leistet.**
+**Alle drei Traditionen stimmen darin überein, dass offline Verarbeitung notwendig ist. Keine von ihnen einigt sich darauf, ob Rekombination oder Auflösung die eigentliche Arbeit leistet.**
 ## The Landscape: Three Traditions, One Problem
 
 Das Problem, das jede Tradition löst, ist dasselbe: Wie kann ein System, das während wacher Aktivitäten Erfahrung sammelt, das Wichtige behalten, das Unwichtige verwerfen und am nächsten Tag funktionstüchtig bleiben?

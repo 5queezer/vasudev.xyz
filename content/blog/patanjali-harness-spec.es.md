@@ -1,20 +1,22 @@
 ---
-title: "Patanjali tenía la especificación de filtrado. Nosotros solo escribimos las pruebas."
+title: "Patanjali tenía la especificación de filtrado. Nosotros sólo escribimos las pruebas."
 date: 2026-04-03
 tags: ["architecture", "memory", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 4
-description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus paralelos inesperados en la teoría de la atención yóguica."
+description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes y sus paralelos inesperados en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "3a56c9102d1b554a5d9765b63e74e5b9"
-chunkHashes: "60dc7a128d96d18d,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+images: ["/images/patanjali-harness-spec-og.png"]
+images: ["/images/patanjali-harness-spec-og.png"]
+translationHash: "f26a2b8ce42e17b8c39a6f7d9006dfe9"
+chunkHashes: "9b3b5651c6cca98c,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
 ---
-[MuninnDB](https://github.com/scrypster/muninndb)'s sistema de consolidación fusionó tres engramas duplicados con variaciones de color exactamente como estaba diseñado (similaridad del coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, eliminar los duplicados desplazó el ancla de normalización, empujando los resultados relevantes hacia abajo en la clasificación. La solución fue una cláusula de guardia: `MinDedupVaultSize` (por defecto 20), que omite la fase 2 de deduplicación en bóvedas pequeñas. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
+[MuninnDB](https://github.com/scrypster/muninndb)'s sistema de consolidación fusionó tres engramas duplicados con variaciones de color exactamente como estaba previsto (similitud coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, eliminar los duplicados desplazó el ancla de normalización, haciendo que los resultados relevantes bajaran en la clasificación. La solución fue una cláusula de guardia: `MinDedupVaultSize` (valor predeterminado 20), que omite la deduplicación de la Fase 2 en bóvedas pequeñas. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
 
-El fallo no fue un error en el algoritmo de deduplicación. Fue una falla de *discernimiento*: una operación de consolidación válida aplicada en un contexto donde causó daño. Cuándo consolidar, cuándo dejarlo tal cual, qué cuenta como ruido frente a señal. Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en los [Sutras del Yoga](https://es.wikipedia.org/wiki/Sutras_del_Yoga) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, marzo 2026), [MemoryBench](https://arxiv.org/abs/2510.17281) y el [marco de ingeniería de harness de Böckeler](https://martinfowler.com/articles/harness-engineering.html).
+El fallo no fue un error en el algoritmo de deduplicación. Fue una falla de *discernimiento*: una operación de consolidación válida aplicada en un contexto donde causó daño. Cuándo consolidar, cuándo dejarlo como está, qué se cuenta como ruido versus señal. Ese problema tiene una larga historia fuera de la informática. Encontré tres principios de diseño específicos en los [Yoga Sutras](https://es.wikipedia.org/wiki/Yoga_Sutra_de_Patanjali) que se corresponden con resultados empíricos de [Meta-Harness](https://arxiv.org/abs/2603.28052) (Stanford/MIT, marzo de 2026), [MemoryBench](https://arxiv.org/abs/2510.17281), y el [marco de ingeniería de harness de Böckeler](https://martinfowler.com/articles/harness-engineering.html).
 
-**Las tradiciones contemplativas elaboraron modelos sofisticados de filtrado de atención. Algunos de esos modelos generan hipótesis verificables que la literatura actual sobre memoria de agentes no plantea.**
+**Las tradiciones contemplativas construyeron modelos sofisticados de filtrado de la atención. Algunos de esos modelos generan hipótesis comprobables que la literatura actual sobre la memoria del agente no plantea.**
 ## 1. No todo ruido es igual (Vrtti Nirodha)
 
 Antes del fallo de deduplicación, el [benchmark #311](https://github.com/scrypster/muninndb/issues/311) encontró un problema más básico. La puntuación ACT‑R de MuninnDB ([issue #331](https://github.com/scrypster/muninndb/issues/331)) fijaba los engramas nuevos a raw=1.0, haciendo que todas las puntuaciones de recuperación fueran idénticas en 0.9000. El sistema no podía distinguir señal de ruido. Cada entrada parecía igualmente relevante. Después de la corrección ([PR #337](https://github.com/scrypster/muninndb/pull/337)), el rango de puntuaciones mejoró a 0.18‑0.90 y la recuperación correcta top‑1 pasó a 5/5 consultas. El trato uniforme de las entradas había estado destruyendo la calidad de la recuperación.

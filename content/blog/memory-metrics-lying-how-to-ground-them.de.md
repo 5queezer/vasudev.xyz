@@ -1,20 +1,22 @@
 ---
-title: "Die Speicherkennzahlen Ihres Agenten lügen Sie an. So können Sie sie belegen."
+title: "Die Speicherkennzahlen Ihres Agenten lügen Sie an. So verankern Sie sie."
 date: 2026-04-02
 tags: ["ai", "memory", "benchmarks", "muninndb"]
 series: ["Building Agents That Sleep"]
 series_weight: 3
-description: "Speicherkonsolidierung sieht in Dashboards großartig aus. Aber wenn Ihre Metriken sich verbessern können, ohne dass die Abrufleistung besser wird, optimieren Sie einen losgelösten Proxy."
+description: "Die Gedächtniskonsolidierung sieht auf Dashboards großartig aus. Aber wenn sich Ihre Metriken verbessern können, ohne dass die Abrufleistung besser wird, optimieren Sie eine losgelöste Stellvertretergröße."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "f7fae02b1b6237c5a73f7f0a6c66f939"
-chunkHashes: "cecec19aaf26da69,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
+translationHash: "b8a709b4d0147300deb327ef4fe4178d"
+chunkHashes: "62a1f14b771987f7,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
 ---
-Ich habe ein System zur Gedächtniskonsolidierung für KI‑Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, lässt veraltete Einträge zerfallen und erzeugt ein Traumjournal, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: Deduplizierungsrate steigt, Gedächtnisanzahl sinkt, Assoziationsdichte steigt.
+Ich habe ein System zur Gedächtniskonsolidierung für KI‑Agenten gebaut. Es entfernt doppelte Erinnerungen, stärkt Assoziationen, lässt veraltete Einträge verfallen und erzeugt ein Traumtagebuch, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: Duplikat‑Rate steigt, Erinnerungs‑Anzahl sinkt, Assoziations‑Dichte wächst.
 
-Keines davon sagt Ihnen, ob der Agent zur richtigen Zeit das Richtige erinnert.
+Das alles sagt nichts darüber, ob der Agent zur richtigen Zeit das Richtige erinnert.
 
-**Wenn sich eine Kennzahl verbessern kann, ohne dass sich die Abrufqualität ebenfalls verbessert, ist diese Kennzahl ein losgelöster Proxy. Hören Sie auf, sie zu optimieren.**
+**Wenn sich eine Kennzahl verbessern kann, ohne dass sich die Abruf‑Qualität ebenfalls verbessert, ist diese Kennzahl ein losgelöster Proxy. Hör auf, sie zu optimieren.**
 ## Das Problem hat einen Namen
 
 Ich habe kürzlich einen Aufsatz namens ["The Collapse of Proxy Integrity"](https://standardgalactic.github.io/antivenom/proxy_integrity.pdf) von einer unabhängigen Forscherin namens Flyxion gelesen. Das Kernargument: Wenn ein messbares Signal von dem Prozess, den es verfolgen soll, entkoppelt wird, wird das Signal selbstreferenziell. Man optimiert die Karte, während das Territorium verrottet.
