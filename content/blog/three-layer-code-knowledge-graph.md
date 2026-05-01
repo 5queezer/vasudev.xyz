@@ -9,7 +9,7 @@ I generated a knowledge graph for a coding agent codebase last week. The first v
 
 I clustered it into communities and labeled each with a concept name. Better. But the edges still said things like `calls×32 / method×7 / contains×11`. Useful as evidence. Not useful as a map.
 
-Then I rewrote the edges as human relationship phrases: "drives and observes conversations", "supplies credentials to", "renders markdown with". Suddenly the graph read like a sentence. Suddenly an LLM could orient on it.
+Then I rewrote the edges as human relationship phrases: "drives and observes conversations," "supplies credentials to," "renders markdown with." Suddenly the graph read like a sentence. Suddenly an LLM could orient on it.
 
 Then I asked the obvious question. If layer three is so readable, why not skip the other two?
 
@@ -52,7 +52,7 @@ You still need layer one. It is the only layer that lets you go from a concept b
 
 ## Why Layer Three Alone Fails
 
-The opposite mistake is more seductive. Once you have human predicates like "drives and observes conversations", the graph reads like prose. It feels like the right abstraction for an LLM, because LLMs are good at prose.
+The opposite mistake is more seductive. Once you have human predicates like "drives and observes conversations," the graph reads like prose. It feels like the right abstraction for an LLM, because LLMs are good at prose.
 
 The problem is that human predicates are interpretive. They are an editorial layer on top of evidence. If you treat them as ground truth, the agent will plan based on phrases that may have been wrong since the last refactor, and there is no easy way to catch the drift. The LLM will confidently say "the export viewer renders markdown with the vendored parser" even after someone replaced the parser, because the human label has not been regenerated.
 
@@ -64,7 +64,7 @@ Layer two is the unglamorous one. Communities of files glued by aggregated typed
 
 This is what an LLM agent should reason on first.
 
-The reason is search-space reduction. A repo has hundreds of files. A subsystem graph has a few dozen communities. When the user says "fix the bug where the bash tool prints stale output", the agent should not be doing keyword search across the whole tree. It should be looking at the community graph, finding "Bash Execution Interface" and "Interactive Session Orchestration", noting which other communities they bridge to, then descending into layer one for the precise file. That is two graph hops instead of a thousand grep matches.
+The reason is search-space reduction. A repo has hundreds of files. A subsystem graph has a few dozen communities. When the user says "fix the bug where the bash tool prints stale output," the agent should not be doing keyword search across the whole tree. It should be looking at the community graph, finding "Bash Execution Interface" and "Interactive Session Orchestration," noting which other communities they bridge to, then descending into layer one for the precise file. That is two graph hops instead of a thousand grep matches.
 
 The aggregated edge counts also encode something the raw graph hides. If two communities are connected by `calls×32 / imports×9 / events×4`, that is a thick coupling and any change to one will probably touch the other. If they are connected by `contains×1`, they barely know each other. Counts are the cheapest impact-analysis signal you have.
 
@@ -89,7 +89,7 @@ Source code
   agent reads, edits, verifies
 ```
 
-Each layer answers a different question. Layer three answers "what is this and why does it exist". Layer two answers "where does it live and what does it touch". Layer one answers "what is the precise symbol I need to change". You cannot collapse them, because the question changes at each step.
+Each layer answers a different question. Layer three answers "what is this and why does it exist." Layer two answers "where does it live and what does it touch." Layer one answers "what is the precise symbol I need to change." You cannot collapse them, because the question changes at each step.
 
 ## This is Not New, and That is the Point
 
@@ -99,7 +99,7 @@ The first literature is program analysis. The [code property graph](https://en.w
 
 The second literature is graph-based retrieval for LLMs. Microsoft's GraphRAG paper, ["From Local to Global: A Graph RAG Approach to Query-Focused Summarization"](https://arxiv.org/abs/2404.16130) by Edge et al. (2024), is explicit about the value of an intermediate community layer. They build an entity graph, partition it with the [Leiden algorithm](https://en.wikipedia.org/wiki/Leiden_algorithm), and generate summaries per community. Queries hit the community summaries first and only descend into entities when needed. That is exactly layer two, applied to documents instead of code.
 
-Recent code-specific work is converging on the same shape. ["Code Graph Model (CGM)"](https://arxiv.org/abs/2505.16901) by Tao et al. integrates repository code graph structure into an LLM's attention mechanism and pairs it with an agentless graph RAG framework, hitting 43% on SWE-bench Lite as the top open-weight model. ["GraphCodeAgent"](https://arxiv.org/abs/2504.10046) by Li et al. uses a dual-graph design (a requirement graph and a structural-semantic code graph) and lets the agent multi-hop across both for retrieval. ["Knowledge Graph Based Repository-Level Code Generation"](https://arxiv.org/abs/2505.14394) by Athale and Vaddina represents a repo as a graph that captures structural and relational information and uses hybrid retrieval over it.
+Recent code-specific work is converging on the same shape. ["Code Graph Model (CGM): A Graph-Integrated Large Language Model for Repository-Level Software Engineering Tasks"](https://arxiv.org/abs/2505.16901) by Tao et al. integrates repository code graph structure into an LLM's attention mechanism and pairs it with an agentless graph RAG framework, hitting 43% on SWE-bench Lite as the top open-weight model. ["GraphCodeAgent: Dual Graph-Guided LLM Agent for Retrieval-Augmented Repo-Level Code Generation"](https://arxiv.org/abs/2504.10046) by Li et al. uses a dual-graph design (a requirement graph and a structural-semantic code graph) and lets the agent multi-hop across both for retrieval. ["Knowledge Graph Based Repository-Level Code Generation"](https://arxiv.org/abs/2505.14394) by Athale and Vaddina represents a repo as a graph that captures structural and relational information and uses hybrid retrieval over it.
 
 What none of these papers spell out cleanly is the third layer, the human-readable ontology that sits on top of the structural graph. They tend to either expose raw nodes and edges to the LLM or summarize aggressively into natural-language community descriptions. The former is too noisy and the latter is too lossy. The split that worked for me is to keep human prose as the entry-point map but always link it back to the aggregated structural edges, which themselves link back to symbols.
 
