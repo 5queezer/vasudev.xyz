@@ -113,6 +113,7 @@ IPs
 (?i)svapna
 (?i)taijasa
 (?i)thalamocortical
+(?i)tmux
 (?i)tokenization
 (?i)tokenizer
 (?i)turiya
