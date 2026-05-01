@@ -1,19 +1,20 @@
 ---
-title: "Por qué los agentes de IA necesitan dormir"
+title: "¿Por qué los agentes de IA necesitan dormir?"
 date: 2026-03-28
 tags: ["ai", "memory", "muninndb", "architecture"]
 agentQuestions:
   - "¿Por qué los agentes de IA necesitan dormir?"
   - "¿Cómo funciona el Dream Engine de MuninnDB?"
-  - "¿Qué arregla la consolidación en memoria de agentes?"
+  - "¿Qué corrige la consolidación en la memoria del agente?"
 series: ["Building Agents That Sleep"]
 series_weight: 1
-description: "Los agentes de IA capturan recuerdos pero nunca los consolidan. Así es como el Dream Engine de MuninnDB se inspira en la neurociencia para solucionar eso."
+description: "Los agentes de IA capturan recuerdos pero nunca los consolidan. Así es como el Motor de Sueños de MuninnDB se inspira en la neurociencia para solucionar eso."
 images: ["/images/dream-engine.png"]
 aliases: ["/blog/stop-hoarding-memories-let-your-agent-sleep/"]
-translationHash: "7ca50e0f736185f082a9ae3308d1ecd5"
+translationHash: "1673025680449bc13a09226042751f96"
 chunkHashes: "3b0ff2655d6195a8,eef9438b5c27cddb,5d70b12018209cbb,bc19745059a2ec72,583aa6b526db12dc,9953ab1d0ae9aab0,5d64f27797af7a7f,63274f06db4f9fc5"
 ---
+
 Contribuyo a una base de datos cognitiva para agentes de IA llamada [MuninnDB](https://github.com/scrypster/muninndb). Almacena todo: notas de sesiones, contexto del proyecto, observaciones de trabajo, documentación legal. Después de unas semanas de uso diario, las entradas se acumulan. Encontrar cosas sigue funcionando. La búsqueda semántica es buena para la recuperación. Pero el almacén mismo se estaba pudriendo. Entradas casi duplicadas de sesiones que cubrían el mismo terreno. Hechos obsoletos sustituidos por otros más recientes. No había un sistema para distinguir “nota legal crítica” de “comentario informal sobre la red Docker”.
 
 El problema no es la captura. Cada sistema de memoria domina la captura. El problema es lo que ocurre entre sesiones, que normalmente es nada.

@@ -1,21 +1,21 @@
 ---
-title: "Un error de Sablier que no era Sablier: 4 cosas a tener en cuenta al rastrear una falla de plugin de Traefik"
+title: "Un error de Sablier que no era Sablier: 4 sorpresas al rastrear una falla de un plugin de Traefik"
 date: 2026-04-19
-description: "Rastreando un error intermitente 'invalid middleware' en Sablier a una dependencia oculta de inicio introducida por una refactorización de Traefik 3.5.3."
+description: "Rastreando un error esporádico de 'invalid middleware' en Sablier a una dependencia oculta de inicio introducida por una refactorización de Traefik 3.5.3."
 images: ["/images/a-sablier-bug-that-wasnt-sablier-og.png"]
 author: "Christian Pojoni"
 tags: ["architecture", "traefik"]
 agentQuestions:
-  - "¿Por qué era un bug de Traefik y no de Sablier?"
-  - "¿Qué cambió en el arranque de plugins de Traefik 3.5.3?"
-  - "¿Cómo puedo reproducir el fallo invalid middleware?"
+  - "¿Por qué se trató de un error de Traefik y no de un error de Sablier?"
+  - "¿Qué cambió en el inicio del plugin de Traefik 3.5.3?"
+  - "¿Cómo puedo reproducir el error de middleware inválido?"
 series: ["Field Notes"]
-translationHash: "62d5bb434393d26d88b269a846a4d471"
-chunkHashes: "278fb8e0d3039274,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"
+translationHash: "75744b97b5a70de6eb8521d19c8569c7"
+chunkHashes: "7e18fa5668bb7516,3f0837a5defbadbd,f708ca20c36b3bef,e5046a30363c021b,e01a6962bd409a3c,8039547e1da5ce63,fc60ce853b1e37de,13c2b64fff8f853e,74f4f3ff014f6406,7f670ac6c5113213"
 ---
-[Sablier](https://github.com/sablierapp/sablier) te brinda escala a cero al estilo Cloud‑Run para contenedores Docker auto‑alojados. Las solicitudes llegan a un middleware de proxy inverso, el middleware despierta el contenedor objetivo bajo demanda y el contenedor se apaga nuevamente después de un tiempo de inactividad. Pasé una tarde rastreando un error intermitente de `invalid middleware` que los usuarios de Sablier han estado reportando durante meses. El error no estaba en Sablier. El trabajo produjo tres artefactos públicos: un [repositorio de reproducción determinista](https://github.com/5queezer/sablier-traefik-repro), un [issue ascendente](https://github.com/traefik/traefik/issues/13005) y un [PR de corrección](https://github.com/traefik/traefik/pull/13006). Aquí tienes cuatro cosas que vale la pena saber antes de depurar tu próximo error de `invalid middleware`.
+[Sablier](https://github.com/sablierapp/sablier) te brinda escalado a cero al estilo Cloud‑Run para contenedores Docker auto‑alojados. Las solicitudes llegan a un middleware de proxy inverso, el middleware despierta el contenedor objetivo bajo demanda y el contenedor se apaga de nuevo tras un tiempo de inactividad. Pasé una tarde rastreando un error esporádico de `invalid middleware` que los usuarios de Sablier han estado reportando durante meses. El error no estaba en Sablier. El trabajo produjo tres artefactos públicos: un [repositorio de reproducción determinista](https://github.com/5queezer/sablier-traefik-repro), un [issue upstream](https://github.com/traefik/traefik/issues/13005) y un [pull request de corrección](https://github.com/traefik/traefik/pull/13006). Aquí tienes cuatro cosas que vale la pena saber antes de depurar tu próximo error `invalid middleware`.
 
-**Una refactorización lanzada en una versión puntual de Traefik hizo que silenciosamente cada inicio de plugin dependiera de que `plugins.traefik.io` fuera accesible, y ningún propietario de middleware estaba en posición de notarlo.**
+**Una refactorización lanzada en una versión menor de Traefik hizo que, silenciosamente, cada inicio de plugin dependiera de que `plugins.traefik.io` fuera accesible, y ningún propietario de middleware estaba en posición de notarlo.**
 ## 1. El error estaba en la refactorización, no en la funcionalidad
 
 El síntoma apareció en el rastreador de Sablier como `invalid middleware "whoami-sablier@file" configuration: invalid middleware type or middleware does not exist`. Sablier envía un plugin de Traefik, así que naturalmente allí es donde los usuarios presentaban el problema. No era un bug de Sablier.

@@ -1,19 +1,20 @@
 ---
-title: "Warum KI-Agenten Schlaf benötigen"
+title: "Warum KI‑Agenten Schlaf benötigen"
 date: 2026-03-28
 tags: ["ai", "memory", "muninndb", "architecture"]
 agentQuestions:
   - "Warum brauchen KI-Agenten Schlaf?"
-  - "Wie funktioniert MuninnDBs Dream Engine?"
-  - "Was behebt Konsolidierung in Agenten-Memory?"
+  - "Wie funktioniert MuninnDB’s Dream Engine?"
+  - "Was behebt die Konsolidierung im Gedächtnis eines Agenten?"
 series: ["Building Agents That Sleep"]
 series_weight: 1
-description: "KI‑Agenten erfassen Erinnerungen, konsolidieren sie jedoch nie. So leiht sich MuninnDBs Dream Engine von der Neurowissenschaft, um das zu beheben."
+description: "KI-Agenten erfassen Erinnerungen, aber konsolidieren sie nie. So greift MuninnDBs Dream Engine auf die Neurowissenschaften zurück, um das zu beheben."
 images: ["/images/dream-engine.png"]
 aliases: ["/blog/stop-hoarding-memories-let-your-agent-sleep/"]
-translationHash: "7ca50e0f736185f082a9ae3308d1ecd5"
+translationHash: "1673025680449bc13a09226042751f96"
 chunkHashes: "3b0ff2655d6195a8,eef9438b5c27cddb,5d70b12018209cbb,bc19745059a2ec72,583aa6b526db12dc,9953ab1d0ae9aab0,5d64f27797af7a7f,63274f06db4f9fc5"
 ---
+
 Ich trage zu einer kognitiven Datenbank für KI‑Agenten bei, genannt [MuninnDB](https://github.com/scrypster/muninndb). Sie speichert alles: Sitzungsnotizen, Projektkontexte, Arbeitsbeobachtungen, rechtliche Dokumentation. Nach ein paar Wochen täglicher Nutzung stapeln sich die Einträge. Das Auffinden funktioniert noch. Die semantische Suche ist gut im Abrufen. Aber das Repository selbst verfiel. Nahe‑Duplikate aus Sitzungen, die denselben Stoff behandelten. Veraltete Fakten, die von neueren überholt wurden. Kein System, das „kritische rechtliche Notiz“ von „flüchtigem Kommentar zu Docker‑Netzwerken“ unterscheidet.
 
 Das Problem ist nicht die Erfassung. Jedes Gedächtnissystem sichert die Erfassung. Das Problem ist, was zwischen den Sitzungen passiert – und das ist meist nichts.
