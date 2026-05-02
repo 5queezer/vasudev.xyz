@@ -6,6 +6,7 @@
   const suggestions = root.querySelector('[data-blog-search-suggestions]');
   const status = root.querySelector('[data-blog-search-status]');
   const results = document.querySelector('[data-blog-search-results]');
+  const pagination = document.querySelector('[data-blog-pagination]');
   const indexUrl = root.dataset.indexUrl;
   const maxSuggestions = 8;
   let posts = [];
@@ -100,7 +101,10 @@
 
     buildSuggestions(query);
 
-    if (!normalize(query)) {
+    const hasQuery = Boolean(normalize(query));
+    if (pagination) pagination.hidden = hasQuery;
+
+    if (!hasQuery) {
       setStatus('');
     } else if (matches.length === 1) {
       setStatus('1 matching post');
