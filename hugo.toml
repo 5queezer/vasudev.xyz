@@ -59,10 +59,17 @@ enableRobotsTXT = true
   series = "series"
 
 [mediaTypes]
+  [mediaTypes."application/json"]
+    suffixes = ["json"]
   [mediaTypes."text/plain"]
     suffixes = ["txt"]
 
 [outputFormats]
+  [outputFormats.searchjson]
+    mediaType = "application/json"
+    baseName = "search"
+    isPlainText = true
+    notAlternative = true
   [outputFormats.llmstxt]
     mediaType = "text/plain"
     baseName = "llms"
@@ -82,7 +89,7 @@ enableRobotsTXT = true
 
 [outputs]
   home = ["html", "llmstxt", "llmstxtfull"]
-  section = ["html"]
+  section = ["html", "searchjson"]
   page = ["html", "txtplain"]
 
 [permalinks]

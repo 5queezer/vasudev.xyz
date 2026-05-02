@@ -171,6 +171,83 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
 .essay-title { font-size: 1.25rem; font-family: var(--font-serif); line-height: 1.35; margin-bottom: 1rem; flex-grow: 1; transition: color .2s; }
 .essay-card:hover .essay-title { color: var(--primary); }
 .essay-desc { font-size: .875rem; color: var(--muted-fg); line-height: 1.7; margin: 0 0 2rem; }
+.blog-search-header { margin-bottom: 3rem; }
+.blog-search { margin-top: 2rem; max-width: 48rem; }
+.blog-search-label {
+  display: block;
+  margin-bottom: .75rem;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted-fg);
+}
+.blog-search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: .875rem 1rem;
+  transition: border-color .2s, box-shadow .2s;
+}
+.blog-search-input-wrap:focus-within {
+  border-color: hsla(38 92% 50% / .65);
+  box-shadow: 0 0 0 3px hsla(38 92% 50% / .08);
+}
+.blog-search-icon { font-family: var(--font-mono); color: var(--primary); }
+.blog-search-input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: .875rem;
+}
+.blog-search-input::placeholder { color: hsla(0 0% 60% / .7); }
+.blog-search-input:disabled { opacity: .45; cursor: not-allowed; }
+.blog-search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  min-height: 2rem;
+  margin-top: .75rem;
+}
+.blog-search-suggestion {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted-fg);
+  padding: .375rem .65rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: border-color .2s, color .2s, background-color .2s;
+}
+.blog-search-suggestion:hover,
+.blog-search-suggestion:focus-visible {
+  color: var(--fg);
+  border-color: hsla(38 92% 50% / .6);
+  background: hsla(38 92% 50% / .08);
+}
+.blog-search-suggestion.is-tag { color: hsla(38 92% 50% / .9); }
+.blog-search-status {
+  min-height: 1.25rem;
+  margin: .5rem 0 0;
+  color: var(--muted-fg);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+}
+.blog-search-empty {
+  grid-column: 1 / -1;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  padding: 2rem;
+  color: var(--muted-fg);
+  font-family: var(--font-mono);
+  font-size: .875rem;
+}
 
 /* ============================================================
    About

@@ -10,6 +10,8 @@ firebase-debug.log
 styles/Google/
 .codex
 .omx/
+.superpowers/
+.worktrees/
 cmd/generate-og-images/generate-og-images
 cmd/translate/translate
 chat/node_modules/
