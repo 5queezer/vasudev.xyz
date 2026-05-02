@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="not-found container-narrow">
+  <p class="section-eyebrow">404 / Not found</p>
+  <h1 class="article-title">This page took the wrong branch.</h1>
+  <div class="prose">
+    <p>The route does not exist, but you found the toga fallback.</p>
+    <p><a href="{{ relLangURL "" }}">Return home</a></p>
+  </div>
+  <figure class="not-found-easter-egg">
+    <img
+      src="/images/404-toga-easter-egg.webp"
+      alt="Christian in classical robes addressing a forum"
+      loading="eager"
+      decoding="async"
+    >
+  </figure>
+</section>
+{{ end }}
