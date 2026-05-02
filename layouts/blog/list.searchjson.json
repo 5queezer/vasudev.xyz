@@ -1,0 +1,16 @@
+{{- $posts := where .RegularPages "Section" "blog" -}}
+{{- $items := slice -}}
+{{- range $posts -}}
+  {{- $tags := .Params.tags | default (slice) -}}
+  {{- $searchText := printf "%s %s %s" .Title .Description (delimit $tags " ") | lower -}}
+  {{- $items = $items | append (dict
+    "title" .Title
+    "url" .RelPermalink
+    "description" .Description
+    "date" (.Date.Format "02 Jan 2006")
+    "readingTime" (printf "%d min read" .ReadingTime)
+    "tags" $tags
+    "searchText" $searchText
+  ) -}}
+{{- end -}}
+{{- $items | jsonify -}}
