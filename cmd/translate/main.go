@@ -51,6 +51,7 @@ func main() {
 	languages := flag.String("languages", "de,es", "comma-separated target languages")
 	includeIndex := flag.Bool("include-index", false, "translate _index.md section pages")
 	indexOnly := flag.Bool("index-only", false, "translate only _index.md section pages")
+	frontMatterOnly := flag.Bool("front-matter-only", false, "translate front matter only and copy the body unchanged")
 	flag.Parse()
 
 	apiURL := os.Getenv("LLM_API_URL")
@@ -123,6 +124,16 @@ func main() {
 
 			if translatedTitle == "" || translatedDesc == "" || (len(agentQuestions) > 0 && translatedAgentQuestions == nil) {
 				fmt.Fprintf(os.Stderr, "front matter translation failed for %s -> %s, skipping\n", name, lang)
+				continue
+			}
+
+			if *frontMatterOnly {
+				output := buildTranslatedFile(frontMatter, translatedTitle, translatedDesc, hash, nil, translatedAgentQuestions, body)
+				if err := os.WriteFile(targetPath, []byte(output), 0644); err != nil {
+					fmt.Fprintf(os.Stderr, "failed to write %s: %v\n", targetPath, err)
+					continue
+				}
+				fmt.Printf("wrote %s\n", targetName)
 				continue
 			}
 

@@ -46,7 +46,8 @@ jobs:
             --content-dir ../../content/guides \
             --languages de,es \
             --include-index \
-            --index-only
+            --index-only \
+            --front-matter-only
 
       - name: Open PR with guide translations
         env:
