@@ -248,6 +248,39 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
   font-family: var(--font-mono);
   font-size: .875rem;
 }
+.blog-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+}
+.blog-pagination[hidden] { display: none; }
+.blog-pagination-pages { display: flex; flex-wrap: wrap; gap: .5rem; }
+.blog-pagination-link,
+.blog-pagination-page {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted-fg);
+  min-width: 2.25rem;
+  padding: .55rem .75rem;
+  text-align: center;
+  transition: border-color .2s, color .2s, background-color .2s;
+}
+.blog-pagination-link:hover,
+.blog-pagination-page:hover,
+.blog-pagination-page.is-current {
+  color: var(--fg);
+  border-color: hsla(38 92% 50% / .6);
+  background: hsla(38 92% 50% / .08);
+}
+.blog-pagination-link.is-disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
 
 /* ============================================================
    About
