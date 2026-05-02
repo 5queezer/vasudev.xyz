@@ -27,7 +27,7 @@ export interface Env {
 }
 
 const UPSTREAM = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "nvidia/llama-3.1-nemotron-70b-instruct:free";
+const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
 
 const SYSTEM_PROMPT = `You are the on-site agent for vasudev.xyz, the personal site of Christian Pojoni — a systems engineer working in Rust, Python, AI tooling, and privacy-first architecture.
 

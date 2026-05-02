@@ -75,7 +75,7 @@ wrangler secret put LANGFUSE_SECRET_KEY
 wrangler deploy
 ```
 
-The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter's `nvidia/llama-3.1-nemotron-70b-instruct:free` model is rate-limited but free. Langfuse tracing is disabled unless both Langfuse secrets are set.
+The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter's `nvidia/nemotron-3-nano-30b-a3b:free` model is rate-limited but free. Langfuse tracing is disabled unless both Langfuse secrets are set.
 
 ## Giscus
 
