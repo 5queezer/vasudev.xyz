@@ -59,6 +59,10 @@
   translation: Ask the agent something…
 - id: agent_streaming
   translation: streaming response…
+- id: agent_privacy_notice
+  translation: Chats may be logged for debugging and improvement. Do not enter sensitive information.
+- id: privacy_title
+  translation: Privacy
 - id: agent_chip_who
   translation: Who is Christian?
 - id: agent_chip_hrafn

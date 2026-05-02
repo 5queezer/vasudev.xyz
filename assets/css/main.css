@@ -248,6 +248,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
 .agent-send { width: 1.75rem; height: 1.75rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: transparent; color: var(--muted-fg); transition: all .2s; }
 .agent-send:hover:not(:disabled) { color: var(--fg); border-color: hsla(38 92% 50% / .5); }
 .agent-send:disabled { opacity: .4; cursor: not-allowed; }
+.agent-privacy { margin: 0; padding: .65rem 1rem .75rem; border-top: 1px solid hsla(0 0% 15% / .45); color: hsla(0 0% 60% / .75); font-family: var(--font-mono); font-size: .65rem; line-height: 1.5; }
+.agent-privacy a { color: hsla(38 92% 50% / .85); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ============================================================
    Article (single)

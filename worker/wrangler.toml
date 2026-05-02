@@ -8,7 +8,12 @@ workers_dev = true
 
 [vars]
 ALLOWED_ORIGINS = "https://vasudev.xyz,http://localhost:1313"
+LANGFUSE_HOST = "https://cloud.langfuse.com"
+LANGFUSE_CAPTURE_CONTENT = "true"
+LANGFUSE_SAMPLE_RATE = "1"
 
 # Set with:
 #   wrangler secret put OPENROUTER_API_KEY
-# (Get a free key at https://openrouter.ai/ — Nemotron 70B is on the free tier.)
+#   wrangler secret put LANGFUSE_PUBLIC_KEY
+#   wrangler secret put LANGFUSE_SECRET_KEY
+# (Get a free OpenRouter key at https://openrouter.ai/ — Nemotron 70B is on the free tier.)

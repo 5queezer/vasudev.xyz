@@ -20,9 +20,14 @@
   const placeholder = root.dataset.agentPlaceholder || 'Ask the agent something…';
   const streamingText = root.dataset.agentStreaming || 'streaming response…';
   const welcome = root.dataset.agentWelcome || 'Hello.';
+  const privacyNotice = root.dataset.agentPrivacyNotice || '';
+  const privacyUrl = root.dataset.agentPrivacyUrl || '/privacy/';
+  const privacyLabel = root.dataset.agentPrivacyLabel || 'Privacy';
   let chips = [];
   let postContent = '';
   try { chips = JSON.parse(root.dataset.agentChips || '[]'); } catch (_) {}
+
+  const sessionId = getSessionId();
 
   fetch(postUrl)
     .then(res => res.ok ? res.text() : '')
@@ -44,6 +49,7 @@
              placeholder="${escapeAttr(placeholder)}" />
       <button class="agent-send" type="submit" aria-label="Send">↑</button>
     </form>
+    ${privacyNotice ? `<p class="agent-privacy">${renderInlineMarkdown(privacyNotice)} <a href="${escapeAttr(privacyUrl)}">${escapeHTML(privacyLabel)}</a></p>` : ''}
   `;
 
   const msgsEl   = root.querySelector('[data-msgs]');
@@ -107,6 +113,20 @@
 
   function renderAssistantContent(el, text) {
     el.innerHTML = markdownToHTML(text);
+  }
+
+  function getSessionId() {
+    const key = 'vasudevAgentSessionId';
+    try {
+      let id = sessionStorage.getItem(key);
+      if (!id) {
+        id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch (_) {
+      return crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+    }
   }
 
   function renderMessage(role, text, opts = {}) {
@@ -183,7 +203,10 @@
           messages: history,
           postContent,
           mode,
-          lang
+          lang,
+          postUrl,
+          pageUrl: window.location.href,
+          sessionId
         })
       });
       if (!res.ok || !res.body) throw new Error('HTTP ' + res.status);
