@@ -94,20 +94,41 @@
       return `\n${token}\n`;
     });
 
+    function splitTableRow(line) {
+      return line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim());
+    }
+
+    function isTableSeparator(line) {
+      const cells = splitTableRow(line);
+      return cells.length > 1 && cells.every(cell => /^:?-{3,}:?$/.test(cell));
+    }
+
+    function renderTable(lines) {
+      const headers = splitTableRow(lines[0]);
+      const bodyRows = lines.slice(2).map(splitTableRow).filter(row => row.length > 1);
+      const head = headers.map(cell => `<th>${renderInlineMarkdown(cell)}</th>`).join('');
+      const body = bodyRows.map(row => `<tr>${headers.map((_, i) => `<td>${renderInlineMarkdown(row[i] || '')}</td>`).join('')}</tr>`).join('');
+      return `<div class="agent-table-wrap"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+    }
+
     return text.split(/\n{2,}/).map(part => {
       const trimmed = part.trim();
       if (!trimmed) return '';
       const codeIdx = trimmed.match(/^@@CODE(\d+)@@$/);
       if (codeIdx) return blocks[Number(codeIdx[1])] || '';
+      const lines = trimmed.split('\n').filter(Boolean);
+      if (lines.length >= 2 && lines[0].includes('|') && isTableSeparator(lines[1])) {
+        return renderTable(lines);
+      }
       if (/^[-*] /m.test(trimmed)) {
-        const items = trimmed.split('\n').filter(Boolean).map(line => line.replace(/^[-*] /, '')).map(renderInlineMarkdown);
+        const items = lines.map(line => line.replace(/^[-*] /, '')).map(renderInlineMarkdown);
         return `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
       }
       if (/^\d+\. /m.test(trimmed)) {
-        const items = trimmed.split('\n').filter(Boolean).map(line => line.replace(/^\d+\. /, '')).map(renderInlineMarkdown);
+        const items = lines.map(line => line.replace(/^\d+\. /, '')).map(renderInlineMarkdown);
         return `<ol>${items.map(item => `<li>${item}</li>`).join('')}</ol>`;
       }
-      return `<p>${trimmed.split('\n').map(renderInlineMarkdown).join('<br>')}</p>`;
+      return `<p>${lines.map(renderInlineMarkdown).join('<br>')}</p>`;
     }).join('');
   }
 

@@ -228,6 +228,12 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
 .agent-markdown ol { margin: .65rem 0; padding-left: 1.25rem; }
 .agent-markdown li { margin: .25rem 0; }
 .agent-markdown a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.agent-table-wrap { margin: .8rem 0; overflow-x: auto; }
+.agent-markdown table { width: 100%; border-collapse: collapse; font-size: .78rem; line-height: 1.45; }
+.agent-markdown th,
+.agent-markdown td { border: 1px solid hsla(0 0% 100% / .11); padding: .45rem .55rem; text-align: left; vertical-align: top; }
+.agent-markdown th { color: var(--fg); background: hsla(0 0% 100% / .055); font-weight: 600; }
+.agent-markdown td { color: hsla(0 0% 93% / .86); }
 .agent-markdown strong { color: var(--fg); font-weight: 600; }
 .agent-markdown :not(pre) > code { font-family: var(--font-mono); font-size: .88em; color: var(--primary); background: hsla(0 0% 100% / .055); border: 1px solid hsla(0 0% 100% / .08); border-radius: .25rem; padding: .08rem .35rem; }
 .agent-markdown pre { margin: .8rem 0; padding: .85rem 1rem; overflow-x: auto; background: #282a36; border: 1px solid hsla(0 0% 100% / .09); font-family: var(--font-mono); font-size: .78rem; line-height: 1.65; }
