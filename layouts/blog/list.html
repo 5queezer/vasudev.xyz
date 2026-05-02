@@ -4,7 +4,7 @@
     <h2 class="section-eyebrow">{{ i18n "section_writing" }}</h2>
     <h3 class="section-title">{{ .Title }}</h3>
 
-    <div class="blog-search" data-blog-search data-index-url="{{ "search.json" | relURL }}">
+    <div class="blog-search" data-blog-search data-index-url="{{ .RelPermalink }}search.json">
       <label class="blog-search-label" for="blog-search-input">Search posts</label>
       <div class="blog-search-input-wrap">
         <span class="blog-search-icon" aria-hidden="true">⌕</span>
