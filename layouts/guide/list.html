@@ -3,7 +3,7 @@
   <div class="container">
     <div class="section-header">
       <h2 class="section-eyebrow">{{ i18n "section_guides" }}</h2>
-      <h3 class="section-title">{{ i18n "section_guides_h" }}</h3>
+      <h3 class="section-title">{{ .Title }}</h3>
     </div>
 
     {{ with .Content }}
@@ -22,17 +22,10 @@
 
     <div class="writing-grid">
       {{ range $pages }}
-        {{ $topicCount := len .RegularPages }}
-        {{ if and (eq $topicCount 0) (ne $.Site.Language.Lang "en") }}
-          {{ $defaultPath := strings.TrimSuffix "/" (strings.TrimPrefix (printf "/%s/" $.Site.Language.Lang) .RelPermalink) }}
-          {{ with $.Sites.Default.GetPage $defaultPath }}
-            {{ $topicCount = len .RegularPages }}
-          {{ end }}
-        {{ end }}
         <a href="{{ .RelPermalink }}" class="essay-card">
           <div class="essay-meta">
             {{ if .Date }}<span>{{ .Date.Format "02 Jan 2006" }}</span>{{ end }}
-            <span>{{ $topicCount }} topics</span>
+            <span>{{ .ReadingTime }} min read</span>
           </div>
           <h4 class="essay-title">{{ .Title }}</h4>
           <p class="essay-desc">{{ .Description }}</p>
