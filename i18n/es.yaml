@@ -59,6 +59,10 @@
   translation: Pregúntale algo al agente…
 - id: agent_streaming
   translation: transmitiendo respuesta…
+- id: agent_privacy_notice
+  translation: Los chats pueden registrarse para depuración y mejora. No introduzcas información sensible.
+- id: privacy_title
+  translation: Privacidad
 - id: agent_chip_who
   translation: ¿Quién es Christian?
 - id: agent_chip_hrafn
