@@ -7,8 +7,13 @@
     </div>
 
     {{ with .Content }}
+      {{ $content := . }}
+      {{ if ne $.Site.Language.Lang "en" }}
+        {{ $defaultPath := strings.TrimSuffix "/" (strings.TrimPrefix (printf "/%s/" $.Site.Language.Lang) $.RelPermalink) }}
+        {{ $content = replaceRE `href="([^"/][^"#?]*)\.md"` (printf `href="/%s/${1}/"` $defaultPath) $content }}
+      {{ end }}
       <div class="prose section-intro">
-        {{ . }}
+        {{ $content | safeHTML }}
       </div>
     {{ end }}
 
