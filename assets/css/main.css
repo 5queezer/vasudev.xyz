@@ -186,7 +186,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
 .stack-row { margin-top: 3rem; }
 .about-image-wrap { position: relative; margin: 0 auto; width: 100%; max-width: 34rem; border: 1px solid var(--border); background: hsla(0 0% 12% / .2); overflow: hidden; }
 .about-image-wrap::after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px hsla(0 0% 100% / .04), inset 0 -6rem 8rem hsla(0 0% 0% / .22); }
-.about-image { display: block; width: 100%; aspect-ratio: 1200 / 653; object-fit: cover; }
+.about-image { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
 
 /* ============================================================
    Elsewhere (contact)
