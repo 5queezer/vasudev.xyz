@@ -1,3 +1,5 @@
+import { Langfuse } from "langfuse";
+
 /**
  * agent.vasudev.workers.dev
  * ------------------------------------------------------------
@@ -25,7 +27,7 @@ export interface Env {
 }
 
 const UPSTREAM = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "nvidia/llama-3.1-nemotron-70b-instruct:free";
+const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
 
 const SYSTEM_PROMPT = `You are the on-site agent for vasudev.xyz, the personal site of Christian Pojoni — a systems engineer working in Rust, Python, AI tooling, and privacy-first architecture.
 
@@ -233,58 +235,55 @@ async function sendLangfuse(env: Env, run: TraceRun): Promise<void> {
 
   const host = (env.LANGFUSE_HOST || "https://cloud.langfuse.com").replace(/\/$/, "");
   const captureContent = env.LANGFUSE_CAPTURE_CONTENT !== "false";
-  const traceBody: Record<string, unknown> = {
-    id: run.traceId,
-    timestamp: run.startTime,
-    name: "onsite-agent-chat",
-    sessionId: run.sessionId,
-    userId: run.sessionId,
-    metadata: run.metadata,
-    tags: ["site-agent", String(run.metadata.lang), String(run.metadata.mode)],
-  };
-  if (captureContent) traceBody.input = lastUserMessage(run.messages);
-
-  const generationBody: Record<string, unknown> = {
-    id: run.generationId,
-    traceId: run.traceId,
-    name: "openrouter-chat-completion",
-    model: MODEL,
-    modelParameters: { temperature: 0.4, max_tokens: 600, stream: true },
-    startTime: run.startTime,
-    endTime: run.endTime,
-    completionStartTime: run.startTime,
-    level: run.status === "error" ? "ERROR" : "DEFAULT",
-    statusMessage: run.statusMessage,
-    metadata: run.metadata,
-    usage: langfuseUsage(run.usage),
-  };
-  if (captureContent) {
-    generationBody.input = run.messages;
-    generationBody.output = run.output ?? "";
-  }
-
-  const body = {
-    batch: [
-      { id: crypto.randomUUID(), type: "trace-create", timestamp: run.startTime, body: traceBody },
-      { id: crypto.randomUUID(), type: "generation-create", timestamp: run.startTime, body: generationBody },
-    ],
-  };
+  const langfuse = new Langfuse({
+    publicKey: env.LANGFUSE_PUBLIC_KEY,
+    secretKey: env.LANGFUSE_SECRET_KEY,
+    baseUrl: host,
+    flushAt: 1,
+    flushInterval: 1000,
+    requestTimeout: 5000,
+    sdkIntegration: "vasudev-cloudflare-worker",
+  });
 
   try {
-    await fetch(`${host}/api/public/ingestion`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "authorization": `Basic ${btoa(`${env.LANGFUSE_PUBLIC_KEY}:${env.LANGFUSE_SECRET_KEY}`)}`,
-      },
-      body: JSON.stringify(body),
+    const startTime = new Date(run.startTime);
+    const endTime = run.endTime ? new Date(run.endTime) : undefined;
+    const trace = langfuse.trace({
+      id: run.traceId,
+      timestamp: startTime,
+      name: "onsite-agent-chat",
+      sessionId: run.sessionId,
+      userId: run.sessionId,
+      input: captureContent ? lastUserMessage(run.messages) : undefined,
+      metadata: run.metadata,
+      tags: ["site-agent", String(run.metadata.lang), String(run.metadata.mode)],
     });
+
+    trace.generation({
+      id: run.generationId,
+      name: "openrouter-chat-completion",
+      model: MODEL,
+      modelParameters: { temperature: 0.4, max_tokens: 600, stream: true },
+      startTime,
+      endTime,
+      completionStartTime: startTime,
+      level: run.status === "error" ? "ERROR" : "DEFAULT",
+      statusMessage: run.statusMessage,
+      input: captureContent ? run.messages : undefined,
+      output: captureContent ? run.output ?? "" : undefined,
+      metadata: run.metadata,
+      usageDetails: langfuseUsageDetails(run.usage),
+    });
+
+    await langfuse.flushAsync();
   } catch {
     // Observability must never break chat.
+  } finally {
+    await langfuse.shutdownAsync().catch(() => undefined);
   }
 }
 
-function langfuseUsage(usage?: Usage): Record<string, number> | undefined {
+function langfuseUsageDetails(usage?: Usage): Record<string, number> | undefined {
   if (!usage) return undefined;
   return {
     input: usage.prompt_tokens ?? 0,
