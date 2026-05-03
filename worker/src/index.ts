@@ -145,6 +145,7 @@ export default {
       prompt: latestUserPrompt,
       token: env.GITHUB_TOKEN,
       defaultRepo: "5queezer/vasudev.xyz",
+      conversationContext: recentConversationContext(messages),
     });
     run.metadata.github_tool_planned = githubEvidence.planned;
     run.metadata.github_tool_used = githubEvidence.used;
@@ -474,6 +475,16 @@ function lastUserMessage(messages: Msg[]): string | undefined {
     if (messages[i].role === "user") return messages[i].content;
   }
   return undefined;
+}
+
+function recentConversationContext(messages: Msg[]): string {
+  return messages
+    .slice(0, -1)
+    .filter((message) => message.role === "user" || message.role === "assistant")
+    .slice(-4)
+    .map((message) => `${message.role}: ${message.content}`)
+    .join("\n")
+    .slice(-4000);
 }
 
 function shouldSample(raw?: string): boolean {

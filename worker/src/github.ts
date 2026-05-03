@@ -46,7 +46,7 @@ export type GitHubEvidenceResult = {
   error?: string;
 };
 
-const GITHUB_TERMS = /\b(github|repo|repository|issue|issues|pr|pull request|pull requests|code|file|files|ci|check|checks|status|workflow|workflows|actions?)\b/i;
+const GITHUB_TERMS = /\b(github|repo|repos|repository|repositories|issue|issues|pr|pull request|pull requests|code|file|files|ci|check|checks|status|workflow|workflows|actions?|contribs?|contributions?|contributors?)\b/i;
 
 export function buildGitHubSearchPath(input: GitHubSearchInput) {
   const type = input.type ?? "issues";
@@ -102,16 +102,26 @@ export function compactGitHubItems(items: Array<any>) {
   }));
 }
 
-export function planGitHubEvidence(prompt: string, defaultRepo?: string): GitHubEvidencePlan {
-  if (!GITHUB_TERMS.test(prompt)) return { action: "none", reason: "Prompt is not GitHub-related." };
+export function planGitHubEvidence(prompt: string, defaultRepo?: string, conversationContext = ""): GitHubEvidencePlan {
+  if (!GITHUB_TERMS.test(prompt) && !GITHUB_TERMS.test(conversationContext)) return { action: "none", reason: "Prompt is not GitHub-related." };
 
-  const explicitRepo = extractRepo(prompt);
+  const explicitRepo = extractRepo(prompt) ?? extractRepo(conversationContext);
+  const contributionActor = extractContributionActor(prompt);
   const broadRepoSearch = /\b(repos|repositories)\b/i.test(prompt) && !explicitRepo && !/\b(this|current|site)\s+(repo|repository)\b/i.test(prompt);
-  const repo = explicitRepo ?? (broadRepoSearch ? undefined : defaultRepo);
+  const broadContributionSearch = contributionActor != null && !explicitRepo && !/\b(this|current|site)\s+(repo|repository)\b/i.test(prompt);
+  const repo = explicitRepo ?? (broadRepoSearch || broadContributionSearch ? undefined : defaultRepo);
   const issueNumber = extractNumber(prompt, /(?:issue|issues)\s+#?(\d+)/i);
   const prNumber = extractNumber(prompt, /(?:pr|pull request|pull requests)\s+#?(\d+)/i);
   const runId = extractNumber(prompt, /(?:run|workflow run)\s+#?(\d+)/i);
   const ref = extractRef(prompt);
+
+  if (contributionActor) {
+    return {
+      action: "search",
+      reason: "Prompt asks for GitHub contributions by a user.",
+      search: { query: contributionQuery(contributionActor, prompt, conversationContext), type: "prs", repo, limit: 5 },
+    };
+  }
 
   if (repo && prNumber) {
     const [owner, name] = splitRepo(repo);
@@ -152,9 +162,10 @@ export async function collectGitHubEvidence(input: {
   prompt: string;
   token?: string;
   defaultRepo?: string;
+  conversationContext?: string;
   fetcher?: typeof fetch;
 }): Promise<GitHubEvidenceResult> {
-  const plan = planGitHubEvidence(input.prompt, input.defaultRepo);
+  const plan = planGitHubEvidence(input.prompt, input.defaultRepo, input.conversationContext);
   if (plan.action === "none") return { planned: false, used: false, status: "skipped" };
   if (!input.token) return { planned: true, used: false, status: "error", action: plan.action, error: "GITHUB_TOKEN missing" };
 
@@ -250,6 +261,11 @@ function extractRepo(prompt: string) {
   return prompt.match(/\b([A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+)\b/)?.[1];
 }
 
+function extractContributionActor(prompt: string) {
+  if (!/\b(contribs?|contributions?|contributors?)\b/i.test(prompt)) return undefined;
+  return prompt.match(/\b(?:from|by|user)\s+@?([A-Za-z0-9-]{1,39})\b/i)?.[1];
+}
+
 function splitRepo(repo: string): [string, string] {
   const [owner, name] = repo.split("/");
   if (!owner || !name) throw new Error("repo must be owner/name");
@@ -269,9 +285,23 @@ function extractRef(prompt: string) {
 
 function cleanSearchQuery(prompt: string) {
   return prompt
-    .replace(/\b(search|find|check|github|repos?|repositories|issues?|prs?|pull requests?|code|files?|ci|checks?|status|workflow|actions?|for|the)\b/gi, " ")
+    .replace(/\b(search|find|check|github|repos?|repositories|issues?|prs?|pull requests?|code|files?|ci|checks?|status|workflow|actions?|contribs?|contributions?|contributors?|from|by|for|the)\b/gi, " ")
     .replace(/\b[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\b/g, " ")
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 200) || "repo activity";
+}
+
+function contributionQuery(actor: string, prompt: string, conversationContext: string) {
+  const contextKeyword = extractContextKeyword(`${prompt} ${conversationContext}`);
+  return [`author:${actor}`, contextKeyword].filter(Boolean).join(" ");
+}
+
+function extractContextKeyword(text: string) {
+  const repo = extractRepo(text);
+  if (repo) return repo.split("/").at(-1);
+  const match = text.match(/\b([A-Za-z0-9][A-Za-z0-9_.-]{2,})\b/g)
+    ?.filter((word) => !/^(which|are|the|from|github|repos?|repositories|contribs?|contributions?|contributors?|here|that|match|for|only|returned|query)$/i.test(word))
+    ?.at(-1);
+  return match;
 }

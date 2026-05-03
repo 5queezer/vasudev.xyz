@@ -61,6 +61,19 @@ test("plans broad repository searches globally instead of forcing the site repo"
   assert.equal(buildGitHubSearchPath(plan.search!), "/search/repositories?q=sablier&per_page=5");
 });
 
+test("plans contribution follow-ups from conversation context", () => {
+  const plan = planGitHubEvidence(
+    "which are the contribs from 5queezer",
+    "5queezer/vasudev.xyz",
+    "Here are the GitHub repositories that match sablier: sablierapp/sablier",
+  );
+
+  assert.equal(plan.action, "search");
+  assert.equal(plan.search?.type, "prs");
+  assert.equal(plan.search?.repo, "sablierapp/sablier");
+  assert.equal(buildGitHubSearchPath(plan.search!), "/search/issues?q=author%3A5queezer+sablier+repo%3Asablierapp%2Fsablier+is%3Apr&per_page=5");
+});
+
 test("appends GitHub evidence as a final user message", () => {
   const messages = appendGitHubEvidenceMessage([{ role: "user", content: "Review PR 12" }], {
     planned: true,
