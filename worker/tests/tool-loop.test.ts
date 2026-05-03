@@ -38,6 +38,18 @@ test("extracts one model tool call", () => {
   });
 });
 
+test("extracts XML-style tool calls emitted as message content", () => {
+  const call = extractToolCall({
+    choices: [{ message: { content: "<tool_call>\n<function=github_search>\n<parameter=type>\nrepositories\n</parameter>\n<parameter=query>\n5queezer\n</parameter>\n</function>\n</tool_call>" } }],
+  });
+
+  assert.deepEqual(call, {
+    id: "content_tool_call",
+    name: "github_search",
+    argumentsJson: "{\"type\":\"repos\",\"query\":\"5queezer\"}",
+  });
+});
+
 test("validates known tool arguments and rejects unknown tools", () => {
   assert.deepEqual(validateToolCall({ id: "1", name: "github_search", argumentsJson: "{\"query\":\"sablier\",\"type\":\"repos\",\"limit\":50}" }), {
     ok: true,

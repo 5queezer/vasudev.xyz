@@ -117,12 +117,15 @@ export const modelToolSchemas: ModelToolSchema[] = [
 ];
 
 export function extractToolCall(response: unknown): RawToolCall | undefined {
-  const toolCall = (response as any)?.choices?.[0]?.message?.tool_calls?.[0];
+  const message = (response as any)?.choices?.[0]?.message;
+  const toolCall = message?.tool_calls?.[0];
   const id = toolCall?.id;
   const name = toolCall?.function?.name;
   const argumentsJson = toolCall?.function?.arguments;
-  if (typeof id !== "string" || typeof name !== "string" || typeof argumentsJson !== "string") return undefined;
-  return { id, name, argumentsJson };
+  if (typeof id === "string" && typeof name === "string" && typeof argumentsJson === "string") return { id, name, argumentsJson };
+
+  if (typeof message?.content === "string") return extractContentToolCall(message.content);
+  return undefined;
 }
 
 export function validateToolCall(call: RawToolCall): ValidToolCall {
@@ -178,6 +181,25 @@ export function appendToolObservation(messages: ToolLoopMessage[], result: ToolE
       error: result.error,
     }).slice(0, 14000),
   }];
+}
+
+function extractContentToolCall(content: string): RawToolCall | undefined {
+  const functionMatch = content.match(/<function=([A-Za-z0-9_]+)>[\s\S]*?<\/function>/);
+  if (!functionMatch) return undefined;
+
+  const args: Record<string, string> = {};
+  const parameterPattern = /<parameter=([A-Za-z0-9_]+)>\s*([\s\S]*?)\s*<\/parameter>/g;
+  for (const match of content.matchAll(parameterPattern)) {
+    args[match[1]] = normalizeToolArgument(match[1], match[2].trim());
+  }
+
+  return { id: "content_tool_call", name: functionMatch[1], argumentsJson: JSON.stringify(args) };
+}
+
+function normalizeToolArgument(key: string, value: string) {
+  if (key === "type" && value === "repositories") return "repos";
+  if (key === "type" && value === "pull_requests") return "prs";
+  return value;
 }
 
 function validateGitHubSearch(args: unknown): ValidToolCall {
