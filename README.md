@@ -75,7 +75,7 @@ wrangler secret put LANGFUSE_SECRET_KEY
 wrangler deploy
 ```
 
-The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter's `nvidia/nemotron-3-nano-30b-a3b:free` model is rate-limited but free. Langfuse tracing is disabled unless both Langfuse secrets are set.
+The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter model names are configured via `OPENROUTER_MODEL` for final answers and `OPENROUTER_CONTROLLER_MODEL` for tool routing. Both default to `nvidia/nemotron-3-nano-30b-a3b:free` in code, while production can use a smarter controller model such as `nvidia/nemotron-3-super-120b-a12b:free`. Free models are rate-limited. Langfuse tracing is disabled unless both Langfuse secrets are set.
 
 ## Giscus
 
@@ -99,7 +99,7 @@ Set up the repo at <https://giscus.app>, then paste the resulting `data-repo-id`
 2. Reads the response body as SSE: each `data: <chunk>\n\n` frame is appended to the streaming bubble; a final `data: [DONE]\n\n` ends the stream.
 3. Keeps conversation history in-memory only. Refreshing the page resets it.
 
-The Worker (`worker/src/index.ts`) translates the upstream OpenAI-compatible streaming format into the simpler `data: <chunk>` frames the island expects, so swapping providers (NVIDIA NIM, HuggingFace, Groq, etc.) is a one-line change to `UPSTREAM` and `MODEL`.
+The Worker (`worker/src/index.ts`) translates the upstream OpenAI-compatible streaming format into the simpler `data: <chunk>` frames the island expects. Swap providers by changing `UPSTREAM`, and swap models through `OPENROUTER_MODEL` and `OPENROUTER_CONTROLLER_MODEL` without code changes.
 
 If Langfuse secrets are present, the Worker records one `onsite-agent-chat` trace per request via the official `langfuse` JS/TS SDK. By default it captures chat content, page URL, language, mode, model metadata, latency, status, and token usage when the upstream returns usage. Set `LANGFUSE_CAPTURE_CONTENT = "false"` to keep metadata-only traces, or tune `LANGFUSE_SAMPLE_RATE` in `worker/wrangler.toml`.
 

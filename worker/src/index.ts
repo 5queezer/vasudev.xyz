@@ -2,6 +2,7 @@ import { LangfuseSpanProcessor } from "@langfuse/otel";
 import { propagateAttributes, setLangfuseTracerProvider, startObservation } from "@langfuse/tracing";
 import { BasicTracerProvider } from "@opentelemetry/sdk-trace-base";
 import { buildControllerMessages, buildFinalMessages, type Msg } from "./context";
+import { getControllerModel, getFinalModel } from "./model-config";
 import { appendToolObservation, executeToolCall, extractToolCall, modelToolSchemas, type ToolLoopMessage } from "./tool-loop";
 import { buildWorkerMessages, type SubagentPlan, type SubagentWorkerResult } from "./subagents";
 
@@ -17,6 +18,10 @@ import { buildWorkerMessages, type SubagentPlan, type SubagentWorkerResult } fro
 export interface Env {
   /** OPENROUTER_API_KEY (or NIM_API_KEY etc.) — set with `wrangler secret put`. */
   OPENROUTER_API_KEY: string;
+  /** Final answer model. Defaults to nvidia/nemotron-3-nano-30b-a3b:free. */
+  OPENROUTER_MODEL?: string;
+  /** Tool-routing controller model. Defaults to OPENROUTER_MODEL, then nano. */
+  OPENROUTER_CONTROLLER_MODEL?: string;
   /** Comma-separated list of allowed origins, e.g. "https://vasudev.xyz,http://localhost:1313" */
   ALLOWED_ORIGINS?: string;
   /** Langfuse public key. Tracing is disabled unless both keys are present. */
@@ -34,7 +39,6 @@ export interface Env {
 }
 
 const UPSTREAM = "https://openrouter.ai/api/v1/chat/completions";
-const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
 
 let langfuseProvider: BasicTracerProvider | undefined;
 let langfuseProviderSignature = "";
@@ -91,11 +95,12 @@ export default {
     ).slice(-20);
     if (messages.length === 0) return json({ error: "Empty messages" }, 400, cors);
 
-    const run = createTraceRun(req, body, messages);
+    const run = createTraceRun(req, env, body, messages);
     let finalMessages: OpenRouterMessage[] = buildFinalMessages(messages, body);
 
     const controllerStarted = Date.now();
     const controller = await openRouterChat(env, {
+      model: getControllerModel(env),
       stream: false,
       messages: buildControllerMessages(messages, body),
       temperature: 0.1,
@@ -134,6 +139,7 @@ export default {
 
     const upstreamStarted = Date.now();
     const upstream = await openRouterChat(env, {
+      model: getFinalModel(env),
       stream: true,
       messages: finalMessages,
       temperature: 0.4,
@@ -166,6 +172,7 @@ export default {
 };
 
 type OpenRouterChatOptions = {
+  model: string;
   stream: boolean;
   messages: OpenRouterMessage[];
   temperature: number;
@@ -184,7 +191,7 @@ async function openRouterChat(env: Env, options: OpenRouterChatOptions): Promise
       "X-Title": "vasudev.xyz on-site agent",
     },
     body: JSON.stringify({
-      model: MODEL,
+      model: options.model,
       stream: options.stream,
       messages: options.messages,
       temperature: options.temperature,
@@ -255,6 +262,7 @@ async function runSubagentWorkers(
     const started = Date.now();
     try {
       const response = await openRouterChat(env, {
+        model: getFinalModel(env),
         stream: false,
         messages: buildWorkerMessages(worker, input),
         temperature: 0.2,
@@ -369,7 +377,7 @@ function transformOpenAIStream(
   });
 }
 
-function createTraceRun(req: Request, body: AgentRequest, messages: Msg[]): TraceRun {
+function createTraceRun(req: Request, env: Env, body: AgentRequest, messages: Msg[]): TraceRun {
   const url = new URL(req.url);
   const sessionId = cleanString(body.sessionId, 128);
   const pageUrl = cleanString(body.pageUrl, 500);
@@ -391,7 +399,8 @@ function createTraceRun(req: Request, body: AgentRequest, messages: Msg[]): Trac
       post_url: postUrl,
       mode,
       lang,
-      model: MODEL,
+      model: getFinalModel(env),
+      controller_model: getControllerModel(env),
       provider: "openrouter",
       post_content_length: postContentLength,
     },
@@ -439,8 +448,8 @@ async function sendLangfuse(env: Env, run: TraceRun): Promise<void> {
         const generation = trace.startObservation(
           "openrouter-chat-completion",
           {
-            model: MODEL,
-            modelParameters: { temperature: 0.4, max_tokens: 600, stream: "true" },
+            model: getFinalModel(env),
+            modelParameters: { temperature: 0.4, max_tokens: 700, stream: "true" },
             completionStartTime: startTime,
             level: run.status === "error" ? "ERROR" : "DEFAULT",
             statusMessage: run.statusMessage,

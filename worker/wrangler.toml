@@ -11,9 +11,12 @@ ALLOWED_ORIGINS = "https://vasudev.xyz,http://localhost:1313"
 LANGFUSE_HOST = "https://cloud.langfuse.com"
 LANGFUSE_CAPTURE_CONTENT = "true"
 LANGFUSE_SAMPLE_RATE = "1"
+OPENROUTER_MODEL = "nvidia/nemotron-3-nano-30b-a3b:free"
+OPENROUTER_CONTROLLER_MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
 
 # Set with:
 #   wrangler secret put OPENROUTER_API_KEY
 #   wrangler secret put LANGFUSE_PUBLIC_KEY
 #   wrangler secret put LANGFUSE_SECRET_KEY
-# (Get a free OpenRouter key at https://openrouter.ai/ — Nemotron 70B is on the free tier.)
+# Tune model vars above without code changes. OPENROUTER_CONTROLLER_MODEL can be a smarter model for tool routing.
+# (Get a free OpenRouter key at https://openrouter.ai/ — Nemotron free models are rate-limited.)
