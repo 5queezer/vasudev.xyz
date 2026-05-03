@@ -10,6 +10,23 @@
    compatible.
    ============================================================ */
 (() => {
+  function parseAgentStreamLine(rawLine) {
+    const line = rawLine.endsWith('\r') ? rawLine.slice(0, -1) : rawLine;
+    if (line.startsWith('data:')) {
+      let data = line.slice(5);
+      if (data.startsWith(' ')) data = data.slice(1);
+      return data === '[DONE]' ? '' : data;
+    }
+    if (line.startsWith('0:')) {
+      try { return JSON.parse(line.slice(2)); } catch (_) { return ''; }
+    }
+    return '';
+  }
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { parseAgentStreamLine };
+  }
+
   const root = document.getElementById('agent-chat');
   if (!root) return;
 
@@ -208,18 +225,11 @@
         // Vercel AI SDK data stream lines from cmd/chat-api.
         let idx;
         while ((idx = buffer.indexOf('\n')) !== -1) {
-          const line = buffer.slice(0, idx).trim();
+          const line = buffer.slice(0, idx);
           buffer = buffer.slice(idx + 1);
-          if (!line) continue;
+          if (!line.trim()) continue;
 
-          let data = '';
-          if (line.startsWith('data:')) {
-            data = line.slice(5).trimStart();
-            if (data === '[DONE]') continue;
-          } else if (line.startsWith('0:')) {
-            try { data = JSON.parse(line.slice(2)); } catch (_) { data = ''; }
-          }
-
+          const data = parseAgentStreamLine(line);
           if (!data) continue;
           full += data;
           renderAssistantContent(node._contentEl, full);
