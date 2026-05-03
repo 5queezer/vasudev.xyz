@@ -1,6 +1,7 @@
 import { LangfuseSpanProcessor } from "@langfuse/otel";
 import { propagateAttributes, setLangfuseTracerProvider, startObservation } from "@langfuse/tracing";
 import { BasicTracerProvider } from "@opentelemetry/sdk-trace-base";
+import { appendGitHubEvidenceMessage, collectGitHubEvidence } from "./github";
 import { buildSynthesisMessages, buildWorkerMessages, planSubagents, type SubagentPlan, type SubagentWorkerResult } from "./subagents";
 
 /**
@@ -27,6 +28,8 @@ export interface Env {
   LANGFUSE_CAPTURE_CONTENT?: string;
   /** 0..1 sample rate. Defaults to 1. */
   LANGFUSE_SAMPLE_RATE?: string;
+  /** Read-only GitHub token stored with `wrangler secret put GITHUB_TOKEN`. */
+  GITHUB_TOKEN?: string;
 }
 
 const UPSTREAM = "https://openrouter.ai/api/v1/chat/completions";
@@ -137,6 +140,21 @@ export default {
         run.metadata.routing_fallback = "all_subagents_failed_direct_stream";
       }
     }
+
+    const githubEvidence = await collectGitHubEvidence({
+      prompt: latestUserPrompt,
+      token: env.GITHUB_TOKEN,
+      defaultRepo: "5queezer/vasudev.xyz",
+    });
+    run.metadata.github_tool_planned = githubEvidence.planned;
+    run.metadata.github_tool_used = githubEvidence.used;
+    run.metadata.github_status = githubEvidence.status;
+    run.metadata.github_action = githubEvidence.action;
+    run.metadata.github_resource = githubEvidence.resource;
+    run.metadata.github_latency_ms = githubEvidence.latencyMs ?? 0;
+    run.metadata.github_result_count = githubEvidence.resultCount ?? 0;
+    if (githubEvidence.error) run.metadata.github_error = githubEvidence.error;
+    finalMessages = appendGitHubEvidenceMessage(finalMessages, githubEvidence);
 
     const upstreamStarted = Date.now();
     const upstream = await openRouterChat(env, {
