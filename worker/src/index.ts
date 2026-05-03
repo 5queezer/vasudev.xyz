@@ -1,4 +1,8 @@
-import { Langfuse } from "langfuse";
+import { LangfuseSpanProcessor } from "@langfuse/otel";
+import { propagateAttributes, setLangfuseTracerProvider, startObservation } from "@langfuse/tracing";
+import { BasicTracerProvider } from "@opentelemetry/sdk-trace-base";
+import { appendGitHubEvidenceMessage, collectGitHubEvidence } from "./github";
+import { buildSynthesisMessages, buildWorkerMessages, planSubagents, type SubagentPlan, type SubagentWorkerResult } from "./subagents";
 
 /**
  * agent.vasudev.workers.dev
@@ -24,10 +28,15 @@ export interface Env {
   LANGFUSE_CAPTURE_CONTENT?: string;
   /** 0..1 sample rate. Defaults to 1. */
   LANGFUSE_SAMPLE_RATE?: string;
+  /** Read-only GitHub token stored with `wrangler secret put GITHUB_TOKEN`. */
+  GITHUB_TOKEN?: string;
 }
 
 const UPSTREAM = "https://openrouter.ai/api/v1/chat/completions";
 const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
+
+let langfuseProvider: BasicTracerProvider | undefined;
+let langfuseProviderSignature = "";
 
 const SYSTEM_PROMPT = `You are the on-site agent for vasudev.xyz, the personal site of Christian Pojoni — a systems engineer working in Rust, Python, AI tooling, and privacy-first architecture.
 
@@ -88,23 +97,71 @@ export default {
     if (messages.length === 0) return json({ error: "Empty messages" }, 400, cors);
 
     const run = createTraceRun(req, body, messages);
+    const latestUserPrompt = lastUserMessage(messages) ?? "";
+    const subagentPlan = planSubagents(latestUserPrompt, {
+      mode: body.mode,
+      postContentLength: typeof body.postContent === "string" ? body.postContent.length : 0,
+    });
+
+    run.metadata.routing_action = subagentPlan.action;
+    run.metadata.routing_reason = subagentPlan.reason;
+    run.metadata.routing_score = subagentPlan.score;
+    run.metadata.subagent_count = subagentPlan.workers.length;
+    run.metadata.subagent_names = subagentPlan.workers.map((worker) => worker.name);
+
+    let finalMessages: Msg[] = [{ role: "system", content: SYSTEM_PROMPT }, ...messages];
+
+    if (subagentPlan.action === "subagents") {
+      const workerStarted = Date.now();
+      const workerResults = await runSubagentWorkers(subagentPlan, {
+        originalPrompt: latestUserPrompt,
+        messages,
+        postContent: body.postContent,
+        mode: body.mode,
+        lang: body.lang,
+      }, env);
+      const completedWorkers = workerResults.filter((result) => result.status === "completed");
+
+      run.metadata.subagent_statuses = Object.fromEntries(workerResults.map((result) => [result.name, result.status]));
+      run.metadata.subagent_latencies_ms = Object.fromEntries(workerResults.map((result) => [result.name, result.latencyMs ?? 0]));
+      run.metadata.subagent_total_latency_ms = Date.now() - workerStarted;
+
+      if (completedWorkers.length > 0) {
+        const synthesisMessages = buildSynthesisMessages({
+          originalMessages: messages,
+          plan: subagentPlan,
+          workerResults,
+        });
+        finalMessages = [
+          { role: "system", content: `${SYSTEM_PROMPT}\n\n${synthesisMessages[0].content}` },
+          ...synthesisMessages.slice(1),
+        ];
+      } else {
+        run.metadata.routing_fallback = "all_subagents_failed_direct_stream";
+      }
+    }
+
+    const githubEvidence = await collectGitHubEvidence({
+      prompt: latestUserPrompt,
+      token: env.GITHUB_TOKEN,
+      defaultRepo: "5queezer/vasudev.xyz",
+    });
+    run.metadata.github_tool_planned = githubEvidence.planned;
+    run.metadata.github_tool_used = githubEvidence.used;
+    run.metadata.github_status = githubEvidence.status;
+    run.metadata.github_action = githubEvidence.action;
+    run.metadata.github_resource = githubEvidence.resource;
+    run.metadata.github_latency_ms = githubEvidence.latencyMs ?? 0;
+    run.metadata.github_result_count = githubEvidence.resultCount ?? 0;
+    if (githubEvidence.error) run.metadata.github_error = githubEvidence.error;
+    finalMessages = appendGitHubEvidenceMessage(finalMessages, githubEvidence);
 
     const upstreamStarted = Date.now();
-    const upstream = await fetch(UPSTREAM, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "https://vasudev.xyz",
-        "X-Title": "vasudev.xyz on-site agent",
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        stream: true,
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-        temperature: 0.4,
-        max_tokens: 600,
-      }),
+    const upstream = await openRouterChat(env, {
+      stream: true,
+      messages: finalMessages,
+      temperature: 0.4,
+      maxTokens: 700,
     });
 
     run.metadata.upstream_status = upstream.status;
@@ -131,6 +188,93 @@ export default {
     });
   },
 };
+
+type OpenRouterChatOptions = {
+  stream: boolean;
+  messages: Msg[];
+  temperature: number;
+  maxTokens: number;
+};
+
+async function openRouterChat(env: Env, options: OpenRouterChatOptions): Promise<Response> {
+  return fetch(UPSTREAM, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "authorization": `Bearer ${env.OPENROUTER_API_KEY}`,
+      "HTTP-Referer": "https://vasudev.xyz",
+      "X-Title": "vasudev.xyz on-site agent",
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      stream: options.stream,
+      messages: options.messages,
+      temperature: options.temperature,
+      max_tokens: options.maxTokens,
+    }),
+  });
+}
+
+async function runSubagentWorkers(
+  plan: SubagentPlan,
+  input: {
+    originalPrompt: string;
+    messages: Msg[];
+    postContent?: string;
+    mode?: string;
+    lang?: string;
+  },
+  env: Env,
+): Promise<SubagentWorkerResult[]> {
+  return Promise.all(plan.workers.map(async (worker) => {
+    const started = Date.now();
+    try {
+      const response = await openRouterChat(env, {
+        stream: false,
+        messages: buildWorkerMessages(worker, input),
+        temperature: 0.2,
+        maxTokens: 350,
+      });
+
+      if (!response.ok) {
+        return {
+          name: worker.name,
+          status: "failed" as const,
+          output: "",
+          error: `OpenRouter worker error: ${response.status}`,
+          latencyMs: Date.now() - started,
+        };
+      }
+
+      const payload = await response.json() as { choices?: Array<{ message?: { content?: unknown } }> };
+      const output = payload.choices?.[0]?.message?.content;
+      if (typeof output !== "string" || output.trim().length === 0) {
+        return {
+          name: worker.name,
+          status: "failed" as const,
+          output: "",
+          error: "OpenRouter worker returned empty output",
+          latencyMs: Date.now() - started,
+        };
+      }
+
+      return {
+        name: worker.name,
+        status: "completed" as const,
+        output,
+        latencyMs: Date.now() - started,
+      };
+    } catch (error) {
+      return {
+        name: worker.name,
+        status: "failed" as const,
+        output: "",
+        error: error instanceof Error ? error.message : "Unknown worker error",
+        latencyMs: Date.now() - started,
+      };
+    }
+  }));
+}
 
 /**
  * Transform an OpenAI-style SSE chat stream into the simpler "data: <chunk>"
@@ -235,52 +379,85 @@ async function sendLangfuse(env: Env, run: TraceRun): Promise<void> {
 
   const host = (env.LANGFUSE_HOST || "https://cloud.langfuse.com").replace(/\/$/, "");
   const captureContent = env.LANGFUSE_CAPTURE_CONTENT !== "false";
-  const langfuse = new Langfuse({
-    publicKey: env.LANGFUSE_PUBLIC_KEY,
-    secretKey: env.LANGFUSE_SECRET_KEY,
-    baseUrl: host,
-    flushAt: 1,
-    flushInterval: 1000,
-    requestTimeout: 5000,
-    sdkIntegration: "vasudev-cloudflare-worker",
-  });
+  const provider = configureLangfuseProvider(env, host);
 
   try {
     const startTime = new Date(run.startTime);
     const endTime = run.endTime ? new Date(run.endTime) : undefined;
-    const trace = langfuse.trace({
-      id: run.traceId,
-      timestamp: startTime,
-      name: "onsite-agent-chat",
-      sessionId: run.sessionId,
-      userId: run.sessionId,
-      input: captureContent ? lastUserMessage(run.messages) : undefined,
-      metadata: run.metadata,
-      tags: ["site-agent", String(run.metadata.lang), String(run.metadata.mode)],
-    });
+    const tags = ["site-agent", String(run.metadata.lang), String(run.metadata.mode)];
 
-    trace.generation({
-      id: run.generationId,
-      name: "openrouter-chat-completion",
-      model: MODEL,
-      modelParameters: { temperature: 0.4, max_tokens: 600, stream: true },
-      startTime,
-      endTime,
-      completionStartTime: startTime,
-      level: run.status === "error" ? "ERROR" : "DEFAULT",
-      statusMessage: run.statusMessage,
-      input: captureContent ? run.messages : undefined,
-      output: captureContent ? run.output ?? "" : undefined,
-      metadata: run.metadata,
-      usageDetails: langfuseUsageDetails(run.usage),
-    });
+    propagateAttributes(
+      {
+        traceName: "onsite-agent-chat",
+        sessionId: run.sessionId,
+        userId: run.sessionId,
+        tags,
+      },
+      () => {
+        const trace = startObservation(
+          "onsite-agent-chat",
+          {
+            input: captureContent ? lastUserMessage(run.messages) : undefined,
+            output: captureContent ? run.output ?? "" : undefined,
+            metadata: run.metadata,
+            level: run.status === "error" ? "ERROR" : "DEFAULT",
+            statusMessage: run.statusMessage,
+          },
+          { startTime },
+        );
 
-    await langfuse.flushAsync();
+        trace.setTraceIO({
+          input: captureContent ? lastUserMessage(run.messages) : undefined,
+          output: captureContent ? run.output ?? "" : undefined,
+        });
+
+        const generation = trace.startObservation(
+          "openrouter-chat-completion",
+          {
+            model: MODEL,
+            modelParameters: { temperature: 0.4, max_tokens: 600, stream: "true" },
+            completionStartTime: startTime,
+            level: run.status === "error" ? "ERROR" : "DEFAULT",
+            statusMessage: run.statusMessage,
+            input: captureContent ? run.messages : undefined,
+            output: captureContent ? run.output ?? "" : undefined,
+            metadata: run.metadata,
+            usageDetails: langfuseUsageDetails(run.usage),
+          },
+          { asType: "generation" },
+        );
+
+        generation.end(endTime);
+        trace.end(endTime);
+      },
+    );
+
+    await provider.forceFlush();
   } catch {
     // Observability must never break chat.
-  } finally {
-    await langfuse.shutdownAsync().catch(() => undefined);
   }
+}
+
+function configureLangfuseProvider(env: Env, host: string): BasicTracerProvider {
+  const signature = `${host}|${env.LANGFUSE_PUBLIC_KEY}|${env.LANGFUSE_SECRET_KEY}`;
+  if (langfuseProvider && langfuseProviderSignature === signature) return langfuseProvider;
+
+  langfuseProvider = new BasicTracerProvider({
+    spanProcessors: [
+      new LangfuseSpanProcessor({
+        publicKey: env.LANGFUSE_PUBLIC_KEY,
+        secretKey: env.LANGFUSE_SECRET_KEY,
+        baseUrl: host,
+        flushAt: 1,
+        flushInterval: 1,
+        timeout: 5,
+        exportMode: "immediate",
+      }),
+    ],
+  });
+  langfuseProviderSignature = signature;
+  setLangfuseTracerProvider(langfuseProvider);
+  return langfuseProvider;
 }
 
 function langfuseUsageDetails(usage?: Usage): Record<string, number> | undefined {
