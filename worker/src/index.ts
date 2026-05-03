@@ -1,8 +1,8 @@
 import { LangfuseSpanProcessor } from "@langfuse/otel";
 import { propagateAttributes, setLangfuseTracerProvider, startObservation } from "@langfuse/tracing";
 import { BasicTracerProvider } from "@opentelemetry/sdk-trace-base";
-import { appendGitHubEvidenceMessage, collectGitHubEvidence } from "./github";
-import { buildSynthesisMessages, buildWorkerMessages, planSubagents, type SubagentPlan, type SubagentWorkerResult } from "./subagents";
+import { appendToolObservation, executeToolCall, extractToolCall, modelToolSchemas, type ToolLoopMessage } from "./tool-loop";
+import { buildWorkerMessages, type SubagentPlan, type SubagentWorkerResult } from "./subagents";
 
 /**
  * agent.vasudev.workers.dev
@@ -45,6 +45,8 @@ Be concise, calm, and technically literate. When asked about projects, refer to:
 Never invent biographical facts. If unsure, say so.`;
 
 type Msg = { role: "system" | "user" | "assistant"; content: string };
+
+type OpenRouterMessage = Msg | ToolLoopMessage | Record<string, unknown>;
 
 type AgentRequest = {
   messages?: Msg[];
@@ -97,65 +99,46 @@ export default {
     if (messages.length === 0) return json({ error: "Empty messages" }, 400, cors);
 
     const run = createTraceRun(req, body, messages);
-    const latestUserPrompt = lastUserMessage(messages) ?? "";
-    const subagentPlan = planSubagents(latestUserPrompt, {
-      mode: body.mode,
-      postContentLength: typeof body.postContent === "string" ? body.postContent.length : 0,
+    let finalMessages: OpenRouterMessage[] = [{ role: "system", content: SYSTEM_PROMPT }, ...messages];
+
+    const controllerStarted = Date.now();
+    const controller = await openRouterChat(env, {
+      stream: false,
+      messages: buildControllerMessages(messages, body),
+      temperature: 0.1,
+      maxTokens: 500,
+      tools: modelToolSchemas,
+      toolChoice: "auto",
     });
+    run.metadata.controller_latency_ms = Date.now() - controllerStarted;
+    run.metadata.controller_status = controller.status;
 
-    run.metadata.routing_action = subagentPlan.action;
-    run.metadata.routing_reason = subagentPlan.reason;
-    run.metadata.routing_score = subagentPlan.score;
-    run.metadata.subagent_count = subagentPlan.workers.length;
-    run.metadata.subagent_names = subagentPlan.workers.map((worker) => worker.name);
+    if (controller.ok) {
+      const controllerPayload = await controller.json();
+      const toolCall = extractToolCall(controllerPayload);
+      run.metadata.controller_requested_tool = toolCall?.name ?? "none";
 
-    let finalMessages: Msg[] = [{ role: "system", content: SYSTEM_PROMPT }, ...messages];
-
-    if (subagentPlan.action === "subagents") {
-      const workerStarted = Date.now();
-      const workerResults = await runSubagentWorkers(subagentPlan, {
-        originalPrompt: latestUserPrompt,
-        messages,
-        postContent: body.postContent,
-        mode: body.mode,
-        lang: body.lang,
-      }, env);
-      const completedWorkers = workerResults.filter((result) => result.status === "completed");
-
-      run.metadata.subagent_statuses = Object.fromEntries(workerResults.map((result) => [result.name, result.status]));
-      run.metadata.subagent_latencies_ms = Object.fromEntries(workerResults.map((result) => [result.name, result.latencyMs ?? 0]));
-      run.metadata.subagent_total_latency_ms = Date.now() - workerStarted;
-
-      if (completedWorkers.length > 0) {
-        const synthesisMessages = buildSynthesisMessages({
-          originalMessages: messages,
-          plan: subagentPlan,
-          workerResults,
+      if (toolCall) {
+        const toolResult = await executeToolCall(toolCall, {
+          githubToken: env.GITHUB_TOKEN,
+          runSubagents: async (objective) => runSubagentsForTool(objective, messages, body, env),
         });
-        finalMessages = [
-          { role: "system", content: `${SYSTEM_PROMPT}\n\n${synthesisMessages[0].content}` },
-          ...synthesisMessages.slice(1),
-        ];
-      } else {
-        run.metadata.routing_fallback = "all_subagents_failed_direct_stream";
-      }
-    }
+        run.metadata.tool_name = toolResult.toolName;
+        run.metadata.tool_status = toolResult.status;
+        run.metadata.tool_latency_ms = toolResult.latencyMs ?? 0;
+        run.metadata.tool_result_count = toolResult.resultCount ?? 0;
+        if (toolResult.error) run.metadata.tool_error = toolResult.error;
 
-    const githubEvidence = await collectGitHubEvidence({
-      prompt: latestUserPrompt,
-      token: env.GITHUB_TOKEN,
-      defaultRepo: "5queezer/vasudev.xyz",
-      conversationContext: recentConversationContext(messages),
-    });
-    run.metadata.github_tool_planned = githubEvidence.planned;
-    run.metadata.github_tool_used = githubEvidence.used;
-    run.metadata.github_status = githubEvidence.status;
-    run.metadata.github_action = githubEvidence.action;
-    run.metadata.github_resource = githubEvidence.resource;
-    run.metadata.github_latency_ms = githubEvidence.latencyMs ?? 0;
-    run.metadata.github_result_count = githubEvidence.resultCount ?? 0;
-    if (githubEvidence.error) run.metadata.github_error = githubEvidence.error;
-    finalMessages = appendGitHubEvidenceMessage(finalMessages, githubEvidence);
+        const controllerMessage = (controllerPayload as any)?.choices?.[0]?.message;
+        finalMessages = appendToolObservation([
+          { role: "system", content: SYSTEM_PROMPT },
+          ...messages,
+          controllerMessage,
+        ], toolResult, toolCall.id);
+      }
+    } else {
+      run.metadata.controller_error = `Controller error: ${controller.status}`;
+    }
 
     const upstreamStarted = Date.now();
     const upstream = await openRouterChat(env, {
@@ -192,9 +175,11 @@ export default {
 
 type OpenRouterChatOptions = {
   stream: boolean;
-  messages: Msg[];
+  messages: OpenRouterMessage[];
   temperature: number;
   maxTokens: number;
+  tools?: unknown[];
+  toolChoice?: "auto" | "none";
 };
 
 async function openRouterChat(env: Env, options: OpenRouterChatOptions): Promise<Response> {
@@ -212,8 +197,76 @@ async function openRouterChat(env: Env, options: OpenRouterChatOptions): Promise
       messages: options.messages,
       temperature: options.temperature,
       max_tokens: options.maxTokens,
+      ...(options.tools ? { tools: options.tools } : {}),
+      ...(options.toolChoice ? { tool_choice: options.toolChoice } : {}),
     }),
   });
+}
+
+function buildControllerMessages(messages: Msg[], body: AgentRequest): OpenRouterMessage[] {
+  const context = typeof body.postContent === "string" && body.postContent.trim()
+    ? `\n\nCurrent page or post content excerpt:\n${body.postContent.slice(0, 8000)}`
+    : "";
+
+  return [
+    {
+      role: "system",
+      content: [
+        SYSTEM_PROMPT,
+        "You are deciding whether to answer directly or call exactly one safe server-side tool before answering.",
+        "Call github_search for broad GitHub discovery, github_get for a known GitHub resource, and run_subagents for complex multi-angle analysis.",
+        "If no tool is useful, do not call a tool. The next model call will stream the final answer.",
+        "Never request write access or mutating actions.",
+        context,
+      ].join("\n\n"),
+    },
+    ...messages,
+  ];
+}
+
+async function runSubagentsForTool(
+  objective: string,
+  messages: Msg[],
+  body: AgentRequest,
+  env: Env,
+): Promise<{ action: string; workers: SubagentWorkerResult[] }> {
+  const plan = createToolSubagentPlan(objective);
+  const workers = await runSubagentWorkers(plan, {
+    originalPrompt: objective,
+    messages,
+    postContent: body.postContent,
+    mode: body.mode,
+    lang: body.lang,
+  }, env);
+  return { action: plan.action, workers };
+}
+
+function createToolSubagentPlan(objective: string): SubagentPlan {
+  return {
+    action: "subagents",
+    reason: "The controller model requested bounded specialist subagents.",
+    score: 0,
+    workers: [
+      {
+        name: "context_reader",
+        objective,
+        focus: "Ground the answer in supplied page, post, conversation, and tool context.",
+        expectedOutput: "Concise evidence with caveats and uncertainty.",
+      },
+      {
+        name: "technical_reviewer",
+        objective,
+        focus: "Check technical claims, edge cases, implementation details, and risks.",
+        expectedOutput: "Concise technical review with validation points.",
+      },
+      {
+        name: "synthesis_planner",
+        objective,
+        focus: "Plan the clearest final response for the user request.",
+        expectedOutput: "Compact answer outline with confidence notes.",
+      },
+    ],
+  };
 }
 
 async function runSubagentWorkers(
