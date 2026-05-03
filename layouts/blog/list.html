@@ -1,12 +1,31 @@
 {{ define "main" }}
+{{ $paginator := .Paginate .Pages 9 }}
 <section class="writing container">
-  <div class="section-header">
+  <div class="section-header blog-search-header">
     <h2 class="section-eyebrow">{{ i18n "section_writing" }}</h2>
     <h3 class="section-title">{{ .Title }}</h3>
+
+    <div class="blog-search" data-blog-search data-index-url="{{ .RelPermalink }}search.json">
+      <label class="blog-search-label" for="blog-search-input">Search posts</label>
+      <div class="blog-search-input-wrap">
+        <span class="blog-search-icon" aria-hidden="true">⌕</span>
+        <input
+          id="blog-search-input"
+          class="blog-search-input"
+          type="search"
+          autocomplete="off"
+          placeholder="Search posts by title, tag, or summary..."
+          aria-describedby="blog-search-status"
+          data-blog-search-input
+        />
+      </div>
+      <div class="blog-search-suggestions" aria-label="Search suggestions" data-blog-search-suggestions></div>
+      <p id="blog-search-status" class="blog-search-status" data-blog-search-status></p>
+    </div>
   </div>
 
-  <div class="writing-grid">
-    {{ range .Pages }}
+  <div class="writing-grid" data-blog-search-results>
+    {{ range $paginator.Pages }}
       <a href="{{ .RelPermalink }}" class="essay-card">
         <div class="essay-meta">
           <span>{{ .Date.Format "02 Jan 2006" }}</span>
@@ -20,5 +39,31 @@
       </a>
     {{ end }}
   </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+    <nav class="blog-pagination" aria-label="Blog pagination" data-blog-pagination>
+      {{ if $paginator.HasPrev }}
+        <a class="blog-pagination-link" href="{{ $paginator.Prev.URL }}">← Newer</a>
+      {{ else }}
+        <span class="blog-pagination-link is-disabled" aria-disabled="true">← Newer</span>
+      {{ end }}
+
+      <div class="blog-pagination-pages">
+        {{ range $paginator.Pagers }}
+          {{ if eq . $paginator }}
+            <span class="blog-pagination-page is-current" aria-current="page">{{ .PageNumber }}</span>
+          {{ else }}
+            <a class="blog-pagination-page" href="{{ .URL }}">{{ .PageNumber }}</a>
+          {{ end }}
+        {{ end }}
+      </div>
+
+      {{ if $paginator.HasNext }}
+        <a class="blog-pagination-link" href="{{ $paginator.Next.URL }}">Older →</a>
+      {{ else }}
+        <span class="blog-pagination-link is-disabled" aria-disabled="true">Older →</span>
+      {{ end }}
+    </nav>
+  {{ end }}
 </section>
 {{ end }}

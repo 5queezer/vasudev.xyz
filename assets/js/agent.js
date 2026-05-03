@@ -20,9 +20,14 @@
   const placeholder = root.dataset.agentPlaceholder || 'Ask the agent something…';
   const streamingText = root.dataset.agentStreaming || 'streaming response…';
   const welcome = root.dataset.agentWelcome || 'Hello.';
+  const privacyNotice = root.dataset.agentPrivacyNotice || '';
+  const privacyUrl = root.dataset.agentPrivacyUrl || '/privacy/';
+  const privacyLabel = root.dataset.agentPrivacyLabel || 'Privacy';
   let chips = [];
   let postContent = '';
   try { chips = JSON.parse(root.dataset.agentChips || '[]'); } catch (_) {}
+
+  const sessionId = getSessionId();
 
   fetch(postUrl)
     .then(res => res.ok ? res.text() : '')
@@ -44,6 +49,7 @@
              placeholder="${escapeAttr(placeholder)}" />
       <button class="agent-send" type="submit" aria-label="Send">↑</button>
     </form>
+    ${privacyNotice ? `<p class="agent-privacy">${escapeHTML(privacyNotice)} <a href="${escapeAttr(privacyUrl)}">${escapeHTML(privacyLabel)}</a></p>` : ''}
   `;
 
   const msgsEl   = root.querySelector('[data-msgs]');
@@ -60,53 +66,51 @@
   function escapeHTML(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
   function escapeAttr(s) { return escapeHTML(String(s)); }
 
-  function highlightCode(code, lang) {
-    let html = escapeHTML(code);
-    if (/^(js|javascript|ts|typescript|go|rust|python|py|bash|sh|yaml|yml|toml|json)$/i.test(lang || '')) {
-      html = html
-        .replace(/(&quot;.*?&quot;|'.*?')/g, '<span class="tok-string">$1</span>')
-        .replace(/(^|\s)(#.*$|\/\/.*$)/gm, '$1<span class="tok-comment">$2</span>')
-        .replace(/\b(const|let|var|function|return|if|else|for|while|async|await|type|interface|struct|func|package|import|from|class|def|try|catch|true|false|null|nil)\b/g, '<span class="tok-keyword">$1</span>');
-    }
-    return html;
-  }
-
-  function renderInlineMarkdown(text) {
-    return escapeHTML(text)
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  }
-
   function markdownToHTML(markdown) {
     const src = String(markdown || '').replace(/\\n/g, '\n');
-    const blocks = [];
-    let text = src.replace(/```([^\n`]*)\n([\s\S]*?)```/g, (_, lang, code) => {
-      const token = `@@CODE${blocks.length}@@`;
-      blocks.push(`<pre><code class="language-${escapeAttr((lang || '').trim())}">${highlightCode(code.replace(/\n$/, ''), lang)}</code></pre>`);
-      return `\n${token}\n`;
+    if (!window.marked || !window.DOMPurify) {
+      return `<p>${escapeHTML(src).replace(/\n/g, '<br>')}</p>`;
+    }
+    window.marked.setOptions({
+      gfm: true,
+      breaks: false,
+      mangle: false,
+      headerIds: false
     });
-
-    return text.split(/\n{2,}/).map(part => {
-      const trimmed = part.trim();
-      if (!trimmed) return '';
-      const codeIdx = trimmed.match(/^@@CODE(\d+)@@$/);
-      if (codeIdx) return blocks[Number(codeIdx[1])] || '';
-      if (/^[-*] /m.test(trimmed)) {
-        const items = trimmed.split('\n').filter(Boolean).map(line => line.replace(/^[-*] /, '')).map(renderInlineMarkdown);
-        return `<ul>${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
-      }
-      if (/^\d+\. /m.test(trimmed)) {
-        const items = trimmed.split('\n').filter(Boolean).map(line => line.replace(/^\d+\. /, '')).map(renderInlineMarkdown);
-        return `<ol>${items.map(item => `<li>${item}</li>`).join('')}</ol>`;
-      }
-      return `<p>${trimmed.split('\n').map(renderInlineMarkdown).join('<br>')}</p>`;
-    }).join('');
+    const raw = window.marked.parse(src);
+    return window.DOMPurify.sanitize(raw, {
+      USE_PROFILES: { html: true },
+      ADD_ATTR: ['target', 'rel']
+    });
   }
 
   function renderAssistantContent(el, text) {
     el.innerHTML = markdownToHTML(text);
+    el.querySelectorAll('a[href^="http://"], a[href^="https://"]').forEach(a => {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+    el.querySelectorAll('table').forEach(table => {
+      if (table.parentElement && table.parentElement.classList.contains('agent-table-wrap')) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'agent-table-wrap';
+      table.parentNode.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    });
+  }
+
+  function getSessionId() {
+    const key = 'vasudevAgentSessionId';
+    try {
+      let id = sessionStorage.getItem(key);
+      if (!id) {
+        id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+        sessionStorage.setItem(key, id);
+      }
+      return id;
+    } catch (_) {
+      return crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+    }
   }
 
   function renderMessage(role, text, opts = {}) {
@@ -183,7 +187,10 @@
           messages: history,
           postContent,
           mode,
-          lang
+          lang,
+          postUrl,
+          pageUrl: window.location.href,
+          sessionId
         })
       });
       if (!res.ok || !res.body) throw new Error('HTTP ' + res.status);

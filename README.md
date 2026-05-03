@@ -44,6 +44,8 @@ hugo server -D
 cd worker
 npm install
 wrangler secret put OPENROUTER_API_KEY      # paste your free OpenRouter key
+wrangler secret put LANGFUSE_PUBLIC_KEY     # optional, enables tracing
+wrangler secret put LANGFUSE_SECRET_KEY     # optional, enables tracing
 wrangler dev                                # → http://localhost:8787
 ```
 
@@ -68,10 +70,12 @@ cd worker
 npm install
 wrangler login
 wrangler secret put OPENROUTER_API_KEY
+wrangler secret put LANGFUSE_PUBLIC_KEY
+wrangler secret put LANGFUSE_SECRET_KEY
 wrangler deploy
 ```
 
-The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter's `nvidia/llama-3.1-nemotron-70b-instruct:free` model is rate-limited but free.
+The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter's `nvidia/nemotron-3-nano-30b-a3b:free` model is rate-limited but free. Langfuse tracing is disabled unless both Langfuse secrets are set.
 
 ## Giscus
 
@@ -83,16 +87,21 @@ Set up the repo at <https://giscus.app>, then paste the resulting `data-repo-id`
 ┌──────────────┐  POST /     ┌──────────────────┐  POST chat completions  ┌─────────┐
 │  Hugo page   │ ─────────► │ Cloudflare Worker │ ──────────────────────► │ Nemotron│
 │  + agent.js  │ ◄───────── │  (free tier)      │ ◄────────────────────── │ (free)  │
-└──────────────┘  SSE       └──────────────────┘  SSE                     └─────────┘
+└──────────────┘  SSE       └────────┬─────────┘  SSE                     └─────────┘
+                                     │ optional trace
+                                     ▼
+                                 Langfuse
 ```
 
 `assets/js/agent.js` is a ~5 KB vanilla island. It:
 
-1. POSTs `{ messages: [...] }` to `[params].agentEndpoint`.
+1. POSTs `{ messages: [...] }` to `[params].agentEndpoint` with page metadata, language, mode, and an anonymous session ID stored in `sessionStorage`.
 2. Reads the response body as SSE: each `data: <chunk>\n\n` frame is appended to the streaming bubble; a final `data: [DONE]\n\n` ends the stream.
-3. Keeps conversation history in-memory only — refreshing the page resets it.
+3. Keeps conversation history in-memory only. Refreshing the page resets it.
 
 The Worker (`worker/src/index.ts`) translates the upstream OpenAI-compatible streaming format into the simpler `data: <chunk>` frames the island expects, so swapping providers (NVIDIA NIM, HuggingFace, Groq, etc.) is a one-line change to `UPSTREAM` and `MODEL`.
+
+If Langfuse secrets are present, the Worker records one `onsite-agent-chat` trace per request via the official `langfuse` JS/TS SDK. By default it captures chat content, page URL, language, mode, model metadata, latency, status, and token usage when the upstream returns usage. Set `LANGFUSE_CAPTURE_CONTENT = "false"` to keep metadata-only traces, or tune `LANGFUSE_SAMPLE_RATE` in `worker/wrangler.toml`.
 
 ### Swapping to Vercel AI SDK `useChat`
 

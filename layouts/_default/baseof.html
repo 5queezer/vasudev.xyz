@@ -15,11 +15,17 @@
   {{- /* Mount the agent chat island on every page. */ -}}
   {{ partial "agent-chat.html" . }}
 
+  {{- $markedJS := resources.Get "js/vendor/marked.min.js" | resources.Fingerprint -}}
+  <script defer src="{{ $markedJS.RelPermalink }}"></script>
+  {{- $purifyJS := resources.Get "js/vendor/purify.min.js" | resources.Fingerprint -}}
+  <script defer src="{{ $purifyJS.RelPermalink }}"></script>
   {{- $agentJS := resources.Get "js/agent.js" | resources.Minify | resources.Fingerprint -}}
   <script defer src="{{ $agentJS.RelPermalink }}"></script>
   {{- $langJS := resources.Get "js/lang-toggle.js" | resources.Minify | resources.Fingerprint -}}
   <script defer src="{{ $langJS.RelPermalink }}"></script>
   {{- $codeCopyJS := resources.Get "js/code-copy.js" | resources.Minify | resources.Fingerprint -}}
   <script defer src="{{ $codeCopyJS.RelPermalink }}"></script>
+  {{- $blogSearchJS := resources.Get "js/blog-search.js" | resources.Minify | resources.Fingerprint -}}
+  <script defer src="{{ $blogSearchJS.RelPermalink }}"></script>
 </body>
 </html>

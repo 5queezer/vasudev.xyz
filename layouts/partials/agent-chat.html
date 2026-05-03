@@ -37,6 +37,9 @@
       data-agent-welcome="{{ i18n "agent_welcome" }}"
       data-agent-placeholder="{{ i18n "agent_placeholder" }}"
       data-agent-streaming="{{ i18n "agent_streaming" }}"
+      data-agent-privacy-notice="{{ i18n "agent_privacy_notice" }}"
+      data-agent-privacy-url="/privacy/"
+      data-agent-privacy-label="{{ i18n "privacy_title" }}"
       data-agent-chips='{{ .Params.agentQuestions | default (slice) | jsonify }}'
     >
       <noscript>
