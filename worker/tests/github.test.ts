@@ -52,6 +52,15 @@ test("plans GitHub evidence only for GitHub-related prompts", () => {
   assert.equal(codePlan.search?.type, "code");
 });
 
+test("plans broad repository searches globally instead of forcing the site repo", () => {
+  const plan = planGitHubEvidence("check the github repos for sablier", "5queezer/vasudev.xyz");
+
+  assert.equal(plan.action, "search");
+  assert.equal(plan.search?.type, "repos");
+  assert.equal(plan.search?.repo, undefined);
+  assert.equal(buildGitHubSearchPath(plan.search!), "/search/repositories?q=sablier&per_page=5");
+});
+
 test("appends GitHub evidence as a final user message", () => {
   const messages = appendGitHubEvidenceMessage([{ role: "user", content: "Review PR 12" }], {
     planned: true,

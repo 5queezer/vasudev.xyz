@@ -50,7 +50,8 @@ const GITHUB_TERMS = /\b(github|repo|repository|issue|issues|pr|pull request|pul
 
 export function buildGitHubSearchPath(input: GitHubSearchInput) {
   const type = input.type ?? "issues";
-  const query = [input.query, input.repo ? `repo:${input.repo}` : "", type === "prs" ? "is:pr" : ""]
+  const supportsRepoQualifier = type !== "repos" && type !== "users";
+  const query = [input.query, supportsRepoQualifier && input.repo ? `repo:${input.repo}` : "", type === "prs" ? "is:pr" : ""]
     .filter(Boolean)
     .join(" ");
   const endpoint = type === "code" || type === "files" ? "code" : type === "repos" ? "repositories" : type === "users" ? "users" : "issues";
@@ -104,7 +105,9 @@ export function compactGitHubItems(items: Array<any>) {
 export function planGitHubEvidence(prompt: string, defaultRepo?: string): GitHubEvidencePlan {
   if (!GITHUB_TERMS.test(prompt)) return { action: "none", reason: "Prompt is not GitHub-related." };
 
-  const repo = extractRepo(prompt) ?? defaultRepo;
+  const explicitRepo = extractRepo(prompt);
+  const broadRepoSearch = /\b(repos|repositories)\b/i.test(prompt) && !explicitRepo && !/\b(this|current|site)\s+(repo|repository)\b/i.test(prompt);
+  const repo = explicitRepo ?? (broadRepoSearch ? undefined : defaultRepo);
   const issueNumber = extractNumber(prompt, /(?:issue|issues)\s+#?(\d+)/i);
   const prNumber = extractNumber(prompt, /(?:pr|pull request|pull requests)\s+#?(\d+)/i);
   const runId = extractNumber(prompt, /(?:run|workflow run)\s+#?(\d+)/i);
@@ -134,7 +137,7 @@ export function planGitHubEvidence(prompt: string, defaultRepo?: string): GitHub
     ? "code"
     : /\b(pr|pull request|pull requests)\b/i.test(prompt)
       ? "prs"
-      : /\b(repo|repository)\b/i.test(prompt) && !repo
+      : /\b(repo|repos|repository|repositories)\b/i.test(prompt) && !repo
         ? "repos"
         : "issues";
 
@@ -266,7 +269,7 @@ function extractRef(prompt: string) {
 
 function cleanSearchQuery(prompt: string) {
   return prompt
-    .replace(/\b(search|find|github|repo|repository|issues?|prs?|pull requests?|code|files?|ci|checks?|status|workflow|actions?)\b/gi, " ")
+    .replace(/\b(search|find|check|github|repos?|repositories|issues?|prs?|pull requests?|code|files?|ci|checks?|status|workflow|actions?|for|the)\b/gi, " ")
     .replace(/\b[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\b/g, " ")
     .replace(/\s+/g, " ")
     .trim()
