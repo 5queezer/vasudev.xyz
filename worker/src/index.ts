@@ -1,6 +1,7 @@
 import { LangfuseSpanProcessor } from "@langfuse/otel";
 import { propagateAttributes, setLangfuseTracerProvider, startObservation } from "@langfuse/tracing";
 import { BasicTracerProvider } from "@opentelemetry/sdk-trace-base";
+import { buildControllerMessages, buildFinalMessages, type Msg } from "./context";
 import { appendToolObservation, executeToolCall, extractToolCall, modelToolSchemas, type ToolLoopMessage } from "./tool-loop";
 import { buildWorkerMessages, type SubagentPlan, type SubagentWorkerResult } from "./subagents";
 
@@ -37,14 +38,6 @@ const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
 
 let langfuseProvider: BasicTracerProvider | undefined;
 let langfuseProviderSignature = "";
-
-const SYSTEM_PROMPT = `You are the on-site agent for vasudev.xyz, the personal site of Christian Pojoni — a systems engineer working in Rust, Python, AI tooling, and privacy-first architecture.
-
-Be concise, calm, and technically literate. When asked about projects, refer to: hrafn (Rust agent runtime, MCP/A2A, MuninnDB memory), axiom-vault (Rust encrypted vault, XChaCha20-Poly1305), distill (Python MCP server for team memory, FastMCP + SQLite FTS5), nexus-crm (Next.js + Prisma + TanStack). When asked about the site, mention: Hugo, GitHub Pages, Giscus comments, this Cloudflare Worker, and the free Nemotron model.
-
-Never invent biographical facts. If unsure, say so.`;
-
-type Msg = { role: "system" | "user" | "assistant"; content: string };
 
 type OpenRouterMessage = Msg | ToolLoopMessage | Record<string, unknown>;
 
@@ -99,7 +92,7 @@ export default {
     if (messages.length === 0) return json({ error: "Empty messages" }, 400, cors);
 
     const run = createTraceRun(req, body, messages);
-    let finalMessages: OpenRouterMessage[] = [{ role: "system", content: SYSTEM_PROMPT }, ...messages];
+    let finalMessages: OpenRouterMessage[] = buildFinalMessages(messages, body);
 
     const controllerStarted = Date.now();
     const controller = await openRouterChat(env, {
@@ -131,8 +124,7 @@ export default {
 
         const controllerMessage = (controllerPayload as any)?.choices?.[0]?.message;
         finalMessages = appendToolObservation([
-          { role: "system", content: SYSTEM_PROMPT },
-          ...messages,
+          ...buildFinalMessages(messages, body),
           controllerMessage,
         ], toolResult, toolCall.id);
       }
@@ -201,27 +193,6 @@ async function openRouterChat(env: Env, options: OpenRouterChatOptions): Promise
       ...(options.toolChoice ? { tool_choice: options.toolChoice } : {}),
     }),
   });
-}
-
-function buildControllerMessages(messages: Msg[], body: AgentRequest): OpenRouterMessage[] {
-  const context = typeof body.postContent === "string" && body.postContent.trim()
-    ? `\n\nCurrent page or post content excerpt:\n${body.postContent.slice(0, 8000)}`
-    : "";
-
-  return [
-    {
-      role: "system",
-      content: [
-        SYSTEM_PROMPT,
-        "You are deciding whether to answer directly or call exactly one safe server-side tool before answering.",
-        "Call github_search for broad GitHub discovery, github_get for a known GitHub resource, and run_subagents for complex multi-angle analysis.",
-        "If no tool is useful, do not call a tool. The next model call will stream the final answer.",
-        "Never request write access or mutating actions.",
-        context,
-      ].join("\n\n"),
-    },
-    ...messages,
-  ];
 }
 
 async function runSubagentsForTool(
