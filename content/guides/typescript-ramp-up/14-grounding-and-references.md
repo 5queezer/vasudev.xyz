@@ -52,6 +52,7 @@ This guide is intentionally compact, so it omits many edge cases and does not pi
 - [TanStack Query](https://tanstack.com/query/latest)
 - [TanStack Router](https://tanstack.com/router/latest)
 - [TanStack Table](https://tanstack.com/table/latest)
+- [TkDodo: TanStack Router and Query](https://tkdodo.eu/blog/tan-stack-router-and-query) — the Router and Query integration patterns used in chapter 11, by a TanStack Query maintainer.
 
 ## Tooling and Testing
 
