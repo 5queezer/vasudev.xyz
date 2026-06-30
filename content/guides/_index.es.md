@@ -1,10 +1,11 @@
 ---
 title: "Guías"
-description: "Guías de campo técnicas compactas y notas de recuperación."
+description: "Se enfatizan mesas de trabajo técnicas enfocadas con ejemplos ejecutables, notas de verificación y modelos mentales listos para entrevistas."
 build:
   list: always
   render: always
-translationHash: "80354749f05664a7eaa776d9f52c2201"
-chunkHashes: "e94a95587cfe481e"
+translationHash: "4747965331ff237159ac924b7e55bd82"
 ---
-Guías técnicas compactas y notas de recuperación.
+
+
+Focused technical workbenches with runnable examples, verification notes, and interview-ready mental models. Start with the language track that matches the role, then use the chapter checks as a concrete conversation map.
