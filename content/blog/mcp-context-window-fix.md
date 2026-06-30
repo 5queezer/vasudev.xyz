@@ -7,6 +7,7 @@ agentQuestions:
   - "How does deferred tool loading fix MCP?"
   - "What should MCP servers expose upfront?"
 description: "Every MCP tool you connect loads its full schema upfront, before you type a word. Anthropic's deferred loading fixes this."
+showcase: true
 images: ["/images/mcp-context-window-fix-og.png"]
 ---
 

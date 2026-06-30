@@ -1,4 +1,4 @@
-{{- $posts := where .RegularPages "Section" "blog" -}}
+{{- $posts := where (where .RegularPages "Section" "blog") "Params.showcase" true -}}
 {{- $items := slice -}}
 {{- range $posts -}}
   {{- $tags := .Params.tags | default (slice) -}}

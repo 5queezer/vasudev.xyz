@@ -2,6 +2,7 @@
 title: "Lanzando soporte del protocolo A2A en Rust: 7 trucos que nadie te advierte"
 date: 2026-03-25
 description: "Lo que aprendí al agregar soporte de protocolo Agent-to-Agent a un framework de agentes de código abierto."
+showcase: true
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]

@@ -7,6 +7,7 @@ agentQuestions:
   - "¿Qué añade la capa cuatro para agentes?"
   - "¿Cómo debería navegar un LLM por un grafo de código?"
 description: "La memoria debería ser un grafo. El grafo debería tener cuatro capas. La del medio lleva la navegación. La superior convierte la navegación en acción."
+showcase: true
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
 translationHash: "0acb6db7b368f620871d12894199b3c4"
 chunkHashes: "21d501db1a1defd9,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,d713ecba99fef97b,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"

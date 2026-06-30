@@ -7,6 +7,7 @@ agentQuestions:
   - "Was fügt Schicht vier den Agenten hinzu?"
   - "Wie sollte ein LLM einen Codegraphen navigieren?"
 description: "Gedächtnis sollte ein Graph sein. Der Graph sollte vier Schichten haben. Die mittlere Schicht trägt die Navigation. Die oberste Schicht verwandelte die Navigation in Aktion."
+showcase: true
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
 translationHash: "ea6758064ca625c39ce4d2672d13e75d"
 chunkHashes: "9e6944bc5d80e730,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,faef305f39726bc9,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"

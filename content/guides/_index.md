@@ -1,9 +1,9 @@
 ---
 title: "Guides"
-description: "Compact technical field guides and recovery notes."
+description: "Focused technical workbenches with runnable examples, verification notes, and interview-ready mental models."
 build:
   list: always
   render: always
 ---
 
-Compact technical field guides and recovery notes.
+Focused technical workbenches with runnable examples, verification notes, and interview-ready mental models. Start with the language track that matches the role, then use the chapter checks as a concrete conversation map.

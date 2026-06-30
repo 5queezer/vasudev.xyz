@@ -7,6 +7,7 @@ agentQuestions:
   - "Wie behebt das verzögerte Laden von Tools das MCP?"
   - "Was sollten MCP-Server im Voraus bereitstellen?"
 description: "Jedes MCP-Tool, das du verbindest, lädt sein vollständiges Schema im Voraus, bevor du ein Wort tippst. Anthropic's deferred loading behebt das."
+showcase: true
 images: ["/images/mcp-context-window-fix-og.png"]
 translationHash: "8e43a1a65a8121ee03c948c4aebf1f25"
 chunkHashes: "aa56b60a3a9bc318,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"

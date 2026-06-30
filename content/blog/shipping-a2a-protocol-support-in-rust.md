@@ -2,6 +2,7 @@
 title: "Shipping A2A Protocol Support in Rust: 7 Gotchas Nobody Warns You About"
 date: 2026-03-25
 description: "What I learned adding Agent-to-Agent protocol support to an open-source agent framework."
+showcase: true
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
