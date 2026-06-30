@@ -1,10 +1,11 @@
 ---
 title: "Leitfäden"
-description: "Kompakte technische Feldführer und Wiederherstellungsnotizen."
+description: "Technische Arbeitsumgebungen mit Fokus auf ausführbaren Beispielen, Verifizierungsnotizen und mentalen Modellen, die für Interviews vorbereitet sind."
 build:
   list: always
   render: always
-translationHash: "80354749f05664a7eaa776d9f52c2201"
-chunkHashes: "e94a95587cfe481e"
+translationHash: "4747965331ff237159ac924b7e55bd82"
 ---
-Kompakte technische Feldführer und Wiederherstellungshinweise.
+
+
+Focused technical workbenches with runnable examples, verification notes, and interview-ready mental models. Start with the language track that matches the role, then use the chapter checks as a concrete conversation map.
