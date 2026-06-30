@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{ $paginator := .Paginate .Pages 9 }}
+{{ $posts := where .Pages "Params.showcase" true }}
+{{ $paginator := .Paginate $posts 3 }}
 <section class="writing container">
   <div class="section-header blog-search-header">
     <h2 class="section-eyebrow">{{ i18n "section_writing" }}</h2>

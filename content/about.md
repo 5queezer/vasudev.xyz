@@ -1,13 +1,13 @@
 ---
 title: "About"
 type: "about"
-description: "Christian Pojoni builds agent runtimes, memory systems, and protocol-aware tools."
+description: "Christian Pojoni builds agent runtimes, privacy-first applications, and production AI tooling."
 ---
 
-I build agent runtimes, memory systems, and protocol-aware tools. My approach focuses on treating software as a crafted system rather than an assembled product.
+I build agent runtimes, privacy-first applications, and production AI tooling. My work sits between systems engineering and product delivery: tool loops, retrieval, encrypted storage, CI, and deployable user interfaces.
 
-Working primarily in Rust and Python, I advocate for privacy-first architecture and local retrieval over cloud lock-in. Systems-level primitives should be accessible to real applications.
+I am strongest where architecture needs to become working software. I like small protocols, clear boundaries, local-first data, and validation that proves the system behaves as intended.
 
 ## Core stack
 
-Rust, Python, TypeScript, Next.js, SQLite, Prisma, MCP, A2A.
+Rust, Python, TypeScript, Cloudflare Workers, Next.js, SQLite, Prisma, MCP, A2A.

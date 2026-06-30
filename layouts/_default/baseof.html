@@ -10,10 +10,10 @@
     {{- block "main" . }}{{- end }}
   </main>
 
-  {{ partial "footer.html" . }}
+  {{- /* Keep the agent on content pages. The homepage stays recruiter-focused. */ -}}
+  {{ if not .IsHome }}{{ partial "agent-chat.html" . }}{{ end }}
 
-  {{- /* Mount the agent chat island on every page. */ -}}
-  {{ partial "agent-chat.html" . }}
+  {{ partial "footer.html" . }}
 
   {{- $markedJS := resources.Get "js/vendor/marked.min.js" | resources.Fingerprint -}}
   <script defer src="{{ $markedJS.RelPermalink }}"></script>

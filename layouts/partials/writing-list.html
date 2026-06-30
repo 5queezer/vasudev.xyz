@@ -1,13 +1,14 @@
-{{- $posts := where site.RegularPages "Section" "blog" -}}
+{{- $posts := where (where site.RegularPages "Section" "blog") "Params.showcase" true -}}
 <section id="writing" class="writing">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-eyebrow">{{ i18n "section_writing" }}</h2>
-      <h3 class="section-title">{{ i18n "section_writing_h" }}</h3>
+    <div class="section-header compact-header">
+      <h2 class="section-eyebrow">Selected writing</h2>
+      <h3 class="section-title">Three technical essays worth reading.</h3>
+      <p class="section-lede">The archive is intentionally reduced here. These pieces show systems thinking, agent architecture, and pragmatic implementation detail.</p>
     </div>
 
-    <div class="writing-grid">
-      {{ range first 6 $posts }}
+    <div class="writing-grid featured-writing-grid">
+      {{ range first 3 $posts.ByDate.Reverse }}
         <a href="{{ .RelPermalink }}" class="essay-card">
           <div class="essay-meta">
             <span>{{ .Date.Format "02 Jan 2006" }}</span>

@@ -7,6 +7,7 @@ agentQuestions:
   - "What does layer four add for agents?"
   - "How should an LLM navigate a code graph?"
 description: "Memory should be a graph. The graph should be four layers. The middle one carries navigation. The top one turns navigation into action."
+showcase: true
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
 ---
 

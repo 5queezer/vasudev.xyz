@@ -6,7 +6,7 @@ defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 
 [params]
-  description = "Systems engineer working in Rust, Python, AI tooling, and privacy-first architecture."
+  description = "Systems engineer building agent runtimes, privacy-first applications, and production AI tooling."
   author = "Christian Pojoni"
   email = "christian.pojoni@gmail.com"
   github = "https://github.com/5queezer"
@@ -33,19 +33,19 @@ enableRobotsTXT = true
     languageCode = "en-us"
     weight = 1
     [languages.en.params]
-      tagline = "Systems engineer working in Rust, Python, AI tooling, and privacy-first architecture."
+      tagline = "Systems engineer building agent runtimes, privacy-first applications, and production AI tooling."
   [languages.de]
     languageName = "Deutsch"
     languageCode = "de"
     weight = 2
     [languages.de.params]
-      tagline = "Systemingenieur. Rust, Python, KI-Werkzeuge, datenschutzorientierte Architektur."
+      tagline = "Systemingenieur für Agent-Runtimes, datenschutzorientierte Anwendungen und produktive KI-Werkzeuge."
   [languages.es]
     languageName = "Español"
     languageCode = "es"
     weight = 3
     [languages.es.params]
-      tagline = "Ingeniero de sistemas. Rust, Python, herramientas de IA, arquitectura centrada en la privacidad."
+      tagline = "Ingeniero de sistemas para runtimes de agentes, aplicaciones privadas y herramientas de IA en producción."
 
 [markup]
   [markup.goldmark.renderer]

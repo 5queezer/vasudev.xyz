@@ -1,0 +1,33 @@
+<section id="runtime" class="runtime-section">
+  <div class="container runtime-grid">
+    <div class="runtime-copy">
+      <h2 class="section-eyebrow">Interactive guides</h2>
+      <h3 class="section-title">More like a technical workbench than a post archive.</h3>
+      <p>Recruiters and technical reviewers should be able to inspect how I think. The guides are structured as focused labs with runnable examples, validation notes, and concrete tradeoffs.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ "/guides/" | relLangURL }}">Open guides</a>
+        <a class="button button-ghost" href="#writing">Read selected essays</a>
+      </div>
+    </div>
+
+    <div class="runtime-window" aria-label="VS Code style guide preview">
+      <div class="runtime-titlebar">
+        <span></span><span></span><span></span>
+        <strong>guide-workbench.ts</strong>
+      </div>
+      <div class="runtime-body">
+        <nav class="runtime-tabs" aria-label="Guide examples">
+          <a href="{{ "/guides/typescript-ramp-up/" | relLangURL }}">TypeScript ramp-up</a>
+          <a href="{{ "/guides/modern-cpp-recovery/" | relLangURL }}">Modern C++ recovery</a>
+        </nav>
+        <pre><code>type GuideLab = {
+  goal: "senior-engineer ramp-up";
+  includes: ["mental model", "pitfalls", "checks"];
+  output: "interview-ready understanding";
+};
+
+run(lab).verify().ship();</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
