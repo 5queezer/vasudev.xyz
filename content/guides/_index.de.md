@@ -1,10 +1,10 @@
 ---
 title: "Leitfäden"
-description: "Kompakte technische Feldführer und Wiederherstellungsnotizen."
+description: "Fokussierte technische Arbeitsbereiche mit ausführbaren Beispielen, Verifikationsnotizen und interviewfertigen mentalen Modellen."
 build:
   list: always
   render: always
-translationHash: "80354749f05664a7eaa776d9f52c2201"
-chunkHashes: "e94a95587cfe481e"
+translationHash: "4747965331ff237159ac924b7e55bd82"
+chunkHashes: "ab2e39f600b3cb68"
 ---
-Kompakte technische Feldführer und Wiederherstellungshinweise.
+Fokussierte technische Arbeitsbänke mit ausführbaren Beispielen, Verifikationsnotizen und interviewbereiten mentalen Modellen. Beginne mit dem Sprachpfad, der zur Rolle passt, dann nutze die Kapitel-Checks als konkrete Gesprächslandkarte.

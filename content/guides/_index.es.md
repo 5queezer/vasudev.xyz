@@ -1,10 +1,10 @@
 ---
 title: "Guías"
-description: "Guías de campo técnicas compactas y notas de recuperación."
+description: "Bancos de trabajo técnicos enfocados con ejemplos ejecutables, notas de verificación y modelos mentales listos para entrevistas."
 build:
   list: always
   render: always
-translationHash: "80354749f05664a7eaa776d9f52c2201"
-chunkHashes: "e94a95587cfe481e"
+translationHash: "4747965331ff237159ac924b7e55bd82"
+chunkHashes: "ab2e39f600b3cb68"
 ---
-Guías técnicas compactas y notas de recuperación.
+Bancadas técnicas centradas con ejemplos ejecutables, notas de verificación y modelos mentales listos para entrevistas. Comienza con la rama de lenguaje que coincida con el puesto, y luego usa los chequeos de capítulo como un mapa de conversación concreto.

@@ -1,19 +1,20 @@
 ---
-title: "Lanzando soporte del protocolo A2A en Rust: 7 trucos que nadie te advierte"
+title: "Envío de soporte para el protocolo A2A en Rust: 7 trampas que nadie te advierte"
 date: 2026-03-25
-description: "Lo que aprendí al agregar soporte de protocolo Agent-to-Agent a un framework de agentes de código abierto."
+description: "Lo que aprendí al agregar soporte para el protocolo Agent-to-Agent a un framework de agentes de código abierto"
 showcase: true
 images: ["/images/shipping-a2a-protocol-support-in-rust-og.png"]
 author: "Christian Pojoni"
 tags: ["rust", "a2a", "security"]
 agentQuestions:
-  - "¿Cuáles son los problemas del protocolo A2A en Rust?"
+  - "¿Cuáles son las trampas del protocolo A2A en Rust?"
   - "¿Cómo deberían funcionar la autenticación y la seguridad A2A?"
   - "¿Qué se rompió durante la integración del protocolo?"
 series: ["Field Notes"]
-translationHash: "669764e04b547eb20b0dc4b3302bffbf"
+translationHash: "e1f9c72874fa7faf8275af1bdaa21038"
 chunkHashes: "63693977f4c62ac9,7d3e0b3378417e09,aa7513a6486f8faf,a825fb9bc8a4bae3,5dea57e52b8e70d4,28ed198a8cd428fc,685d9c5b09d7dcf3,6eadb412a20580a0,7262b64366b7ff90,e9307644648922c1"
 ---
+
 The [A2A (Agent-to-Agent) protocol](https://github.com/google/A2A) es el estándar abierto de Google para la interoperabilidad entre agentes: descubrimiento, delegación de tareas, gestión del ciclo de vida sobre HTTP/JSON‑RPC. Se sitúa junto a MCP de la misma manera que TCP está junto a USB: uno conecta agentes con agentes, el otro conecta agentes con herramientas.
 
 Recientemente publiqué el [PR #4166](https://github.com/5queezer/hrafn/pull/4166) que agrega soporte nativo de A2A a Hrafn. Eso significa tanto un servidor JSON‑RPC 2.0 entrante como una herramienta cliente saliente, escritos en Rust. El PR pasó 40 pruebas y se ejecutó de extremo a extremo en cinco instancias de Raspberry Pi Zero 2 W. En el camino me encontré con cada borde afilado que la especificación no menciona.

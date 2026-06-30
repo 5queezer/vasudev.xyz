@@ -1,17 +1,18 @@
 ---
-title: "Ihr Code‑Wissensgraph benötigt vier Schichten, nicht eine"
+title: "Ihr Code‑Wissensgraph benötigt vier Ebenen, nicht eine"
 date: 2026-05-01
 tags: ["agents", "ai", "architecture"]
 agentQuestions:
   - "Warum benötigt ein Code‑Wissensgraph vier Schichten?"
-  - "Was fügt Schicht vier den Agenten hinzu?"
-  - "Wie sollte ein LLM einen Codegraphen navigieren?"
-description: "Gedächtnis sollte ein Graph sein. Der Graph sollte vier Schichten haben. Die mittlere Schicht trägt die Navigation. Die oberste Schicht verwandelte die Navigation in Aktion."
+  - "Was fügt Layer Four für Agenten hinzu?"
+  - "Wiesollte ein LLM einen Codegraphen navigieren?"
+description: "Der Speicher sollte ein Graph sein. Der Graph sollte vier Schichten haben. Die mittlere Schicht trägt die Navigation. Die obere Schicht wandelt Navigation in Aktion um."
 showcase: true
 images: ["/images/three-layer-code-knowledge-graph-og.png"]
-translationHash: "ea6758064ca625c39ce4d2672d13e75d"
+translationHash: "e8e7a6078b4561f1c7634b96b808466e"
 chunkHashes: "9e6944bc5d80e730,ec5547e06414e078,21030a3bc5a894ce,bf8304f9abff75b0,90c4a0ab21256886,788dd5224f820a57,2886fbcd5acc9517,faef305f39726bc9,44df79228b76677f,047ffe07cf5f897b,40fb162a3d5dd183"
 ---
+
 Andrej Karpathy stellte das Argument in einem Beitrag: Speicher ist eine Struktur, in der du dich befindest, nicht ein Cache, den du bei jeder Eingabe auffüllst. Zweiundvierzig Stunden später veröffentlichte Safi Shamsi [Graphify](https://github.com/safishamsi/graphify) und schrieb *The Memory Layer* darum herum. Die These lautet, dass ein KI‑Agent einen Wissensgraphen durchlaufen sollte, anstatt einen Vektor‑Index zu durchsuchen, weil Beziehungen im Weißraum zwischen den Chunks liegen und ein Vektorspeicher sie nicht sehen kann.
 
 Ich stimme der These zu. Ich denke, das Buch bleibt eine Ebene zu kurz. Dann schrieb ich das und bemerkte sofort, dass es zwei Ebenen zu kurz ist.

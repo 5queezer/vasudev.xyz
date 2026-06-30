@@ -1,17 +1,18 @@
 ---
-title: "Tu configuración MCP está consumiendo el 90 % de su ventana de contexto. Aquí tienes la solución."
+title: "Tu configuración de MCP está quemando el 90% de su ventana de contexto. Aquí está la solución."
 date: 2026-04-10
 tags: ["mcp", "claude", "ai", "agents"]
 agentQuestions:
   - "¿Por qué MCP quema la ventana de contexto?"
-  - "¿Cómo arregla la carga diferida de herramientas el MCP?"
-  - "¿Qué deben exponer de forma anticipada los servidores MCP?"
-description: "Cada herramienta MCP a la que te conectas carga su esquema completo de antemano, antes de que escribas una sola palabra. La carga diferida de Anthropic corrige esto."
+  - "¿Cómo soluciona la carga diferida de herramientas el MCP?"
+  - "¿Qué deben exponer de antemano los servidores MCP?"
+description: "Cadaherramienta MCP que conectas carga su esquema completo de antemano, antes de que escribas una palabra. La carga diferida de Anthropic's soluciona esto."
 showcase: true
 images: ["/images/mcp-context-window-fix-og.png"]
-translationHash: "8e43a1a65a8121ee03c948c4aebf1f25"
+translationHash: "87a795a95bb8bdb44ad444d677654d93"
 chunkHashes: "aa56b60a3a9bc318,e81dbeffd9a9b444,f42e5e8b8b603887,cfd893eb1abea6bb,27081f359030c72d,665a133456bb0746,324b5b78d6fa7aff"
 ---
+
 Connect [GitHub's MCP server](https://github.com/github/github-mcp-server) to Claude. Now check your token counter before sending a single message. [46,000 tokens, 22% of Claude Opus's context window](https://www.candede.com/articles/claude-tool-search), consumed by tool definitions you haven't used yet. Add Jira (another ~17K), a Slack server, Google Drive, and you're pushing 100K+ tokens of overhead before any actual work begins. [Anthropic benchmarked internal setups reaching 134K tokens](https://www.anthropic.com/engineering/advanced-tool-use) in tool definitions alone.
 
 **Every MCP tool you connect is a tax paid upfront, whether the tool gets used or not.**
