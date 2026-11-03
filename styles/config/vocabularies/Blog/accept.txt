@@ -25,11 +25,16 @@ ChromaDB
 ConvoMem
 cron
 Cypher
+datasheet
 defer_loading
 discriminations
+distractor
+distractors
 Dream Engine
 Ebbinghaus
 else's
+eval
+evals
 evolvability
 Examen
 Fana
@@ -43,6 +48,7 @@ gentime
 Ghosh
 Gnosis
 Goodhart's
+GPUs
 Gradio
 Graphify
 GraphRAG
@@ -51,6 +57,7 @@ Hebbian
 Hrafn
 Hrafn's
 HybridRAG
+hyperparameter
 hyperplane
 (?i)agentic
 (?i)agentless
@@ -179,6 +186,8 @@ Pojoni
 Postgres
 pramana
 pramanas
+prepends
+reranker
 Sablier
 SAEs
 Safi
