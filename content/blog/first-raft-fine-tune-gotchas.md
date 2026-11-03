@@ -2,6 +2,7 @@
 title: "My First RAFT Fine-Tune on a Shared 16 GB GPU: 7 Gotchas the Paper Doesn't Mention"
 date: 2026-11-03
 description: "I fine-tuned Qwen3.5 with RAFT to answer in one creator's voice with verified citations. The training was the easy part."
+images: ["/images/first-raft-fine-tune-gotchas-og.png"]
 author: "Christian Pojoni"
 tags: ["ai", "benchmarks", "llm"]
 agentQuestions:
