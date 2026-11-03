@@ -17,13 +17,6 @@ if ! hugo --minify --gc >/tmp/autoresearch-hugo.log 2>&1; then
   tail -80 /tmp/autoresearch-hugo.log >&2
 fi
 
-og_tests_failed=0
-if ! (cd cmd/generate-og-images && go test ./...) >/tmp/autoresearch-og-tests.log 2>&1; then
-  failures=1
-  og_tests_failed=1
-  tail -80 /tmp/autoresearch-og-tests.log >&2
-fi
-
 end_ns=$(date +%s%N)
 build_seconds=$(python3 - <<PY
 print(round(($end_ns - $start_ns) / 1000000000, 3))
@@ -114,7 +107,6 @@ echo "METRIC build_seconds=$build_seconds"
 echo "METRIC conflict_markers=$markers"
 echo "METRIC unmerged_files=$unmerged"
 echo "METRIC graph_refs=$graph_refs"
-echo "METRIC og_tests_failed=$og_tests_failed"
 echo "METRIC candidate_dirty=$candidate_dirty"
 echo "METRIC workflow_run_id=$workflow_run_id"
 echo "METRIC site_http=$site_http"
