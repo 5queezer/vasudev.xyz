@@ -18,7 +18,7 @@ import { buildWorkerMessages, type SubagentPlan, type SubagentWorkerResult } fro
 export interface Env {
   /** OPENROUTER_API_KEY (or NIM_API_KEY etc.) — set with `wrangler secret put`. */
   OPENROUTER_API_KEY: string;
-  /** Final answer model. Defaults to nvidia/nemotron-3-nano-30b-a3b:free. */
+  /** Final answer model. Defaults to nvidia/nemotron-3.5-lightning:free. */
   OPENROUTER_MODEL?: string;
   /** Tool-routing controller model. Defaults to OPENROUTER_MODEL, then nano. */
   OPENROUTER_CONTROLLER_MODEL?: string;
@@ -196,6 +196,8 @@ async function openRouterChat(env: Env, options: OpenRouterChatOptions): Promise
       messages: options.messages,
       temperature: options.temperature,
       max_tokens: options.maxTokens,
+      // Keep the small output budget available for answers and tool calls.
+      reasoning: { enabled: false },
       ...(options.tools ? { tools: options.tools } : {}),
       ...(options.toolChoice ? { tool_choice: options.toolChoice } : {}),
     }),

@@ -11,8 +11,8 @@ ALLOWED_ORIGINS = "https://vasudev.xyz,http://localhost:1313"
 LANGFUSE_HOST = "https://cloud.langfuse.com"
 LANGFUSE_CAPTURE_CONTENT = "true"
 LANGFUSE_SAMPLE_RATE = "1"
-OPENROUTER_MODEL = "nvidia/nemotron-3-nano-30b-a3b:free"
-OPENROUTER_CONTROLLER_MODEL = "nvidia/nemotron-3-super-120b-a12b:free"
+OPENROUTER_MODEL = "nvidia/nemotron-3.5-lightning:free"
+OPENROUTER_CONTROLLER_MODEL = "nvidia/nemotron-3.5-super-vl:free"
 
 # Set with:
 #   wrangler secret put OPENROUTER_API_KEY

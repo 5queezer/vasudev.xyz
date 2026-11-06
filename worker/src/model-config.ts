@@ -1,4 +1,4 @@
-export const DEFAULT_OPENROUTER_MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
+export const DEFAULT_OPENROUTER_MODEL = "nvidia/nemotron-3.5-lightning:free";
 
 export type ModelEnv = {
   OPENROUTER_MODEL?: string;

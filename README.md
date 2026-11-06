@@ -75,7 +75,7 @@ wrangler secret put LANGFUSE_SECRET_KEY
 wrangler deploy
 ```
 
-The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter model names are configured via `OPENROUTER_MODEL` for final answers and `OPENROUTER_CONTROLLER_MODEL` for tool routing. Both default to `nvidia/nemotron-3-nano-30b-a3b:free` in code, while production can use a smarter controller model such as `nvidia/nemotron-3-super-120b-a12b:free`. Free models are rate-limited. Langfuse tracing is disabled unless both Langfuse secrets are set.
+The Worker runs on Cloudflare's free tier (100k requests/day). OpenRouter model names are configured via `OPENROUTER_MODEL` for final answers and `OPENROUTER_CONTROLLER_MODEL` for tool routing. Both default to `nvidia/nemotron-3.5-lightning:free` in code, while production can use a smarter controller model such as `nvidia/nemotron-3.5-super-vl:free`. Free models are rate-limited. Langfuse tracing is disabled unless both Langfuse secrets are set.
 
 ## Giscus
 
