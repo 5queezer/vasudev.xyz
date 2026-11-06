@@ -150,6 +150,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 400; margi
 .work-arrow { display: none; color: var(--primary); font-size: 1.25rem; opacity: 0; transform: translate(-1rem, 1rem); transition: all .3s; }
 @media (min-width: 768px) { .work-arrow { display: flex; align-items: center; justify-content: flex-end; width: 4rem; } }
 .work-row:hover .work-arrow { opacity: 1; transform: translate(0, 0); }
+.work-source { position: relative; z-index: 1; display: inline-block; margin-top: 1rem; color: var(--primary); font-family: var(--font-mono); font-size: .875rem; text-decoration: underline; text-underline-offset: 3px; }
 .work-list-end { border-top: 1px solid var(--border); }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .5rem; }

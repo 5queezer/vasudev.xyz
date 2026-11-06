@@ -6,8 +6,8 @@
 
   <div class="work-list">
     {{ range site.Data.work }}
-      <a href="{{ .link }}" target="_blank" rel="noopener" class="work-row">
-        <div class="work-row-inner">
+      <div class="work-row">
+        <a href="{{ .link }}" target="_blank" rel="noopener" class="work-row-inner">
           <div class="work-meta">
             <h4 class="work-name">{{ .name }}</h4>
             <div class="work-type">{{ .type }}</div>
@@ -20,8 +20,11 @@
             </div>
           </div>
           <div class="work-arrow" aria-hidden="true">↗</div>
-        </div>
-      </a>
+        </a>
+        {{ with .repo }}
+          <a href="{{ . }}" target="_blank" rel="noopener" class="work-source">GitHub ↗</a>
+        {{ end }}
+      </div>
     {{ end }}
     <div class="work-list-end"></div>
   </div>

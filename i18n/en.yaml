@@ -65,8 +65,8 @@
   translation: Privacy
 - id: agent_chip_who
   translation: Who is Christian?
-- id: agent_chip_hrafn
-  translation: Tell me about hrafn
+- id: agent_chip_chartgen
+  translation: Tell me about chartgen
 - id: agent_chip_stack
   translation: What's the agent stack?
 - id: agent_chip_site

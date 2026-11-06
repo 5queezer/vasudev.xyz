@@ -1,9 +1,10 @@
-- name: hrafn
-  type: Rust runtime
-  subtitle: Plugin-driven execution with protocol-aware messaging.
-  desc: Lightweight, modular AI agent runtime in Rust with MCP plugins, MuninnDB memory, and A2A protocol support.
-  tags: [Rust, MCP, A2A]
-  link: https://github.com/5queezer/hrafn
+- name: chartgen
+  type: Charting & MCP
+  subtitle: Market data and technical charts for AI workflows.
+  desc: Rust chart generator and MCP server with Yahoo Finance and Binance data, technical indicators, and live market alerts.
+  tags: [Rust, MCP, Market data]
+  link: https://chartgen.vasudev.xyz
+  repo: https://github.com/5queezer/chartgen
 
 - name: axiom-vault
   type: Encrypted vault
