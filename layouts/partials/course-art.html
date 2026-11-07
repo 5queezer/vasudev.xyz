@@ -1,0 +1,30 @@
+{{- $course := .course -}}
+{{- $variant := .variant | default "card" -}}
+{{- $path := $course.RelPermalink -}}
+{{- $kind := "raft" -}}
+{{- if strings.Contains $path "modern-cpp-recovery" }}{{ $kind = "cpp" }}{{ end -}}
+{{- if strings.Contains $path "typescript-ramp-up" }}{{ $kind = "typescript" }}{{ end -}}
+<span class="course-art course-art--{{ $kind }} course-art--{{ $variant }}" aria-hidden="true">
+  {{- if eq $kind "cpp" -}}
+    <svg viewBox="0 0 640 360" focusable="false">
+      <path class="course-art-grid" d="M72 74H568M72 146H568M72 218H568M72 290H568M144 44V316M248 44V316M352 44V316M456 44V316"/>
+      <path class="course-art-flow" d="M102 244h100v-88h112v88h114v-88h110"/>
+      <circle class="course-art-node" cx="102" cy="244" r="20"/><circle class="course-art-node" cx="202" cy="156" r="20"/><circle class="course-art-node" cx="314" cy="244" r="20"/><circle class="course-art-node" cx="428" cy="156" r="20"/><circle class="course-art-node" cx="538" cy="156" r="20"/>
+      <text x="76" y="300">std::vector</text><text x="178" y="116">RAII</text><text x="278" y="300">std::move</text><text x="390" y="116">unique_ptr</text>
+    </svg>
+  {{- else if eq $kind "typescript" -}}
+    <svg viewBox="0 0 640 360" focusable="false">
+      <path class="course-art-link" d="M320 180L162 92M320 180L486 84M320 180L512 268M320 180L154 276"/>
+      <rect class="course-art-box course-art-box--core" x="246" y="128" width="148" height="104" rx="24"/>
+      <rect class="course-art-box" x="88" y="48" width="148" height="80" rx="18"/><rect class="course-art-box" x="412" y="40" width="148" height="80" rx="18"/><rect class="course-art-box" x="438" y="226" width="148" height="80" rx="18"/><rect class="course-art-box" x="80" y="236" width="148" height="80" rx="18"/>
+      <text x="278" y="188">unknown</text><text x="121" y="96">T | U</text><text x="431" y="88">T extends U</text><text x="466" y="274">value is T</text><text x="108" y="284">z.object</text>
+    </svg>
+  {{- else -}}
+    <svg viewBox="0 0 640 360" focusable="false">
+      <path class="course-art-pipeline" d="M68 180H572"/>
+      <rect class="course-art-stage" x="54" y="128" width="116" height="104" rx="18"/><rect class="course-art-stage" x="190" y="128" width="116" height="104" rx="18"/><rect class="course-art-stage course-art-stage--active" x="326" y="128" width="116" height="104" rx="18"/><rect class="course-art-stage" x="462" y="128" width="116" height="104" rx="18"/>
+      <text x="87" y="188">RAG</text><text x="209" y="188">filter()</text><text x="358" y="188">LoRA</text><text x="488" y="188">eval()</text>
+      <circle class="course-art-dot" cx="112" cy="92" r="8"/><circle class="course-art-dot" cx="248" cy="88" r="8"/><circle class="course-art-dot" cx="384" cy="72" r="8"/><circle class="course-art-dot" cx="520" cy="94" r="8"/>
+    </svg>
+  {{- end -}}
+</span>

@@ -58,7 +58,7 @@ class InternationalizationTest(unittest.TestCase):
         (fixtures / 'blog/qa-pagination.md').write_text(
             '---\ntitle: "Pagination fixture"\ndate: 2000-01-01\n'
             'description: "An older fourth showcase post for pagination QA."\n'
-            'showcase: true\ntags: ["qa"]\nimages: ["/images/home-blue.webp"]\n---\nPagination fixture.\n'
+            'showcase: true\ntags: ["qa"]\nimageAlt: "Pagination fixture cover"\nimages: ["/images/home-blue.webp"]\n---\nPagination fixture.\n'
         )
         config = Path(cls.temp.name) / 'test.toml'
         config.write_text(
@@ -104,7 +104,7 @@ class InternationalizationTest(unittest.TestCase):
                     self.assertTrue(post['url'].startswith(f'/{lang}/'))
                     self.assertNotIn('min read', post['readingTime'])
                     self.assertTrue(post['date'])
-                    self.assertTrue(post['image'])
+                    self.assertIsInstance(post['image'], str)
 
     def test_privacy_links_and_content_keep_selected_language(self):
         for lang, title in [('de', 'Datenschutz'), ('es', 'Privacidad')]:
@@ -190,13 +190,75 @@ class InternationalizationTest(unittest.TestCase):
                 self.assertLess(html.index('id="top"'), html.index('data-navbar'),
                                 'The top anchor must include the navigation, not start below it')
 
-    def test_blog_server_pagination_with_four_showcase_posts(self):
-        first = self.html('blog')
-        second = self.html('blog/page/2')
-        self.assertEqual(len(re.findall(r'<a[^>]+class="essay-card"', first)), 3)
-        self.assertEqual(len(re.findall(r'<a[^>]+class="essay-card"', second)), 1)
-        self.assertIn('Pagination fixture', second)
-        self.assertEqual(len(json.loads((self.output / 'blog/search.json').read_text())), 4)
+    def test_blog_server_pagination_preserves_published_archive(self):
+        posts = json.loads((self.output / 'blog/search.json').read_text())
+        self.assertGreater(len(posts), 10)
+        class CardLinks(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.urls = []
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                if tag == 'a' and 'essay-card' in attrs.get('class', '').split():
+                    self.urls.append(attrs['href'])
+        urls = []
+        page = 1
+        while True:
+            route = 'blog' if page == 1 else f'blog/page/{page}'
+            file = self.output / route / 'index.html'
+            if not file.is_file():
+                break
+            cards = CardLinks()
+            cards.feed(file.read_text())
+            self.assertTrue(cards.urls)
+            self.assertLessEqual(len(cards.urls), 10)
+            urls.extend(cards.urls)
+            page += 1
+        self.assertGreater(page, 2)
+        self.assertEqual(len(urls), len(set(urls)), 'Archive pagination duplicates posts')
+        self.assertEqual(set(urls), {post['url'] for post in posts}, 'Archive pagination hides published posts')
+
+    def test_reading_pages_include_cover_contents_and_related_navigation(self):
+        for lang in ['en', 'de', 'es']:
+            prefix = '' if lang == 'en' else lang + '/'
+            index = json.loads((self.output / prefix / 'blog/search.json').read_text())
+            article = self.html(index[0]['url'])
+            with self.subTest(lang=lang):
+                self.assertTrue('reading-page' in article, 'Article still uses the old layout')
+                self.assertTrue('reading-cover' in article, 'Article has no cover image')
+                self.assertTrue('data-reading-toc' in article, 'Article has no table of contents')
+                self.assertEqual(article.count('id="TableOfContents"'), 1)
+                self.assertTrue('data-copy-link' in article)
+                chapter = self.html(prefix + 'guides/modern-cpp-recovery/03-lifetime-raii')
+                self.assertTrue('reading-page' in chapter)
+                self.assertTrue('data-reading-toc' in chapter)
+                self.assertTrue('reading-chapter-nav' in chapter)
+                self.assertIn(f'href="/{prefix}guides/modern-cpp-recovery/02-compilation-linking/"', chapter)
+                self.assertIn(f'href="/{prefix}guides/modern-cpp-recovery/04-ownership-smart-pointers/"', chapter)
+
+    def test_every_blog_article_has_an_accessible_cover(self):
+        for lang in ['en', 'de', 'es']:
+            prefix = '' if lang == 'en' else lang + '/'
+            posts = json.loads((self.output / prefix / 'blog/search.json').read_text())
+            for post in posts:
+                with self.subTest(lang=lang, post=post['title']):
+                    html = self.html(post['url'])
+                    cover = re.search(r'<figure class="reading-cover[^>]*>(.*?)</figure>', html, re.S)
+                    self.assertIsNotNone(cover)
+                    if post['image']:
+                        self.assertRegex(cover[0], r'alt="[^"]+"')
+                    else:
+                        self.assertIn('reading-cover--generated', cover[0])
+                        self.assertIn('role="img"', cover[0])
+                    if post['title'] == 'Pagination fixture':
+                        self.assertIn('alt="Pagination fixture cover"', cover[0])
+
+    def test_editorial_resources_are_scoped_to_content_pages(self):
+        home = self.html('')
+        self.assertNotIn('/js/reading-page.', home)
+        css_url = re.search(r'href="(/css/home[^"]+)"', home)[1]
+        css = (self.output / css_url.lstrip('/')).read_text()
+        self.assertNotIn('.reading-page', css)
 
     def test_generated_internal_links_assets_and_fragments_exist(self):
         pages = {}

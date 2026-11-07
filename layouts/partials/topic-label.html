@@ -1,0 +1,4 @@
+{{- $term := .Data.Term | default .Title | lower -}}
+{{- $localized := dict "ai" "topic_ai" "agents" "topic_agents" "architecture" "topic_architecture" "memory" "topic_memory" "security" "topic_security" "spirituality" "topic_spirituality" "philosophy" "topic_philosophy" "interpretability" "topic_interpretability" "sparse-autoencoders" "topic_sparse_autoencoders" "benchmarks" "topic_benchmarks" -}}
+{{- $proper := dict "mcp" "MCP" "a2a" "A2A" "llm" "LLM" "oauth" "OAuth" "adr" "ADR" "typescript" "TypeScript" "rust" "Rust" "claude" "Claude" "traefik" "Traefik" "muninndb" "MuninnDB" "frontend" "Frontend" -}}
+{{- with index $localized $term -}}{{ i18n . }}{{- else -}}{{ index $proper $term | default $.Title }}{{- end -}}

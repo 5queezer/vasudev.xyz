@@ -1,0 +1,20 @@
+{{- $page := .page -}}{{- $kind := "ideas" -}}
+{{- with $page.File }}{{ if strings.Contains .TranslationBaseName "direct-divine" }}{{ $kind = "connection" }}{{ end }}{{ end -}}
+<span class="editorial-art editorial-art--{{ $kind }}" aria-hidden="true">
+  <svg viewBox="0 0 800 400" focusable="false">
+    {{ if eq $kind "connection" }}
+      <path class="editorial-art-halo" d="M400 30a170 170 0 1 0 0 340 170 170 0 0 0 0-340Z"/>
+      <path class="editorial-art-arch" d="M268 344V184a132 132 0 0 1 264 0v160H268Z"/>
+      <path class="editorial-art-door" d="M324 344V194a76 76 0 0 1 152 0v150H324Z"/>
+      <circle class="editorial-art-sun" cx="400" cy="186" r="34"/>
+      <path class="editorial-art-lines" d="M64 344h672M138 296h130M532 296h130M400 220v124M346 344l54-124 54 124"/>
+    {{ else }}
+      <path class="editorial-art-lines" d="M80 302h640M120 100l560 200M680 100 120 300"/>
+      <circle class="editorial-art-orbit" cx="296" cy="190" r="104"/>
+      <circle class="editorial-art-orbit editorial-art-orbit--second" cx="496" cy="190" r="104"/>
+      <rect class="editorial-art-window" x="312" y="112" width="176" height="176" rx="30"/>
+      <circle class="editorial-art-sun" cx="400" cy="200" r="36"/>
+      <path class="editorial-art-lines" d="M400 58v54M400 288v54M192 190h120M488 190h112"/>
+    {{ end }}
+  </svg>
+</span>

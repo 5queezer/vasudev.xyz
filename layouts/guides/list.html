@@ -1,50 +1,28 @@
 {{ define "main" }}
-<section class="writing">
-  <div class="container">
-    <div class="section-header">
-      <h1 class="section-title">{{ i18n "section_guides_h" }}</h1>
-    </div>
-
-    {{ with .Content }}
-      {{ $content := . }}
-      {{ $content = replaceRE `^\s*<h1\b[^>]*>.*?</h1>\s*` "" $content }}
-      <div class="prose section-intro">
-        {{ $content | safeHTML }}
-      </div>
-    {{ end }}
-
-    {{ $pages := .Pages.ByWeight }}
-    {{ if and (eq (len $pages) 0) (ne .Site.Language.Lang "en") }}
-      {{ $defaultPath := strings.TrimSuffix "/" (strings.TrimPrefix (printf "/%s/" .Site.Language.Lang) .RelPermalink) }}
-      {{ with .Sites.Default.GetPage $defaultPath }}
-        {{ $pages = .Pages.ByWeight }}
-      {{ end }}
-    {{ end }}
-
-    <div class="writing-grid">
-      {{ range $pages }}
-        {{ $topicCount := len .RegularPages }}
-        {{ if and (eq $topicCount 0) (ne $.Site.Language.Lang "en") }}
-          {{ $defaultPath := strings.TrimSuffix "/" (strings.TrimPrefix (printf "/%s/" $.Site.Language.Lang) .RelPermalink) }}
-          {{ with $.Sites.Default.GetPage $defaultPath }}
-            {{ $topicCount = len .RegularPages }}
-          {{ end }}
+{{ $pages := .Pages.ByWeight }}
+<section class="content-page collection-page container">
+  <header class="collection-heading">
+    <p class="collection-kicker">{{ i18n "collection_all_guides" }}</p>
+    <h1>{{ i18n "section_guides_h" }}</h1>
+    {{ with .Content }}{{ $content := replaceRE `^\s*<h1\b[^>]*>.*?</h1>\s*` "" . }}<div class="collection-deck">{{ $content | safeHTML }}</div>{{ end }}
+  </header>
+  <div class="archive-layout">
+    {{ partial "archive-sidebar.html" (dict "page" . "mode" "guides") }}
+    <div class="archive-main">
+      <div class="course-grid">
+        {{ range $pages }}
+          {{ $topicCount := len .RegularPages }}
+          <a class="course-card essay-card" href="{{ .RelPermalink }}">
+            {{ partial "course-art.html" (dict "course" . "variant" "card") }}
+            <div class="course-card-copy">
+              <div class="essay-meta"><span>{{ i18n "topic_count" $topicCount }}</span></div>
+              <h2 class="essay-title">{{ .Title }}</h2>
+              <p class="essay-desc">{{ .Description }}</p>
+              <span class="course-card-action">{{ i18n "collection_read_more" }} <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
         {{ end }}
-        <a href="{{ .RelPermalink }}" class="essay-card">
-          {{ with .Params.images }}
-            <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
-          {{ end }}
-          <div class="essay-meta">
-            {{ if .Date }}<span>{{ .Date | time.Format ":date_medium" }}</span>{{ end }}
-            <span>{{ i18n "topic_count" $topicCount }}</span>
-          </div>
-          <h2 class="essay-title">{{ .Title }}</h2>
-          <p class="essay-desc">{{ .Description }}</p>
-          <div class="tag-row mt-auto">
-            {{ range .Params.guideTags }}<span class="tag tag-sm">{{ . }}</span>{{ end }}
-          </div>
-        </a>
-      {{ end }}
+      </div>
     </div>
   </div>
 </section>

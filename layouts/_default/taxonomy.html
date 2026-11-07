@@ -1,30 +1,9 @@
 {{ define "main" }}
-<section class="writing container">
-  <header class="section-header">
-    <h1 class="section-title">{{ .Title }}</h1>
-    {{ if eq .Kind "term" }}
-      <p class="section-lede">{{ i18n "post_count" (len .Pages) }}</p>
-    {{ end }}
-  </header>
-
-  <div class="writing-grid">
-    {{ range .Pages.ByDate.Reverse }}
-      <a href="{{ .RelPermalink }}" class="essay-card">
-        {{ with .Params.images }}
-          <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
-        {{ end }}
-        <div class="essay-meta">
-          {{ if ne .Kind "term" }}
-            <span>{{ .Date | time.Format ":date_medium" }}</span>
-            <span>{{ i18n "reading_time" .ReadingTime }}</span>
-          {{ else }}
-            <span>{{ i18n "post_count" (len .Pages) }}</span>
-          {{ end }}
-        </div>
-        <h2 class="essay-title">{{ .Title }}</h2>
-        {{ with .Description }}<p class="essay-desc">{{ . }}</p>{{ end }}
-      </a>
-    {{ end }}
+<section class="content-page collection-page{{ if eq .Kind "taxonomy" }} collection-page--topics{{ end }} container">
+  <header class="collection-heading"><p class="collection-kicker">{{ i18n "collection_topics" }}</p><h1>{{ if and (eq .Kind "term") (eq .Data.Singular "tag") }}{{ partial "topic-label.html" . }}{{ else }}{{ .Title }}{{ end }}</h1>{{ if eq .Kind "term" }}<p class="collection-deck">{{ i18n "post_count" (len .Pages) }}</p>{{ end }}</header>
+  <div class="archive-layout">
+    {{ partial "archive-sidebar.html" (dict "page" . "mode" "writing") }}
+    <div class="archive-main"><div class="archive-results">{{ range $index, $page := .Pages.ByDate.Reverse }}{{ partial "archive-card.html" (dict "page" $page "featured" (and (eq $.Kind "term") (eq $index 0))) }}{{ end }}</div></div>
   </div>
 </section>
 {{ end }}

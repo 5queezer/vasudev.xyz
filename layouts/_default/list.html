@@ -1,26 +1,9 @@
 {{ define "main" }}
-<section class="writing container">
-  <div class="section-header">
-    <h1 class="section-title">{{ .Title }}</h1>
-  </div>
-
-  <div class="writing-grid">
-    {{ range .Pages }}
-      <a href="{{ .RelPermalink }}" class="essay-card">
-        {{ with .Params.images }}
-          <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
-        {{ end }}
-        <div class="essay-meta">
-          <span>{{ .Date | time.Format ":date_medium" }}</span>
-          <span>{{ i18n "reading_time" .ReadingTime }}</span>
-        </div>
-        <h2 class="essay-title">{{ .Title }}</h2>
-        <p class="essay-desc">{{ .Description }}</p>
-        <div class="tag-row mt-auto">
-          {{ range .Params.tags }}<span class="tag tag-sm">{{ . }}</span>{{ end }}
-        </div>
-      </a>
-    {{ end }}
+<section class="content-page collection-page container">
+  <header class="collection-heading"><p class="collection-kicker">{{ i18n "collection_all_writing" }}</p><h1>{{ .Title }}</h1>{{ with .Description }}<p class="collection-deck">{{ . }}</p>{{ end }}</header>
+  <div class="archive-layout">
+    {{ partial "archive-sidebar.html" (dict "page" . "mode" "writing") }}
+    <div class="archive-main"><div class="archive-results">{{ range $index, $page := .Pages.ByDate.Reverse }}{{ partial "archive-card.html" (dict "page" $page "featured" (eq $index 0)) }}{{ end }}</div></div>
   </div>
 </section>
 {{ end }}

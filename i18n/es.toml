@@ -222,3 +222,87 @@ other = "FTS5 · memoria vectorial"
 
 [preview_workflow]
 other = "Kanban · flujo de trabajo"
+
+[collection_topics]
+other = "Categorías"
+
+[collection_all_writing]
+other = "Todos los artículos"
+
+[collection_all_guides]
+other = "Todas las guías"
+
+[guide_overview_title]
+other = "Sobre esta guía"
+
+[collection_read_more]
+other = "Leer artículo"
+
+[collection_browse_guides]
+other = "Explora las guías"
+
+[collection_guide_hint]
+other = "Capítulos prácticos sobre C++, TypeScript y fine-tuning con RAFT."
+
+[reading_on_page]
+other = "En esta página"
+
+[reading_in_article]
+other = "En este artículo"
+
+[reading_in_chapter]
+other = "En este capítulo"
+
+[reading_contents]
+other = "Índice"
+
+[reading_breadcrumb]
+other = "Ruta de navegación"
+
+[reading_chapter_navigation]
+other = "Navegación entre capítulos"
+
+[reading_previous_chapter]
+other = "Capítulo anterior"
+
+[reading_next_chapter]
+other = "Capítulo siguiente"
+
+[reading_more_posts]
+other = "Más artículos del blog"
+
+[reading_share_linkedin]
+other = "Compartir en LinkedIn"
+
+[reading_share_x]
+other = "Compartir en X"
+
+[topic_ai]
+other = "IA"
+
+[topic_agents]
+other = "Agentes"
+
+[topic_architecture]
+other = "Arquitectura"
+
+[topic_memory]
+other = "Memoria"
+
+[topic_security]
+other = "Seguridad"
+
+[topic_spirituality]
+other = "Espiritualidad"
+
+[topic_philosophy]
+other = "Filosofía"
+
+[topic_interpretability]
+other = "Interpretabilidad"
+
+[topic_sparse_autoencoders]
+other = "Autoencoders dispersos"
+
+[topic_benchmarks]
+other = "Evaluaciones"

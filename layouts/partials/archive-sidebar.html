@@ -1,0 +1,25 @@
+{{- $page := .page -}}
+{{- $mode := .mode | default "writing" -}}
+<aside class="archive-sidebar">
+  <details class="archive-sidebar-panel" open>
+    <summary>{{ if eq $mode "guides" }}{{ i18n "collection_browse_guides" }}{{ else }}{{ i18n "collection_topics" }}{{ end }}</summary>
+    <nav class="archive-sidebar-nav" aria-label="{{ if eq $mode "guides" }}{{ i18n "collection_browse_guides" }}{{ else }}{{ i18n "collection_topics" }}{{ end }}">
+      {{- if eq $mode "guides" -}}
+        {{- with $page.Site.GetPage "guides" -}}
+          <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ i18n "collection_all_guides" }}</a>
+          {{- range .Pages.ByWeight }}
+            <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a>
+          {{- end }}
+        {{- end -}}
+      {{- else -}}
+        <a href="{{ "blog/" | relLangURL }}"{{ if eq $page.Section "blog" }} aria-current="page"{{ end }}>{{ i18n "collection_all_writing" }}</a>
+        {{- range first 7 $page.Site.Taxonomies.tags.ByCount }}
+          <a href="{{ .Page.RelPermalink }}"{{ if eq .Page.RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ partial "topic-label.html" .Page }}</a>
+        {{- end }}
+        <a class="archive-sidebar-secondary" href="{{ "guides/" | relLangURL }}">{{ i18n "collection_all_guides" }}</a>
+        {{- with $page.Site.GetPage "tags" }}<a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a>{{ end -}}
+        {{- with $page.Site.GetPage "series" }}<a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ .Title }}</a>{{ end -}}
+      {{- end -}}
+    </nav>
+  </details>
+</aside>

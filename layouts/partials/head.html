@@ -1,5 +1,6 @@
 {{- $title := .Title -}}
 {{- if .IsHome }}{{ $title = .Site.Title }}{{ end -}}
+{{- if and (eq .Kind "term") (eq .Data.Singular "tag") }}{{ $title = partial "topic-label.html" . | plainify }}{{ end -}}
 {{- $desc := .Site.Params.tagline | default .Site.Params.description -}}
 {{- if .Description }}{{ $desc = .Description }}{{ end -}}
 {{- $styles := slice (resources.Get "css/main.css") (resources.Get "css/design.css") -}}
@@ -8,6 +9,9 @@
   {{- $bundle = "css/home.css" -}}
   {{- $styles = $styles | append (resources.Get "css/project-scene.css") -}}
   {{- $styles = $styles | append (resources.Get "css/project-features.css") -}}
+{{- else -}}
+  {{- $styles = $styles | append (resources.Get "css/editorial.css") -}}
+  {{- $styles = $styles | append (resources.Get "css/collections.css") -}}
 {{- end -}}
 {{- $css := $styles | resources.Concat $bundle | resources.Minify | resources.Fingerprint -}}
 <head>

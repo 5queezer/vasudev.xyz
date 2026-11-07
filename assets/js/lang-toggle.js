@@ -9,6 +9,7 @@
 
   // Smooth-scroll for in-page anchors.
   document.querySelectorAll('a[href^="#"]').forEach(a => {
+    if (a.closest('[data-reading-toc]')) return;
     a.addEventListener('click', e => {
       const id = a.getAttribute('href').slice(1);
       if (!id) return;

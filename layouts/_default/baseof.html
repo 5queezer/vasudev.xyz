@@ -2,9 +2,9 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
-<body id="top" class="{{ if .IsHome }}home{{ end }}" data-lang="{{ .Site.Language.Lang }}">
+<body id="top" class="{{ if .IsHome }}home{{ else }}content-page{{ end }}" data-lang="{{ .Site.Language.Lang }}">
   <div class="noise-bg" aria-hidden="true"></div>
-  {{ if .IsHome }}
+  {{ if or .IsHome .IsPage }}
   <aside class="site-announcement" data-announcement>
     <a href="{{ "guides/" | relLangURL }}">{{ i18n "announcement_guides" }} <span aria-hidden="true">→</span></a>
     <button type="button" data-dismiss-announcement aria-label="{{ i18n "announcement_dismiss" }}">×</button>
@@ -28,6 +28,11 @@
     <script defer src="{{ $sceneJS.RelPermalink }}"></script>
     {{- $motionJS := resources.Get "js/site-motion.js" | resources.Minify | resources.Fingerprint -}}
     <script defer src="{{ $motionJS.RelPermalink }}"></script>
+  {{ end }}
+
+  {{ if not .IsHome }}
+    {{- $readingJS := resources.Get "js/reading-page.js" | resources.Minify | resources.Fingerprint -}}
+    <script defer src="{{ $readingJS.RelPermalink }}"></script>
   {{ end }}
 
   {{- $markedJS := resources.Get "js/vendor/marked.min.js" | resources.Fingerprint -}}

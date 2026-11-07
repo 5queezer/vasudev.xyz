@@ -222,3 +222,87 @@ other = "FTS5 · Vektorspeicher"
 
 [preview_workflow]
 other = "Kanban · Arbeitsablauf"
+
+[collection_topics]
+other = "Kategorien"
+
+[collection_all_writing]
+other = "Alle Beiträge"
+
+[collection_all_guides]
+other = "Alle Leitfäden"
+
+[guide_overview_title]
+other = "Über diesen Leitfaden"
+
+[collection_read_more]
+other = "Artikel lesen"
+
+[collection_browse_guides]
+other = "Leitfäden entdecken"
+
+[collection_guide_hint]
+other = "Praktische Kapitel zu C++, TypeScript und RAFT-Fine-Tuning."
+
+[reading_on_page]
+other = "Auf dieser Seite"
+
+[reading_in_article]
+other = "In diesem Artikel"
+
+[reading_in_chapter]
+other = "In diesem Kapitel"
+
+[reading_contents]
+other = "Inhaltsverzeichnis"
+
+[reading_breadcrumb]
+other = "Seitennavigation"
+
+[reading_chapter_navigation]
+other = "Kapitelnavigation"
+
+[reading_previous_chapter]
+other = "Vorheriges Kapitel"
+
+[reading_next_chapter]
+other = "Nächstes Kapitel"
+
+[reading_more_posts]
+other = "Mehr aus dem Blog"
+
+[reading_share_linkedin]
+other = "Auf LinkedIn teilen"
+
+[reading_share_x]
+other = "Auf X teilen"
+
+[topic_ai]
+other = "KI"
+
+[topic_agents]
+other = "Agenten"
+
+[topic_architecture]
+other = "Architektur"
+
+[topic_memory]
+other = "Speicher"
+
+[topic_security]
+other = "Sicherheit"
+
+[topic_spirituality]
+other = "Spiritualität"
+
+[topic_philosophy]
+other = "Philosophie"
+
+[topic_interpretability]
+other = "Interpretierbarkeit"
+
+[topic_sparse_autoencoders]
+other = "Sparse Autoencoder"
+
+[topic_benchmarks]
+other = "Benchmarks"

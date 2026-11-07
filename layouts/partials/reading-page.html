@@ -1,0 +1,87 @@
+{{- $isBlog := eq .Section "blog" -}}
+{{- $isGuide := eq .Section "guides" -}}
+{{- $toc := .Fragments.ToHTML 2 2 false -}}
+{{- $hasToc := and (strings.Contains $toc "<a ") (gt (len .Fragments.Identifiers) 1) -}}
+{{- $tocTitle := i18n "reading_on_page" -}}
+{{- if $isBlog }}{{ $tocTitle = i18n "reading_in_article" }}{{ end -}}
+{{- if $isGuide }}{{ $tocTitle = i18n "reading_in_chapter" }}{{ end -}}
+<article class="reading-page{{ if $isGuide }} reading-page--guide{{ end }}{{ if not (or $isBlog $isGuide) }} reading-page--plain{{ end }}">
+  <header class="reading-header reading-column">
+    <nav class="reading-breadcrumb" aria-label="{{ i18n "reading_breadcrumb" }}">
+      {{ if $isBlog }}
+        <a href="{{ "blog/" | relLangURL }}">← {{ i18n "blog" }}</a>
+        {{ with .Params.tags }}{{ with $.Site.GetPage (printf "/tags/%s" (index . 0 | urlize)) }}<span aria-hidden="true">/</span><a href="{{ .RelPermalink }}">{{ partial "topic-label.html" . }}</a>{{ end }}{{ end }}
+      {{ else if $isGuide }}
+        <a href="{{ "guides/" | relLangURL }}">← {{ i18n "nav_guides" }}</a>
+        {{ with .Parent }}<span aria-hidden="true">/</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+      {{ else }}
+        <a href="{{ "/" | relLangURL }}">← {{ i18n "home" }}</a>
+      {{ end }}
+    </nav>
+    <h1 class="reading-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="reading-deck">{{ . }}</p>{{ end }}
+    {{ if or $isBlog $isGuide }}
+      <div class="reading-meta">
+        <a href="{{ "about/" | relLangURL }}">{{ .Site.Params.author }}</a>
+        {{ with .Params.coAuthor }}<span>{{ i18n "with_coauthor" . }}</span>{{ end }}
+        {{ if not .Date.IsZero }}<span aria-hidden="true">/</span><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>{{ end }}
+        <span class="reading-time">{{ i18n "reading_time" .ReadingTime }}</span>
+      </div>
+      {{ partial "reading-share.html" . }}
+    {{ end }}
+    {{ with .Params.images }}
+      <figure class="reading-cover"><img src="{{ index . 0 | relURL }}" alt="{{ $.Params.imagealt | default $.Title }}" width="1200" height="630" fetchpriority="high"></figure>
+    {{ else }}
+      {{ if $isGuide }}
+        <figure class="reading-cover reading-cover--course">{{ partial "course-art.html" (dict "course" .Parent "variant" "cover") }}</figure>
+      {{ else if $isBlog }}
+        <figure class="reading-cover reading-cover--generated" role="img" aria-label="{{ .Title }}">{{ partial "editorial-art.html" (dict "page" .) }}</figure>
+      {{ end }}
+    {{ end }}
+  </header>
+
+  <div class="reading-layout reading-column{{ if $hasToc }} has-contents{{ end }}">
+    {{ if $hasToc }}
+      <aside class="reading-rail" aria-label="{{ $tocTitle }}">
+        <details class="reading-toc" data-reading-toc open>
+          <summary><span class="reading-toc-desktop">{{ $tocTitle }}</span><span class="reading-toc-mobile">{{ i18n "reading_contents" }}</span><span class="reading-toc-chevron" aria-hidden="true"></span></summary>
+          {{ $toc }}
+        </details>
+      </aside>
+    {{ end }}
+    <div class="prose reading-prose" data-reading-body>
+      {{ if $isGuide }}{{ .Content | replaceRE `^\s*<h1\b[^>]*>.*?</h1>\s*` "" | safeHTML }}{{ else }}{{ .Content }}{{ end }}
+    </div>
+  </div>
+
+  {{ if $isGuide }}
+    {{- $current := . -}}{{- $chapters := .Parent.RegularPages.ByWeight -}}{{- $position := -1 -}}
+    {{- range $i, $chapter := $chapters }}{{ if eq $chapter.RelPermalink $current.RelPermalink }}{{ $position = $i }}{{ end }}{{ end -}}
+    <nav class="reading-chapter-nav reading-column" aria-label="{{ i18n "reading_chapter_navigation" }}">
+      {{ if gt $position 0 }}{{ with index $chapters (sub $position 1) }}<a href="{{ .RelPermalink }}"><span>← {{ i18n "reading_previous_chapter" }}</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}
+      {{ if and (ge $position 0) (lt (add $position 1) (len $chapters)) }}{{ with index $chapters (add $position 1) }}<a class="reading-chapter-next" href="{{ .RelPermalink }}"><span>{{ i18n "reading_next_chapter" }} →</span><strong>{{ .Title }}</strong></a>{{ end }}{{ end }}
+    </nav>
+  {{ end }}
+
+  {{ if $isBlog }}
+    <div class="reading-column reading-comments">{{ partial "giscus.html" . }}</div>
+    {{- $posts := where .Site.RegularPages "Section" "blog" -}}
+    {{- $candidates := where (where $posts "RelPermalink" "ne" .RelPermalink) "Params.images" "!=" nil -}}
+    {{- $related := first 3 ($candidates.Related .) -}}
+    {{- if lt (len $related) 3 }}{{ $related = first 3 (union $related $candidates.ByDate.Reverse) }}{{ end -}}
+    {{ with $related }}
+      <section class="reading-related container" aria-labelledby="reading-related-title">
+        <h2 id="reading-related-title">{{ i18n "reading_more_posts" }}</h2>
+        <div class="reading-related-grid">
+          {{ range . }}
+            <a class="reading-related-card" href="{{ .RelPermalink }}">
+              {{ with .Params.images }}<img src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">{{ end }}
+              <h3>{{ .Title }}</h3>
+              {{ with .Description }}<p>{{ . }}</p>{{ end }}
+            </a>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  {{ end }}
+</article>

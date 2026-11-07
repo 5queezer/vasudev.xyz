@@ -222,3 +222,87 @@ other = "FTS5 · vector memory"
 
 [preview_workflow]
 other = "Kanban · workflow"
+
+[collection_topics]
+other = "Categories"
+
+[collection_all_writing]
+other = "All writing"
+
+[collection_all_guides]
+other = "All guides"
+
+[guide_overview_title]
+other = "About this guide"
+
+[collection_read_more]
+other = "Read article"
+
+[collection_browse_guides]
+other = "Explore the field guides"
+
+[collection_guide_hint]
+other = "Practical chapters on C++, TypeScript and RAFT fine-tuning."
+
+[reading_on_page]
+other = "On this page"
+
+[reading_in_article]
+other = "In this article"
+
+[reading_in_chapter]
+other = "In this chapter"
+
+[reading_contents]
+other = "Table of Contents"
+
+[reading_breadcrumb]
+other = "Breadcrumb"
+
+[reading_chapter_navigation]
+other = "Chapter navigation"
+
+[reading_previous_chapter]
+other = "Previous chapter"
+
+[reading_next_chapter]
+other = "Next chapter"
+
+[reading_more_posts]
+other = "More on the blog"
+
+[reading_share_linkedin]
+other = "Share on LinkedIn"
+
+[reading_share_x]
+other = "Share on X"
+
+[topic_ai]
+other = "AI"
+
+[topic_agents]
+other = "Agents"
+
+[topic_architecture]
+other = "Architecture"
+
+[topic_memory]
+other = "Memory"
+
+[topic_security]
+other = "Security"
+
+[topic_spirituality]
+other = "Spirituality"
+
+[topic_philosophy]
+other = "Philosophy"
+
+[topic_interpretability]
+other = "Interpretability"
+
+[topic_sparse_autoencoders]
+other = "Sparse autoencoders"
+
+[topic_benchmarks]
+other = "Benchmarks"

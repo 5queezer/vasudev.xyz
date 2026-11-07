@@ -1,50 +1,23 @@
 {{ define "main" }}
-<section class="writing">
-  <div class="container">
-    <div class="section-header">
-      <h1 class="section-title">{{ .Title }}</h1>
-    </div>
-
-    {{ with .Content }}
-      {{ $content := . }}
-      {{ $content = replaceRE `^\s*<h1\b[^>]*>.*?</h1>\s*` "" $content }}
-      <div class="prose section-intro">
-        {{ $content | safeHTML }}
-      </div>
-    {{ end }}
-
-    {{ $pages := .Pages.ByWeight }}
-    {{ $usesEnglishPages := false }}
-    {{ if and (eq (len $pages) 0) (ne .Site.Language.Lang "en") }}
-      {{ $defaultPath := strings.TrimSuffix "/" (strings.TrimPrefix (printf "/%s/" .Site.Language.Lang) .RelPermalink) }}
-      {{ with .Sites.Default.GetPage $defaultPath }}
-        {{ $pages = .Pages.ByWeight }}
-        {{ $usesEnglishPages = true }}
-      {{ end }}
-    {{ end }}
-
-    {{ if $usesEnglishPages }}
-      <p class="section-lede">{{ i18n "guide_english_notice" }}</p>
-    {{ end }}
-
-    <div class="writing-grid">
-      {{ range $pages }}
-        <a href="{{ .RelPermalink }}" class="essay-card">
-          {{ with .Params.images }}
-            <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
-          {{ end }}
-          <div class="essay-meta">
-            {{ if .Date }}<span>{{ .Date | time.Format ":date_medium" }}</span>{{ end }}
-            <span>{{ i18n "reading_time" .ReadingTime }}</span>
-            {{ if $usesEnglishPages }}<span>{{ i18n "language_english" }}</span>{{ end }}
-          </div>
-          <h2 class="essay-title">{{ .Title }}</h2>
-          <p class="essay-desc">{{ .Description }}</p>
-          <div class="tag-row mt-auto">
-            {{ range .Params.guideTags }}<span class="tag tag-sm">{{ . }}</span>{{ end }}
-          </div>
-        </a>
-      {{ end }}
+{{ $pages := .Pages.ByWeight }}
+<section class="content-page collection-page container">
+  <header class="collection-heading collection-heading--course">
+    <p class="collection-kicker">{{ i18n "collection_all_guides" }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="collection-deck">{{ . }}</p>{{ end }}
+  </header>
+  <div class="archive-layout">
+    {{ partial "archive-sidebar.html" (dict "page" . "mode" "guides") }}
+    <div class="archive-main">
+      {{ partial "course-art.html" (dict "course" . "variant" "cover") }}
+      <p class="course-hint">{{ i18n "collection_guide_hint" }}</p>
+      <ol class="chapter-list">
+        {{ range $pages }}
+          {{ $title := replaceRE `^\d+\s*[—–-]\s*` "" .Title }}
+          <li><a class="chapter-card essay-card" href="{{ .RelPermalink }}"><span class="chapter-number">{{ printf "%02d" .Weight }}</span><div class="chapter-card-copy"><h2 class="essay-title">{{ $title }}</h2><p class="essay-desc">{{ .Description }}</p></div><span class="chapter-time">{{ i18n "reading_time" .ReadingTime }}</span><span class="chapter-arrow" aria-hidden="true">→</span></a></li>
+        {{ end }}
+      </ol>
+      {{ with .Content }}{{ $content := replaceRE `^\s*<h1\b[^>]*>.*?</h1>\s*` "" . }}<details class="guide-overview"><summary>{{ i18n "guide_overview_title" }}</summary><div class="prose">{{ $content | safeHTML }}</div></details>{{ end }}
     </div>
   </div>
 </section>

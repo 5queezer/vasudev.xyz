@@ -1,26 +1,10 @@
 {{ define "main" }}
-<section class="writing container">
-  <header class="section-header">
-    <h1 class="section-title">{{ .Title }}</h1>
-    {{ with .Content }}<div class="prose section-intro">{{ . }}</div>{{ end }}
-    <p class="section-lede">{{ i18n "post_count" (len .Pages) }}</p>
-  </header>
-
-  {{ $pages := sort .Pages ".Params.series_weight" "asc" }}
-  <div class="writing-grid">
-    {{ range $p := $pages }}
-      <a href="{{ $p.RelPermalink }}" class="essay-card">
-        {{ with $p.Params.images }}
-          <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
-        {{ end }}
-        <div class="essay-meta">
-          {{ if $p.Params.series_weight }}<span>{{ i18n "part_label" $p.Params.series_weight }}</span>{{ end }}
-          <span>{{ $p.Date | time.Format ":date_medium" }} · {{ i18n "reading_time" $p.ReadingTime }}</span>
-        </div>
-        <h2 class="essay-title">{{ $p.Title }}</h2>
-        {{ with $p.Description }}<p class="essay-desc">{{ . }}</p>{{ end }}
-      </a>
-    {{ end }}
+{{ $pages := sort .Pages ".Params.series_weight" "asc" }}
+<section class="content-page collection-page container">
+  <header class="collection-heading"><p class="collection-kicker">{{ i18n "collection_all_writing" }}</p><h1>{{ .Title }}</h1>{{ with .Content }}<div class="collection-deck">{{ . }}</div>{{ end }}<p class="collection-count">{{ i18n "post_count" (len $pages) }}</p></header>
+  <div class="archive-layout">
+    {{ partial "archive-sidebar.html" (dict "page" . "mode" "writing") }}
+    <div class="archive-main"><div class="archive-results">{{ range $index, $page := $pages }}{{ partial "archive-card.html" (dict "page" $page "featured" (eq $index 0)) }}{{ end }}</div></div>
   </div>
 </section>
 {{ end }}

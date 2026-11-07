@@ -14,40 +14,52 @@
   let posts = [];
   let firstPostSuggestionUrl = '';
 
-  const normalize = value => (value || '').toString().trim().toLowerCase();
-  const escapeHtml = value => (value || '').toString().replace(/[&<>"]/g, char => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;'
-  }[char]));
+  const normalize = (value) => (value || '').toString().trim().toLowerCase();
+  const escapeHtml = (value) =>
+    (value || '').toString().replace(
+      /[&<>"]/g,
+      (char) =>
+        ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+        })[char],
+    );
 
-  const renderTags = tags => (tags || []).map(tag => `<span class="tag tag-sm">${escapeHtml(tag)}</span>`).join('');
+  const renderTags = (tags) =>
+    (tags || [])
+      .map((tag) => `<span class="tag tag-sm">${escapeHtml(tag)}</span>`)
+      .join('');
 
-  const renderPost = post => `
-    <a href="${post.url}" class="essay-card">
-      ${post.image ? `<img class="essay-image" src="${escapeHtml(post.image)}" alt="" width="1200" height="630" loading="lazy">` : ''}
-      <div class="essay-meta">
-        <span>${escapeHtml(post.date)}</span>
-        <span>${escapeHtml(post.readingTime)}</span>
+  const renderPost = (post) => `
+    <a href="${post.url}" class="essay-card" data-archive-card>
+      <span class="archive-card-media">
+        ${
+          post.image
+            ? `<img class="essay-image" src="${escapeHtml(post.image)}" alt="" width="1200" height="630" loading="lazy">`
+            : `<span class="archive-card-art" aria-hidden="true"><span>${escapeHtml(post.title).slice(0, 1)}</span></span>`
+        }
+      </span>
+      <div class="archive-card-copy">
+        <div class="essay-meta"><span>${escapeHtml(post.date)}</span><span>${escapeHtml(post.readingTime)}</span></div>
+        <h2 class="essay-title">${escapeHtml(post.title)}</h2>
+        <p class="essay-desc">${escapeHtml(post.description)}</p>
+        <span class="tag-row">${renderTags(post.tags)}</span>
       </div>
-      <h2 class="essay-title">${escapeHtml(post.title)}</h2>
-      <p class="essay-desc">${escapeHtml(post.description)}</p>
-      <div class="tag-row mt-auto">${renderTags(post.tags)}</div>
-    </a>
-  `;
+    </a>`;
 
-  const setStatus = message => {
+  const setStatus = (message) => {
     status.textContent = message;
   };
 
-  const matchingPosts = query => {
+  const matchingPosts = (query) => {
     const q = normalize(query);
     if (!q) return posts;
-    return posts.filter(post => normalize(post.searchText).includes(q));
+    return posts.filter((post) => normalize(post.searchText).includes(q));
   };
 
-  const buildSuggestions = query => {
+  const buildSuggestions = (query) => {
     const q = normalize(query);
     firstPostSuggestionUrl = '';
     suggestions.innerHTML = '';
@@ -56,13 +68,13 @@
     const seen = new Set();
     const items = [];
 
-    posts.forEach(post => {
+    posts.forEach((post) => {
       if (normalize(post.title).includes(q) && !seen.has(`post:${post.url}`)) {
         seen.add(`post:${post.url}`);
         items.push({ type: 'post', label: post.title, url: post.url });
       }
 
-      (post.tags || []).forEach(tag => {
+      (post.tags || []).forEach((tag) => {
         const key = `tag:${normalize(tag)}`;
         if (normalize(tag).includes(q) && !seen.has(key)) {
           seen.add(key);
@@ -71,7 +83,7 @@
       });
     });
 
-    items.slice(0, maxSuggestions).forEach(item => {
+    items.slice(0, maxSuggestions).forEach((item) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = `blog-search-suggestion is-${item.type}`;
@@ -88,7 +100,7 @@
       suggestions.appendChild(button);
     });
 
-    const firstPost = items.find(item => item.type === 'post');
+    const firstPost = items.find((item) => item.type === 'post');
     firstPostSuggestionUrl = firstPost ? firstPost.url : '';
   };
 
@@ -124,7 +136,7 @@
   }
 
   input.addEventListener('input', update);
-  input.addEventListener('keydown', event => {
+  input.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' && firstPostSuggestionUrl) {
       event.preventDefault();
       window.location.href = firstPostSuggestionUrl;
@@ -132,11 +144,12 @@
   });
 
   fetch(indexUrl, { headers: { Accept: 'application/json' } })
-    .then(response => {
-      if (!response.ok) throw new Error(`Search index failed with ${response.status}`);
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Search index failed with ${response.status}`);
       return response.json();
     })
-    .then(index => {
+    .then((index) => {
       posts = Array.isArray(index) ? index : [];
       if (normalize(input.value)) update();
     })
