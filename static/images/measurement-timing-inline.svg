@@ -29,7 +29,7 @@
   <text x="260" y="260" text-anchor="middle" fill="#3fb950" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11">Cohen's d = 9.9</text>
 
   <!-- RIGHT: Generation zone -->
-  <rect x="480" y="100" width="340" height="50" rx="8" fill="#f85149" opacity="0.1" stroke="#f85149" stroke-width="1" opacity="0.5"/>
+  <rect x="480" y="100" width="340" height="50" rx="8" fill="#f85149" fill-opacity="0.1" stroke="#f85149" stroke-width="1" stroke-opacity="0.5"/>
   <text x="650" y="118" text-anchor="middle" fill="#f85149" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="16">Generation</text>
   <text x="650" y="140" text-anchor="middle" fill="#f85149" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11" opacity="0.7">Model writes response</text>
 
@@ -39,7 +39,7 @@
   <text x="650" y="260" text-anchor="middle" fill="#f85149" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11">Cohen's d &lt; 1.0</text>
 
   <!-- Bottom annotation -->
-  <rect x="60" y="305" width="380" height="40" rx="4" fill="#3C3489" opacity="0.15" stroke="#7F77DD" stroke-width="1" opacity="0.4"/>
+  <rect x="60" y="305" width="380" height="40" rx="4" fill="#3C3489" fill-opacity="0.15" stroke="#7F77DD" stroke-width="1" stroke-opacity="0.4"/>
   <text x="80" y="330" text-anchor="start" fill="#AFA9EC" font-family="'SF Mono', Menlo, Consolas, monospace" font-size="11">SAE contrastive analysis measures here &#x2192;</text>
 
   <!-- Arrow pointing at encoding zone from annotation -->

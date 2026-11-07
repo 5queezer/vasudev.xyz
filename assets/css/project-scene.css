@@ -285,45 +285,39 @@
   stroke-width: 7;
   stroke-linecap: round;
 }
-.project-preview--nexus-crm {
-  display: grid;
-  place-items: center;
-  padding: 3.4rem 1.6rem 1.5rem;
-  background: linear-gradient(145deg, #e4d5f0, #a3c5d7);
+.project-preview--aver {
+  background: linear-gradient(145deg, #282945, #526b83);
 }
-.project-preview__kanban {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
-  width: 100%;
-  height: 82%;
-  transform: rotate(-3deg);
+.preview-aver-log rect {
+  fill: rgb(255 255 255 / 0.1);
+  stroke: rgb(213 226 244 / 0.5);
+  stroke-width: 2;
 }
-.preview-column {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  padding: 0.65rem;
-  border: 1px solid rgb(255 255 255/0.5);
-  border-radius: 0.75rem;
-  background: rgb(255 255 255/0.4);
+.preview-aver-lines {
+  fill: none;
+  stroke: #c9dcf1;
+  stroke-width: 3;
+  stroke-linecap: round;
 }
-.preview-column i {
-  width: 58%;
-  height: 0.45rem;
-  border-radius: 99px;
-  background: #59687f;
-  opacity: 0.58;
+.preview-aver-flow {
+  fill: none;
+  stroke: #b5d7cc;
+  stroke-width: 4;
 }
-.preview-column b {
-  min-height: 3rem;
-  border-radius: 0.55rem;
-  background: rgb(255 255 255/0.72);
-  box-shadow: 0 0.35rem 0.8rem rgb(72 65 87/0.1);
+.preview-aver-nodes {
+  fill: #a9d4cd;
+  stroke: rgb(230 246 241 / 0.8);
+  stroke-width: 3;
 }
-.preview-column.is-active {
-  transform: translateY(-1.2rem);
-  background: rgb(255 255 255/0.6);
+.preview-aver-core {
+  fill: #f5d69f;
+  stroke: #fff1d3;
+  stroke-width: 2;
+}
+.preview-aver-label {
+  fill: #e8f0f7;
+  font-family: var(--font-mono);
+  font-size: 18px;
 }
 .project-scene__context {
   position: absolute;
@@ -568,4 +562,9 @@
 
 .project-scene {
   touch-action: pan-y;
+}
+
+.preview-aver-label--node {
+  fill: #253b45;
+  font-weight: 600;
 }

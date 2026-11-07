@@ -6,7 +6,14 @@
     <svg class="project-preview__svg" viewBox="0 0 640 520" focusable="false"><rect class="preview-vault-frame" x="126" y="72" width="388" height="376" rx="48"/><circle class="preview-vault-ring preview-vault-ring--outer" cx="320" cy="260" r="112"/><circle class="preview-vault-ring" cx="320" cy="260" r="74"/><circle class="preview-vault-core" cx="320" cy="260" r="30"/><path class="preview-vault-spoke" d="M320 148v57M320 315v57M208 260h57M375 260h57M241 181l40 40M359 299l40 40M399 181l-40 40M281 299l-40 40"/><path class="preview-lock" d="M305 252v-18a15 15 0 0 1 30 0v18m-43 0h56v54h-56z"/></svg><span class="project-preview__label">{{ i18n "preview_key" }}</span>
   {{- else if eq $kind "distill" -}}
     <svg class="project-preview__svg" viewBox="0 0 640 520" focusable="false"><g class="preview-graph-lines"><path d="M320 258L172 142M320 258L474 132M320 258L496 340M320 258L168 362M172 142L106 246M474 132L554 226M496 340L390 414M168 362L106 246"/></g><g class="preview-node preview-node--small"><circle cx="172" cy="142" r="38"/><circle cx="474" cy="132" r="38"/><circle cx="496" cy="340" r="38"/><circle cx="168" cy="362" r="38"/><circle cx="106" cy="246" r="26"/><circle cx="554" cy="226" r="26"/><circle cx="390" cy="414" r="26"/></g><circle class="preview-node preview-node--core" cx="320" cy="258" r="68"/><path class="preview-memory" d="M291 243h58M291 263h58M291 283h38"/></svg><span class="project-preview__label">{{ i18n "preview_memory" }}</span>
-  {{- else -}}
-    <span class="project-preview__kanban"><span class="preview-column"><i></i><b></b><b></b></span><span class="preview-column is-active"><i></i><b></b><b></b><b></b></span><span class="preview-column"><i></i><b></b></span></span><span class="project-preview__label">{{ i18n "preview_workflow" }}</span>
+  {{- else if eq $kind "aver" -}}
+    <svg class="project-preview__svg" viewBox="0 0 640 520" focusable="false">
+      <g class="preview-aver-log"><rect x="70" y="142" width="170" height="62" rx="12"/><rect x="70" y="222" width="170" height="62" rx="12"/><rect x="70" y="302" width="170" height="62" rx="12"/></g>
+      <path class="preview-aver-lines" d="M96 166h112M96 182h70M96 246h112M96 262h86M96 326h112M96 342h58"/>
+      <path class="preview-aver-flow" d="M240 253h86M326 253l100-104M326 253l174 10M326 253l82 118M426 149l74 114M500 263l-92 108"/>
+      <g class="preview-aver-nodes"><circle cx="426" cy="149" r="37"/><circle cx="500" cy="263" r="37"/><circle cx="408" cy="371" r="37"/></g>
+      <path class="preview-aver-core" d="m326 213 40 40-40 40-40-40Z"/>
+      <text class="preview-aver-label" x="83" y="412">log.jsonl</text><text class="preview-aver-label preview-aver-label--node" text-anchor="middle" x="426" y="155">File</text><text class="preview-aver-label preview-aver-label--node" text-anchor="middle" x="500" y="269">Claim</text><text class="preview-aver-label preview-aver-label--node" text-anchor="middle" x="408" y="377">Source</text>
+    </svg><span class="project-preview__label">{{ i18n "preview_aver" }}</span>
   {{- end -}}
 </span>

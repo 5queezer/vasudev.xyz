@@ -13,9 +13,11 @@
       <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener" class="elsewhere-link">
         <span>LinkedIn</span><span class="elsewhere-link-value">christian-pojoni</span>
       </a>
-      <a href="{{ .Site.Params.nexusUrl }}" target="_blank" rel="noopener" class="elsewhere-link">
-        <span>Nexus CRM</span><span class="elsewhere-link-value">nexus.vasudev.xyz</span>
-      </a>
+      {{ range where site.Data.work "name" "Aver" }}
+        <a href="{{ .link }}" target="_blank" rel="noopener" class="elsewhere-link">
+          <span>{{ .name }}</span><span class="elsewhere-link-value">github.com/5queezer/aver</span>
+        </a>
+      {{ end }}
     </div>
   </div>
 </section>

@@ -9,6 +9,7 @@ import tomllib
 import unittest
 from urllib.parse import unquote, urljoin, urlsplit
 from html.parser import HTMLParser
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -256,9 +257,11 @@ class InternationalizationTest(unittest.TestCase):
     def test_editorial_resources_are_scoped_to_content_pages(self):
         home = self.html('')
         self.assertNotIn('/js/reading-page.', home)
+        self.assertNotIn('/js/image-viewer.', home)
         css_url = re.search(r'href="(/css/home[^"]+)"', home)[1]
         css = (self.output / css_url.lstrip('/')).read_text()
         self.assertNotIn('.reading-page', css)
+        self.assertNotIn('.image-viewer', css)
 
     def test_generated_internal_links_assets_and_fragments_exist(self):
         pages = {}
@@ -281,6 +284,19 @@ class InternationalizationTest(unittest.TestCase):
                 elif target.fragment and resolved in pages and unquote(target.fragment) not in pages[resolved].ids:
                     failures.append(f'{route}: missing fragment in {url}')
         self.assertFalse(failures, '\n'.join(failures))
+
+    def test_home_showcases_aver_instead_of_nexus(self):
+        for lang in ['', 'de', 'es']:
+            with self.subTest(lang=lang or 'en'):
+                html = self.html(lang)
+                self.assertIn('https://github.com/5queezer/aver', html)
+                self.assertIn('project-preview--aver', html)
+                self.assertNotRegex(html, r'nexus-crm|Nexus CRM|nexus\.vasudev')
+
+    def test_published_svg_images_are_valid_xml(self):
+        for image in (ROOT / 'static/images').glob('*.svg'):
+            with self.subTest(image=image.name):
+                ElementTree.parse(image)
 
     def test_build_has_no_missing_translations(self):
         self.assertNotRegex(self.build_output, r'MISSING_TRANSLATION|Translation .* not found|i18n.*not found')

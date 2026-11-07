@@ -12,6 +12,7 @@
 {{- else -}}
   {{- $styles = $styles | append (resources.Get "css/editorial.css") -}}
   {{- $styles = $styles | append (resources.Get "css/collections.css") -}}
+  {{- $styles = $styles | append (resources.Get "css/image-viewer.css") -}}
 {{- end -}}
 {{- $css := $styles | resources.Concat $bundle | resources.Minify | resources.Fingerprint -}}
 <head>

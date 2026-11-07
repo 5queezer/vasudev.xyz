@@ -220,8 +220,6 @@ other = "XChaCha20 · lokaler Schlüssel"
 [preview_memory]
 other = "FTS5 · Vektorspeicher"
 
-[preview_workflow]
-other = "Kanban · Arbeitsablauf"
 
 [collection_topics]
 other = "Kategorien"
@@ -306,3 +304,24 @@ other = "Sparse Autoencoder"
 
 [topic_benchmarks]
 other = "Benchmarks"
+
+[image_viewer]
+other = "Bildansicht"
+
+[image_open]
+other = "Bild vergrößern"
+
+[image_close]
+other = "Bild schließen"
+
+[image_zoom_in]
+other = "Vergrößern"
+
+[image_zoom_out]
+other = "Verkleinern"
+
+[image_fit]
+other = "Einpassen"
+
+[preview_aver]
+other = "Rust · Wissensgraph"

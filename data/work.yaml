@@ -38,13 +38,13 @@
   tags_es: [Python, SQLite, Vectores]
   link: https://github.com/5queezer/distill
 
-- name: nexus-crm
-  type: Full-stack app
-  type_de: Full-Stack-Anwendung
-  type_es: Aplicación full stack
-  subtitle: Operational UX with workflow-heavy product surfaces.
-  desc: Full-stack CRM with Kanban workflows built on Next.js, TanStack, Prisma, and Google OAuth.
-  desc_de: Full-Stack-CRM mit Kanban-Workflows auf Basis von Next.js, TanStack, Prisma und Google OAuth.
-  desc_es: CRM full stack con flujos Kanban desarrollado con Next.js, TanStack, Prisma y Google OAuth.
-  tags: [Next.js, Prisma, OAuth]
-  link: https://github.com/5queezer/nexus-crm
+- name: Aver
+  type: Local-first agent memory
+  type_de: Lokaler Agentenspeicher
+  type_es: Memoria local para agentes
+  subtitle: Structured, auditable memory for coding agents.
+  desc: Experimental Rust memory layer for coding agents with an append-only log, structured claim graphs, hybrid retrieval, and an MCP server.
+  desc_de: Experimentelle Speicherschicht für Coding-Agenten in Rust mit Append-only-Protokoll, strukturierten Wissensgraphen, hybrider Suche und MCP-Server.
+  desc_es: Capa de memoria experimental para agentes de programación en Rust con registro append-only, grafos de afirmaciones, búsqueda híbrida y servidor MCP.
+  tags: [Rust, SQLite, MCP]
+  link: https://github.com/5queezer/aver
