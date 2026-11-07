@@ -137,6 +137,14 @@ class InternationalizationTest(unittest.TestCase):
         self.assertEqual(catalogs[0], catalogs[1])
         self.assertEqual(catalogs[0], catalogs[2])
 
+    def test_top_anchor_precedes_sticky_navigation(self):
+        for lang in ['', 'de', 'es']:
+            with self.subTest(lang=lang or 'en'):
+                html = self.html(lang)
+                self.assertEqual(html.count('id="top"'), 1)
+                self.assertLess(html.index('id="top"'), html.index('data-navbar'),
+                                'The top anchor must include the navigation, not start below it')
+
     def test_build_has_no_missing_translations(self):
         self.assertNotRegex(self.build_output, r'MISSING_TRANSLATION|Translation .* not found|i18n.*not found')
 

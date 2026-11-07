@@ -2,11 +2,11 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
-<body class="{{ if .IsHome }}home intro-light{{ end }}" data-lang="{{ .Site.Language.Lang }}">
+<body id="top" class="{{ if .IsHome }}home intro-light{{ end }}" data-lang="{{ .Site.Language.Lang }}">
   <div class="noise-bg" aria-hidden="true"></div>
   {{ partial "navbar.html" . }}
 
-  <main id="top">
+  <main>
     {{- block "main" . }}{{- end }}
   </main>
 
