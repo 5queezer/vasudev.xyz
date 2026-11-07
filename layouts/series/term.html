@@ -3,7 +3,7 @@
   <header class="section-header">
     <h1 class="section-title">{{ .Title }}</h1>
     {{ with .Content }}<div class="prose section-intro">{{ . }}</div>{{ end }}
-    <p class="section-lede">{{ len .Pages }} posts</p>
+    <p class="section-lede">{{ i18n "post_count" (len .Pages) }}</p>
   </header>
 
   {{ $pages := sort .Pages ".Params.series_weight" "asc" }}
@@ -14,8 +14,8 @@
           <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
         {{ end }}
         <div class="essay-meta">
-          {{ if $p.Params.series_weight }}<span>Part {{ $p.Params.series_weight }}</span>{{ end }}
-          <span>{{ $p.Date.Format "02 Jan 2006" }} · {{ $p.ReadingTime }} min read</span>
+          {{ if $p.Params.series_weight }}<span>{{ i18n "part_label" $p.Params.series_weight }}</span>{{ end }}
+          <span>{{ $p.Date | time.Format ":date_medium" }} · {{ i18n "reading_time" $p.ReadingTime }}</span>
         </div>
         <h2 class="essay-title">{{ $p.Title }}</h2>
         {{ with $p.Description }}<p class="essay-desc">{{ . }}</p>{{ end }}

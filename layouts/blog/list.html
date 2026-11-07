@@ -6,7 +6,7 @@
     <h1 class="section-title">{{ .Title }}</h1>
 
     <div class="blog-search" data-blog-search data-index-url="{{ .RelPermalink }}search.json">
-      <label class="blog-search-label" for="blog-search-input">Search posts</label>
+      <label class="blog-search-label" for="blog-search-input">{{ i18n "search_label" }}</label>
       <div class="blog-search-input-wrap">
         <span class="blog-search-icon" aria-hidden="true">⌕</span>
         <input
@@ -14,12 +14,12 @@
           class="blog-search-input"
           type="search"
           autocomplete="off"
-          placeholder="Search posts by title, tag, or summary..."
+          placeholder="{{ i18n "search_placeholder" }}"
           aria-describedby="blog-search-status"
           data-blog-search-input
         />
       </div>
-      <div class="blog-search-suggestions" aria-label="Search suggestions" data-blog-search-suggestions></div>
+      <div class="blog-search-suggestions" aria-label="{{ i18n "search_suggestions" }}" data-blog-search-suggestions></div>
       <p id="blog-search-status" class="blog-search-status" data-blog-search-status></p>
     </div>
   </div>
@@ -31,8 +31,8 @@
           <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
         {{ end }}
         <div class="essay-meta">
-          <span>{{ .Date.Format "02 Jan 2006" }}</span>
-          <span>{{ .ReadingTime }} min read</span>
+          <span>{{ .Date | time.Format ":date_medium" }}</span>
+          <span>{{ i18n "reading_time" .ReadingTime }}</span>
         </div>
         <h2 class="essay-title">{{ .Title }}</h2>
         <p class="essay-desc">{{ .Description }}</p>
@@ -44,11 +44,11 @@
   </div>
 
   {{ if gt $paginator.TotalPages 1 }}
-    <nav class="blog-pagination" aria-label="Blog pagination" data-blog-pagination>
+    <nav class="blog-pagination" aria-label="{{ i18n "blog_pagination" }}" data-blog-pagination>
       {{ if $paginator.HasPrev }}
-        <a class="blog-pagination-link" href="{{ $paginator.Prev.URL }}">← Newer</a>
+        <a class="blog-pagination-link" href="{{ $paginator.Prev.URL }}">← {{ i18n "newer_posts" }}</a>
       {{ else }}
-        <span class="blog-pagination-link is-disabled" aria-disabled="true">← Newer</span>
+        <span class="blog-pagination-link is-disabled" aria-disabled="true">← {{ i18n "newer_posts" }}</span>
       {{ end }}
 
       <div class="blog-pagination-pages">
@@ -62,9 +62,9 @@
       </div>
 
       {{ if $paginator.HasNext }}
-        <a class="blog-pagination-link" href="{{ $paginator.Next.URL }}">Older →</a>
+        <a class="blog-pagination-link" href="{{ $paginator.Next.URL }}">{{ i18n "older_posts" }} →</a>
       {{ else }}
-        <span class="blog-pagination-link is-disabled" aria-disabled="true">Older →</span>
+        <span class="blog-pagination-link is-disabled" aria-disabled="true">{{ i18n "older_posts" }} →</span>
       {{ end }}
     </nav>
   {{ end }}

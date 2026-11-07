@@ -1,0 +1,15 @@
+{{- $messages := dict
+  "searchEmpty" (i18n "search_empty")
+  "searchUnavailable" (i18n "search_unavailable")
+  "searchMatchingOne" (i18n "search_matching_one")
+  "searchMatchingMany" (i18n "search_matching_many")
+  "codeCopy" (i18n "code_copy")
+  "codeCopied" (i18n "code_copied")
+  "codeCopyFailed" (i18n "code_copy_failed")
+  "codeCopyLabel" (i18n "code_copy_label")
+  "agentSend" (i18n "agent_send")
+  "agentRole" (i18n "agent_role")
+  "agentStatus" (i18n "agent_status")
+  "agentUnavailable" (i18n "agent_unavailable")
+-}}
+<script id="site-i18n" type="application/json">{{ $messages | jsonify | safeJS }}</script>

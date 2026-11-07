@@ -815,3 +815,14 @@ body.home { --intro-opacity: 1; isolation: isolate; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+
+/* Keep language selection usable with longer translations and small screens. */
+.navbar-inner { gap: 1rem; }
+.navbar-brand, .lang-toggle { flex-shrink: 0; }
+.navbar-links { gap: clamp(.6rem, 1.4vw, 1.4rem); }
+.lang-toggle { padding-left: .75rem; font-family: var(--font-sans); font-size: .8rem; }
+@media (max-width: 767px) {
+  .elsewhere-grid { grid-template-columns: minmax(0, 1fr); }
+  .elsewhere-link { flex-wrap: wrap; gap: .5rem; }
+}

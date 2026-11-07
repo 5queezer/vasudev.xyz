@@ -79,3 +79,92 @@ other = "View as Markdown"
 [viewMarkdownDesc]
 other = "View this page as plain text"
 
+[hero_role]
+other = "Systems engineer"
+[hero_title_line_1]
+other = "Thoughtful software."
+[hero_title_line_2]
+other = "Built to work."
+[hero_tagline]
+other = "I build agent tools, encrypted applications, and small systems that solve real problems. Here are a few of them, and what I learned along the way."
+[hero_work_cta]
+other = "Explore my work"
+[hero_writing_cta]
+other = "Read the field notes"
+[writing_title]
+other = "Field notes"
+[writing_lede]
+other = "Experiments, implementation details, and lessons from building."
+[writing_archive]
+other = "Browse all writing"
+[email_label]
+other = "Email"
+[search_label]
+other = "Search posts"
+[search_placeholder]
+other = "Search by title, tag, or summary…"
+[search_suggestions]
+other = "Search suggestions"
+[blog_pagination]
+other = "Blog pagination"
+[newer_posts]
+other = "Newer"
+[older_posts]
+other = "Older"
+[reading_time]
+one = "{{ . }} min read"
+other = "{{ . }} min read"
+[topic_count]
+one = "{{ . }} topic"
+other = "{{ . }} topics"
+[post_count]
+one = "{{ . }} post"
+other = "{{ . }} posts"
+[part_label]
+other = "Part {{ . }}"
+[by_author]
+other = "By {{ . }}"
+[with_coauthor]
+other = "with {{ . }} as co-author"
+[guide_english_notice]
+other = "The chapters in this guide are available in English."
+[language_english]
+other = "English"
+[not_found_label]
+other = "Not found"
+[not_found_title]
+other = "This page took the wrong branch."
+[not_found_body]
+other = "The route does not exist."
+[return_home]
+other = "Return home"
+[search_empty]
+other = "No posts match that search."
+[search_unavailable]
+other = "Search is unavailable right now."
+[search_matching_one]
+other = "1 matching post"
+[search_matching_many]
+other = "{count} matching posts"
+[code_copy]
+other = "Copy"
+[code_copied]
+other = "Copied"
+[code_copy_failed]
+other = "Failed"
+[code_copy_label]
+other = "Copy code to clipboard"
+[agent_send]
+other = "Send"
+[agent_role]
+other = "Agent"
+[agent_status]
+other = "Nemotron · streaming"
+[agent_unavailable]
+other = "The agent endpoint is unreachable."
+[agent_noscript]
+other = "The on-site agent requires JavaScript. Source code is available on GitHub."
+
+
+[comments_heading]
+other = "Comments"

@@ -15,6 +15,8 @@
 
   {{ partial "footer.html" . }}
 
+  {{ partial "ui-messages.html" . }}
+
   {{ if .IsHome }}
     {{- $introJS := resources.Get "js/home-intro.js" | resources.Minify | resources.Fingerprint -}}
     <script defer src="{{ $introJS.RelPermalink }}"></script>

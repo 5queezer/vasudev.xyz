@@ -1,5 +1,5 @@
 ---
-title: "Guía de recuperación moderna de C++"
+title: "Guía de actualización a C++ moderno"
 description: "Una ruta de recuperación compacta para volver a C++17/20 después de aprender C++ premoderno."
 date: 2026-04-27
 guideTags: ["c++", "systems", "recovery"]
@@ -10,9 +10,10 @@ build:
 translationHash: "838f5ef69b7d7f4ab6381a0468c7b891"
 chunkHashes: "9a84462dc0b46c33,86622b9c289faaac,1d4e7cc51f142c37,b4715dd94a30045a,3f5fdd4571657156,adbe3d6449091861"
 ---
-# Modern C++ Recovery Guide
+# Guía de actualización a C++ moderno
 
 Una wiki rápida y práctica para quien aprendió C++ alrededor de 2008 y desea recuperarse rápidamente a C++ moderno (C++17/20).
+
 ## Cómo usar este wiki
 
 Recorre las páginas en orden. No intentes memorizar todo. Para cada tema, trata de entender:

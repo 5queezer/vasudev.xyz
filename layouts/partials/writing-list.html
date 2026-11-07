@@ -2,8 +2,8 @@
 <section id="writing" class="writing">
   <div class="container">
     <div class="section-header compact-header">
-      <h2 class="section-title">Field notes</h2>
-      <p class="section-lede">Experiments, implementation details, and lessons from building.</p>
+      <h2 class="section-title">{{ i18n "writing_title" }}</h2>
+      <p class="section-lede">{{ i18n "writing_lede" }}</p>
     </div>
 
     <div class="writing-grid featured-writing-grid">
@@ -11,8 +11,8 @@
         <a href="{{ .RelPermalink }}" class="essay-card">
           {{ with .Params.images }}<img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">{{ end }}
           <div class="essay-meta">
-            <span>{{ .Date.Format "02 Jan 2006" }}</span>
-            <span>{{ .ReadingTime }} min read</span>
+            <span>{{ .Date | time.Format ":date_medium" }}</span>
+            <span>{{ i18n "reading_time" .ReadingTime }}</span>
           </div>
           <h4 class="essay-title">{{ .Title }}</h4>
           <p class="essay-desc">{{ .Description }}</p>
@@ -20,6 +20,6 @@
         </a>
       {{ end }}
     </div>
-    <a class="home-text-link writing-archive" href="{{ "blog/" | relLangURL }}">Browse all writing</a>
+    <a class="home-text-link writing-archive" href="{{ "blog/" | relLangURL }}">{{ i18n "writing_archive" }}</a>
   </div>
 </section>

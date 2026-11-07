@@ -1,13 +1,13 @@
 - id: nav_agent
   translation: Agent
 - id: nav_work
-  translation: Arbeit
+  translation: Projekte
 - id: nav_writing
-  translation: Schreiben
+  translation: Artikel
 - id: nav_guides
   translation: Leitfäden
 - id: nav_about
-  translation: Über
+  translation: Über mich
 - id: nav_contact
   translation: Kontakt
 
@@ -27,7 +27,7 @@
 - id: section_principles
   translation: 01 / Prinzipien
 - id: section_work
-  translation: 02 / Ausgewählte Arbeiten
+  translation: 02 / Ausgewählte Projekte
 - id: section_work_h
   translation: Handgefertigte Systeme.
 - id: section_writing
@@ -37,15 +37,15 @@
 - id: section_guides
   translation: 04 / Leitfäden
 - id: section_guides_h
-  translation: Feldleitfäden.
+  translation: Praxisleitfäden.
 - id: section_about
-  translation: 04 / Über
+  translation: 04 / Über mich
 - id: section_about_h
   translation: Die Werkstatt.
 - id: section_contact
   translation: 05 / Anderswo
 - id: section_contact_h
-  translation: Lass uns bauen.
+  translation: Lass uns zusammenarbeiten.
 - id: section_agent
   translation: 00 / Der Agent
 - id: section_agent_h

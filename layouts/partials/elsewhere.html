@@ -5,7 +5,7 @@
 
     <div class="elsewhere-grid">
       <a href="mailto:{{ .Site.Params.email }}" class="elsewhere-link">
-        <span>Email</span><span class="elsewhere-link-value">{{ .Site.Params.email }}</span>
+        <span>{{ i18n "email_label" }}</span><span class="elsewhere-link-value">{{ .Site.Params.email }}</span>
       </a>
       <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener" class="elsewhere-link">
         <span>GitHub</span><span class="elsewhere-link-value">@5queezer</span>

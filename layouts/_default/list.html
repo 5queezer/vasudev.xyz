@@ -11,8 +11,8 @@
           <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
         {{ end }}
         <div class="essay-meta">
-          <span>{{ .Date.Format "02 Jan 2006" }}</span>
-          <span>{{ .ReadingTime }} min read</span>
+          <span>{{ .Date | time.Format ":date_medium" }}</span>
+          <span>{{ i18n "reading_time" .ReadingTime }}</span>
         </div>
         <h2 class="essay-title">{{ .Title }}</h2>
         <p class="essay-desc">{{ .Description }}</p>

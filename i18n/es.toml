@@ -79,3 +79,92 @@ other = "Ver como Markdown"
 [viewMarkdownDesc]
 other = "Ver esta página como texto plano"
 
+[hero_role]
+other = "Ingeniero de sistemas"
+[hero_title_line_1]
+other = "Software bien pensado."
+[hero_title_line_2]
+other = "Hecho para funcionar."
+[hero_tagline]
+other = "Construyo herramientas para agentes, aplicaciones cifradas y sistemas pequeños que resuelven problemas reales. Aquí presento algunos de ellos y lo que aprendí al crearlos."
+[hero_work_cta]
+other = "Ver mis proyectos"
+[hero_writing_cta]
+other = "Leer las notas de campo"
+[writing_title]
+other = "Notas de campo"
+[writing_lede]
+other = "Experimentos, detalles de implementación y lecciones aprendidas al construir."
+[writing_archive]
+other = "Ver todos los artículos"
+[email_label]
+other = "Correo"
+[search_label]
+other = "Buscar artículos"
+[search_placeholder]
+other = "Buscar por título, etiqueta o resumen…"
+[search_suggestions]
+other = "Sugerencias de búsqueda"
+[blog_pagination]
+other = "Paginación del blog"
+[newer_posts]
+other = "Más recientes"
+[older_posts]
+other = "Anteriores"
+[reading_time]
+one = "{{ . }} min de lectura"
+other = "{{ . }} min de lectura"
+[topic_count]
+one = "{{ . }} tema"
+other = "{{ . }} temas"
+[post_count]
+one = "{{ . }} artículo"
+other = "{{ . }} artículos"
+[part_label]
+other = "Parte {{ . }}"
+[by_author]
+other = "Por {{ . }}"
+[with_coauthor]
+other = "con {{ . }} como coautor"
+[guide_english_notice]
+other = "Los capítulos de esta guía están disponibles en inglés."
+[language_english]
+other = "Inglés"
+[not_found_label]
+other = "No encontrado"
+[not_found_title]
+other = "Esta página tomó el camino equivocado."
+[not_found_body]
+other = "Esta dirección no existe."
+[return_home]
+other = "Volver al inicio"
+[search_empty]
+other = "No hay artículos que coincidan con la búsqueda."
+[search_unavailable]
+other = "La búsqueda no está disponible en este momento."
+[search_matching_one]
+other = "1 artículo coincidente"
+[search_matching_many]
+other = "{count} artículos coincidentes"
+[code_copy]
+other = "Copiar"
+[code_copied]
+other = "Copiado"
+[code_copy_failed]
+other = "Error"
+[code_copy_label]
+other = "Copiar código al portapapeles"
+[agent_send]
+other = "Enviar"
+[agent_role]
+other = "Agente"
+[agent_status]
+other = "Nemotron · transmisión"
+[agent_unavailable]
+other = "El agente no está disponible en este momento."
+[agent_noscript]
+other = "El agente del sitio necesita JavaScript. El código fuente está disponible en GitHub."
+
+
+[comments_heading]
+other = "Comentarios"

@@ -18,11 +18,17 @@
     {{ end }}
 
     {{ $pages := .Pages.ByWeight }}
+    {{ $usesEnglishPages := false }}
     {{ if and (eq (len $pages) 0) (ne .Site.Language.Lang "en") }}
       {{ $defaultPath := strings.TrimSuffix "/" (strings.TrimPrefix (printf "/%s/" .Site.Language.Lang) .RelPermalink) }}
       {{ with .Sites.Default.GetPage $defaultPath }}
         {{ $pages = .Pages.ByWeight }}
+        {{ $usesEnglishPages = true }}
       {{ end }}
+    {{ end }}
+
+    {{ if $usesEnglishPages }}
+      <p class="section-lede">{{ i18n "guide_english_notice" }}</p>
     {{ end }}
 
     <div class="writing-grid">
@@ -32,8 +38,9 @@
             <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
           {{ end }}
           <div class="essay-meta">
-            {{ if .Date }}<span>{{ .Date.Format "02 Jan 2006" }}</span>{{ end }}
-            <span>{{ .ReadingTime }} min read</span>
+            {{ if .Date }}<span>{{ .Date | time.Format ":date_medium" }}</span>{{ end }}
+            <span>{{ i18n "reading_time" .ReadingTime }}</span>
+            {{ if $usesEnglishPages }}<span>{{ i18n "language_english" }}</span>{{ end }}
           </div>
           <h2 class="essay-title">{{ .Title }}</h2>
           <p class="essay-desc">{{ .Description }}</p>

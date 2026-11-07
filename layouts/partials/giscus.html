@@ -1,6 +1,6 @@
 {{- with .Site.Params.giscus -}}
 <section class="giscus-wrap">
-  <h3 class="comments-heading">Comments</h3>
+  <h3 class="comments-heading">{{ i18n "comments_heading" }}</h3>
   <script
     src="https://giscus.app/client.js"
     data-repo="{{ .repo }}"

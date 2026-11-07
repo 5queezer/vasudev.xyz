@@ -1,7 +1,13 @@
 ---
-title: "Über"
+title: "Über mich"
+type: "about"
+description: "Christian Pojoni entwickelt Agent-Runtimes, datenschutzorientierte Anwendungen und produktive KI-Werkzeuge."
 ---
 
-Ich baue Agenten-Laufzeiten, Speichersysteme und protokollbewusste Werkzeuge. Mein Ansatz behandelt Software als handwerkliches System statt als zusammengesetztes Produkt.
+Ich entwickle Agent-Runtimes, datenschutzorientierte Anwendungen und produktive KI-Werkzeuge. Meine Arbeit verbindet Systems Engineering mit Produktentwicklung: Tool-Loops, Retrieval, verschlüsselte Speicherung, CI und auslieferbare Benutzeroberflächen.
 
-Hauptsächlich in Rust und Python, mit Fokus auf datenschutzorientierter Architektur und lokaler Abfrage statt Cloud-Bindung. Systemnahe Primitive gehören in echte Anwendungen.
+Meine Stärke liegt dort, wo Architektur zu funktionierender Software werden muss. Ich mag kleine Protokolle, klare Grenzen, Local-First-Daten und Validierung, die belegt, dass sich das System wie vorgesehen verhält.
+
+## Kerntechnologien
+
+Rust, Python, TypeScript, Cloudflare Workers, Next.js, SQLite, Prisma, MCP, A2A.

@@ -1,6 +1,6 @@
 ---
-title: "Modernes C++-Recovery-Handbuch"
-description: "Ein kompakter Wiederherstellungsweg, um nach dem Erlernen von vor‑modernen C++ wieder zu C++17/20 zurückzukehren."
+title: "Wiedereinstieg in modernes C++"
+description: "Ein kompakter Weg zurück zu C++17/20 für alle, die C++ noch vor dem modernen Sprachstandard gelernt haben."
 date: 2026-04-27
 guideTags: ["c++", "systems", "recovery"]
 type: "guide"
@@ -10,9 +10,10 @@ build:
 translationHash: "838f5ef69b7d7f4ab6381a0468c7b891"
 chunkHashes: "9a84462dc0b46c33,86622b9c289faaac,1d4e7cc51f142c37,b4715dd94a30045a,3f5fdd4571657156,adbe3d6449091861"
 ---
-# Modern C++ Recovery Guide
+# Wiedereinstieg in modernes C++
 
 Ein kurzes, praktisches Wiki für jemanden, der etwa 2008 C++ gelernt hat und schnell wieder in modernes C++17/20 einsteigen möchte.
+
 ## Wie man dieses Wiki benutzt
 
 Gehe die Seiten in der vorgegebenen Reihenfolge durch. Versuche nicht, alles auswendig zu lernen. Für jedes Thema solltest du verstehen:

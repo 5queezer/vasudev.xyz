@@ -3,7 +3,7 @@
   <header class="section-header">
     <h1 class="section-title">{{ .Title }}</h1>
     {{ if eq .Kind "term" }}
-      <p class="section-lede">{{ len .Pages }} posts</p>
+      <p class="section-lede">{{ i18n "post_count" (len .Pages) }}</p>
     {{ end }}
   </header>
 
@@ -15,10 +15,10 @@
         {{ end }}
         <div class="essay-meta">
           {{ if ne .Kind "term" }}
-            <span>{{ .Date.Format "02 Jan 2006" }}</span>
-            <span>{{ .ReadingTime }} min read</span>
+            <span>{{ .Date | time.Format ":date_medium" }}</span>
+            <span>{{ i18n "reading_time" .ReadingTime }}</span>
           {{ else }}
-            <span>{{ len .Pages }} posts</span>
+            <span>{{ i18n "post_count" (len .Pages) }}</span>
           {{ end }}
         </div>
         <h2 class="essay-title">{{ .Title }}</h2>

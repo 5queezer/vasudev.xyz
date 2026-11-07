@@ -2,6 +2,7 @@
   const root = document.querySelector('[data-blog-search]');
   if (!root) return;
 
+  const messages = JSON.parse(document.getElementById('site-i18n').textContent);
   const input = root.querySelector('[data-blog-search-input]');
   const suggestions = root.querySelector('[data-blog-search-suggestions]');
   const status = root.querySelector('[data-blog-search-status]');
@@ -95,7 +96,7 @@
     const matches = matchingPosts(query);
 
     if (matches.length === 0) {
-      results.innerHTML = '<div class="blog-search-empty">No posts match that search.</div>';
+      results.innerHTML = `<div class="blog-search-empty">${escapeHtml(messages.searchEmpty)}</div>`;
     } else {
       results.innerHTML = matches.map(renderPost).join('');
     }
@@ -108,9 +109,9 @@
     if (!hasQuery) {
       setStatus('');
     } else if (matches.length === 1) {
-      setStatus('1 matching post');
+      setStatus(messages.searchMatchingOne);
     } else {
-      setStatus(`${matches.length} matching posts`);
+      setStatus(messages.searchMatchingMany.replace('{count}', matches.length));
     }
   }
 
@@ -134,6 +135,6 @@
     .catch(() => {
       input.disabled = true;
       root.classList.add('is-unavailable');
-      setStatus('Search is unavailable right now.');
+      setStatus(messages.searchUnavailable);
     });
 })();

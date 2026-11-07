@@ -1,28 +1,44 @@
 - name: chartgen
   type: Charting & MCP
+  type_de: Charts & MCP
+  type_es: Gráficos y MCP
   subtitle: Market data and technical charts for AI workflows.
   desc: Rust chart generator and MCP server with Yahoo Finance and Binance data, technical indicators, and live market alerts.
+  desc_de: Diagrammgenerator und MCP-Server in Rust mit Marktdaten von Yahoo Finance und Binance, technischen Indikatoren und Live-Warnmeldungen.
+  desc_es: Generador de gráficos y servidor MCP en Rust con datos de Yahoo Finance y Binance, indicadores técnicos y alertas en tiempo real.
   tags: [Rust, MCP, Market data]
   link: https://chartgen.vasudev.xyz
   repo: https://github.com/5queezer/chartgen
 
 - name: axiom-vault
   type: Encrypted vault
+  type_de: Verschlüsselter Tresor
+  type_es: Bóveda cifrada
   subtitle: Systems-level security primitives packaged for real apps.
   desc: Cross-platform encrypted vault in Rust with XChaCha20-Poly1305, FFI bindings, and CI/CD pipelines.
+  desc_de: Plattformübergreifender verschlüsselter Tresor in Rust mit XChaCha20-Poly1305, FFI-Anbindungen und CI/CD-Pipelines.
+  desc_es: Bóveda cifrada multiplataforma en Rust con XChaCha20-Poly1305, enlaces FFI y canalizaciones de CI/CD.
   tags: [Rust, FFI, Crypto]
   link: https://axiom-vault.github.io/
 
 - name: distill
   type: Team memory
+  type_de: Teamgedächtnis
+  type_es: Memoria de equipo
   subtitle: Retrieval-first memory infrastructure without cloud lock-in.
   desc: Privacy-first MCP server for team memory with FastMCP, SQLite FTS5, and local vector search.
+  desc_de: Datenschutzorientierter MCP-Server für Teamgedächtnis mit FastMCP, SQLite FTS5 und lokaler Vektorsuche.
+  desc_es: Servidor MCP centrado en la privacidad para memoria de equipo con FastMCP, SQLite FTS5 y búsqueda vectorial local.
   tags: [Python, SQLite, Vectors]
   link: https://github.com/5queezer/distill
 
 - name: nexus-crm
   type: Full-stack app
+  type_de: Full-Stack-Anwendung
+  type_es: Aplicación full stack
   subtitle: Operational UX with workflow-heavy product surfaces.
   desc: Full-stack CRM with Kanban workflows built on Next.js, TanStack, Prisma, and Google OAuth.
+  desc_de: Full-Stack-CRM mit Kanban-Workflows auf Basis von Next.js, TanStack, Prisma und Google OAuth.
+  desc_es: CRM full stack con flujos Kanban desarrollado con Next.js, TanStack, Prisma y Google OAuth.
   tags: [Next.js, Prisma, OAuth]
   link: https://github.com/5queezer/nexus-crm

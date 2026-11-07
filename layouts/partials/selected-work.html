@@ -4,15 +4,18 @@
   </div>
 
   <div class="work-list">
+    {{ $lang := site.Language.Lang }}
     {{ range site.Data.work }}
+      {{ $type := index . (printf "type_%s" $lang) | default .type }}
+      {{ $desc := index . (printf "desc_%s" $lang) | default .desc }}
       <div class="work-row">
         <a href="{{ .link }}" target="_blank" rel="noopener" class="work-row-inner">
           <div class="work-meta">
             <h4 class="work-name">{{ .name }}</h4>
-            <div class="work-type">{{ .type }}</div>
+            <div class="work-type">{{ $type }}</div>
           </div>
           <div class="work-body">
-            <p class="work-desc">{{ .desc }}</p>
+            <p class="work-desc">{{ $desc }}</p>
           </div>
           <div class="work-arrow" aria-hidden="true">↗</div>
         </a>

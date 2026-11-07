@@ -3,6 +3,8 @@
   const blocks = document.querySelectorAll('.prose .highlight');
   if (!blocks.length) return;
 
+  const messages = JSON.parse(document.getElementById('site-i18n').textContent);
+
   const copyText = async (text) => {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(text);
@@ -29,22 +31,22 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'code-copy';
-    button.textContent = 'Copy';
-    button.setAttribute('aria-label', 'Copy code to clipboard');
+    button.textContent = messages.codeCopy;
+    button.setAttribute('aria-label', messages.codeCopyLabel);
 
     button.addEventListener('click', async () => {
       const text = code.innerText.replace(/\n$/, '');
       try {
         await copyText(text);
-        button.textContent = 'Copied';
+        button.textContent = messages.codeCopied;
         button.classList.add('is-copied');
         window.setTimeout(() => {
-          button.textContent = 'Copy';
+          button.textContent = messages.codeCopy;
           button.classList.remove('is-copied');
         }, 1400);
       } catch (_) {
-        button.textContent = 'Failed';
-        window.setTimeout(() => { button.textContent = 'Copy'; }, 1400);
+        button.textContent = messages.codeCopyFailed;
+        window.setTimeout(() => { button.textContent = messages.codeCopy; }, 1400);
       }
     });
 

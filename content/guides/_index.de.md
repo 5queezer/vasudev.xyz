@@ -1,11 +1,11 @@
 ---
 title: "Leitfäden"
-description: "Technische Arbeitsumgebungen mit Fokus auf ausführbaren Beispielen, Verifizierungsnotizen und mentalen Modellen, die für Interviews vorbereitet sind."
+description: "Fokussierte technische Werkbänke mit ausführbaren Beispielen, Verifizierungsnotizen und interviewtauglichen mentalen Modellen."
 build:
   list: always
   render: always
 translationHash: "4747965331ff237159ac924b7e55bd82"
 ---
+Fokussierte technische Werkbänke mit ausführbaren Beispielen, Verifizierungsnotizen und interviewtauglichen mentalen Modellen. Beginne mit dem Sprachpfad, der zur Rolle passt, und nutze anschließend die Kapitelprüfungen als konkreten Gesprächsleitfaden.
 
-
-Focused technical workbenches with runnable examples, verification notes, and interview-ready mental models. Start with the language track that matches the role, then use the chapter checks as a concrete conversation map.
+Die Kapitel sind derzeit auf Englisch.

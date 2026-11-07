@@ -18,8 +18,6 @@ RAFT (Retrieval-Augmented Fine-Tuning) entrena un modelo con preguntas acompaña
 
 El ejemplo que recorre toda la guía es un proyecto real: unos 870 vídeos transcritos de un único creador, un servicio de recuperación local y modelos Qwen3.5 de 4B y 9B ajustados para responder en primera persona con la voz del creador y una cita verificada para cada frase. El modelo de 4B se entrenó en una GPU de consumo de 16 GB y el de 9B en una tarjeta alquilada de 48 GB. Lo que falló en esa ejecución está en el artículo complementario [Mi primer fine-tuning con RAFT en una GPU compartida de 16 GB](/es/blog/mi-primer-fine-tuning-con-raft-en-una-gpu-compartida-de-16-gb-7-trampas-que-el-paper-no-menciona/).
 
-Los capítulos están en inglés.
-
 ## Cómo usar esta guía
 
 Lee las páginas en orden. Cada una responde a cuatro preguntas:

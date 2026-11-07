@@ -1,6 +1,6 @@
 ---
-title: "TypeScript Einstiegsführer"
-description: "Ein schneller, praxisnaher Weg in die moderne TypeScript-Entwicklung für erfahrene Ingenieure, die bereits Systeme in anderen Sprachen entwickeln."
+title: "TypeScript-Schnelleinstieg"
+description: "Ein schneller, fundierter Einstieg in modernes TypeScript für erfahrene Entwickler, die bereits Systeme in anderen Sprachen bauen."
 date: 2026-06-04
 guideTags: ["typescript", "backend", "frontend"]
 type: "guide"
@@ -11,78 +11,78 @@ translationHash: "20bf5a9bd1340cfa53d09954c8334004"
 ---
 
 
-# TypeScript Ramp-Up Guide
+# TypeScript-Schnelleinstieg
 
-A compact guide for senior engineers who already build production systems in other languages and now need TypeScript quickly.
+Ein kompakter Leitfaden für erfahrene Entwickler, die bereits produktive Systeme in anderen Sprachen bauen und nun schnell TypeScript lernen müssen.
 
-If you have shipped services in Rust, Go, Python, Java, or C#, the gap is not software engineering. Async, API design, architecture, testing, data modeling, and observability transfer directly. The gap is the TypeScript type system and its ecosystem, and that part is learnable in days, not months.
+Wenn du Dienste in Rust, Go, Python, Java oder C# ausgeliefert hast, fehlt dir nicht das Software-Engineering. Asynchronität, API-Design, Architektur, Tests, Datenmodellierung und Observability lassen sich direkt übertragen. Die Lücke liegt im TypeScript-Typsystem und seinem Ökosystem – und dieser Teil lässt sich in Tagen statt Monaten lernen.
 
-## How to Use This Guide
+## So nutzt du diesen Leitfaden
 
-Read the pages in order. You can skim anything that maps cleanly onto a language you know and slow down on the parts that do not. For each topic, aim to answer:
+Lies die Seiten der Reihe nach. Alles, was sich direkt auf eine dir bekannte Sprache abbilden lässt, kannst du überfliegen; bei den ungewohnten Teilen solltest du langsamer vorgehen. Für jedes Thema solltest du diese Fragen beantworten können:
 
-1. What problem does this feature solve?
-2. What does idiomatic TypeScript prefer?
-3. Where does it differ from the languages I already know?
-4. Can I write a tiny example from memory?
+1. Welches Problem löst dieses Feature?
+2. Was bevorzugt idiomatisches TypeScript?
+3. Worin unterscheidet es sich von den Sprachen, die ich bereits kenne?
+4. Kann ich ein kleines Beispiel aus dem Gedächtnis schreiben?
 
-## What Is Genuinely New
+## Was wirklich neu ist
 
-For an experienced engineer, only a few things are actually new:
+Für erfahrene Entwickler sind nur wenige Dinge tatsächlich neu:
 
-- TypeScript types are erased at runtime. The type system is a compile-time layer over JavaScript, not a runtime guarantee.
-- The type system is structural, not nominal. Compatibility is based on shape, not declared inheritance.
-- The type system is unusually expressive. Discriminated unions, generics, mapped types, and conditional types let you encode real constraints.
-- The runtime is JavaScript, with single-threaded event-loop concurrency and one error model.
+- TypeScript-Typen werden zur Laufzeit entfernt. Das Typsystem ist eine Compile-Time-Schicht über JavaScript, keine Laufzeitgarantie.
+- Das Typsystem ist strukturell statt nominal. Kompatibilität richtet sich nach der Form, nicht nach deklarierter Vererbung.
+- Das Typsystem ist ungewöhnlich ausdrucksstark. Discriminated Unions, Generics, Mapped Types und Conditional Types ermöglichen es, echte Einschränkungen abzubilden.
+- Die Laufzeit ist JavaScript: mit Single-Thread-Event-Loop-Concurrency und einem einheitlichen Fehlermodell.
 
-Everything else is ecosystem familiarity.
+Alles andere ist Vertrautheit mit dem Ökosystem.
 
-## Recommended Path
+## Empfohlener Lernpfad
 
-### Phase 1 — The Type System
+### Phase 1 — Das Typsystem
 
-1. [Mental Model: What TypeScript Is and Is Not](01-mental-model.md)
-2. [The Type System Core](02-type-system-core.md)
-3. [Discriminated Unions and Exhaustiveness](03-discriminated-unions.md)
-4. [Generics and Constraints](04-generics-and-constraints.md)
-5. [Mapped, Conditional, and Utility Types](05-mapped-conditional-utility-types.md)
-6. [Narrowing: unknown, any, and Type Guards](06-narrowing-and-guards.md)
+1. [Mentales Modell: Was TypeScript ist und was nicht](01-mental-model.md)
+2. [Grundlagen des Typsystems](02-type-system-core.md)
+3. [Discriminated Unions und Vollständigkeit](03-discriminated-unions.md)
+4. [Generics und Constraints](04-generics-and-constraints.md)
+5. [Mapped, Conditional und Utility Types](05-mapped-conditional-utility-types.md)
+6. [Narrowing: unknown, any und Type Guards](06-narrowing-and-guards.md)
 
-### Phase 2 — Language and Runtime
+### Phase 2 — Sprache und Laufzeit
 
-7. [Async and Concurrency](07-async-and-concurrency.md)
-8. [Modules, tsconfig, and the Build Story](08-modules-and-tsconfig.md)
+7. [Asynchronität und Concurrency](07-async-and-concurrency.md)
+8. [Module, tsconfig und der Build-Prozess](08-modules-and-tsconfig.md)
 
-### Phase 3 — Backend TypeScript
+### Phase 3 — Backend-TypeScript
 
-9. [Backend Stack: Node, Hono or Fastify, Drizzle, Postgres](09-backend-stack.md)
-10. [Validation at the Boundary with Zod](10-validation-with-zod.md)
+9. [Backend-Stack: Node, Hono oder Fastify, Drizzle, Postgres](09-backend-stack.md)
+10. [Validierung an der Systemgrenze mit Zod](10-validation-with-zod.md)
 
-### Phase 4 — Frontend TypeScript
+### Phase 4 — Frontend-TypeScript
 
-11. [Frontend: React and TanStack](11-frontend-react-tanstack.md)
+11. [Frontend: React und TanStack](11-frontend-react-tanstack.md)
 
-### Phase 5 — Ship and Interview
+### Phase 5 — Ausliefern und Interview
 
-12. [Tooling and Testing](12-tooling-and-testing.md)
-13. [Capstone Project and Interview Framing](13-capstone-and-interview.md)
-14. [Grounding and References](14-grounding-and-references.md)
+12. [Tooling und Tests](12-tooling-and-testing.md)
+13. [Abschlussprojekt und Interview-Vorbereitung](13-capstone-and-interview.md)
+14. [Grundlagen und Referenzen](14-grounding-and-references.md)
 
-## Fastest Practical Plan
+## Schnellster praktischer Plan
 
-A focused two-week sprint is enough to interview well if the rest of your portfolio is strong.
+Ein fokussierter Zwei-Wochen-Sprint reicht aus, um gut vorbereitet ins Interview zu gehen, wenn dein restliches Portfolio stark ist.
 
-- Week 1: the type system. Work through phases 1 and 2 and write small examples until the syntax stops surprising you.
-- Week 2: build one full-stack project end to end (phases 3 and 4) and wire up the tooling.
+- Woche 1: das Typsystem. Arbeite die Phasen 1 und 2 durch und schreibe kleine Beispiele, bis dich die Syntax nicht mehr überrascht.
+- Woche 2: Baue ein vollständiges Full-Stack-Projekt von Anfang bis Ende (Phasen 3 und 4) und richte das Tooling ein.
 
-## Default Target Stack
+## Empfohlener Ziel-Stack
 
-If you do not know where to start, aim for this combination:
+Wenn du nicht weißt, wo du anfangen sollst, nimm diese Kombination:
 
-**TypeScript (strict) + Node.js + Hono + Drizzle ORM + PostgreSQL + Zod + Vitest, and React + TanStack Query and Router on the frontend.**
+**TypeScript (strict) + Node.js + Hono + Drizzle ORM + PostgreSQL + Zod + Vitest sowie React + TanStack Query und Router im Frontend.**
 
-It is modern, widely used, and maps cleanly onto patterns you already know from other backends.
+Sie ist modern, weit verbreitet und lässt sich gut auf Muster übertragen, die du bereits aus anderen Backend-Stacks kennst.
 
-## Grounding
+## Grundlagen
 
-This is a ramp-up guide, not a replacement for the official documentation. The pure-TypeScript examples in this guide were type-checked under `strict` mode. For authoritative references and verification notes, see [Grounding and References](14-grounding-and-references.md).
+Dies ist ein Schnelleinstieg, kein Ersatz für die offizielle Dokumentation. Die reinen TypeScript-Beispiele in diesem Leitfaden wurden im `strict`-Modus typgeprüft. Verbindliche Referenzen und Verifizierungsnotizen findest du unter [Grundlagen und Referenzen](14-grounding-and-references.md).

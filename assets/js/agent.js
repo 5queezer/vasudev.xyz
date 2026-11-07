@@ -30,6 +30,7 @@
   const root = document.getElementById('agent-chat');
   if (!root) return;
 
+  const messages = JSON.parse(document.getElementById('site-i18n').textContent);
   const endpoint = root.dataset.agentEndpoint;
   const postUrl = root.dataset.agentPostUrl || '/llms.txt';
   const mode = root.dataset.agentMode || 'index';
@@ -56,7 +57,7 @@
     <div class="agent-chat-chrome">
       <span class="dot dot-primary"></span>
       <span class="agent-chat-chrome-label">agent.vasudev.xyz</span>
-      <span class="agent-chat-chrome-meta">nemotron · streaming</span>
+      <span class="agent-chat-chrome-meta">${escapeHTML(messages.agentStatus)}</span>
     </div>
     <div class="agent-chat-msgs" data-msgs></div>
     <div class="agent-chat-chips" data-chips></div>
@@ -64,7 +65,7 @@
       <span class="agent-prompt">&gt;</span>
       <input class="agent-input" data-input type="text" autocomplete="off"
              placeholder="${escapeAttr(placeholder)}" />
-      <button class="agent-send" type="submit" aria-label="Send">↑</button>
+      <button class="agent-send" type="submit" aria-label="${escapeAttr(messages.agentSend)}">↑</button>
     </form>
     ${privacyNotice ? `<p class="agent-privacy">${escapeHTML(privacyNotice)} <a href="${escapeAttr(privacyUrl)}">${escapeHTML(privacyLabel)}</a></p>` : ''}
   `;
@@ -138,7 +139,7 @@
     if (role === 'assistant') {
       const tag = document.createElement('div');
       tag.className = 'agent-msg-role';
-      tag.textContent = 'agent';
+      tag.textContent = messages.agentRole;
       bubble.appendChild(tag);
     }
     const content = document.createElement('div');
@@ -184,7 +185,7 @@
     const q = (raw || '').trim();
     if (!q || streaming) return;
     if (!endpoint) {
-      renderMessage('assistant', 'No agentEndpoint configured. Set [params].agentEndpoint in hugo.toml.');
+      renderMessage('assistant', messages.agentUnavailable);
       return;
     }
 
@@ -237,7 +238,7 @@
         }
       }
     } catch (err) {
-      full = full || ('Sorry — the agent endpoint is unreachable. ' + err.message);
+      full = full || messages.agentUnavailable;
       renderAssistantContent(node._contentEl, full);
     } finally {
       if (node._cursor) node._cursor.remove();

@@ -10,8 +10,8 @@
     "title" .Title
     "url" .RelPermalink
     "description" .Description
-    "date" (.Date.Format "02 Jan 2006")
-    "readingTime" (printf "%d min read" .ReadingTime)
+    "date" (.Date | time.Format ":date_medium")
+    "readingTime" (i18n "reading_time" .ReadingTime)
     "tags" $tags
     "searchText" $searchText
   ) -}}

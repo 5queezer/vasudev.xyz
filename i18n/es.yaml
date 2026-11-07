@@ -1,13 +1,13 @@
 - id: nav_agent
   translation: Agente
 - id: nav_work
-  translation: Trabajo
+  translation: Proyectos
 - id: nav_writing
-  translation: Escritos
+  translation: Artículos
 - id: nav_guides
   translation: Guías
 - id: nav_about
-  translation: Acerca
+  translation: Sobre mí
 - id: nav_contact
   translation: Contacto
 
@@ -27,7 +27,7 @@
 - id: section_principles
   translation: 01 / Principios
 - id: section_work
-  translation: 02 / Trabajos Seleccionados
+  translation: 02 / Proyectos seleccionados
 - id: section_work_h
   translation: Sistemas Hechos a Mano.
 - id: section_writing
@@ -37,9 +37,9 @@
 - id: section_guides
   translation: 04 / Guías
 - id: section_guides_h
-  translation: Guías de Campo.
+  translation: Guías prácticas.
 - id: section_about
-  translation: 04 / Acerca
+  translation: 04 / Sobre mí
 - id: section_about_h
   translation: El Taller.
 - id: section_contact

@@ -79,3 +79,92 @@ other = "Als Markdown anzeigen"
 [viewMarkdownDesc]
 other = "Diese Seite als Klartext anzeigen"
 
+[hero_role]
+other = "Systemingenieur"
+[hero_title_line_1]
+other = "Durchdachte Software."
+[hero_title_line_2]
+other = "Für die Praxis gebaut."
+[hero_tagline]
+other = "Ich entwickle Agentenwerkzeuge, verschlüsselte Anwendungen und kleine Systeme, die echte Probleme lösen. Hier sind einige davon – und was ich dabei gelernt habe."
+[hero_work_cta]
+other = "Projekte ansehen"
+[hero_writing_cta]
+other = "Praxisnotizen lesen"
+[writing_title]
+other = "Praxisnotizen"
+[writing_lede]
+other = "Experimente, Implementierungsdetails und Erkenntnisse aus der Praxis."
+[writing_archive]
+other = "Alle Beiträge ansehen"
+[email_label]
+other = "E-Mail"
+[search_label]
+other = "Beiträge durchsuchen"
+[search_placeholder]
+other = "Nach Titel, Schlagwort oder Zusammenfassung suchen…"
+[search_suggestions]
+other = "Suchvorschläge"
+[blog_pagination]
+other = "Blog-Seitennavigation"
+[newer_posts]
+other = "Neuere"
+[older_posts]
+other = "Ältere"
+[reading_time]
+one = "{{ . }} Min. Lesezeit"
+other = "{{ . }} Min. Lesezeit"
+[topic_count]
+one = "{{ . }} Thema"
+other = "{{ . }} Themen"
+[post_count]
+one = "{{ . }} Beitrag"
+other = "{{ . }} Beiträge"
+[part_label]
+other = "Teil {{ . }}"
+[by_author]
+other = "Von {{ . }}"
+[with_coauthor]
+other = "mit {{ . }} als Co-Autor"
+[guide_english_notice]
+other = "Die Kapitel dieses Leitfadens sind auf Englisch verfügbar."
+[language_english]
+other = "Englisch"
+[not_found_label]
+other = "Nicht gefunden"
+[not_found_title]
+other = "Diese Seite ist falsch abgebogen."
+[not_found_body]
+other = "Diese Adresse gibt es nicht."
+[return_home]
+other = "Zur Startseite"
+[search_empty]
+other = "Keine Beiträge entsprechen dieser Suche."
+[search_unavailable]
+other = "Die Suche ist momentan nicht verfügbar."
+[search_matching_one]
+other = "1 passender Beitrag"
+[search_matching_many]
+other = "{count} passende Beiträge"
+[code_copy]
+other = "Kopieren"
+[code_copied]
+other = "Kopiert"
+[code_copy_failed]
+other = "Fehlgeschlagen"
+[code_copy_label]
+other = "Code in die Zwischenablage kopieren"
+[agent_send]
+other = "Senden"
+[agent_role]
+other = "Agent"
+[agent_status]
+other = "Nemotron · Streaming"
+[agent_unavailable]
+other = "Der Agent ist momentan nicht erreichbar."
+[agent_noscript]
+other = "Der Agent auf dieser Seite benötigt JavaScript. Der Quellcode ist auf GitHub verfügbar."
+
+
+[comments_heading]
+other = "Kommentare"

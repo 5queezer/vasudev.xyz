@@ -5,11 +5,11 @@
     {{ if eq .Section "blog" }}
     <div class="article-meta">
       <span>
-        By {{ .Site.Params.author }}
-        {{- with .Params.coAuthor }} · with {{ . }} as co-author{{ end -}}
+        {{ i18n "by_author" .Site.Params.author }}
+        {{- with .Params.coAuthor }} · {{ i18n "with_coauthor" . }}{{ end -}}
       </span>
       <span class="muted-50">/</span>
-      <span>{{ .Date.Format "02 Jan 2006" }}</span>
+      <span>{{ .Date | time.Format ":date_medium" }}</span>
       {{ with .Params.tags }}
         <span class="muted-50">/</span>
         <div class="tag-row">

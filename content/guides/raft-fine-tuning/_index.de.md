@@ -18,8 +18,6 @@ RAFT (Retrieval-Augmented Fine-Tuning) trainiert ein Modell auf Fragen mit abger
 
 Das durchgehende Beispiel ist ein echtes Projekt: rund 870 transkribierte Videos eines einzelnen Creators, ein lokaler Retrieval-Dienst und Qwen3.5-Modelle mit 4B und 9B, die darauf trainiert sind, in der Ich-Form des Creators zu antworten, mit einem geprüften Zitat für jeden Satz. Das 4B-Modell hat auf einer 16-GB-Consumer-GPU trainiert, das 9B-Modell auf einer gemieteten 48-GB-Karte. Was bei diesem Lauf schiefging, steht im Begleitartikel [Mein erstes RAFT-Fine-Tuning auf einer geteilten 16-GB-GPU](/de/blog/mein-erstes-raft-fine-tuning-auf-einer-geteilten-16-gb-gpu-7-stolperfallen-die-im-paper-fehlen/).
 
-Die Kapitel sind auf Englisch.
-
 ## So nutzt du diese Anleitung
 
 Lies die Seiten der Reihe nach. Jede beantwortet vier Fragen:
