@@ -1,7 +1,6 @@
 <section id="work" class="selected-work container">
   <div class="section-header">
-    <h2 class="section-eyebrow">{{ i18n "section_work" }}</h2>
-    <h3 class="section-title">{{ i18n "section_work_h" }}</h3>
+    <h2 class="section-title">{{ i18n "section_work" | replaceRE `^\d+\s*/\s*` "" }}</h2>
   </div>
 
   <div class="work-list">
@@ -13,11 +12,7 @@
             <div class="work-type">{{ .type }}</div>
           </div>
           <div class="work-body">
-            <p class="work-subtitle">{{ .subtitle }}</p>
             <p class="work-desc">{{ .desc }}</p>
-            <div class="tag-row">
-              {{ range .tags }}<span class="tag">{{ . }}</span>{{ end }}
-            </div>
           </div>
           <div class="work-arrow" aria-hidden="true">↗</div>
         </a>

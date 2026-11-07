@@ -2,20 +2,11 @@
 <section id="about" class="about container">
   <div class="about-grid about-grid-no-photo">
     <div>
-      <h2 class="section-eyebrow">{{ i18n "section_about" }}</h2>
-      <h3 class="section-title">{{ i18n "section_about_h" }}</h3>
+      <h2 class="section-title">{{ i18n "section_about" | replaceRE `^\d+\s*/\s*` "" }}</h2>
       <div class="prose">
         {{ with $about }}{{ .Content }}{{ end }}
       </div>
     </div>
 
-    <div class="credentials-card" aria-label="Technical snapshot">
-      <h4>Technical snapshot</h4>
-      <dl>
-        <div><dt>Languages</dt><dd>Rust, Python, TypeScript</dd></div>
-        <div><dt>Systems</dt><dd>MCP, A2A, Workers, SQLite FTS5</dd></div>
-        <div><dt>Product</dt><dd>Next.js, Prisma, OAuth, CI/CD</dd></div>
-      </dl>
-    </div>
   </div>
 </section>

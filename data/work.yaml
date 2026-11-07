@@ -11,7 +11,7 @@
   subtitle: Systems-level security primitives packaged for real apps.
   desc: Cross-platform encrypted vault in Rust with XChaCha20-Poly1305, FFI bindings, and CI/CD pipelines.
   tags: [Rust, FFI, Crypto]
-  link: https://github.com/5queezer/axiom-vault
+  link: https://axiom-vault.github.io/
 
 - name: distill
   type: Team memory

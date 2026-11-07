@@ -1,27 +1,13 @@
-{{- $tagline := .Site.Params.tagline | default .Site.Params.description -}}
 <section class="hero recruiter-hero">
   <div class="hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow">
-        <span class="rule"></span>
-        Systems engineer · AI tooling · Privacy-first products
-      </div>
-      <h1 class="hero-title">I build reliable agent systems and the software around them.</h1>
-      <p class="hero-tagline">{{ $tagline }}</p>
-      <p class="hero-summary">Rust, Python, TypeScript, Cloudflare, SQLite, and MCP. I care about measurable behavior, safe defaults, and small systems that are easy to reason about.</p>
+      <p class="hero-intro">Christian Pojoni · Systems engineer</p>
+      <h1 class="hero-title">Thoughtful software.<br>Built to work.</h1>
+      <p class="hero-tagline">I build agent tools, encrypted applications, and small systems that solve real problems. Here are a few of them, and what I learned along the way.</p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#work">See selected work</a>
-        <a class="button button-ghost" href="{{ .Site.Params.github }}" target="_blank" rel="noopener">GitHub profile</a>
+        <a class="button button-primary" href="#work">Explore my work</a>
+        <a class="home-text-link" href="#writing">Read the field notes</a>
       </div>
     </div>
-
-    <aside class="hero-card" aria-label="Current focus">
-      <div class="hero-card-kicker">Current focus</div>
-      <div class="focus-list">
-        <div><span>01</span><strong>Agent runtimes</strong><p>Tool loops, memory, streaming UX, protocol boundaries.</p></div>
-        <div><span>02</span><strong>Privacy-first apps</strong><p>Local retrieval, encrypted storage, account isolation.</p></div>
-        <div><span>03</span><strong>Production delivery</strong><p>GitHub Actions, Cloudflare Workers, Coolify, observability.</p></div>
-      </div>
-    </aside>
   </div>
 </section>
