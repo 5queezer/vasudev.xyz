@@ -3,8 +3,7 @@
 {{ $paginator := .Paginate $posts 3 }}
 <section class="writing container">
   <div class="section-header blog-search-header">
-    <h2 class="section-eyebrow">{{ i18n "section_writing" }}</h2>
-    <h3 class="section-title">{{ .Title }}</h3>
+    <h1 class="section-title">{{ .Title }}</h1>
 
     <div class="blog-search" data-blog-search data-index-url="{{ .RelPermalink }}search.json">
       <label class="blog-search-label" for="blog-search-input">Search posts</label>
@@ -28,11 +27,14 @@
   <div class="writing-grid" data-blog-search-results>
     {{ range $paginator.Pages }}
       <a href="{{ .RelPermalink }}" class="essay-card">
+        {{ with .Params.images }}
+          <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
+        {{ end }}
         <div class="essay-meta">
           <span>{{ .Date.Format "02 Jan 2006" }}</span>
           <span>{{ .ReadingTime }} min read</span>
         </div>
-        <h4 class="essay-title">{{ .Title }}</h4>
+        <h2 class="essay-title">{{ .Title }}</h2>
         <p class="essay-desc">{{ .Description }}</p>
         <div class="tag-row mt-auto">
           {{ range .Params.tags }}<span class="tag tag-sm">{{ . }}</span>{{ end }}

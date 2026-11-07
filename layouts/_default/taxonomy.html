@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="writing container">
+  <header class="section-header">
+    <h1 class="section-title">{{ .Title }}</h1>
+    {{ if eq .Kind "term" }}
+      <p class="section-lede">{{ len .Pages }} posts</p>
+    {{ end }}
+  </header>
+
+  <div class="writing-grid">
+    {{ range .Pages.ByDate.Reverse }}
+      <a href="{{ .RelPermalink }}" class="essay-card">
+        {{ with .Params.images }}
+          <img class="essay-image" src="{{ index . 0 | relURL }}" alt="" width="1200" height="630" loading="lazy">
+        {{ end }}
+        <div class="essay-meta">
+          {{ if ne .Kind "term" }}
+            <span>{{ .Date.Format "02 Jan 2006" }}</span>
+            <span>{{ .ReadingTime }} min read</span>
+          {{ else }}
+            <span>{{ len .Pages }} posts</span>
+          {{ end }}
+        </div>
+        <h2 class="essay-title">{{ .Title }}</h2>
+        {{ with .Description }}<p class="essay-desc">{{ . }}</p>{{ end }}
+      </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

@@ -1,6 +1,6 @@
 {{- $isHome := .IsHome -}}
 <!doctype html>
-<html lang="{{ .Site.Language.Lang }}" class="dark">
+<html lang="{{ .Site.Language.Lang }}">
 {{ partial "head.html" . }}
 <body class="{{ if .IsHome }}home intro-light{{ end }}" data-lang="{{ .Site.Language.Lang }}">
   <div class="noise-bg" aria-hidden="true"></div>

@@ -2,8 +2,11 @@
 {{- $items := slice -}}
 {{- range $posts -}}
   {{- $tags := .Params.tags | default (slice) -}}
+  {{- $image := "" -}}
+  {{- with .Params.images }}{{ $image = index . 0 | relURL }}{{ end -}}
   {{- $searchText := printf "%s %s %s" .Title .Description (delimit $tags " ") | lower -}}
   {{- $items = $items | append (dict
+    "image" $image
     "title" .Title
     "url" .RelPermalink
     "description" .Description

@@ -21,7 +21,11 @@
   </header>
 
   <div class="prose">
-    {{ .Content }}
+    {{ if eq .Section "guides" }}
+      {{ .Content | replaceRE `^\s*<h1\b[^>]*>.*?</h1>\s*` "" | safeHTML }}
+    {{ else }}
+      {{ .Content }}
+    {{ end }}
   </div>
 
   {{ if eq .Section "blog" }}

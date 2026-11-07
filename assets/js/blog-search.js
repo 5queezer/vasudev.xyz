@@ -24,11 +24,12 @@
 
   const renderPost = post => `
     <a href="${post.url}" class="essay-card">
+      ${post.image ? `<img class="essay-image" src="${escapeHtml(post.image)}" alt="" width="1200" height="630" loading="lazy">` : ''}
       <div class="essay-meta">
         <span>${escapeHtml(post.date)}</span>
         <span>${escapeHtml(post.readingTime)}</span>
       </div>
-      <h4 class="essay-title">${escapeHtml(post.title)}</h4>
+      <h2 class="essay-title">${escapeHtml(post.title)}</h2>
       <p class="essay-desc">${escapeHtml(post.description)}</p>
       <div class="tag-row mt-auto">${renderTags(post.tags)}</div>
     </a>

@@ -49,10 +49,10 @@
 - id: section_agent
   translation: 00 / Der Agent
 - id: section_agent_h
-  translation: Die Chatbox, die im Blog wohnt.
+  translation: Fragen zu den Artikeln?
 
 - id: agent_intro
-  translation: Eine winzige JS-Insel, die einen Cloudflare Worker anspricht, der Antworten von einem kostenlosen Nemotron-Endpunkt streamt. Kein Ursprungsserver. Keine Datenbank. Die statische Seite bleibt statisch — nur diese eine Box atmet.
+  translation: Frag nach einem Artikel, einem Projekt oder den Ideen dahinter.
 - id: agent_welcome
   translation: "Hallo. Ich bin der Vor-Ort-Agent. Frag mich nach den Texten, den Projekten oder dem Stack, der mich antreibt."
 - id: agent_placeholder
