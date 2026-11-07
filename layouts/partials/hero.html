@@ -1,13 +1,46 @@
-<section class="hero recruiter-hero">
-  <div class="hero-grid">
+{{- $projects := site.Data.work -}}
+{{- $lang := site.Language.Lang -}}
+{{- $first := index $projects 0 -}}
+{{- $firstTags := index $first (printf "tags_%s" $lang) | default $first.tags -}}
+<section class="hero recruiter-hero studio-hero" aria-label="{{ i18n "scene_label" }}" data-project-scene data-pause-label="{{ i18n "scene_pause" }}" data-play-label="{{ i18n "scene_play" }}">
+  <div class="studio-hero__copy hero-grid">
     <div class="hero-copy">
       <p class="hero-intro">Christian Pojoni · {{ i18n "hero_role" }}</p>
       <h1 class="hero-title">{{ i18n "hero_title_line_1" }}<br>{{ i18n "hero_title_line_2" }}</h1>
+    </div>
+    <div class="studio-hero__summary">
       <p class="hero-tagline">{{ i18n "hero_tagline" }}</p>
       <div class="hero-actions">
         <a class="button button-primary" href="#work">{{ i18n "hero_work_cta" }}</a>
         <a class="home-text-link" href="#writing">{{ i18n "hero_writing_cta" }}</a>
       </div>
+    </div>
+  </div>
+
+  <div class="project-scene" data-scene-viewport>
+    <div class="project-scene__stage" data-scene-stage>
+      {{- range $index, $project := $projects -}}
+        {{- $type := index $project (printf "type_%s" $lang) | default $project.type -}}
+        {{- $tags := index $project (printf "tags_%s" $lang) | default $project.tags -}}
+        {{- $slot := $index -}}{{- if eq $index 3 }}{{ $slot = -1 }}{{ end -}}
+        <article class="project-scene__card{{ if eq $index 0 }} is-active{{ end }}" data-scene-card data-index="{{ $index }}" data-tags="{{ delimit $tags ` · ` }}" style="--scene-slot: {{ $slot }}" aria-hidden="{{ if eq $index 0 }}false{{ else }}true{{ end }}">
+          <a class="project-scene__link" href="{{ $project.link }}" target="_blank" rel="noopener" aria-label="{{ i18n "scene_preview" }}: {{ $project.name }}" tabindex="{{ if eq $index 0 }}0{{ else }}-1{{ end }}">
+            {{ partial "project-preview.html" (dict "project" $project "variant" "scene") }}
+            <span class="project-scene__caption"><strong>{{ $project.name }}</strong><span>{{ $type }}</span></span>
+          </a>
+        </article>
+      {{- end -}}
+    </div>
+
+    <div class="project-scene__context" aria-hidden="true">
+      <span class="project-scene__context-card is-back">{{ i18n "scene_systems" }}</span>
+      <span class="project-scene__context-card is-middle">{{ i18n "scene_interfaces" }}</span>
+      <span class="project-scene__context-card is-front" data-scene-context>{{ delimit $firstTags ` · ` }}</span>
+    </div>
+    <div class="project-scene__controls">
+      <button class="project-scene__control" type="button" data-scene-prev aria-label="{{ i18n "scene_prev" }}">←</button>
+      <button class="project-scene__control is-pause" type="button" data-scene-toggle aria-label="{{ i18n "scene_pause" }}">Ⅱ</button>
+      <button class="project-scene__control" type="button" data-scene-next aria-label="{{ i18n "scene_next" }}">→</button>
     </div>
   </div>
 </section>

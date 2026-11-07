@@ -82,11 +82,11 @@ other = "Ver esta página como texto plano"
 [hero_role]
 other = "Ingeniero de sistemas"
 [hero_title_line_1]
-other = "Software bien pensado."
+other = "Sistemas pequeños."
 [hero_title_line_2]
-other = "Hecho para funcionar."
+other = "Hechos para funcionar."
 [hero_tagline]
-other = "Construyo herramientas para agentes, aplicaciones cifradas y sistemas pequeños que resuelven problemas reales. Aquí presento algunos de ellos y lo que aprendí al crearlos."
+other = "Herramientas para agentes, aplicaciones cifradas y software enfocado. Construidos con cuidado y probados en la práctica."
 [hero_work_cta]
 other = "Ver mis proyectos"
 [hero_writing_cta]
@@ -171,3 +171,54 @@ other = "Comentarios"
 
 [nav_menu]
 other = "Menú"
+
+[scene_label]
+other = "Proyectos seleccionados"
+
+[scene_prev]
+other = "Proyecto anterior"
+
+[scene_next]
+other = "Proyecto siguiente"
+
+[scene_pause]
+other = "Pausar animación"
+
+[scene_play]
+other = "Reanudar animación"
+
+[scene_preview]
+other = "Vista previa del proyecto"
+
+[work_intro]
+other = "Herramientas pequeñas y enfocadas en problemas reales."
+
+[project_visit]
+other = "Ver proyecto"
+
+[more_work]
+other = "Más proyectos"
+
+[announcement_guides]
+other = "Las guías ya están disponibles en español, inglés y alemán."
+
+[announcement_dismiss]
+other = "Cerrar aviso"
+
+[scene_systems]
+other = "Sistemas"
+
+[scene_interfaces]
+other = "Interfaces"
+
+[preview_market]
+other = "MCP · datos de mercado"
+
+[preview_key]
+other = "XChaCha20 · clave local"
+
+[preview_memory]
+other = "FTS5 · memoria vectorial"
+
+[preview_workflow]
+other = "Kanban · flujo de trabajo"

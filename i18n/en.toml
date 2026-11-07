@@ -82,11 +82,11 @@ other = "View this page as plain text"
 [hero_role]
 other = "Systems engineer"
 [hero_title_line_1]
-other = "Thoughtful software."
+other = "Small systems."
 [hero_title_line_2]
 other = "Built to work."
 [hero_tagline]
-other = "I build agent tools, encrypted applications, and small systems that solve real problems. Here are a few of them, and what I learned along the way."
+other = "Agent tools, encrypted applications, and focused software. Built with care, tested in practice."
 [hero_work_cta]
 other = "Explore my work"
 [hero_writing_cta]
@@ -171,3 +171,54 @@ other = "Comments"
 
 [nav_menu]
 other = "Menu"
+
+[scene_label]
+other = "Selected projects"
+
+[scene_prev]
+other = "Previous project"
+
+[scene_next]
+other = "Next project"
+
+[scene_pause]
+other = "Pause animation"
+
+[scene_play]
+other = "Play animation"
+
+[scene_preview]
+other = "Project preview"
+
+[work_intro]
+other = "Small, focused tools. Built around real problems."
+
+[project_visit]
+other = "Explore project"
+
+[more_work]
+other = "More work"
+
+[announcement_guides]
+other = "The field guides are now available in English, German and Spanish."
+
+[announcement_dismiss]
+other = "Dismiss announcement"
+
+[scene_systems]
+other = "Systems"
+
+[scene_interfaces]
+other = "Interfaces"
+
+[preview_market]
+other = "MCP · market feed"
+
+[preview_key]
+other = "XChaCha20 · local key"
+
+[preview_memory]
+other = "FTS5 · vector memory"
+
+[preview_workflow]
+other = "Kanban · workflow"

@@ -7,6 +7,8 @@
   desc_de: Diagrammgenerator und MCP-Server in Rust mit Marktdaten von Yahoo Finance und Binance, technischen Indikatoren und Live-Warnmeldungen.
   desc_es: Generador de gráficos y servidor MCP en Rust con datos de Yahoo Finance y Binance, indicadores técnicos y alertas en tiempo real.
   tags: [Rust, MCP, Market data]
+  tags_de: [Rust, MCP, Marktdaten]
+  tags_es: [Rust, MCP, Datos de mercado]
   link: https://chartgen.vasudev.xyz
   repo: https://github.com/5queezer/chartgen
 
@@ -19,6 +21,8 @@
   desc_de: Plattformübergreifender verschlüsselter Tresor in Rust mit XChaCha20-Poly1305, FFI-Anbindungen und CI/CD-Pipelines.
   desc_es: Bóveda cifrada multiplataforma en Rust con XChaCha20-Poly1305, enlaces FFI y canalizaciones de CI/CD.
   tags: [Rust, FFI, Crypto]
+  tags_de: [Rust, FFI, Kryptografie]
+  tags_es: [Rust, FFI, Cifrado]
   link: https://axiom-vault.github.io/
 
 - name: distill
@@ -30,6 +34,8 @@
   desc_de: Datenschutzorientierter MCP-Server für Teamgedächtnis mit FastMCP, SQLite FTS5 und lokaler Vektorsuche.
   desc_es: Servidor MCP centrado en la privacidad para memoria de equipo con FastMCP, SQLite FTS5 y búsqueda vectorial local.
   tags: [Python, SQLite, Vectors]
+  tags_de: [Python, SQLite, Vektoren]
+  tags_es: [Python, SQLite, Vectores]
   link: https://github.com/5queezer/distill
 
 - name: nexus-crm

@@ -24,6 +24,11 @@
     link.addEventListener('click', () => { mobileNav.open = false; });
   });
 
+  const announcement = document.querySelector('[data-announcement]');
+  announcement?.querySelector('[data-dismiss-announcement]')?.addEventListener('click', () => {
+    announcement.hidden = true;
+  });
+
   // Remember the last language the visitor picked. Hugo renders a separate
   // page per language, so we only need to persist for the next visit.
   const lang = document.body.dataset.lang;

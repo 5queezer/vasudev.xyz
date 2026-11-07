@@ -1,29 +1,64 @@
-<section id="work" class="selected-work container">
-  <div class="section-header">
-    <h2 class="section-title">{{ i18n "section_work" | replaceRE `^\d+\s*/\s*` "" }}</h2>
-  </div>
+{{- $lang := site.Language.Lang -}}
+{{- $projects := site.Data.work -}}
+<section id="work" class="selected-work project-showcase">
+  <div class="container project-showcase-inner">
+    <header class="project-showcase-header">
+      <h2 class="section-title">{{ i18n "section_work" | replaceRE `^\d+\s*/\s*` "" }}</h2>
+      <p class="project-showcase-intro">{{ i18n "work_intro" }}</p>
+    </header>
 
-  <div class="work-list">
-    {{ $lang := site.Language.Lang }}
-    {{ range site.Data.work }}
-      {{ $type := index . (printf "type_%s" $lang) | default .type }}
-      {{ $desc := index . (printf "desc_%s" $lang) | default .desc }}
-      <div class="work-row">
-        <a href="{{ .link }}" target="_blank" rel="noopener" class="work-row-inner">
-          <div class="work-meta">
-            <h4 class="work-name">{{ .name }}</h4>
-            <div class="work-type">{{ $type }}</div>
+    <div class="feature-projects">
+      {{ range first 2 $projects }}
+        {{- $type := index . (printf "type_%s" $lang) | default .type -}}
+          {{- $tags := index . (printf "tags_%s" $lang) | default .tags -}}
+        {{- $desc := index . (printf "desc_%s" $lang) | default .desc -}}
+        <article class="feature-project feature-project-{{ .name | urlize }}" data-reveal>
+          <div class="feature-copy">
+            <p class="feature-kicker">{{ $type }}</p>
+            <h3 class="feature-title">{{ .name }}</h3>
+            <p class="feature-description">{{ $desc }}</p>
+            <div class="feature-tags">
+              {{ range $tags }}<span>{{ . }}</span>{{ end }}
+            </div>
+            <div class="feature-actions">
+              <a class="feature-link" href="{{ .link }}" target="_blank" rel="noopener">
+                {{ i18n "project_visit" }} <span aria-hidden="true">↗</span>
+              </a>
+              {{ with .repo }}
+                <a class="feature-source" href="{{ . }}" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+              {{ end }}
+            </div>
           </div>
-          <div class="work-body">
-            <p class="work-desc">{{ $desc }}</p>
+          <div class="feature-visual">
+            {{ partial "project-preview.html" (dict "project" . "variant" "feature") }}
           </div>
-          <div class="work-arrow" aria-hidden="true">↗</div>
-        </a>
-        {{ with .repo }}
-          <a href="{{ . }}" target="_blank" rel="noopener" class="work-source">GitHub ↗</a>
+        </article>
+      {{ end }}
+    </div>
+
+    <div class="secondary-projects-wrap">
+      <h3 class="secondary-projects-title">{{ i18n "more_work" }}</h3>
+      <div class="secondary-projects">
+        {{ range after 2 $projects }}
+          {{- $type := index . (printf "type_%s" $lang) | default .type -}}
+          {{- $tags := index . (printf "tags_%s" $lang) | default .tags -}}
+          {{- $desc := index . (printf "desc_%s" $lang) | default .desc -}}
+          <article class="secondary-project">
+            <div class="secondary-project-meta">
+              <p>{{ $type }}</p>
+              <div>
+                {{ range $tags }}<span>{{ . }}</span>{{ end }}
+              </div>
+            </div>
+            <h4>{{ .name }}</h4>
+            <p>{{ $desc }}</p>
+            <div class="secondary-project-links">
+              <a href="{{ .link }}" target="_blank" rel="noopener">{{ i18n "project_visit" }} <span aria-hidden="true">↗</span></a>
+              {{ with .repo }}<a href="{{ . }}" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>{{ end }}
+            </div>
+          </article>
         {{ end }}
       </div>
-    {{ end }}
-    <div class="work-list-end"></div>
+    </div>
   </div>
 </section>

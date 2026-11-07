@@ -728,47 +728,6 @@ a:focus-visible { outline: 2px solid var(--primary); outline-offset: 5px; }
 }
 
 
-/* A blue first screen that gives way to the quiet, light homepage on scroll. */
-body.home { --intro-opacity: 1; isolation: isolate; }
-.home::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-color: #17456f;
-  background-image: linear-gradient(110deg, rgb(7 35 72 / .88), rgb(17 57 99 / .58)), url('/images/home-blue.webp');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: var(--intro-opacity);
-}
-.home .hero { min-height: calc(100svh - 4.35rem); }
-.home .navbar, .home .navbar.is-scrolled {
-  background: rgb(250 250 248 / calc(1 - var(--intro-opacity)));
-  border-bottom-color: transparent;
-  transition: none;
-}
-.home .selected-work, .home .writing, .home .about { background: #fafaf8; }
-.home.intro-light .hero, .home.intro-light .hero-intro,
-.home.intro-light .hero-tagline, .home.intro-light .navbar,
-.home.intro-light .navbar-links, .home.intro-light .brand-mark,
-.home.intro-light .mobile-nav summary, .home.intro-light .lang-toggle a.is-active { color: #fff; }
-.home.intro-light .lang-toggle { border-color: rgb(255 255 255 / .3); }
-.home.intro-light .lang-toggle a { opacity: .8; }
-.home.intro-light .lang-toggle a.is-active { opacity: 1; }
-.home.intro-light .button-primary { background: #fff; border-color: #fff; color: #173c60; }
-.home.intro-light a:focus-visible { outline-color: #fff; }
-@media (max-width: 767px) {
-  .home .hero { min-height: calc(100svh - 4rem); }
-}
-
-.home.intro-fading:not(.intro-light) .hero,
-.home.intro-fading:not(.intro-light) .hero-intro,
-.home.intro-fading:not(.intro-light) .hero-tagline,
-.home.intro-fading:not(.intro-light) .navbar-links { color: #17201a; }
-
-
 /* Reading, archives and the assistant share the homepage's quiet surfaces. */
 .article-title { font-weight: 400; letter-spacing: -.025em; text-wrap: balance; }
 .article-meta, .blog-search-input, .blog-search-status, .blog-search-empty,

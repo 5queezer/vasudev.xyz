@@ -82,11 +82,11 @@ other = "Diese Seite als Klartext anzeigen"
 [hero_role]
 other = "Systemingenieur"
 [hero_title_line_1]
-other = "Durchdachte Software."
+other = "Kleine Systeme."
 [hero_title_line_2]
-other = "Für die Praxis gebaut."
+other = "Für die Praxis."
 [hero_tagline]
-other = "Ich entwickle Agentenwerkzeuge, verschlüsselte Anwendungen und kleine Systeme, die echte Probleme lösen. Hier sind einige davon – und was ich dabei gelernt habe."
+other = "Agentenwerkzeuge, verschlüsselte Anwendungen und fokussierte Software. Sorgfältig gebaut und in der Praxis geprüft."
 [hero_work_cta]
 other = "Projekte ansehen"
 [hero_writing_cta]
@@ -171,3 +171,54 @@ other = "Kommentare"
 
 [nav_menu]
 other = "Menü"
+
+[scene_label]
+other = "Ausgewählte Projekte"
+
+[scene_prev]
+other = "Vorheriges Projekt"
+
+[scene_next]
+other = "Nächstes Projekt"
+
+[scene_pause]
+other = "Animation pausieren"
+
+[scene_play]
+other = "Animation fortsetzen"
+
+[scene_preview]
+other = "Projektvorschau"
+
+[work_intro]
+other = "Kleine, fokussierte Werkzeuge für konkrete Probleme."
+
+[project_visit]
+other = "Projekt ansehen"
+
+[more_work]
+other = "Weitere Projekte"
+
+[announcement_guides]
+other = "Die Leitfäden gibt es jetzt auf Deutsch, Englisch und Spanisch."
+
+[announcement_dismiss]
+other = "Hinweis schließen"
+
+[scene_systems]
+other = "Systeme"
+
+[scene_interfaces]
+other = "Oberflächen"
+
+[preview_market]
+other = "MCP · Marktdaten"
+
+[preview_key]
+other = "XChaCha20 · lokaler Schlüssel"
+
+[preview_memory]
+other = "FTS5 · Vektorspeicher"
+
+[preview_workflow]
+other = "Kanban · Arbeitsablauf"
