@@ -23,6 +23,7 @@ concurrency:
 jobs:
   translate:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,11 +48,13 @@ jobs:
           go run main.go \
             --content-dir ../../content/guides \
             --languages de,es \
-            --include-index \
-            --index-only
+            --include-index
           go run main.go \
             --content-dir ../../content/blog \
             --languages de,es
+
+      - name: Verify guide translation completeness and code examples
+        run: python3 tests/guides-content.test.py
 
       - name: Open PR with translations
         env:

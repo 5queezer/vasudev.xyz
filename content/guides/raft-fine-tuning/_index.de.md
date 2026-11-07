@@ -40,26 +40,26 @@ Wer schon RAG-Systeme gebaut hat, kennt das meiste. Nur wenige Ideen sind RAFT-s
 
 ### Phase 1: Grundlagen
 
-1. [Mental Model: What RAFT Teaches and What It Does Not](01-mental-model.md)
-2. [Before You Train: Retrieval, Eval Set and Holdout](02-before-you-train.md)
+1. [Mentales Modell: Was RAFT lehrt und was nicht](01-mental-model.md)
+2. [Vor dem Training: Retrieval, Eval-Set und Holdout](02-before-you-train.md)
 
 ### Phase 2: Daten
 
-3. [Generating Training Data with a Teacher](03-generating-data.md)
-4. [Filtering and the Datasheet](04-filtering-and-datasheet.md)
-5. [Citations Belong in Code](05-citations-in-code.md)
+3. [Trainingsdaten mit einem Teacher erzeugen](03-generating-data.md)
+4. [Filtern und das Datenblatt](04-filtering-and-datasheet.md)
+5. [Zitate gehören in den Code](05-citations-in-code.md)
 
 ### Phase 3: Modell
 
-6. [Training a LoRA Adapter](06-training-lora.md)
-7. [Export and Serving](07-export-and-serve.md)
+6. [Einen LoRA-Adapter trainieren](06-training-lora.md)
+7. [Export und Serving](07-export-and-serve.md)
 
 ### Phase 4: Nachweis
 
-8. [Evaluating Against the Base Model](08-evaluating.md)
-9. [Renting a GPU for the Bigger Model](09-renting-a-gpu.md)
-10. [Checklist](10-checklist.md)
-11. [Grounding and References](11-grounding-and-references.md)
+8. [Gegen das Basismodell evaluieren](08-evaluating.md)
+9. [Eine GPU für das größere Modell mieten](09-renting-a-gpu.md)
+10. [Checkliste](10-checklist.md)
+11. [Grounding und Referenzen](11-grounding-and-references.md)
 
 ## Der schnellste praktische Plan
 
@@ -80,4 +80,4 @@ Sie passt auf eine 16-GB-GPU, trainiert in wenigen Stunden und lässt jedes Tran
 
 ## Grundlage
 
-Das ist ein Praxisleitfaden aus einem vollständigen Lauf, kein Literaturüberblick. Die Zahlen stammen aus diesem Lauf und werden bei deinen Daten anders aussehen. Paper, Bibliotheksdokumentation und Versionshinweise stehen unter [Grounding and References](11-grounding-and-references.md).
+Das ist ein Praxisleitfaden aus einem vollständigen Lauf, kein Literaturüberblick. Die Zahlen stammen aus diesem Lauf und werden bei deinen Daten anders aussehen. Paper, Bibliotheksdokumentation und Versionshinweise stehen unter [Grounding und Referenzen](11-grounding-and-references.md).

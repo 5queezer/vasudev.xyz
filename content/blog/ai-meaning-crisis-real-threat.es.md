@@ -5,9 +5,7 @@ La verdadera crisis no es el desempleo—es lo que ocurre cuando el trabajo ya n
 date: 2026-05-03
 tags: ["ai", "philosophy"]
 description: "Por qué la crisis de sentido de la IA representa una amenaza más profunda que el desempleo tecnológico, y cómo prepararse para un futuro en el que el trabajo ya no defina el propósito humano."
-images: ["/blog/ai-meaning-crisis-real-threat/og-image.png"]
-translationHash: "de89ea2983a617277f6fd9568404ca2b"
-chunkHashes: "4668a4dd1746f0f5,0a32be809eef0f4e,7d6a0d6b4d5b30fb,102d8b60bc85f373,3807f05e48bedc70,c6ab9a6ace2f3130,9b74d4df3dccd3bf,3d3bc56eb611e2d8"
+translationHash: "be83f712581e0e73b8d50e60c32ee8df"
 ---
 Deja de prepararte para que la IA te quite el trabajo. Comienza a prepararte para que la IA te arrebate lo que le da sentido a tu trabajo. La verdadera crisis que se avecina no es el desempleo masivo, sino una sociedad en la que el trabajo ya no define quiénes somos, y aún no hemos empezado a responder qué será entonces.
 ## La Crisis de Sentido Ya Está Aquí
@@ -81,7 +79,6 @@ La crisis de sentido provocada por la IA no se resolverá con mejores prompts o 
 
 ---
 
-*¿Listo para explorar cómo construir carreras resilientes al sentido en la era de la IA? [Consulta nuestra guía sobre desarrollo de habilidades centradas en la agencia](/blog/agency-first-skills-ai-era/).*
 
 *---*
 *Vasudev escribe sobre tecnología, sentido y potencial humano en Vasudev.xyz*

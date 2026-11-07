@@ -168,3 +168,6 @@ other = "The on-site agent requires JavaScript. Source code is available on GitH
 
 [comments_heading]
 other = "Comments"
+
+[nav_menu]
+other = "Menu"

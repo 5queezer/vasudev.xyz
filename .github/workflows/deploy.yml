@@ -38,6 +38,7 @@ jobs:
 
       - name: Check localized pages and UI messages
         run: |
+          python3 tests/guides-content.test.py
           python3 tests/i18n-render.test.py
           node --test tests/*.test.cjs
 

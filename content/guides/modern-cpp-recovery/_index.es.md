@@ -8,7 +8,6 @@ build:
   list: local
   render: always
 translationHash: "838f5ef69b7d7f4ab6381a0468c7b891"
-chunkHashes: "9a84462dc0b46c33,86622b9c289faaac,1d4e7cc51f142c37,b4715dd94a30045a,3f5fdd4571657156,adbe3d6449091861"
 ---
 # Guía de actualización a C++ moderno
 
@@ -26,10 +25,10 @@ Recorre las páginas en orden. No intentes memorizar todo. Para cada tema, trata
 
 ### Fase 1 — Reconstruir el núcleo
 
-1. [Modelo mental: Modern C++](01-modern-cpp-mental-model.md)
-2. [Compilación, enlace y forma del proyecto](02-compilation-linking.md)
-3. [Tiempo de vida de los objetos, pila, montón y RAII](03-lifetime-raii.md)
-4. [Propiedad, punteros crudos y punteros inteligentes](04-ownership-smart-pointers.md)
+1. [Modelo mental de C++ moderno](01-modern-cpp-mental-model.md)
+2. [Compilación, enlazado y estructura del proyecto](02-compilation-linking.md)
+3. [Duración de objetos, pila, montón y RAII](03-lifetime-raii.md)
+4. [Propiedad, punteros sin procesar y punteros inteligentes](04-ownership-smart-pointers.md)
 5. [Semántica de valores y regla de 0/3/5](05-value-semantics-rule-of-0-3-5.md)
 
 ### Fase 2 — Características modernas del lenguaje
@@ -38,23 +37,23 @@ Recorre las páginas en orden. No intentes memorizar todo. Para cada tema, trata
 7. [Const, referencias y paso de parámetros](07-const-references-parameters.md)
 8. [Contenedores y algoritmos de la STL](08-stl-containers-algorithms.md)
 9. [Sintaxis moderna: auto, lambdas, enum class, constexpr](09-modern-syntax.md)
-10. [Optional, Variant, String View, Span, Filesystem, Chrono](10-modern-library-types.md)
+10. [Tipos modernos de la biblioteca](10-modern-library-types.md)
 11. [Plantillas y programación genérica](11-templates-generic-programming.md)
 
 ### Fase 3 — C++ serio
 
-12. [Manejo de errores y seguridad de excepciones](12-error-handling.md)
-13. [Concurrencia: hilos, mutexes, atómicos](13-concurrency.md)
+12. [Gestión de errores y seguridad ante excepciones](12-error-handling.md)
+13. [Concurrencia: hilos, mutexes y operaciones atómicas](13-concurrency.md)
 14. [Comportamiento indefinido y seguridad de memoria](14-undefined-behavior.md)
 15. [Fundamentos de rendimiento](15-performance.md)
-16. [Herramientas: CMake, depuradores, sanitizadores, pruebas](16-tooling.md)
+16. [Herramientas: CMake, depuradores, sanitizadores y pruebas](16-tooling.md)
 
 ### Fase 4 — Elegir un dominio
 
-17. [Rutas de dominio](17-domain-tracks.md)
-18. [Ideas de proyecto](18-project-ideas.md)
-19. [Lista de verificación rápida](19-quick-checklist.md)
-20. [Fundamentación y referencias](20-grounding-and-references.md)
+17. [Rutas de especialización](17-domain-tracks.md)
+18. [Ideas de proyectos](18-project-ideas.md)
+19. [Lista de comprobación rápida](19-quick-checklist.md)
+20. [Fundamentos y referencias](20-grounding-and-references.md)
 ## Plan Práctico Más Rápido
 
 Si deseas un sprint de 30 días:
@@ -70,4 +69,4 @@ Si deseas un sprint de 30 días:
 Esa combinación te brinda una base técnica duradera y te mantiene productivo.
 ## Fundamentación
 
-Esta es una guía rápida de recuperación, no un sustituto del estándar o de un libro de texto completo. Para referencias autorizadas y notas de versiones, vea [Fundamentación y Referencias](20-grounding-and-references.md).
+Esta es una guía rápida de recuperación, no un sustituto del estándar o de un libro de texto completo. Para referencias autorizadas y notas de versiones, vea [Fundamentos y referencias](20-grounding-and-references.md).

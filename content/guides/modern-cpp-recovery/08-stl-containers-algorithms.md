@@ -1,6 +1,6 @@
 ---
 title: "08 — STL Containers and Algorithms"
-description: "The standard library is the default toolbox. Modern C++ code should use containers and algorithms instead of manual memory and hand-written loops everywher"
+description: "Use standard library containers and algorithms instead of manual memory management and hand-written loops."
 weight: 8
 type: "guide"
 build:

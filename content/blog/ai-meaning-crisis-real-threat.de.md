@@ -3,9 +3,7 @@ title: "Stopp, dich auf den KI‑Jobverlust vorzubereiten – Beginne, dich au
 date: 2026-05-03
 tags: ["ai", "philosophy"]
 description: "Warum die Bedeutungs­krise der KI eine tiefere Bedrohung darstellt als technologische Arbeitslosigkeit und wie man sich auf eine Zukunft vorbereiten kann, in der Arbeit nicht mehr den menschlichen Zweck definiert."
-images: ["/blog/ai-meaning-crisis-real-threat/og-image.png"]
-translationHash: "de89ea2983a617277f6fd9568404ca2b"
-chunkHashes: "4668a4dd1746f0f5,0a32be809eef0f4e,7d6a0d6b4d5b30fb,102d8b60bc85f373,3807f05e48bedc70,c6ab9a6ace2f3130,9b74d4df3dccd3bf,3d3bc56eb611e2d8"
+translationHash: "be83f712581e0e73b8d50e60c32ee8df"
 ---
 Verzichte darauf, dich darauf vorzubereiten, dass KI dir den Job wegnimmt. Bereite dich stattdessen darauf vor, dass KI das wegnimmt, was deinem Job Sinn verleiht. Die wirkliche Krise, die bevorsteht, ist nicht die Massenarbeitslosigkeit – sondern eine Gesellschaft, in der Arbeit nicht mehr definiert, wer wir sind, und wir noch nicht begonnen haben, die Frage zu beantworten, was dann unser Leben bestimmt.
 ## Die Sinnkrise ist bereits da
@@ -79,7 +77,6 @@ Die KI‑Bedeutungskrise wird nicht durch bessere Prompts oder effizientere Arbe
 
 ---
 
-*Bereit zu erkunden, wie man bedeutungs‑resistente Karrieren im KI‑Zeitalter aufbaut? [Schau dir unseren Leitfaden zur agentur‑ersten Kompetenzentwicklung](/blog/agency-first-skills-ai-era/).*
 
 *---*  
 *Vasudev schreibt über Technologie, Sinn und menschliches Potenzial auf Vasudev.xyz*

@@ -19,6 +19,11 @@
     });
   });
 
+  const mobileNav = document.querySelector('.mobile-nav');
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => { mobileNav.open = false; });
+  });
+
   // Remember the last language the visitor picked. Hugo renders a separate
   // page per language, so we only need to persist for the next visit.
   const lang = document.body.dataset.lang;

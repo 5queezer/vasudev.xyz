@@ -8,6 +8,7 @@
   const status = root.querySelector('[data-blog-search-status]');
   const results = document.querySelector('[data-blog-search-results]');
   const pagination = document.querySelector('[data-blog-pagination]');
+  const initialResults = results.innerHTML;
   const indexUrl = root.dataset.indexUrl;
   const maxSuggestions = 8;
   let posts = [];
@@ -93,6 +94,16 @@
 
   function update() {
     const query = input.value;
+    const hasQuery = Boolean(normalize(query));
+
+    if (!hasQuery) {
+      results.innerHTML = initialResults;
+      buildSuggestions('');
+      if (pagination) pagination.hidden = false;
+      setStatus('');
+      return;
+    }
+
     const matches = matchingPosts(query);
 
     if (matches.length === 0) {
@@ -103,12 +114,9 @@
 
     buildSuggestions(query);
 
-    const hasQuery = Boolean(normalize(query));
     if (pagination) pagination.hidden = hasQuery;
 
-    if (!hasQuery) {
-      setStatus('');
-    } else if (matches.length === 1) {
+    if (matches.length === 1) {
       setStatus(messages.searchMatchingOne);
     } else {
       setStatus(messages.searchMatchingMany.replace('{count}', matches.length));
@@ -130,7 +138,7 @@
     })
     .then(index => {
       posts = Array.isArray(index) ? index : [];
-      update();
+      if (normalize(input.value)) update();
     })
     .catch(() => {
       input.disabled = true;

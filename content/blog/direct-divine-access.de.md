@@ -7,9 +7,7 @@ agentQuestions:
   - "Wie beschreiben diese Traditionen den direkten Zugriff?"
   - "Welches Praxisprotokoll ergibt sich aus dem Beitrag?"
 description: "Yoga, Gnostizismus, Zen, christliche Mystik. Sie alle zeigen dasselbe: Die direkte Verbindung war immer da. Wer hat sie blockiert und wie kann man sie wiederherstellen?"
-images: ["/blog/direct-divine-access/og-image.png"]
-translationHash: "a5c5498f7480366c1eefe0a19d2a2ddb"
-chunkHashes: "e915b85ec3800274,d85de1493df14ffc,1be79fe612d716bf,f58a0c4da51dfe66,d6e563ee7d1e9c7e,818eb6ada77723a4"
+translationHash: "fd70a8c193455993700382e5ffc69140"
 ---
 
 Ich ging selten in die Kirche. Nicht aus Rebellion. Spirituelle Fragen zogen mich immer an, aber die organisierte Antwort tat das nicht. Was mich anzog, waren die Gebäude selbst. Ich ging allein hin, setzte mich in leere Hallen und fühlte etwas, das die Gottesdienste nie vermittelten. Diese mittelalterlichen Architekten wählten ihre Standorte mit Präzision. Ich glaube, sie bauten auf Akupunkturpunkten des magnetischen Erdfeldes, und die Stein­geometrie verstärkt alles, was dort vorhanden ist. Ich respektierte die Baumeister. Ich hatte keinen Gebrauch für die Institution, die danach eintraf.

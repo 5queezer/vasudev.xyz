@@ -3,7 +3,6 @@ title: "Stop Preparing for AI Job Loss Start Preparing for AI Meaning Loss The R
 date: 2026-05-03
 tags: ["ai", "philosophy"]
 description: "Why the AI meaning crisis poses a deeper threat than technological unemployment, and how to prepare for a future where work no longer defines human purpose."
-images: ["/blog/ai-meaning-crisis-real-threat/og-image.png"]
 ---
 
 Stop preparing for AI to take your job. Start preparing for AI to take away the very thing that gives your job meaning. The real crisis coming isn't mass unemployment—it's a society where work no longer defines who we are, and we haven't begun to answer what will.
@@ -85,7 +84,6 @@ The AI meaning crisis won't be solved by better prompts or more efficient workfl
 
 ---
 
-*Ready to explore how to build meaning-resilient careers in the AI era? [Check out our guide to agency-first skill development](/blog/agency-first-skills-ai-era/).*
 
 *---*
 *Vasudev writes about technology, meaning, and human potential at Vasudev.xyz*

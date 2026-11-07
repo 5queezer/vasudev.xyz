@@ -40,26 +40,26 @@ Si ya has construido sistemas RAG, casi todo te resultará familiar. Solo unas p
 
 ### Fase 1: Fundamentos
 
-1. [Mental Model: What RAFT Teaches and What It Does Not](01-mental-model.md)
-2. [Before You Train: Retrieval, Eval Set and Holdout](02-before-you-train.md)
+1. [Modelo mental: qué enseña RAFT y qué no](01-mental-model.md)
+2. [Antes de entrenar: recuperación, conjunto de evaluación y holdout](02-before-you-train.md)
 
 ### Fase 2: Datos
 
-3. [Generating Training Data with a Teacher](03-generating-data.md)
-4. [Filtering and the Datasheet](04-filtering-and-datasheet.md)
-5. [Citations Belong in Code](05-citations-in-code.md)
+3. [Generar datos de entrenamiento con un teacher](03-generating-data.md)
+4. [Filtrado y ficha de datos](04-filtering-and-datasheet.md)
+5. [Las citas pertenecen al código](05-citations-in-code.md)
 
 ### Fase 3: Modelo
 
-6. [Training a LoRA Adapter](06-training-lora.md)
-7. [Export and Serving](07-export-and-serve.md)
+6. [Entrenar un adaptador LoRA](06-training-lora.md)
+7. [Exportación y serving](07-export-and-serve.md)
 
 ### Fase 4: Prueba
 
-8. [Evaluating Against the Base Model](08-evaluating.md)
-9. [Renting a GPU for the Bigger Model](09-renting-a-gpu.md)
-10. [Checklist](10-checklist.md)
-11. [Grounding and References](11-grounding-and-references.md)
+8. [Evaluar frente al modelo base](08-evaluating.md)
+9. [Alquilar una GPU para el modelo grande](09-renting-a-gpu.md)
+10. [Lista de comprobación](10-checklist.md)
+11. [Fundamentación y referencias](11-grounding-and-references.md)
 
 ## El plan práctico más rápido
 
@@ -80,4 +80,4 @@ Cabe en una GPU de 16 GB, entrena en pocas horas y mantiene cada transcripción 
 
 ## Fundamentos
 
-Esta es una guía práctica a partir de una ejecución completa, no una revisión de la literatura. Las cifras salen de esa ejecución y serán distintas con tus datos. El paper, la documentación de las bibliotecas y las notas de versión están en [Grounding and References](11-grounding-and-references.md).
+Esta es una guía práctica a partir de una ejecución completa, no una revisión de la literatura. Las cifras salen de esa ejecución y serán distintas con tus datos. El paper, la documentación de las bibliotecas y las notas de versión están en [Fundamentación y referencias](11-grounding-and-references.md).

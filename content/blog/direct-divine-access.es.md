@@ -7,9 +7,7 @@ agentQuestions:
   - "¿Cómo describen estas tradiciones el acceso directo?"
   - "¿Qué protocolo de práctica sigue a la publicación?"
 description: "Yoga, Gnosticism, Zen, Christian mysticism. Todos muestran lo mismo: la conexión directa siempre estuvo allí. ¿Quién la bloqueó y cómo puedes volver?"
-images: ["/blog/direct-divine-access/og-image.png"]
-translationHash: "a5c5498f7480366c1eefe0a19d2a2ddb"
-chunkHashes: "e915b85ec3800274,d85de1493df14ffc,1be79fe612d716bf,f58a0c4da51dfe66,d6e563ee7d1e9c7e,818eb6ada77723a4"
+translationHash: "fd70a8c193455993700382e5ffc69140"
 ---
 
 Rara vez iba a la iglesia. No por rebeldía. Las preguntas espirituales siempre me llamaban, pero la respuesta organizada nunca lo hacía. Lo que me atraía eran los edificios mismos. Iba solo, me sentaba en naves vacías y sentía algo que los servicios nunca ofrecían. Aquellos arquitectos medievales eligieron sus sitios con precisión. Creo que construyeron sobre puntos de acupuntura del campo magnético de la tierra, y la geometría de la piedra amplifica lo que sea que haya allí. Respetaba a los constructores. No tenía uso para la institución que se instaló después.

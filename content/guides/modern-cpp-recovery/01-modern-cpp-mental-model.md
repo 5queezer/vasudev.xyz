@@ -1,6 +1,6 @@
 ---
 title: "01 — Modern C++ Mental Model"
-description: "Modern C++ is not “C with classes.” It is a language for building efficient systems using explicit ownership, deterministic cleanup, value semantics, and z"
+description: "Modern C++ builds efficient systems through explicit ownership, deterministic cleanup, value semantics, and zero-cost abstractions."
 weight: 1
 type: "guide"
 build:

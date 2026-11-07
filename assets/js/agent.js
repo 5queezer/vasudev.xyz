@@ -64,7 +64,7 @@
     <form class="agent-chat-form" data-form>
       <span class="agent-prompt">&gt;</span>
       <input class="agent-input" data-input type="text" autocomplete="off"
-             placeholder="${escapeAttr(placeholder)}" />
+             placeholder="${escapeAttr(placeholder)}" aria-label="${escapeAttr(placeholder)}" />
       <button class="agent-send" type="submit" aria-label="${escapeAttr(messages.agentSend)}">↑</button>
     </form>
     ${privacyNotice ? `<p class="agent-privacy">${escapeHTML(privacyNotice)} <a href="${escapeAttr(privacyUrl)}">${escapeHTML(privacyLabel)}</a></p>` : ''}

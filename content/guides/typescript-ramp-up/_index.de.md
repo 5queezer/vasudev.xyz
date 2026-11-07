@@ -42,15 +42,15 @@ Alles andere ist Vertrautheit mit dem Ökosystem.
 ### Phase 1 — Das Typsystem
 
 1. [Mentales Modell: Was TypeScript ist und was nicht](01-mental-model.md)
-2. [Grundlagen des Typsystems](02-type-system-core.md)
-3. [Discriminated Unions und Vollständigkeit](03-discriminated-unions.md)
+2. [Der Kern des Typsystems](02-type-system-core.md)
+3. [Discriminated Unions und Exhaustiveness](03-discriminated-unions.md)
 4. [Generics und Constraints](04-generics-and-constraints.md)
 5. [Mapped, Conditional und Utility Types](05-mapped-conditional-utility-types.md)
 6. [Narrowing: unknown, any und Type Guards](06-narrowing-and-guards.md)
 
 ### Phase 2 — Sprache und Laufzeit
 
-7. [Asynchronität und Concurrency](07-async-and-concurrency.md)
+7. [Async und Concurrency](07-async-and-concurrency.md)
 8. [Module, tsconfig und der Build-Prozess](08-modules-and-tsconfig.md)
 
 ### Phase 3 — Backend-TypeScript
@@ -64,9 +64,9 @@ Alles andere ist Vertrautheit mit dem Ökosystem.
 
 ### Phase 5 — Ausliefern und Interview
 
-12. [Tooling und Tests](12-tooling-and-testing.md)
-13. [Abschlussprojekt und Interview-Vorbereitung](13-capstone-and-interview.md)
-14. [Grundlagen und Referenzen](14-grounding-and-references.md)
+12. [Werkzeuge und Tests](12-tooling-and-testing.md)
+13. [Abschlussprojekt und Positionierung im Bewerbungsgespräch](13-capstone-and-interview.md)
+14. [Fundierung und Referenzen](14-grounding-and-references.md)
 
 ## Schnellster praktischer Plan
 
@@ -85,4 +85,4 @@ Sie ist modern, weit verbreitet und lässt sich gut auf Muster übertragen, die 
 
 ## Grundlagen
 
-Dies ist ein Schnelleinstieg, kein Ersatz für die offizielle Dokumentation. Die reinen TypeScript-Beispiele in diesem Leitfaden wurden im `strict`-Modus typgeprüft. Verbindliche Referenzen und Verifizierungsnotizen findest du unter [Grundlagen und Referenzen](14-grounding-and-references.md).
+Dies ist ein Schnelleinstieg, kein Ersatz für die offizielle Dokumentation. Die reinen TypeScript-Beispiele in diesem Leitfaden wurden im `strict`-Modus typgeprüft. Verbindliche Referenzen und Verifizierungsnotizen findest du unter [Fundierung und Referenzen](14-grounding-and-references.md).

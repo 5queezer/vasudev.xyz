@@ -1,6 +1,6 @@
 ---
 title: "14 — Undefined Behavior and Memory Safety"
-description: "Undefined behavior means the C++ standard places no requirements on what happens. The program may appear to work, crash, corrupt data, or become vulnerable"
+description: "Understand undefined behavior, common memory-safety pitfalls, and the tools that help detect them."
 weight: 14
 type: "guide"
 build:

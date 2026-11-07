@@ -42,20 +42,20 @@ Todo lo demás consiste en familiarizarse con el ecosistema.
 ### Fase 1 — El sistema de tipos
 
 1. [Modelo mental: qué es TypeScript y qué no es](01-mental-model.md)
-2. [Fundamentos del sistema de tipos](02-type-system-core.md)
+2. [El núcleo del sistema de tipos](02-type-system-core.md)
 3. [Uniones discriminadas y exhaustividad](03-discriminated-unions.md)
 4. [Genéricos y restricciones](04-generics-and-constraints.md)
-5. [Tipos mapeados, condicionales y utilitarios](05-mapped-conditional-utility-types.md)
+5. [Mapped Types, Conditional Types y Utility Types](05-mapped-conditional-utility-types.md)
 6. [Narrowing: unknown, any y Type Guards](06-narrowing-and-guards.md)
 
 ### Fase 2 — Lenguaje y entorno de ejecución
 
-7. [Programación asíncrona y concurrencia](07-async-and-concurrency.md)
-8. [Módulos, tsconfig y el proceso de build](08-modules-and-tsconfig.md)
+7. [Async y concurrencia](07-async-and-concurrency.md)
+8. [Módulos, tsconfig y el proceso de compilación](08-modules-and-tsconfig.md)
 
 ### Fase 3 — TypeScript en el backend
 
-9. [Stack de backend: Node, Hono o Fastify, Drizzle, Postgres](09-backend-stack.md)
+9. [Stack backend: Node, Hono o Fastify, Drizzle, Postgres](09-backend-stack.md)
 10. [Validación en los límites con Zod](10-validation-with-zod.md)
 
 ### Fase 4 — TypeScript en el frontend
@@ -65,7 +65,7 @@ Todo lo demás consiste en familiarizarse con el ecosistema.
 ### Fase 5 — Entrega y entrevista
 
 12. [Herramientas y pruebas](12-tooling-and-testing.md)
-13. [Proyecto final y preparación para entrevistas](13-capstone-and-interview.md)
+13. [Proyecto final y enfoque para entrevistas](13-capstone-and-interview.md)
 14. [Fundamentación y referencias](14-grounding-and-references.md)
 
 ## Plan práctico más rápido

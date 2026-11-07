@@ -7,5 +7,3 @@ build:
 translationHash: "4747965331ff237159ac924b7e55bd82"
 ---
 Fokussierte technische Werkbänke mit ausführbaren Beispielen, Verifizierungsnotizen und interviewtauglichen mentalen Modellen. Beginne mit dem Sprachpfad, der zur Rolle passt, und nutze anschließend die Kapitelprüfungen als konkreten Gesprächsleitfaden.
-
-Die Kapitel sind derzeit auf Englisch.

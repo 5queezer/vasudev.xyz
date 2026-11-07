@@ -13,8 +13,9 @@ for (const [lang, messages] of Object.entries({
   test(`${lang}: search preserves locale through count, empty and reset states`, async () => {
     const input = { value: '', events: {}, addEventListener(event, fn) { this.events[event] = fn; } };
     const suggestions = { innerHTML: '', appendChild() {} };
-    const status = {};
-    const results = {};
+    const status = { textContent: '' };
+    const serverPageHtml = '<a class="essay-card" href="/page-one/">Server page card</a>';
+    const results = { innerHTML: serverPageHtml };
     const pagination = {};
     const controls = { '[data-blog-search-input]': input, '[data-blog-search-suggestions]': suggestions, '[data-blog-search-status]': status };
     const root = { dataset: { indexUrl: `/${lang}/blog/search.json` }, querySelector: selector => controls[selector] };
@@ -27,9 +28,12 @@ for (const [lang, messages] of Object.entries({
       fetch: async () => ({ ok: true, json: async () => [
         { title: 'Alpha', searchText: 'alpha system', url: `/${lang}/alpha/` },
         { title: 'Beta', searchText: 'beta system', url: `/${lang}/beta/` },
+        { title: 'Gamma', searchText: 'gamma', url: `/${lang}/gamma/` },
+        { title: 'Delta', searchText: 'delta', url: `/${lang}/delta/` },
       ] }),
     });
     await new Promise(setImmediate);
+    assert.equal(results.innerHTML, serverPageHtml, 'loading the full index must preserve the paginated server page');
     assert.equal(status.textContent, '');
     input.value = 'system'; input.events.input();
     assert.equal(status.textContent, messages.searchMatchingMany.replace('{count}', '2'));
@@ -39,6 +43,7 @@ for (const [lang, messages] of Object.entries({
     input.value = 'missing'; input.events.input();
     assert.ok(results.innerHTML.includes(messages.searchEmpty));
     input.value = ''; input.events.input();
+    assert.equal(results.innerHTML, serverPageHtml, 'clearing search must restore the paginated server page');
     assert.equal(pagination.hidden, false);
     assert.equal(status.textContent, '');
   });
@@ -82,3 +87,15 @@ for (const [lang, messages] of Object.entries({
     });
   }
 }
+
+test('rendered controls expose accessible status and labels', () => {
+  const blogTemplate = fs.readFileSync(path.join(__dirname, '../layouts/blog/list.html'), 'utf8');
+  const agentScript = source('agent.js');
+  const navigationScript = source('lang-toggle.js');
+  const navbarTemplate = fs.readFileSync(path.join(__dirname, '../layouts/partials/navbar.html'), 'utf8');
+
+  assert.match(blogTemplate, /role="status"[^>]+aria-live="polite"/);
+  assert.match(agentScript, /class="agent-input"[\s\S]+aria-label="\$\{escapeAttr\(placeholder\)\}"/);
+  assert.match(navbarTemplate, /<details class="mobile-nav">[\s\S]+i18n "nav_guides"[\s\S]+<\/details>/);
+  assert.match(navigationScript, /mobileNav\.open = false/);
+});

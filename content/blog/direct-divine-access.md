@@ -7,7 +7,6 @@ agentQuestions:
   - "How do these traditions describe direct access?"
   - "What practice protocol follows from the post?"
 description: "Yoga, Gnosticism, Zen, Christian mysticism. They all show the same thing: direct connection was always there. Who blocked it, and how do you get back?"
-images: ["/blog/direct-divine-access/og-image.png"]
 ---
 
 I seldom went to church. Not out of rebellion. Spiritual questions always pulled me, but the organized answer never did. What drew me were the buildings themselves. I would go alone, sit in empty naves, and feel something the services never delivered. Those medieval architects chose their sites with precision. I believe they built on acupuncture points of the earth's magnetic field, and the stone geometry amplifies whatever is there. I respected the builders. I had no use for the institution that moved in afterward.
