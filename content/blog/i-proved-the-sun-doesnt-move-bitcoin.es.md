@@ -1,7 +1,8 @@
 ---
-title: "Intenté predecir Bitcoin con manchas solares y terminé montando una startup con lo que sobró"
+title: "Intenté predecir Bitcoin a partir de las manchas solares y luego construí una startup con lo que sobró"
 date: 2026-11-14
-description: "Cómo maté una mala idea de trading con estadísticas adecuadas, para luego saltarme el mismo rigor en el negocio de GPS que construí con sus datos."
+description: "Cómo maté una mala idea de trading con estadísticas adecuadas, y luego omití el mismo rigor para el negocio de GPS que construí a partir de sus datos"
+images: ["/images/i-proved-the-sun-doesnt-move-bitcoin-og.png"]
 author: "Christian Pojoni"
 tags: ["ai", "architecture"]
 agentQuestions:
@@ -9,9 +10,10 @@ agentQuestions:
   - "¿Qué falló con el pivote de la API de fiabilidad del GPS?"
   - "¿Qué criterios de abandono debería tener un proyecto paralelo antes del primer commit?"
 series: ["Field Notes"]
-translationHash: "bf60033b0c5ebaf40b2ef5e99767a50e"
+translationHash: "c31ee5c75d53c7f0e39700daa76c2101"
 chunkHashes: "62e2a79f51d1202f,17752a5d895e3fcd,b94c9831b71f85e3,6423c38441c57452,21c5050f9461f530,6beb0944e566af0f,461d8218536fa367,51b40360db4921ce,a74d7511c4a98c63"
 ---
+
 Hace un año pasé unas semanas intentando predecir el precio de Bitcoin a partir del clima espacial. Llamé al proyecto Sun2BTC, lo que te dice más o menos lo en serio que debería haberlo tomado.
 
 El plan era simple. NOAA publica años de mediciones diarias sobre el Sol: manchas solares, flujo de protones y electrones, lo alterado que está el campo magnético de la Tierra. Obtuve cinco años de esos datos, los convertí en un montón de características y le pregunté a un modelo si alguno de eso ayudaba a predecir lo que haría Bitcoin al día siguiente. Los primeros backtests devolvieron "ligeramente mejor que el azar", y sentí ese pequeño subidón que tienes cuando una idea tonta puede que no lo sea tanto.
