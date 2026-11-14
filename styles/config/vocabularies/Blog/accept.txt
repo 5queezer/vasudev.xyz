@@ -11,6 +11,8 @@ APIs
 APO
 arXiv
 Athale
+backtesting
+backtests
 Barbosa
 Barks
 benchmarked
@@ -50,6 +52,7 @@ Gnosis
 Goodhart's
 GPUs
 Gradio
+Grafana
 Graphify
 GraphRAG
 Haruki
@@ -145,7 +148,9 @@ kleshas
 Kombai
 Kosha
 Koshas
+Kp
 Leiden
+lidar
 literatures
 LLM's
 LLMs
@@ -177,10 +182,12 @@ nondeterministic
 Nygard
 Nygard's
 OAuth
+odometry
 Ollama
 ontologies
 ontology
 Optuna
+overfit
 Patanjali
 Pojoni
 Postgres
@@ -204,6 +211,7 @@ Sutras
 Traefik
 Transposases
 Tree-sitter
+Trimble
 TruthfulQA
 UIs
 underperform
