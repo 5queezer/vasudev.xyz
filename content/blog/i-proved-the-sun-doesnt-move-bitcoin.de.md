@@ -1,17 +1,19 @@
 ---
-title: "Ich versuchte, Bitcoin anhand von Sonnenflecken vorherzusagen, und baute dann ein Startup aus dem, was übrig blieb"
+title: "Ich versuchte, Bitcoin anhand von Sonnenflecken vorherzusagen – und baute ein Startup aus den Überresten"
 date: 2026-11-14
-description: "Wie ich eine schlechte Trading-Idee mit richtiger Statistik widerlegte, dann aber dieselbe Strenge beim GPS-Geschäft, das ich aus den Daten aufbaute, vermissen ließ."
+description: "Wie ich eine schlechte Handelsidee mit richtiger Statistik tötete, dann aber dieselbe Sorgfalt beim GPS-Geschäft, das ich aus ihren Daten aufbaute, vernachlässigte."
+images: ["/images/i-proved-the-sun-doesnt-move-bitcoin-og.png"]
 author: "Christian Pojoni"
 tags: ["ai", "architecture"]
 agentQuestions:
   - "Warum ist die Sun2BTC-Hypothese gescheitert?"
-  - "Was war falsch am GPS Reliability API Pivot?"
-  - "Welche Abbruchkriterien sollte ein Side Project vor dem ersten Commit haben?"
+  - "Was war falsch am Pivot der GPS Reliability API?"
+  - "Welche Abbruchkriterien sollte ein Nebenprojekt vor dem ersten Commit haben?"
 series: ["Field Notes"]
-translationHash: "bf60033b0c5ebaf40b2ef5e99767a50e"
+translationHash: "c31ee5c75d53c7f0e39700daa76c2101"
 chunkHashes: "62e2a79f51d1202f,17752a5d895e3fcd,b94c9831b71f85e3,6423c38441c57452,21c5050f9461f530,6beb0944e566af0f,461d8218536fa367,51b40360db4921ce,a74d7511c4a98c63"
 ---
+
 Vor einem Jahr verbrachte ich ein paar Wochen damit, den Bitcoin-Preis aus dem Weltraumwetter vorherzusagen. Ich nannte das Projekt Sun2BTC, was ziemlich genau verrät, wie ernst ich es hätte nehmen sollen.
 
 Der Plan war simpel. Die NOAA veröffentlicht seit Jahren tägliche Messungen über die Sonne: Sonnenflecken, Protonen- und Elektronenfluss, wie stark das Erdmagnetfeld gestört ist. Ich zog fünf Jahre davon, wandelte es in einen Haufen Features um und fragte ein Modell, ob irgendetwas davon half, vorherzusagen, was Bitcoin am nächsten Tag tun würde. Die ersten Backtests kamen mit „leicht besser als zufällig“ zurück, und ich bekam diesen kleinen Schub, den man bekommt, wenn eine dumme Idee vielleicht gar nicht so dumm ist.
