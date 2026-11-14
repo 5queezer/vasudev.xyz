@@ -2,6 +2,7 @@
 title: "I Tried to Predict Bitcoin From Sunspots, Then Built a Startup on the Leftovers"
 date: 2026-11-14
 description: "How I killed a bad trading idea with proper statistics, then skipped the same rigor for the GPS business I built out of its data."
+images: ["/images/i-proved-the-sun-doesnt-move-bitcoin-og.png"]
 author: "Christian Pojoni"
 tags: ["ai", "architecture"]
 agentQuestions:
