@@ -11,8 +11,8 @@ series_weight: 1
 description: "Los agentes de IA capturan recuerdos pero nunca los consolidan. Así es como el Motor de Sueños de MuninnDB se inspira en la neurociencia para solucionar eso."
 images: ["/images/dream-engine.png"]
 aliases: ["/blog/stop-hoarding-memories-let-your-agent-sleep/"]
-translationHash: "1673025680449bc13a09226042751f96"
-chunkHashes: "3b0ff2655d6195a8,eef9438b5c27cddb,5d70b12018209cbb,bc19745059a2ec72,583aa6b526db12dc,9953ab1d0ae9aab0,5d64f27797af7a7f,63274f06db4f9fc5"
+translationHash: "a05ba092a5c9e443459974a79db7bcf8"
+chunkHashes: "3b0ff2655d6195a8,eef9438b5c27cddb,5d70b12018209cbb,bc19745059a2ec72,583aa6b526db12dc,9953ab1d0ae9aab0,22f0c4653a31e8da,6c1b5d52707fdf71"
 ---
 
 Contribuyo a una base de datos cognitiva para agentes de IA llamada [MuninnDB](https://github.com/scrypster/muninndb). Almacena todo: notas de sesiones, contexto del proyecto, observaciones de trabajo, documentación legal. Después de unas semanas de uso diario, las entradas se acumulan. Encontrar cosas sigue funcionando. La búsqueda semántica es buena para la recuperación. Pero el almacén mismo se estaba pudriendo. Entradas casi duplicadas de sesiones que cubrían el mismo terreno. Hechos obsoletos sustituidos por otros más recientes. No había un sistema para distinguir “nota legal crítica” de “comentario informal sobre la red Docker”.
@@ -119,7 +119,7 @@ Aquí está lo que producirá una ejecución de sueño una vez que las fases LLM
 *Escaneados 47 entradas en 3 bóvedas (legales: 8 omitidas) en 4,2 s*
 ```
 
-Cada mañana, lees lo que tu sistema de memoria soñó. Las conexiones que notó. El ruido que limpió. Las contradicciones que resolvió. Es un registro de cambios para tu conocimiento, escrito en prosa. MuninnDB es el backend de memoria cognitiva para [Hrafn](https://github.com/5queezer/hrafn), un entorno de ejecución de agentes IA ligero y modular.
+Cada mañana, lees lo que tu sistema de memoria soñó. Las conexiones que notó. El ruido que limpió. Las contradicciones que resolvió. Es un registro de cambios para tu conocimiento, escrito en prosa.
 ## Pruébalo
 
 La fundación de solo lectura (Fase 0 + deduplicación configurable + CLI de ejecución en seco) se envió en el [PR #306](https://github.com/scrypster/muninndb/pull/306) y ya está fusionada. Las fases de escritura (estabilidad bidireccional, consolidación LLM, diario) seguirán en un PR separado. La especificación completa del diseño se encuentra en el repositorio en `docs/superpowers/specs/2026-03-28-dream-engine-design.md`.
@@ -132,4 +132,4 @@ muninn dream --dry-run
 
 ---
 
-*Christian Pojoni construye la infraestructura de agentes de IA. [Hrafn](https://github.com/5queezer/hrafn) es el runtime. [MuninnDB](https://github.com/scrypster/muninndb) es la memoria.*
+*Christian Pojoni construye la infraestructura de agentes de IA y contribuye a [MuninnDB](https://github.com/scrypster/muninndb).*

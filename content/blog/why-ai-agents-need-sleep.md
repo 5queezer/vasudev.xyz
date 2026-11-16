@@ -123,7 +123,7 @@ Here is what a dream run will produce once the LLM phases ship in a follow-up PR
 *Scanned 47 entries across 3 vaults (legal: 8 skipped) in 4.2s*
 ```
 
-Every morning, you read what your memory system dreamed about. The connections it noticed. The noise it cleaned up. The contradictions it resolved. It is a changelog for your knowledge, written in prose. MuninnDB is the cognitive memory backend for [Hrafn](https://github.com/5queezer/hrafn), a lightweight, modular AI agent runtime.
+Every morning, you read what your memory system dreamed about. The connections it noticed. The noise it cleaned up. The contradictions it resolved. It is a changelog for your knowledge, written in prose.
 
 ## Try it
 
@@ -137,6 +137,6 @@ muninn dream --dry-run
 
 ---
 
-*Christian Pojoni builds AI agent infrastructure. [Hrafn](https://github.com/5queezer/hrafn) is the runtime. [MuninnDB](https://github.com/scrypster/muninndb) is the memory.*
+*Christian Pojoni builds AI agent infrastructure and contributes to [MuninnDB](https://github.com/scrypster/muninndb).*
 
 

@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 5
 description: "Neurowissenschaften, aktuelle KI-Papiere und ein antiker Sanskrit-Text konvergieren auf dieselbe Erkenntnis über Offline‑Konsolidierung, doch sie sind sich uneinig, welche Schlafphase am wichtigsten ist."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "63870ef6fa2f5af16cc207e07a3c663c"
-chunkHashes: "a643ecf4e84e8c37,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
+translationHash: "cf4bb013b5818f1e05d9baa72d5120c6"
+chunkHashes: "a643ecf4e84e8c37,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,87d426de78ce703d"
 ---
 [Mein letzter Beitrag](/blog/why-ai-agents-need-sleep/) argumentierte, dass KI‑Agenten Schlaf benötigen. Mehrere Personen stellten die offensichtliche Folgefrage: Was bedeutet das eigentlich? Ist „Schlaf“ nur eine Metapher für das Ausführen eines Cron‑Jobs, oder geht die Analogie tiefer?
 
@@ -86,6 +86,6 @@ Lesen Sie den [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) 
 
 ---
 
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges Rust‑Agent‑Runtime, und trägt zu [MuninnDB](https://github.com/scrypster/muninndb) bei. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni trägt zu [MuninnDB](https://github.com/scrypster/muninndb) bei. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
 
 *Das Titelbild dieses Beitrags wurde von KI erzeugt.*

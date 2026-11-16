@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "Gedächtniskonsolidierung sieht in Dashboards großartig aus. Aber wenn sich Ihre Metriken verbessern können, ohne dass der Abruf besser wird, optimieren Sie einen abgekoppelten Proxy."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "be931aa83e6ee2d7d2fdb4867699e550"
-chunkHashes: "195c2275b5f794ca,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+translationHash: "f946e9b5d8e6047ab3447412c3ff6cf0"
+chunkHashes: "195c2275b5f794ca,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,55318fe50695070d,5e1a4e51436a34c6"
 ---
 Ich habe ein System zur Gedächtniskonsolidierung für KI‑Agenten gebaut. Es dedupliziert Erinnerungen, stärkt Assoziationen, lässt veraltete Einträge verfallen und erzeugt ein Traumtagebuch, das man tatsächlich lesen kann. Das Dashboard sieht fantastisch aus: Deduplizierungsrate steigt, Gedächtniszählung sinkt, Assoziationsdichte steigt.
 
@@ -74,7 +74,7 @@ Die Lösung ist in jedem Fall dieselbe: Definiere die wahre Zielgröße, die dir
 
 Der Proxy‑Integritäts‑Aufsatz analysiert auch die „zeitliche Kompression“, bei der das Erscheinungsbild von Können erzeugt wird, ohne dass der zugrunde liegende Prozess vorhanden ist. Das entspricht synthetischen Benchmarks, bei denen Sie Testdaten generieren, die realistisch aussehen, aber nicht die statistischen Eigenschaften echter Agenten‑Interaktionen besitzen. Ich verwende von LLM‑generierte synthetische Tresoreinträge für kontrollierte Ground‑Truth‑Szenarien, aber sie sind Ergänzungen zu LongMemEval, keine Ersatzlösungen.
 
-Ich habe den Multi‑Agent‑Fall nicht behandelt, bei dem das konsolidierte Gedächtnis eines Agenten in den Kontext eines anderen Agenten einfließt. Eine Proxy‑Abkopplung in diesem Kontext könnte sich kaskadieren: Schlechte Konsolidierung stromaufwärts erzeugt fehlerhafte Abrufe stromabwärts, während beide Agenten‑Dashboards gut aussehen. Das ist ein Problem für Hrafns A2A‑Protokoll‑Arbeit, aber zukünftiger Umfang. Ein verwandtes Problem: Agent Cards in A2A enthalten eine `agent_id`, aber es gibt keine Bindung dieser ID an die Interaktionshistorie. Ein bösartiger Agent kann seine Karte regenerieren und mit frischer Reputation starten. Flyxions ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formalisiert genau diesen Fehlermodus. Das ist ein separater Beitrag.
+Ich habe den Multi‑Agent‑Fall nicht behandelt, bei dem das konsolidierte Gedächtnis eines Agenten in den Kontext eines anderen Agenten einfließt. Eine Proxy‑Abkopplung in diesem Kontext könnte sich kaskadieren: Schlechte Konsolidierung stromaufwärts erzeugt fehlerhafte Abrufe stromabwärts, während beide Agenten‑Dashboards gut aussehen. Das betrifft die Arbeit am Agent‑to‑Agent‑Protokoll (A2A), ist aber zukünftiger Umfang. Ein verwandtes Problem: Agent Cards in A2A enthalten eine `agent_id`, aber es gibt keine Bindung dieser ID an die Interaktionshistorie. Ein bösartiger Agent kann seine Karte regenerieren und mit frischer Reputation starten. Flyxions ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formalisiert genau diesen Fehlermodus. Das ist ein separater Beitrag.
 
 Die Analyse des Aufsatzes zu Plattform‑Anreizen (Werbemodelle sind wirtschaftlich von Signaldegradation isoliert) hat ein Gegenstück in Open‑Source: Sternzahlen und Download‑Metriken sind Proxy‑Werte für Nutzen, die sich ebenso leicht entkoppeln können. Aber das ist ein anderer Beitrag.
 ## Das Prinzip
@@ -85,10 +85,10 @@ Wenn deine Konsolidierungs‑Metriken steigen können, während die Fähigkeit d
 
 Verankere deine Metriken. Führe Benchmarks durch, bevor du veröffentlichst. Verwerfe jedes Signal, das unabhängig von dem, was dir tatsächlich wichtig ist, verschoben werden kann.
 
-Die vollständige Dream‑Engine‑Implementierung findet sich in [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). Das Benchmark‑Gerüst, das die Schreibpfade blockiert, ist [issue #311](https://github.com/scrypster/muninndb/issues/311). Wenn du Agent‑Speichersysteme baust und Notizen zum Verankern von Abruf‑Metriken vergleichen möchtest, öffne ein Issue auf [Hrafn](https://github.com/5queezer/hrafn).
+Die vollständige Dream‑Engine‑Implementierung findet sich in [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). Das Benchmark‑Gerüst, das die Schreibpfade blockiert, ist [issue #311](https://github.com/scrypster/muninndb/issues/311).
 
 ---
 
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges KI‑Agent‑Runtime für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni baut KI‑Agent‑Infrastruktur für Edge‑Hardware. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
 
 *Das Titelbild dieses Beitrags wurde von KI erzeugt.*

@@ -8,8 +8,8 @@ agentQuestions:
   - "Wie sollten Agenten stattdessen die ADRs abrufen?"
 description: "Zwei Studien aus dem Jahr 2026 sind sich uneinig darüber, ob AGENTS.md Coding‑Agenten hilft. Der Streit ist nachvollziehbar, sobald man den Push‑Kontext vom Pull‑Kontext trennt."
 images: ["/images/push-pull-context-og.png"]
-translationHash: "9e4e621132dc5df16cef59d00df6e1cf"
-chunkHashes: "68159f4342020e26,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
+translationHash: "5ce9142b7e95908f314b64b67071e288"
+chunkHashes: "68159f4342020e26,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,7ed5a817a65c9753"
 ---
 Zwei rigorose Studien aus dem Jahr 2026 untersuchten, ob Kontext‑Dateien für Agenten KI‑Coding‑Agenten unterstützen. Sie kamen zu gegensätzlichen Schlussfolgerungen. Die Gruppe der ETH Zürich führte SWE‑bench Lite und AGENTbench mit mehreren Modellen durch und **stellte fest, dass von LLM‑generierte AGENTS.md‑Dateien den Erfolg von Aufgaben um 3 % verringerten und die Inferenzkosten um 20 % erhöhten** (https://arxiv.org/abs/2602.11988). Von Entwicklern geschriebene Dateien brachten einen marginalen Anstieg von 4 % bei den gleichen Kosten. Ein Monat zuvor berichtete **Lulla et al. das Gegenteil** (https://arxiv.org/abs/2601.20404) in einem sauberen, gepaarten Experiment mit 124 realen GitHub‑PRs: Das Vorhandensein von AGENTS.md reduzierte die mediane Laufzeit um 28,64 % und die Ausgabetoken um 16,58 %.
 
@@ -86,6 +86,6 @@ Die beiden Studien widersprechen sich nicht. Sie messen zwei unterschiedliche In
 
 ---
 
-*Christian Pojoni schreibt über agentenorientiertes Programmieren, Rust und Trading‑Infrastruktur auf [vasudev.xyz](https://vasudev.xyz). Er entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑Agenten‑Framework, und trägt zu MuninnDB bei.*
+*Christian Pojoni schreibt über agentenorientiertes Programmieren, Rust und Trading‑Infrastruktur auf [vasudev.xyz](https://vasudev.xyz). Er trägt zu MuninnDB bei.*
 
 *Das Titelbild für diesen Beitrag wurde von KI erzeugt.*

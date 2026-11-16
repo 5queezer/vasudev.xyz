@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Selbstentwickelnde KI‑Systeme scheitern, wenn sie einen festen Evaluator optimieren. Das biologische Modell ist richtig: Was sich entwickeln muss, ist der Selektionsdruck, nicht nur das Genom."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "1da0be4f5958e30250cbcea567f1647d"
-chunkHashes: "9d0ab02967fb8ff0,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
+translationHash: "1e438ea527343b31071e8815d68ca780"
+chunkHashes: "9d0ab02967fb8ff0,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,83993b247f13a834"
 ---
 Ich habe eine Woche damit verbracht, eine „vektor‑nativ programmierte Sprache für LLMs“ zu entwerfen. Die Idee war, das Verhalten des Modells direkt auf Aktivierungsebene zu programmieren, keine Prompts, nur Interventionsvektoren. Es war intellektuell befriedigend und praktisch falsch. Was ich eigentlich wollte, war keine Sprache. Es war ein Organismus.
 
@@ -76,14 +76,14 @@ Jede behaltene Mutation benötigt einen Rollback‑Handle. Nicht als Sicherheits
 
 ---
 
-Die Verbindung zu [Hrafn](https://github.com/5queezer/hrafn) ist direkt. MuninnDB ist die Persistenzschicht. Die Dream Engine, modelliert nach der Gedächtniskonsolidierung in der Schlafphase, ist der Mechanismus, der flüchtige Beobachtungen in mittelfristige Policies überführt. Die fehlenden Bausteine sind die Such‑Policy und der zusammenentwickelnde Evaluator. Das wird als Nächstes gebaut.
+Die Verbindung zu [MuninnDB](https://github.com/scrypster/muninndb) ist direkt. Sie ist die Persistenzschicht. Die Dream Engine, modelliert nach der Gedächtniskonsolidierung in der Schlafphase, ist der Mechanismus, der flüchtige Beobachtungen in mittelfristige Policies überführt. Die fehlenden Bausteine sind die Such‑Policy und der zusammenentwickelnde Evaluator. Das wird als Nächstes gebaut.
 
 Wenn du in diesem Bereich arbeitest, ist das am meisten wertvolle Vorwissen nicht aus dem ML‑Bereich. Es stammt aus der Evolutionsbiologie: Die Umgebung führt die Selektion durch. Deine Aufgabe ist es, die Umgebung zu bauen, nicht das Lebewesen.
 
-Fange mit [Hrafn](https://github.com/5queezer/hrafn) und der [MuninnDB‑Persistenzschicht](https://github.com/5queezer/hrafn) an. Die Trennung von Genom/Phänotyp ist bereits verkabelt. Was gebaut werden muss, ist der Evaluator, der zusammen mit dem System, das er misst, co‑evolviert.
+Fange mit der [MuninnDB‑Persistenzschicht](https://github.com/scrypster/muninndb) an. Die Trennung von Genom/Phänotyp ist bereits verkabelt. Was gebaut werden muss, ist der Evaluator, der zusammen mit dem System, das er misst, co‑evolviert.
 
 ---
 
-*Christian Pojoni baut KI‑Agent‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz). Aktuelle Arbeit: [Hrafn](https://github.com/5queezer/hrafn), ein Rust‑basiertes Agent‑Runtime.*
+*Christian Pojoni baut KI‑Agent‑Infrastruktur und schreibt darüber auf [vasudev.xyz](https://vasudev.xyz).*
 
 *Das Titelbild dieses Beitrags wurde von KI generiert.*

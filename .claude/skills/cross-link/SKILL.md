@@ -125,7 +125,6 @@ Update this list as new posts are added:
 | gemma3-sae-measurement-timing | Sycophancy at encoding vs hallucination at generation. Measurement window matters. |
 | ai-environment-design | Environment design over organism design. Co-evolving evaluators. |
 | adding-oauth-mcp-server-gotchas | OAuth MCP gotchas. Each section: problem, wrong assumption, fix. |
-| shipping-a2a-protocol-support-in-rust | A2A protocol in Rust. Agent-to-agent without central orchestrator. |
 | direct-divine-access | Direct access to the divine. Intermediaries as failure mode. |
 | automated-circuit-discovery | SAE features can't isolate relations. Mutation loop with probes can. Tokenization bottleneck. |
 

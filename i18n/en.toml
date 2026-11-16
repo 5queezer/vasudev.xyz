@@ -217,9 +217,6 @@ other = "MCP · market feed"
 [preview_key]
 other = "XChaCha20 · local key"
 
-[preview_memory]
-other = "FTS5 · vector memory"
-
 
 [collection_topics]
 other = "Categories"

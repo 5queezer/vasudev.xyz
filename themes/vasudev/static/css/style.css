@@ -689,11 +689,6 @@ button:focus-visible {
   border-color: rgba(56, 128, 200, 0.25);
   color: #5ba0d6;
 }
-.quick-link-nexus .quick-link-icon {
-  background: rgba(212, 151, 99, 0.14);
-  border-color: rgba(212, 151, 99, 0.25);
-  color: var(--accent-strong);
-}
 .quick-link-email .quick-link-icon {
   background: rgba(142, 197, 160, 0.14);
   border-color: rgba(142, 197, 160, 0.25);
@@ -709,11 +704,6 @@ button:focus-visible {
   background: rgba(10, 102, 194, 0.08);
   border-color: rgba(10, 102, 194, 0.15);
   color: #0a66c2;
-}
-[data-theme="light"] .quick-link-nexus .quick-link-icon {
-  background: rgba(159, 99, 55, 0.08);
-  border-color: rgba(159, 99, 55, 0.15);
-  color: var(--accent);
 }
 [data-theme="light"] .quick-link-email .quick-link-icon {
   background: rgba(53, 105, 74, 0.08);

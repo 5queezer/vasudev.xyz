@@ -99,8 +99,6 @@ The high Cohen's d with low LOO accuracy (66%) points to dimensional overfitting
 
 A single linear probe can't separate what isn't a single signal. This shifts the research question from "wrong timing" to "wrong abstraction level." Per-error-type probes on curated subsets (misconception-only, grounding-failure-only) are the next step. That's a different experiment.
 
-Code: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
-
 ---
 
 ## What I Left Out

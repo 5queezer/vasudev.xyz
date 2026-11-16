@@ -260,31 +260,6 @@
   stroke-width: 9;
   stroke-linejoin: round;
 }
-.project-preview--distill {
-  background: radial-gradient(circle at 50% 50%, #3d6472, #162632 72%);
-}
-.preview-graph-lines {
-  fill: none;
-  stroke: rgb(165 222 224/0.38);
-  stroke-width: 4;
-}
-.preview-node {
-  fill: #81bfc5;
-  stroke: #d9f7f2;
-  stroke-width: 3;
-}
-.preview-node--small {
-  opacity: 0.75;
-}
-.preview-node--core {
-  fill: #88ddc8;
-}
-.preview-memory {
-  fill: none;
-  stroke: #173b42;
-  stroke-width: 7;
-  stroke-linecap: round;
-}
 .project-preview--aver {
   background: linear-gradient(145deg, #282945, #526b83);
 }

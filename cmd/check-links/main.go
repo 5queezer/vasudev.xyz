@@ -258,15 +258,6 @@ func shouldSkipURL(url string) bool {
 			return true
 		}
 	}
-	// Private repositories that are correct but not publicly accessible
-	for _, prefix := range []string{
-		"https://github.com/5queezer/hrafn/",
-		"https://github.com/5queezer/gemma-sae/",
-	} {
-		if strings.HasPrefix(url, prefix) {
-			return true
-		}
-	}
 	return false
 }
 

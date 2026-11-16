@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 6
 description: "Los harnesses de IA autoevolutiva fallan cuando optimizan un evaluador fijo. El modelo biológico tiene razón: lo que necesita evolucionar es la presión de selección, no solo el genoma."
 images: ["/images/ai-environment-design-og.png"]
-translationHash: "1da0be4f5958e30250cbcea567f1647d"
-chunkHashes: "9d0ab02967fb8ff0,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,46b3940c189647a6"
+translationHash: "1e438ea527343b31071e8815d68ca780"
+chunkHashes: "9d0ab02967fb8ff0,f75cd0c5f987c056,16ff48cc1008e801,ea0de01ec9fe3288,e25ca86ec3da9258,83993b247f13a834"
 ---
 Pasé una semana intentando diseñar un "lenguaje de programación nativo de vectores para LLMs". La idea era programar el comportamiento del modelo directamente a nivel de activación, sin indicaciones, solo vectores de intervención. Fue intelectualmente satisfactorio y, en la práctica, incorrecto. Lo que realmente quería no era un lenguaje. Era un organismo.
 
@@ -72,14 +72,14 @@ Cada mutación conservada necesita un manejador de reversión. No como una carac
 
 ---
 
-La conexión con [Hrafn](https://github.com/5queezer/hrafn) es directa. MuninnDB es la capa de persistencia. El Motor de Sueño, modelado sobre la consolidación de la memoria en fases de sueño, es el mecanismo que promueve observaciones efímeras a política de medio plazo. Las piezas faltantes son la política de búsqueda y el evaluador co‑evolutivo. Eso es lo que se construirá a continuación.
+La conexión con [MuninnDB](https://github.com/scrypster/muninndb) es directa. Es la capa de persistencia. El Motor de Sueño, modelado sobre la consolidación de la memoria en fases de sueño, es el mecanismo que promueve observaciones efímeras a política de medio plazo. Las piezas faltantes son la política de búsqueda y el evaluador co‑evolutivo. Eso es lo que se construirá a continuación.
 
 Si estás trabajando en este espacio, el paradigma que más vale la pena tomar prestado no proviene del ML. Proviene de la biología evolutiva: el entorno hace la selección. Tu trabajo es construir el entorno, no el organismo.
 
-Empieza con [Hrafn](https://github.com/5queezer/hrafn) y la capa de persistencia [MuninnDB](https://github.com/5queezer/hrafn). La separación genoma/fenotipo ya está cableada. Lo que necesita construirse es el evaluador que co‑evoluciona con el sistema que mide.
+Empieza con la capa de persistencia [MuninnDB](https://github.com/scrypster/muninndb). La separación genoma/fenotipo ya está cableada. Lo que necesita construirse es el evaluador que co‑evoluciona con el sistema que mide.
 
 ---
 
-*Christian Pojoni construye infraestructura de agentes de IA y escribe sobre ello en [vasudev.xyz](https://vasudev.xyz). Trabajo actual: [Hrafn](https://github.com/5queezer/hrafn), un runtime de agente basado en Rust.*
+*Christian Pojoni construye infraestructura de agentes de IA y escribe sobre ello en [vasudev.xyz](https://vasudev.xyz).*
 
 *La imagen de portada de este post fue generada por IA.*
