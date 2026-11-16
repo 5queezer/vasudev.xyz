@@ -10,12 +10,12 @@ agentQuestions:
   - "Wie sollte die MCP‑OAuth‑Entdeckung konfiguriert werden?"
   - "Was sind die Stolperfallen bei selbstgehostetem OAuth?"
 series: ["Field Notes"]
-translationHash: "af786211688d6c5e9e0ca57073b600bf"
-chunkHashes: "6eba93364acab05c,d3bb3fec7b569eeb,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
+translationHash: "90cd5c962d1694cd3791fdd1c24a797d"
+chunkHashes: "3fdeff2b9325e140,ec4849ca076d1c2f,d08f4bf02c40372d,58ef9e41ba4ef7d8,4eaf9f6c399894ba,db1e3d7423007539,651655b1329fc8fa"
 ---
 MCP (Model Context Protocol) ermöglicht es KI‑Assistenten, Werkzeuge auf entfernten Servern aufzurufen. Wenn Ihr MCP‑Server jedoch selbst gehostet wird, muss sich claude.ai gegen Ihre Benutzerkonten authentifizieren und nicht gegen die von Anthropic. Das bedeutet, dass Ihr Server zu einem vollständigen OAuth 2.1‑Anbieter werden muss: Dynamische Client‑Registrierung, Autorisierungscode mit PKCE, Token‑Austausch.
 
-Ich habe einen [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um dies zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume) hinzuzufügen, dem Open‑Source‑Lebenslauf‑Builder. Sechs Commits, ein mittlerer Refaktor nach einer De‑precation‑Warnung des Maintainers und mehrere Stunden Debugging der Auth‑Ketten. Dies ist die OAuth‑Seite dieser [Geschichte](/blog/shipping-a2a-protocol-support-in-rust/).
+Ich habe einen [PR #2829](https://github.com/amruthpillai/reactive-resume/pull/2829) eingereicht, um dies zu [Reactive Resume](https://github.com/amruthpillai/reactive-resume) hinzuzufügen, dem Open‑Source‑Lebenslauf‑Builder. Sechs Commits, ein mittlerer Refaktor nach einer De‑precation‑Warnung des Maintainers und mehrere Stunden Debugging der Auth‑Ketten.
 
 **MCP OAuth funktioniert, aber die Spezifikation enthält vier Fallen, die Tutorials übersehen.**
 ## 1. Ihr MCP‑Server benötigt zwei .well-known‑Endpunkte, nicht nur einen

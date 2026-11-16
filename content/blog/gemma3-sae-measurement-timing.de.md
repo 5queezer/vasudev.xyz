@@ -10,8 +10,8 @@ series: ["Reading the Residual Stream"]
 series_weight: 1
 description: "Warum Sycophancy‑SAE‑Merkmale Cohen's d = 9,9 haben, aber die Halluzinationserkennung scheitert. Die Antwort war tiefer als das Messzeitpunkt‑Problem."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "ff4d32ae49c3baffed051adf000b440b"
-chunkHashes: "f8df59952cff9505,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
+translationHash: "55bc4c90276f86a299c59d4429dc536d"
+chunkHashes: "f8df59952cff9505,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,340273774faec2f3,edfd2d67a37563bd"
 ---
 **Dein Messfenster bestimmt, welche Verhaltensweisen du sehen kannst. Sykoophanz manifestiert sich während der Codierung. Halluzination manifestiert sich während der Generierung. Verwende das falsche Timing und dein Cohen's d bricht zusammen.**
 
@@ -76,7 +76,6 @@ Der hohe Cohen’s d bei niedriger LOO‑Genauigkeit (66 %) weist auf dimens
 
 Eine einzelne lineare Probe kann nicht trennen, was kein einheitliches Signal ist. Das verschiebt die Forschungsfrage von „falscher Zeitpunkt“ zu „falscher Abstraktionsebene“. Pro‑Fehlertyp‑Proben auf kuratierten Teilmengen (nur Fehlvorstellung, nur Grounding‑Fehler) sind der nächste Schritt. Das ist ein anderes Experiment.
 
-Code: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
 ## Was ich ausgelassen habe
 
 **Warum die SAE‑Forschung standardmäßig Messungen zur Kodierungszeit verwendet.** Aktivierungen zur Kodierungszeit sind zustandslos und deterministisch. Aktivierungen zur Generierungszeit hängen von der gesamten Sequenzgeschichte ab und sind stochastisch bezüglich Temperatur und Sampling. Die Mathematik ist zur Kodierungszeit sauberer. Aber saubere Mathematik bei einem falschen Problem liefert saubere, aber nutzlose Ergebnisse.

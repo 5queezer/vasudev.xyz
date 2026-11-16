@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Leí 6 artículos sobre reproducción de memoria inspirada biológicamente para agentes LLM. Solo 2 valen tu tiempo si estás construyendo, no publicando."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "a845e70141c78f034b7dfedf24913ad2"
-chunkHashes: "54b02139cb0cce9d,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
+translationHash: "6f3d14f8652be7219994ec5ccdea45f8"
+chunkHashes: "54b02139cb0cce9d,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,9662547e6706d1ba"
 ---
 La mayoría de la investigación sobre memoria en LLM vive en un bucle cómodo: proponer arquitectura, probar en un benchmark personalizado, afirmar una mejora, y seguir adelante. Si realmente estás construyendo memoria para agentes, decidiendo qué almacenar, qué olvidar y cuándo consolidar, la relación señal‑ruido en la literatura es brutal.
 
@@ -64,6 +64,6 @@ Comienza con [MemoryBench](https://arxiv.org/abs/2510.17281). Lee [SleepGate](ht
 
 ---
 
-*Christian Pojoni construye infraestructura de agentes IA de borde primero. [Hrafn](https://github.com/5queezer/hrafn) es el runtime. [MuninnDB](https://muninndb.com) es la memoria. Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye infraestructura de agentes IA de borde primero y contribuye a [MuninnDB](https://muninndb.com). Más en [vasudev.xyz](https://vasudev.xyz).*
 
 *La imagen de portada de este artículo fue generada por IA.*

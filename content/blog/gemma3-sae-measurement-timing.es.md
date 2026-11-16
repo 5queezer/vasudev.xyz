@@ -10,8 +10,8 @@ series: ["Reading the Residual Stream"]
 series_weight: 1
 description: "¿Por qué las características SAE de servilismo tienen Cohen's d=9.9 pero la detección de alucinaciones falla? La respuesta resultó ser más profunda que el momento de la medición."
 images: ["/images/gemma3-sae-measurement-timing-og.png"]
-translationHash: "ff4d32ae49c3baffed051adf000b440b"
-chunkHashes: "f8df59952cff9505,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,26a5f76187d23654,48daa219c364a9b5"
+translationHash: "55bc4c90276f86a299c59d4429dc536d"
+chunkHashes: "f8df59952cff9505,966f3ebf65e8edcc,a70dd6c514e49d91,1fff53596e298911,77ee98e8059290c2,3befffa15cb47332,340273774faec2f3,edfd2d67a37563bd"
 ---
 **Tu ventana de medida determina qué comportamientos puedes ver. La sycophancy se manifiesta durante la codificación. La alucinación se manifiesta durante la generación. Usa el momento equivocado y tu Cohen's d colapsará.**
 
@@ -76,7 +76,6 @@ El alto d de Cohen con baja precisión LOO (66 %) apunta a sobreajuste dimensi
 
 Una sola sonda lineal no puede separar lo que no es una señal única. Esto desplaza la pregunta de investigación de «momento equivocado» a «nivel de abstracción equivocado». Las sondas por tipo de error en subconjuntos curados (solo concepto erróneo, solo fallo de anclaje) son el siguiente paso. Eso es un experimento diferente.
 
-Código: [`gentime.py`](https://github.com/5queezer/gemma-sae/blob/master/gentime.py)
 ## Lo Que Dejé Fuera
 
 **Por qué la investigación de SAE predetermina la medición en tiempo de codificación.** Las activaciones en tiempo de codificación son sin estado y determinísticas. Las activaciones en tiempo de generación dependen de todo el historial de la secuencia y son estocásticas según la temperatura y el muestreo. Las matemáticas son más limpias en tiempo de codificación. Pero unas matemáticas limpias sobre el problema equivocado producen resultados limpios pero inútiles.

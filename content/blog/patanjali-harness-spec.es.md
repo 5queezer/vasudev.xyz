@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "La consolidación de la memoria empeoró la recuperación. Tres principios de diseño de los benchmarks de memoria de agentes, y sus paralelos inesperados en la teoría de la atención yóguica."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "ae9dda0d7fd7c8e66ef2f6324885a32d"
-chunkHashes: "d194b560cd5bd05d,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+translationHash: "cb3b671eae71e6d84d31e263ed04ef88"
+chunkHashes: "d194b560cd5bd05d,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,71259da57ac61851"
 ---
 [MuninnDB](https://github.com/scrypster/muninndb)'s sistema de consolidación fusionó tres engramas duplicados con variantes de color exactamente como se diseñó (similaridad coseno >= 0.95). La recuperación empeoró. En una bóveda de 13 engramas, eliminar duplicados desplazó el ancla de normalización, haciendo que los resultados relevantes bajaran en la clasificación. La solución fue una cláusula de guardia: `MinDedupVaultSize` (valor predeterminado 20), que omite la fase 2 de deduplicación en bóvedas pequeñas. [PR #359](https://github.com/scrypster/muninndb/pull/359) cerró el problema.
 
@@ -117,10 +117,10 @@ Pratyahara ya está implementado correctamente: el rasgo Memory devuelve top‑k
 Ninguno de estos requiere creer en chakras. Requieren tomar las discriminaciones en serio como heurísticas de ingeniería y medir si mejoran la capacidad de recuerdo del agente en cargas de trabajo realistas. El benchmark inicial obligó a un cambio de diseño. El generador sintético de bóvedas decide el resto.
 ## Lecturas adicionales
 
-[Marco de ingeniería de arneses de Böckeler](https://martinfowler.com/articles/harness-engineering.html), la taxonomía (guías, sensores, computacional, inferencial). [Meta-Arnés](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), evidencia empírica de que los cambios de arnés producen brechas de rendimiento de 6×. [Optimización de Política Advaita](https://www.researchgate.net/publication/389264820), el arte previo más cercano que asigna Vedanta a la arquitectura de agentes (conceptual, sin benchmarks todavía). Yoga Sutras 1.2‑1.16, el modelo de filtrado de atención que lo precede todo. [MuninnDB](https://github.com/scrypster/muninndb), donde se ponen a prueba las hipótesis. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), los resultados iniciales. [PR #337](https://github.com/scrypster/muninndb/pull/337), la corrección de saturación de puntuación. [PR #359](https://github.com/scrypster/muninndb/pull/359), la protección contra duplicados. [Hrafn](https://github.com/5queezer/hrafn), el entorno de ejecución que funciona en una Raspberry Pi de $10.
+[Marco de ingeniería de arneses de Böckeler](https://martinfowler.com/articles/harness-engineering.html), la taxonomía (guías, sensores, computacional, inferencial). [Meta-Arnés](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), evidencia empírica de que los cambios de arnés producen brechas de rendimiento de 6×. [Optimización de Política Advaita](https://www.researchgate.net/publication/389264820), el arte previo más cercano que asigna Vedanta a la arquitectura de agentes (conceptual, sin benchmarks todavía). Yoga Sutras 1.2‑1.16, el modelo de filtrado de atención que lo precede todo. [MuninnDB](https://github.com/scrypster/muninndb), donde se ponen a prueba las hipótesis. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), los resultados iniciales. [PR #337](https://github.com/scrypster/muninndb/pull/337), la corrección de saturación de puntuación. [PR #359](https://github.com/scrypster/muninndb/pull/359), la protección contra duplicados.
 
 ---
 
-*Christian Pojoni crea [Hrafn](https://github.com/5queezer/hrafn), un entorno de agente ligero en Rust. Publicación anterior: [Por qué los agentes de IA necesitan dormir](/blog/why-ai-agents-need-sleep/).*
+*Christian Pojoni construye infraestructura de agentes de IA. Publicación anterior: [Por qué los agentes de IA necesitan dormir](/blog/why-ai-agents-need-sleep/).*
 
 *La imagen de portada de esta publicación fue generada por IA.*

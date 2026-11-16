@@ -8,8 +8,8 @@ agentQuestions:
   - "¿Cómo deben los agentes recuperar los ADRs en su lugar?"
 description: "Dos estudios de 2026 discrepan sobre si AGENTS.md ayuda a los agentes de codificación. La disputa tiene sentido una vez que se separa el contexto de push del contexto de pull."
 images: ["/images/push-pull-context-og.png"]
-translationHash: "9e4e621132dc5df16cef59d00df6e1cf"
-chunkHashes: "68159f4342020e26,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,1b1fa23d8a9507de"
+translationHash: "5ce9142b7e95908f314b64b67071e288"
+chunkHashes: "68159f4342020e26,d28287460d8ade35,624f8e8ebc566cab,9b54877510c78112,941f32bbac660aad,8a6f05f0c1c8728c,f1e4699e315c7f95,7ed5a817a65c9753"
 ---
 Dos estudios rigurosos de 2026 midieron si los archivos de contexto de agente ayudan a los agentes de codificación de IA. Llegaron a conclusiones opuestas. El grupo de ETH Zurich ejecutó SWE-bench Lite y AGENTbench con varios modelos y [encontró que los archivos AGENTS.md generados por LLM reducían el éxito de la tarea en un 3 % e inflaban el costo de inferencia en un 20 %](https://arxiv.org/abs/2602.11988). Los archivos escritos por desarrolladores dieron un aumento marginal del 4 % con el mismo impacto en costos. Un mes antes, [Lulla et al. reportaron lo contrario](https://arxiv.org/abs/2601.20404) en un experimento limpio y pareado con 124 PR reales de GitHub: la presencia de AGENTS.md redujo el tiempo de ejecución mediano en un 28,64 % y los tokens de salida en un 16,58 %.
 
@@ -86,6 +86,6 @@ Los dos estudios no se contradicen. Miden dos estrategias de contenido diferente
 
 ---
 
-*Christian Pojoni escribe sobre programación agentiva, Rust e infraestructura de trading en [vasudev.xyz](https://vasudev.xyz). Está construyendo [Hrafn](https://github.com/5queezer/hrafn), un framework de agentes en Rust, y contribuyendo a MuninnDB.*
+*Christian Pojoni escribe sobre programación agentiva, Rust e infraestructura de trading en [vasudev.xyz](https://vasudev.xyz). Está contribuyendo a MuninnDB.*
 
 *La imagen de portada de este artículo fue generada por IA.*

@@ -11,8 +11,8 @@ series_weight: 1
 description: "KI-Agenten erfassen Erinnerungen, aber konsolidieren sie nie. So greift MuninnDBs Dream Engine auf die Neurowissenschaften zurück, um das zu beheben."
 images: ["/images/dream-engine.png"]
 aliases: ["/blog/stop-hoarding-memories-let-your-agent-sleep/"]
-translationHash: "1673025680449bc13a09226042751f96"
-chunkHashes: "3b0ff2655d6195a8,eef9438b5c27cddb,5d70b12018209cbb,bc19745059a2ec72,583aa6b526db12dc,9953ab1d0ae9aab0,5d64f27797af7a7f,63274f06db4f9fc5"
+translationHash: "a05ba092a5c9e443459974a79db7bcf8"
+chunkHashes: "3b0ff2655d6195a8,eef9438b5c27cddb,5d70b12018209cbb,bc19745059a2ec72,583aa6b526db12dc,9953ab1d0ae9aab0,22f0c4653a31e8da,6c1b5d52707fdf71"
 ---
 
 Ich trage zu einer kognitiven Datenbank für KI‑Agenten bei, genannt [MuninnDB](https://github.com/scrypster/muninndb). Sie speichert alles: Sitzungsnotizen, Projektkontexte, Arbeitsbeobachtungen, rechtliche Dokumentation. Nach ein paar Wochen täglicher Nutzung stapeln sich die Einträge. Das Auffinden funktioniert noch. Die semantische Suche ist gut im Abrufen. Aber das Repository selbst verfiel. Nahe‑Duplikate aus Sitzungen, die denselben Stoff behandelten. Veraltete Fakten, die von neueren überholt wurden. Kein System, das „kritische rechtliche Notiz“ von „flüchtigem Kommentar zu Docker‑Netzwerken“ unterscheidet.
@@ -119,7 +119,7 @@ Hier ist, was ein Traumlauf erzeugt, sobald die LLM‑Phasen in einem Folge‑PR
 *Scanned 47 entries across 3 vaults (legal: 8 skipped) in 4.2s*
 ```
 
-Jeden Morgen liest du, wovon dein Gedächtnissystem geträumt hat. Die Verbindungen, die es bemerkt hat. Das Rauschen, das es bereinigt hat. Die Widersprüche, die es aufgelöst hat. Es ist ein Änderungsprotokoll für dein Wissen, geschrieben in Prosa. MuninnDB ist das kognitive Gedächtnis‑Backend für [Hrafn](https://github.com/5queezer/hrafn), eine leichte, modulare KI‑Agent‑Runtime.
+Jeden Morgen liest du, wovon dein Gedächtnissystem geträumt hat. Die Verbindungen, die es bemerkt hat. Das Rauschen, das es bereinigt hat. Die Widersprüche, die es aufgelöst hat. Es ist ein Änderungsprotokoll für dein Wissen, geschrieben in Prosa.
 ## Probieren Sie es aus
 
 Das schreibgeschützte Fundament (Phase 0 + konfigurierbare Deduplizierung + Dry‑Run‑CLI) wurde in [PR #306](https://github.com/scrypster/muninndb/pull/306) bereitgestellt und ist gemergt. Schreibphasen (bidirektionale Stabilität, LLM‑Konsolidierung, Journal) folgen in einem separaten PR. Die vollständige Designspezifikation befindet sich im Repository unter `docs/superpowers/specs/2026-03-28-dream-engine-design.md`.
@@ -132,4 +132,4 @@ muninn dream --dry-run
 
 ---
 
-*Christian Pojoni baut KI‑Agenten‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist die Runtime. [MuninnDB](https://github.com/scrypster/muninndb) ist das Gedächtnis.*
+*Christian Pojoni baut KI‑Agenten‑Infrastruktur und trägt zu [MuninnDB](https://github.com/scrypster/muninndb) bei.*

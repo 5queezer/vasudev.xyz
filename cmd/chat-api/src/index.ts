@@ -421,7 +421,7 @@ IMPORTANT rules:
         showCode: tool({
           description: "Fetch and display code from a GitHub repository",
           parameters: z.object({
-            repo: z.string().describe("GitHub repo in owner/name format, e.g. '5queezer/hrafn'"),
+            repo: z.string().describe("GitHub repo in owner/name format, e.g. '5queezer/aver'"),
             path: z.string().describe("File path in the repo"),
             startLine: z.number().optional().describe("Start line number"),
             endLine: z.number().optional().describe("End line number"),

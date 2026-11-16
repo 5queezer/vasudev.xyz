@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 3
 description: "La consolidación de la memoria luce genial en los paneles de control. Pero si tus métricas pueden mejorar sin que la recuperación mejore, estás optimizando un proxy desacoplado."
 images: ["/images/memory-metrics-lying-how-to-ground-them-og.png"]
-translationHash: "be931aa83e6ee2d7d2fdb4867699e550"
-chunkHashes: "195c2275b5f794ca,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,1fce55bf986b49ce,6bf6be89dbedc7e7"
+translationHash: "f946e9b5d8e6047ab3447412c3ff6cf0"
+chunkHashes: "195c2275b5f794ca,299ae3d5957d58fb,b4610acbae2f8fd2,bd8529de8ff2a85e,75e06b1e782728bd,6cd6d3b57c3ce43e,fb111dc0c7124bcb,55318fe50695070d,5e1a4e51436a34c6"
 ---
 Construí un sistema de consolidación de memoria para agentes de IA. Deduplifica recuerdos, fortalece asociaciones, degrada entradas obsoletas y genera un diario de sueños que realmente puedes leer. El panel se ve fantástico: la tasa de deduplicación sube, la cantidad de memorias disminuye y la densidad de asociaciones aumenta.
 
@@ -74,7 +74,7 @@ La solución es la misma en todos los casos: define la verdad fundamental que re
 
 El ensayo sobre la integridad de los proxies también analiza la "compresión temporal", donde la apariencia de habilidad se fabrica sin el proceso subyacente. Eso se corresponde con los benchmarks sintéticos donde generas datos de prueba que parecen realistas pero no poseen las propiedades estadísticas de las interacciones reales de los agentes. Estoy usando entradas sintéticas de bóvedas generadas por LLM para escenarios controlados con verdad de referencia, pero son complementos a LongMemEval, no sustitutos.
 
-No he abordado el caso de múltiples agentes, donde la memoria consolidada de un agente alimenta el contexto de otro agente. La separación de proxies en ese escenario podría desencadenar una cascada: una mala consolidación en la fuente produce una mala recuperación aguas abajo, pero los paneles de ambos agentes se ven bien. Eso es un problema para el trabajo del protocolo A2A de Hrafn, pero es alcance futuro. Un problema relacionado: las Tarjetas de Agente en A2A llevan un `agent_id` pero nada vincula ese ID al historial de interacciones. Un agente malintencionado puede regenerar su tarjeta y comenzar con una reputación fresca. El documento de Flyxion ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formaliza exactamente este modo de falla. Eso es una publicación separada.
+No he abordado el caso de múltiples agentes, donde la memoria consolidada de un agente alimenta el contexto de otro agente. La separación de proxies en ese escenario podría desencadenar una cascada: una mala consolidación en la fuente produce una mala recuperación aguas abajo, pero los paneles de ambos agentes se ven bien. Eso importa para el trabajo con el protocolo agente a agente (A2A), pero es alcance futuro. Un problema relacionado: las Tarjetas de Agente en A2A llevan un `agent_id` pero nada vincula ese ID al historial de interacciones. Un agente malintencionado puede regenerar su tarjeta y comenzar con una reputación fresca. El documento de Flyxion ["Against Namespace Laundering"](https://standardgalactic.github.io/antivenom/Against%20Namespace%20Laundering.pdf) formaliza exactamente este modo de falla. Eso es una publicación separada.
 
 El análisis del ensayo sobre los incentivos de la plataforma (los modelos publicitarios están económicamente aislados de la degradación de la señal) tiene un análogo en el código abierto: los recuentos de estrellas y las métricas de descargas son proxies de utilidad que pueden desconectarse con la misma facilidad. Pero eso es una publicación distinta.
 ## El Principio
@@ -85,10 +85,10 @@ Si tus métricas de consolidación pueden subir mientras la capacidad de tu agen
 
 Fundamenta tus métricas. Realiza pruebas comparativas antes de lanzar. Descarta cualquier señal que pueda moverse independientemente de lo que realmente te importa.
 
-La implementación completa de Dream Engine está en [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). El harness de benchmark que bloquea los caminos de escritura es [issue #311](https://github.com/scrypster/muninndb/issues/311). Si estás construyendo sistemas de memoria para agentes y quieres comparar notas sobre la fundamentación de métricas de recuperación, abre un issue en [Hrafn](https://github.com/5queezer/hrafn).
+La implementación completa de Dream Engine está en [MuninnDB PR #306](https://github.com/scrypster/muninndb/pull/306). El harness de benchmark que bloquea los caminos de escritura es [issue #311](https://github.com/scrypster/muninndb/issues/311).
 
 ---
 
-*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un entorno de ejecución ligero para agentes de IA en hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni construye infraestructura de agentes de IA para hardware de borde. Más en [vasudev.xyz](https://vasudev.xyz).*
 
 *La imagen de portada de este artículo fue generada por IA.*

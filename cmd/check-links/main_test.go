@@ -205,8 +205,7 @@ func TestShouldSkipURL(t *testing.T) {
 		{"https://agent.example.com/api", true},
 		{"http://localhost:8080/admin", true},
 		{"http://169.254.169.254/latest/meta-data/", true},
-		{"https://github.com/5queezer/hrafn/pull/4166", true},
-		{"https://github.com/5queezer/gemma-sae/blob/master/gentime.py", true},
+		{"https://github.com/5queezer/aver/pull/1", false},
 		{"https://github.com/real/repo", false},
 		{"https://vasudev.xyz/blog/", false},
 	}

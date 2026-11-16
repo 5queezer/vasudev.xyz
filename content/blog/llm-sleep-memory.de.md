@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 2
 description: "Ich habe 6 Arbeiten über biologisch inspirierte Gedächtniswiederholung für LLM‑Agenten gelesen. Nur 2 davon sind deine Zeit wert, wenn du baust, nicht publizierst."
 images: ["/images/llm-sleep-memory-og.png"]
-translationHash: "a845e70141c78f034b7dfedf24913ad2"
-chunkHashes: "54b02139cb0cce9d,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,3577fcf882945c6f"
+translationHash: "6f3d14f8652be7219994ec5ccdea45f8"
+chunkHashes: "54b02139cb0cce9d,9774f2ca9b963beb,3bce64c3708dca2e,bbdaad3c3659e576,f929e0ccf6f20e09,060c65380e139551,2077b031b0fcccc7,9662547e6706d1ba"
 ---
 Die meisten LLM‑Speicher‑Forschungen bewegen sich in einer bequemen Schleife: Architektur vorschlagen, auf einem eigenen Benchmark testen, Verbesserung beanspruchen, weiterziehen. Wenn du jedoch tatsächlich Agentenspeicher aufbaust, also entscheidest, was gespeichert, was vergessen und wann konsolidiert werden soll, ist das Signal‑zu‑Rausch‑Verhältnis in der Literatur brutal.
 
@@ -64,6 +64,6 @@ Fange mit [MemoryBench](https://arxiv.org/abs/2510.17281) an. Lies [SleepGate](h
 
 ---
 
-*Christian Pojoni baut Edge‑First‑KI‑Agent‑Infrastruktur. [Hrafn](https://github.com/5queezer/hrafn) ist die Laufzeitumgebung. [MuninnDB](https://muninndb.com) ist der Speicher. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni baut Edge‑First‑KI‑Agent‑Infrastruktur und trägt zu [MuninnDB](https://muninndb.com) bei. Mehr unter [vasudev.xyz](https://vasudev.xyz).*
 
 *Das Titelbild für diesen Beitrag wurde von KI generiert.*

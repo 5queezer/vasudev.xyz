@@ -217,9 +217,6 @@ other = "MCP · Marktdaten"
 [preview_key]
 other = "XChaCha20 · lokaler Schlüssel"
 
-[preview_memory]
-other = "FTS5 · Vektorspeicher"
-
 
 [collection_topics]
 other = "Kategorien"

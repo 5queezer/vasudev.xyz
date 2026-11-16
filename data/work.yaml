@@ -25,19 +25,6 @@
   tags_es: [Rust, FFI, Cifrado]
   link: https://axiom-vault.github.io/
 
-- name: distill
-  type: Team memory
-  type_de: Teamgedächtnis
-  type_es: Memoria de equipo
-  subtitle: Retrieval-first memory infrastructure without cloud lock-in.
-  desc: Privacy-first MCP server for team memory with FastMCP, SQLite FTS5, and local vector search.
-  desc_de: Datenschutzorientierter MCP-Server für Teamgedächtnis mit FastMCP, SQLite FTS5 und lokaler Vektorsuche.
-  desc_es: Servidor MCP centrado en la privacidad para memoria de equipo con FastMCP, SQLite FTS5 y búsqueda vectorial local.
-  tags: [Python, SQLite, Vectors]
-  tags_de: [Python, SQLite, Vektoren]
-  tags_es: [Python, SQLite, Vectores]
-  link: https://github.com/5queezer/distill
-
 - name: Aver
   type: Local-first agent memory
   type_de: Lokaler Agentenspeicher

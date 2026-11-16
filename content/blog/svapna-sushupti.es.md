@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 5
 description: "Neurociencia, artículos recientes de IA y un antiguo texto sánscrito convergen en la misma idea sobre la consolidación offline, aunque discrepan sobre qué fase del sueño es la más importante."
 images: ["/images/svapna-sushupti-og.png"]
-translationHash: "63870ef6fa2f5af16cc207e07a3c663c"
-chunkHashes: "a643ecf4e84e8c37,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,98e5ed0adef6290c"
+translationHash: "cf4bb013b5818f1e05d9baa72d5120c6"
+chunkHashes: "a643ecf4e84e8c37,bcaca981229f3d62,b600f6093b4725ce,4eb4abf5cc4c9a0e,5686047f16c3b8bf,1ed6b3c1d4dc1f5c,a080f552373d2cd4,87d426de78ce703d"
 ---
 [Mi última publicación](/blog/why-ai-agents-need-sleep/) argumentó que los agentes de IA necesitan dormir. Varias personas preguntaron lo obvio que sigue: ¿qué significa eso realmente? ¿Es el “sueño” solo una metáfora para ejecutar una tarea programada, o la analogía va más allá?
 
@@ -86,6 +86,6 @@ Lea el [Dream Engine PR](https://github.com/scrypster/muninndb/pull/367) para la
 
 ---
 
-*Christian Pojoni construye [Hrafn](https://github.com/5queezer/hrafn), un runtime de agentes liviano en Rust, y contribuye a [MuninnDB](https://github.com/scrypster/muninndb). Más en [vasudev.xyz](https://vasudev.xyz).*
+*Christian Pojoni contribuye a [MuninnDB](https://github.com/scrypster/muninndb). Más en [vasudev.xyz](https://vasudev.xyz).*
 
 *La imagen de portada de este post fue generada por IA.*

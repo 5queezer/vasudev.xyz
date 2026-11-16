@@ -10,8 +10,8 @@ series: ["Building Agents That Sleep"]
 series_weight: 4
 description: "Gedächtniskonsolidierung machte das Abrufen schlechter. Drei Gestaltungsprinzipien aus Agent‑Gedächtnis‑Benchmarks und ihre unerwarteten Parallelen zur yogischen Aufmerksamkeits­theorie."
 images: ["/images/patanjali-harness-spec-og.png"]
-translationHash: "ae9dda0d7fd7c8e66ef2f6324885a32d"
-chunkHashes: "d194b560cd5bd05d,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,4b8f77dd0376513a"
+translationHash: "cb3b671eae71e6d84d31e263ed04ef88"
+chunkHashes: "d194b560cd5bd05d,00217735d7922f24,4ff29492163683f6,76193dd6126e8e55,797db2615cbff326,d4e931c16fb32a74,71259da57ac61851"
 ---
 [MuninnDB](https://github.com/scrypster/muninndb)'s Konsolidierungssystem hat drei farbvarianten‑duplizierte Engramme exakt wie vorgesehen zusammengeführt (Kosinus‑Ähnlichkeit ≥ 0,95). Die Retrieval‑Leistung verschlechterte sich. In einem 13‑Engram‑Vault verschob das Entfernen von Duplikaten den Normalisierungs‑Anker und drückte relevante Ergebnisse im Ranking nach unten. Die Lösung war eine Guard‑Clause: `MinDedupVaultSize` (Standardwert 20), die Phase‑2‑Dedup in kleinen Vaults überspringt. [PR #359](https://github.com/scrypster/muninndb/pull/359) schloss das Problem.
 
@@ -119,10 +119,10 @@ Pratyahara ist bereits korrekt implementiert: Das Memory‑Trait gibt Top‑k zu
 Keine dieser Anforderungen verlangt den Glauben an Chakras. Sie verlangen, die Diskriminierungen ernst zu nehmen als ingenieurtechnische Heuristiken und zu messen, ob sie die Erinnerung des Agenten bei realistischen Workloads verbessern. Der Anfangs‑Benchmark zwang zu einer Design‑Änderung. Der synthetische Vault‑Generator entscheidet den Rest.
 ## Weiterführende Lektüre
 
-[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html), die Taxonomie (Guides, Sensoren, Computational, Inferential). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), empirische Evidenz, dass Änderungen am Harness 6‑fach größere Leistungslücken erzeugen. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820), das bislang engste Vorbild, das Vedanta auf Agenten‑Architektur abbildet (konzeptionell, noch keine Benchmarks). Yoga Sutras 1.2‑1.16, das Aufmerksamkeits‑Filtermodell, das allem vorausgeht. [MuninnDB](https://github.com/scrypster/muninndb), wo die Hypothesen getestet werden. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), die ersten Ergebnisse. [PR #337](https://github.com/scrypster/muninndb/pull/337), die Fehlerbehebung für Score‑Sättigung. [PR #359](https://github.com/scrypster/muninndb/pull/359), die Deduplizierungs‑Abwehr. [Hrafn](https://github.com/5queezer/hrafn), das Runtime, das auf einem $10 Raspberry Pi läuft.
+[Böckeler's harness engineering framework](https://martinfowler.com/articles/harness-engineering.html), die Taxonomie (Guides, Sensoren, Computational, Inferential). [Meta-Harness](https://arxiv.org/abs/2603.28052) (arXiv 2603.28052), empirische Evidenz, dass Änderungen am Harness 6‑fach größere Leistungslücken erzeugen. [Advaitic Policy Optimization](https://www.researchgate.net/publication/389264820), das bislang engste Vorbild, das Vedanta auf Agenten‑Architektur abbildet (konzeptionell, noch keine Benchmarks). Yoga Sutras 1.2‑1.16, das Aufmerksamkeits‑Filtermodell, das allem vorausgeht. [MuninnDB](https://github.com/scrypster/muninndb), wo die Hypothesen getestet werden. [Benchmark #311](https://github.com/scrypster/muninndb/issues/311), die ersten Ergebnisse. [PR #337](https://github.com/scrypster/muninndb/pull/337), die Fehlerbehebung für Score‑Sättigung. [PR #359](https://github.com/scrypster/muninndb/pull/359), die Deduplizierungs‑Abwehr.
 
 ---
 
-*Christian Pojoni entwickelt [Hrafn](https://github.com/5queezer/hrafn), ein leichtgewichtiges Agent‑Runtime in Rust. Vorheriger Beitrag: [Why AI Agents Need Sleep](/blog/why-ai-agents-need-sleep/).*
+*Christian Pojoni baut KI‑Agent‑Infrastruktur. Vorheriger Beitrag: [Why AI Agents Need Sleep](/blog/why-ai-agents-need-sleep/).*
 
 *Das Titelbild für diesen Beitrag wurde von KI generiert.*

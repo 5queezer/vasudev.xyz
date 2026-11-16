@@ -57,8 +57,6 @@ Graphify
 GraphRAG
 Haruki
 Hebbian
-Hrafn
-Hrafn's
 HybridRAG
 hyperparameter
 hyperplane
