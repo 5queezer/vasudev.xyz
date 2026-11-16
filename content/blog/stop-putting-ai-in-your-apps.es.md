@@ -10,8 +10,8 @@ agentQuestions:
   - "¿Qué hay de malo en los cuadros de chat de IA integrados?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
-translationHash: "0ce521fb8f264107799bc51cbd547f5c"
-chunkHashes: "639269d02ff6ee0f,69da4ec5d449ecb3,c9b0ece7b9bb2623,768e66d34188f536,f94fd15b666a8f6e,9aa2f7ac14ac90c4,a9fe755e3099498b,b5d7d81ad4b20b30"
+translationHash: "57cbacf444f28d1fd2c7d644a9507839"
+chunkHashes: "639269d02ff6ee0f,69da4ec5d449ecb3,c9b0ece7b9bb2623,768e66d34188f536,f94fd15b666a8f6e,9aa2f7ac14ac90c4,a9fe755e3099498b,37be94ce3b15957a"
 ---
 
 Intenté Airtable recientemente. Ahora tiene funciones de IA. Un pequeño cuadro de texto dentro de la aplicación donde puedes hacer preguntas sobre tus datos. Me pareció incorrecto de inmediato, y me tomó unos días articular por qué.
@@ -71,7 +71,7 @@ Si estás creando un producto hoy, no agregues una ventana de chat de IA a tu ap
 
 Las mejores herramientas en la era MCP no serán las que tengan la IA integrada más sofisticada. Serán las que expongan endpoints MCP claros y no estorben, como lo hace NocoDB hoy y como Notion y Airtable eventualmente tendrán que hacer.
 
-¿Quieres ver cómo se ve esto en la práctica? Añadí [soporte OAuth 2.1 MCP a NocoDB](https://github.com/nocodb/nocodb/issues/13363), incluyendo descubrimiento RFC 8414, registro de cliente dinámico RFC 7591 y metadatos de recurso protegido RFC 9728. Explora [el fork](https://github.com/5queezer/nocodb), intenta conectar Claude a tu propia instancia de NocoDB y observa cómo se siente la arquitectura cuando la IA está encima en lugar de dentro.
+¿Quieres ver cómo se ve esto en la práctica? Añadí [soporte OAuth 2.1 MCP a NocoDB](https://github.com/nocodb/nocodb/issues/13363), incluyendo descubrimiento RFC 8414, registro de cliente dinámico RFC 7591 y metadatos de recurso protegido RFC 9728. Explora [el pull request](https://github.com/nocodb/nocodb/pull/13364), intenta conectar Claude a tu propia instancia de NocoDB y observa cómo se siente la arquitectura cuando la IA está encima en lugar de dentro.
 
 ---
 

@@ -76,7 +76,7 @@ If you're building a product today, don't bolt an AI chat window onto your app. 
 
 The best tools in the MCP era won't be the ones with the fanciest built-in AI. They'll be the ones that expose clean MCP endpoints and get out of the way, like NocoDB does today and like Notion and Airtable eventually will have to.
 
-Want to see what this looks like in practice? I added [OAuth 2.1 MCP support to NocoDB](https://github.com/nocodb/nocodb/issues/13363), including RFC 8414 Discovery, RFC 7591 Dynamic Client Registration, and RFC 9728 Protected Resource Metadata. Browse [the fork](https://github.com/5queezer/nocodb), try connecting Claude to your own NocoDB instance, and see how the architecture feels when the AI sits on top instead of inside.
+Want to see what this looks like in practice? I added [OAuth 2.1 MCP support to NocoDB](https://github.com/nocodb/nocodb/issues/13363), including RFC 8414 Discovery, RFC 7591 Dynamic Client Registration, and RFC 9728 Protected Resource Metadata. Browse [the pull request](https://github.com/nocodb/nocodb/pull/13364), try connecting Claude to your own NocoDB instance, and see how the architecture feels when the AI sits on top instead of inside.
 
 ---
 

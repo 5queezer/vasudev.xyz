@@ -10,8 +10,8 @@ agentQuestions:
   - "Was ist falsch an eingebetteten KI‑Chatboxen?"
 series: ["Field Notes"]
 images: ["/images/ai-architecture.png"]
-translationHash: "0ce521fb8f264107799bc51cbd547f5c"
-chunkHashes: "639269d02ff6ee0f,69da4ec5d449ecb3,c9b0ece7b9bb2623,768e66d34188f536,f94fd15b666a8f6e,9aa2f7ac14ac90c4,a9fe755e3099498b,b5d7d81ad4b20b30"
+translationHash: "57cbacf444f28d1fd2c7d644a9507839"
+chunkHashes: "639269d02ff6ee0f,69da4ec5d449ecb3,c9b0ece7b9bb2623,768e66d34188f536,f94fd15b666a8f6e,9aa2f7ac14ac90c4,a9fe755e3099498b,37be94ce3b15957a"
 ---
 
 Ich habe kürzlich Airtable ausprobiert. Es hat jetzt KI‑Funktionen. Ein kleines Textfeld innerhalb der App, in das man Fragen zu den eigenen Daten stellen kann. Es fühlte sich sofort falsch an, und es dauerte ein paar Tage, bis ich genau benennen konnte, warum.
@@ -71,7 +71,7 @@ Wenn Sie heute ein Produkt entwickeln, hängen Sie kein KI‑Chat‑Fenster an I
 
 Die besten Werkzeuge im MCP‑Zeitalter werden nicht diejenigen sein, die die ausgefallenste eingebaute KI bieten. Es werden die sein, die saubere MCP‑Endpunkte bereitstellen und im Hintergrund bleiben, so wie NocoDB heute funktioniert und so, wie Notion und Airtable irgendwann müssen.
 
-Möchten Sie sehen, wie das in der Praxis aussieht? Ich habe [OAuth 2.1 MCP‑Unterstützung zu NocoDB hinzugefügt](https://github.com/nocodb/nocodb/issues/13363), einschließlich RFC 8414 Discovery, RFC 7591 Dynamic Client Registration und RFC 9728 Protected Resource Metadata. Durchstöbern Sie [den Fork](https://github.com/5queezer/nocodb), verbinden Sie Claude mit Ihrer eigenen NocoDB‑Instanz und spüren Sie, wie sich die Architektur anfühlt, wenn die KI oben drauf sitzt statt darin.
+Möchten Sie sehen, wie das in der Praxis aussieht? Ich habe [OAuth 2.1 MCP‑Unterstützung zu NocoDB hinzugefügt](https://github.com/nocodb/nocodb/issues/13363), einschließlich RFC 8414 Discovery, RFC 7591 Dynamic Client Registration und RFC 9728 Protected Resource Metadata. Durchstöbern Sie [den Pull Request](https://github.com/nocodb/nocodb/pull/13364), verbinden Sie Claude mit Ihrer eigenen NocoDB‑Instanz und spüren Sie, wie sich die Architektur anfühlt, wenn die KI oben drauf sitzt statt darin.
 
 ---
 
